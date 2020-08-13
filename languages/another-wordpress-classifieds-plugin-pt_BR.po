@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2020-06-23 22:57:22+00:00\n"
-"PO-Revision-Date: 2020-06-23 23:04+0000\n"
+"POT-Creation-Date: 2020-08-13 19:16:19+00:00\n"
+"PO-Revision-Date: 2020-08-13 21:09+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "Atributos"
 msgid "Categories"
 msgstr "Categorias"
 
-#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:827
+#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:834
 msgid "Featured Ads"
 msgstr "Anúncios em destaque"
 
@@ -1266,7 +1266,7 @@ msgid ""
 msgstr "Se você atualmente está usando o método API de integração do Facebook e não teve qualquer problema, você não terá de fazer nada agora. Se você teve problemas, por favor leia a seção de Diagnósticos para tentar consertá-los."
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:31
-#: includes/settings/class-general-settings.php:761
+#: includes/settings/class-general-settings.php:772
 msgid "Facebook API"
 msgstr "Facebook API"
 
@@ -1288,7 +1288,7 @@ msgid ""
 msgstr "Adicionar a seguinte URL para a lista Valid Author Redirect URIs para a configuração da aplicação Facebook: "
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:49
-#: includes/settings/class-general-settings.php:762
+#: includes/settings/class-general-settings.php:773
 msgid "Zapier/IFTTT Webhooks"
 msgstr "Zapier/IFTTT Webhooks"
 
@@ -1724,19 +1724,19 @@ msgid ""
 "{support_link}contact support{/support_link}."
 msgstr "A instalação do Another WordPress Classifieds Plugin foi completada. Por favor, {support_link}contatar suporte{/support_link}."
 
-#: cron.php:123
+#: cron.php:124
 msgid "Listing Details"
 msgstr "Detalhes do Imóvel"
 
-#: cron.php:125
+#: cron.php:126
 msgid "Ad Title:"
 msgstr "Título do anúncio"
 
-#: cron.php:128
+#: cron.php:129
 msgid "Posted:"
 msgstr "Postado:"
 
-#: cron.php:132
+#: cron.php:133
 msgid "Renew your ad by visiting:"
 msgstr "Renove o seu anúncio, visite:"
 
@@ -3141,64 +3141,64 @@ msgstr "Não é possível gravar arquivo em disco."
 msgid "The file upload was stopped by extension."
 msgstr "O upload do arquivo foi parado por extensão."
 
-#: functions.php:2440
+#: functions.php:2448
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Seu anúncio \"%s\" foi aprovado"
 
-#: functions.php:2463
+#: functions.php:2471
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Seu anúncio \"%s\" foi atualizado com sucesso"
 
-#: functions.php:2486
+#: functions.php:2494
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Imagens do anúncio \"%s\"estão aguardando aprovação"
 
-#: functions.php:2488 includes/functions/notifications.php:195
+#: functions.php:2496 includes/functions/notifications.php:195
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr "Imagens do Anúncio \"%s\" estão à espera de aprovação. Você pode aprovar as imagens que vão para a seção Gerenciar Imagens para esse anúncio e clicando no \"Ativar\" botão abaixo de cada imagem. Clique aqui para continuar: %s ."
 
-#: functions.php:2491
+#: functions.php:2499
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "O Anúncio \"%s\" está aguardando aprovação"
 
-#: functions.php:2493 includes/functions/notifications.php:200
+#: functions.php:2501 includes/functions/notifications.php:200
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr "O Anúncio \"%s\" está aguardando aprovação. Você pode aprovar o anúncio vai para a seção de gerenciar listas e clicando no \"Ativar \" ação mostrada no topo. Clique aqui para continuar: %s ."
 
-#: functions.php:2500 includes/functions/notifications.php:207
+#: functions.php:2508 includes/functions/notifications.php:207
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr "Além disso, você pode aprovar as imagens que vão para a seção Gerenciar Imagens para esse anúncio e clicando no \\ \"Activar \" botão abaixo de cada imagem. Clique aqui para continuar: %s ."
 
-#: functions.php:3036
+#: functions.php:3044
 msgid "Email sent %s."
 msgstr "E-mail enviado %s ."
 
-#: functions.php:3173
+#: functions.php:3181
 msgid "Not Installed"
 msgstr "Não instalado"
 
-#: functions.php:3177
+#: functions.php:3185
 msgid "Installed"
 msgstr "Instalado"
 
-#: functions.php:3185
+#: functions.php:3193
 msgid "SSL Support: Yes."
 msgstr "Suporta SSL: Sim."
 
-#: functions.php:3187
+#: functions.php:3195
 msgid "SSL Support: No."
 msgstr "Suporta SSL: Não."
 
-#: functions.php:3190
+#: functions.php:3198
 msgid "OpenSSL version:"
 msgstr "OpenSSL versão:"
 
@@ -4069,106 +4069,106 @@ msgid ""
 " one of the associated listings: <error-message>"
 msgstr "A categoria não pode ser apagada porque houve um erro tentando apagar um dos anúncios associados: <error-message>"
 
-#: includes/class-awpcp.php:754
+#: includes/class-awpcp.php:761
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP requer a biblioteca GD de processamento gráfico e ele não está instalado. Entre em contato com o seu host para corrigir isso."
 
-#: includes/class-awpcp.php:755
+#: includes/class-awpcp.php:762
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Advertência"
 
-#: includes/class-awpcp.php:771
+#: includes/class-awpcp.php:778
 msgid "Attachments"
 msgstr "Anexos"
 
-#: includes/class-awpcp.php:778
+#: includes/class-awpcp.php:785
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:785
+#: includes/class-awpcp.php:792
 msgid "BuddyPress Listings"
 msgstr "Listagens BuddyPress"
 
-#: includes/class-awpcp.php:792
+#: includes/class-awpcp.php:799
 msgid "Campaign Manager"
 msgstr "Gerenciamento de Campanha"
 
-#: includes/class-awpcp.php:799
+#: includes/class-awpcp.php:806
 msgid "Category Icons"
 msgstr "Ícones Categoria do"
 
-#: includes/class-awpcp.php:806
+#: includes/class-awpcp.php:813
 msgid "Comments & Ratings"
 msgstr "Comentários do utilizador"
 
-#: includes/class-awpcp.php:813
+#: includes/class-awpcp.php:820
 msgid "Coupons/Discount"
 msgstr "Cupons/Disconto"
 
-#: includes/class-awpcp.php:820
+#: includes/class-awpcp.php:827
 msgid "Extra Fields"
 msgstr "Campos extra"
 
-#: includes/class-awpcp.php:834
+#: includes/class-awpcp.php:841
 msgid "Fee per Category"
 msgstr "Taxa por Categoria"
 
-#: includes/class-awpcp.php:841
+#: includes/class-awpcp.php:848
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: includes/class-awpcp.php:849
+#: includes/class-awpcp.php:856
 msgid "Mark as Sold"
 msgstr "Marque como vendido"
 
-#: includes/class-awpcp.php:856
+#: includes/class-awpcp.php:863
 msgid "PayFast"
 msgstr "PayFast"
 
-#: includes/class-awpcp.php:863
+#: includes/class-awpcp.php:870
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:870
+#: includes/class-awpcp.php:877
 msgid "Regions Control"
 msgstr "regiões de Controlo"
 
-#: includes/class-awpcp.php:877
+#: includes/class-awpcp.php:884
 msgid "Restricted Categories"
 msgstr "Categorias restritos"
 
-#: includes/class-awpcp.php:884
+#: includes/class-awpcp.php:891
 msgid "RSS"
 msgstr "RSS"
 
-#: includes/class-awpcp.php:891
+#: includes/class-awpcp.php:898
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:898
+#: includes/class-awpcp.php:905
 msgid "Subscriptions"
 msgstr "Assinaturas"
 
-#: includes/class-awpcp.php:905 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:912 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Vídeos"
 
-#: includes/class-awpcp.php:913
+#: includes/class-awpcp.php:920
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 
-#: includes/class-awpcp.php:921
+#: includes/class-awpcp.php:928
 msgid "ZIP Code Search Module"
 msgstr "ZIP Code Search Module"
 
-#: includes/class-awpcp.php:1458
+#: includes/class-awpcp.php:1465
 msgid "This field is required."
 msgstr "Este campo é obrigatório."
 
-#: includes/class-awpcp.php:1459
+#: includes/class-awpcp.php:1466
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:267
 #: includes/frontend/class-edit-listing-page.php:361
@@ -4176,53 +4176,53 @@ msgstr "Este campo é obrigatório."
 msgid "Please enter a valid email address."
 msgstr "Por favor insira um endereço de e-mail válido."
 
-#: includes/class-awpcp.php:1460 includes/class-awpcp.php:1461
+#: includes/class-awpcp.php:1467 includes/class-awpcp.php:1468
 msgid "Please enter a valid URL."
 msgstr "Por favor, insira uma URL válida."
 
-#: includes/class-awpcp.php:1462
+#: includes/class-awpcp.php:1469
 msgid "Please enter a valid number."
 msgstr "por favor insira um número válido."
 
-#: includes/class-awpcp.php:1463
+#: includes/class-awpcp.php:1470
 msgid "Please enter a valid amount."
 msgstr "Por favor insira um Valor válido!'"
 
-#: includes/class-awpcp.php:1464
+#: includes/class-awpcp.php:1471
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1474
+#: includes/class-awpcp.php:1481
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Prev"
 
-#: includes/class-awpcp.php:1476
+#: includes/class-awpcp.php:1483
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Next&#x3e;"
 
-#: includes/class-awpcp.php:1491
+#: includes/class-awpcp.php:1498
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "."
 
-#: includes/class-awpcp.php:1497
+#: includes/class-awpcp.php:1504
 msgid "There are files currently being uploaded."
 msgstr "Há arquivos atualmente sendo carregados."
 
-#: includes/class-awpcp.php:1498
+#: includes/class-awpcp.php:1505
 msgid "There are files pending to be uploaded."
 msgstr "Há arquivos pendentes para ser carregado."
 
-#: includes/class-awpcp.php:1499
+#: includes/class-awpcp.php:1506
 msgid "You haven't uploaded any images or files."
 msgstr "Você não adicionou imagens ou arquivos."
 
-#: includes/class-awpcp.php:1568 includes/class-awpcp.php:1576
-#: includes/class-awpcp.php:1584 includes/class-awpcp.php:1661
-#: includes/class-awpcp.php:1669 includes/class-awpcp.php:1677
+#: includes/class-awpcp.php:1575 includes/class-awpcp.php:1583
+#: includes/class-awpcp.php:1591 includes/class-awpcp.php:1668
+#: includes/class-awpcp.php:1676 includes/class-awpcp.php:1684
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr "Another WordPress Classifieds Plugin"
@@ -4295,7 +4295,7 @@ msgstr "Para evitar a substituição de metadados existentes, use fill_default_l
 msgid "There was an error trying to save the listing details:"
 msgstr "Houve um erro tentando salvar detalhes do anúncio:"
 
-#: includes/class-listings-api.php:733
+#: includes/class-listings-api.php:738
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -4777,7 +4777,7 @@ msgid "Login/Registration"
 msgstr "Login / Registro"
 
 #: includes/frontend/class-submit-listing-form-steps.php:54
-#: includes/ui/class-category-selector.php:124
+#: includes/ui/class-category-selector.php:127
 #: templates/components/category-selector.tpl.php:16
 msgid "Select a Category"
 msgstr "Selecione uma categoria: "
@@ -7090,7 +7090,7 @@ msgid "Message body text for email sent out when an ad has auto-expired"
 msgstr "texto do corpo da mensagem para o email enviado quando um anúncio tem auto-expirada"
 
 #: includes/settings/class-email-settings.php:297
-#: includes/settings/class-general-settings.php:624
+#: includes/settings/class-general-settings.php:635
 msgid "Advanced"
 msgstr "Avançado"
 
@@ -7434,7 +7434,7 @@ msgstr "imagens Cortar em miniatura?"
 
 #: includes/settings/class-general-settings.php:69
 #: includes/settings/class-general-settings.php:87
-#: includes/settings/class-general-settings.php:747
+#: includes/settings/class-general-settings.php:758
 #: includes/settings/class-payment-general-settings.php:44
 msgid "General Settings"
 msgstr "Configurações Gerais"
@@ -7491,41 +7491,51 @@ msgid "Hide empty categories from dropdowns"
 msgstr "Esconder categorias vazias de dropdowns"
 
 #: includes/settings/class-general-settings.php:168
+msgid "Hide categories selector dropdown"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:171
+msgid ""
+"If checked, category filtering dropdown won't be displayed in \"Browse Ads\""
+" page."
+msgstr ""
+
+#: includes/settings/class-general-settings.php:179
 msgid "Welcome message in Classifieds page"
 msgstr "Mensagem de boas-vindas na página Classificados"
 
-#: includes/settings/class-general-settings.php:170
+#: includes/settings/class-general-settings.php:181
 msgid ""
 "Looking for a job? Trying to find a date? Looking for an apartment? Browse "
 "our classifieds. Have a job to advertise? An apartment to rent? Post a "
 "Classified Ad."
 msgstr "Procurando um emprego? Tentando encontrar uma data? À procura de um apartamento? Consulte nossos Classificados. Tem um trabalho para fazer propaganda? Um apartamento para alugar? Publicar um anúncio."
 
-#: includes/settings/class-general-settings.php:171
+#: includes/settings/class-general-settings.php:182
 msgid "The welcome text for your classifieds page on the user side"
 msgstr "O texto de boas-vindas da sua página de classificados no lado do usuário"
 
-#: includes/settings/class-general-settings.php:179
+#: includes/settings/class-general-settings.php:190
 msgid "Who can access AWPCP Admin Dashboard"
 msgstr "Quem pode acessar o Dashboard AWPCP Administrador"
 
-#: includes/settings/class-general-settings.php:182
+#: includes/settings/class-general-settings.php:193
 msgid "Role of WordPress users who can have admin access to Classifieds."
 msgstr "Papel dos usuários do WordPress que podem ter acesso de administrador para Classificados."
 
-#: includes/settings/class-general-settings.php:184
+#: includes/settings/class-general-settings.php:195
 msgid "Administrator"
 msgstr "Administrador"
 
-#: includes/settings/class-general-settings.php:185
+#: includes/settings/class-general-settings.php:196
 msgid "Administrator & Editor"
 msgstr "Administrador e editor"
 
-#: includes/settings/class-general-settings.php:194
+#: includes/settings/class-general-settings.php:205
 msgid "Enable page filter"
 msgstr "Ativar filtro de página"
 
-#: includes/settings/class-general-settings.php:197
+#: includes/settings/class-general-settings.php:208
 msgid ""
 "Uncheck this if you need to turn off the AWPCP page filter that prevents "
 "AWPCP classifieds children pages from showing up in your wp pages menu (You "
@@ -7535,87 +7545,87 @@ msgid ""
 "should not be visible to your users by default)."
 msgstr "Desmarque esta opção se você precisa desligar o filtro de página AWPCP que impede AWPCP páginas de classificados crianças de aparecer no seu menu páginas wp (Talvez seja necessário fazer isso se, por exemplo, o filtro de página AWPCP está atrapalhando seu menu principal. Isso significa que você terá que excluir manualmente as páginas AWPCP crianças de mostrar em sua lista de páginas. Algumas das páginas realmente não deve ser visível para os usuários por padrão)."
 
-#: includes/settings/class-general-settings.php:205
+#: includes/settings/class-general-settings.php:216
 msgid "Auto-expand the Classifieds Menu for mobile devices?"
 msgstr "Auto-expandir o Menu Classificados para dispositivos móveis?"
 
-#: includes/settings/class-general-settings.php:220
+#: includes/settings/class-general-settings.php:231
 msgid "Classifieds Management Panel"
 msgstr "Painel de Administração dos Classificados"
 
-#: includes/settings/class-general-settings.php:226
+#: includes/settings/class-general-settings.php:237
 msgid ""
 "You must have registered users to use this setting. Turning it on will "
 "automatically enable \"Require Registration\" for AWPCP. Make sure you site "
 "allows users to register under <wp-settings-link>Settings->General</a>."
 msgstr "Você deve ter usuários registrados para usar essa configuração. Ligá-lo habilitará automaticamente \\ \"exigir o registro \" para AWPCP. Certifique-se de site permite que os usuários se registrem em <wp-configurações-link> Configurações> </a> Geral."
 
-#: includes/settings/class-general-settings.php:232
+#: includes/settings/class-general-settings.php:243
 msgid "Enable User Ad Management Panel"
 msgstr "Ativar Usuário Painel de gerenciamento de anúncios"
 
-#: includes/settings/class-general-settings.php:248
-#: includes/settings/class-general-settings.php:251
+#: includes/settings/class-general-settings.php:259
+#: includes/settings/class-general-settings.php:262
 msgid "Terms of Service"
 msgstr "Termos de serviço"
 
-#: includes/settings/class-general-settings.php:250
+#: includes/settings/class-general-settings.php:261
 msgid "Display and require Terms of Service"
 msgstr "Visor e exigem Termos de serviço"
 
-#: includes/settings/class-general-settings.php:251
+#: includes/settings/class-general-settings.php:262
 msgid "Terms of service go here..."
 msgstr "As condições de serviço aqui ..."
 
-#: includes/settings/class-general-settings.php:251
+#: includes/settings/class-general-settings.php:262
 msgid ""
 "Terms of Service for posting Ads. Put in text or an URL starting with http. "
 "If you use an URL, the text box will be replaced by a link to the "
 "appropriate Terms of Service page"
 msgstr "Termos de Serviço para a publicação de anúncios. Coloque em um texto ou uma URL começando com http. Se você usar uma URL, a caixa de texto será substituído por um link para os Termos adequadas de página Serviço"
 
-#: includes/settings/class-general-settings.php:261
 #: includes/settings/class-general-settings.php:272
+#: includes/settings/class-general-settings.php:283
 msgctxt "settings"
 msgid "Date & Time Format"
 msgstr "Format Data e Hora"
 
-#: includes/settings/class-general-settings.php:268
+#: includes/settings/class-general-settings.php:279
 msgid "Documentation on date and time formatting"
 msgstr "Documentação sobre a data e a hora de formatar"
 
-#: includes/settings/class-general-settings.php:287
+#: includes/settings/class-general-settings.php:298
 msgid "Date Time Format"
 msgstr "Formato da Hora Data"
 
-#: includes/settings/class-general-settings.php:291
+#: includes/settings/class-general-settings.php:302
 msgid "American"
 msgstr "Norte americano"
 
-#: includes/settings/class-general-settings.php:292
+#: includes/settings/class-general-settings.php:303
 msgid "European"
 msgstr "Europeus"
 
-#: includes/settings/class-general-settings.php:293
+#: includes/settings/class-general-settings.php:304
 msgid "Your own."
 msgstr "Seu próprio."
 
-#: includes/settings/class-general-settings.php:302
+#: includes/settings/class-general-settings.php:313
 msgctxt "settings"
 msgid "Date Format"
 msgstr "Formato da Data"
 
-#: includes/settings/class-general-settings.php:315
+#: includes/settings/class-general-settings.php:326
 msgctxt "settings"
 msgid "Time Format"
 msgstr "Formato do horário"
 
-#: includes/settings/class-general-settings.php:325
+#: includes/settings/class-general-settings.php:336
 msgctxt "settings"
 msgid "Example output"
 msgstr "exemplo de saída"
 
-#: includes/settings/class-general-settings.php:327
+#: includes/settings/class-general-settings.php:338
 msgctxt "settings"
 msgid ""
 "Full date/time output with any strings you wish to add. <date> and <time> "
@@ -7623,25 +7633,25 @@ msgid ""
 "the Date Format and Time Format settings above."
 msgstr "Data / saída em tempo integral com quaisquer cordas que você deseja adicionar. <Data> e <time> são espaços reservados para data e hora strings usando os formatos especificados nas definições de Data Formato e formato da hora acima."
 
-#: includes/settings/class-general-settings.php:333
+#: includes/settings/class-general-settings.php:344
 msgctxt "settings"
 msgid "Full Display String"
 msgstr "Seqüência de exibição completa"
 
-#: includes/settings/class-general-settings.php:354
+#: includes/settings/class-general-settings.php:365
 msgctxt "settings"
 msgid "Currency Format"
 msgstr "formato de moeda"
 
-#: includes/settings/class-general-settings.php:363
+#: includes/settings/class-general-settings.php:374
 msgid "Currency Format"
 msgstr "formato de moeda"
 
-#: includes/settings/class-general-settings.php:371
+#: includes/settings/class-general-settings.php:382
 msgid "Currency code"
 msgstr "Codigo de Moedas:"
 
-#: includes/settings/class-general-settings.php:374
+#: includes/settings/class-general-settings.php:385
 msgid ""
 "Prices in listings pages and payment pages will be displayed using this "
 "currency. The currency symbol will be generated based on this code, but if "
@@ -7649,11 +7659,11 @@ msgid ""
 "uppercase version of the code itself."
 msgstr "Os preços nas listagens páginas e páginas de pagamento serão exibidas usando esta moeda. O símbolo monetário será gerado com base neste código, mas se o plugin não sabe o símbolo de sua moeda, ele usará uma versão em maiúsculas do próprio código."
 
-#: includes/settings/class-general-settings.php:380
+#: includes/settings/class-general-settings.php:391
 msgid "Currency symbol"
 msgstr "Símbolo da Moeda"
 
-#: includes/settings/class-general-settings.php:383
+#: includes/settings/class-general-settings.php:394
 msgid ""
 "Use this setting to overwrite the currency symbol shown in listings pages. "
 "If empty, the plugin will attempt to show one of the standard symbols for "
@@ -7661,89 +7671,89 @@ msgid ""
 "your currency, it will use an uppercase version of the currency code."
 msgstr "Use essa configuração para substituir o símbolo de moeda mostrado nas páginas de listas. Se vazio, o plug-in tentará mostrar um dos símbolos padrão para o código da moeda selecionada, mas se o plugin não sabe o símbolo para a sua moeda, ele usará uma versão em maiúsculas do código de moeda."
 
-#: includes/settings/class-general-settings.php:386
+#: includes/settings/class-general-settings.php:397
 msgid "Thousands separator"
 msgstr "Separador de milhar"
 
-#: includes/settings/class-general-settings.php:386
+#: includes/settings/class-general-settings.php:397
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the thousands separator."
 msgid ","
 msgstr ","
 
-#: includes/settings/class-general-settings.php:387
+#: includes/settings/class-general-settings.php:398
 msgid "Separator for the decimal point"
 msgstr "Separador para o ponto decimal"
 
-#: includes/settings/class-general-settings.php:387
+#: includes/settings/class-general-settings.php:398
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the decimal separator."
 msgid "."
 msgstr "."
 
-#: includes/settings/class-general-settings.php:388
+#: includes/settings/class-general-settings.php:399
 msgid "Show decimals in price"
 msgstr "Mostrar decimais no preço"
 
-#: includes/settings/class-general-settings.php:388
+#: includes/settings/class-general-settings.php:399
 msgctxt "settings"
 msgid "Uncheck to show prices without decimals. The value will be rounded."
 msgstr "Desmarque para mostrar os preços sem casas decimais. O valor será arredondado."
 
-#: includes/settings/class-general-settings.php:393
+#: includes/settings/class-general-settings.php:404
 msgid "Show currency symbol"
 msgstr "Mostrar símbolo de moeda"
 
-#: includes/settings/class-general-settings.php:396
+#: includes/settings/class-general-settings.php:407
 msgid ""
 "The currency symbol can be configured by changing the currency code in the "
 "settings above."
 msgstr "O símbolo da moeda pode ser configurado alterando o código de moeda nas configurações acima."
 
-#: includes/settings/class-general-settings.php:399
+#: includes/settings/class-general-settings.php:410
 msgid "Show currency symbol on left"
 msgstr "Mostrar símbolo de moeda na esquerda"
 
-#: includes/settings/class-general-settings.php:400
+#: includes/settings/class-general-settings.php:411
 msgid "Show currency symbol on right"
 msgstr "Mostrar símbolo de moeda no lado direito"
 
-#: includes/settings/class-general-settings.php:401
+#: includes/settings/class-general-settings.php:412
 msgid "Don't show currency symbol"
 msgstr "Não mostrar símbolo de moeda"
 
-#: includes/settings/class-general-settings.php:409
+#: includes/settings/class-general-settings.php:420
 msgid "Include a space between the currency symbol and the amount"
 msgstr "Inclua um espaço entre o símbolo de moeda eo montante"
 
-#: includes/settings/class-general-settings.php:428
-#: includes/settings/class-general-settings.php:434
+#: includes/settings/class-general-settings.php:439
+#: includes/settings/class-general-settings.php:445
 msgid "Anti-SPAM"
 msgstr "Anti-spam "
 
-#: includes/settings/class-general-settings.php:447
+#: includes/settings/class-general-settings.php:458
 msgid "Use Akismet in Place Ad form"
 msgstr "Use Akismet em forma Ad Place"
 
-#: includes/settings/class-general-settings.php:450
+#: includes/settings/class-general-settings.php:461
 msgid "Use Akismet for Posting Ads (strong anti-spam)."
 msgstr "Use Akismet para a publicação de anúncios (forte anti-spam)."
 
-#: includes/settings/class-general-settings.php:456
+#: includes/settings/class-general-settings.php:467
 msgid "Use Akismet in Reply to Ad form"
 msgstr "Use Akismet em resposta a forma de anúncio"
 
-#: includes/settings/class-general-settings.php:459
+#: includes/settings/class-general-settings.php:470
 msgid "Use Akismet for Contact Responses (strong anti-spam)."
 msgstr "Use Akismet para Contact Respostas (forte anti-spam)."
 
-#: includes/settings/class-general-settings.php:467
+#: includes/settings/class-general-settings.php:478
 msgid "Enable CAPTCHA in Place Ad form"
 msgstr "Ativar CAPTCHA em forma Ad Place"
 
-#: includes/settings/class-general-settings.php:470
+#: includes/settings/class-general-settings.php:481
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -7751,78 +7761,78 @@ msgid ""
 "Place Ad form."
 msgstr "Um CAPTCHA é um programa para garantir que apenas os seres humanos estão postando anúncios para seu site. Usando um CAPTCHA irá reduzir o SPAM e evitar bots de publicar em seu site. Se marcada, um campo de formulário adicional será adicionado ao formulário Ad Place."
 
-#: includes/settings/class-general-settings.php:476
+#: includes/settings/class-general-settings.php:487
 msgid "Enable CAPTCHA in Reply to Ad form"
 msgstr "Ativar CAPTCHA em resposta a forma de anúncio"
 
-#: includes/settings/class-general-settings.php:479
+#: includes/settings/class-general-settings.php:490
 msgid ""
 "If checked, an additional form field will be added to the Reply to Ad form."
 msgstr "Se marcada, um campo de formulário adicional será adicionado ao Responder a forma do anúncio."
 
-#: includes/settings/class-general-settings.php:483
+#: includes/settings/class-general-settings.php:494
 msgid "reCAPTCHA v2"
 msgstr "reCAPTCHA v2"
 
-#: includes/settings/class-general-settings.php:484
+#: includes/settings/class-general-settings.php:495
 msgid "reCAPTCHA v3"
 msgstr "reCAPTCHA v3"
 
-#: includes/settings/class-general-settings.php:485
+#: includes/settings/class-general-settings.php:496
 msgid "Math"
 msgstr "Matematica?"
 
-#: includes/settings/class-general-settings.php:491
+#: includes/settings/class-general-settings.php:502
 msgid "Type of CAPTCHA"
 msgstr "Tipo de CAPTCHA"
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:505
 msgid ""
 "reCAPTCHA v2: requires the user to click a checkbox indicating the user is "
 "not a robot. This will either pass the user immediately (with No CAPTCHA) or"
 " challenge them to validate whether or not they are human."
 msgstr "reCAPTCHA v2: requer que o usuário clique num checkbox indicando que ele não é um robô. Isso passará o usuário imediatamente (sem CAPTCHA) ou o desafiará a confirmar se ele é ou não humano."
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:505
 msgid ""
 "reCAPTCHA v3: returns a score for each request without user friction. The "
 "score is based on interactions with your site and enables you to take an "
 "appropriate action for your site."
 msgstr "reCAPTCHA v3: retorna uma pontuação para cada solicitação sem atrito do usuário. A pontuação é baseada nas interações com o seu site e permite que você tome uma ação apropriada para ele."
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:505
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr "Matemática: Solicita usuário para resolver uma operação aritmética simples."
 
-#: includes/settings/class-general-settings.php:498
+#: includes/settings/class-general-settings.php:509
 msgid "Max number used in Math CAPTCHA"
 msgstr "Número máximo usado em matemática CAPTCHA"
 
-#: includes/settings/class-general-settings.php:498
+#: includes/settings/class-general-settings.php:509
 msgid "Highest number used in aithmetic operation."
 msgstr "Maior número usado na operação aithmetic."
 
 #. translators: %s is the link to Google reCAPTCHA admin panel.
-#: includes/settings/class-general-settings.php:503
+#: includes/settings/class-general-settings.php:514
 msgid "You can get an API key from %s."
 msgstr "Você pode obter uma chave de API de %s ."
 
-#: includes/settings/class-general-settings.php:505
+#: includes/settings/class-general-settings.php:516
 msgid "reCAPTCHA Site Key"
 msgstr "reCAPTCHA Site Key"
 
-#: includes/settings/class-general-settings.php:506
+#: includes/settings/class-general-settings.php:517
 msgid "reCAPTCHA Secret Key"
 msgstr "reCAPTCHA chave secreta"
 
-#: includes/settings/class-general-settings.php:508
+#: includes/settings/class-general-settings.php:519
 msgid ""
 "reCAPTCHA v3 returns a score (1.0 is very likely a good interaction, 0.0 is "
 "very likely a bot). The plugin will interrupt all interactions that receive "
 "a score under the configured threshold."
 msgstr "O reCAPTCHA v3 retorna uma pontuação (1.0 é muito provável que seja uma boa interação, 0.0 é muito provável que seja um robô). O plugin interromperá todas as interações que receberem uma pontuação abaixo do limite configurado."
 
-#: includes/settings/class-general-settings.php:508
+#: includes/settings/class-general-settings.php:519
 msgid ""
 "Please note that reCAPTCHA learns by seeing real traffic on your site. For "
 "this reason, scores in a staging environment or soon after implementing may "
@@ -7831,133 +7841,133 @@ msgid ""
 "console{/console_link}."
 msgstr "Observe que o reCAPTCHA aprende vendo tráfego real no seu site. Por esse motivo, as pontuações em um ambiente de armazenamento temporário ou logo após a implementação podem diferir da produção. Você pode começar a usar um limite de 0.5 e encontrar um valor melhor posteriormente analisando seu tráfego no {console_link} console de administração {/console_link}."
 
-#: includes/settings/class-general-settings.php:515
+#: includes/settings/class-general-settings.php:526
 msgid "reCAPTCHA score threshold (v3 only)"
 msgstr "Limite de pontuação reCAPTCHA (somente v3)"
 
-#: includes/settings/class-general-settings.php:528
+#: includes/settings/class-general-settings.php:539
 msgid "AdSense"
 msgstr "AdSense"
 
-#: includes/settings/class-general-settings.php:538
+#: includes/settings/class-general-settings.php:549
 msgid "AdSense Settings"
 msgstr "Configurações do Google AdSense"
 
-#: includes/settings/class-general-settings.php:541
+#: includes/settings/class-general-settings.php:552
 msgid "Above Ad text."
 msgstr "O texto do anúncio acima."
 
-#: includes/settings/class-general-settings.php:542
+#: includes/settings/class-general-settings.php:553
 msgid "Under Ad text."
 msgstr "Sob O texto do anúncio."
 
-#: includes/settings/class-general-settings.php:543
+#: includes/settings/class-general-settings.php:554
 msgid "Below Ad images."
 msgstr "Abaixo imagens dos anúncios."
 
-#: includes/settings/class-general-settings.php:546
+#: includes/settings/class-general-settings.php:557
 msgid "Activate AdSense"
 msgstr "Ative AdSense"
 
-#: includes/settings/class-general-settings.php:547
+#: includes/settings/class-general-settings.php:558
 msgid "AdSense code"
 msgstr "código do AdSense"
 
-#: includes/settings/class-general-settings.php:547
+#: includes/settings/class-general-settings.php:558
 msgid "Your AdSense code (Best if 468x60 text or banner.)"
 msgstr "Seu código do AdSense (Melhor se 468x60 texto ou banner.)"
 
-#: includes/settings/class-general-settings.php:548
+#: includes/settings/class-general-settings.php:559
 msgid "Show AdSense at position"
 msgstr "Mostrar AdSense na posição"
 
-#: includes/settings/class-general-settings.php:558
+#: includes/settings/class-general-settings.php:569
 msgid "Registration"
 msgstr "Inscrição"
 
-#: includes/settings/class-general-settings.php:567
+#: includes/settings/class-general-settings.php:578
 msgid "Registration Settings"
 msgstr "Configurações de registro"
 
-#: includes/settings/class-general-settings.php:575
+#: includes/settings/class-general-settings.php:586
 msgid "Place Ad requires user registration"
 msgstr "Lugar Ad requer registro de usuário"
 
-#: includes/settings/class-general-settings.php:577
+#: includes/settings/class-general-settings.php:588
 msgid "Only registered users will be allowed to post Ads."
 msgstr "Somente usuários registrados terão permissão para postar anúncios."
 
-#: includes/settings/class-general-settings.php:586
+#: includes/settings/class-general-settings.php:597
 msgid "Reply to Ad requires user registration"
 msgstr "Responder ao anúncio requer registro de usuário"
 
-#: includes/settings/class-general-settings.php:589
+#: includes/settings/class-general-settings.php:600
 msgid "Require user registration for replying to an Ad?"
 msgstr "Exigir o registro do usuário para responder a um anúncio?"
 
-#: includes/settings/class-general-settings.php:597
+#: includes/settings/class-general-settings.php:608
 msgid "Login URL"
 msgstr "Login URL"
 
-#: includes/settings/class-general-settings.php:600
+#: includes/settings/class-general-settings.php:611
 msgid ""
 "Location of the login page. The value should be the full URL to the "
 "WordPress login page (e.g. http://www.awpcp.com/wp-login.php)."
 msgstr "Localização da página de login. O valor deve ser o URL completo da página de login do WordPress (por exemplo, http://www.awpcp.com/wp-login.php)."
 
-#: includes/settings/class-general-settings.php:600
 #: includes/settings/class-general-settings.php:611
+#: includes/settings/class-general-settings.php:622
 msgid ""
 "IMPORTANT: Only change this setting when using a membership plugin with "
 "custom login pages or similar scenarios."
 msgstr "IMPORTANTE: altere essa configuração apenas ao usar um plugin de associação com páginas de login personalizadas ou cenários semelhantes."
 
-#: includes/settings/class-general-settings.php:608
+#: includes/settings/class-general-settings.php:619
 msgid "Custom Registration Page URL"
 msgstr "URL personalizado Registro Página"
 
-#: includes/settings/class-general-settings.php:611
+#: includes/settings/class-general-settings.php:622
 msgid ""
 "Location of registration page. Value should be the full URL to the WordPress"
 " registration page (e.g. http://www.awpcp.com/wp-login.php?action=register)."
 msgstr "Localização da página de registo. Valor deve ser o URL completo para a página de registro WordPress (por exemplo http://www.awpcp.com/wp-login.php?action=register)."
 
-#: includes/settings/class-general-settings.php:633
+#: includes/settings/class-general-settings.php:644
 msgid "Scripts and Styles"
 msgstr "Scripts e Estilos"
 
-#: includes/settings/class-general-settings.php:641
+#: includes/settings/class-general-settings.php:652
 msgid "Enqueue Font Awesome stylesheet (v5.2.0)"
 msgstr "Enfileirar folha de estilo Font Awesome (v5.2.0)"
 
-#: includes/settings/class-general-settings.php:644
+#: includes/settings/class-general-settings.php:655
 msgid ""
 "Use this setting to prevent conflicts with other plugins that already "
 "enqueue Font Awesome. Change the default value only if you have performed a "
 "conflict test to validate this is a Font Awesome issue."
 msgstr "Use esta configuração para evitar conflitos com outros plugins que já colocam em fila o Font Awesome. Altere o valor padrão apenas se você tiver realizado um teste de conflito para validar que este é um problema de Fonte Awesome."
 
-#: includes/settings/class-general-settings.php:646
+#: includes/settings/class-general-settings.php:657
 msgid "Admin and frontend pages (default)"
 msgstr "Páginas de administração e front-end (padrão)"
 
-#: includes/settings/class-general-settings.php:647
+#: includes/settings/class-general-settings.php:658
 msgid "Frontend pages only"
 msgstr "Apenas páginas de front-end"
 
-#: includes/settings/class-general-settings.php:648
+#: includes/settings/class-general-settings.php:659
 msgid "Admin pages only"
 msgstr "Apenas páginas de Admin"
 
-#: includes/settings/class-general-settings.php:649
+#: includes/settings/class-general-settings.php:660
 msgid "Don't enqueue"
 msgstr "Não enfileirar"
 
-#: includes/settings/class-general-settings.php:658
+#: includes/settings/class-general-settings.php:669
 msgid "Use Font Awesome's Brands style"
 msgstr "Use o estilo de Marcas do Font Awesome"
 
-#: includes/settings/class-general-settings.php:661
+#: includes/settings/class-general-settings.php:672
 msgid ""
 "Configure whether the plugin uses <code>fab</code> or <code>fa</code> CSS "
 "class to define Twitter and Facebook icons. The <code>fab</code> class is "
@@ -7966,34 +7976,34 @@ msgid ""
 "Font Awesome 5.0+ stylesheet, then select \"Always\"."
 msgstr "Configure se o plugin usa a classe CSS <code>fab</code> ou <code>fa</code> CSS para definir os ícones do Twitter e do Facebook. A classe <code>fab</code> é necessária com o Font Awesome 5.0+. Se você desativou a nossa versão da folha de estilo Font Awesome acima porque um tema ou outro plugin já está carregando uma folha de estilo Font Awesome 5.0+, selecione \"Sempre\"."
 
-#: includes/settings/class-general-settings.php:663
+#: includes/settings/class-general-settings.php:674
 msgid "When the plugin's Font Awesome stylesheet is included only"
 msgstr "Quando a folha de estilo Font Awesome do plugin é incluída apenas"
 
-#: includes/settings/class-general-settings.php:664
+#: includes/settings/class-general-settings.php:675
 msgid "Always"
 msgstr "Sempre"
 
-#: includes/settings/class-general-settings.php:687
-#: includes/settings/class-general-settings.php:695
-#: includes/settings/class-general-settings.php:704
+#: includes/settings/class-general-settings.php:698
+#: includes/settings/class-general-settings.php:706
+#: includes/settings/class-general-settings.php:715
 msgid "Private Settings"
 msgstr "Configuração de Privacidade"
 
-#: includes/settings/class-general-settings.php:717
+#: includes/settings/class-general-settings.php:728
 msgid "Modules"
 msgstr "Módulos"
 
-#: includes/settings/class-general-settings.php:730
-#: includes/settings/class-general-settings.php:738
+#: includes/settings/class-general-settings.php:741
+#: includes/settings/class-general-settings.php:749
 msgid "Facebook"
 msgstr "Facebook"
 
-#: includes/settings/class-general-settings.php:756
+#: includes/settings/class-general-settings.php:767
 msgid "Facebook Integration Method"
 msgstr "Método de Integração com Facebook"
 
-#: includes/settings/class-general-settings.php:759
+#: includes/settings/class-general-settings.php:770
 msgid ""
 "Please note that sending ads to Facebook Groups is currently not available "
 "using Webhooks, after Facebook significantly reduced access to their APIs "
@@ -8004,90 +8014,90 @@ msgid ""
 "api-platform-product-changes/</a>"
 msgstr "No momento, o envio de anúncios para grupos do Facebook não está disponível no Webhooks, depois que o Facebook reduziu significativamente o acesso às suas APIs em todos os aplicativos. Você pode ler mais sobre essas alterações aqui: <a href=\"https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes/\">https: //developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes/</a>"
 
-#: includes/settings/class-general-settings.php:771
+#: includes/settings/class-general-settings.php:782
 msgid "Send Ads to Facebook Automatically"
 msgstr "Enviar anúncios para o Facebook automaticamente"
 
-#: includes/settings/class-general-settings.php:774
+#: includes/settings/class-general-settings.php:785
 msgid ""
 "If checked, Ads will be sent to Facebook shortly after they are posted, "
 "enabled or edited, whichever occurs first. Please note that ads will be sent"
 " only once and disabled ads cannot be sent to Facebook."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:782
+#: includes/settings/class-general-settings.php:793
 msgid "Ask Facebook to clear cache for ads pages"
 msgstr "Peça ao Facebook para limpar o cache das páginas de anúncios"
 
-#: includes/settings/class-general-settings.php:785
+#: includes/settings/class-general-settings.php:796
 msgid ""
 "Clearing Facebook cache is useful to ensure users always see the latest "
 "version when the ad is shared on Facebook Pages, Groups and user feeds."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:793
+#: includes/settings/class-general-settings.php:804
 msgid "Facebook Application"
 msgstr "Aplicativo Facebook"
 
-#: includes/settings/class-general-settings.php:803
+#: includes/settings/class-general-settings.php:814
 msgid "App Id"
 msgstr "App ID:"
 
-#: includes/settings/class-general-settings.php:806
+#: includes/settings/class-general-settings.php:817
 msgid ""
 "An application identifier associates your site, its pages, and visitor "
 "actions with a registered Facebook application."
 msgstr "Um identificador de aplicação associa seu site, suas páginas, e as ações visitante com um aplicativo registrado Facebook."
 
-#: includes/settings/class-general-settings.php:814
+#: includes/settings/class-general-settings.php:825
 msgid "App Secret"
 msgstr "App Secret"
 
-#: includes/settings/class-general-settings.php:817
+#: includes/settings/class-general-settings.php:828
 msgid ""
 "An application secret is a secret shared between Facebook and your "
 "application, similar to a password."
 msgstr "Um segredo de aplicação é um segredo compartilhado entre o Facebook e seu aplicativo, semelhante a uma senha."
 
-#: includes/settings/class-general-settings.php:825
+#: includes/settings/class-general-settings.php:836
 msgid "Facebook User Authorization"
 msgstr "Autorização do Usuário Facebook"
 
-#: includes/settings/class-general-settings.php:835
+#: includes/settings/class-general-settings.php:846
 msgid "User Access Token"
 msgstr "Usuário de acesso token"
 
-#: includes/settings/class-general-settings.php:838
+#: includes/settings/class-general-settings.php:849
 msgid ""
 "You can manually enter your user access token (if you know it) or log in to "
 "Facebook to get one using the link above."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:846
+#: includes/settings/class-general-settings.php:857
 msgid "Facebook Page and Group Selection"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:856
+#: includes/settings/class-general-settings.php:867
 msgid "Facebook Page"
 msgstr "Página Facebook"
 
-#: includes/settings/class-general-settings.php:868
+#: includes/settings/class-general-settings.php:879
 msgid "Facebook Group"
 msgstr "Facebook Group"
 
-#: includes/settings/class-general-settings.php:880
+#: includes/settings/class-general-settings.php:891
 msgid "Facebook Page Access Token"
 msgstr "Token de Acesso da Página do Facebook"
 
-#: includes/settings/class-general-settings.php:892
+#: includes/settings/class-general-settings.php:903
 msgid "Zapier Integration"
 msgstr "Integração com Zapier"
 
-#: includes/settings/class-general-settings.php:901
+#: includes/settings/class-general-settings.php:912
 msgid "Zapier webhook used to send ads to a Facebook page"
 msgstr "O webhook Zapier costumava enviar anúncios para uma página do Facebook"
 
-#: includes/settings/class-general-settings.php:904
+#: includes/settings/class-general-settings.php:915
 msgid ""
 "The plugin will post information to this URL the first time an ad becomes "
 "publicly available (after they are posted, enabled or edited) on the website"
@@ -8095,15 +8105,15 @@ msgid ""
 "Disabled ads are excluded."
 msgstr "O plugin publicará informações nesse URL na primeira vez em que um anúncio estiver disponível ao público (depois de publicado, ativado ou editado) no site ou usando a ação Enviar para página do Facebook na lista de anúncios classificados. Anúncios desativados são excluídos."
 
-#: includes/settings/class-general-settings.php:911
+#: includes/settings/class-general-settings.php:922
 msgid "IFTTT Integration"
 msgstr "Integração com IFTTT"
 
-#: includes/settings/class-general-settings.php:921
+#: includes/settings/class-general-settings.php:932
 msgid "URL used to send requests to IFTTT Webhooks service"
 msgstr "URL usado para enviar solicitações ao serviço IFTTT Webhooks"
 
-#: includes/settings/class-general-settings.php:924
+#: includes/settings/class-general-settings.php:935
 msgid ""
 "The plugin will post information to the Webhooks service the first time an "
 "ad becomes publicly available (after they are posted, enabled or edited) on "
@@ -8111,53 +8121,53 @@ msgid ""
 "list of classified ads. Disabled ads are excluded."
 msgstr "O plugin publicará informações no serviço Webhooks na primeira vez que um anúncio se tornar publicamente disponível (depois de publicado, ativado ou editado) no site ou quando alguém usar a ação Enviar para a página do Facebook na lista de anúncios classificados. Anúncios desativados são excluídos."
 
-#: includes/settings/class-general-settings.php:932
+#: includes/settings/class-general-settings.php:943
 msgid "The name of the event that will be posted to the Webhooks service"
 msgstr "O nome do evento que será postado no serviço Webhooks"
 
-#: includes/settings/class-general-settings.php:935
+#: includes/settings/class-general-settings.php:946
 msgid ""
 "The plugin will post information about new ads to a unique URL built using "
 "the Webhooks URL and Event Name you define."
 msgstr "O plugin publicará informações sobre novos anúncios em um URL exclusivo criado usando o URL do Webhooks e o Nome do evento que você definir."
 
-#: includes/settings/class-general-settings.php:945
+#: includes/settings/class-general-settings.php:956
 msgid ""
 "You can find your application information in the <a>Facebook Developer "
 "Apps</a> page."
 msgstr "Você pode encontrar as informações de aplicação no <a> página Facebook Developer Apps </a>."
 
-#: includes/settings/class-general-settings.php:962
+#: includes/settings/class-general-settings.php:973
 msgid ""
 "AWPCP needs to get an authorization token from Facebook to work correctly. "
 "You'll be redirected to Facebook to login. AWPCP does not store or obtain "
 "any personal information from your profile."
 msgstr "AWPCP precisa obter um token de autorização do Facebook para funcionar corretamente. Você será redirecionado para o Facebook para fazer login. O AWPCP não armazenar ou obter qualquer informação pessoal do seu perfil."
 
-#: includes/settings/class-general-settings.php:963
+#: includes/settings/class-general-settings.php:974
 msgid ""
 "Please choose Public as the audience for posts made by the application, even"
 " if you are just testing the integration. Facebook won't allow us to post "
 "content in some cases if you choose something else."
 msgstr "Por favor, escolha Pública como o público para as mensagens colocadas pela aplicação, mesmo se você está apenas testando a integração. Facebook não vai permitir-nos para postar conteúdo em alguns casos, se você escolher outra coisa."
 
-#: includes/settings/class-general-settings.php:972
+#: includes/settings/class-general-settings.php:983
 msgid "Click here to obtain an access token from Facebook"
 msgstr "Clique aqui para obter um token de acesso do Facebook"
 
-#: includes/settings/class-general-settings.php:974
+#: includes/settings/class-general-settings.php:985
 msgid ""
 "Please provide a value for the App Id and App Secret settings before trying "
 "to get an access token from Facebook."
 msgstr "Forneça um valor para as configurações de ID do aplicativo e segredo do aplicativo antes de tentar obter um token de acesso do Facebook."
 
-#: includes/settings/class-general-settings.php:985
+#: includes/settings/class-general-settings.php:996
 msgid ""
 "Available Facebook Pages and Groups will be displayed after you enter a "
 "valid User Access Token."
 msgstr "As páginas e grupos disponíveis do Facebook serão exibidos após a inserção de um token de acesso do usuário válido."
 
-#: includes/settings/class-general-settings.php:986
+#: includes/settings/class-general-settings.php:997
 msgid ""
 "As of April 4, 2018, all applications need to go through <a "
 "href=\"https://developers.facebook.com/docs/apps/review\" "
@@ -8174,65 +8184,65 @@ msgid ""
 "those groups and pages."
 msgstr "A partir de 4 de abril de 2018, todos os aplicativos precisam passar por <a href=\"https://developers.facebook.com/docs/apps/review\" rel=\"nofollow\"> Revisão de aplicativos </a> para obter acesso à <a href=\"https://developers.facebook.com/docs/graph-api/reference/page/\" rel=\"nofollow\"> API da página </a> e <a href = \"https: / /developers.facebook.com/docs/graph-api/reference/user/groups/ \"rel =\" nofollow \">API do Grupos</a>. Isso significa que você pode <a href=\"https://developers.facebook.com/docs/facebook-login/review\" rel=\"nofollow\">enviar seu aplicativo para revisão</a> (solicite o < code>manage_pages</code>, <code>publish_pages</code>, <code>publish_to_groups</code> permissões), antes que o AWPCP possa exibir a lista de páginas e grupos que você gerencia e possa publicar anúncios classificados nesses grupos. e páginas."
 
-#: includes/settings/class-general-settings.php:1004
+#: includes/settings/class-general-settings.php:1015
 msgid "None (Do not sent ads to a Facebook Page)"
 msgstr "Nenhum (não envie anúncios para uma página do Facebook)"
 
-#: includes/settings/class-general-settings.php:1011
+#: includes/settings/class-general-settings.php:1022
 msgid "(Your own profile page)"
 msgstr "(Sua própria página de perfil)"
 
-#: includes/settings/class-general-settings.php:1035
+#: includes/settings/class-general-settings.php:1046
 msgid "None (Do not sent ads to a Facebook Group)"
 msgstr "Nenhum (não envie anúncios para uma página do Facebook)"
 
-#: includes/settings/class-general-settings.php:1081
+#: includes/settings/class-general-settings.php:1092
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the User Ad Management panel."
 msgstr "Requerem configuração do registro foi habilitado automaticamente porque você ativou o painel de usuário de gerenciamento de anúncios."
 
-#: includes/settings/class-general-settings.php:1102
+#: includes/settings/class-general-settings.php:1113
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "controle de spam Akismet não pode ser habilitado porque Akismet plugin não está instalado ou activado."
 
-#: includes/settings/class-general-settings.php:1106
+#: includes/settings/class-general-settings.php:1117
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "controle de spam Akismet não pode ser habilitado porque Akismet não está configurado corretamente."
 
-#: includes/settings/class-general-settings.php:1133
+#: includes/settings/class-general-settings.php:1144
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA não pode ser usado porque as configurações de chave chave e público-privadas são necessárias para reCAPTCHA para funcionar corretamente."
 
-#: includes/settings/class-general-settings.php:1135
+#: includes/settings/class-general-settings.php:1146
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA não pode ser usado porque a configuração de chave pública é necessária para reCAPTCHA para funcionar corretamente."
 
-#: includes/settings/class-general-settings.php:1137
+#: includes/settings/class-general-settings.php:1148
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA não pode ser usado porque a configuração de chave privada é necessária para reCAPTCHA para funcionar corretamente."
 
-#: includes/settings/class-general-settings.php:1184
+#: includes/settings/class-general-settings.php:1195
 msgid "Thousands separator and decimal separator cant be the same."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1200
+#: includes/settings/class-general-settings.php:1211
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "painel de gerenciamento de anúncios do usuário foi desativado automaticamente porque você desativou Exigir configuração Registro."
 
-#: includes/settings/class-general-settings.php:1205
+#: includes/settings/class-general-settings.php:1216
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
@@ -9120,11 +9130,11 @@ msgstr "Selecione a página existente {dropdown} -ou- {create_page_button}"
 msgid "Ad Category"
 msgstr "Categoria ad"
 
-#: includes/ui/class-category-selector.php:121
+#: includes/ui/class-category-selector.php:124
 msgid "All Categories"
 msgstr "Todas as categorias"
 
-#: includes/ui/class-category-selector.php:170
+#: includes/ui/class-category-selector.php:173
 msgid "Select a Sub-category"
 msgstr "Selecione uma sub categoria"
 
@@ -10349,15 +10359,15 @@ msgstr "Ferramentas"
 msgid "Manage Listing"
 msgstr "Gerenciar Listagem"
 
-#: templates/components/classifieds-search-bar.tpl.php:5
+#: templates/components/classifieds-search-bar.tpl.php:8
 msgid "Search for:"
 msgstr "Pesquisar por:"
 
-#: templates/components/classifieds-search-bar.tpl.php:9
+#: templates/components/classifieds-search-bar.tpl.php:12
 msgid "Find Listings"
 msgstr "Anúncio Gratuito"
 
-#: templates/components/classifieds-search-bar.tpl.php:11
+#: templates/components/classifieds-search-bar.tpl.php:14
 msgid "Advanced Search"
 msgstr "Pesquisa avançada"
 

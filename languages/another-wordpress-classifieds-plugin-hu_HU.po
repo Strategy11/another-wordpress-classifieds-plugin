@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2020-06-23 22:57:22+00:00\n"
-"PO-Revision-Date: 2020-06-23 23:04+0000\n"
+"POT-Creation-Date: 2020-08-13 19:16:19+00:00\n"
+"PO-Revision-Date: 2020-08-13 21:09+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr "Tulajdonságok"
 msgid "Categories"
 msgstr "Kategóriák"
 
-#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:827
+#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:834
 msgid "Featured Ads"
 msgstr "Kiemelt Hirdetések"
 
@@ -1265,7 +1265,7 @@ msgid ""
 msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:31
-#: includes/settings/class-general-settings.php:761
+#: includes/settings/class-general-settings.php:772
 msgid "Facebook API"
 msgstr ""
 
@@ -1287,7 +1287,7 @@ msgid ""
 msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:49
-#: includes/settings/class-general-settings.php:762
+#: includes/settings/class-general-settings.php:773
 msgid "Zapier/IFTTT Webhooks"
 msgstr ""
 
@@ -1723,19 +1723,19 @@ msgid ""
 "{support_link}contact support{/support_link}."
 msgstr ""
 
-#: cron.php:123
+#: cron.php:124
 msgid "Listing Details"
 msgstr "Listázás részletei"
 
-#: cron.php:125
+#: cron.php:126
 msgid "Ad Title:"
 msgstr "Hirdetés címe:"
 
-#: cron.php:128
+#: cron.php:129
 msgid "Posted:"
 msgstr "Közzétéve:"
 
-#: cron.php:132
+#: cron.php:133
 msgid "Renew your ad by visiting:"
 msgstr "Újítsa meg hirdetését ennek a lapnak meglátogatásával:"
 
@@ -3140,64 +3140,64 @@ msgstr "Nem írható a fájl a lemezre."
 msgid "The file upload was stopped by extension."
 msgstr "Egy bővítmény megszakította a fájl feltöltést."
 
-#: functions.php:2440
+#: functions.php:2448
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Az  \"%s\"  hirdetése elfogadva "
 
-#: functions.php:2463
+#: functions.php:2471
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Az Ön hirdetése \"%s\" sikeresen frissítve"
 
-#: functions.php:2486
+#: functions.php:2494
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Képek az ön \"%s\" hirdetésében elbírálásra várnak"
 
-#: functions.php:2488 includes/functions/notifications.php:195
+#: functions.php:2496 includes/functions/notifications.php:195
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr "Képek \"%s\" hirdetésben elbírálásra várnak. Elfogadhatja a képeket a Képek Kezelése szekcióban, minden képen az \"Bekapcsolás\" gombra kattintva. Kattintson ide a folytatáshoz: %s."
 
-#: functions.php:2491
+#: functions.php:2499
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "\"%s\" hirdetés elbírálásra vár."
 
-#: functions.php:2493 includes/functions/notifications.php:200
+#: functions.php:2501 includes/functions/notifications.php:200
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr "A \"%s\" hirdetés elbírálásra vár. Elfogadhatja a hirdetést a Listázások Kezelése szekcióban,  a felső részen lévő \"Bekapcsolás\" gombra kattintva. Kattintson ide a folytatáshoz: %s."
 
-#: functions.php:2500 includes/functions/notifications.php:207
+#: functions.php:2508 includes/functions/notifications.php:207
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr "Elfogadhatja a képeket a Képek Kezelése szekcióban, minden kép alatt a \"Bekapcsolás\" gombra kattintva. Kattintson ide a folytatáshoz: %s."
 
-#: functions.php:3036
+#: functions.php:3044
 msgid "Email sent %s."
 msgstr "Email elküldve %s."
 
-#: functions.php:3173
+#: functions.php:3181
 msgid "Not Installed"
 msgstr "Nem telepített"
 
-#: functions.php:3177
+#: functions.php:3185
 msgid "Installed"
 msgstr "Telepítve"
 
-#: functions.php:3185
+#: functions.php:3193
 msgid "SSL Support: Yes."
 msgstr ""
 
-#: functions.php:3187
+#: functions.php:3195
 msgid "SSL Support: No."
 msgstr ""
 
-#: functions.php:3190
+#: functions.php:3198
 msgid "OpenSSL version:"
 msgstr ""
 
@@ -4068,106 +4068,106 @@ msgid ""
 " one of the associated listings: <error-message>"
 msgstr ""
 
-#: includes/class-awpcp.php:754
+#: includes/class-awpcp.php:761
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "Az AWPCP-nek szüksége van a grafika-feldolgozó könyvtár GD-re, amely nincs telepítve. Ennek megjavításához lépjen kapcsolatba webszolgáltatójával."
 
-#: includes/class-awpcp.php:755
+#: includes/class-awpcp.php:762
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
-#: includes/class-awpcp.php:771
+#: includes/class-awpcp.php:778
 msgid "Attachments"
 msgstr "Csatolmányok"
 
-#: includes/class-awpcp.php:778
+#: includes/class-awpcp.php:785
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:785
+#: includes/class-awpcp.php:792
 msgid "BuddyPress Listings"
 msgstr "BuddyPress listázások"
 
-#: includes/class-awpcp.php:792
+#: includes/class-awpcp.php:799
 msgid "Campaign Manager"
 msgstr "Kampány Kezelő"
 
-#: includes/class-awpcp.php:799
+#: includes/class-awpcp.php:806
 msgid "Category Icons"
 msgstr "Kategória ikonok"
 
-#: includes/class-awpcp.php:806
+#: includes/class-awpcp.php:813
 msgid "Comments & Ratings"
 msgstr "Kommentek & értékelések"
 
-#: includes/class-awpcp.php:813
+#: includes/class-awpcp.php:820
 msgid "Coupons/Discount"
 msgstr "Kuponok/Engedmények"
 
-#: includes/class-awpcp.php:820
+#: includes/class-awpcp.php:827
 msgid "Extra Fields"
 msgstr "Extra Mezők"
 
-#: includes/class-awpcp.php:834
+#: includes/class-awpcp.php:841
 msgid "Fee per Category"
 msgstr "Kategóriánkénti Díj"
 
-#: includes/class-awpcp.php:841
+#: includes/class-awpcp.php:848
 msgid "Google Checkout"
 msgstr "Google checkout"
 
-#: includes/class-awpcp.php:849
+#: includes/class-awpcp.php:856
 msgid "Mark as Sold"
 msgstr "Megjelölés eladottként"
 
-#: includes/class-awpcp.php:856
+#: includes/class-awpcp.php:863
 msgid "PayFast"
 msgstr ""
 
-#: includes/class-awpcp.php:863
+#: includes/class-awpcp.php:870
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:870
+#: includes/class-awpcp.php:877
 msgid "Regions Control"
 msgstr "Régiós beállítások"
 
-#: includes/class-awpcp.php:877
+#: includes/class-awpcp.php:884
 msgid "Restricted Categories"
 msgstr "Korlátozott kategóriák"
 
-#: includes/class-awpcp.php:884
+#: includes/class-awpcp.php:891
 msgid "RSS"
 msgstr "RSS"
 
-#: includes/class-awpcp.php:891
+#: includes/class-awpcp.php:898
 msgid "Stripe"
 msgstr ""
 
-#: includes/class-awpcp.php:898
+#: includes/class-awpcp.php:905
 msgid "Subscriptions"
 msgstr "Feliratkozások"
 
-#: includes/class-awpcp.php:905 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:912 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Videók"
 
-#: includes/class-awpcp.php:913
+#: includes/class-awpcp.php:920
 msgid "XML Sitemap"
 msgstr "XML oldaltérkép"
 
-#: includes/class-awpcp.php:921
+#: includes/class-awpcp.php:928
 msgid "ZIP Code Search Module"
 msgstr "ZIP kód kereső modul"
 
-#: includes/class-awpcp.php:1458
+#: includes/class-awpcp.php:1465
 msgid "This field is required."
 msgstr "A mező kitöltése szükséges"
 
-#: includes/class-awpcp.php:1459
+#: includes/class-awpcp.php:1466
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:267
 #: includes/frontend/class-edit-listing-page.php:361
@@ -4175,53 +4175,53 @@ msgstr "A mező kitöltése szükséges"
 msgid "Please enter a valid email address."
 msgstr "Adjunk meg egy valós email címet."
 
-#: includes/class-awpcp.php:1460 includes/class-awpcp.php:1461
+#: includes/class-awpcp.php:1467 includes/class-awpcp.php:1468
 msgid "Please enter a valid URL."
 msgstr "Kérjük írjon be egy érvényes URL-t."
 
-#: includes/class-awpcp.php:1462
+#: includes/class-awpcp.php:1469
 msgid "Please enter a valid number."
 msgstr "Kérjük érvényes számot írjon be."
 
-#: includes/class-awpcp.php:1463
+#: includes/class-awpcp.php:1470
 msgid "Please enter a valid amount."
 msgstr "Kérjük érvényes mennyiséget adjon meg."
 
-#: includes/class-awpcp.php:1464
+#: includes/class-awpcp.php:1471
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1474
+#: includes/class-awpcp.php:1481
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Prev"
 
-#: includes/class-awpcp.php:1476
+#: includes/class-awpcp.php:1483
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Következő&#x3e;"
 
-#: includes/class-awpcp.php:1491
+#: includes/class-awpcp.php:1498
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
 
-#: includes/class-awpcp.php:1497
+#: includes/class-awpcp.php:1504
 msgid "There are files currently being uploaded."
 msgstr "Folyamatban lévő fájlfeltöltés."
 
-#: includes/class-awpcp.php:1498
+#: includes/class-awpcp.php:1505
 msgid "There are files pending to be uploaded."
 msgstr "Fájlok várnak feltöltésre."
 
-#: includes/class-awpcp.php:1499
+#: includes/class-awpcp.php:1506
 msgid "You haven't uploaded any images or files."
 msgstr "Nem töltöttél fel semmit."
 
-#: includes/class-awpcp.php:1568 includes/class-awpcp.php:1576
-#: includes/class-awpcp.php:1584 includes/class-awpcp.php:1661
-#: includes/class-awpcp.php:1669 includes/class-awpcp.php:1677
+#: includes/class-awpcp.php:1575 includes/class-awpcp.php:1583
+#: includes/class-awpcp.php:1591 includes/class-awpcp.php:1668
+#: includes/class-awpcp.php:1676 includes/class-awpcp.php:1684
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr ""
@@ -4294,7 +4294,7 @@ msgstr ""
 msgid "There was an error trying to save the listing details:"
 msgstr ""
 
-#: includes/class-listings-api.php:733
+#: includes/class-listings-api.php:738
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -4776,7 +4776,7 @@ msgid "Login/Registration"
 msgstr "Belépés/Regisztráció"
 
 #: includes/frontend/class-submit-listing-form-steps.php:54
-#: includes/ui/class-category-selector.php:124
+#: includes/ui/class-category-selector.php:127
 #: templates/components/category-selector.tpl.php:16
 msgid "Select a Category"
 msgstr "Kategória kiválasztása"
@@ -7089,7 +7089,7 @@ msgid "Message body text for email sent out when an ad has auto-expired"
 msgstr "Üzenet törzs az emailhez, mely akkor kerül elküldésre, ha a hirdetés lejár."
 
 #: includes/settings/class-email-settings.php:297
-#: includes/settings/class-general-settings.php:624
+#: includes/settings/class-general-settings.php:635
 msgid "Advanced"
 msgstr "Haladó"
 
@@ -7433,7 +7433,7 @@ msgstr "Miniatűr képek vágása?"
 
 #: includes/settings/class-general-settings.php:69
 #: includes/settings/class-general-settings.php:87
-#: includes/settings/class-general-settings.php:747
+#: includes/settings/class-general-settings.php:758
 #: includes/settings/class-payment-general-settings.php:44
 msgid "General Settings"
 msgstr "Alapbeállítások"
@@ -7490,41 +7490,51 @@ msgid "Hide empty categories from dropdowns"
 msgstr "Ures kategórák elrejtése a lenyíló menüben"
 
 #: includes/settings/class-general-settings.php:168
+msgid "Hide categories selector dropdown"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:171
+msgid ""
+"If checked, category filtering dropdown won't be displayed in \"Browse Ads\""
+" page."
+msgstr ""
+
+#: includes/settings/class-general-settings.php:179
 msgid "Welcome message in Classifieds page"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:170
+#: includes/settings/class-general-settings.php:181
 msgid ""
 "Looking for a job? Trying to find a date? Looking for an apartment? Browse "
 "our classifieds. Have a job to advertise? An apartment to rent? Post a "
 "Classified Ad."
 msgstr "Munkát keres? Próbál egy partnert találni? Albérletre lenne szüksége? Böngéssz át az hirdetéseinket. Van egy állásajánlata? Egy kiadó lakása? Adjon fel egy hirdetést!"
 
-#: includes/settings/class-general-settings.php:171
+#: includes/settings/class-general-settings.php:182
 msgid "The welcome text for your classifieds page on the user side"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:179
+#: includes/settings/class-general-settings.php:190
 msgid "Who can access AWPCP Admin Dashboard"
 msgstr "Ki érheti el az AWPCP Admin Vezérlőpultot"
 
-#: includes/settings/class-general-settings.php:182
+#: includes/settings/class-general-settings.php:193
 msgid "Role of WordPress users who can have admin access to Classifieds."
 msgstr "WordPress felhasználók szerepköre, akik admin jogosultsággal rendelkeznek az AWPCP-ben"
 
-#: includes/settings/class-general-settings.php:184
+#: includes/settings/class-general-settings.php:195
 msgid "Administrator"
 msgstr "Adminisztrátor"
 
-#: includes/settings/class-general-settings.php:185
+#: includes/settings/class-general-settings.php:196
 msgid "Administrator & Editor"
 msgstr "Adminisztrátor & Szerkesztő"
 
-#: includes/settings/class-general-settings.php:194
+#: includes/settings/class-general-settings.php:205
 msgid "Enable page filter"
 msgstr "Oldal szűrő engedélyezése"
 
-#: includes/settings/class-general-settings.php:197
+#: includes/settings/class-general-settings.php:208
 msgid ""
 "Uncheck this if you need to turn off the AWPCP page filter that prevents "
 "AWPCP classifieds children pages from showing up in your wp pages menu (You "
@@ -7534,87 +7544,87 @@ msgid ""
 "should not be visible to your users by default)."
 msgstr "Vegye ki a pipát, az AWPCP oldal szűrő kikapcsolásához, ami megakadályozza az AWPCP apróhirdetések aloldalainak a megjelenését az ön WP Oldalak menüjében (Erre például akkor lehet szükséges, ha az AWPCP oldal szűrő hibát okoz az Oldalak menüben. Ez azt jelenti hogy manuálisan kell az AWPCP aloldalakat kiválogatni az Oldalak listájából. Néhány oldalnak nem ajánlott alapértelmezetten elérhetőnek lennie a felhasználók számára)"
 
-#: includes/settings/class-general-settings.php:205
+#: includes/settings/class-general-settings.php:216
 msgid "Auto-expand the Classifieds Menu for mobile devices?"
 msgstr "Menü automatikus mobil nézetre váltása.? Mobil reszponzív nézet."
 
-#: includes/settings/class-general-settings.php:220
+#: includes/settings/class-general-settings.php:231
 msgid "Classifieds Management Panel"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:226
+#: includes/settings/class-general-settings.php:237
 msgid ""
 "You must have registered users to use this setting. Turning it on will "
 "automatically enable \"Require Registration\" for AWPCP. Make sure you site "
 "allows users to register under <wp-settings-link>Settings->General</a>."
 msgstr "Regisztrált felhasználókkal kell rendelkeznie a beállítás használatához. A funkció bekapcsolásával automatikusan engedélyezésre kerül a \"Kötelező Regisztráció\" az AWPCP használatához. Győződjön meg róla, hogy az oldalon lehetséges a felhasználók számára a regisztráció az alábbi linken: <wp-settings-link>Beállítások->Általános</a>."
 
-#: includes/settings/class-general-settings.php:232
+#: includes/settings/class-general-settings.php:243
 msgid "Enable User Ad Management Panel"
 msgstr "Felhasználói Hirdetés Kezelő Panel engedélyezése"
 
-#: includes/settings/class-general-settings.php:248
-#: includes/settings/class-general-settings.php:251
+#: includes/settings/class-general-settings.php:259
+#: includes/settings/class-general-settings.php:262
 msgid "Terms of Service"
 msgstr "Használati Feltételek"
 
-#: includes/settings/class-general-settings.php:250
+#: includes/settings/class-general-settings.php:261
 msgid "Display and require Terms of Service"
 msgstr "Használati Feltételek megjelenítése és elfogadása"
 
-#: includes/settings/class-general-settings.php:251
+#: includes/settings/class-general-settings.php:262
 msgid "Terms of service go here..."
 msgstr "Felhasználási Feltételek"
 
-#: includes/settings/class-general-settings.php:251
+#: includes/settings/class-general-settings.php:262
 msgid ""
 "Terms of Service for posting Ads. Put in text or an URL starting with http. "
 "If you use an URL, the text box will be replaced by a link to the "
 "appropriate Terms of Service page"
 msgstr "Használati Feltételek hirdetésfeladáshoz. Egy szöveget, vagy egy http-vel kezdődő URL-t másoljon ide. Ha URL-t használ, a szövegdoboz egy linkre cserélődik, ami a Használati Feltételek oldalra mutat."
 
-#: includes/settings/class-general-settings.php:261
 #: includes/settings/class-general-settings.php:272
+#: includes/settings/class-general-settings.php:283
 msgctxt "settings"
 msgid "Date & Time Format"
 msgstr "Dátum & Idő Formátum"
 
-#: includes/settings/class-general-settings.php:268
+#: includes/settings/class-general-settings.php:279
 msgid "Documentation on date and time formatting"
 msgstr "Dátum és idő formázási dokumentáció"
 
-#: includes/settings/class-general-settings.php:287
+#: includes/settings/class-general-settings.php:298
 msgid "Date Time Format"
 msgstr "Dátum Idő Formátum"
 
-#: includes/settings/class-general-settings.php:291
+#: includes/settings/class-general-settings.php:302
 msgid "American"
 msgstr "Amerikai"
 
-#: includes/settings/class-general-settings.php:292
+#: includes/settings/class-general-settings.php:303
 msgid "European"
 msgstr "Európai"
 
-#: includes/settings/class-general-settings.php:293
+#: includes/settings/class-general-settings.php:304
 msgid "Your own."
 msgstr "Egyedi beállítás"
 
-#: includes/settings/class-general-settings.php:302
+#: includes/settings/class-general-settings.php:313
 msgctxt "settings"
 msgid "Date Format"
 msgstr "Dátum formátum"
 
-#: includes/settings/class-general-settings.php:315
+#: includes/settings/class-general-settings.php:326
 msgctxt "settings"
 msgid "Time Format"
 msgstr "Idő formátum"
 
-#: includes/settings/class-general-settings.php:325
+#: includes/settings/class-general-settings.php:336
 msgctxt "settings"
 msgid "Example output"
 msgstr "Példa kijelzés"
 
-#: includes/settings/class-general-settings.php:327
+#: includes/settings/class-general-settings.php:338
 msgctxt "settings"
 msgid ""
 "Full date/time output with any strings you wish to add. <date> and <time> "
@@ -7622,25 +7632,25 @@ msgid ""
 "the Date Format and Time Format settings above."
 msgstr "Teljes dátum/idő kijelzés választható forrással. A <date> és <time> kifejezések helyőrzők a dátum és idő forrásoknak, amiknek a formátuma a Dátum formátum és Idő formátum beállításokban van meghatározva"
 
-#: includes/settings/class-general-settings.php:333
+#: includes/settings/class-general-settings.php:344
 msgctxt "settings"
 msgid "Full Display String"
 msgstr "Teljes karakterlánc megjelenítése"
 
-#: includes/settings/class-general-settings.php:354
+#: includes/settings/class-general-settings.php:365
 msgctxt "settings"
 msgid "Currency Format"
 msgstr "Pénzem Formátum"
 
-#: includes/settings/class-general-settings.php:363
+#: includes/settings/class-general-settings.php:374
 msgid "Currency Format"
 msgstr "Pénzem Formátum"
 
-#: includes/settings/class-general-settings.php:371
+#: includes/settings/class-general-settings.php:382
 msgid "Currency code"
 msgstr "Pénzem kód"
 
-#: includes/settings/class-general-settings.php:374
+#: includes/settings/class-general-settings.php:385
 msgid ""
 "Prices in listings pages and payment pages will be displayed using this "
 "currency. The currency symbol will be generated based on this code, but if "
@@ -7648,11 +7658,11 @@ msgid ""
 "uppercase version of the code itself."
 msgstr "A listázási és fizetési oldalakon az árak e pénzemben lesznek feltüntetve. A pénzem szimbólum e kód alapján kerül generálásra, de ha a bővítmény nem talál pénzemhez tartozó szimbólumot, akkor a kód nagybetűs változatát fogja használni."
 
-#: includes/settings/class-general-settings.php:380
+#: includes/settings/class-general-settings.php:391
 msgid "Currency symbol"
 msgstr "Pénzem szimbólum"
 
-#: includes/settings/class-general-settings.php:383
+#: includes/settings/class-general-settings.php:394
 msgid ""
 "Use this setting to overwrite the currency symbol shown in listings pages. "
 "If empty, the plugin will attempt to show one of the standard symbols for "
@@ -7660,89 +7670,89 @@ msgid ""
 "your currency, it will use an uppercase version of the currency code."
 msgstr "Használja ezt a beállítást a listázási oldalakon megjelenő pénznem szimbólum felülírására. Ha üres, a bővítmény megpróbálja az egyik standard szimbólumot mutatni a kiválasztott pénznem kódhoz, de ha a bővítmény nem talál szimbólumot, akkor a nagybetűs változatát fogja használni a pénzem kódnak."
 
-#: includes/settings/class-general-settings.php:386
+#: includes/settings/class-general-settings.php:397
 msgid "Thousands separator"
 msgstr "Ezresek elválasztója"
 
-#: includes/settings/class-general-settings.php:386
+#: includes/settings/class-general-settings.php:397
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the thousands separator."
 msgid ","
 msgstr ","
 
-#: includes/settings/class-general-settings.php:387
+#: includes/settings/class-general-settings.php:398
 msgid "Separator for the decimal point"
 msgstr "Tizedesérték elvásztó"
 
-#: includes/settings/class-general-settings.php:387
+#: includes/settings/class-general-settings.php:398
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the decimal separator."
 msgid "."
 msgstr ".í"
 
-#: includes/settings/class-general-settings.php:388
+#: includes/settings/class-general-settings.php:399
 msgid "Show decimals in price"
 msgstr "Tizedesértékek  megjelenítése az árban"
 
-#: includes/settings/class-general-settings.php:388
+#: includes/settings/class-general-settings.php:399
 msgctxt "settings"
 msgid "Uncheck to show prices without decimals. The value will be rounded."
 msgstr "Vegye ki a pipát, ha nem kíván tizedes értékeket megjeleníteni. Az értékek kerekítve lesznek."
 
-#: includes/settings/class-general-settings.php:393
+#: includes/settings/class-general-settings.php:404
 msgid "Show currency symbol"
 msgstr "Pénznem szimbólum megjelenítése"
 
-#: includes/settings/class-general-settings.php:396
+#: includes/settings/class-general-settings.php:407
 msgid ""
 "The currency symbol can be configured by changing the currency code in the "
 "settings above."
 msgstr "A pénznem szimbólumot beállíthatja a pénznem kód módosításával a beállításokban fentebb."
 
-#: includes/settings/class-general-settings.php:399
+#: includes/settings/class-general-settings.php:410
 msgid "Show currency symbol on left"
 msgstr "Pénznem szimbólum megjelenítése a bal oldalon"
 
-#: includes/settings/class-general-settings.php:400
+#: includes/settings/class-general-settings.php:411
 msgid "Show currency symbol on right"
 msgstr "Pénznem szimbólum megjelenítése a jobb oldalon"
 
-#: includes/settings/class-general-settings.php:401
+#: includes/settings/class-general-settings.php:412
 msgid "Don't show currency symbol"
 msgstr "Ne jelenjen meg pénznem szimbólum"
 
-#: includes/settings/class-general-settings.php:409
+#: includes/settings/class-general-settings.php:420
 msgid "Include a space between the currency symbol and the amount"
 msgstr "Használjon szóközt a pénznem szimbólum és az összeg között"
 
-#: includes/settings/class-general-settings.php:428
-#: includes/settings/class-general-settings.php:434
+#: includes/settings/class-general-settings.php:439
+#: includes/settings/class-general-settings.php:445
 msgid "Anti-SPAM"
 msgstr "Anti-SPAM"
 
-#: includes/settings/class-general-settings.php:447
+#: includes/settings/class-general-settings.php:458
 msgid "Use Akismet in Place Ad form"
 msgstr "Akismet spam szűrő használata a hirdetésfeladási nyomtatványon."
 
-#: includes/settings/class-general-settings.php:450
+#: includes/settings/class-general-settings.php:461
 msgid "Use Akismet for Posting Ads (strong anti-spam)."
 msgstr "Akismet használata hirdetés feladásánál (erős spam szűrő)"
 
-#: includes/settings/class-general-settings.php:456
+#: includes/settings/class-general-settings.php:467
 msgid "Use Akismet in Reply to Ad form"
 msgstr "Akismet használata a Válasz a hirdetésre nyomtatványon"
 
-#: includes/settings/class-general-settings.php:459
+#: includes/settings/class-general-settings.php:470
 msgid "Use Akismet for Contact Responses (strong anti-spam)."
 msgstr "Akismet használata a Kapcsolat válaszoknál(erős spam szűrés)"
 
-#: includes/settings/class-general-settings.php:467
+#: includes/settings/class-general-settings.php:478
 msgid "Enable CAPTCHA in Place Ad form"
 msgstr "CAPTCHA használatának engedélyezése a hirdetésfeladási nyomtatványon."
 
-#: includes/settings/class-general-settings.php:470
+#: includes/settings/class-general-settings.php:481
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -7750,78 +7760,78 @@ msgid ""
 "Place Ad form."
 msgstr "A CAPTCHA egy olyan program ami biztosítja, hogy csak emberek küldhessenek üzenetet. Csökkenti a spamok számát. Ha bejelöli, akkor egy újabb mező fog megjelenni a hirdetésfeladási nyomtatványon."
 
-#: includes/settings/class-general-settings.php:476
+#: includes/settings/class-general-settings.php:487
 msgid "Enable CAPTCHA in Reply to Ad form"
 msgstr "CHAPTCHA használatának engedélyezése a Válasz a hirdetésre nyomtatványon"
 
-#: includes/settings/class-general-settings.php:479
+#: includes/settings/class-general-settings.php:490
 msgid ""
 "If checked, an additional form field will be added to the Reply to Ad form."
 msgstr "Ha bejelöli, egy újabb mező fog megjelenni a Válasz a hirdetésre nyomtatványon."
 
-#: includes/settings/class-general-settings.php:483
+#: includes/settings/class-general-settings.php:494
 msgid "reCAPTCHA v2"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:484
+#: includes/settings/class-general-settings.php:495
 msgid "reCAPTCHA v3"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:485
+#: includes/settings/class-general-settings.php:496
 msgid "Math"
 msgstr "Matek"
 
-#: includes/settings/class-general-settings.php:491
+#: includes/settings/class-general-settings.php:502
 msgid "Type of CAPTCHA"
 msgstr "CAPTCHA típusa"
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:505
 msgid ""
 "reCAPTCHA v2: requires the user to click a checkbox indicating the user is "
 "not a robot. This will either pass the user immediately (with No CAPTCHA) or"
 " challenge them to validate whether or not they are human."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:505
 msgid ""
 "reCAPTCHA v3: returns a score for each request without user friction. The "
 "score is based on interactions with your site and enables you to take an "
 "appropriate action for your site."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:505
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr "Math: A felhasználónak egyszerű számolási feladatokat kell elvégeznie"
 
-#: includes/settings/class-general-settings.php:498
+#: includes/settings/class-general-settings.php:509
 msgid "Max number used in Math CAPTCHA"
 msgstr "Legnagyobb számérték Matekos CAPTCHA használatakor"
 
-#: includes/settings/class-general-settings.php:498
+#: includes/settings/class-general-settings.php:509
 msgid "Highest number used in aithmetic operation."
 msgstr "Legmagasabb szám az számolási műveleteknél."
 
 #. translators: %s is the link to Google reCAPTCHA admin panel.
-#: includes/settings/class-general-settings.php:503
+#: includes/settings/class-general-settings.php:514
 msgid "You can get an API key from %s."
 msgstr "API kulcsot szerezhet innen: %s."
 
-#: includes/settings/class-general-settings.php:505
+#: includes/settings/class-general-settings.php:516
 msgid "reCAPTCHA Site Key"
 msgstr "reCAPTCHA Oldal Kulcs"
 
-#: includes/settings/class-general-settings.php:506
+#: includes/settings/class-general-settings.php:517
 msgid "reCAPTCHA Secret Key"
 msgstr "reCAPTCHA Titkos Kulcs"
 
-#: includes/settings/class-general-settings.php:508
+#: includes/settings/class-general-settings.php:519
 msgid ""
 "reCAPTCHA v3 returns a score (1.0 is very likely a good interaction, 0.0 is "
 "very likely a bot). The plugin will interrupt all interactions that receive "
 "a score under the configured threshold."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:508
+#: includes/settings/class-general-settings.php:519
 msgid ""
 "Please note that reCAPTCHA learns by seeing real traffic on your site. For "
 "this reason, scores in a staging environment or soon after implementing may "
@@ -7830,133 +7840,133 @@ msgid ""
 "console{/console_link}."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:515
+#: includes/settings/class-general-settings.php:526
 msgid "reCAPTCHA score threshold (v3 only)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:528
+#: includes/settings/class-general-settings.php:539
 msgid "AdSense"
 msgstr "AdSense"
 
-#: includes/settings/class-general-settings.php:538
+#: includes/settings/class-general-settings.php:549
 msgid "AdSense Settings"
 msgstr "AdSense Beállítások"
 
-#: includes/settings/class-general-settings.php:541
+#: includes/settings/class-general-settings.php:552
 msgid "Above Ad text."
 msgstr "Hirdetés szövege fölött"
 
-#: includes/settings/class-general-settings.php:542
+#: includes/settings/class-general-settings.php:553
 msgid "Under Ad text."
 msgstr "Hirdetés szövege alatt"
 
-#: includes/settings/class-general-settings.php:543
+#: includes/settings/class-general-settings.php:554
 msgid "Below Ad images."
 msgstr "Hirdetés képei alatt"
 
-#: includes/settings/class-general-settings.php:546
+#: includes/settings/class-general-settings.php:557
 msgid "Activate AdSense"
 msgstr "AdSense Aktiválása"
 
-#: includes/settings/class-general-settings.php:547
+#: includes/settings/class-general-settings.php:558
 msgid "AdSense code"
 msgstr "AdSense kód"
 
-#: includes/settings/class-general-settings.php:547
+#: includes/settings/class-general-settings.php:558
 msgid "Your AdSense code (Best if 468x60 text or banner.)"
 msgstr "Az ön AdSense kódja (ajánlott méret: 468x60 px-es szöveg, vagy banner)"
 
-#: includes/settings/class-general-settings.php:548
+#: includes/settings/class-general-settings.php:559
 msgid "Show AdSense at position"
 msgstr "AdSense Mutatása a pozicíónál"
 
-#: includes/settings/class-general-settings.php:558
+#: includes/settings/class-general-settings.php:569
 msgid "Registration"
 msgstr "Regisztráció"
 
-#: includes/settings/class-general-settings.php:567
+#: includes/settings/class-general-settings.php:578
 msgid "Registration Settings"
 msgstr "Regisztráció beállításai"
 
-#: includes/settings/class-general-settings.php:575
+#: includes/settings/class-general-settings.php:586
 msgid "Place Ad requires user registration"
 msgstr "Hirdetés feladáshoz regisztráció szükséges"
 
-#: includes/settings/class-general-settings.php:577
+#: includes/settings/class-general-settings.php:588
 msgid "Only registered users will be allowed to post Ads."
 msgstr "Csak regisztrált felhasználók adhatnak fel hirdetéseket."
 
-#: includes/settings/class-general-settings.php:586
+#: includes/settings/class-general-settings.php:597
 msgid "Reply to Ad requires user registration"
 msgstr "Üzenetet küldeni a Hirdetőnek csak regisztrált felhasználók tudnak"
 
-#: includes/settings/class-general-settings.php:589
+#: includes/settings/class-general-settings.php:600
 msgid "Require user registration for replying to an Ad?"
 msgstr "Felhasználói regisztráció szükséges válasz küldéséhez."
 
-#: includes/settings/class-general-settings.php:597
+#: includes/settings/class-general-settings.php:608
 msgid "Login URL"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:600
+#: includes/settings/class-general-settings.php:611
 msgid ""
 "Location of the login page. The value should be the full URL to the "
 "WordPress login page (e.g. http://www.awpcp.com/wp-login.php)."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:600
 #: includes/settings/class-general-settings.php:611
+#: includes/settings/class-general-settings.php:622
 msgid ""
 "IMPORTANT: Only change this setting when using a membership plugin with "
 "custom login pages or similar scenarios."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:608
+#: includes/settings/class-general-settings.php:619
 msgid "Custom Registration Page URL"
 msgstr "Egyedi Regisztrációs Oldal URL"
 
-#: includes/settings/class-general-settings.php:611
+#: includes/settings/class-general-settings.php:622
 msgid ""
 "Location of registration page. Value should be the full URL to the WordPress"
 " registration page (e.g. http://www.awpcp.com/wp-login.php?action=register)."
 msgstr "Regisztrációs oldal helye. Az értéknek teljes URL-nek kell lennie a WordPress regisztrációs oldalhoz (pl. http://www.awpcp.com/wp-login.php?action=register)"
 
-#: includes/settings/class-general-settings.php:633
+#: includes/settings/class-general-settings.php:644
 msgid "Scripts and Styles"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:641
+#: includes/settings/class-general-settings.php:652
 msgid "Enqueue Font Awesome stylesheet (v5.2.0)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:644
+#: includes/settings/class-general-settings.php:655
 msgid ""
 "Use this setting to prevent conflicts with other plugins that already "
 "enqueue Font Awesome. Change the default value only if you have performed a "
 "conflict test to validate this is a Font Awesome issue."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:646
+#: includes/settings/class-general-settings.php:657
 msgid "Admin and frontend pages (default)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:647
+#: includes/settings/class-general-settings.php:658
 msgid "Frontend pages only"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:648
+#: includes/settings/class-general-settings.php:659
 msgid "Admin pages only"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:649
+#: includes/settings/class-general-settings.php:660
 msgid "Don't enqueue"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:658
+#: includes/settings/class-general-settings.php:669
 msgid "Use Font Awesome's Brands style"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:661
+#: includes/settings/class-general-settings.php:672
 msgid ""
 "Configure whether the plugin uses <code>fab</code> or <code>fa</code> CSS "
 "class to define Twitter and Facebook icons. The <code>fab</code> class is "
@@ -7965,34 +7975,34 @@ msgid ""
 "Font Awesome 5.0+ stylesheet, then select \"Always\"."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:663
+#: includes/settings/class-general-settings.php:674
 msgid "When the plugin's Font Awesome stylesheet is included only"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:664
+#: includes/settings/class-general-settings.php:675
 msgid "Always"
 msgstr "Mindig"
 
-#: includes/settings/class-general-settings.php:687
-#: includes/settings/class-general-settings.php:695
-#: includes/settings/class-general-settings.php:704
+#: includes/settings/class-general-settings.php:698
+#: includes/settings/class-general-settings.php:706
+#: includes/settings/class-general-settings.php:715
 msgid "Private Settings"
 msgstr "Privát Beállításokí"
 
-#: includes/settings/class-general-settings.php:717
+#: includes/settings/class-general-settings.php:728
 msgid "Modules"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:730
-#: includes/settings/class-general-settings.php:738
+#: includes/settings/class-general-settings.php:741
+#: includes/settings/class-general-settings.php:749
 msgid "Facebook"
 msgstr "Facebook"
 
-#: includes/settings/class-general-settings.php:756
+#: includes/settings/class-general-settings.php:767
 msgid "Facebook Integration Method"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:759
+#: includes/settings/class-general-settings.php:770
 msgid ""
 "Please note that sending ads to Facebook Groups is currently not available "
 "using Webhooks, after Facebook significantly reduced access to their APIs "
@@ -8003,90 +8013,90 @@ msgid ""
 "api-platform-product-changes/</a>"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:771
+#: includes/settings/class-general-settings.php:782
 msgid "Send Ads to Facebook Automatically"
 msgstr "Hirdetések megosztása Facebookon automatikusan."
 
-#: includes/settings/class-general-settings.php:774
+#: includes/settings/class-general-settings.php:785
 msgid ""
 "If checked, Ads will be sent to Facebook shortly after they are posted, "
 "enabled or edited, whichever occurs first. Please note that ads will be sent"
 " only once and disabled ads cannot be sent to Facebook."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:782
+#: includes/settings/class-general-settings.php:793
 msgid "Ask Facebook to clear cache for ads pages"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:785
+#: includes/settings/class-general-settings.php:796
 msgid ""
 "Clearing Facebook cache is useful to ensure users always see the latest "
 "version when the ad is shared on Facebook Pages, Groups and user feeds."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:793
+#: includes/settings/class-general-settings.php:804
 msgid "Facebook Application"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:803
+#: includes/settings/class-general-settings.php:814
 msgid "App Id"
 msgstr "Alkalmazás ID"
 
-#: includes/settings/class-general-settings.php:806
+#: includes/settings/class-general-settings.php:817
 msgid ""
 "An application identifier associates your site, its pages, and visitor "
 "actions with a registered Facebook application."
 msgstr "Egy egyedi alkalmazás azonosító társul az oldalához és a látogatói akciókhoz a regisztrált Facebook alkalmazással."
 
-#: includes/settings/class-general-settings.php:814
+#: includes/settings/class-general-settings.php:825
 msgid "App Secret"
 msgstr "Alkalmazás Titok"
 
-#: includes/settings/class-general-settings.php:817
+#: includes/settings/class-general-settings.php:828
 msgid ""
 "An application secret is a secret shared between Facebook and your "
 "application, similar to a password."
 msgstr "Egy alkalmazás titok egy titkos kulcs, a Facebook és az ön alkalmazása között megosztva, hasonlóan egy jelszóhoz."
 
-#: includes/settings/class-general-settings.php:825
+#: includes/settings/class-general-settings.php:836
 msgid "Facebook User Authorization"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:835
+#: includes/settings/class-general-settings.php:846
 msgid "User Access Token"
 msgstr "Felhasználói Hozzáférési Token"
 
-#: includes/settings/class-general-settings.php:838
+#: includes/settings/class-general-settings.php:849
 msgid ""
 "You can manually enter your user access token (if you know it) or log in to "
 "Facebook to get one using the link above."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:846
+#: includes/settings/class-general-settings.php:857
 msgid "Facebook Page and Group Selection"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:856
+#: includes/settings/class-general-settings.php:867
 msgid "Facebook Page"
 msgstr "Facebook oldal"
 
-#: includes/settings/class-general-settings.php:868
+#: includes/settings/class-general-settings.php:879
 msgid "Facebook Group"
 msgstr "Facebook Csoport"
 
-#: includes/settings/class-general-settings.php:880
+#: includes/settings/class-general-settings.php:891
 msgid "Facebook Page Access Token"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:892
+#: includes/settings/class-general-settings.php:903
 msgid "Zapier Integration"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:901
+#: includes/settings/class-general-settings.php:912
 msgid "Zapier webhook used to send ads to a Facebook page"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:904
+#: includes/settings/class-general-settings.php:915
 msgid ""
 "The plugin will post information to this URL the first time an ad becomes "
 "publicly available (after they are posted, enabled or edited) on the website"
@@ -8094,15 +8104,15 @@ msgid ""
 "Disabled ads are excluded."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:911
+#: includes/settings/class-general-settings.php:922
 msgid "IFTTT Integration"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:921
+#: includes/settings/class-general-settings.php:932
 msgid "URL used to send requests to IFTTT Webhooks service"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:924
+#: includes/settings/class-general-settings.php:935
 msgid ""
 "The plugin will post information to the Webhooks service the first time an "
 "ad becomes publicly available (after they are posted, enabled or edited) on "
@@ -8110,53 +8120,53 @@ msgid ""
 "list of classified ads. Disabled ads are excluded."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:932
+#: includes/settings/class-general-settings.php:943
 msgid "The name of the event that will be posted to the Webhooks service"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:935
+#: includes/settings/class-general-settings.php:946
 msgid ""
 "The plugin will post information about new ads to a unique URL built using "
 "the Webhooks URL and Event Name you define."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:945
+#: includes/settings/class-general-settings.php:956
 msgid ""
 "You can find your application information in the <a>Facebook Developer "
 "Apps</a> page."
 msgstr "Megtalálhatja az alkalmazása információit a <a>Facebook Developer - Alkalmazások</a> oldalon."
 
-#: includes/settings/class-general-settings.php:962
+#: includes/settings/class-general-settings.php:973
 msgid ""
 "AWPCP needs to get an authorization token from Facebook to work correctly. "
 "You'll be redirected to Facebook to login. AWPCP does not store or obtain "
 "any personal information from your profile."
 msgstr "Az AWPCP-nek szükséges egy hozzáférési token-t kérnie a Facebooktól a helyes működéshez. Át lesz irányítva a Facebook bejelentkezési felületére. Az AWPCP nem ment és tárol bármilyen személyes információt."
 
-#: includes/settings/class-general-settings.php:963
+#: includes/settings/class-general-settings.php:974
 msgid ""
 "Please choose Public as the audience for posts made by the application, even"
 " if you are just testing the integration. Facebook won't allow us to post "
 "content in some cases if you choose something else."
 msgstr "Közönségnek válaszd a Public-ot közzétételi csoportként, már az integrációs teszt alatt is, máskülönben a Fb nem engedélyezi egyes esetekben a postázást."
 
-#: includes/settings/class-general-settings.php:972
+#: includes/settings/class-general-settings.php:983
 msgid "Click here to obtain an access token from Facebook"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:974
+#: includes/settings/class-general-settings.php:985
 msgid ""
 "Please provide a value for the App Id and App Secret settings before trying "
 "to get an access token from Facebook."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:985
+#: includes/settings/class-general-settings.php:996
 msgid ""
 "Available Facebook Pages and Groups will be displayed after you enter a "
 "valid User Access Token."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:986
+#: includes/settings/class-general-settings.php:997
 msgid ""
 "As of April 4, 2018, all applications need to go through <a "
 "href=\"https://developers.facebook.com/docs/apps/review\" "
@@ -8173,65 +8183,65 @@ msgid ""
 "those groups and pages."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1004
+#: includes/settings/class-general-settings.php:1015
 msgid "None (Do not sent ads to a Facebook Page)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1011
+#: includes/settings/class-general-settings.php:1022
 msgid "(Your own profile page)"
 msgstr "(Az ön saját profil oldala)"
 
-#: includes/settings/class-general-settings.php:1035
+#: includes/settings/class-general-settings.php:1046
 msgid "None (Do not sent ads to a Facebook Group)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1081
+#: includes/settings/class-general-settings.php:1092
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the User Ad Management panel."
 msgstr "Kötelező Regisztráció beállítás automatikusan engedélyezésre került, mert aktiválta a Felhasználói Hirdetés Kezelő panelt."
 
-#: includes/settings/class-general-settings.php:1102
+#: includes/settings/class-general-settings.php:1113
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "Akismet SPAM szűrő nem engedélyezhető, mert az Akismet plugin nincs telepítve, vagy ki van kapcsolva."
 
-#: includes/settings/class-general-settings.php:1106
+#: includes/settings/class-general-settings.php:1117
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "Akismet SPAM szűrő nem engedélyezhető, mert az Akismet helytelenül van konfigurálva."
 
-#: includes/settings/class-general-settings.php:1133
+#: includes/settings/class-general-settings.php:1144
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA nem használható, mert privát és publikus kulcs beállítása szükséges a reCAPTCHA helyes működéséhez."
 
-#: includes/settings/class-general-settings.php:1135
+#: includes/settings/class-general-settings.php:1146
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA nem használható, mert publikus kulcs beállítása szükséges a reCAPTCHA helyes működéséhez."
 
-#: includes/settings/class-general-settings.php:1137
+#: includes/settings/class-general-settings.php:1148
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA nem használható, mert privát kulcs beállítása szükséges a reCAPTCHA helyes működéséhez."
 
-#: includes/settings/class-general-settings.php:1184
+#: includes/settings/class-general-settings.php:1195
 msgid "Thousands separator and decimal separator cant be the same."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1200
+#: includes/settings/class-general-settings.php:1211
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "A Felhasználói Hirdetés Kezelés panel automatikusan kikapcsolásra került, mert kikapcsolta a Kötelező Regisztráció beállítást."
 
-#: includes/settings/class-general-settings.php:1205
+#: includes/settings/class-general-settings.php:1216
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
@@ -9119,11 +9129,11 @@ msgstr ""
 msgid "Ad Category"
 msgstr "Hirdetés Kategória"
 
-#: includes/ui/class-category-selector.php:121
+#: includes/ui/class-category-selector.php:124
 msgid "All Categories"
 msgstr "Összes kategória"
 
-#: includes/ui/class-category-selector.php:170
+#: includes/ui/class-category-selector.php:173
 msgid "Select a Sub-category"
 msgstr "Alkategória kiválasztása"
 
@@ -10348,15 +10358,15 @@ msgstr "Eszközök"
 msgid "Manage Listing"
 msgstr "Listázások Kezelése"
 
-#: templates/components/classifieds-search-bar.tpl.php:5
+#: templates/components/classifieds-search-bar.tpl.php:8
 msgid "Search for:"
 msgstr "Keresés:"
 
-#: templates/components/classifieds-search-bar.tpl.php:9
+#: templates/components/classifieds-search-bar.tpl.php:12
 msgid "Find Listings"
 msgstr ""
 
-#: templates/components/classifieds-search-bar.tpl.php:11
+#: templates/components/classifieds-search-bar.tpl.php:14
 msgid "Advanced Search"
 msgstr ""
 

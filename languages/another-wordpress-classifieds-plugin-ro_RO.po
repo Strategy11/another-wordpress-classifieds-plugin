@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2020-06-23 22:57:22+00:00\n"
-"PO-Revision-Date: 2020-06-23 23:04+0000\n"
+"POT-Creation-Date: 2020-08-13 19:16:19+00:00\n"
+"PO-Revision-Date: 2020-08-13 21:09+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ro_RO/)\n"
 "MIME-Version: 1.0\n"
@@ -59,7 +59,7 @@ msgstr "Atribute"
 msgid "Categories"
 msgstr "Categorii"
 
-#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:827
+#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:834
 msgid "Featured Ads"
 msgstr "Anunțuri speciale"
 
@@ -1267,7 +1267,7 @@ msgid ""
 msgstr "Dacă utilizați în prezent metoda de integrare a API-ului Facebook și nu aveți probleme, nu trebuie să faceți nimic momentan. Dacă întâmpinați probleme, vă rugăm să citiți secțiunea Diagnostics de mai jos pentru a încerca să le remediați."
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:31
-#: includes/settings/class-general-settings.php:761
+#: includes/settings/class-general-settings.php:772
 msgid "Facebook API"
 msgstr "Facebook API"
 
@@ -1289,7 +1289,7 @@ msgid ""
 msgstr "Adaugă următorul URL la lista de redirectari de URL-uri OAuth valide pentru configurarea Aplicației Facebook:"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:49
-#: includes/settings/class-general-settings.php:762
+#: includes/settings/class-general-settings.php:773
 msgid "Zapier/IFTTT Webhooks"
 msgstr "Zapier/IFTTT webhooks"
 
@@ -1725,19 +1725,19 @@ msgid ""
 "{support_link}contact support{/support_link}."
 msgstr "Instalarea AWPCP este incompletă. Vă rugăm să {support_link}contactați asistența tehnică{/support_link}."
 
-#: cron.php:123
+#: cron.php:124
 msgid "Listing Details"
 msgstr "Detalii anunț"
 
-#: cron.php:125
+#: cron.php:126
 msgid "Ad Title:"
 msgstr "Titlu Anunț:"
 
-#: cron.php:128
+#: cron.php:129
 msgid "Posted:"
 msgstr "Postat la:"
 
-#: cron.php:132
+#: cron.php:133
 msgid "Renew your ad by visiting:"
 msgstr "Reînnoiți anunțul dvs. vizitând:"
 
@@ -3143,64 +3143,64 @@ msgstr "Nu se poate scrie fișierul pe disc."
 msgid "The file upload was stopped by extension."
 msgstr "Încărcarea fișierului a fost oprită de către extensia acestuia."
 
-#: functions.php:2440
+#: functions.php:2448
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Anunțul dvs. \"%s\" a fost aprobat"
 
-#: functions.php:2463
+#: functions.php:2471
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Anunțul dvs. \"%s\" a fost actualizat cu succes"
 
-#: functions.php:2486
+#: functions.php:2494
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Imaginile anunțului \"%s\" așteaptă aprobarea"
 
-#: functions.php:2488 includes/functions/notifications.php:195
+#: functions.php:2496 includes/functions/notifications.php:195
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr "Imaginile anunțului \"%s\" așteaptă aprobarea. Puteți aproba imaginile mergând la secțiunea Administrare Imagini pentru acest anunț și dând click pe butonul \"Activează\" de sub fiecare imagine. Click aici pentru a continua: %s."
 
-#: functions.php:2491
+#: functions.php:2499
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "Anunțul \"%s\" așteaptă aprobarea"
 
-#: functions.php:2493 includes/functions/notifications.php:200
+#: functions.php:2501 includes/functions/notifications.php:200
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr "Anunțul \"%s\" așteaptă aprobarea. Puteți aproba anunțul mergând la secțiunea Administrare anunțuri și dând click pe butonul \"Activează\" din partea de sus. Click aici pentru a continua: %s."
 
-#: functions.php:2500 includes/functions/notifications.php:207
+#: functions.php:2508 includes/functions/notifications.php:207
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr "Suplimentar, puteți aproba imaginile mergând la secțiunea Administrare Imagini pentru acest anunț și dând click pe butonul \"Activează\" de sub fiecare imagine. Click aici pentru a continua: %s."
 
-#: functions.php:3036
+#: functions.php:3044
 msgid "Email sent %s."
 msgstr "Email trimis %s."
 
-#: functions.php:3173
+#: functions.php:3181
 msgid "Not Installed"
 msgstr "Neinstalate"
 
-#: functions.php:3177
+#: functions.php:3185
 msgid "Installed"
 msgstr "Instalate"
 
-#: functions.php:3185
+#: functions.php:3193
 msgid "SSL Support: Yes."
 msgstr "Suport SSL: Da."
 
-#: functions.php:3187
+#: functions.php:3195
 msgid "SSL Support: No."
 msgstr "Suport SSL: Nu."
 
-#: functions.php:3190
+#: functions.php:3198
 msgid "OpenSSL version:"
 msgstr "Versiune OpenSSL:"
 
@@ -4109,106 +4109,106 @@ msgid ""
 " one of the associated listings: <error-message>"
 msgstr "Categoria nu a putut fi ștearsă, deoarece a existat o eroare la încercarea de a șterge una dintre listările asociate:<error-message></error-message>"
 
-#: includes/class-awpcp.php:754
+#: includes/class-awpcp.php:761
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP necesită librăria de procesare grafică GD, iar aceasta nu este instalată. Contactați administratorul hosting-ul dvs. pentru a rezolva aceasta."
 
-#: includes/class-awpcp.php:755
+#: includes/class-awpcp.php:762
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Atenționare"
 
-#: includes/class-awpcp.php:771
+#: includes/class-awpcp.php:778
 msgid "Attachments"
 msgstr "Atașamente"
 
-#: includes/class-awpcp.php:778
+#: includes/class-awpcp.php:785
 msgid "Authorize.Net"
 msgstr "Authorize.net"
 
-#: includes/class-awpcp.php:785
+#: includes/class-awpcp.php:792
 msgid "BuddyPress Listings"
 msgstr "Anunțuri BuddyPress"
 
-#: includes/class-awpcp.php:792
+#: includes/class-awpcp.php:799
 msgid "Campaign Manager"
 msgstr "Administrator Campanii"
 
-#: includes/class-awpcp.php:799
+#: includes/class-awpcp.php:806
 msgid "Category Icons"
 msgstr "Icon-uri pentru categorii"
 
-#: includes/class-awpcp.php:806
+#: includes/class-awpcp.php:813
 msgid "Comments & Ratings"
 msgstr "Comentarii și Evaluări"
 
-#: includes/class-awpcp.php:813
+#: includes/class-awpcp.php:820
 msgid "Coupons/Discount"
 msgstr "Cupoane/Reduceri"
 
-#: includes/class-awpcp.php:820
+#: includes/class-awpcp.php:827
 msgid "Extra Fields"
 msgstr "Câmpuri suplimentare"
 
-#: includes/class-awpcp.php:834
+#: includes/class-awpcp.php:841
 msgid "Fee per Category"
 msgstr "Preț pe categorie"
 
-#: includes/class-awpcp.php:841
+#: includes/class-awpcp.php:848
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: includes/class-awpcp.php:849
+#: includes/class-awpcp.php:856
 msgid "Mark as Sold"
 msgstr "Marcaț ca vândut"
 
-#: includes/class-awpcp.php:856
+#: includes/class-awpcp.php:863
 msgid "PayFast"
 msgstr "PayFast"
 
-#: includes/class-awpcp.php:863
+#: includes/class-awpcp.php:870
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:870
+#: includes/class-awpcp.php:877
 msgid "Regions Control"
 msgstr "Control regiuni"
 
-#: includes/class-awpcp.php:877
+#: includes/class-awpcp.php:884
 msgid "Restricted Categories"
 msgstr "Categorii restricționate"
 
-#: includes/class-awpcp.php:884
+#: includes/class-awpcp.php:891
 msgid "RSS"
 msgstr "Feed RSS"
 
-#: includes/class-awpcp.php:891
+#: includes/class-awpcp.php:898
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:898
+#: includes/class-awpcp.php:905
 msgid "Subscriptions"
 msgstr "Abonamente"
 
-#: includes/class-awpcp.php:905 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:912 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Video-uri"
 
-#: includes/class-awpcp.php:913
+#: includes/class-awpcp.php:920
 msgid "XML Sitemap"
 msgstr "Hartă XML"
 
-#: includes/class-awpcp.php:921
+#: includes/class-awpcp.php:928
 msgid "ZIP Code Search Module"
 msgstr "Modul de căutare după codul poștal"
 
-#: includes/class-awpcp.php:1458
+#: includes/class-awpcp.php:1465
 msgid "This field is required."
 msgstr "Acest câmp este obligatoriu."
 
-#: includes/class-awpcp.php:1459
+#: includes/class-awpcp.php:1466
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:267
 #: includes/frontend/class-edit-listing-page.php:361
@@ -4216,53 +4216,53 @@ msgstr "Acest câmp este obligatoriu."
 msgid "Please enter a valid email address."
 msgstr "Vă rugăm să introduceți o adresă de email validă."
 
-#: includes/class-awpcp.php:1460 includes/class-awpcp.php:1461
+#: includes/class-awpcp.php:1467 includes/class-awpcp.php:1468
 msgid "Please enter a valid URL."
 msgstr "Vă rugăm să introduceți un link (URL) corect."
 
-#: includes/class-awpcp.php:1462
+#: includes/class-awpcp.php:1469
 msgid "Please enter a valid number."
 msgstr "Vă rugăm să introduceți un număr corect."
 
-#: includes/class-awpcp.php:1463
+#: includes/class-awpcp.php:1470
 msgid "Please enter a valid amount."
 msgstr "Vă rugăm să introduceți un preț valid."
 
-#: includes/class-awpcp.php:1464
+#: includes/class-awpcp.php:1471
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr "Ați atins categoriile maxime permise pentru planul de taxe selectat."
 
-#: includes/class-awpcp.php:1474
+#: includes/class-awpcp.php:1481
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Înapoi"
 
-#: includes/class-awpcp.php:1476
+#: includes/class-awpcp.php:1483
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Înainte&#x3e;"
 
-#: includes/class-awpcp.php:1491
+#: includes/class-awpcp.php:1498
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
 
-#: includes/class-awpcp.php:1497
+#: includes/class-awpcp.php:1504
 msgid "There are files currently being uploaded."
 msgstr "Fișierele se încarcă în acest moment."
 
-#: includes/class-awpcp.php:1498
+#: includes/class-awpcp.php:1505
 msgid "There are files pending to be uploaded."
 msgstr "Fișierele așteaptă să fie încărcate."
 
-#: includes/class-awpcp.php:1499
+#: includes/class-awpcp.php:1506
 msgid "You haven't uploaded any images or files."
 msgstr "Nu ați încărcat nici o imagine sau fișier."
 
-#: includes/class-awpcp.php:1568 includes/class-awpcp.php:1576
-#: includes/class-awpcp.php:1584 includes/class-awpcp.php:1661
-#: includes/class-awpcp.php:1669 includes/class-awpcp.php:1677
+#: includes/class-awpcp.php:1575 includes/class-awpcp.php:1583
+#: includes/class-awpcp.php:1591 includes/class-awpcp.php:1668
+#: includes/class-awpcp.php:1676 includes/class-awpcp.php:1684
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr "Un alt WordPress Classifieds plugin"
@@ -4335,7 +4335,7 @@ msgstr "Pentru a evita suprainscriptia metadatelor existente, utilizați fill_de
 msgid "There was an error trying to save the listing details:"
 msgstr "Eroare la încercarea de a salva detaliile de listare:"
 
-#: includes/class-listings-api.php:733
+#: includes/class-listings-api.php:738
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -4817,7 +4817,7 @@ msgid "Login/Registration"
 msgstr "Logare/Înregistrare"
 
 #: includes/frontend/class-submit-listing-form-steps.php:54
-#: includes/ui/class-category-selector.php:124
+#: includes/ui/class-category-selector.php:127
 #: templates/components/category-selector.tpl.php:16
 msgid "Select a Category"
 msgstr "Selectați o categorie"
@@ -7141,7 +7141,7 @@ msgid "Message body text for email sent out when an ad has auto-expired"
 msgstr "Conținutul email-ului trimis când un anunț a auto-expirat"
 
 #: includes/settings/class-email-settings.php:297
-#: includes/settings/class-general-settings.php:624
+#: includes/settings/class-general-settings.php:635
 msgid "Advanced"
 msgstr "Avansat"
 
@@ -7485,7 +7485,7 @@ msgstr "Tăiați imaginile miniatură?"
 
 #: includes/settings/class-general-settings.php:69
 #: includes/settings/class-general-settings.php:87
-#: includes/settings/class-general-settings.php:747
+#: includes/settings/class-general-settings.php:758
 #: includes/settings/class-payment-general-settings.php:44
 msgid "General Settings"
 msgstr "Setări generale"
@@ -7542,41 +7542,51 @@ msgid "Hide empty categories from dropdowns"
 msgstr "Ascunde categoriile goale din meniul drop-down"
 
 #: includes/settings/class-general-settings.php:168
+msgid "Hide categories selector dropdown"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:171
+msgid ""
+"If checked, category filtering dropdown won't be displayed in \"Browse Ads\""
+" page."
+msgstr ""
+
+#: includes/settings/class-general-settings.php:179
 msgid "Welcome message in Classifieds page"
 msgstr "Mesaj de întâmpinare în pagina Classifieds"
 
-#: includes/settings/class-general-settings.php:170
+#: includes/settings/class-general-settings.php:181
 msgid ""
 "Looking for a job? Trying to find a date? Looking for an apartment? Browse "
 "our classifieds. Have a job to advertise? An apartment to rent? Post a "
 "Classified Ad."
 msgstr "Căutați de lucru? Încercați să găsiți persoana potrivită? Căutați un apartament? Explorați lista noastră de anunțuri. Aveți o ofertă de muncă? Sau un apartament de vânzare sau de închiriat? Postați un anunț acum."
 
-#: includes/settings/class-general-settings.php:171
+#: includes/settings/class-general-settings.php:182
 msgid "The welcome text for your classifieds page on the user side"
 msgstr "Textul de întâmpinare pentru pagina de anunțuri pe partea de utilizator"
 
-#: includes/settings/class-general-settings.php:179
+#: includes/settings/class-general-settings.php:190
 msgid "Who can access AWPCP Admin Dashboard"
 msgstr "Cine poate accesa panoul de administrare AWPCP"
 
-#: includes/settings/class-general-settings.php:182
+#: includes/settings/class-general-settings.php:193
 msgid "Role of WordPress users who can have admin access to Classifieds."
 msgstr "Rolul utilizatorilor Wordpress care au acces de administrare a anunțurilor."
 
-#: includes/settings/class-general-settings.php:184
+#: includes/settings/class-general-settings.php:195
 msgid "Administrator"
 msgstr "Administrator"
 
-#: includes/settings/class-general-settings.php:185
+#: includes/settings/class-general-settings.php:196
 msgid "Administrator & Editor"
 msgstr "Administrator și Editor"
 
-#: includes/settings/class-general-settings.php:194
+#: includes/settings/class-general-settings.php:205
 msgid "Enable page filter"
 msgstr "Activează pagina filtru"
 
-#: includes/settings/class-general-settings.php:197
+#: includes/settings/class-general-settings.php:208
 msgid ""
 "Uncheck this if you need to turn off the AWPCP page filter that prevents "
 "AWPCP classifieds children pages from showing up in your wp pages menu (You "
@@ -7586,87 +7596,87 @@ msgid ""
 "should not be visible to your users by default)."
 msgstr "Debifați aceasta dacă aveți nevoie ca AWPCP să dezactiveze filtrul care permite paginilor de anunțuri copii să apară în paginile dvs. de meniu din Wordpress. (Ați putea avea nevoie de aceasta dacă, de exemplu, filtrul de pagină AWPCP vă strică pagina de meniuri. Această înseamnă că va trebui să excludeți manual paginile copii din lista dvs. de pagini. În mod implicit unele dintre pagini nu ar trebui să apară deloc vizibile utilizatorilor dvs.)"
 
-#: includes/settings/class-general-settings.php:205
+#: includes/settings/class-general-settings.php:216
 msgid "Auto-expand the Classifieds Menu for mobile devices?"
 msgstr "Desfășoară automat Meniul Anunțurilor pentru dispozitivele mobile?"
 
-#: includes/settings/class-general-settings.php:220
+#: includes/settings/class-general-settings.php:231
 msgid "Classifieds Management Panel"
 msgstr "Classifieds management panel"
 
-#: includes/settings/class-general-settings.php:226
+#: includes/settings/class-general-settings.php:237
 msgid ""
 "You must have registered users to use this setting. Turning it on will "
 "automatically enable \"Require Registration\" for AWPCP. Make sure you site "
 "allows users to register under <wp-settings-link>Settings->General</a>."
 msgstr "Trebuie să fiți înregistrat pentru a folosi această setare. Prin activarea acestei, veți activa automat \"Înregistrare obligatorie\" pentru AWPCP. Asigurați-vă că website-ul dvs. permite utilizatorilor să se înregistreze în <wp-settings-link>Setări->Generale</a>."
 
-#: includes/settings/class-general-settings.php:232
+#: includes/settings/class-general-settings.php:243
 msgid "Enable User Ad Management Panel"
 msgstr "Activează Panoul de Administrare Anunțuri pentru Utilizator"
 
-#: includes/settings/class-general-settings.php:248
-#: includes/settings/class-general-settings.php:251
+#: includes/settings/class-general-settings.php:259
+#: includes/settings/class-general-settings.php:262
 msgid "Terms of Service"
 msgstr "Termeni de folosire"
 
-#: includes/settings/class-general-settings.php:250
+#: includes/settings/class-general-settings.php:261
 msgid "Display and require Terms of Service"
 msgstr "Arată și fă obligatorii Termenii de folosire"
 
-#: includes/settings/class-general-settings.php:251
+#: includes/settings/class-general-settings.php:262
 msgid "Terms of service go here..."
 msgstr "Termenii de folosire trebuie introduși aici..."
 
-#: includes/settings/class-general-settings.php:251
+#: includes/settings/class-general-settings.php:262
 msgid ""
 "Terms of Service for posting Ads. Put in text or an URL starting with http. "
 "If you use an URL, the text box will be replaced by a link to the "
 "appropriate Terms of Service page"
 msgstr "Termenii de Serviciu pentru postarea anunțurilor. Introduceți un text sau un URL care începe cu http. Dacă folosiți un URL, cutia de text va fi înlocuită cu un link către pagina corespunzătoare cu Termenii de Serviciu"
 
-#: includes/settings/class-general-settings.php:261
 #: includes/settings/class-general-settings.php:272
+#: includes/settings/class-general-settings.php:283
 msgctxt "settings"
 msgid "Date & Time Format"
 msgstr "Format dată și timp"
 
-#: includes/settings/class-general-settings.php:268
+#: includes/settings/class-general-settings.php:279
 msgid "Documentation on date and time formatting"
 msgstr "Documentație despre formatele pentru dată și timp"
 
-#: includes/settings/class-general-settings.php:287
+#: includes/settings/class-general-settings.php:298
 msgid "Date Time Format"
 msgstr "Format data și timp"
 
-#: includes/settings/class-general-settings.php:291
+#: includes/settings/class-general-settings.php:302
 msgid "American"
 msgstr "American"
 
-#: includes/settings/class-general-settings.php:292
+#: includes/settings/class-general-settings.php:303
 msgid "European"
 msgstr "European"
 
-#: includes/settings/class-general-settings.php:293
+#: includes/settings/class-general-settings.php:304
 msgid "Your own."
 msgstr "Propriu."
 
-#: includes/settings/class-general-settings.php:302
+#: includes/settings/class-general-settings.php:313
 msgctxt "settings"
 msgid "Date Format"
 msgstr "Format dată"
 
-#: includes/settings/class-general-settings.php:315
+#: includes/settings/class-general-settings.php:326
 msgctxt "settings"
 msgid "Time Format"
 msgstr "Format timp"
 
-#: includes/settings/class-general-settings.php:325
+#: includes/settings/class-general-settings.php:336
 msgctxt "settings"
 msgid "Example output"
 msgstr "Exemplu afișat"
 
-#: includes/settings/class-general-settings.php:327
+#: includes/settings/class-general-settings.php:338
 msgctxt "settings"
 msgid ""
 "Full date/time output with any strings you wish to add. <date> and <time> "
@@ -7674,25 +7684,25 @@ msgid ""
 "the Date Format and Time Format settings above."
 msgstr "Data și timp complet cu oricare dintre textele pe care doriți să le adăugați. . <date> și <time> sunt coduri folosite pentru a afișa data și timpul folosind formatele specificate la Format dată și Format timp în setările de mai sus."
 
-#: includes/settings/class-general-settings.php:333
+#: includes/settings/class-general-settings.php:344
 msgctxt "settings"
 msgid "Full Display String"
 msgstr "Afișează întregul text"
 
-#: includes/settings/class-general-settings.php:354
+#: includes/settings/class-general-settings.php:365
 msgctxt "settings"
 msgid "Currency Format"
 msgstr "Format valutar"
 
-#: includes/settings/class-general-settings.php:363
+#: includes/settings/class-general-settings.php:374
 msgid "Currency Format"
 msgstr "Format valutar"
 
-#: includes/settings/class-general-settings.php:371
+#: includes/settings/class-general-settings.php:382
 msgid "Currency code"
 msgstr "Cod valută"
 
-#: includes/settings/class-general-settings.php:374
+#: includes/settings/class-general-settings.php:385
 msgid ""
 "Prices in listings pages and payment pages will be displayed using this "
 "currency. The currency symbol will be generated based on this code, but if "
@@ -7700,11 +7710,11 @@ msgid ""
 "uppercase version of the code itself."
 msgstr "Prețurile din pagina anunțurilor și din paginile de plată vor fi afișate folosind această valută. Simbolul valutar va fi generat bazat pe acest cod, dar dacă pluginul nu cunoaște simbolul pentru valuta dvs., va folosi o versiune cu litere de tipar pentru acel cod."
 
-#: includes/settings/class-general-settings.php:380
+#: includes/settings/class-general-settings.php:391
 msgid "Currency symbol"
 msgstr "Simbol valutar"
 
-#: includes/settings/class-general-settings.php:383
+#: includes/settings/class-general-settings.php:394
 msgid ""
 "Use this setting to overwrite the currency symbol shown in listings pages. "
 "If empty, the plugin will attempt to show one of the standard symbols for "
@@ -7712,89 +7722,89 @@ msgid ""
 "your currency, it will use an uppercase version of the currency code."
 msgstr "Folosiți această setare pentru a suprascrie simbolul valutar afișat în paginile anunțurilor. Dacă acesta lipsește, pluginul va încerca să folosească unul dintre simbolurile valutare standard pentru codul de valută respectivă, dar dacă pluginul nu cunoaște simbolul pentru valuta dvs., va folosi o versiune cu litere de tipar pentru acel cod."
 
-#: includes/settings/class-general-settings.php:386
+#: includes/settings/class-general-settings.php:397
 msgid "Thousands separator"
 msgstr "Separator pentru mii"
 
-#: includes/settings/class-general-settings.php:386
+#: includes/settings/class-general-settings.php:397
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the thousands separator."
 msgid ","
 msgstr ","
 
-#: includes/settings/class-general-settings.php:387
+#: includes/settings/class-general-settings.php:398
 msgid "Separator for the decimal point"
 msgstr "Separator pentru punctul zecimal"
 
-#: includes/settings/class-general-settings.php:387
+#: includes/settings/class-general-settings.php:398
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the decimal separator."
 msgid "."
 msgstr "."
 
-#: includes/settings/class-general-settings.php:388
+#: includes/settings/class-general-settings.php:399
 msgid "Show decimals in price"
 msgstr "Arată zecimale la preț"
 
-#: includes/settings/class-general-settings.php:388
+#: includes/settings/class-general-settings.php:399
 msgctxt "settings"
 msgid "Uncheck to show prices without decimals. The value will be rounded."
 msgstr "Debifați pentru a afișa prețurile fără zecimale. Valoarea va fi rotunjită."
 
-#: includes/settings/class-general-settings.php:393
+#: includes/settings/class-general-settings.php:404
 msgid "Show currency symbol"
 msgstr "Arată simbolul valutar"
 
-#: includes/settings/class-general-settings.php:396
+#: includes/settings/class-general-settings.php:407
 msgid ""
 "The currency symbol can be configured by changing the currency code in the "
 "settings above."
 msgstr "Simbolul valutar poate fi configurat prin schimbarea codului de valută în setările de mai sus."
 
-#: includes/settings/class-general-settings.php:399
+#: includes/settings/class-general-settings.php:410
 msgid "Show currency symbol on left"
 msgstr "Arată simbolul valutar în stânga"
 
-#: includes/settings/class-general-settings.php:400
+#: includes/settings/class-general-settings.php:411
 msgid "Show currency symbol on right"
 msgstr "Arată simbolul valutar în dreapta"
 
-#: includes/settings/class-general-settings.php:401
+#: includes/settings/class-general-settings.php:412
 msgid "Don't show currency symbol"
 msgstr "Nu arăta simbolul valutar"
 
-#: includes/settings/class-general-settings.php:409
+#: includes/settings/class-general-settings.php:420
 msgid "Include a space between the currency symbol and the amount"
 msgstr "Includeți un spațiu între simbolul valutar și preț"
 
-#: includes/settings/class-general-settings.php:428
-#: includes/settings/class-general-settings.php:434
+#: includes/settings/class-general-settings.php:439
+#: includes/settings/class-general-settings.php:445
 msgid "Anti-SPAM"
 msgstr "Anti-SPAM"
 
-#: includes/settings/class-general-settings.php:447
+#: includes/settings/class-general-settings.php:458
 msgid "Use Akismet in Place Ad form"
 msgstr "Folosește Akismet în formularul de adăugare anunț"
 
-#: includes/settings/class-general-settings.php:450
+#: includes/settings/class-general-settings.php:461
 msgid "Use Akismet for Posting Ads (strong anti-spam)."
 msgstr "Folosește Akismet pentru postarea anunțurilor (program de anti-spam eficient)"
 
-#: includes/settings/class-general-settings.php:456
+#: includes/settings/class-general-settings.php:467
 msgid "Use Akismet in Reply to Ad form"
 msgstr "Folosește Akismet în formularul de răspuns la anunț"
 
-#: includes/settings/class-general-settings.php:459
+#: includes/settings/class-general-settings.php:470
 msgid "Use Akismet for Contact Responses (strong anti-spam)."
 msgstr "Folosește Akismet pentru răspunsuri la anunțuri (program anti-spam eficient)"
 
-#: includes/settings/class-general-settings.php:467
+#: includes/settings/class-general-settings.php:478
 msgid "Enable CAPTCHA in Place Ad form"
 msgstr "Activați CAPTCHA în formularul de adăugare anunț"
 
-#: includes/settings/class-general-settings.php:470
+#: includes/settings/class-general-settings.php:481
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -7802,78 +7812,78 @@ msgid ""
 "Place Ad form."
 msgstr "Un program CAPTCHA va asigura că doar persoane postează anunțuri pe website-ul dvs. Folosirea CAPTCHA va reduce SPAM-ul și va preveni roboții să posteze pe website-ul dvs. Daca este bifat, un câmp suplimentar va fi adăugat în formarul de adăugare a anunțului."
 
-#: includes/settings/class-general-settings.php:476
+#: includes/settings/class-general-settings.php:487
 msgid "Enable CAPTCHA in Reply to Ad form"
 msgstr "Activează CAPTCHA în formularul de răspuns la anunț"
 
-#: includes/settings/class-general-settings.php:479
+#: includes/settings/class-general-settings.php:490
 msgid ""
 "If checked, an additional form field will be added to the Reply to Ad form."
 msgstr "Daca este bifat, un câmp suplimentar va fi adăugat în formarul de răspuns la anunț."
 
-#: includes/settings/class-general-settings.php:483
+#: includes/settings/class-general-settings.php:494
 msgid "reCAPTCHA v2"
 msgstr "reCAPTCHA v2"
 
-#: includes/settings/class-general-settings.php:484
+#: includes/settings/class-general-settings.php:495
 msgid "reCAPTCHA v3"
 msgstr "reCAPTCHA v3"
 
-#: includes/settings/class-general-settings.php:485
+#: includes/settings/class-general-settings.php:496
 msgid "Math"
 msgstr "Matematică"
 
-#: includes/settings/class-general-settings.php:491
+#: includes/settings/class-general-settings.php:502
 msgid "Type of CAPTCHA"
 msgstr "Tipul CAPTCHA"
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:505
 msgid ""
 "reCAPTCHA v2: requires the user to click a checkbox indicating the user is "
 "not a robot. This will either pass the user immediately (with No CAPTCHA) or"
 " challenge them to validate whether or not they are human."
 msgstr "reCAPTCHA v2: solicită utilizatorului să faceți clic pe o casetă de selectare indicând utilizatorul nu este un robot. Acest lucru va trece imediat de utilizator (cu nr CAPTCHA) sau provocare-le pentru a valida dacă sunt sau nu sunt umane."
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:505
 msgid ""
 "reCAPTCHA v3: returns a score for each request without user friction. The "
 "score is based on interactions with your site and enables you to take an "
 "appropriate action for your site."
 msgstr "reCAPTCHA v3: returnează un punctaj pentru fiecare solicitare fără frecare utilizator. Scorul se bazează pe interacțiuni cu site-ul dumneavoastră și vă permite să ia o acțiune corespunzătoare pentru site-ul dumneavoastră."
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:505
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr "Matematică: cereți utilizatorului să rezolve o problemă simplă de aritmetică."
 
-#: includes/settings/class-general-settings.php:498
+#: includes/settings/class-general-settings.php:509
 msgid "Max number used in Math CAPTCHA"
 msgstr "Numărul maxim folosit în testul de matematică"
 
-#: includes/settings/class-general-settings.php:498
+#: includes/settings/class-general-settings.php:509
 msgid "Highest number used in aithmetic operation."
 msgstr "Numărul cel mai mare folosit în operația de aritmetică."
 
 #. translators: %s is the link to Google reCAPTCHA admin panel.
-#: includes/settings/class-general-settings.php:503
+#: includes/settings/class-general-settings.php:514
 msgid "You can get an API key from %s."
 msgstr "Puteți obține o cheie API de la %s."
 
-#: includes/settings/class-general-settings.php:505
+#: includes/settings/class-general-settings.php:516
 msgid "reCAPTCHA Site Key"
 msgstr "cheia reCAPTCHA pentru website"
 
-#: includes/settings/class-general-settings.php:506
+#: includes/settings/class-general-settings.php:517
 msgid "reCAPTCHA Secret Key"
 msgstr "cheia secretă reCAPTCHA"
 
-#: includes/settings/class-general-settings.php:508
+#: includes/settings/class-general-settings.php:519
 msgid ""
 "reCAPTCHA v3 returns a score (1.0 is very likely a good interaction, 0.0 is "
 "very likely a bot). The plugin will interrupt all interactions that receive "
 "a score under the configured threshold."
 msgstr "reCAPTCHA v3 returnează un scor (1,0 este foarte probabil o interacțiune bună, 0,0 este foarte probabil un bot). Plugin-ul va întrerupe toate interacțiunile care primesc un scor sub pragul configurat."
 
-#: includes/settings/class-general-settings.php:508
+#: includes/settings/class-general-settings.php:519
 msgid ""
 "Please note that reCAPTCHA learns by seeing real traffic on your site. For "
 "this reason, scores in a staging environment or soon after implementing may "
@@ -7882,133 +7892,133 @@ msgid ""
 "console{/console_link}."
 msgstr "Vă rugăm să rețineți că reCAPTCHA învață prin a vedea trafic real pe site-ul dumneavoastră. Din acest motiv, scorurile într-un mediu de așteptare sau la scurt timp după punerea în aplicare pot diferi de producție. Puteți începe să utilizați un prag de 0,5 și de a găsi o mai bună valoare mai târziu uita la trafic în consola de administrare {console_link} {/console_link,."
 
-#: includes/settings/class-general-settings.php:515
+#: includes/settings/class-general-settings.php:526
 msgid "reCAPTCHA score threshold (v3 only)"
 msgstr "prag punctaj reCAPTCHA (numai v3)"
 
-#: includes/settings/class-general-settings.php:528
+#: includes/settings/class-general-settings.php:539
 msgid "AdSense"
 msgstr "AdSense"
 
-#: includes/settings/class-general-settings.php:538
+#: includes/settings/class-general-settings.php:549
 msgid "AdSense Settings"
 msgstr "Setări AdSense"
 
-#: includes/settings/class-general-settings.php:541
+#: includes/settings/class-general-settings.php:552
 msgid "Above Ad text."
 msgstr "Deasupra textului anunțului."
 
-#: includes/settings/class-general-settings.php:542
+#: includes/settings/class-general-settings.php:553
 msgid "Under Ad text."
 msgstr "Sub textul anunțului."
 
-#: includes/settings/class-general-settings.php:543
+#: includes/settings/class-general-settings.php:554
 msgid "Below Ad images."
 msgstr "Sub imaginile anunțului."
 
-#: includes/settings/class-general-settings.php:546
+#: includes/settings/class-general-settings.php:557
 msgid "Activate AdSense"
 msgstr "Activați Adsense"
 
-#: includes/settings/class-general-settings.php:547
+#: includes/settings/class-general-settings.php:558
 msgid "AdSense code"
 msgstr "Cod AdSense"
 
-#: includes/settings/class-general-settings.php:547
+#: includes/settings/class-general-settings.php:558
 msgid "Your AdSense code (Best if 468x60 text or banner.)"
 msgstr "Codul dvs. AdSense (cel mai potrivit ar fi 468x60 text sau banner.)"
 
-#: includes/settings/class-general-settings.php:548
+#: includes/settings/class-general-settings.php:559
 msgid "Show AdSense at position"
 msgstr "Arată AdSense în poziția"
 
-#: includes/settings/class-general-settings.php:558
+#: includes/settings/class-general-settings.php:569
 msgid "Registration"
 msgstr "Înregistrare"
 
-#: includes/settings/class-general-settings.php:567
+#: includes/settings/class-general-settings.php:578
 msgid "Registration Settings"
 msgstr "Setări înregistrare"
 
-#: includes/settings/class-general-settings.php:575
+#: includes/settings/class-general-settings.php:586
 msgid "Place Ad requires user registration"
 msgstr "Adăugarea anunțului necesită înregistrarea utlizatorului"
 
-#: includes/settings/class-general-settings.php:577
+#: includes/settings/class-general-settings.php:588
 msgid "Only registered users will be allowed to post Ads."
 msgstr "Doar utilizatorii înregistrați vor putea adăuga anunțuri."
 
-#: includes/settings/class-general-settings.php:586
+#: includes/settings/class-general-settings.php:597
 msgid "Reply to Ad requires user registration"
 msgstr "Răspunde la anunț necesită să fiți înregistrat ca utilizator"
 
-#: includes/settings/class-general-settings.php:589
+#: includes/settings/class-general-settings.php:600
 msgid "Require user registration for replying to an Ad?"
 msgstr "Necesită înregistrarea utlizatorului pentru a putea răspunde la anunț?"
 
-#: includes/settings/class-general-settings.php:597
+#: includes/settings/class-general-settings.php:608
 msgid "Login URL"
 msgstr "Adresă autentificare"
 
-#: includes/settings/class-general-settings.php:600
+#: includes/settings/class-general-settings.php:611
 msgid ""
 "Location of the login page. The value should be the full URL to the "
 "WordPress login page (e.g. http://www.awpcp.com/wp-login.php)."
 msgstr "Locația paginii de autentificare. Adresa trebuie sa fie întregul URL către pagina de autentificare Wordpress (exemplu http://www.awpcp.com/wp-login.php)."
 
-#: includes/settings/class-general-settings.php:600
 #: includes/settings/class-general-settings.php:611
+#: includes/settings/class-general-settings.php:622
 msgid ""
 "IMPORTANT: Only change this setting when using a membership plugin with "
 "custom login pages or similar scenarios."
 msgstr "IMPORTANT: Schimbați această setare doar dacă folosiți un plugin de abonamente/membri cu pagini de logare personalizate sau scenarii similare."
 
-#: includes/settings/class-general-settings.php:608
+#: includes/settings/class-general-settings.php:619
 msgid "Custom Registration Page URL"
 msgstr "URL-ul personalizat al paginii de înregistrare"
 
-#: includes/settings/class-general-settings.php:611
+#: includes/settings/class-general-settings.php:622
 msgid ""
 "Location of registration page. Value should be the full URL to the WordPress"
 " registration page (e.g. http://www.awpcp.com/wp-login.php?action=register)."
 msgstr "Locația paginii de înregistrare. Valoarea trebuie să fie URL-ul complet către pagina de înregistrare Wordpress. (exemplu: http://www.awpcp.com/wp-login.php?action=register)."
 
-#: includes/settings/class-general-settings.php:633
+#: includes/settings/class-general-settings.php:644
 msgid "Scripts and Styles"
 msgstr "Scripturi și stiluri"
 
-#: includes/settings/class-general-settings.php:641
+#: includes/settings/class-general-settings.php:652
 msgid "Enqueue Font Awesome stylesheet (v5.2.0)"
 msgstr "Enqueue font minunat stil (v 5.2.0)"
 
-#: includes/settings/class-general-settings.php:644
+#: includes/settings/class-general-settings.php:655
 msgid ""
 "Use this setting to prevent conflicts with other plugins that already "
 "enqueue Font Awesome. Change the default value only if you have performed a "
 "conflict test to validate this is a Font Awesome issue."
 msgstr "Utilizați această setare pentru a preveni conflictele cu alte pluginuri care deja încoadă font Awesome. Modificați valoarea implicită numai dacă ați efectuat un test de conflict pentru a valida aceasta este o problemă font Awesome."
 
-#: includes/settings/class-general-settings.php:646
+#: includes/settings/class-general-settings.php:657
 msgid "Admin and frontend pages (default)"
 msgstr "Admin și pagini frontend (implicit)"
 
-#: includes/settings/class-general-settings.php:647
+#: includes/settings/class-general-settings.php:658
 msgid "Frontend pages only"
 msgstr "Frontend pagini numai"
 
-#: includes/settings/class-general-settings.php:648
+#: includes/settings/class-general-settings.php:659
 msgid "Admin pages only"
 msgstr "Numai pagini admin"
 
-#: includes/settings/class-general-settings.php:649
+#: includes/settings/class-general-settings.php:660
 msgid "Don't enqueue"
 msgstr "Nu se încoadă"
 
-#: includes/settings/class-general-settings.php:658
+#: includes/settings/class-general-settings.php:669
 msgid "Use Font Awesome's Brands style"
 msgstr "Utilizați stilul font Awesome ' s Brands"
 
-#: includes/settings/class-general-settings.php:661
+#: includes/settings/class-general-settings.php:672
 msgid ""
 "Configure whether the plugin uses <code>fab</code> or <code>fa</code> CSS "
 "class to define Twitter and Facebook icons. The <code>fab</code> class is "
@@ -8017,34 +8027,34 @@ msgid ""
 "Font Awesome 5.0+ stylesheet, then select \"Always\"."
 msgstr "Configurați dacă plugin-ul foloseste <code>fab</code> sau <code>fa</code> clasa CSS pentru a defini Twitter și Facebook icoane. <code>fab</code>Clasa este necesară cu font Awesome 5.0 +. Dacă ați dezactivat versiunea noastră de font Awesome stil de mai sus, deoarece o temă sau un alt plug-in este deja de încărcare un font Awesome 5.0 + stylesheet, apoi selectați \"întotdeauna\"."
 
-#: includes/settings/class-general-settings.php:663
+#: includes/settings/class-general-settings.php:674
 msgid "When the plugin's Font Awesome stylesheet is included only"
 msgstr "Atunci când plugin ' s font Awesome stylesheet este inclus numai"
 
-#: includes/settings/class-general-settings.php:664
+#: includes/settings/class-general-settings.php:675
 msgid "Always"
 msgstr "Intotdeauna"
 
-#: includes/settings/class-general-settings.php:687
-#: includes/settings/class-general-settings.php:695
-#: includes/settings/class-general-settings.php:704
+#: includes/settings/class-general-settings.php:698
+#: includes/settings/class-general-settings.php:706
+#: includes/settings/class-general-settings.php:715
 msgid "Private Settings"
 msgstr "Setări private"
 
-#: includes/settings/class-general-settings.php:717
+#: includes/settings/class-general-settings.php:728
 msgid "Modules"
 msgstr "Module"
 
-#: includes/settings/class-general-settings.php:730
-#: includes/settings/class-general-settings.php:738
+#: includes/settings/class-general-settings.php:741
+#: includes/settings/class-general-settings.php:749
 msgid "Facebook"
 msgstr "Facebook"
 
-#: includes/settings/class-general-settings.php:756
+#: includes/settings/class-general-settings.php:767
 msgid "Facebook Integration Method"
 msgstr "Metoda de integrare Facebook"
 
-#: includes/settings/class-general-settings.php:759
+#: includes/settings/class-general-settings.php:770
 msgid ""
 "Please note that sending ads to Facebook Groups is currently not available "
 "using Webhooks, after Facebook significantly reduced access to their APIs "
@@ -8055,90 +8065,90 @@ msgid ""
 "api-platform-product-changes/</a>"
 msgstr "Rețineți că trimiterea anunțurilor către grupurile Facebook nu este momentan disponibilă folosind webhooks, după ce Facebook a redus semnificativ accesul la API-urile lor în toate aplicațiile. Puteți citi mai multe despre aceste modificări aici: <a href=\"https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes/\">https://Developers.Facebook.com/blog/post/2018/04/04/Facebook-API-Platform-Product-Changes/</a>"
 
-#: includes/settings/class-general-settings.php:771
+#: includes/settings/class-general-settings.php:782
 msgid "Send Ads to Facebook Automatically"
 msgstr "Trimiteți anunțuri la Facebook în mod automat"
 
-#: includes/settings/class-general-settings.php:774
+#: includes/settings/class-general-settings.php:785
 msgid ""
 "If checked, Ads will be sent to Facebook shortly after they are posted, "
 "enabled or edited, whichever occurs first. Please note that ads will be sent"
 " only once and disabled ads cannot be sent to Facebook."
 msgstr "Dacă este bifată, anunțurile vor fi trimise pe Facebook la scurt timp după ce sunt postate, activate sau editate, oricare dintre acestea survine mai întâi. Vă rugăm să rețineți că anunțurile vor fi trimise doar o singură dată, iar anunțurile dezactivate nu pot fi trimise pe Facebook."
 
-#: includes/settings/class-general-settings.php:782
+#: includes/settings/class-general-settings.php:793
 msgid "Ask Facebook to clear cache for ads pages"
 msgstr "Solicită Facebook să goliți memoria cache pentru paginile cu anunțuri"
 
-#: includes/settings/class-general-settings.php:785
+#: includes/settings/class-general-settings.php:796
 msgid ""
 "Clearing Facebook cache is useful to ensure users always see the latest "
 "version when the ad is shared on Facebook Pages, Groups and user feeds."
 msgstr "Golirea memoriei cache Facebook este utilă pentru a se asigura că utilizatorii văd întotdeauna cea mai recentă versiune atunci când anunțul este distribuit în Paginile Facebook, în grupuri și în fluxurile utilizatorilor."
 
-#: includes/settings/class-general-settings.php:793
+#: includes/settings/class-general-settings.php:804
 msgid "Facebook Application"
 msgstr "Aplicația Facebook"
 
-#: includes/settings/class-general-settings.php:803
+#: includes/settings/class-general-settings.php:814
 msgid "App Id"
 msgstr "Id-ul App-ului"
 
-#: includes/settings/class-general-settings.php:806
+#: includes/settings/class-general-settings.php:817
 msgid ""
 "An application identifier associates your site, its pages, and visitor "
 "actions with a registered Facebook application."
 msgstr "Un identificator de aplicație asociază website-ul dvs., paginile sale, și acțiunile vizitatorilor cu o aplicație înregistrată de la Facebook."
 
-#: includes/settings/class-general-settings.php:814
+#: includes/settings/class-general-settings.php:825
 msgid "App Secret"
 msgstr "Codul secret al App-ului"
 
-#: includes/settings/class-general-settings.php:817
+#: includes/settings/class-general-settings.php:828
 msgid ""
 "An application secret is a secret shared between Facebook and your "
 "application, similar to a password."
 msgstr "Un cod secret de aplicație este un cod secret comunicat între Facebook și aplicația dvs., asemănător cu o parolă."
 
-#: includes/settings/class-general-settings.php:825
+#: includes/settings/class-general-settings.php:836
 msgid "Facebook User Authorization"
 msgstr "Autorizarea utilizatorului Facebook"
 
-#: includes/settings/class-general-settings.php:835
+#: includes/settings/class-general-settings.php:846
 msgid "User Access Token"
 msgstr "Cheie de acces utilizator"
 
-#: includes/settings/class-general-settings.php:838
+#: includes/settings/class-general-settings.php:849
 msgid ""
 "You can manually enter your user access token (if you know it) or log in to "
 "Facebook to get one using the link above."
 msgstr "Puteți introduce manual simbolul de acces al utilizatorului (dacă îl cunoașteți) sau vă conectați la Facebook pentru a obține unul folosind linkul de mai sus."
 
-#: includes/settings/class-general-settings.php:846
+#: includes/settings/class-general-settings.php:857
 msgid "Facebook Page and Group Selection"
 msgstr "Pagina de Facebook și selecția grupului"
 
-#: includes/settings/class-general-settings.php:856
+#: includes/settings/class-general-settings.php:867
 msgid "Facebook Page"
 msgstr "Pagină Facebook"
 
-#: includes/settings/class-general-settings.php:868
+#: includes/settings/class-general-settings.php:879
 msgid "Facebook Group"
 msgstr "Grup Facebook"
 
-#: includes/settings/class-general-settings.php:880
+#: includes/settings/class-general-settings.php:891
 msgid "Facebook Page Access Token"
 msgstr "Simbol acces pagină Facebook"
 
-#: includes/settings/class-general-settings.php:892
+#: includes/settings/class-general-settings.php:903
 msgid "Zapier Integration"
 msgstr "Integrarea Zapier"
 
-#: includes/settings/class-general-settings.php:901
+#: includes/settings/class-general-settings.php:912
 msgid "Zapier webhook used to send ads to a Facebook page"
 msgstr "Webhook Zapier folosit pentru a trimite reclame la o pagină de Facebook"
 
-#: includes/settings/class-general-settings.php:904
+#: includes/settings/class-general-settings.php:915
 msgid ""
 "The plugin will post information to this URL the first time an ad becomes "
 "publicly available (after they are posted, enabled or edited) on the website"
@@ -8146,15 +8156,15 @@ msgid ""
 "Disabled ads are excluded."
 msgstr "Plugin-ul va posta informații la acest URL prima dată când un anunț devine disponibil public (după ce sunt postate, activate sau editate) pe site sau folosind acțiunea trimiteți la pagina Facebook din lista de anunțuri clasificate. Anunțurile dezactivate sunt excluse."
 
-#: includes/settings/class-general-settings.php:911
+#: includes/settings/class-general-settings.php:922
 msgid "IFTTT Integration"
 msgstr "Integrarea IFTTT"
 
-#: includes/settings/class-general-settings.php:921
+#: includes/settings/class-general-settings.php:932
 msgid "URL used to send requests to IFTTT Webhooks service"
 msgstr "URL utilizat pentru a trimite solicitări către serviciul IFTTT webhooks"
 
-#: includes/settings/class-general-settings.php:924
+#: includes/settings/class-general-settings.php:935
 msgid ""
 "The plugin will post information to the Webhooks service the first time an "
 "ad becomes publicly available (after they are posted, enabled or edited) on "
@@ -8162,53 +8172,53 @@ msgid ""
 "list of classified ads. Disabled ads are excluded."
 msgstr "Plugin-ul va posta informații la serviciul webhooks prima dată când un anunț devine disponibil public (după ce sunt postate, activate sau editate) pe site sau când cineva folosește acțiunea trimiteți la pagina Facebook din lista de anunțuri clasificate. Anunțurile dezactivate sunt excluse."
 
-#: includes/settings/class-general-settings.php:932
+#: includes/settings/class-general-settings.php:943
 msgid "The name of the event that will be posted to the Webhooks service"
 msgstr "Numele evenimentului care va fi postat la serviciul webhooks"
 
-#: includes/settings/class-general-settings.php:935
+#: includes/settings/class-general-settings.php:946
 msgid ""
 "The plugin will post information about new ads to a unique URL built using "
 "the Webhooks URL and Event Name you define."
 msgstr "Plugin-ul va posta informații despre anunțurile noi la un URL unic construit folosind URL-ul webhooks și numele evenimentului pe care îl definiți."
 
-#: includes/settings/class-general-settings.php:945
+#: includes/settings/class-general-settings.php:956
 msgid ""
 "You can find your application information in the <a>Facebook Developer "
 "Apps</a> page."
 msgstr "Puteți găsi informațiile aplicației în pagina <a>Dezvoltatorilor de App-uri Facebook</a>."
 
-#: includes/settings/class-general-settings.php:962
+#: includes/settings/class-general-settings.php:973
 msgid ""
 "AWPCP needs to get an authorization token from Facebook to work correctly. "
 "You'll be redirected to Facebook to login. AWPCP does not store or obtain "
 "any personal information from your profile."
 msgstr "AWPCP trebuie să obțină un cod de autorizare de la Facebook pentru a funcționa corect. Veți fi redirectat la Facebook pentru a a vă loga. AWPCP nu stochează și nu obține nici o dată personală din profilul dvs."
 
-#: includes/settings/class-general-settings.php:963
+#: includes/settings/class-general-settings.php:974
 msgid ""
 "Please choose Public as the audience for posts made by the application, even"
 " if you are just testing the integration. Facebook won't allow us to post "
 "content in some cases if you choose something else."
 msgstr "Vă rugăm să alegeți Public ca audiență pentru postările făcute de aplicație, chiar dacă testați integrarea. Facebook nu ne va permite să postăm conținut în unele cazuri, dacă alegeți altceva."
 
-#: includes/settings/class-general-settings.php:972
+#: includes/settings/class-general-settings.php:983
 msgid "Click here to obtain an access token from Facebook"
 msgstr "Click aici pentru a obține un token de acces de la Facebook"
 
-#: includes/settings/class-general-settings.php:974
+#: includes/settings/class-general-settings.php:985
 msgid ""
 "Please provide a value for the App Id and App Secret settings before trying "
 "to get an access token from Facebook."
 msgstr "Vă rugăm să furnizați o valoare pentru setările aplicației ID și App secret înainte de a încerca să obțineți un simbol de acces de la Facebook."
 
-#: includes/settings/class-general-settings.php:985
+#: includes/settings/class-general-settings.php:996
 msgid ""
 "Available Facebook Pages and Groups will be displayed after you enter a "
 "valid User Access Token."
 msgstr "Paginile și grupurile de Facebook disponibile vor fi afișate după ce introduceți un token de acces utilizator valid."
 
-#: includes/settings/class-general-settings.php:986
+#: includes/settings/class-general-settings.php:997
 msgid ""
 "As of April 4, 2018, all applications need to go through <a "
 "href=\"https://developers.facebook.com/docs/apps/review\" "
@@ -8225,65 +8235,65 @@ msgid ""
 "those groups and pages."
 msgstr "De la 4 aprilie, 2018, toate aplicațiile trebuie să treacă prin <a href=\"https://developers.facebook.com/docs/apps/review\" rel=\"nofollow\">App Review</a> pentru a obține acces la <a href=\"https://developers.facebook.com/docs/graph-api/reference/page/\" rel=\"nofollow\">pagina API</a> și <a href=\"https://developers.facebook.com/docs/graph-api/reference/user/groups/\" rel=\"nofollow\">grupuri API</a>. Aceasta înseamnă că poate fi necesar să <a href=\"https://developers.facebook.com/docs/facebook-login/review\" rel=\"nofollow\">remiteți aplicația pentru revizuire</a> (cereți <code>manage_pages</code> , <code>publish_pages</code> , <code>publish_to_groups</code> permisiuni), înainte ca AWPCP să afișeze lista de pagini și grupuri pe care le gestionați și să reușiți să publicați anunțuri în acele grupuri și pagini."
 
-#: includes/settings/class-general-settings.php:1004
+#: includes/settings/class-general-settings.php:1015
 msgid "None (Do not sent ads to a Facebook Page)"
 msgstr "Niciuna (nu a trimis anunțuri la o pagină de Facebook)"
 
-#: includes/settings/class-general-settings.php:1011
+#: includes/settings/class-general-settings.php:1022
 msgid "(Your own profile page)"
 msgstr "(Pagina dvs. de profil)"
 
-#: includes/settings/class-general-settings.php:1035
+#: includes/settings/class-general-settings.php:1046
 msgid "None (Do not sent ads to a Facebook Group)"
 msgstr "Niciuna (nu a trimis anunțuri într-un grup Facebook)"
 
-#: includes/settings/class-general-settings.php:1081
+#: includes/settings/class-general-settings.php:1092
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the User Ad Management panel."
 msgstr "Înregistrarea obligatorie a fost activată automat pentru că ați activat panoul de Administrare anunțuri pentru utilizator."
 
-#: includes/settings/class-general-settings.php:1102
+#: includes/settings/class-general-settings.php:1113
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "Programul antiSPAM Akismet nu a putut fi activat pentru că pluginul Akismet nu este instalat sau activat."
 
-#: includes/settings/class-general-settings.php:1106
+#: includes/settings/class-general-settings.php:1117
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "Programul antiSPAM Akismet nu a putut fi activat pentru că pluginul Akismet nu este configurat corespunzător."
 
-#: includes/settings/class-general-settings.php:1133
+#: includes/settings/class-general-settings.php:1144
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA nu poate fi folosit deoarece cheia publică și cheia privată sunt necesare pentru a funcționa corect."
 
-#: includes/settings/class-general-settings.php:1135
+#: includes/settings/class-general-settings.php:1146
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA nu poate fi folosit deoarece cheia publică este necesară pentru a funcționa corect."
 
-#: includes/settings/class-general-settings.php:1137
+#: includes/settings/class-general-settings.php:1148
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA nu poate fi folosit deoarece cheia privată este necesară pentru a funcționa corect."
 
-#: includes/settings/class-general-settings.php:1184
+#: includes/settings/class-general-settings.php:1195
 msgid "Thousands separator and decimal separator cant be the same."
 msgstr "Separator mii separator și separator zecimal nu poti fi la fel."
 
-#: includes/settings/class-general-settings.php:1200
+#: includes/settings/class-general-settings.php:1211
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "Panoul de administrare anunțuri pentru utilizator a fost dezactivat automat pentru că ați dezactivat setarea de înregistrare obligatorie."
 
-#: includes/settings/class-general-settings.php:1205
+#: includes/settings/class-general-settings.php:1216
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
@@ -9171,11 +9181,11 @@ msgstr "Selectați pagina existentă {dropdown}-sau-{create_page_button}"
 msgid "Ad Category"
 msgstr "Categorie Anunț"
 
-#: includes/ui/class-category-selector.php:121
+#: includes/ui/class-category-selector.php:124
 msgid "All Categories"
 msgstr "Toate categoriile"
 
-#: includes/ui/class-category-selector.php:170
+#: includes/ui/class-category-selector.php:173
 msgid "Select a Sub-category"
 msgstr "Selectați o sub-categorie"
 
@@ -10402,15 +10412,15 @@ msgstr "Unelte"
 msgid "Manage Listing"
 msgstr "Administrează Anunțuri"
 
-#: templates/components/classifieds-search-bar.tpl.php:5
+#: templates/components/classifieds-search-bar.tpl.php:8
 msgid "Search for:"
 msgstr "Căutare:"
 
-#: templates/components/classifieds-search-bar.tpl.php:9
+#: templates/components/classifieds-search-bar.tpl.php:12
 msgid "Find Listings"
 msgstr "Caută anunțuri"
 
-#: templates/components/classifieds-search-bar.tpl.php:11
+#: templates/components/classifieds-search-bar.tpl.php:14
 msgid "Advanced Search"
 msgstr "Căutare avansată"
 

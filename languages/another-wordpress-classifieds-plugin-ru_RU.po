@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2020-06-23 22:57:22+00:00\n"
-"PO-Revision-Date: 2020-06-23 23:04+0000\n"
+"POT-Creation-Date: 2020-08-13 19:16:19+00:00\n"
+"PO-Revision-Date: 2020-08-13 21:09+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/wp-translations/another-wordpress-classifieds-plugin/language/ru_RU/)\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgstr "Аттрибуты"
 msgid "Categories"
 msgstr "Категории"
 
-#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:827
+#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:834
 msgid "Featured Ads"
 msgstr "Избранные объявления"
 
@@ -398,7 +398,7 @@ msgid ""
 "<categories-deleted> (out of <categories-count>) categories were deleted. "
 "However, there was an error trying to delete the other <categories-not-"
 "deleted> categories."
-msgstr ""
+msgstr "<categories-deleted> (из <categories-count>) категорий удалено. Тем не менее, возникла ошибка при удалении остальных <categories-not-deleted> категорий."
 
 #: admin/categories/class-delete-category-admin-page.php:44
 msgid "The category you are trying to delete doesn't exist."
@@ -444,7 +444,7 @@ msgstr "Отмена"
 msgid ""
 "The categories couldn't be moved because there was an error trying to load "
 "the target category. <specific-error-message>"
-msgstr ""
+msgstr "Категории не удалось переместить, т.к. произошла ошибка при загрузке целевой категории. <specific-error-message>"
 
 #: admin/categories/class-move-categories-admin-page.php:65
 msgid "The selected categories have been moved."
@@ -496,18 +496,18 @@ msgstr "Добавить новую категорию"
 #: admin/class-csv-exporter.php:87
 msgctxt "admin csv-export"
 msgid "Could not create a temporary directory for handling this CSV export."
-msgstr ""
+msgstr "Не удалось создать временную директорию для экспорта CSV."
 
 #: admin/class-csv-exporter.php:90
 msgctxt "admin csv-export"
 msgid "Could not create awpcp-csv-exports directory."
-msgstr ""
+msgstr "Не удалось создать директорию awpcp-csv-exports."
 
 #. translators: %s the error.
 #: admin/class-csv-exporter.php:96
 msgctxt "admin csv-export"
 msgid "Error while creating a temporary directory for CSV export: %s"
-msgstr ""
+msgstr "Ошибка при создании временной директории для экспорта CSV: %s"
 
 #: admin/class-debug-admin-page.php:140
 msgctxt "debug page"
@@ -551,7 +551,7 @@ msgstr "ОС"
 
 #: admin/class-debug-admin-page.php:266
 msgid "Apache Version"
-msgstr ""
+msgstr "Версия Apache"
 
 #: admin/class-debug-admin-page.php:270
 msgid "PHP Version"
@@ -563,11 +563,11 @@ msgstr "Версия MySQL"
 
 #: admin/class-debug-admin-page.php:278
 msgid "cURL Version"
-msgstr ""
+msgstr "Версия cURL"
 
 #: admin/class-debug-admin-page.php:282
 msgid "cURL SSL Version"
-msgstr ""
+msgstr "Версия cURL SSL"
 
 #: admin/class-debug-admin-page.php:286
 #: admin/templates/admin-panel-debug.tpl.php:119
@@ -688,7 +688,7 @@ msgctxt "import settings"
 msgid ""
 "There was a problem trying to read the settings file; it appears the file "
 "wasn't uploaded correctly. Please try again."
-msgstr ""
+msgstr "Возникла проблема при чтении файла настроек; похоже, файл некорректно загрузился. Пожалуйста, попробуйте снова."
 
 #: admin/class-import-settings-admin-page.php:124
 msgctxt "another-wordpress-classifieds-plugin"
@@ -801,7 +801,7 @@ msgstr "Ограничить число символов в заголовке"
 
 #: admin/fees/class-fee-details-form.php:197
 msgid "Limit number of characters in description"
-msgstr ""
+msgstr "Ограничить число символов в описании"
 
 #: admin/fees/class-fee-details-form.php:232
 msgid "Price (currency)"
@@ -861,7 +861,7 @@ msgstr "Краткий заголовок [из поля slug]"
 #: admin/import/class-csv-importer-delegate.php:103
 msgctxt "csv importer"
 msgid "Required value for column \"<column-name>\" is missing."
-msgstr ""
+msgstr "Требуемое значение колонки \"<column-name>\" пропущено."
 
 #: admin/import/class-csv-importer-delegate.php:182
 msgctxt "csv importer"
@@ -907,7 +907,7 @@ msgstr "Не найдено категории с именем \"<category-name>
 #: admin/import/class-csv-importer-delegate.php:330
 msgctxt "csv importer"
 msgid "There was an error trying to create category \"<category-name>\"."
-msgstr ""
+msgstr "Возникла ошибка при создании категории \"<category-name>\"."
 
 #: admin/import/class-csv-importer-delegate.php:339
 msgctxt "csv importer"
@@ -919,7 +919,7 @@ msgstr ""
 #: admin/import/class-csv-importer-delegate.php:351
 msgctxt "csv importer"
 msgid "Item price must be a number."
-msgstr ""
+msgstr "Цена товара должна быть числом."
 
 #: admin/import/class-csv-importer-delegate.php:365
 msgctxt "csv importer"
@@ -934,7 +934,7 @@ msgstr ""
 #: admin/import/class-csv-importer-delegate.php:367
 msgctxt "csv importer"
 msgid "Invalid default start date."
-msgstr ""
+msgstr "Неверная дата начала по умолчанию."
 
 #: admin/import/class-csv-importer-delegate.php:465
 #: admin/import/class-csv-importer-delegate.php:466
@@ -945,7 +945,7 @@ msgstr ""
 #: admin/import/class-csv-importer-delegate.php:467
 msgctxt "csv importer"
 msgid "Invalid default end date."
-msgstr ""
+msgstr "Неверная дата окончания по умолчанию."
 
 #: admin/import/class-csv-importer-delegate.php:505
 msgid "The payment term type must be 'fee' or 'subscription'."
@@ -971,14 +971,14 @@ msgstr "Файл изображения с названием <image-name> не 
 #: admin/import/class-csv-importer-delegate.php:601
 msgctxt "csv importer"
 msgid "There was an error trying to store imported data into the database."
-msgstr ""
+msgstr "Возникла ошибка при попытке хранения импортированных данных в базе данных."
 
 #: admin/import/class-csv-importer-delegate.php:622
 msgctxt "csv importer"
 msgid ""
 "There was an error trying to import one of the images: {image-validation-"
 "error}"
-msgstr ""
+msgstr "Возникла ошибка при попытке импортировать одно из изображений: {image-validation-error}"
 
 #: admin/import/class-csv-importer-delegate.php:713
 msgid "The value for Extra Field %s's is not allowed. Allowed values are: %%s"
@@ -1190,7 +1190,7 @@ msgstr "cURL"
 #: admin/templates/admin-panel-debug.tpl.php:141
 #: templates/admin/debug/debug-admin-page.tpl.php:36
 msgid "Debug & Development Tools"
-msgstr ""
+msgstr "Инструменты отладки и разработки"
 
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:6
 #: admin/templates/delete_form.tpl.php:11
@@ -1264,7 +1264,7 @@ msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:22
 msgid "You can read more about Facebook changes here: {facebook_post_link}"
-msgstr ""
+msgstr "Вы можете узнать больше об изменениях в Facebook здесь: {facebook_post_link}"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:29
 msgid ""
@@ -1274,9 +1274,9 @@ msgid ""
 msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:31
-#: includes/settings/class-general-settings.php:761
+#: includes/settings/class-general-settings.php:772
 msgid "Facebook API"
-msgstr ""
+msgstr "Facebook API"
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:35
 msgid ""
@@ -1296,7 +1296,7 @@ msgid ""
 msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:49
-#: includes/settings/class-general-settings.php:762
+#: includes/settings/class-general-settings.php:773
 msgid "Zapier/IFTTT Webhooks"
 msgstr ""
 
@@ -1363,13 +1363,13 @@ msgid ""
 "Please make sure the Facebook Application "
 "{link_to_how_to_add_apps_to_a_group}was added to the "
 "group{/link_to_how_to_add_apps_to_a_group}."
-msgstr ""
+msgstr "Пожалуйста, убедитесь в том, что приложение Facebook {link_to_how_to_add_apps_to_a_group} было добавлено к группе{/link_to_how_to_add_apps_to_a_group}."
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:108
 msgid ""
 "If you are having additional problems with Facebook API, click "
 "\"Diagnostics\" to check your settings."
-msgstr ""
+msgstr "Если у вас еще есть проблемы с Facebook API, нажмите \"Диагностика\", чтобы проверить настройки."
 
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:3
 msgid "Restore AWPCP Pages"
@@ -1389,7 +1389,7 @@ msgstr ""
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:23
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:71
 msgid "%s (Default name: %s)."
-msgstr ""
+msgstr "%s (Имя по умолчанию: %s)."
 
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:31
 msgid ""
@@ -1399,7 +1399,7 @@ msgstr ""
 
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:41
 msgid "%s &mdash; Selected page: %s (%s)"
-msgstr ""
+msgstr "%s &mdash; Выбранная страница: %s (%s)"
 
 #: admin/templates/admin-panel-settings-pages-settings.tpl.php:49
 msgid ""
@@ -1430,7 +1430,7 @@ msgid ""
 "Thank you for using AWPCP. You have arrived at this page by clicking the "
 "Uninstall link. If you are certain you wish to uninstall the plugin, please "
 "click the button at the bottom to proceed."
-msgstr ""
+msgstr "Благодарим за использование AWPCP. Вы попали на эту страницу, нажав ссылку Удалить. Если вы точно хотите удалить плагин, пожалуйста, нажмите на кнопку внизу, чтобы продолжить."
 
 #: admin/templates/admin-panel-uninstall.tpl.php:15
 msgid ""
@@ -1704,7 +1704,7 @@ msgstr "Состояние счета"
 
 #: awpcp.php:149
 msgid "{product_name} was deactivated because it requires PHP 5.6 or newer."
-msgstr ""
+msgstr "{product_name} был деактивирован, т.к. требует версии PHP 5.6 или новее."
 
 #: awpcp.php:152
 msgid ""
@@ -1732,19 +1732,19 @@ msgid ""
 "{support_link}contact support{/support_link}."
 msgstr ""
 
-#: cron.php:123
+#: cron.php:124
 msgid "Listing Details"
 msgstr "Детали объявления"
 
-#: cron.php:125
+#: cron.php:126
 msgid "Ad Title:"
 msgstr "Заголовок объявления:"
 
-#: cron.php:128
+#: cron.php:129
 msgid "Posted:"
 msgstr "Размещено:"
 
-#: cron.php:132
+#: cron.php:133
 msgid "Renew your ad by visiting:"
 msgstr "Обновите ваше объявление по ссылке:"
 
@@ -3057,7 +3057,7 @@ msgstr "Рекламных объявлений на страницу:"
 
 #: functions.php:647
 msgid "Page {current_page_number} of {number_of_pages}"
-msgstr ""
+msgstr "Страница {current_page_number} из {number_of_pages}"
 
 #: functions.php:760
 msgid "None"
@@ -3151,66 +3151,66 @@ msgstr "Невозможно записать файл на диск."
 msgid "The file upload was stopped by extension."
 msgstr "Загрузка файла была остановленна из-за расширения."
 
-#: functions.php:2440
+#: functions.php:2448
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Ваше объявление \"%s\" было одобрено"
 
-#: functions.php:2463
+#: functions.php:2471
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Ваше объявление \"%s\" было успешно обновлено"
 
-#: functions.php:2486
+#: functions.php:2494
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Изображения в объявлении \"%s\" ожидающие утверждения"
 
-#: functions.php:2488 includes/functions/notifications.php:195
+#: functions.php:2496 includes/functions/notifications.php:195
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr "Изображения в объявлении \"%s\" ожидающит утверждения. Вы можете одобрить изображения в разделе \"Управление изображениями\" этого объявления нажав на кнопку \"Включить\", расположенную ниже каждого изображения. Нажмите здесь, чтобы продолжить: %s."
 
-#: functions.php:2491
+#: functions.php:2499
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "Объявление \"%s\" ожидает утверждения"
 
-#: functions.php:2493 includes/functions/notifications.php:200
+#: functions.php:2501 includes/functions/notifications.php:200
 msgid ""
 "The Ad \"%s\" is awaiting approval. You can approve the Ad going to the "
 "Manage Listings section and clicking the \"Enable\" action shown on top. "
 "Click here to continue: %s."
 msgstr "Объявление \"%s\" требует подтверждения. Вы можете утвердить объявление перейдя в раздел Управление Объявлениями и нажав на \"одобрить\". Перейдите по ссылке, чтобы продолжить: %s."
 
-#: functions.php:2500 includes/functions/notifications.php:207
+#: functions.php:2508 includes/functions/notifications.php:207
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr "Кроме того, вы можете утвердить изображения перейдя в раздел \"Управление Изображениями\" этого объявления и нажав на \"Включить\", расположенную ниже каждого изображения. Нажмите здесь, чтобы продолжить: %s."
 
-#: functions.php:3036
+#: functions.php:3044
 msgid "Email sent %s."
 msgstr "Отправлено %s."
 
-#: functions.php:3173
+#: functions.php:3181
 msgid "Not Installed"
 msgstr "Не установлены"
 
-#: functions.php:3177
+#: functions.php:3185
 msgid "Installed"
 msgstr "Установлен"
 
-#: functions.php:3185
+#: functions.php:3193
 msgid "SSL Support: Yes."
 msgstr "Поддержка SSL: Да."
 
-#: functions.php:3187
+#: functions.php:3195
 msgid "SSL Support: No."
 msgstr "Поддержка SSL: Нет."
 
-#: functions.php:3190
+#: functions.php:3198
 msgid "OpenSSL version:"
-msgstr ""
+msgstr "Версия OpenSSL:"
 
 #: includes/admin/class-admin.php:260
 msgid "Classified Information"
@@ -3265,7 +3265,7 @@ msgstr "Email плательщика"
 
 #: includes/admin/class-listings-personal-data-provider.php:121
 msgid "Author IP"
-msgstr ""
+msgstr "IP автора"
 
 #: includes/admin/class-listings-personal-data-provider.php:132
 msgid "URL"
@@ -3665,7 +3665,7 @@ msgstr "Активно"
 #: includes/admin/listings/class-listings-table-columns-handler.php:213
 msgctxt "listing status"
 msgid "Pending Approval"
-msgstr ""
+msgstr "Ожидает подтверждения"
 
 #: includes/admin/listings/class-listings-table-columns-handler.php:217
 msgctxt "listing status"
@@ -3685,7 +3685,7 @@ msgstr "В ожидании оплаты"
 #: includes/admin/listings/class-listings-table-columns-handler.php:229
 msgctxt "listing status"
 msgid "Pending Verification"
-msgstr ""
+msgstr "Ожидает верификации"
 
 #: includes/admin/listings/class-listings-table-nav-handler.php:148
 msgid "Select date field"
@@ -3762,7 +3762,7 @@ msgstr[3] ""
 #: includes/admin/listings/class-mark-as-spam-listing-table-action.php:84
 msgctxt "listing row action"
 msgid "SPAM"
-msgstr ""
+msgstr "SPAM"
 
 #: includes/admin/listings/class-mark-as-spam-listing-table-action.php:148
 msgid "The ad was marked as SPAM and removed."
@@ -3891,7 +3891,7 @@ msgstr "Email плательщика"
 
 #: includes/admin/listings/class-quick-view-listing-admin-page.php:84
 msgid "Edit {listing-title}"
-msgstr ""
+msgstr "Изменить {listing-title}"
 
 #: includes/admin/listings/class-quick-view-listing-table-action.php:39
 msgctxt "listings row action"
@@ -3911,10 +3911,10 @@ msgstr "Ключ доступа для «%s»"
 #: includes/admin/listings/class-send-access-key-listing-table-action.php:145
 msgid "The access key was successfully sent."
 msgid_plural "{count} access keys were successfully sent."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Ключ доступа отправлен успешно."
+msgstr[1] "{count} ключа доступа отправлено успешно."
+msgstr[2] "{count} ключей доступа отправлено успешно."
+msgstr[3] "{count} ключей доступа отправлено успешно."
 
 #: includes/admin/listings/class-send-access-key-listing-table-action.php:152
 msgid ""
@@ -4132,11 +4132,11 @@ msgstr "ID родительской категории и ID категории 
 msgid ""
 "There was an error trying to update a category. The ID of the category is "
 "required."
-msgstr ""
+msgstr "Возникла ошибка при обновлении категории. Требуется ID категории."
 
 #: includes/categories/class-categories-logic.php:110
 msgid "There was an error trying to update a category: <error-message>."
-msgstr ""
+msgstr "Возникла ошибка при обновлении категории: <error-message>."
 
 #: includes/categories/class-categories-logic.php:132
 msgid "The category to be moved and the target category can not be the same."
@@ -4147,7 +4147,7 @@ msgstr "Перемещаемая и целевая категории могут
 msgid ""
 "The move-to category and the category that is going to be deleted must be "
 "different."
-msgstr ""
+msgstr "Категория перемещения и категория к удалению должны быть разными."
 
 #: includes/categories/class-categories-logic.php:191
 msgid ""
@@ -4155,106 +4155,106 @@ msgid ""
 " one of the associated listings: <error-message>"
 msgstr ""
 
-#: includes/class-awpcp.php:754
+#: includes/class-awpcp.php:761
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr "AWPCP требуется библиотека обработки графики GD которая не установлена. Обратитесь поддержку веб-хостинга, чтобы это исправить."
 
-#: includes/class-awpcp.php:755
+#: includes/class-awpcp.php:762
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: includes/class-awpcp.php:771
+#: includes/class-awpcp.php:778
 msgid "Attachments"
 msgstr "Вложения"
 
-#: includes/class-awpcp.php:778
+#: includes/class-awpcp.php:785
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:785
+#: includes/class-awpcp.php:792
 msgid "BuddyPress Listings"
 msgstr "Объявления BuddyPress"
 
-#: includes/class-awpcp.php:792
+#: includes/class-awpcp.php:799
 msgid "Campaign Manager"
 msgstr "Менеджер кампаний"
 
-#: includes/class-awpcp.php:799
+#: includes/class-awpcp.php:806
 msgid "Category Icons"
 msgstr "Иконки категорий"
 
-#: includes/class-awpcp.php:806
+#: includes/class-awpcp.php:813
 msgid "Comments & Ratings"
 msgstr "Комментарии и рейтинги"
 
-#: includes/class-awpcp.php:813
+#: includes/class-awpcp.php:820
 msgid "Coupons/Discount"
 msgstr "Купоны/Скидки"
 
-#: includes/class-awpcp.php:820
+#: includes/class-awpcp.php:827
 msgid "Extra Fields"
 msgstr "Дополнительные поля"
 
-#: includes/class-awpcp.php:834
+#: includes/class-awpcp.php:841
 msgid "Fee per Category"
 msgstr "Тариф для категории"
 
-#: includes/class-awpcp.php:841
+#: includes/class-awpcp.php:848
 msgid "Google Checkout"
 msgstr "Google Checkout"
 
-#: includes/class-awpcp.php:849
+#: includes/class-awpcp.php:856
 msgid "Mark as Sold"
 msgstr "Пометить как Продано"
 
-#: includes/class-awpcp.php:856
+#: includes/class-awpcp.php:863
 msgid "PayFast"
 msgstr "PayFast"
 
-#: includes/class-awpcp.php:863
+#: includes/class-awpcp.php:870
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:870
+#: includes/class-awpcp.php:877
 msgid "Regions Control"
 msgstr "Управление Регионами"
 
-#: includes/class-awpcp.php:877
+#: includes/class-awpcp.php:884
 msgid "Restricted Categories"
 msgstr "Ограниченные категории"
 
-#: includes/class-awpcp.php:884
+#: includes/class-awpcp.php:891
 msgid "RSS"
 msgstr "RSS"
 
-#: includes/class-awpcp.php:891
+#: includes/class-awpcp.php:898
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:898
+#: includes/class-awpcp.php:905
 msgid "Subscriptions"
 msgstr "Подписки"
 
-#: includes/class-awpcp.php:905 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:912 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Видео"
 
-#: includes/class-awpcp.php:913
+#: includes/class-awpcp.php:920
 msgid "XML Sitemap"
 msgstr "Карта сайта XML "
 
-#: includes/class-awpcp.php:921
+#: includes/class-awpcp.php:928
 msgid "ZIP Code Search Module"
 msgstr "Модуль поиска по почтовому индексу"
 
-#: includes/class-awpcp.php:1458
+#: includes/class-awpcp.php:1465
 msgid "This field is required."
 msgstr "Это поле является обязательным."
 
-#: includes/class-awpcp.php:1459
+#: includes/class-awpcp.php:1466
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:267
 #: includes/frontend/class-edit-listing-page.php:361
@@ -4262,53 +4262,53 @@ msgstr "Это поле является обязательным."
 msgid "Please enter a valid email address."
 msgstr "Пожалуйста, введите действующий адрес электронной почты."
 
-#: includes/class-awpcp.php:1460 includes/class-awpcp.php:1461
+#: includes/class-awpcp.php:1467 includes/class-awpcp.php:1468
 msgid "Please enter a valid URL."
 msgstr "Пожалуйста, введите правильный URL."
 
-#: includes/class-awpcp.php:1462
+#: includes/class-awpcp.php:1469
 msgid "Please enter a valid number."
 msgstr "Пожалуйста, введите правильный номер."
 
-#: includes/class-awpcp.php:1463
+#: includes/class-awpcp.php:1470
 msgid "Please enter a valid amount."
 msgstr "Пожалуйста, введите корректное количество."
 
-#: includes/class-awpcp.php:1464
+#: includes/class-awpcp.php:1471
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1474
+#: includes/class-awpcp.php:1481
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c; Пред."
 
-#: includes/class-awpcp.php:1476
+#: includes/class-awpcp.php:1483
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "След. &#x3e;"
 
-#: includes/class-awpcp.php:1491
+#: includes/class-awpcp.php:1498
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
 
-#: includes/class-awpcp.php:1497
+#: includes/class-awpcp.php:1504
 msgid "There are files currently being uploaded."
 msgstr "Несколько файлов загружаются."
 
-#: includes/class-awpcp.php:1498
+#: includes/class-awpcp.php:1505
 msgid "There are files pending to be uploaded."
 msgstr "Несколько файлов ожидают загрузки."
 
-#: includes/class-awpcp.php:1499
+#: includes/class-awpcp.php:1506
 msgid "You haven't uploaded any images or files."
 msgstr "Вы не загрузили ни одного файла."
 
-#: includes/class-awpcp.php:1568 includes/class-awpcp.php:1576
-#: includes/class-awpcp.php:1584 includes/class-awpcp.php:1661
-#: includes/class-awpcp.php:1669 includes/class-awpcp.php:1677
+#: includes/class-awpcp.php:1575 includes/class-awpcp.php:1583
+#: includes/class-awpcp.php:1591 includes/class-awpcp.php:1668
+#: includes/class-awpcp.php:1676 includes/class-awpcp.php:1684
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
 msgid "Another WordPress Classifieds Plugin"
 msgstr ""
@@ -4323,13 +4323,13 @@ msgstr ""
 
 #: includes/class-categories-collection.php:106
 msgid "No category was found with old ID: {old_category_id}."
-msgstr ""
+msgstr "Не найдено категории со старым ID: {old_category_id}."
 
 #: includes/class-categories-collection.php:115
 msgid ""
 "No category was found with ID: {category_id}, the replacement for category "
 "with old ID: {old_category_id}."
-msgstr ""
+msgstr "Не найдено категории с ID: {category_id}, перемещение категории со старым ID: {old_category_id}."
 
 #: includes/class-categories-collection.php:127
 msgid "The category name must be a non empty string, %s was given."
@@ -4381,7 +4381,7 @@ msgstr ""
 msgid "There was an error trying to save the listing details:"
 msgstr ""
 
-#: includes/class-listings-api.php:733
+#: includes/class-listings-api.php:738
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -4412,7 +4412,7 @@ msgstr "Модератор объявлений"
 msgid ""
 "There was a problem reading the content of the file. Please try again or "
 "contact customer support with a copy of the file."
-msgstr ""
+msgstr "Возникла проблема при чтении содержания файла. Пожалуйста, попробуйте снова или свяжитесь с поддержкой покупателей для получения копии файла."
 
 #: includes/class-settings-json-writer.php:52
 msgid ""
@@ -4497,7 +4497,7 @@ msgstr "Произошла ошибка при подсчете задач в б
 #: includes/exceptions.php:80
 msgctxt "DBException message template"
 msgid "%s The error was: %s."
-msgstr ""
+msgstr "%s Ошибка была: %s."
 
 #: includes/fees/class-fees-collection.php:13
 msgid "No Fee Plan was found with ID = <fee-id>."
@@ -4540,7 +4540,7 @@ msgstr "Пожалуйста, введите адрес электронной �
 msgid ""
 "The email address you entered is not allowed on this website. Please use an "
 "email address from one of the following domains: %s."
-msgstr ""
+msgstr "Адрес электронной почты, который вы ввели, не разрешен на этом веб-сайте. Пожалуйста, используйте адреса со следующих доменов: %s."
 
 #: includes/form-fields/class-form-fields-validator.php:121
 msgid "Please enter a contact phone number."
@@ -4661,7 +4661,7 @@ msgstr "Объявление успешно отредактировано.  <a 
 msgid ""
 "Your changes have been published. This is the content that will be seen by "
 "visitors of the website."
-msgstr ""
+msgstr "Ваши изменения опубликованы. Это содержание будет видно посетителям веб-сайта."
 
 #: includes/frontend/class-edit-listing-page.php:220
 msgid ""
@@ -4863,7 +4863,7 @@ msgid "Login/Registration"
 msgstr "Войти/Зарегистрироваться"
 
 #: includes/frontend/class-submit-listing-form-steps.php:54
-#: includes/ui/class-category-selector.php:124
+#: includes/ui/class-category-selector.php:127
 #: templates/components/category-selector.tpl.php:16
 msgid "Select a Category"
 msgstr "Выбор Категории"
@@ -5320,7 +5320,7 @@ msgstr[3] ""
 
 #: includes/helpers/class-modules-manager.php:228
 msgid "Please get AWPCP {required_modules_versions} or newer!"
-msgstr ""
+msgstr "Пожалуйста, установите версию AWPCP {required_modules_versions} или новее!"
 
 #: includes/helpers/class-modules-manager.php:259
 msgid ""
@@ -6684,7 +6684,7 @@ msgstr "Показывать поле Цена?"
 
 #: includes/settings/class-display-settings.php:422
 msgid "Show price field on search form"
-msgstr ""
+msgstr "Показать поле цены в поисковой форме"
 
 #: includes/settings/class-display-settings.php:429
 msgid "Require Price"
@@ -6725,11 +6725,11 @@ msgstr "Поле"
 
 #: includes/settings/class-display-settings.php:469
 msgid "Show field on form"
-msgstr ""
+msgstr "Показать поле на форме"
 
 #: includes/settings/class-display-settings.php:470
 msgid "Show field on search form"
-msgstr ""
+msgstr "Показать поле на поисковой форме"
 
 #: includes/settings/class-display-settings.php:471
 #: templates/admin/import/supported-csv-headers.tpl.php:19
@@ -6738,7 +6738,7 @@ msgstr "Обязательно"
 
 #: includes/settings/class-display-settings.php:472
 msgid "Show value to registered users only"
-msgstr ""
+msgstr "Показать значение только зарегистрированным пользователям"
 
 #: includes/settings/class-display-settings.php:476
 msgid "Website"
@@ -6937,7 +6937,7 @@ msgstr "Заголовок этого сайта"
 #: includes/settings/class-email-settings.php:149
 #: includes/settings/class-email-settings.php:175
 msgid "The URL of this website's homepage"
-msgstr ""
+msgstr "URL домашней страницы веб-сайта"
 
 #: includes/settings/class-email-settings.php:155
 msgid "Notify admin about contact message"
@@ -7066,7 +7066,7 @@ msgstr "Заголовок этого сайта."
 
 #: includes/settings/class-email-settings.php:212
 msgid "The URL of this webiste's homepage."
-msgstr ""
+msgstr "URL домашней страницы этого веб-сайта."
 
 #: includes/settings/class-email-settings.php:222
 msgid "Incomplete Payment Message"
@@ -7115,7 +7115,7 @@ msgstr "Тема почтового сообщения об истекающем
 #. translators: %d is the number of days until the ad expires.
 #: includes/settings/class-email-settings.php:239
 msgid "Your ad will expire in %d days."
-msgstr ""
+msgstr "Срок действия рекламы истечет через %d дней."
 
 #: includes/settings/class-email-settings.php:240
 msgid "Subject line for email sent out when an Ad is about to expire."
@@ -7153,7 +7153,7 @@ msgstr "Тема почтового сообщения о возобновлен
 #. translators: %s is the title of the ad.
 #: includes/settings/class-email-settings.php:266
 msgid "Your ad \"%s\" has been successfully renewed."
-msgstr ""
+msgstr "Реклама \"%s\" успешно обновлена."
 
 #: includes/settings/class-email-settings.php:267
 msgid "Subject line for email sent out when an Ad is successfully renewed."
@@ -7179,7 +7179,7 @@ msgstr "Тема почтового сообщения об истекшем с�
 #. translators: %s is the name of the website.
 #: includes/settings/class-email-settings.php:284
 msgid "Your ad at %s has expired"
-msgstr ""
+msgstr "Реклама на веб-сайте %s истекла"
 
 #: includes/settings/class-email-settings.php:285
 msgid "Subject line for email sent out when an ad has auto-expired"
@@ -7191,14 +7191,14 @@ msgstr "Текст почтового сообщения об истекшем �
 
 #: includes/settings/class-email-settings.php:288
 msgid "This is an automated notification that your ad has expired."
-msgstr ""
+msgstr "Это автоматическое уведомление об истечении срока действия рекламы."
 
 #: includes/settings/class-email-settings.php:288
 msgid "Message body text for email sent out when an ad has auto-expired"
 msgstr "Текст почтового сообщения, отправляемого, когда срок объявления истек"
 
 #: includes/settings/class-email-settings.php:297
-#: includes/settings/class-general-settings.php:624
+#: includes/settings/class-general-settings.php:635
 msgid "Advanced"
 msgstr "Расширенный "
 
@@ -7468,7 +7468,7 @@ msgstr "Ширина миниатюр"
 
 #: includes/settings/class-files-settings.php:268
 msgid "Width of the thumbnail for the primary image shown in the list of ads."
-msgstr ""
+msgstr "Ширина миниатюры первичного изображения, показываемого в списке рекламы."
 
 #: includes/settings/class-files-settings.php:276
 #: includes/settings/class-files-settings.php:325
@@ -7542,7 +7542,7 @@ msgstr "Обрезать миниатюры изображений?"
 
 #: includes/settings/class-general-settings.php:69
 #: includes/settings/class-general-settings.php:87
-#: includes/settings/class-general-settings.php:747
+#: includes/settings/class-general-settings.php:758
 #: includes/settings/class-payment-general-settings.php:44
 msgid "General Settings"
 msgstr "Основные настройки"
@@ -7599,41 +7599,51 @@ msgid "Hide empty categories from dropdowns"
 msgstr "Скрыть пустые категории из выпадающих списков"
 
 #: includes/settings/class-general-settings.php:168
+msgid "Hide categories selector dropdown"
+msgstr ""
+
+#: includes/settings/class-general-settings.php:171
+msgid ""
+"If checked, category filtering dropdown won't be displayed in \"Browse Ads\""
+" page."
+msgstr ""
+
+#: includes/settings/class-general-settings.php:179
 msgid "Welcome message in Classifieds page"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:170
+#: includes/settings/class-general-settings.php:181
 msgid ""
 "Looking for a job? Trying to find a date? Looking for an apartment? Browse "
 "our classifieds. Have a job to advertise? An apartment to rent? Post a "
 "Classified Ad."
 msgstr "Вы ищете работу? Trying to find a date? Ищете квартиру? Просмотрите наши объявления. Есть вакансия? Хотите сдать квартиру в аренду? Разместите объявление."
 
-#: includes/settings/class-general-settings.php:171
+#: includes/settings/class-general-settings.php:182
 msgid "The welcome text for your classifieds page on the user side"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:179
+#: includes/settings/class-general-settings.php:190
 msgid "Who can access AWPCP Admin Dashboard"
 msgstr "Кто может получить доступ к Администраторской Панели Управления AWPCP "
 
-#: includes/settings/class-general-settings.php:182
+#: includes/settings/class-general-settings.php:193
 msgid "Role of WordPress users who can have admin access to Classifieds."
 msgstr "Роли пользователей WordPress, которые имют административный доступ к Доске Объявлений."
 
-#: includes/settings/class-general-settings.php:184
+#: includes/settings/class-general-settings.php:195
 msgid "Administrator"
 msgstr "Администратор"
 
-#: includes/settings/class-general-settings.php:185
+#: includes/settings/class-general-settings.php:196
 msgid "Administrator & Editor"
 msgstr "Администратор и Пользователь"
 
-#: includes/settings/class-general-settings.php:194
+#: includes/settings/class-general-settings.php:205
 msgid "Enable page filter"
 msgstr "Включить фильтр страницы"
 
-#: includes/settings/class-general-settings.php:197
+#: includes/settings/class-general-settings.php:208
 msgid ""
 "Uncheck this if you need to turn off the AWPCP page filter that prevents "
 "AWPCP classifieds children pages from showing up in your wp pages menu (You "
@@ -7643,87 +7653,87 @@ msgid ""
 "should not be visible to your users by default)."
 msgstr "Снимите этот флажок, если Вам необходимо выключить фильтр страниц AWPCP, который мешает дочерним страницам доски объявлний AWPCP отображаться в вашем меню страниц  WP (Такая потребность может возникнуть, если, например, фильтр страниц AWPCP, портит Вашу страницу меню. Это означает, что вам придется вручную исключить дочерние страницы AWPCP из списка страниц. Некоторые страницы действительно не должны быть видны для пользователей по умолчанию)."
 
-#: includes/settings/class-general-settings.php:205
+#: includes/settings/class-general-settings.php:216
 msgid "Auto-expand the Classifieds Menu for mobile devices?"
 msgstr "Автоматически раскрывать меню объявлений для мобильных устройств?"
 
-#: includes/settings/class-general-settings.php:220
+#: includes/settings/class-general-settings.php:231
 msgid "Classifieds Management Panel"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:226
+#: includes/settings/class-general-settings.php:237
 msgid ""
 "You must have registered users to use this setting. Turning it on will "
 "automatically enable \"Require Registration\" for AWPCP. Make sure you site "
 "allows users to register under <wp-settings-link>Settings->General</a>."
 msgstr "Вы должны быть зарегистрированным пользователем чтобы использовать эту настройку. Переключите AWPCP на автоматическое включение \"требует регистрация\". Убедитесь, что ваш сайт позволяет пользователям регистрироваться под <wp-settings-link>Settings->General</a>."
 
-#: includes/settings/class-general-settings.php:232
+#: includes/settings/class-general-settings.php:243
 msgid "Enable User Ad Management Panel"
 msgstr "Включить Пользовательскую Панель Управления Объявлениями"
 
-#: includes/settings/class-general-settings.php:248
-#: includes/settings/class-general-settings.php:251
+#: includes/settings/class-general-settings.php:259
+#: includes/settings/class-general-settings.php:262
 msgid "Terms of Service"
 msgstr "Условия Предоставления Услуг"
 
-#: includes/settings/class-general-settings.php:250
+#: includes/settings/class-general-settings.php:261
 msgid "Display and require Terms of Service"
 msgstr "Показать и требовать принять Условия Предоставления Услуг"
 
-#: includes/settings/class-general-settings.php:251
+#: includes/settings/class-general-settings.php:262
 msgid "Terms of service go here..."
 msgstr "Введите Условия Предоставления Услуг сюда..."
 
-#: includes/settings/class-general-settings.php:251
+#: includes/settings/class-general-settings.php:262
 msgid ""
 "Terms of Service for posting Ads. Put in text or an URL starting with http. "
 "If you use an URL, the text box will be replaced by a link to the "
 "appropriate Terms of Service page"
 msgstr "Условия Предоставления Услуг для размещения объявлений. Введите текст или URL, начинающийся с http. Если используется URL адрес, то текстовое поле будет заменено на ссылку, с соответствующей страницей Условий Предоставления Услуг."
 
-#: includes/settings/class-general-settings.php:261
 #: includes/settings/class-general-settings.php:272
+#: includes/settings/class-general-settings.php:283
 msgctxt "settings"
 msgid "Date & Time Format"
 msgstr "Формат Даты и Время"
 
-#: includes/settings/class-general-settings.php:268
+#: includes/settings/class-general-settings.php:279
 msgid "Documentation on date and time formatting"
 msgstr "Документация по форматированию даты и время"
 
-#: includes/settings/class-general-settings.php:287
+#: includes/settings/class-general-settings.php:298
 msgid "Date Time Format"
 msgstr "Формат Даты И Время"
 
-#: includes/settings/class-general-settings.php:291
+#: includes/settings/class-general-settings.php:302
 msgid "American"
 msgstr "Американский"
 
-#: includes/settings/class-general-settings.php:292
+#: includes/settings/class-general-settings.php:303
 msgid "European"
 msgstr "Европейский"
 
-#: includes/settings/class-general-settings.php:293
+#: includes/settings/class-general-settings.php:304
 msgid "Your own."
 msgstr "Ваш собственный."
 
-#: includes/settings/class-general-settings.php:302
+#: includes/settings/class-general-settings.php:313
 msgctxt "settings"
 msgid "Date Format"
 msgstr "Формат Даты"
 
-#: includes/settings/class-general-settings.php:315
+#: includes/settings/class-general-settings.php:326
 msgctxt "settings"
 msgid "Time Format"
 msgstr "Формат время"
 
-#: includes/settings/class-general-settings.php:325
+#: includes/settings/class-general-settings.php:336
 msgctxt "settings"
 msgid "Example output"
 msgstr "Пример вывода"
 
-#: includes/settings/class-general-settings.php:327
+#: includes/settings/class-general-settings.php:338
 msgctxt "settings"
 msgid ""
 "Full date/time output with any strings you wish to add. <date> and <time> "
@@ -7731,25 +7741,25 @@ msgid ""
 "the Date Format and Time Format settings above."
 msgstr "Полные дата/время выводятся с любыми строками, которые вы хотите добавить. <date> и <time>, строки даты и время с использованием форматов даты и время указанных в параметрах выше."
 
-#: includes/settings/class-general-settings.php:333
+#: includes/settings/class-general-settings.php:344
 msgctxt "settings"
 msgid "Full Display String"
 msgstr "Полная Строка Вывода"
 
-#: includes/settings/class-general-settings.php:354
+#: includes/settings/class-general-settings.php:365
 msgctxt "settings"
 msgid "Currency Format"
 msgstr "Формат Денежных едениц"
 
-#: includes/settings/class-general-settings.php:363
+#: includes/settings/class-general-settings.php:374
 msgid "Currency Format"
 msgstr "Формат Денежных едениц"
 
-#: includes/settings/class-general-settings.php:371
+#: includes/settings/class-general-settings.php:382
 msgid "Currency code"
 msgstr "Код валюты"
 
-#: includes/settings/class-general-settings.php:374
+#: includes/settings/class-general-settings.php:385
 msgid ""
 "Prices in listings pages and payment pages will be displayed using this "
 "currency. The currency symbol will be generated based on this code, but if "
@@ -7757,11 +7767,11 @@ msgid ""
 "uppercase version of the code itself."
 msgstr "Цены объявлений и страницы оплаты будут отображены с помощью этой валюты. Символ валюты будет сгенерирован на основе кода. Если плагин не сможет найти символ валюты, будет использован код в верхнем регистре."
 
-#: includes/settings/class-general-settings.php:380
+#: includes/settings/class-general-settings.php:391
 msgid "Currency symbol"
 msgstr "Символ валюты"
 
-#: includes/settings/class-general-settings.php:383
+#: includes/settings/class-general-settings.php:394
 msgid ""
 "Use this setting to overwrite the currency symbol shown in listings pages. "
 "If empty, the plugin will attempt to show one of the standard symbols for "
@@ -7769,89 +7779,89 @@ msgid ""
 "your currency, it will use an uppercase version of the currency code."
 msgstr "Используйте эту опцию, чтобы изменить отображение символа валюты на странице объявлений. Если пусто, символ валюты будет сгенерирован на основе кода. Если плагин не сможет найти символ валюты, будет использован код в верхнем регистре."
 
-#: includes/settings/class-general-settings.php:386
+#: includes/settings/class-general-settings.php:397
 msgid "Thousands separator"
 msgstr "Разделитель тысячных"
 
-#: includes/settings/class-general-settings.php:386
+#: includes/settings/class-general-settings.php:397
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the thousands separator."
 msgid ","
 msgstr ", "
 
-#: includes/settings/class-general-settings.php:387
+#: includes/settings/class-general-settings.php:398
 msgid "Separator for the decimal point"
 msgstr "Разделитель десятичной точки"
 
-#: includes/settings/class-general-settings.php:387
+#: includes/settings/class-general-settings.php:398
 msgctxt ""
 "This translation is deprecated. Please go to the Settings section to change "
 "the decimal separator."
 msgid "."
 msgstr "."
 
-#: includes/settings/class-general-settings.php:388
+#: includes/settings/class-general-settings.php:399
 msgid "Show decimals in price"
 msgstr "Показывать десятичные знаки на цене"
 
-#: includes/settings/class-general-settings.php:388
+#: includes/settings/class-general-settings.php:399
 msgctxt "settings"
 msgid "Uncheck to show prices without decimals. The value will be rounded."
 msgstr "Снимите этот флажок, чтобы показывать цены без десятичных знаков. Значение будет округлено."
 
-#: includes/settings/class-general-settings.php:393
+#: includes/settings/class-general-settings.php:404
 msgid "Show currency symbol"
 msgstr "Показать символ валюты"
 
-#: includes/settings/class-general-settings.php:396
+#: includes/settings/class-general-settings.php:407
 msgid ""
 "The currency symbol can be configured by changing the currency code in the "
 "settings above."
 msgstr "Символ валюты может быть настроен изменением кода валюты в предыдущей опции."
 
-#: includes/settings/class-general-settings.php:399
+#: includes/settings/class-general-settings.php:410
 msgid "Show currency symbol on left"
 msgstr "Показывать символ валюты слева"
 
-#: includes/settings/class-general-settings.php:400
+#: includes/settings/class-general-settings.php:411
 msgid "Show currency symbol on right"
 msgstr "Показывать символ валюты справа"
 
-#: includes/settings/class-general-settings.php:401
+#: includes/settings/class-general-settings.php:412
 msgid "Don't show currency symbol"
 msgstr "Не показывать символ валюты"
 
-#: includes/settings/class-general-settings.php:409
+#: includes/settings/class-general-settings.php:420
 msgid "Include a space between the currency symbol and the amount"
 msgstr "Разделять сумму и символ валюты пробелом"
 
-#: includes/settings/class-general-settings.php:428
-#: includes/settings/class-general-settings.php:434
+#: includes/settings/class-general-settings.php:439
+#: includes/settings/class-general-settings.php:445
 msgid "Anti-SPAM"
 msgstr "Анти-Спам"
 
-#: includes/settings/class-general-settings.php:447
+#: includes/settings/class-general-settings.php:458
 msgid "Use Akismet in Place Ad form"
 msgstr "Использовать Akismet на формах \"Новое объявление\""
 
-#: includes/settings/class-general-settings.php:450
+#: includes/settings/class-general-settings.php:461
 msgid "Use Akismet for Posting Ads (strong anti-spam)."
 msgstr "Использовать Akismet для размещения объявления (хорошая анти-спам защита)."
 
-#: includes/settings/class-general-settings.php:456
+#: includes/settings/class-general-settings.php:467
 msgid "Use Akismet in Reply to Ad form"
 msgstr "Использовать Akismet на формах \"Связаться с продавцом\""
 
-#: includes/settings/class-general-settings.php:459
+#: includes/settings/class-general-settings.php:470
 msgid "Use Akismet for Contact Responses (strong anti-spam)."
 msgstr "Использовать Akismet для связи с продавцом (хорошая анти-спам защита)."
 
-#: includes/settings/class-general-settings.php:467
+#: includes/settings/class-general-settings.php:478
 msgid "Enable CAPTCHA in Place Ad form"
 msgstr "Включить CAPTCHA в форме Новое объявление"
 
-#: includes/settings/class-general-settings.php:470
+#: includes/settings/class-general-settings.php:481
 msgid ""
 "A CAPTCHA is a program to ensure only humans are posting Ads to your "
 "website. Using a CAPTCHA will reduce the SPAM and prevent bots from posting "
@@ -7859,78 +7869,78 @@ msgid ""
 "Place Ad form."
 msgstr "Капча (CAPTCHA) - это программа позволяющая размещать объявления на вашем сайте только людям. CAPTCHA предотвращает размещение спам-ботами сообщений на вашем сайте. Если отмечено, дополнительные поля формы будут добавлены в форму подачи объявлений."
 
-#: includes/settings/class-general-settings.php:476
+#: includes/settings/class-general-settings.php:487
 msgid "Enable CAPTCHA in Reply to Ad form"
 msgstr "Использовать CAPTCHA  на формах \"Связаться с продавцом\""
 
-#: includes/settings/class-general-settings.php:479
+#: includes/settings/class-general-settings.php:490
 msgid ""
 "If checked, an additional form field will be added to the Reply to Ad form."
 msgstr "Если отмечено, дополнительное поле будет добавлено к форме Связаться с продавцом."
 
-#: includes/settings/class-general-settings.php:483
+#: includes/settings/class-general-settings.php:494
 msgid "reCAPTCHA v2"
 msgstr "reCAPTCHA v2"
 
-#: includes/settings/class-general-settings.php:484
+#: includes/settings/class-general-settings.php:495
 msgid "reCAPTCHA v3"
 msgstr "reCAPTCHA v3"
 
-#: includes/settings/class-general-settings.php:485
+#: includes/settings/class-general-settings.php:496
 msgid "Math"
 msgstr "Математика"
 
-#: includes/settings/class-general-settings.php:491
+#: includes/settings/class-general-settings.php:502
 msgid "Type of CAPTCHA"
 msgstr "Тип CAPTCHA"
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:505
 msgid ""
 "reCAPTCHA v2: requires the user to click a checkbox indicating the user is "
 "not a robot. This will either pass the user immediately (with No CAPTCHA) or"
 " challenge them to validate whether or not they are human."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:505
 msgid ""
 "reCAPTCHA v3: returns a score for each request without user friction. The "
 "score is based on interactions with your site and enables you to take an "
 "appropriate action for your site."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:494
+#: includes/settings/class-general-settings.php:505
 msgid "Math: Asks user to solve a simple arithmetic operation."
 msgstr "Математика: Просит пользователя решить простую арифметическую задачу."
 
-#: includes/settings/class-general-settings.php:498
+#: includes/settings/class-general-settings.php:509
 msgid "Max number used in Math CAPTCHA"
 msgstr "Максимальные числа используемые в Математической КАПТЧЕ"
 
-#: includes/settings/class-general-settings.php:498
+#: includes/settings/class-general-settings.php:509
 msgid "Highest number used in aithmetic operation."
 msgstr "Наибольшие числа используемые в арифметической задаче."
 
 #. translators: %s is the link to Google reCAPTCHA admin panel.
-#: includes/settings/class-general-settings.php:503
+#: includes/settings/class-general-settings.php:514
 msgid "You can get an API key from %s."
 msgstr "Вы можете получить API-ключ на странице %s."
 
-#: includes/settings/class-general-settings.php:505
+#: includes/settings/class-general-settings.php:516
 msgid "reCAPTCHA Site Key"
 msgstr "Открытый ключ reCAPTCHA "
 
-#: includes/settings/class-general-settings.php:506
+#: includes/settings/class-general-settings.php:517
 msgid "reCAPTCHA Secret Key"
 msgstr "Секретный ключ reCAPTCHA "
 
-#: includes/settings/class-general-settings.php:508
+#: includes/settings/class-general-settings.php:519
 msgid ""
 "reCAPTCHA v3 returns a score (1.0 is very likely a good interaction, 0.0 is "
 "very likely a bot). The plugin will interrupt all interactions that receive "
 "a score under the configured threshold."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:508
+#: includes/settings/class-general-settings.php:519
 msgid ""
 "Please note that reCAPTCHA learns by seeing real traffic on your site. For "
 "this reason, scores in a staging environment or soon after implementing may "
@@ -7939,133 +7949,133 @@ msgid ""
 "console{/console_link}."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:515
+#: includes/settings/class-general-settings.php:526
 msgid "reCAPTCHA score threshold (v3 only)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:528
+#: includes/settings/class-general-settings.php:539
 msgid "AdSense"
 msgstr "AdSense"
 
-#: includes/settings/class-general-settings.php:538
+#: includes/settings/class-general-settings.php:549
 msgid "AdSense Settings"
 msgstr "Настройки AdSense "
 
-#: includes/settings/class-general-settings.php:541
+#: includes/settings/class-general-settings.php:552
 msgid "Above Ad text."
 msgstr "Над текстом объявления."
 
-#: includes/settings/class-general-settings.php:542
+#: includes/settings/class-general-settings.php:553
 msgid "Under Ad text."
 msgstr "Под текстом объявления."
 
-#: includes/settings/class-general-settings.php:543
+#: includes/settings/class-general-settings.php:554
 msgid "Below Ad images."
 msgstr "Под изображениями объявления."
 
-#: includes/settings/class-general-settings.php:546
+#: includes/settings/class-general-settings.php:557
 msgid "Activate AdSense"
 msgstr "Активировать AdSense"
 
-#: includes/settings/class-general-settings.php:547
+#: includes/settings/class-general-settings.php:558
 msgid "AdSense code"
 msgstr "Код AdSense"
 
-#: includes/settings/class-general-settings.php:547
+#: includes/settings/class-general-settings.php:558
 msgid "Your AdSense code (Best if 468x60 text or banner.)"
 msgstr "Ваш код AdSense (Лучше всего, если Баннер  или текст 468х60.)"
 
-#: includes/settings/class-general-settings.php:548
+#: includes/settings/class-general-settings.php:559
 msgid "Show AdSense at position"
 msgstr "Показывать AdSense"
 
-#: includes/settings/class-general-settings.php:558
+#: includes/settings/class-general-settings.php:569
 msgid "Registration"
 msgstr "Регистрация"
 
-#: includes/settings/class-general-settings.php:567
+#: includes/settings/class-general-settings.php:578
 msgid "Registration Settings"
 msgstr "Настройки регистрации"
 
-#: includes/settings/class-general-settings.php:575
+#: includes/settings/class-general-settings.php:586
 msgid "Place Ad requires user registration"
 msgstr "Добавление объявлений требует регистрации"
 
-#: includes/settings/class-general-settings.php:577
+#: includes/settings/class-general-settings.php:588
 msgid "Only registered users will be allowed to post Ads."
 msgstr "Только зарегистрированные пользователи смогут добавлять объявления."
 
-#: includes/settings/class-general-settings.php:586
+#: includes/settings/class-general-settings.php:597
 msgid "Reply to Ad requires user registration"
 msgstr "Требовать регистрацию пользователей для ответа на объявление"
 
-#: includes/settings/class-general-settings.php:589
+#: includes/settings/class-general-settings.php:600
 msgid "Require user registration for replying to an Ad?"
 msgstr "Требовать регистрацию пользователей для ответа на объявление?"
 
-#: includes/settings/class-general-settings.php:597
+#: includes/settings/class-general-settings.php:608
 msgid "Login URL"
 msgstr "Сслыка для входа"
 
-#: includes/settings/class-general-settings.php:600
+#: includes/settings/class-general-settings.php:611
 msgid ""
 "Location of the login page. The value should be the full URL to the "
 "WordPress login page (e.g. http://www.awpcp.com/wp-login.php)."
 msgstr "Расположение страницы регистрации. Значение должно быть полным URL адресом страницы регистрации WordPress (например, http://www.awpcp.com/wp-login.php)"
 
-#: includes/settings/class-general-settings.php:600
 #: includes/settings/class-general-settings.php:611
+#: includes/settings/class-general-settings.php:622
 msgid ""
 "IMPORTANT: Only change this setting when using a membership plugin with "
 "custom login pages or similar scenarios."
 msgstr "ВАЖНО: Изменяйте эту настройку только при использовании не стандартного плагина регистрации пользователей, или похожие сценарии."
 
-#: includes/settings/class-general-settings.php:608
+#: includes/settings/class-general-settings.php:619
 msgid "Custom Registration Page URL"
 msgstr "Адрес пользовательской страницы регистрации"
 
-#: includes/settings/class-general-settings.php:611
+#: includes/settings/class-general-settings.php:622
 msgid ""
 "Location of registration page. Value should be the full URL to the WordPress"
 " registration page (e.g. http://www.awpcp.com/wp-login.php?action=register)."
 msgstr "Расположение страницы регистрации. Значение должно быть полным URL адресом страницы регистрации wordpress (например. http://www.awpcp.com/wp-login.php?action=register)"
 
-#: includes/settings/class-general-settings.php:633
+#: includes/settings/class-general-settings.php:644
 msgid "Scripts and Styles"
 msgstr "Скрипты и стили"
 
-#: includes/settings/class-general-settings.php:641
+#: includes/settings/class-general-settings.php:652
 msgid "Enqueue Font Awesome stylesheet (v5.2.0)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:644
+#: includes/settings/class-general-settings.php:655
 msgid ""
 "Use this setting to prevent conflicts with other plugins that already "
 "enqueue Font Awesome. Change the default value only if you have performed a "
 "conflict test to validate this is a Font Awesome issue."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:646
+#: includes/settings/class-general-settings.php:657
 msgid "Admin and frontend pages (default)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:647
+#: includes/settings/class-general-settings.php:658
 msgid "Frontend pages only"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:648
+#: includes/settings/class-general-settings.php:659
 msgid "Admin pages only"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:649
+#: includes/settings/class-general-settings.php:660
 msgid "Don't enqueue"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:658
+#: includes/settings/class-general-settings.php:669
 msgid "Use Font Awesome's Brands style"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:661
+#: includes/settings/class-general-settings.php:672
 msgid ""
 "Configure whether the plugin uses <code>fab</code> or <code>fa</code> CSS "
 "class to define Twitter and Facebook icons. The <code>fab</code> class is "
@@ -8074,34 +8084,34 @@ msgid ""
 "Font Awesome 5.0+ stylesheet, then select \"Always\"."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:663
+#: includes/settings/class-general-settings.php:674
 msgid "When the plugin's Font Awesome stylesheet is included only"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:664
+#: includes/settings/class-general-settings.php:675
 msgid "Always"
 msgstr "Всегда"
 
-#: includes/settings/class-general-settings.php:687
-#: includes/settings/class-general-settings.php:695
-#: includes/settings/class-general-settings.php:704
+#: includes/settings/class-general-settings.php:698
+#: includes/settings/class-general-settings.php:706
+#: includes/settings/class-general-settings.php:715
 msgid "Private Settings"
 msgstr "Настройки приватности"
 
-#: includes/settings/class-general-settings.php:717
+#: includes/settings/class-general-settings.php:728
 msgid "Modules"
 msgstr "Модули"
 
-#: includes/settings/class-general-settings.php:730
-#: includes/settings/class-general-settings.php:738
+#: includes/settings/class-general-settings.php:741
+#: includes/settings/class-general-settings.php:749
 msgid "Facebook"
 msgstr "Facebook"
 
-#: includes/settings/class-general-settings.php:756
+#: includes/settings/class-general-settings.php:767
 msgid "Facebook Integration Method"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:759
+#: includes/settings/class-general-settings.php:770
 msgid ""
 "Please note that sending ads to Facebook Groups is currently not available "
 "using Webhooks, after Facebook significantly reduced access to their APIs "
@@ -8112,90 +8122,90 @@ msgid ""
 "api-platform-product-changes/</a>"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:771
+#: includes/settings/class-general-settings.php:782
 msgid "Send Ads to Facebook Automatically"
 msgstr "Автоматически отправлять объявления на Facebook"
 
-#: includes/settings/class-general-settings.php:774
+#: includes/settings/class-general-settings.php:785
 msgid ""
 "If checked, Ads will be sent to Facebook shortly after they are posted, "
 "enabled or edited, whichever occurs first. Please note that ads will be sent"
 " only once and disabled ads cannot be sent to Facebook."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:782
+#: includes/settings/class-general-settings.php:793
 msgid "Ask Facebook to clear cache for ads pages"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:785
+#: includes/settings/class-general-settings.php:796
 msgid ""
 "Clearing Facebook cache is useful to ensure users always see the latest "
 "version when the ad is shared on Facebook Pages, Groups and user feeds."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:793
+#: includes/settings/class-general-settings.php:804
 msgid "Facebook Application"
 msgstr "Приложение Фейсбука"
 
-#: includes/settings/class-general-settings.php:803
+#: includes/settings/class-general-settings.php:814
 msgid "App Id"
 msgstr "ID приложения"
 
-#: includes/settings/class-general-settings.php:806
+#: includes/settings/class-general-settings.php:817
 msgid ""
 "An application identifier associates your site, its pages, and visitor "
 "actions with a registered Facebook application."
 msgstr "Приложение связывает идентификатор с вашим сайтом, его страницами и действиями посетителей зарегистрированных в Facebook приложении."
 
-#: includes/settings/class-general-settings.php:814
+#: includes/settings/class-general-settings.php:825
 msgid "App Secret"
 msgstr "Секретный Ключ"
 
-#: includes/settings/class-general-settings.php:817
+#: includes/settings/class-general-settings.php:828
 msgid ""
 "An application secret is a secret shared between Facebook and your "
 "application, similar to a password."
 msgstr "Секретный ключ — это набор символов, известный только вам и Facebook, наподобие пароля."
 
-#: includes/settings/class-general-settings.php:825
+#: includes/settings/class-general-settings.php:836
 msgid "Facebook User Authorization"
 msgstr "Авторизация пользователя Фейсбука"
 
-#: includes/settings/class-general-settings.php:835
+#: includes/settings/class-general-settings.php:846
 msgid "User Access Token"
 msgstr "Маркер доступа пользователя"
 
-#: includes/settings/class-general-settings.php:838
+#: includes/settings/class-general-settings.php:849
 msgid ""
 "You can manually enter your user access token (if you know it) or log in to "
 "Facebook to get one using the link above."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:846
+#: includes/settings/class-general-settings.php:857
 msgid "Facebook Page and Group Selection"
 msgstr "Выбор страницы и группы в Фейсбуке"
 
-#: includes/settings/class-general-settings.php:856
+#: includes/settings/class-general-settings.php:867
 msgid "Facebook Page"
 msgstr "Страница Facebook"
 
-#: includes/settings/class-general-settings.php:868
+#: includes/settings/class-general-settings.php:879
 msgid "Facebook Group"
 msgstr "Группа Facebook"
 
-#: includes/settings/class-general-settings.php:880
+#: includes/settings/class-general-settings.php:891
 msgid "Facebook Page Access Token"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:892
+#: includes/settings/class-general-settings.php:903
 msgid "Zapier Integration"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:901
+#: includes/settings/class-general-settings.php:912
 msgid "Zapier webhook used to send ads to a Facebook page"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:904
+#: includes/settings/class-general-settings.php:915
 msgid ""
 "The plugin will post information to this URL the first time an ad becomes "
 "publicly available (after they are posted, enabled or edited) on the website"
@@ -8203,15 +8213,15 @@ msgid ""
 "Disabled ads are excluded."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:911
+#: includes/settings/class-general-settings.php:922
 msgid "IFTTT Integration"
 msgstr "Интеграция с IFTT"
 
-#: includes/settings/class-general-settings.php:921
+#: includes/settings/class-general-settings.php:932
 msgid "URL used to send requests to IFTTT Webhooks service"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:924
+#: includes/settings/class-general-settings.php:935
 msgid ""
 "The plugin will post information to the Webhooks service the first time an "
 "ad becomes publicly available (after they are posted, enabled or edited) on "
@@ -8219,53 +8229,53 @@ msgid ""
 "list of classified ads. Disabled ads are excluded."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:932
+#: includes/settings/class-general-settings.php:943
 msgid "The name of the event that will be posted to the Webhooks service"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:935
+#: includes/settings/class-general-settings.php:946
 msgid ""
 "The plugin will post information about new ads to a unique URL built using "
 "the Webhooks URL and Event Name you define."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:945
+#: includes/settings/class-general-settings.php:956
 msgid ""
 "You can find your application information in the <a>Facebook Developer "
 "Apps</a> page."
 msgstr "Вы можете найти сведения о приложениях на странице <a>Facebook Developer Apps</a>."
 
-#: includes/settings/class-general-settings.php:962
+#: includes/settings/class-general-settings.php:973
 msgid ""
 "AWPCP needs to get an authorization token from Facebook to work correctly. "
 "You'll be redirected to Facebook to login. AWPCP does not store or obtain "
 "any personal information from your profile."
 msgstr "AWPCP должен получить маркер авторизации с Facebook, для правильной работы. Вы будете переадресованы на Facebook для входа. AWPCP не хранит или получает какие-либо личные данные из Вашего профиля."
 
-#: includes/settings/class-general-settings.php:963
+#: includes/settings/class-general-settings.php:974
 msgid ""
 "Please choose Public as the audience for posts made by the application, even"
 " if you are just testing the integration. Facebook won't allow us to post "
 "content in some cases if you choose something else."
 msgstr "В качестве аудитории для публикации приложения выбирайте \"Доступно всем\", даже если вы тестируете интеграцию. Facebook не разрешает в некоторых случаях публикацию, если выбран другой режим."
 
-#: includes/settings/class-general-settings.php:972
+#: includes/settings/class-general-settings.php:983
 msgid "Click here to obtain an access token from Facebook"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:974
+#: includes/settings/class-general-settings.php:985
 msgid ""
 "Please provide a value for the App Id and App Secret settings before trying "
 "to get an access token from Facebook."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:985
+#: includes/settings/class-general-settings.php:996
 msgid ""
 "Available Facebook Pages and Groups will be displayed after you enter a "
 "valid User Access Token."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:986
+#: includes/settings/class-general-settings.php:997
 msgid ""
 "As of April 4, 2018, all applications need to go through <a "
 "href=\"https://developers.facebook.com/docs/apps/review\" "
@@ -8282,65 +8292,65 @@ msgid ""
 "those groups and pages."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1004
+#: includes/settings/class-general-settings.php:1015
 msgid "None (Do not sent ads to a Facebook Page)"
 msgstr "Нет (Не отправлять рекламу на страницу в Фейсбук)"
 
-#: includes/settings/class-general-settings.php:1011
+#: includes/settings/class-general-settings.php:1022
 msgid "(Your own profile page)"
 msgstr "(Ваша страница профиля)"
 
-#: includes/settings/class-general-settings.php:1035
+#: includes/settings/class-general-settings.php:1046
 msgid "None (Do not sent ads to a Facebook Group)"
 msgstr "Нет (не отправлять рекламу в группу в Фейсбуке)"
 
-#: includes/settings/class-general-settings.php:1081
+#: includes/settings/class-general-settings.php:1092
 msgid ""
 "Require Registration setting was enabled automatically because you activated"
 " the User Ad Management panel."
 msgstr "Обязательная регистрация была включена автоматически, так как вы активировали пользовательскую панель объявлений."
 
-#: includes/settings/class-general-settings.php:1102
+#: includes/settings/class-general-settings.php:1113
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr "Вы не можете активировать контроль спама Akismet, так как Akismet не установлен либо не активирован "
 
-#: includes/settings/class-general-settings.php:1106
+#: includes/settings/class-general-settings.php:1117
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr "Вы не можете активировать контроль спама Akismet, так как Akismet неверно настроен."
 
-#: includes/settings/class-general-settings.php:1133
+#: includes/settings/class-general-settings.php:1144
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr "reCAPTCHA не может быть использован, так как настройки открытого и закрытого ключей являются обязательными для нормальной работы reCAPTCHA"
 
-#: includes/settings/class-general-settings.php:1135
+#: includes/settings/class-general-settings.php:1146
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA не может быть использован, так как настройки открытого ключа являются обязательными для нормальной работы reCAPTCHA"
 
-#: includes/settings/class-general-settings.php:1137
+#: includes/settings/class-general-settings.php:1148
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr "reCAPTCHA не может быть использован, так как настройки закрытого ключа являются обязательными для нормальной работы reCAPTCHA"
 
-#: includes/settings/class-general-settings.php:1184
+#: includes/settings/class-general-settings.php:1195
 msgid "Thousands separator and decimal separator cant be the same."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1200
+#: includes/settings/class-general-settings.php:1211
 msgid ""
 "User Ad Management panel was automatically deactivated because you disabled "
 "Require Registration setting."
 msgstr "Пользовательская Панель Управления Объявлениями была автоматически отключена, потому что вы отключили настройку Обязательной Регистрации."
 
-#: includes/settings/class-general-settings.php:1205
+#: includes/settings/class-general-settings.php:1216
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
@@ -8830,7 +8840,7 @@ msgstr ""
 #: includes/settings/class-listings-settings.php:607
 msgctxt "listing url settings section"
 msgid "Example path: <example-path>."
-msgstr ""
+msgstr "Примерный путь: <example-path>."
 
 #: includes/settings/class-pages-settings.php:19
 #: includes/settings/class-pages-settings.php:27
@@ -9222,17 +9232,17 @@ msgstr "Создать страницу"
 #: includes/settings/renderers/class-wordpress-page-settings-renderer.php:38
 msgctxt "page settings"
 msgid "Select existing page {dropdown} -or- {create_page_button}"
-msgstr ""
+msgstr "Выбрать существующую страницу {dropdown} -или- {create_page_button}"
 
 #: includes/ui/class-categories-selector-helper.php:20
 msgid "Ad Category"
 msgstr "Категория объявления"
 
-#: includes/ui/class-category-selector.php:121
+#: includes/ui/class-category-selector.php:124
 msgid "All Categories"
 msgstr "Все категории"
 
-#: includes/ui/class-category-selector.php:170
+#: includes/ui/class-category-selector.php:173
 msgid "Select a Sub-category"
 msgstr "Выбор Подкатегории"
 
@@ -9245,7 +9255,7 @@ msgstr ""
 msgid ""
 "{payment-term-name} &ndash; {payment-term-duration} ({payment-term-price} "
 "credits)"
-msgstr ""
+msgstr "{payment-term-name} &ndash; {payment-term-duration} ({payment-term-price} credits)"
 
 #: includes/ui/class-payment-terms-list.php:157
 msgid "<number-of-listings> listing allowed."
@@ -9262,10 +9272,10 @@ msgstr "Изображения не разрешены."
 #: includes/ui/class-payment-terms-list.php:168
 msgid "<number-of-images> image allowed."
 msgid_plural "<number-of-images> images allowed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<number-of-images> изображение разрешено."
+msgstr[1] "<number-of-images> изображения разрешено."
+msgstr[2] "<number-of-images> изображений разрешено."
+msgstr[3] "<number-of-images> изображений разрешено."
 
 #: includes/ui/class-payment-terms-list.php:175
 msgid "Unlimited characters in listing's title."
@@ -9277,7 +9287,7 @@ msgstr ""
 
 #: includes/ui/class-payment-terms-list.php:185
 msgid "Up to <categories-count> categories allowed."
-msgstr ""
+msgstr "До <categories-count> категорий разрешено."
 
 #: includes/ui/class-payment-terms-list.php:192
 msgid "Unlimited characters in listing's content."
@@ -9405,11 +9415,11 @@ msgstr ""
 
 #: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:107
 msgid "The file {filepath} doesn't exist."
-msgstr ""
+msgstr "Файл {filepath} не существует."
 
 #: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:152
 msgid "An attachment couldn't be created for media item with id {media_id}."
-msgstr ""
+msgstr "Не может быть создано вложение для медиа с id {media_id}."
 
 #: includes/views/admin/account-balance/class-account-balance-page.php:32
 msgid ""
@@ -9486,7 +9496,7 @@ msgstr "Вам не разрешено покупать кредиты."
 msgid ""
 "No category was found with the IDs provided. Please provide at least one "
 "valid category ID."
-msgstr ""
+msgstr "Не найдено категорий с заданным ID. Пожалуйста, задайте хотя бы один верный ID категории."
 
 #: includes/wordpress/class-wordpress-scripts.php:13
 msgid "The instance of WP_Scripts is not ready!"
@@ -9567,7 +9577,7 @@ msgstr ""
 
 #: templates/admin/debug/environment-debug-section.tpl.php:30
 msgid "Test your SSL Client"
-msgstr ""
+msgstr "Тестировать SSL-клиента"
 
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:29
 msgctxt "debug page"
@@ -9659,7 +9669,7 @@ msgstr "У категории есть дочерние категории. По
 msgid ""
 "Click <cancel-button-label> to go back to the list of categories or click "
 "<submit-button-label> to proceed."
-msgstr ""
+msgstr "Нажмите<cancel-button-label>, чтобы перейти назад к списку категорий или нажмите <submit-button-label>, чтобы продолжить."
 
 #: templates/admin/delete-category-admin-page.tpl.php:50
 msgid "Selected Category"
@@ -9732,7 +9742,7 @@ msgstr ""
 #: templates/admin/export-listings-admin-page.tpl.php:77
 msgctxt "listings-csv-export"
 msgid "Additional metadata to export:"
-msgstr ""
+msgstr "Дополнительные метаданные к экспорту:"
 
 #: templates/admin/export-listings-admin-page.tpl.php:82
 msgctxt "listings-csv-export"
@@ -9824,7 +9834,7 @@ msgstr "Ваш файл экспорта успешно создан и гото
 #: templates/admin/export-listings-admin-page.tpl.php:149
 msgctxt "listings-csv-export"
 msgid "Download %1$s (%2$s)"
-msgstr ""
+msgstr "Загрузка %1$s (%2$s)"
 
 #: templates/admin/export-listings-admin-page.tpl.php:158
 msgctxt "listings-csv-export"
@@ -9900,7 +9910,7 @@ msgstr "Верхний колонтитул"
 #: templates/admin/import/supported-csv-headers.tpl.php:39
 #: templates/admin/import-listings-admin-page-upload-files-form.tpl.php:86
 msgid "See Example CSV File"
-msgstr ""
+msgstr "Смотреть примерный файл CSV"
 
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:16
 msgid "Configure"
@@ -10141,7 +10151,7 @@ msgstr "Редакторовать"
 #: templates/admin/listings/listing-information-metabox.tpl.php:21
 msgctxt "listing information metabox"
 msgid "Renewed at:"
-msgstr ""
+msgstr "Обновлено:"
 
 #: templates/admin/listings/listing-information-metabox.tpl.php:25
 msgctxt "listing information metabox"
@@ -10428,7 +10438,7 @@ msgstr ""
 
 #: templates/admin/tools/export-settings-admin-page.tpl.php:14
 msgid "Download a JSON file with the values for all settings."
-msgstr ""
+msgstr "Загрузить JSON-файл со значениями для всех настроек."
 
 #: templates/admin/tools/export-settings-admin-page.tpl.php:17
 msgid "Download Settings"
@@ -10461,15 +10471,15 @@ msgstr "Инструменты"
 msgid "Manage Listing"
 msgstr "Управление объявлением"
 
-#: templates/components/classifieds-search-bar.tpl.php:5
+#: templates/components/classifieds-search-bar.tpl.php:8
 msgid "Search for:"
 msgstr "Найти:"
 
-#: templates/components/classifieds-search-bar.tpl.php:9
+#: templates/components/classifieds-search-bar.tpl.php:12
 msgid "Find Listings"
 msgstr "Искать объявления"
 
-#: templates/components/classifieds-search-bar.tpl.php:11
+#: templates/components/classifieds-search-bar.tpl.php:14
 msgid "Advanced Search"
 msgstr "Расширенный поиск"
 
@@ -10834,7 +10844,7 @@ msgctxt "privacy policy"
 msgid ""
 "Authorize.Net &mdash; <a "
 "href=\"https://www.authorize.net/company/privacy/\">https://www.authorize.net/company/privacy/</a>"
-msgstr ""
+msgstr "Authorize.Net &mdash; <a href=\"https://www.authorize.net/company/privacy/\">https://www.authorize.net/company/privacy/</a>"
 
 #: templates/privacy-policy.tpl.php:23
 msgctxt "privacy policy"
@@ -10875,7 +10885,7 @@ msgid ""
 "Visitor comments may be checked through Akismet's spam detection service. "
 "The Akismet service privacy policy is available <a "
 "href=\"https://automattic.com/privacy/\">here</a>."
-msgstr ""
+msgstr "Комментарии посетителей могут быть проверены службой обнаружения спама Akismet. Политика конфиденциальности службы Akismet доступна <a href=\"https://automattic.com/privacy/\">здесь</a>."
 
 #: templates/privacy-policy.tpl.php:36
 msgctxt "privacy policy"
