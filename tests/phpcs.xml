@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<ruleset name="Another WordPress Classifieds Plugin Standard">
+    <arg value="s" />
+
+    <exclude-pattern>includes/functions/deprecated.php</exclude-pattern>
+    <exclude-pattern>includes/functions/listings.php</exclude-pattern>
+    <exclude-pattern>frontend/templates/email-send-all-ad-access-keys.tpl.php</exclude-pattern>
+    <exclude-pattern>vendor/autoload.php</exclude-pattern>
+    <exclude-pattern>vendor/composer/autoload*</exclude-pattern>
+    <exclude-pattern>vendor/composer/ClassLoader.php</exclude-pattern>
+    <exclude-pattern>tests/wordpress/wp-functions.php</exclude-pattern>
+
+    <rule ref="WordPress">
+        <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
+        <exclude name="Generic.Commenting.DocComment.MissingShort" />
+        <exclude name="Generic.Files.LineEndings.InvalidEOLChar" />
+        <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag" />
+        <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+        <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+        <exclude name="WordPress.DB" />
+        <exclude name="WordPress.PHP.YodaConditions.NotYoda" />
+        <exclude name="Squiz.Commenting.FunctionComment.Missing" />
+        <exclude name="Squiz.Commenting.VariableComment.Missing" />
+        <exclude name="Squiz.Commenting.ClassComment.Missing" />
+    </rule>
+
+    <rule ref="Generic.WhiteSpace.ScopeIndent">
+        <properties>
+            <property name="tabIndent" value="false" />
+        </properties>
+    </rule>
+
+    <rule ref="WordPress.Arrays.ArrayIndentation">
+        <properties>
+            <property name="tabIndent" value="false" />
+        </properties>
+    </rule>
+
+    <!-- Run against the PHPCompatibility ruleset -->
+    <rule ref="PHPCompatibility">
+        <exclude name="PHPCompatibility.FunctionUse.ArgumentFunctionsReportCurrentValue.Changed"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.curl_http_version_2tlsFound" />
+        <exclude name="PHPCompatibility.FunctionNameRestrictions.ReservedFunctionNames.MethodDoubleUnderscore" />
+    </rule>
+
+    <!-- Check for cross-version support for PHP 5.6 and higher. -->
+    <config name="testVersion" value="5.6-"/>
+</ruleset>

@@ -27,7 +27,7 @@
         "phpmd/phpmd" : "@stable",
         "phpro/grumphp": "^0.15.0",
         "phpunit/phpunit": "6.*",
-        "squizlabs/php_codesniffer": "dev-issue-2391-on-12b877241 as 3.4.0",
+        "squizlabs/php_codesniffer": "^3.4.0",
         "wp-coding-standards/wpcs": "*"
-    },
+    }
 }

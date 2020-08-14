@@ -1,0 +1,20 @@
+.DS_Store
+*.pyc
+# POEdit backup files
+*.po~
+# intermediate JavaScript files
+*.src.js
+
+# Installable ZIP packages are created in this directory
+build/
+# NPM dependencies for Grunt tasks
+node_modules/
+scripts/vvv-hosts
+scripts/vvv-nginx.conf
+
+# Top level vendor directory
+/vendor/
+# Vendor directory for main plugin
+/vendor/*
+/vendor/**/*
+*.css.map
