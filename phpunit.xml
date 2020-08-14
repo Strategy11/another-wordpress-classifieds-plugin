@@ -1,0 +1,57 @@
+<phpunit
+	bootstrap="tests/bootstrap.php"
+	backupGlobals="true"
+	backupStaticAttributes="false"
+	colors="true"
+    beStrictAboutTestsThatDoNotTestAnything="false"
+	>
+	<testsuites>
+		<testsuite>
+            <directory prefix="test-" suffix=".php">tests/suite/</directory>
+
+            <exclude>tests/suite/cron/</exclude>
+            <exclude>tests/suite/frontend/</exclude>
+            <exclude>tests/suite/functions/</exclude>
+            <exclude>tests/suite/includes/</exclude>
+            <exclude>tests/suite/templates/</exclude>
+            <exclude>tests/suite/admin/credit-plans/</exclude>
+            <exclude>tests/suite/admin/import/</exclude>
+            <exclude>tests/suite/test-install.php</exclude>
+            <exclude>tests/suite/test-premium-modules.php</exclude>
+            <exclude>tests/suite/admin/listings/test-admin-panel-listings-table.php</exclude>
+            <exclude>tests/suite/admin/listings/test-manage-listings-admin-page.php</exclude>
+            <exclude>tests/suite/admin/listings/test-renew-listing-admin-page.php</exclude>
+            <exclude>tests/suite/admin/test-listings-table.php</exclude>
+            <exclude>tests/suite/admin/test-manage-categories-admin-page.php</exclude>
+            <exclude>tests/suite/admin/test-user-listings-admin-page.php</exclude>
+
+            <file>tests/suite/frontend/test-query.php</file>
+            <file>tests/suite/admin/import/test-csv-importer-delegate.php</file>
+            <file>tests/suite/admin/listings/test-moderator-renew-listing-table-action.php</file>
+            <file>tests/suite/frontend/test-frontend-container-configuration.php</file>
+            <file>tests/suite/frontend/test-order-submit-listing-section.php</file>
+            <file>tests/suite/frontend/test-submit-listing-form-steps.php</file>
+            <file>tests/suite/functions/test-pagination-functions.php</file>
+            <file>tests/suite/functions/assets/test-select2-functions.php</file>
+            <file>tests/suite/functions/routes/test-get-quick-view-listing-url.php</file>
+            <file>tests/suite/includes/test-awpcp.php</file>
+            <file>tests/suite/includes/test-listings-api.php</file>
+            <file>tests/suite/includes/test-listing-authorization.php</file>
+            <file>tests/suite/includes/test-listing-payment-transaction-handler.php</file>
+            <file>tests/suite/includes/test-payments-api.php</file>
+            <file>tests/suite/includes/frontend/test-image-placeholders.php</file>
+            <file>tests/suite/includes/frontend/test-pages.php</file>
+            <file>tests/suite/includes/frontend/test-show-listing-page.php</file>
+            <file>tests/suite/includes/frontend/test-user-listings-shortcode.php</file>
+            <file>tests/suite/includes/functions/test-listings-functions.php</file>
+            <file>tests/suite/includes/helpers/test-facebook-integration.php</file>
+            <file>tests/suite/includes/helpers/test-request.php</file>
+            <file>tests/suite/includes/helpers/test-spam-submitter.php</file>
+            <file>tests/suite/includes/listings/test-listing-renderer.php</file>
+            <file>tests/suite/includes/listings/test-listings-content-renderer.php</file>
+            <file>tests/suite/includes/media/test-image-attachment-creator.php</file>
+            <file>tests/suite/includes/upgrade/test-store-listing-categories-as-custom-taxonomies-upgrade-task-handler.php</file>
+            <file>tests/suite/includes/upgrade/test-store-media-as-attachments-upgrade-task-handler.php</file>
+		</testsuite>
+	</testsuites>
+</phpunit>

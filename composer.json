@@ -9,5 +9,25 @@
             "includes",
             "installer.php"
         ]
-    }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/includes"
+        ],
+        "exclude-from-classmap": [
+            "vendor/composer"
+        ]
+    },
+    "require-dev": {
+        "antecedent/patchwork": "2.*",
+        "brain/monkey": "dev-dev",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+        "phake/phake": "3.*",
+        "phpcompatibility/php-compatibility": "*",
+        "phpmd/phpmd" : "@stable",
+        "phpro/grumphp": "^0.15.0",
+        "phpunit/phpunit": "6.*",
+        "squizlabs/php_codesniffer": "dev-issue-2391-on-12b877241 as 3.4.0",
+        "wp-coding-standards/wpcs": "*"
+    },
 }
