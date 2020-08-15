@@ -16,5 +16,6 @@ scripts/vvv-nginx.conf
 /vendor/
 # Vendor directory for main plugin
 /vendor/*
-/vendor/**/*
+!/vendor/autoload.php
+!/vendor/composer
 *.css.map
