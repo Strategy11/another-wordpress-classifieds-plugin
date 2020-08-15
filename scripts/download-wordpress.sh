@@ -1,0 +1,11 @@
+WP_CLI=$1
+WORDPRESS_VERSION=$2
+WORDPRESS_DIR=$3
+
+mkdir -p $WORDPRESS_DIR
+cd $WORDPRESS_DIR
+
+echo "Downloading WordPress $WORDPRESS_VERSION using WP-CLI"
+$WP_CLI core download --version=$WORDPRESS_VERSION
+
+cd $OLDPWD

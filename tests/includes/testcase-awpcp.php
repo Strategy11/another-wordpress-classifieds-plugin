@@ -17,7 +17,7 @@ use function Patchwork\redefine;
 /**
  * Base class for all plugin tests.
  */
-abstract class AWPCP_UnitTestCase extends WP_UnitTestCase {
+abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
 
     /**
      * @var array [Patchwork\CallRouting\Handle]

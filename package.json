@@ -1,0 +1,31 @@
+{
+  "name": "another-wordpress-classifieds-plugin",
+  "description": "A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog.",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "phpunit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Strategy11/another-wordpress-classifieds-plugin.git"
+  },
+  "keywords": [
+    "wordpress",
+    "classifieds"
+  ],
+  "author": "Strategy11",
+  "license": "GPL-2.0",
+  "gitHead": "d39075e4f45441a379753a66fdca4d50d279fd09",
+  "devDependencies": {
+    "grunt": ">=0.4.0",
+    "grunt-contrib-clean": "~1",
+    "grunt-contrib-concat": "~1",
+    "grunt-contrib-jshint": "^1",
+    "grunt-contrib-less": "~1",
+    "grunt-contrib-uglify": "^1",
+    "grunt-contrib-watch": "~1",
+    "underscore": "^1.6.0"
+  }
+}

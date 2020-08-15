@@ -15,25 +15,10 @@ define( 'WP_TESTS_DATA_DIR', dirname( __FILE__ ) . '/data' );
 define( 'AWPCP_DIR', dirname( __DIR__ ) );
 define( 'AWPCP_URL', 'https://example.org/wp-content/plugins/another-wordpress-classifieds-plugin' );
 
-define( 'AWPCP_EXTRA_FIELDS_MODULE_DIR', dirname( __DIR__ ) . '/premium-modules/awpcp-extra-fields' );
+require AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
+require AWPCP_DIR . '/vendor/autoload.php';
 
-//require AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
-
-if ( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
-	require getenv( 'WP_DEVELOP_DIR' ) . 'tests/phpunit/includes/bootstrap.php';
-} else {
-	require '../../../../tests/phpunit/includes/bootstrap.php';
-}
-
-if ( file_exists( dirname( __FILE__ )  . '/../vendor/autoload_52.php' ) ) {
-	include( dirname( __FILE__ )  . '/../vendor/autoload_52.php' );
-}
-
-if ( file_exists( dirname( __FILE__ )  . '/../vendor/autoload.php' ) ) {
-	include( dirname( __FILE__ ) . '/../vendor/autoload.php' );
-}
-
-//Phake::setClient( Phake::CLIENT_PHPUNIT6 );
+Phake::setClient( Phake::CLIENT_PHPUNIT6 );
 
 require AWPCP_DIR . '/functions.php';
 require AWPCP_DIR . '/includes/functions/assets.php';
@@ -76,6 +61,9 @@ function _replace_modules_manager() {
 if ( ! defined( 'OBJECT' ) ) {
     define( 'OBJECT', 'OBJECT' );
 }
+
+/* Empty definitions for WordPress functions and classes we use */
+require dirname( __FILE__ ) . '/wordpress/wp-functions.php';
 
 require dirname( __FILE__ ) . '/includes/shims.php';
 require dirname( __FILE__ ) . '/includes/functions.php';
