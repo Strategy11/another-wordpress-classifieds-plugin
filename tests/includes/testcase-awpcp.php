@@ -78,10 +78,10 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
     /**
      * TODO: We probably won't need this if we stop using WordPress testing framework.
      */
-    public function start_transaction() {
-        $this->activate_mysql_strict_mode();
-        parent::start_transaction();
-    }
+    // public function start_transaction() {
+    //     $this->activate_mysql_strict_mode();
+    //     parent::start_transaction();
+    // }
 
     // /**
     //  * TODO: We probably won't need this if we stop using WordPress testing framework.
