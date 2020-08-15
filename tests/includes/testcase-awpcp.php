@@ -164,7 +164,7 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
             $this->paused_filters[ $name ] = array();
         }
 
-        $this->paused_filters[ $name ] = array_merge( $this->paused_filters[ $name ], $wp_filter[ $name ] );
+        $this->paused_filters[ $name ] = array_merge( $this->paused_filters[ $name ], (array) $wp_filter[ $name ] );
 
         unset( $wp_filter[ $name ] );
 

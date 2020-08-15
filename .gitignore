@@ -14,7 +14,6 @@ scripts/vvv-nginx.conf
 
 # Top level vendor directory
 /vendor/
-# Vendor directory for main plugin
 /vendor/*
 !/vendor/autoload.php
 !/vendor/composer
