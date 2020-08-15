@@ -29,7 +29,7 @@ class AWPCP_IndeedMemebershipProPluginIntegrationTest extends AWPCP_UnitTestCase
         $integration->setup();
 
         // Verification.
-        $this->assertTrue( has_action( 'wp_enqueue_scripts', [ $integration, 'maybe_dequeue_select2' ], 9999 ) );
+        $this->assertNotEmpty( has_action( 'wp_enqueue_scripts', [ $integration, 'maybe_dequeue_select2' ] ) );
     }
 
     /**

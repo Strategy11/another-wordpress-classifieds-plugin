@@ -33,7 +33,9 @@ class AWPCP_CategoriesListCache {
             delete_transient( $transient_key );
         }
 
-        delete_option( 'awpcp-categories-list-cache-keys' );
+        if ( $transient_keys ) {
+            delete_option( 'awpcp-categories-list-cache-keys' );
+        }
 
         if( ! ( defined( 'DOING_AJAX' ) && DOING_AJAX ) && is_admin() ) {
             $this->categories->maybe_update_categories_order();

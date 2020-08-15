@@ -10,6 +10,10 @@
 // phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
 // phpcs:disable Squiz.Commenting.InlineComment.SpacingAfter
 
+$GLOBALS['wp_tests_options'] = array(
+    'active_plugins'     => array( 'another-wordpress-classifieds-plugin/awpcp.php' ),
+);
+
 define( 'WP_TESTS_DATA_DIR', dirname( __FILE__ ) . '/data' );
 
 define( 'AWPCP_DIR', dirname( __DIR__ ) );
@@ -24,6 +28,20 @@ require AWPCP_DIR . '/functions.php';
 require AWPCP_DIR . '/includes/functions/assets.php';
 require AWPCP_DIR . '/includes/functions/listings.php';
 require AWPCP_DIR . '/includes/functions/routes.php';
+
+if ( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
+    require getenv( 'WP_DEVELOP_DIR' ) . 'tests/phpunit/includes/bootstrap.php';
+} else {
+    require '../../../../tests/phpunit/includes/bootstrap.php';
+}
+
+if ( file_exists( dirname( __FILE__ )  . '/../vendor/autoload_52.php' ) ) {
+    include( dirname( __FILE__ )  . '/../vendor/autoload_52.php' );
+}
+
+if ( version_compare( phpversion(), '5.3', '>=' ) && file_exists( dirname( __FILE__ )  . '/../vendor/autoload.php' ) ) {
+    include( dirname( __FILE__ ) . '/../vendor/autoload.php' );
+}
 
 /**
  * TODO: We probably won't need this if we stop using WordPress testing framework.
@@ -61,9 +79,6 @@ function _replace_modules_manager() {
 if ( ! defined( 'OBJECT' ) ) {
     define( 'OBJECT', 'OBJECT' );
 }
-
-/* Empty definitions for WordPress functions and classes we use */
-require dirname( __FILE__ ) . '/wordpress/wp-functions.php';
 
 require dirname( __FILE__ ) . '/includes/shims.php';
 require dirname( __FILE__ ) . '/includes/functions.php';

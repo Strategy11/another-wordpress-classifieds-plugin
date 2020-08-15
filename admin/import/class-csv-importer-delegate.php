@@ -178,6 +178,10 @@ class AWPCP_CSV_Importer_Delegate {
 
         $user_info = $this->get_user_info( $username, $contact_email );
 
+        if ( ! $user_info ) {
+            return null;
+        }
+
         if ( $user_info->created ) {
             $message = _x( "A new user '%s' with email address '%s' and password '%s' was created.", 'csv importer', 'another-wordpress-classifieds-plugin' );
             $message = sprintf( $message, $username, $contact_email, $user_info->password );

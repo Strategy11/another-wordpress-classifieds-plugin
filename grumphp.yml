@@ -20,3 +20,4 @@ parameters:
                 - vendor/composer/autoload*
                 - vendor/composer/ClassLoader.php
                 - scripts/*
+                - tests/*

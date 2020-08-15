@@ -185,11 +185,11 @@ class AWPCP_TestRequest extends AWPCP_UnitTestCase {
     }
 
     public function test_get_category_id_from_query_var() {
-        Functions\expect( 'get_query_var' )->with( 'cid' )->andReturn( 15 );
+        Functions\expect( 'get_query_var' )->with( 'cid' )->andReturn( 13 );
 
         $request = new AWPCP_Request();
 
-        $this->assertEquals( 15, $request->get_category_id() );
+        $this->assertEquals( 13, $request->get_category_id() );
     }
 
     public function test_get_current_listing_from_request() {
