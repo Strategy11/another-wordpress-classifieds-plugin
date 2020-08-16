@@ -16,7 +16,7 @@
 	ignoreDeprecatedCodeUnitsFromCodeCoverage="true"
 	>
 	<testsuites>
-		<testsuite>
+		<testsuite name="WP Unit Testing">
             <directory prefix="test-" suffix=".php">tests/suite/</directory>
 
             <exclude>tests/suite/cron/</exclude>
