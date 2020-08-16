@@ -2,193 +2,141 @@
 Contributors: awpcp
 Donate link: https://awpcp.com/donate
 Tags: classifieds,listings,ads,classified ads,classified,awpcp,classifieds script,classified theme,wp classified
-Requires at least: 4.6
+Requires at least: 4.9
 Requires PHP: 5.6
-Tested up to: 5.0
-Last Updated: 2019-Jan-25
-Stable tag: 3.9.5
+Tested up to: 5.5
+Last Updated: 2020-Aug-13
+Stable tag: 4.0.16
 License: GPLv2 or later
 
-AWPCP Classifieds:  Great for increasing retention to your site, adding revenue for your business, and creating customer interaction.
+AWPCP Classifieds: Great for increasing retention to your site, adding revenue for your business, and creating customer interaction.
 
 == Description ==
 
-[Main Site](https://awpcp.com/) | [Support](https://awpcp.com/forum/) | [Docs](https://awpcp.com/docs/) | [Showcase](https://awpcp.com/showcase/) | [Premium Modules](https://awpcp.com/premium-modules/)
+[Main Site](https://awpcp.com/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) | [Docs](https://awpcp.com/docs/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) | [Showcase](https://awpcp.com/showcase/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) | [Premium Modules](https://awpcp.com/premium-modules/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
 
-Add a classified ads section to your WordPress site, quickly and easily.
-Lots of features, very configurable.  Easy to setup.  Great support.
-We're the #1 WordPress Classified Ads Plugin: 10+ years old and over 10,000 active sites
+Add a classified ads section to your WordPress site, quickly and easily. Create classifieds listings from cars to yard sales.
+Lots of features, very configurable. Easy to setup. Great support.
+We've been the #1 WordPress Classified Ads Plugin for 10+ years.
 
-NEW module(s): [Stripe](https://awpcp.com/premium-modules/stripe-module?ref=wp), [PayFast](https://awpcp.com/premium-modules/payfast-module?ref=wp) and [ZIP Search](https://awpcp.com/downloads/zip-code-search-module?ref=wp)
+== Classified Ad Features ==
 
-= Features =
- = Ad Features =
-    1. Search classifieds by city, state, country, username, or keyword
-    2. Allow AdSense ads to be displayed
-    3. Control over HTML use in classifieds
-    4. Limit the text size of ad postings
-    5. Standard form fields can be enabled or disabled,
-       depending on your needs (title, website, name, country, etc)
-    6. Allow or disallow image posting with ads
-    7. Automatic expiration of ads (free or paid)
-    8. Configurable ad display for AdSense placement
-    9. Classified ads can have a "Tweet This" button in their layout
-    10. Classified ads can have a "Share on Facebook" button in their layout
-    11. Classified ads can be flagged by community for bad/offensive content
-    12. Classified ads can imported via CSV files
-    13. Classified ads now support embedded videos
-    14. Classified ads can have character limits, supported by plans (different plans can have different limits)
-    15. Classified ads can be displayed on any page for a single category using shortcodes
-    16. Auto-verify ads with email links to post immediately upon click
-    17. Classified ads can be 'Sent to Facebook' inside of ad management
-    18. Support for displaying ad events in BuddyPress activity stream with [BuddyPress module](https://awpcp.com/premium-modules/buddypress-module?ref=wp)
-    19. Classified ads can be edited via front end, back end with or without registration (depending on settings)
- = Notification Features =
-    1. Allow posters to be notified of expiring ads, renewals, and approvals of ads
-    2. Allow admin to be notified when new ads are posted, ads are edited and much more
-    3. Classified ad users can contact the ad poster without exposing
-       the poster's email (blind email system, similar to Craigslist)
-    4. Admin can (optionally) be notified of expiring ads
- = Payment Features =
-    1. Allows for paid or free classifieds
-    2. Supports PayPal, PayPal Pro, Authorize.net, PayFast, Stripe and 2Checkout for paid ads
-    3. Allow for image posting limits higher than free ads
-    4. Multiple fee scales for posting ads (allows you to have longer ad
-       postings with higher fees)
-    5. Variable ad expiration lengths connected to fee scale
-       (e.g. allow ads	to run for 30 days for $10, 60 days for $15, etc)
-    6. Supports a "credit system" or pay with regular currency per ad.  Mix
-       and match if you want.
-    7. Support for ad "subscriptions" (packages of ads for a single price)
- = Ad Posting Controls =
-    1. Allow admin to approve ads prior to posting
-    2. Allow admin to approve images prior to posting
-    3. Users can edit or delete their own classifieds
-    4. Admin can edit or delete all ads in the system
-    5. Secure system gives users a unique editing key to administer
-       their own ads
-    6. Allows for limiting image posting (by image size, height,
-       width and total count if desired)
-    7. Anti-spam checks for all ads posted via Akismet.
-    8. Flagged ads can be viewed separately to determine violations, and
-       then deleted or unflagged.
-    9. Ad Management panel, visible by users and admins for easier
-       ad creation/editing/delete.
-    10. Admin can post ads on behalf of other users with the ads displaying as
-        if the user posted them initially
-    11. Email verification step can be used to auto-post ads upon successful
-        verification link click
-    12. Ads can be posted to a Facebook page manually or automatically
- = Image Features =
-    1. Allow image posting or shut it off completely
-    2. Control the number, filesize, height and width of images posted
-    3. Allow for different numbers of images to be posted with
-       paid ads vs. free ads
-    4. Allow for image approval prior to posting
-    5. Allow users to have a primary image for their ad
-    6. Now supports multi-image asynchronous loading
- = Premium Modules (Add on modules, not included with free plugin) =
-    1. Category Icons (adds small icons to give visual cues to
-       your user for each category in AWPCP)
-    2. Extra Fields (allows you to add any custom fields for display.
-       For example, if you have a pet-related board, you might have
-       "Sex", "Breed", and "Dam/Sire" as additional fields you require for display)
-       Now supports search and custom ordering of fields.
-    3. Regions Control (allows you to restrict viewing of ads based on
-       locale, so users don't see items they aren't physically near them,
-       also allows customization of the region types, such as
-       village, borough, etc)
-    4. PayPal Pro Support (allows you to have an embedded payment
-        form on your site for use with PayPal Pro accounts)
-    5. RSS Feeds (allows you syndicate your classifieds for your users to
-       download in their favorite RSS reader and come back to your site
-       more often!)
-    6. Featured Ads (allows you to promote certain ads over others by
-       charging a fee for them, featured ads are displayed using CSS to
-       highlight them.  Featured ads are always returned first in a category,
-       the overall ad list, or in search results.  Also has a widget for
-       placement anywhere on your site.  Full admin control of featured ads, too)
-    7. Fee Per Category (allows you to charge for certain categories
-       and not others, giving you more freedom on how to configure your classified
-       section.  Allows for multiple fee plans per category, as well as a default
-       plan to cover "all other unspecified" categories)
-    8. Coupons/Discounts (allows you to offer coupon codes for ad
-       promotions to your users, coupons can be a percent off, or a fixed amount,
-       have expiration dates and be tracked by usage)
-    9. Subscriptions (allows power users to place blocks of ads at a time,
-       great for real estate agents, car dealers, anyone who wants to place ads in
-       bulk.)
-    10. Comments/Ratings (allows users to rate ads and place comments
-        on them.)
-    11. Authorize.net Payment Gateway (allows users to purchase ads,
-        subscriptions and credit plans using Authorize.net)
-    12. Attachments (allows users to attach PDFs, text files or other
-        images to their classifieds (great for job boards!))
-    13. BuddyPress (allows users to manage their ads in the BuddyPress
-        profile directly, see events from ad posting in the activity stream and more)
-    14. Mark as Sold (allows users to mark for sale items as sold to keep content
-        in your classifieds, but clarify availability)
-    15. Restricted Categories (restrict content from users unless they accept a disclaimer from your site.)
-    16. Ad Campaign Manager (put your own advertisements into the classifieds in 5 different positions)
-    17. Stripe Gateway (accept payments via Stripe for AWPCP ads)
-    18. PayFast Gateway (accept payments via PayFast for South Africa (ZAR) for AWPCP ads)
-    19. ZIP Search Module (search for ads that have address fields within a radius of a postal code)
+* Search classifieds by city, state, country, username, or keyword
+* Allow AdSense ads to be displayed
+* Control over HTML use in classifieds
+* Limit the text size of ad postings
+* Standard form fields can be enabled or disabled, depending on your needs (title, website, name, country, etc)
+* Allow or disallow image posting with ads
+* Automatic expiration of ads (free or paid)
+* Configurable ad display for AdSense placement
+* Classified ads can have a "Tweet This" button in their layout
+* Classified ads can have a "Share on Facebook" button in their layout
+* Classified ads can be flagged by community for bad/offensive content
+* Classified ads can imported via CSV files
+* Classified ads now support embedded videos
+* Classified ads can have character limits, supported by plans (different plans can have different limits)
+* Classified ads can be displayed on any page for a single category using shortcodes
+* Auto-verify ads with email links to post immediately upon click
+* Classified ads can be 'Sent to Facebook' inside of ad management
+* Support for displaying ad events in BuddyPress activity stream with [BuddyPress module](https://awpcp.com/premium-modules/buddypress-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* Classified ads can be edited via front end, back end with or without registration (depending on settings)
+* Multiple levels of categories supported
+
+== Notification Features ==
+
+* Allow posters to be notified of expiring ads, renewals, and approvals of ads
+* Allow admin to be notified when new ads are posted, ads are edited and much more
+* Classified ad users can contact the ad poster without exposing the poster's email (blind email system, similar to Craigslist)
+* Admin can (optionally) be notified of expiring ads
+
+== Ad Listing Payment Features ==
+
+* Allows for paid or free classifieds
+* Supports PayPal, PayPal Pro, Authorize.net, PayFast, Stripe and 2Checkout for paid ads
+* Allow for image posting limits higher than free ads
+* Multiple fee scales for posting ads (allows you to have longer ad postings with higher fees)
+* Variable ad expiration lengths connected to fee scale (e.g. allow ads to run for 30 days for $10, 60 days for $15, etc)
+* Supports a "credit system" or pay with regular currency per ad. Mix and match if you want.
+* Support for ad "subscriptions" (packages of ads for a single price)
+
+== Ad Posting Controls ==
+
+* Allow admin to approve ads prior to posting
+* Allow admin to approve images prior to posting
+* Users can edit or delete their own classifieds
+* Admin can edit or delete all ads in the system
+* Secure system gives users a unique editing key to administer their own ads
+* Allows for limiting image posting (by image size, height, width and total count if desired)
+* Anti-spam checks for all ads posted via Akismet.
+* Flagged ads can be viewed separately to determine violations, and then deleted or unflagged.
+* Ad Management panel, visible by users and admins for easier ad creation/editing/delete.
+* Admin can post ads on behalf of other users with the ads displaying as if the user posted them initially
+* Email verification step can be used to auto-post ads upon successful verification link click
+* Ads can be posted to a Facebook page manually or automatically
+
+== Image Features ==
+
+* Allow image posting or shut it off completely
+* Control the number, filesize, height and width of images posted
+* Allow for different numbers of images to be posted with paid ads vs. free ads
+* Allow for image approval prior to posting
+* Allow users to have a primary image for their ad
+* Now supports multi-image asynchronous loading
+
+== Premium Classified Modules (Add-on modules, not included in our free classified website builder) ==
+
+* Category Icons (adds small icons to give visual cues to your user for each category in AWPCP)
+* Extra Fields (allows you to add any custom fields for display. For example, if you have a pet-related board, you might have "Sex", "Breed", and "Dam/Sire" as additional fields you require for display). Now supports search and custom ordering of fields.
+* Regions Control (allows you to restrict viewing of ads based on locale, so users don't see items they aren't physically near them, also allows customization of the region types, such as village, borough, etc)
+* PayPal Pro Support (allows you to have an embedded payment form on your site for use with PayPal Pro accounts)
+* RSS Feeds (allows you syndicate your classifieds for your users to download in their favorite RSS reader and come back to your site more often!)
+* Featured Ads (allows you to promote certain ads over others by charging a fee for them, featured ads are displayed using CSS to highlight them. Featured ads are always returned first in a category, the overall ad list, or in search results. Also has a widget for placement anywhere on your site. Full admin control of featured ads, too)
+* Fee Per Category (allows you to charge for certain categories and not others, giving you more freedom on how to configure your classified section. Allows for multiple fee plans per category, as well as a default plan to cover "all other unspecified" categories)
+* Coupons/Discounts (allows you to offer coupon codes for ad promotions to your users, coupons can be a percent off, or a fixed amount, have expiration dates and be tracked by usage)
+* Subscriptions (allows power users to place blocks of ads at a time, great for real estate agents, car dealers, anyone who wants to place ads in bulk.)
+* Comments/Ratings (allows users to rate ads and place comments on them.)
+* Authorize.net Payment Gateway (allows users to purchase ads, subscriptions and credit plans using Authorize.net)
+* Attachments (allows users to attach PDFs, text files or other images to their classifieds (great for job boards!))
+* BuddyPress (allows users to manage their ads in the BuddyPress profile directly, see events from ad posting in the activity stream and more)
+* Mark as Sold (allows users to mark for sale items as sold to keep content in your classifieds, but clarify availability)
+* Restricted Categories (restrict content from users unless they accept a disclaimer from your site.)
+* Ad Campaign Manager (put your own advertisements into the classifieds in 5 different positions)
+* Stripe Gateway (accept payments via Stripe for AWPCP ads)
+* PayFast Gateway (accept payments via PayFast for South Africa (ZAR) for AWPCP ads)
+* ZIP Search Module (search for ads that have address fields within a radius of a postal code)
 
 = Premium Module Links: =
-* **NEW** [Stripe](https://awpcp.com/premium-modules/stripe-module?ref=wp)
-* **NEW** [PayFast](https://awpcp.com/premium-modules/payfast-module?ref=wp)
-* **NEW** [ZIP Search](https://awpcp.com/downloads/zip-code-search-module?ref=wp)
-* [Mark as Sold](https://awpcp.com/premium-modules/mark-as-sold-module?ref=wp)
-* [Restricted Categories](https://awpcp.com/premium-modules/restricted-categories-module?ref=wp)
-* [Ad Campaign Manager](https://awpcp.com/premium-modules/campaign-manager-module?ref=wp)
-* [BuddyPress](https://awpcp.com/premium-modules/buddypress-module?ref=wp)
-* [Attachments](https://awpcp.com/premium-modules/attachments-module?ref=wp)
-* [Comments/Ratings](https://awpcp.com/premium-modules/comments-ratings-module?ref=wp)
-* [Authorize.net Gateway](http://www.awpcp.com/premium-modules/authorizenet-payment-module?ref=wp)
-* [PayPal Pro Gateway](http://www.awpcp.com/premium-modules/paypalpro-payment-module?ref=wp)
-* [Extra Fields](https://awpcp.com/premium-modules/extra-fields-module?ref=wp)
-* [Region Control](https://awpcp.com/premium-modules/regions-control-module?ref=wp)
-* [Category Icons](https://awpcp.com/premium-modules/category-icons-module?ref=wp)
-* [RSS Feeds](https://awpcp.com/premium-modules/rss-module?ref=wp)
-* [Featured Ads](https://awpcp.com/premium-modules/featured-ads-module?ref=wp)
-* [Fee per Category](http://www.awpcp.com/premium-modules/fee-per-category-module?ref=wp)
-* [Coupons/Discounts](http://www.awpcp.com/premium-modules/coupon-module?ref=wp)
-* [Subscriptions](http://www.awpcp.com/premium-modules/subscriptions-module?ref=wp)
 
-Or, just [Donate to AWPCP to Support further development](https://awpcp.com/donate?ref=wp)
+* **NEW** [Stripe](https://awpcp.com/premium-modules/stripe-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* **NEW** [PayFast](https://awpcp.com/premium-modules/payfast-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* **NEW** [ZIP Search](https://awpcp.com/downloads/zip-code-search-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Mark as Sold](https://awpcp.com/premium-modules/mark-as-sold-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Restricted Categories](https://awpcp.com/premium-modules/restricted-categories-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Ad Campaign Manager](https://awpcp.com/premium-modules/campaign-manager-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [BuddyPress](https://awpcp.com/premium-modules/buddypress-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Attachments](https://awpcp.com/premium-modules/attachments-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Comments/Ratings](https://awpcp.com/premium-modules/comments-ratings-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Authorize.net Gateway]( https://awpcp.com/premium-modules/authorizenet-payment-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [PayPal Pro Gateway]( https://awpcp.com/premium-modules/paypalpro-payment-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Extra Fields](https://awpcp.com/premium-modules/extra-fields-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Region Control](https://awpcp.com/premium-modules/regions-control-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Category Icons](https://awpcp.com/premium-modules/category-icons-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [RSS Feeds](https://awpcp.com/premium-modules/rss-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Featured Ads](https://awpcp.com/premium-modules/featured-ads-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Fee per Category]( https://awpcp.com/premium-modules/fee-per-category-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Coupons/Discounts]( https://awpcp.com/premium-modules/coupon-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+* [Subscriptions]( https://awpcp.com/premium-modules/subscriptions-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
+
+Or, just [Donate to AWPCP to Support further development](https://awpcp.com/donate/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
 
 These are just some of the features of Another WordPress Classifieds Plugin
 
-For more information and support please visit [https://awpcp.com](https://awpcp.com?ref=wp)
-For plugin support please visit [http://forum.awpcp.com](http://forum.awpcp.com)
+For more information and support please visit [https://awpcp.com](https://awpcp.com?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
 
-If you love the plugin, [please consider purchasing a Premium Module](https://awpcp.com/premium-modules/?ref=wp)!
-
-== Credits ==
-
-Copyright 2009-19 awpcp.com
-
-AWPCP Classifieds icons courtesy of http://www.famfamfam.com/lab/icons/silk/
-dcfunctions.php used with permission under GPL by Dan Caragea http://www.datemill.com
-fileop.class.php used with permission under GPL by Dan Caragea http://www.datemill.com
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-
-
+If you love the plugin, [please consider purchasing a Premium Module](https://awpcp.com/premium-modules/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)!
 
 == Installation ==
+
 = IMPORTANT =
 
 Please backup your WordPress database before you install/uninstall/activate/deactivate/upgrade Another WordPress Classifieds Plugin.
@@ -198,52 +146,342 @@ For example, if your classifieds page will be named "Classifieds", you might hav
 You need to check your database to make sure data from your previous classifieds plugins does not still exist. Specifically, you need to delete all entries from your wp_posts table where the post_title and post_name values are the same as what you plan to name your classifieds page.
 
 1. 	Upload the folder another-wordpress-classifieds-plugin with its contents to wp-content/plugins/
-
-2.  Activate the plugin
-
+2. Activate the plugin
 3.	Click on the "Click here to setup your site options" link and fill out all your various options to configure how you want your classifieds to run.
-
 4. 	After you have setup your options you should create some categories and sub categories for your classifieds
-
 5. 	After you have created your categories you should setup your payment fees if you are going to be running in pay mode.
 
-Your classifieds should now be ready and working. If you are having problems please visit the [support forum](http://forum.awpcp.com) for technical questions, documentation and FAQs.
-
+Your classifieds should now be ready and working.
 
 == Screenshots ==
 
-[Visit the main site for screenshots](http://www.awpcp.com/features)
+[Visit the main site for screenshots]( https://awpcp.com/features/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
 
 == Frequently Asked Questions ==
 
-For the definitive FAQ section, please visit the [FAQ Section of the Forum](http://www.awpcp.com/forum/faq), or our [Quick Start](https://awpcp.com/quick-start-guide/) guide.
+For the definitive FAQ section, please visit the [FAQ Section of the Forum]( https://awpcp.com/forum/faq/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion), or our [Quick Start](https://awpcp.com/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) guide.
 
-= Installation Instructions =
-Please see our [Installation Guide](https://awpcp.com/quick-start-guide/#qs-general), the [Quick Start Guide](https://awpcp.com/quick-start-guide) for common how-to scenarios, and our [Initial Setup](https://awpcp.com/documentation/#setup) page for instructions on how to get going quickly with Business Directory Plugin.
+= How do I install Another WP Classifieds Plugin? =
+Please see our [Installation Guide](https://awpcp.com/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#qs-general), the [Quick Start Guide](https://awpcp.com/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) for common how-to scenarios, and our [Initial Setup](https://awpcp.com/documentation/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#setup) page for instructions on how to get going quickly with Business Directory Plugin.
 
-Full [documentation](https://awpcp.com/docs) for the plugin is also available.
+Full [documentation](https://awpcp.com/docs/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) for the plugin is also available.
 
-If you are having problems please visit [support forum](https://awpcp.com/forum) for help.
+= What types of classified listings directories can I create? =
+
+Our classifieds website builder software combined with our add-on modules is the most powerful classifieds plugin on the market. The options for classified advertising are limitless. Here are a few types of classified directories you can create:
+
+* Job board listings and help wanted
+* Auto, truck, and car listings
+* Apartment classifieds
+* Property and real estate listings
+* Dating and personal listings
+* Fashion listings to buy and sell clothing
+* Announcements for events like yard sales, reunions, auctions, and school events
 
 = Can AWPCP support paid and free listings? =
-Yes it can.  You can do this by creating fee plans for 0.00 and some other paid amount at the same time.  For more details, read [this article](https://awpcp.com/quick-start-guide/#qs-freepaid).
+Yes it can. You can do this by creating fee plans for 0.00 and some other paid amount at the same time. For more details, read [this article](https://awpcp.com/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#qs-freepaid).
 
 = Will AWPCP work with my theme? =
-AWPCP will work with any well-written, WP 4.x compliant theme.  Generally speaking, paid themes tend to be higher quality than free ones, so we don't recommend those.
+AWPCP will work with any well-written, WP compliant theme. Generally speaking, paid themes tend to be higher quality than free ones.
 
-Whatever theme you pick, we recommend using the Theme Check plugin (available for free on WordPress.org) to validate how WordPress-compliant that theme actually is.  The more errors and warnings you see on the theme when you run that check, the worse the theme is.  You can read more about it here:  https://wordpress.org/plugins/theme-check/
-
-(This plugin was developed by WP Core developers to validate their own default themes and is highly respected in the theme community)
-
-In general, we like WooThemes as a solid company with great products and support.  You can check them out [here](http://woothemes.com)  Or [StudioPress](http://studiopress.com​​)
+In general, we like WooThemes as a solid company with great products and support. You can check them out [here](http://woothemes.com) Or [StudioPress](http://studiopress.com​​)
 
 = Can AWPCP be translated into my language? =
-Yes it can. AWPCP comes with many user-provided translations under the /languages folder. For details on how to do it, our [translation guide](https://awpcp.com/quick-start-guide/#qs-translate) will help get you started.
+Yes it can. AWPCP comes with many user-provided translations under the /languages folder. For details on how to do it, our [translation guide](https://awpcp.com/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#qs-translate) will help get you started.
 
 = Is AWPCP compatible with WordPress Multisite (WPMU)? =
-Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory.  This can be done under Plugins->Add New as the Administrator user.  Do not "network activate" AWPCP as the "super admin".
+Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+
+= Version 4.0.16 =
+* Enhancement - Optimize get_categories_hierarchy function by removing empty categories when ‘Hide empty categories from dropdowns’ setting is active. 
+* Enhancement - Add setting to show/hide categories selector in Browse Ads page. 
+* Enhancement - Add ‘awpcp_country_list_options_countries’ filter to country list options. 
+* Fix - Update category metadata value when it’s created while submitting an ad on admin dashboard. 
+* Fix - Register manual upgrade routines only when plugin is outdated. 
+* Fix - Prevent removing existing regions data on ad update when no new regions data is present. 
+* Fix - Update PHPMailer instantiation to match WP 5.5 changes. (#2999, #3018)
+* Fix - Set post_type for query that retrieves expired listings. 
+* Tweak - Generate default values for some variables to prevent PHP notices. 
+* Tweak - Fix styling in checkout expiration date fields. 
+
+= Version 4.0.15.1 =
+* Fix - Fix init priority for setting up modules.
+
+= Version 4.0.15 =
+* Fix - Latests ads widget CSS classes. 
+* Fix - Quick search action URL when site permalink structure is set to Plain. 
+* Fix - AWPCP "init" action hook priorities to prevent issues while running first time verifications. 
+
+= Version 4.0.14 =
+* Enhancement - New Add setting to Classifieds->Notifications for enabling/disabling user notification after listing edit. 
+* Enhancement - Add sortfeatured parameter to [AWPCPLATESTLISTINGS] shortcode to list featured listings on top of the list. 
+* Fix - Register AWPCP custom post type and custom taxonomies earlier on 'init' action. 
+* Fix - Increase max fee amount value to a 10 digit including 2 decimals (99,999,999.99). 
+* Fix - Use 'wpautop' function to fix spacing issues on ad content field. 
+* Fix - Fix modules integration compatibility with search widget. 
+* Fix - Fix bug on category placeholder replacement. 
+* Tweak - Add notice to inform customer when submitted listing requires email validation. 
+* Tweak - Increase category filter width in 'Browse Ad' view. 
+* Tweak - Change 'http' to 'https' for Facebook and Twitter URLs. 
+
+= Version 4.0.13 =
+* Enhancement - Remove regions fields from Search Listings Widget in Core, use hooks for module integration instead.
+* Fix - Remove Regions module enabled condition to register Search Widget.
+* Fix - Prevent ad set as published after setting fee plan while creating a new ad on WP dashboard.
+* Fix - Lower priority on Core 'init' action hooks to fix modules integration and ad content spacing issues.
+
+= Version 4.0.12.1 =
+* Fix - Flush rewrite rules on upgrade.
+* Fix - Ad enabled notification not working.
+
+= Version 4.0.12 =
+* Fix - Wrong fee plan shows when editing a page 
+* Tweak - Move all regions functionality to the regions module. 
+* Tweak - formatting issue of the new renew button 
+* Fix - Listing content type registration priority 
+* Fix - Remove nl2br function because it was causing additional spaces on ad detail field. 
+
+= Version 4.0.11.1 =
+* Fix - Payment plans don't go away in free mode 
+* Fix - fields display even if disabled in latest release 
+* Fix - Categories selector in browse ads page doesnt work when multi select dropdown is enabled. 
+
+= Version 4.0.11 =
+* Fix - Fix problem with FastCgi servers. 
+* Fix - Add regions widget to Advanced Search. 
+* Tweak - Restrict maximum displayed results. 
+* Enhancement - Allow users to renew in frontend. 
+* Enhancement - create $adcontactemail placeholder. 
+* Enhancement - Add category multiple select dropdown widget. 
+
+= Version 4.0.10.1 =
+* Fix - Advanced search bug introduced from last update. 
+
+= Version 4.0.10 =
+* Fix - Warning in class-listings-content.php. 
+* Fix - Image placeholder custom URL in widgets. 
+* Fix - Warning in class-delete-browse-categories-page-notice.php 
+* Fix - Notice: Undefined index class-terms-of-service-form-field.php. 
+* Tweak - Multiple image selection on image uploader button click. 
+* Tweak - Use SelectWoo calling method to avoid conflicts with select2. 
+* Tweak - Make regions selector dropdown easier to click on mobile. 
+* Tweak - Clear categories cache when options are saved. 
+* Tweak - Show # of regions in payment term page. 
+* Tweak - Fix search form submit button spacing issue. 
+* Enhancement - Redirect deleted ads to main classifieds page. 
+* Enhancement - Send email verification email manually. 
+
+= Version 4.0.9.1 =
+* Fix - Emails are not sent to moderators. 
+* Fix - advanced search doesn't work. 
+* Fix - Warning in listing management panel. 
+* Fix - Notification in single ads display. 
+* Tweak - Removes lightbox from ad listings. 
+
+= Version 4.0.9 =
+* Fix - Undefined error in place ad page. 
+* Fix - Ad has no image option not working in widget. 
+* Fix - Send emails when creating ad as moderator. 
+* Enhancement - Show lightbox gallery in ad listings. 
+* Enhancement - Add category separator to import settings. 
+* Tweak - remove max categories message. 
+* Tweak - Ads without images won't open lightbox in list view. 
+
+= Version 4.0.8.1 =
+* Fix - Admin crash bug on process_item(). 
+
+= Version 4.0.8 =
+* Fix - Suppress filters on search query to avoid conflicts. 
+* Fix - AWPCP Profile data not shown on the front end. 
+* Fix - Category count only counts own listings. 
+* Fix - Don't show allowed listings for non-subscription plans. 
+* Fix - keep the amount of 0.00 in edit screens. 
+* Fix - Fix number of ads shown at the top of the Classifieds Ads admin screen
+* Fix - Lightbox gallery items in ad preview are not updated. 
+* Fix - Pagination in Regions admin page breaks after using the Add Region form. 
+* Fix - Hide payment plans until a category is selected isn't working. 
+* Tweak - clear categories cache when options are saved. 
+* Tweak - Makes sure big selects are allowed in MySQL. 
+* Tweak - Disable edit button in preview mode when placing ad. 
+* Enhancement - Replace select2 with SelectWoo. 
+* Enhancement - Add post status options to import functionality. 
+* Enhancement - Add currency validation. 
+* Enhancement - Add quick action buttons to quick view. 
+* Enhancement - "Add new announcement" button in management panel for non moderator users. 
+
+= Version 4.0.7 =
+* Fix - Credit System validation. 
+* Fix - profile info not transferred automatically when creating a new ad . 
+* Tweak - Show disabled ad message instead of 404 not found error. 
+* Enhancement - Add current_user_is_subscriber() to roles and capabilities. 
+* Enhancement - User listing shortcode show login form if logged out. 
+* Enhancement - AWPCPSHOWCAT shortcode fix and enhancements. 
+* Fix - Phone number search not working. 
+
+= Version 4.0.6 =
+* Fix - Submit listing image lightbox doesn't have a way to exit the image Buddypress. 
+* Fix - Can't change time/date to 'other'. 
+* Fix - set default value to avoid fatal error. 
+* Fix - Manual upgrade required message doesn't go away once it's done. 
+* Fix - Categories dropdown redirection issue on the front page. 
+* Fix - Avoids categories dropdown container overflow. 
+* Fix - Hide fee plans if no category is selected. 
+* Fix - Fix number of ads shown at the top of the Classifieds Ads admin screen. 
+* Fix - Listing is currently disabled until the owner verifies their email for imported items. 
+* Fix - Regions filtering issue in main classifieds page. 
+* Fix - imported categories not showing up in admin area. 
+* Fix - Fix PHP warnings and notices in class-recaptcha-provider.php. 
+* Fix - User cannot delete ad permission issue. 
+* Fix - Fix PHP Warning in WordPress 5.3. 
+* Fix - Import/Export typo and unused fields. 
+* Fix - Images in lightbox displaying weird on some themes. 
+* Fix - Image justification. 
+* Fix - Button layout cleanup, totally inconsistent. 
+* Tweak - Filter for Category doesn't work Version 4.0.5. 
+* Tweak - Categories filter for only selected category and not children in admin area. 
+* Tweak - ads created by moderators are verified by default. 
+* Enhancement - Add functionality to approve images in bulk. 
+* Enhancement - Add EUR YMD date format to import functionality. 
+
+= Version 4.0.5 =
+* Fix - Renewed ads not going to top of list. 
+* Fix - Delete category can't be canceled. 
+* Fix - Start/end date missing. 
+* Fix - Submit listing image lightbox doesn't have a way to exit the image. 
+* Fix - Fix double message warning. 
+* Fix - Counter not working on update. 
+* Fix - Hide attachments section if no uploads are allowed. 
+* Fix - Layout issue affecting the categories dropdown in the Browse Ads page. 
+* Fix - Compatibility with jQuery 1.8.3 in Submit Listing Page. 
+* Fix - Use fewer JOINs to order ads by _awpcp_is_featured. 
+* Fix - Conflict with Yoast SEO 8.1.x and older. 
+* Localization - Update translations.
+
+= Version 4.0.4 =
+* Fix - URL to access listing's Quick View in admin dashboard. 
+* Fix - Function that sends listing pending approval notifications. 
+* Fix - incorrect usage of wpdb::prepare() in ajax_update_ad_count(). 
+* Fix - Uncaught Exception Fatal error on new installations of 4.0.3. 
+* Fix - conflict with Polylang. 
+* Fix - Doing it wrong PHP Notice in class-terms-of-service-form-field.php. 
+* Fix - Thumbnail not showing properly on default theme. 
+* Fix - Conflict with the select2 script from Indeed Membership Pro plugin 
+* Tweak - Update note about the recommended location for translation files. 
+
+= Version 4.0.3 =
+* Fix - Prevent Undefined index PHP Notice in widget-search.php. 
+* Fix - Fix upgrade routine to migrate category with empty names 
+* Fix - Renewed ads not going to top of the list. 
+* Localization - Update translations. .
+
+= Version 4.0.2 =
+* Fix - Bring back the Terms of Service field that was accidentally removed in 4.0.0. 
+* Fix - Add Transifex configuration files. 
+* Fix - Bug in the upgrade routine that stores old media file as attachments in the Media Library. 
+* Fix - modifies AWPCP to use WooCommerce's fork of select2 when is available. 
+* Fix - Improves compatibility with plugins that include old font-awesome library 4.
+* Enhancement - Let the user know when the maximum amount of allowed categories have been reached and make it explicit on each fee plan. 
+* Fix - Restores support for including HTML in listings content. 
+* Fix - Prevents PHP error in calculate_start_and_end_dates_using_payment_term(). 
+* Fix - Bug rendering extra form fields options. 
+* Fix - Save metaboxes when the post is saved from the editor only. 
+* Fix - Update get_query_var() to support array values. 
+* Fix - Fix incorrect usage of wpdb::prepare() in ajax_update_ad_count(). 
+* Fix - Typo in render_account_balance_for_transaction(). 
+* Fix - Updates category and parent category placeholders to work in AWPCP 4.0 
+* Localization - Update translation template (POT) file and Spanish translation.
+
+= Version 4.0.1 =
+* Fix - Prevent ads posted on the dashboard from staying unverified. .
+* Fix - Fix hide-noimage-placeholder setting. 
+* Fix - Bring back Renew Ad table action for subscribers. 
+* Fix - Prevent creating duplicated ads, categories and attachments after downgrade. 
+* Fix - Routines that update information about associated listings to process disabled listings as well. 
+* Localization - Update translation template (POT) file and Spanish translation.
+
+= Version 4.0.0 =
+* Enhancement - Allow users to choose category, payment term, enter ad details and upload images from the same page so that placing new ads takes fewer steps.
+* Enhancement - Add support for multiple levels of categories. Sub-categories can now have children categories as well.
+* Enhancement - Allow admins to force ads to be posted on categories that have no children only. 
+* Enhancement - Allow admins to edit the description of categories.
+* Enhancement - Replace icon for admin menus with the newspaper icon from Font Awesome.
+* Enhancement - Add new admin screens for adding and editing fees.
+* Enhancement - Improve the appearance and organization of Settings admin pages.
+* Enhancement - Improve the appearance of the Debug admin page.
+* Enhancement - Improve the appearance of the Categories admin page.
+* Enhancement - Improve the appearance of the Fees admin page. 
+* Enhancement - Allow ads in the admin dashboard to be searched by a range of dates. 
+* Enhancement - Store ads as a custom post type and categories as custom taxonomies. 
+* Enhancement - Store uploaded images and files as attachments in the Media Library. 
+* Enhancement - Add support for user defined values in Yoast SEO integration. Administrators can now customize SEO properties of individual ads from the admin dashboard. 
+* Enhancement - Allow administrators to see a list of fields that must be included in the CSV file used to import ads and to see a sample CSV file. 
+* Enhancement - The CSV importer now supports the `payment_term_id` and `payment_term_type` columns, allowing administrators to specify the payment term that will be used for each listing. `payment_term_type` can be either `fee` or `subscription`. 
+* Enhancement - The CSV importer now supports the `sequence_id` column, allowing administrators to define a unique identifier for each ad that can later be used to update ads by importing a different CSV file that includes the same identifiers with modified ad information. 
+* Enhancement - Allow administrators to edit the template for the Reply to Listing email notification. 
+* Enhancement - Allow administrators to edit the template for the Verify Email email notification. 
+* Enhancement - Replace Categories Selectors with a new implementation using jQuery Select2.
+* Enhancement - Fix behavior of Categories Selector in Search Ads page. 
+* Enhancement - Show sub-categories of categories that match search term in categories selector. 
+* Enhancement - The XML Sitemap module is no longer necessary. Third party plugins that support Custom Post Types are now able to see ads and should include them in the website's sitemap automatically.
+* Enhancement - Allow plugin settings to be exported and imported from the new Tools admin page. 
+* Enhancement - Move Import/Export Settings to the new Tools admin page. 
+* Enhancement - Add support for WP PageNavi. 
+* Enhancement - Update main classifieds screen to show enabled, disabled, expired and invalid listings count.
+* Enhancement - Replace Thickbox with jQuery lightGallery .
+* Enhancement - Add new icons for social buttons and flag links.
+* Enhancement - Allow site owners to store the custom stylesheet in the theme's directory .
+* Enhancement - Add `$posted_date_time` placeholder to display posted date and time .
+* Enhancement - Update Pages settings. Plugin pages can now be chosen from a dropdown that shows all available pages. 
+* Enhancement - Allow ads to be displayed on their own page (like a single post) instead of showing them through the Show Ad page. Ads will be displayed on their own page by default on new installations. 
+* Enhancement - Add message at the top of the Search Ads results with information about the regions used in the search. 
+* Enhancement - Move Import ZIP Code Database and Import Listings links to the Import & Export admin page. 
+* Enhancement - Hide approve and reject media actions from regular users. 
+* Enhancement - Remove purchase links for already installed modules from admin sidebar. 
+* Enhancement - Add plugin integration for Breadcrumb NavXT. 
+* Enhancement - CSV Export: ads can now be exported into a CSV file. 
+* Enhancement - Support restoring default value of ad listings/single ad page layout settings. 
+* Enhancement - Renamed "Disable expired listings instead of deleting them?" setting to "Delete expired ads" to clarify how expired ads are handled and make it easier to change the behavior. 
+* Enhancement - Show current+expected credits balance in Checkout pages. 
+* Enhancement - Add $category_description placeholder to display the description of the ad's category. 
+* Enhancement - Use the contact email address that anonymous users entered while they were creating the ad to pre-fill the email address field in the billing form. 
+* Fix - Clear categories list cache when listing categories change. 
+* Fix - Clear categories list cache after a category is deleted. 
+* Fix - Remove email validation bug in Send Access Key form. 
+* Fix - Improved appearance for Form Steps UI element.
+* Fix - Prevent some themes from adding margin or padding to Form Steps, Payment Term List and Multiple Region Selector UI.
+* Fix - Use natural size of thumbnail images when number of columns is zero. 
+* Fix - Change capitalization in message shown on empty Widgets.
+* Fix - Improved messages shown when a listing is posted/modified. 
+* Fix - Removed typo in Manual Upgrade admin screen. 
+* Fix - Improved appearance of attachments list on Responsive theme. 
+* Fix - Use the correct thumbnail width on Twenty Eleven. 
+* Fix - Use `required` as an attribute instead of a class to prevent unnecessary red text. 
+* Fix - Show currency symbol next to price field .
+* Fix - Update error message shown when uploaded files cannot be stored. 
+* Fix - Remove usage of each() on create_pager() and vector2options().
+* Fix - Remove bug in code that corrects image rotation. 
+* Fix - Prevent plugin pages from being selected in the Reading Settings dropdowns. All plugin pages are now excluded from the Posts page dropdown and the Edit Ad, Renew Ad, Reply to Ad and Show Ad pages are excluded from the Homepage dropdown. 
+* Fix - Adjust start/end dates when a listing awaiting approval is enabled. 
+* Fix - Prevent Invalid URL DOMException trying to upload images on localhost. 
+* Fix - Don't show region fields if the fee doesn't allow them. 
+* Fix - Prevent Invalid URL DOMException trying to upload images on localhost. 
+* Fix - Views counter now also works when the ad page is cached. 
+* Fix - Update appearance of Thank You admin notice to use the colors from standard WordPress notices. 
+* Fix - Add setting to enable/disable admin renewal emails. 
+* Tweak - Replaces 'No characters limit' with 'Unlimited characters'. 
+* Tweak - Allow admins to disable Font Awesome stylesheet. 
+* Tweak - Allow admins to hide standard fields from Search form. 
+* Tweak - Hide Settings link on Plugins admin screen if there are pending manual upgrades. 
+* Tweak - Increase width of Action column on Manage Categories admin page.
+* Tweak - Do not show the Classifieds Bar in ad previews.
+* Dev - PHP 5.6 is the minimum required version now and the plugin will gracefully exit if server is using an older version. 
+* Dev - Rename `awpcp_category` parameter to `awpcp_category_id`. 
+* Dev - Add new image sizes: `awpcp-thumbnail`, `awpcp-featured`, `awpcp-featured-on-lists` and `awpcp-large`. 
+* Dev - Add filter to show category description in list of categories. 
+* Localization - Translation files with names starting with `AWPCP-` are not supported anymore. The plugin will rename existing files to use `another-wordpress-classifieds-plugin-` instead for users upgrading from version 3.9.x to version 4.0.0. 
+* Localization - Stop loading translation files using old textdomain. 
 
 = Version 3.9.5 =
 * Fix bug that prevents Regions module from being updated. 
@@ -816,7 +1054,7 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Namespace rules for messages in plugin's stylesheet
 
 = Version 3.3.3 =
-* Fix problem with image uploads that allowed for non-image files to be uploaded instead.  Strict extension checking enabled.  Security problem if left unpatched.
+* Fix problem with image uploads that allowed for non-image files to be uploaded instead. Strict extension checking enabled. Security problem if left unpatched.
 
 = Version 3.3.2 =
 * Allow users to choose thumbnail position in Latest Ads and other widgets
@@ -1108,7 +1346,7 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * NEW: New Widgets: Random Ad widget, Categories widget.
 * NEW: New shortcode: [AWPCPLATESTLISTINGS].
 * NEW: New shortcode: [AWPCPRANDOMLISTINGS].
-* NEW: New shortcode: [AWPCPFEATUREDLISYINGS]  (with Featured Ads module only).
+* NEW: New shortcode: [AWPCPFEATUREDLISYINGS] (with Featured Ads module only).
 * NEW: Add support for reCAPTCHA in Place Ad and Reply to Ad pages.
 * NEW: Add new content placeholders to be used in Single and Listings layout.
 * NEW: Replace Max and Min price search dropdown fields with textfields.
@@ -1206,7 +1444,7 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fixed problem with category links where a 404 error would appear when AWPCP pages are used on the front of a site
 
 = Version 2.1.3 =
-* NEW: Added shortcode for display of single categories of ads:  [AWPCPSHOWCAT id=4 children=true] where id is the category, children says whether to display child categories of this category or not (allowed values:  true, false, yes, no, 0, 1)
+* NEW: Added shortcode for display of single categories of ads: [AWPCPSHOWCAT id=4 children=true] where id is the category, children says whether to display child categories of this category or not (allowed values: true, false, yes, no, 0, 1)
 * NEW: Send email when Ad is successfully renewed.
 * NEW: Store and display the most recent date when an Ad has been renewed.
 * NEW: Enable Ad Images if the renewed Ad is enabled.
@@ -1280,7 +1518,7 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fixed compatibility problem with YOAST SEO WordPress plugin.
 * Fixed preserve original information when editing an Ad.
 * Fixed Editing Ads as admin causes admin's info to be used in the Ad.
-* Fixed Removed backslashes from  Ad Title, Reply To Ad email, and Ad Details form, when there were erros in the information submitted.
+* Fixed Removed backslashes from Ad Title, Reply To Ad email, and Ad Details form, when there were erros in the information submitted.
 * Fixed Avoid showing validation errors when PayPal transaction is successfully verified.
 * Fixed Updated POT file with several missing strings.
 * Fixed pagination when a category has been selected.
@@ -1410,7 +1648,7 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * NEW: Ad Management Panel
 * NEW: CSV ad importer
 * NEW: Support for embedded videos in ads
-* NEW: Full Ad Renewal Support:  emails sent X days before expiration, email customization, renewal links in email
+* NEW: Full Ad Renewal Support: emails sent X days before expiration, email customization, renewal links in email
 * NEW: Feature to require registration for ad reply (reduces spam)
 * NEW: Workflow text made clearer
 * NEW: Ad Profile User meta fields are now auto-populated for ad creation (requires registration)
@@ -1499,10 +1737,10 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fixed Facebook share button title to use actual ad title
 
 = Version 1.8.6 =
-* NEW: Facebook share button for individual ad pages.  To use it, make sure you have $sharebtn in your single ad template
+* NEW: Facebook share button for individual ad pages. To use it, make sure you have $sharebtn in your single ad template
 * NEW: Added field codes for single ad display: $ad_postdate, $ad_startdate, $ad_categoryurl
 * NEW: Added ability to hide/show "Posted By" on search form
-* NEW: Flag Ad link for individual ad pages.  To use it, make sure you have $flagad in your single ad template
+* NEW: Flag Ad link for individual ad pages. To use it, make sure you have $flagad in your single ad template
 * NEW: Terms of Service displayed for ads (optionally), if displayed, user must select accept.
 * NEW: Admin can be notified of ads that expire (optionally).
 * NEW: Admin panel now displays start/end date for ads, payment plan (if applicable)
@@ -1525,7 +1763,7 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Made the latest ads display consistent with the ad listing layout (thickbox around image)
 
 = Version 1.8.1 =
-*  Display went crazy with Latest Classifieds widget on upgrade.  Removed unnecessary div.
+* Display went crazy with Latest Classifieds widget on upgrade. Removed unnecessary div.
 
 = Version 1.8.0 =
 * NEW: Normalized version numbering to remove superfluous 0 (1.0.8.0 is now 1.8.0)
