@@ -29,5 +29,16 @@
         "phpunit/phpunit": "6.*",
         "squizlabs/php_codesniffer": "^3.4.0",
         "wp-coding-standards/wpcs": "*"
-    }
+    },
+    "scripts": {
+		"post-install-cmd": [
+			"xrstf\\Composer52\\Generator::onPostInstallCmd"
+		],
+		"post-update-cmd": [
+			"xrstf\\Composer52\\Generator::onPostInstallCmd"
+		],
+		"post-autoload-dump": [
+			"xrstf\\Composer52\\Generator::onPostInstallCmd"
+		]
+	}
 }
