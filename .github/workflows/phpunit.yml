@@ -1,4 +1,4 @@
-name: CI
+name: PHPUnit
 
 on: [push]
 
@@ -10,6 +10,4 @@ jobs:
       - uses: actions/checkout@v2
       - uses: php-actions/composer@v1
       - name: PHPUnit Tests
-        uses: php-actions/phpunit@v9
-        with:
-          configuration: ./phpunit.xml
+        run: ./vendor/bin/phpunit test
