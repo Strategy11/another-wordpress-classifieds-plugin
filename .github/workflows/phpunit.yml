@@ -23,6 +23,9 @@ jobs:
           sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
           sed -i "s/yourusernamehere/travis/" wp-tests-config.php
           sed -i "s/yourpasswordhere//" wp-tests-config.php
+      - name: Creating database
+        run: |
+          sudo /etc/init.d/mysql start
           mysql -u root -e "CREATE DATABASE wordpress_tests;"
           cd "/tmp/wordpress/src/wp-content/plugins/another-wordpress-classifieds-plugin"
           phpenv rehash
