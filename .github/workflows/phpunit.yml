@@ -14,11 +14,10 @@ jobs:
           ./vendor/bin/phpunit --version
           mysql --version
           PLUGIN_SLUG=$(basename $(pwd))
-          echo $PLUGIN_SLUG
           export WP_DEVELOP_DIR=/tmp/wordpress/
           git clone --depth=50 --branch="master" git://develop.git.wordpress.org/ /tmp/wordpress
           cd ..
-          cp -r "$PLUGIN_SLUG" "/tmp/wordpress/src/wp-content/plugins/another-wordpress-classifieds-plugin"
+          cp -r "$PLUGIN_SLUG" "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
           cd /tmp/wordpress/
           pwd
           cp wp-tests-config-sample.php wp-tests-config.php
@@ -29,10 +28,9 @@ jobs:
         run: |
           sudo /etc/init.d/mysql start
           mysql -u root -proot -e "CREATE DATABASE wordpress_tests;"
-      - name: Switch to moved folder
+      - name: PhpUnit tests
         run: |
-          cd "/tmp/wordpress/src/wp-content/plugins/another-wordpress-classifieds-plugin"
+          cd "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
           pwd
           #phpenv rehash
-      - name: PHPUnit Tests
-        run: vendor/bin/phpunit -c phpunit.xml
+          vendor/bin/phpunit -c phpunit.xml
