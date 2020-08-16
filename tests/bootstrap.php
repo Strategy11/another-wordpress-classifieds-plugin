@@ -29,10 +29,12 @@ require AWPCP_DIR . '/includes/functions/assets.php';
 require AWPCP_DIR . '/includes/functions/listings.php';
 require AWPCP_DIR . '/includes/functions/routes.php';
 
+require_once __DIR__ . '/../../../../wp-load.php';
+
 if ( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
-    require getenv( 'WP_DEVELOP_DIR' ) . 'tests/phpunit/includes/bootstrap.php';
+    require_once getenv( 'WP_DEVELOP_DIR' ) . 'tests/phpunit/includes/bootstrap.php';
 } else {
-    require '../../../../tests/phpunit/includes/bootstrap.php';
+    require_once '../../../../tests/phpunit/includes/bootstrap.php';
 }
 
 /**
