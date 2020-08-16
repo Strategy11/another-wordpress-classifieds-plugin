@@ -27,7 +27,8 @@ jobs:
         run: |
           sudo /etc/init.d/mysql start
           mysql -u root -proot -e "CREATE DATABASE wordpress_tests;"
+      - name: Switch to moved folder
           cd "/tmp/wordpress/src/wp-content/plugins/another-wordpress-classifieds-plugin"
-          phpenv rehash
+          #phpenv rehash
       - name: PHPUnit Tests
         run: ./vendor/bin/phpunit -c phpunit.xml
