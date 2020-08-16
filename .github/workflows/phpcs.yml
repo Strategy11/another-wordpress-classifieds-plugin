@@ -1,4 +1,4 @@
-on: [pull_request,push]
+on: [push]
 
 name: Inspections
 jobs:
@@ -10,9 +10,9 @@ jobs:
         uses: actions/checkout@master
       - name: Installing
         run: composer install
-      - name: Analyze code style
-        run: ./vendor/bin/phpcs -p -s -v -n . --standard=./phpcs.xml --extensions=php
       - name: Check PHP syntax
         run: find -L .  -path ./vendor -prune -o -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l
+      - name: Analyze code style
+        run: ./vendor/bin/phpcs -p -s -v -n . --standard=./phpcs.xml --extensions=php
       - name: Run unit tests
-        run: phpunit
+        run: ./vendor/bin/phpunit
