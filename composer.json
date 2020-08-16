@@ -18,6 +18,9 @@
             "vendor/composer"
         ]
     },
+    "require": {
+        "xrstf/composer-php52": "^1.0.19"
+    },
     "require-dev": {
         "antecedent/patchwork": "2.*",
         "brain/monkey": "dev-dev",
