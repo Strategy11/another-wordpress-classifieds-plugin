@@ -32,8 +32,6 @@ require AWPCP_DIR . '/includes/functions/assets.php';
 require AWPCP_DIR . '/includes/functions/listings.php';
 require AWPCP_DIR . '/includes/functions/routes.php';
 
-require_once __DIR__ . '/../../../../wp-load.php';
-
 if ( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
     require_once getenv( 'WP_DEVELOP_DIR' ) . 'tests/phpunit/includes/bootstrap.php';
 } else {
