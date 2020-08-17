@@ -5,9 +5,18 @@ on: [push]
 jobs:
   build-test:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        php: [5.6, 7.0, 7.1, 7.2, 7.3, 7.4]
+    name: PHP ${{ matrix.php }} tests
     steps:
       - uses: actions/checkout@v2
+
+      # get the PHP version
+      - uses: shivammathur/setup-php@v1
+        with:
+          php-version: ${{ matrix.php }}
+
       - uses: php-actions/composer@v1
       - name: Installing WordPress
         run: |
@@ -29,5 +38,4 @@ jobs:
         run: |
           cd "/tmp/wordpress/src/wp-content/plugins/${GITHUB_REPOSITORY#*/}"
           pwd
-          vendor/bin/phpunit --version
           vendor/bin/phpunit
