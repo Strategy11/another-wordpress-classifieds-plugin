@@ -20,6 +20,10 @@
         <exclude name="Squiz.Commenting.FunctionComment.Missing" />
         <exclude name="Squiz.Commenting.VariableComment.Missing" />
         <exclude name="Squiz.Commenting.ClassComment.Missing" />
+        <exclude name="Squiz.Commenting.FileComment.Missing" />
+
+        <!-- Temporary exclusions -->
+        <exclude name="WordPress.Security.EscapeOutput.DeprecatedWhitelistCommentFound" />
     </rule>
 
     <rule ref="Generic.WhiteSpace.ScopeIndent">
