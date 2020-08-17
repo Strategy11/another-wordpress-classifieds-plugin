@@ -30,4 +30,4 @@ jobs:
           cd "/tmp/wordpress/src/wp-content/plugins/${GITHUB_REPOSITORY#*/}"
           pwd
           vendor/bin/phpunit --version
-          vendor/bin/phpunit -c phpunit.xml
+          vendor/bin/phpunit
