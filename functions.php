@@ -1525,7 +1525,7 @@ function awpcp_get_formatted_amount_template( $show_currency_symbol ) {
 }
 
 /**
- * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
+ * XXX: Referenced in FAQ: https://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
  */
 function awpcp_get_currency_symbol() {
     $currency_symbol = get_awpcp_option( 'currency-symbol' );

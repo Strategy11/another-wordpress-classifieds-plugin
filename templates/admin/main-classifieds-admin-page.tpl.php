@@ -8,7 +8,7 @@
 <?php /* translators: %1$s is the opening link tag <a>, %2$s is the closing link tag </a>. */ ?>
 <?php $msg = esc_html_x( 'Thank you for using Another WordPress Classifieds Plugin, the #1 WordPress Classifieds Plugin.  Please direct support requests, enhancement ideas and bug reports to the %s.', '... to the <a>AWPCP Support Website link</a>', 'another-wordpress-classifieds-plugin' ); ?>
 <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-<?php echo awpcp_render_success_message( sprintf( $msg, '<a href="https://awpcp.com/forum/">' . esc_html__( 'AWPCP Support Website', 'another-wordpress-classifieds-plugin' ) . '</a>' ) ); ?>
+<?php echo awpcp_render_success_message( sprintf( $msg, '<a href="https://awpcp.com/get-help/">' . esc_html__( 'AWPCP Support Website', 'another-wordpress-classifieds-plugin' ) . '</a>' ) ); ?>
 
 <?php if ( intval( $hasextrafieldsmodule ) === 1 && intval( $extrafieldsversioncompatibility ) !== 1 ) : ?>
 <div id="message" class="awpcp-updated updated fade">
@@ -56,10 +56,10 @@
                     <?php $msg = esc_html__( "You currently have your system configured to run in free mode. To change to 'pay' mode go to %s and Check the box labeled 'Charge Listing Fee? (Pay Mode).'", 'another-wordpress-classifieds-plugin' ); ?>
                     <?php
                     $url = add_query_arg(
-                        [
+                        array(
                             'page' => 'awpcp-admin-settings',
                             'g'    => 'payment-settings',
-                        ],
+                        ),
                         admin_url( 'admin.php' )
                     );
                     ?>
@@ -110,10 +110,10 @@
                     <?php $msg = esc_html__( "You currently have your system configured to run in pay mode. To change to 'free' mode go to %s and uncheck the box labeled 'Charge Listing Fee? (Pay Mode).'", 'another-wordpress-classifieds-plugin' ); ?>
                     <?php
                     $url = add_query_arg(
-                        [
+                        array(
                             'page' => 'awpcp-admin-settings',
                             'g'    => 'payment-settings',
-                        ],
+                        ),
                         admin_url( 'admin.php' )
                     );
                     ?>

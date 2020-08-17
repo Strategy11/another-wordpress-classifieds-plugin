@@ -301,7 +301,7 @@ class AWPCP_PaymentSettings {
     /**
      * Payment Settings checks.
      *
-     * XXX: Referenced in FAQ: http://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
+     * XXX: Referenced in FAQ: https://awpcp.com/forum/faq/why-doesnt-my-currency-code-change-when-i-set-it/
      *
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */

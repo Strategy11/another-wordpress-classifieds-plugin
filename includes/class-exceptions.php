@@ -24,7 +24,7 @@ class AWPCP_Exceptions {
 
     private function replace_content_placeholders( $placeholders, $message ) {
         $placeholders = array_merge( $placeholders, array(
-            'support-link' => '<a href="http://awpcp.com/contact" target="_blank">',
+            'support-link' => '<a href="https://awpcp.com/contact" target="_blank">',
         ) );
 
         foreach ( $placeholders as $placeholder => $value ) {

@@ -47,7 +47,7 @@ class AWPCP_LicenseSettingsRenderer {
             } else {
                 echo '<input class="button-secondary" type="submit" name="awpcp-activate-' . $module_slug . '-license" value="' . __( 'Activate', 'another-wordpress-classifieds-plugin' ) . '"/>'; // XSS Ok.
 
-                $contact_url     = 'http://awpcp.com/contact';
+                $contact_url     = 'https://awpcp.com/contact';
                 $contact_message = __( 'Click the button above to check the status of your license. Please <contact-link>contact customer support</a> if you think the reported status is wrong.', 'another-wordpress-classifieds-plugin' );
 
                 echo '<br>' . str_replace( '<contact-link>', '<a href="' . esc_url( $contact_url ) . '" target="_blank">', $contact_message ); // XSS Ok.

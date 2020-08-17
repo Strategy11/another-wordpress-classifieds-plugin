@@ -6,12 +6,12 @@
 ?><?php echo awpcp_html_admin_second_level_heading( array( 'content' => __( 'Are you seeing 404 Not Found errors?', 'another-wordpress-classifieds-plugin' ) ) ); // XSS Ok. ?>
 
 <?php
-$allowed_html = [
-    'a' => [
+$allowed_html = array(
+    'a' => array(
         'href',
         'title',
-    ],
-];
+    ),
+);
 
 $message = __( 'If you are seeing multiple 404 Not Found errors in your website, it is possible that some Rewrite Rules are missing or corrupted. Please click the button bellow to navigate to the <permalinks-settings-link>Permalinks Settings</a> page.', 'another-wordpress-classifieds-plugin' );
 $message = str_replace( '<permalinks-settings-link>', '<a href="' . esc_url( admin_url( 'options-permalink.php' ) ) . '">', $message );
@@ -21,7 +21,7 @@ $message = str_replace( '<permalinks-settings-link>', '<a href="' . esc_url( adm
 
 <?php
 $message = __( "Opening that page in your browser will flush the Rewrite Rules in your site. WordPress will then ask all installed and active plugins to register their rules and those 404 Not Found errors should be gone. If that's not the case, please contact <support-link>customer support</a>.", 'another-wordpress-classifieds-plugin' );
-$message = str_replace( '<support-link>', '<a href="http://awpcp.com/contact/">', $message );
+$message = str_replace( '<support-link>', '<a href="https://awpcp.com/contact/">', $message );
 ?>
 
 <p><?php echo wp_kses( $message, $allowed_html ); ?></p>

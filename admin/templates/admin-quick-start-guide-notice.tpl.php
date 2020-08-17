@@ -10,7 +10,7 @@
         </div>
         <div style="float:left;width:50%">
             <?php $text = _x('Yes Please!', 'Quick Start Guide', 'another-wordpress-classifieds-plugin') ?>
-            <?php $url = esc_attr('http://awpcp.com/quick-start-guide') ?>
+            <?php $url = esc_attr('https://awpcp.com/quick-start-guide') ?>
             <p class="align-center"><a id="link-no-thanks" class="button button-primary" href="<?php echo $url ?>" title="<?php echo esc_attr($text) ?>" target="_blank" data-action="disable-quick-start-guide-notice"><?php echo $text ?></a><br/>
                 <?php _ex("Help me get my classifieds running quickly.", 'Quick Start Guide', 'another-wordpress-classifieds-plugin') ?></p>
         </div>
