@@ -10,8 +10,11 @@
 // phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
 // phpcs:disable Squiz.Commenting.InlineComment.SpacingAfter
 
+echo 'Welcome to the Test Suite' . PHP_EOL;
+echo 'Version: 1.0' . PHP_EOL . PHP_EOL;
+
 $GLOBALS['wp_tests_options'] = array(
-    'active_plugins'     => array( 'another-wordpress-classifieds-plugin/awpcp.php' ),
+    'active_plugins' => array( 'another-wordpress-classifieds-plugin/awpcp.php' ),
 );
 
 define( 'WP_TESTS_DATA_DIR', dirname( __FILE__ ) . '/data' );
