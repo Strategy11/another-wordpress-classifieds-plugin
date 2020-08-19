@@ -8,7 +8,7 @@
 
 <?php
     if (get_awpcp_option('imagesapprove') == 1) {
-        $messages[] = __('Image approval is in effect so any new images you upload will not be visible to viewers until an admin approves them.', 'another-wordpress-classifieds-plugin');
+        $messages[] = __( 'Image approval is in effect so any new images you upload will not be visible to viewers until an admin approves them.', 'another-wordpress-classifieds-plugin');
     }
 
     if ($images_uploaded > 0) {

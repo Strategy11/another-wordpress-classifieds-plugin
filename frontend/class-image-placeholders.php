@@ -78,7 +78,7 @@ class AWPCP_Image_Placeholders {
 
                 if (get_awpcp_option('show-click-to-enlarge-link', 1)) {
                     $link = '<a class="thickbox enlarge" href="%s">%s</a>';
-                    $link = sprintf($link, $large_image, __('Click to enlarge image.', 'another-wordpress-classifieds-plugin'));
+                    $link = sprintf($link, $large_image, __( 'Click to enlarge image.', 'another-wordpress-classifieds-plugin'));
                 } else {
                     $link = '';
                 }

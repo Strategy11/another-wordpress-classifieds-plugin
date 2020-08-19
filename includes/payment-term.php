@@ -130,31 +130,31 @@ class AWPCP_PaymentTerm {
 
     protected function validate($data, &$errors=array()) {
         if (empty($data['name']))
-            $errors[] = __('The name of the plan is required.', 'another-wordpress-classifieds-plugin');
+            $errors[] = __( 'The name of the plan is required.', 'another-wordpress-classifieds-plugin');
 
         if ($data['duration_amount'] < 0)
-            $errors[] = __('The duration amount must be equal or greater than zero.', 'another-wordpress-classifieds-plugin');
+            $errors[] = __( 'The duration amount must be equal or greater than zero.', 'another-wordpress-classifieds-plugin');
 
         if (!in_array($data['duration_interval'], self::get_duration_intervals()))
-            $errors[] = __('The duration interval is invalid.', 'another-wordpress-classifieds-plugin');
+            $errors[] = __( 'The duration interval is invalid.', 'another-wordpress-classifieds-plugin');
 
         if ($data['images'] < 0)
-            $errors[] = __('The number of images allowed must be equal or greater than zero.', 'another-wordpress-classifieds-plugin');
+            $errors[] = __( 'The number of images allowed must be equal or greater than zero.', 'another-wordpress-classifieds-plugin');
 
         if ($data['regions'] < 0)
             $errors[] = __( 'The number of regions allowed must be equal or greater than zero.', 'another-wordpress-classifieds-plugin' );
 
         if ($data['characters'] < 0)
-            $errors[] = __('The number of characters allowed must be equal or greater than zero.', 'another-wordpress-classifieds-plugin');
+            $errors[] = __( 'The number of characters allowed must be equal or greater than zero.', 'another-wordpress-classifieds-plugin');
 
         if ( $data['title_characters'] < 0 )
             $errors[] = __( 'The number of characters allowed in the title must be equal or greater than zero.', 'another-wordpress-classifieds-plugin' );
 
         if ($data['credits'] < 0)
-            $errors[] = __('The number of credits must be greater than zero.', 'another-wordpress-classifieds-plugin');
+            $errors[] = __( 'The number of credits must be greater than zero.', 'another-wordpress-classifieds-plugin');
 
         if ($data['price'] < 0)
-            $errors[] = __('The price must be equal or greater than zero.', 'another-wordpress-classifieds-plugin');
+            $errors[] = __( 'The price must be equal or greater than zero.', 'another-wordpress-classifieds-plugin');
 
         return empty($errors);
     }

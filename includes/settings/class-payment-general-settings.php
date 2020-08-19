@@ -211,7 +211,7 @@ class AWPCP_PaymentSettings {
             'parent'   => 'payment-settings',
         ] );
 
-        $settings_manager->add_section($group, __('2Checkout Settings', 'another-wordpress-classifieds-plugin'), '2checkout', 30, array($settings_manager, 'section'));
+        $settings_manager->add_section($group, __( '2Checkout Settings', 'another-wordpress-classifieds-plugin'), '2checkout', 30, array($settings_manager, 'section'));
 
 		$settings_manager->add_setting( $key, 'activate2checkout', __( 'Activate 2Checkout', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Activate 2Checkout?', 'another-wordpress-classifieds-plugin' ) );
 
@@ -320,18 +320,18 @@ class AWPCP_PaymentSettings {
 
         $setting = 'enable-credit-system';
         if (isset($options[$setting]) && $options[$setting] == 1 && !get_awpcp_option('requireuserregistration')) {
-            awpcp_flash(__('Require Registration setting was enabled automatically because you activated the Credit System.', 'another-wordpress-classifieds-plugin'));
+            awpcp_flash(__( 'Require Registration setting was enabled automatically because you activated the Credit System.', 'another-wordpress-classifieds-plugin'));
             $options['requireuserregistration'] = 1;
         }
 
         if (isset($options[$setting]) && $options[$setting] == 1 && !get_awpcp_option('freepay')) {
-            awpcp_flash(__('Charge Listing Fee setting was enabled automatically because you activated the Credit System.', 'another-wordpress-classifieds-plugin'));
+            awpcp_flash(__( 'Charge Listing Fee setting was enabled automatically because you activated the Credit System.', 'another-wordpress-classifieds-plugin'));
             $options['freepay'] = 1;
         }
 
         $setting = 'freepay';
         if (isset($options[$setting]) && $options[$setting] == 0 && get_awpcp_option('enable-credit-system')) {
-            awpcp_flash(__('Credit System was disabled automatically because you disabled Charge Listing Fee.', 'another-wordpress-classifieds-plugin'));
+            awpcp_flash(__( 'Credit System was disabled automatically because you disabled Charge Listing Fee.', 'another-wordpress-classifieds-plugin'));
             $options['enable-credit-system'] = 0;
         }
 

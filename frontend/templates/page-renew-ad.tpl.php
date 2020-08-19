@@ -12,7 +12,7 @@
 	<p><?php echo $part ?></p>
 	<?php endforeach ?>
 
-	<?php $msg = __('Please click the payment button below to proceed with Payment for your Ad renewal. You will be asked to pay %s.', 'another-wordpress-classifieds-plugin') ?>
+	<?php $msg = __( 'Please click the payment button below to proceed with Payment for your Ad renewal. You will be asked to pay %s.', 'another-wordpress-classifieds-plugin') ?>
 	<p><?php echo sprintf($msg, $amount) ?></p>
 	<?php echo $content ?>
 

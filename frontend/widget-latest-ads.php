@@ -12,8 +12,8 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
 
     public function __construct($id=null, $name=null, $description=null) {
         $id = is_null($id) ? 'awpcp-latest-ads': $id;
-        $name = is_null($name) ? __('AWPCP Latest Ads', 'another-wordpress-classifieds-plugin') : $name;
-        $description = is_null($description) ? __('Displays a list of latest Ads', 'another-wordpress-classifieds-plugin') : $description;
+        $name = is_null($name) ? __( 'AWPCP Latest Ads', 'another-wordpress-classifieds-plugin') : $name;
+        $description = is_null($description) ? __( 'Displays a list of latest Ads', 'another-wordpress-classifieds-plugin') : $description;
         parent::__construct($id, $name, array('description' => $description));
 
         $this->listing_renderer = awpcp_listing_renderer();
@@ -29,7 +29,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         );
 
         $defaults = array(
-            'title' => __('Latest Ads', 'another-wordpress-classifieds-plugin'),
+            'title' => __( 'Latest Ads', 'another-wordpress-classifieds-plugin'),
             'show-title' => 1,
             'show-excerpt' => 1,
             'show-images' => 1,

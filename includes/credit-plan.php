@@ -92,13 +92,13 @@ class AWPCP_CreditPlan {
 
     private function validate($data, &$errors=array()) {
         if (empty($data['name']))
-            $errors[] = __('The name of the plan is required.', 'another-wordpress-classifieds-plugin');
+            $errors[] = __( 'The name of the plan is required.', 'another-wordpress-classifieds-plugin');
 
         if ($data['credits'] <= 0)
-            $errors[] = __('The number of credits must be greater than zero.', 'another-wordpress-classifieds-plugin');
+            $errors[] = __( 'The number of credits must be greater than zero.', 'another-wordpress-classifieds-plugin');
 
         if ($data['price'] < 0)
-            $errors[] = __('The price must be greater or equal than zero.', 'another-wordpress-classifieds-plugin');
+            $errors[] = __( 'The price must be greater or equal than zero.', 'another-wordpress-classifieds-plugin');
 
         return empty($errors);
     }

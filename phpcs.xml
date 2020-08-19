@@ -6,7 +6,7 @@
     <exclude-pattern>includes/functions/listings.php</exclude-pattern>
     <exclude-pattern>frontend/templates/email-send-all-ad-access-keys.tpl.php</exclude-pattern>
     <exclude-pattern>vendor/*</exclude-pattern>
-    <exclude-pattern>tests/wordpress/wp-functions.php</exclude-pattern>
+    <exclude-pattern>tests/*</exclude-pattern>
 
     <rule ref="WordPress">
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
@@ -24,6 +24,13 @@
 
         <!-- Temporary exclusions -->
         <exclude name="WordPress.Security.EscapeOutput.DeprecatedWhitelistCommentFound" />
+        <exclude name="WordPress.WhiteSpace.ControlStructureSpacing" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.SpaceBeforeCloseBracket" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
+        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword" />
+        <exclude name="WordPress.Arrays.ArrayDeclarationSpacing" />
+        <exclude name="Generic.Formatting.MultipleStatementAlignment" />
     </rule>
 
     <rule ref="Generic.WhiteSpace.ScopeIndent">

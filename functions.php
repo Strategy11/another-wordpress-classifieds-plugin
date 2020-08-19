@@ -816,8 +816,8 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaycountryfieldreqop' ) );
         $_fields['country'] = array(
             'type' => 'country',
-            'label' => __('Country', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
-            'help' => __('separate countries by commas', 'another-wordpress-classifieds-plugin'),
+            'label' => __( 'Country', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
+            'help' => __( 'separate countries by commas', 'another-wordpress-classifieds-plugin'),
             'required' => $required,
             'alwaysShown' => $always_shown,
         );
@@ -826,8 +826,8 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaystatefieldreqop' ) );
         $_fields['state'] = array(
             'type' => 'state',
-            'label' => __('State/Province', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
-            'help' => __('separate states by commas', 'another-wordpress-classifieds-plugin'),
+            'label' => __( 'State/Province', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
+            'help' => __( 'separate states by commas', 'another-wordpress-classifieds-plugin'),
             'required' => $required,
             'alwaysShown' => $always_shown,
         );
@@ -836,8 +836,8 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaycityfieldreqop' ) );
         $_fields['city'] = array(
             'type' => 'city',
-            'label' => __('City', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
-            'help' => __('separate cities by commas', 'another-wordpress-classifieds-plugin'),
+            'label' => __( 'City', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
+            'help' => __( 'separate cities by commas', 'another-wordpress-classifieds-plugin'),
             'required' => $required,
             'alwaysShown' => $always_shown,
         );
@@ -846,8 +846,8 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaycountyvillagefieldreqop' ) );
         $_fields['county'] = array(
             'type' => 'county',
-            'label' => __('County/Village/Other', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
-            'help' => __('separate counties by commas', 'another-wordpress-classifieds-plugin'),
+            'label' => __( 'County/Village/Other', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
+            'help' => __( 'separate counties by commas', 'another-wordpress-classifieds-plugin'),
             'required' => $required,
             'alwaysShown' => $always_shown,
         );
@@ -1061,7 +1061,7 @@ function awpcp_country_list_options($value=false, $use_names=true) {
 	    'ZM' => 'Zambia',
 	);
 
-	$options[] ='<option value="">' . __('-- Choose a Country --', 'another-wordpress-classifieds-plugin') . '</option>';
+	$options[] ='<option value="">' . __( '-- Choose a Country --', 'another-wordpress-classifieds-plugin') . '</option>';
 
 	foreach ( apply_filters( 'awpcp_country_list_options_countries', $countries ) as $code => $name) {
 		if ($use_names) {
@@ -2498,7 +2498,7 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 	} else {
 		$subject = __( 'The Ad "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
-		$message = __('The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
+		$message = __( 'The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
 
         $url = awpcp_get_quick_view_listing_url( $ad );
 

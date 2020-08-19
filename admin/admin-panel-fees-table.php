@@ -117,16 +117,16 @@ class AWPCP_FeesTable extends WP_List_Table {
         $columns = array();
 
         $columns['cb'] = '<input type="checkbox" />';
-        $columns['name'] = __('Name', 'another-wordpress-classifieds-plugin');
+        $columns['name'] = __( 'Name', 'another-wordpress-classifieds-plugin');
         $columns['attributes']  = __( 'Attributes', 'another-wordpress-classifieds-plugin' );
-        $columns['price'] = __('Price', 'another-wordpress-classifieds-plugin');
-        $columns['credits'] = __('Credits', 'another-wordpress-classifieds-plugin');
+        $columns['price'] = __( 'Price', 'another-wordpress-classifieds-plugin');
+        $columns['credits'] = __( 'Credits', 'another-wordpress-classifieds-plugin');
 
         if (function_exists('awpcp_price_cats'))
-            $columns['categories'] = __('Categories', 'another-wordpress-classifieds-plugin');
+            $columns['categories'] = __( 'Categories', 'another-wordpress-classifieds-plugin');
 
         if (function_exists('awpcp_featured_ads'))
-            $columns['featured'] = __('Featured Ads', 'another-wordpress-classifieds-plugin');
+            $columns['featured'] = __( 'Featured Ads', 'another-wordpress-classifieds-plugin');
 
         $columns['private'] = __( 'Private', 'another-wordpress-classifieds-plugin' );
 
@@ -275,7 +275,7 @@ class AWPCP_FeesTable extends WP_List_Table {
     }
 
     public function column_featured($item) {
-        return $item->featured ? __('Yes', 'another-wordpress-classifieds-plugin') : __('No', 'another-wordpress-classifieds-plugin');
+        return $item->featured ? __( 'Yes', 'another-wordpress-classifieds-plugin') : __( 'No', 'another-wordpress-classifieds-plugin');
     }
 
     public function column_private($item) {

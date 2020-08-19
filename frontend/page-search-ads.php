@@ -8,7 +8,7 @@
 function awpcp_search_listings_page() {
     return new AWPCP_SearchAdsPage(
         'awpcp-search-ads',
-        __('Search Ads', 'another-wordpress-classifieds-plugin'),
+        __( 'Search Ads', 'another-wordpress-classifieds-plugin'),
         awpcp_template_renderer(),
         awpcp_request()
     );

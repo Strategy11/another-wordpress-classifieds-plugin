@@ -32,7 +32,7 @@ class AWPCP_FeeType extends AWPCP_PaymentTermType {
     private function get_free_payment_term() {
         return new AWPCP_Fee(array(
             'id' => 0,
-            'name' => __('Free Listing', 'another-wordpress-classifieds-plugin'),
+            'name' => __( 'Free Listing', 'another-wordpress-classifieds-plugin'),
             'description' => '',
             'duration_amount' => get_awpcp_option('addurationfreemode'),
             'duration_interval' => AWPCP_Fee::INTERVAL_DAY,

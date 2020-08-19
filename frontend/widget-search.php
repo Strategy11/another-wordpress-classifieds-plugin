@@ -11,7 +11,7 @@
 class AWPCP_Search_Widget extends WP_Widget {
 
 	function __construct() {
-		parent::__construct(false, __('AWPCP Search Ads', 'another-wordpress-classifieds-plugin'));
+		parent::__construct(false, __( 'AWPCP Search Ads', 'another-wordpress-classifieds-plugin'));
 	}
 
 	/**
@@ -44,7 +44,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 
         return $this->select(
             $options,
-            __('Find ads by Contact Name', 'another-wordpress-classifieds-plugin'),
+            __( 'Find ads by Contact Name', 'another-wordpress-classifieds-plugin'),
             'searchname',
             stripslashes_deep( awpcp_request_param( 'searchname', null ) ),
             __( 'All Contact Names', 'another-wordpress-classifieds-plugin' )
@@ -85,7 +85,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 		$id = 'awpcp-search-' . sanitize_title($label);
 
         if ( is_null( $default ) ) {
-            $default = __('Select Option', 'another-wordpress-classifieds-plugin');
+            $default = __( 'Select Option', 'another-wordpress-classifieds-plugin');
         }
 
         $label = awpcp_html_label(array(
@@ -134,7 +134,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 
 		if ($instance['show_keyword'] == 1) {
             echo '<div class="awpcp-form-field">';
-			echo '<label for="awpcp-search-keywordphrase" class="awpcp-block-label">' . __('Search by keyword', 'another-wordpress-classifieds-plugin') . '</label>';
+			echo '<label for="awpcp-search-keywordphrase" class="awpcp-block-label">' . __( 'Search by keyword', 'another-wordpress-classifieds-plugin') . '</label>';
 			echo '<input id="awpcp-search-keywordphrase" type="text" name="keywordphrase" value="' . esc_attr($keywordphrase) . '">';
             echo '</div>';
 		}
@@ -148,7 +148,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 		if ($instance['show_category'] == 1) {
             wp_enqueue_style( 'select2' );
 
-			$label = __('Search by Category', 'another-wordpress-classifieds-plugin');
+			$label = __( 'Search by Category', 'another-wordpress-classifieds-plugin');
 			$name = 'searchcategory';
 			$selected = stripslashes_deep( awpcp_request_param( $name, null ) );
 

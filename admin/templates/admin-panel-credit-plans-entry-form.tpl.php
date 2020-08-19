@@ -27,8 +27,8 @@
         </fieldset>
 
         <p class="submit inline-edit-save">
-            <?php $label = $id ? __('Update', 'another-wordpress-classifieds-plugin') : __('Add', 'another-wordpress-classifieds-plugin') ?>
-            <?php $cancel = __('Cancel', 'another-wordpress-classifieds-plugin'); ?>
+            <?php $label = $id ? __( 'Update', 'another-wordpress-classifieds-plugin') : __( 'Add', 'another-wordpress-classifieds-plugin') ?>
+            <?php $cancel = __( 'Cancel', 'another-wordpress-classifieds-plugin'); ?>
             <a class="button-secondary cancel alignleft" title="<?php echo esc_attr( $cancel ); ?>" href="#inline-edit" accesskey="c"><?php echo esc_html( $cancel ); ?></a>
             <a class="button-primary save alignright" title="<?php echo esc_attr( $label ); ?>" href="#inline-edit" accesskey="s"><?php echo esc_html( $label ); ?></a>
             <img alt="" src="<?php echo esc_attr( admin_url( '/images/wpspin_light.gif' ) ); ?>" style="display: none;" class="waiting">

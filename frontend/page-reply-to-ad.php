@@ -10,7 +10,7 @@ require_once(AWPCP_DIR . '/includes/helpers/page.php');
 function awpcp_reply_to_listing_page() {
     return new AWPCP_ReplyToAdPage(
         'awpcp-reply-to-ad',
-        __('Reply to Ad', 'another-wordpress-classifieds-plugin'),
+        __( 'Reply to Ad', 'another-wordpress-classifieds-plugin'),
         awpcp_listing_renderer(),
         awpcp_listings_collection(),
         awpcp()->container['EmailHelper'],
@@ -90,14 +90,14 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         $action = $this->get_current_action();
 
         if (get_awpcp_option('reply-to-ad-requires-registration') && !is_user_logged_in()) {
-            $message = __('Only registered users can reply to Ads. If you are already registered, please login below in order to reply to the Ad.', 'another-wordpress-classifieds-plugin');
+            $message = __( 'Only registered users can reply to Ads. If you are already registered, please login below in order to reply to the Ad.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_login_form($message, awpcp_current_url()));
         }
 
         $ad = $this->get_ad();
 
         if (is_null($ad)) {
-            $message = __('The specified Ad does not exist.', 'another-wordpress-classifieds-plugin');
+            $message = __( 'The specified Ad does not exist.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
 
@@ -140,17 +140,17 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
 
     protected function validate_posted_data($data, &$errors=array()) {
         if (empty($data['awpcp_sender_name'])) {
-            $errors['awpcp_sender_name'] = __('Please enter your name.', 'another-wordpress-classifieds-plugin');
+            $errors['awpcp_sender_name'] = __( 'Please enter your name.', 'another-wordpress-classifieds-plugin');
         }
 
         if (empty($data['awpcp_sender_email'])) {
-            $errors['awpcp_sender_email'] = __('Please enter your email.', 'another-wordpress-classifieds-plugin');
+            $errors['awpcp_sender_email'] = __( 'Please enter your email.', 'another-wordpress-classifieds-plugin');
         } else if ( ! awpcp_is_valid_email_address( $data['awpcp_sender_email'] ) ) {
             $errors['ad_contact_email'] = __("The email address you entered was not a valid email address. Please check for errors and try again.", 'another-wordpress-classifieds-plugin');
         }
 
         if (empty($data['awpcp_contact_message'])) {
-            $errors['awpcp_contact_message'] = __('There was no text in your message. Please enter a message.', 'another-wordpress-classifieds-plugin');
+            $errors['awpcp_contact_message'] = __( 'There was no text in your message. Please enter a message.', 'another-wordpress-classifieds-plugin');
         }
 
         if ( get_awpcp_option( 'use-akismet-in-reply-to-listing-form' ) ) {

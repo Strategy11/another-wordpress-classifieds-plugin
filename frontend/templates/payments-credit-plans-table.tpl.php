@@ -21,7 +21,7 @@
         <tbody>
 
         <?php if (empty($credit_plans)): ?>
-            <tr><td colspan="4"><?php echo __('No credit plans available.', 'another-wordpress-classifieds-plugin') ?></td></tr>
+            <tr><td colspan="4"><?php echo __( 'No credit plans available.', 'another-wordpress-classifieds-plugin') ?></td></tr>
         <?php endif ?>
 
         <?php

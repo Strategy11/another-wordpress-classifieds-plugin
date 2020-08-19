@@ -197,7 +197,7 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
     } else {
         $subject = __( 'Listing "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
-        $message = __('The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
+        $message = __( 'The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
 
         $url = awpcp_get_quick_view_listing_url( $listing );
 

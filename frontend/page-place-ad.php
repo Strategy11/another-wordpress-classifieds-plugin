@@ -80,7 +80,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     public function transaction_error() {
-        return __('There was an error processing your Payment Request. Please try again or contact an Administrator.', 'another-wordpress-classifieds-plugin');
+        return __( 'There was an error processing your Payment Request. Please try again or contact an Administrator.', 'another-wordpress-classifieds-plugin');
     }
 
     public function get_transaction($create=false) {
@@ -168,7 +168,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         if (!is_null($transaction) && $transaction->get('context') != $this->context) {
             $page_name = awpcp_get_page_name('place-ad-page-name');
             $page_url = awpcp_get_page_url('place-ad-page-name');
-            $message = __('You are trying to post an Ad using a transaction created for a different purpose. Please go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
+            $message = __( 'You are trying to post an Ad using a transaction created for a different purpose. Please go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
             $message = sprintf($message, $page_url, $page_name, $transaction->id);
             return $this->render('content', awpcp_print_error($message));
         }
@@ -177,7 +177,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if (!is_null($transaction) && $transaction->is_payment_completed()) {
             if ( $transaction->payment_is_unknown() || $transaction->payment_is_invalid() || $transaction->payment_is_failed() ) {
-                $message = __('You can\'t post an Ad at this time because the payment associated with this transaction failed (see reasons below).', 'another-wordpress-classifieds-plugin');
+                $message = __( 'You can\'t post an Ad at this time because the payment associated with this transaction failed (see reasons below).', 'another-wordpress-classifieds-plugin');
                 $message = awpcp_print_message($message);
                 $message = $message . $this->payments->render_transaction_errors($transaction);
                 return $this->render('content', $message);
@@ -259,11 +259,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $this->validate_selected_categories( $data, 'category', $errors );
 
         if (awpcp_current_user_is_moderator() && empty($data['user'])) {
-            $errors['user'] = __('You should select an owner for this Ad.', 'another-wordpress-classifieds-plugin');
+            $errors['user'] = __( 'You should select an owner for this Ad.', 'another-wordpress-classifieds-plugin');
         }
 
         if (is_null($data['payment_term'])) {
-            $errors['payment-term'] = __('You should choose one of the available Payment Terms.', 'another-wordpress-classifieds-plugin');
+            $errors['payment-term'] = __( 'You should choose one of the available Payment Terms.', 'another-wordpress-classifieds-plugin');
         }
 
         if ( ! awpcp_current_user_is_admin() && ! is_null( $data['payment_term'] ) && $data['payment_term']->private ) {
@@ -294,7 +294,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     public function login_step() {
-        $message = __('Hi, You need to be a registered user to post Ads in this website. Please use the form below to login or click the link to register.', 'another-wordpress-classifieds-plugin');
+        $message = __( 'Hi, You need to be a registered user to post Ads in this website. Please use the form below to login or click the link to register.', 'another-wordpress-classifieds-plugin');
 
         $params = array(
             'message' => $message,
@@ -500,7 +500,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         if ( !$transaction->is_doing_checkout() && !$transaction->is_processing_payment() ) {
-            $message = __('We can\'t process payments for this Payment Transaction at this time. Please contact the website administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
+            $message = __( 'We can\'t process payments for this Payment Transaction at this time. Please contact the website administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
             $message = sprintf($message, $transaction->id);
             return $this->render('content', awpcp_print_error($message));
         }
@@ -985,21 +985,21 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $user_id = awpcp_array_data('user_id', 0, $data);
         $user_payment_term = awpcp_array_data('user_payment_term', '', $data);
         if (get_awpcp_option('freepay') == 1 && $user_id > 0 && empty($user_payment_term) && !$edit) {
-            $errors['user_payment_term'] = __('You did not select a Payment Term. Please select a Payment Term for this Ad.', 'another-wordpress-classifieds-plugin');
+            $errors['user_payment_term'] = __( 'You did not select a Payment Term. Please select a Payment Term for this Ad.', 'another-wordpress-classifieds-plugin');
         }
 
         $start_date = strtotime($data['start_date']);
         if ($edit && $is_moderator && empty($data['start_date'])) {
-            $errors['start_date'] = __('Please enter a start date for the Ad.', 'another-wordpress-classifieds-plugin');
+            $errors['start_date'] = __( 'Please enter a start date for the Ad.', 'another-wordpress-classifieds-plugin');
         }
 
         $end_date = strtotime($data['end_date']);
         if ($edit && $is_moderator && empty($data['end_date'])) {
-            $errors['end_date'] = __('Please enter an end date for the Ad.', 'another-wordpress-classifieds-plugin');
+            $errors['end_date'] = __( 'Please enter an end date for the Ad.', 'another-wordpress-classifieds-plugin');
         }
 
         if ($edit && $is_moderator && $start_date > $end_date) {
-            $errors['start_date'] = __('The start date must occur before the end date.', 'another-wordpress-classifieds-plugin');
+            $errors['start_date'] = __( 'The start date must occur before the end date.', 'another-wordpress-classifieds-plugin');
         }
 
         // Check for ad title
@@ -1339,14 +1339,14 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $transaction = $this->get_transaction();
 
         if (is_null($transaction)) {
-            $message = __('We were unable to find a Payment Transaction assigned to this operation. No images can be added at this time.', 'another-wordpress-classifieds-plugin');
+            $message = __( 'We were unable to find a Payment Transaction assigned to this operation. No images can be added at this time.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
 
         try {
             $ad = $this->listings->get( $transaction->get( 'ad-id', 0 ) );
         } catch ( AWPCP_Exception $e ) {
-            $message = __('The specified Ad doesn\'t exists. No images can be added at this time.', 'another-wordpress-classifieds-plugin');
+            $message = __( 'The specified Ad doesn\'t exists. No images can be added at this time.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
 
@@ -1425,14 +1425,14 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $transaction = $this->get_transaction();
 
         if ( is_null( $transaction ) ) {
-            $message = __('We were unable to find a Payment Transaction assigned to this operation.', 'another-wordpress-classifieds-plugin');
+            $message = __( 'We were unable to find a Payment Transaction assigned to this operation.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
 
         try {
             $ad = $this->listings->get( $transaction->get( 'ad-id', 0 ) );
         } catch ( AWPCP_Exception $e ) {
-            $message = __('The Ad associated with this transaction doesn\'t exists.', 'another-wordpress-classifieds-plugin');
+            $message = __( 'The Ad associated with this transaction doesn\'t exists.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
 
@@ -1477,14 +1477,14 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $send_email = false;
 
         if (is_null($transaction)) {
-            $message = __('We were unable to find a Payment Transaction assigned to this operation.', 'another-wordpress-classifieds-plugin');
+            $message = __( 'We were unable to find a Payment Transaction assigned to this operation.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
 
         try {
             $ad = $this->listings->get( $transaction->get( 'ad-id', 0 ) );
         } catch ( AWPCP_Exception $e ) {
-            $message = __('The Ad associated with this transaction doesn\'t exists.', 'another-wordpress-classifieds-plugin');
+            $message = __( 'The Ad associated with this transaction doesn\'t exists.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
 

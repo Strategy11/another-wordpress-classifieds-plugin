@@ -217,7 +217,7 @@ function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
 
 	$return = '';
 	if (is_admin()) {
-		$return = sprintf('<a href="%1$s">%2$s</a>', awpcp_get_user_panel_url(), __('Return to Listings', 'another-wordpress-classifieds-plugin'));
+		$return = sprintf('<a href="%1$s">%2$s</a>', awpcp_get_user_panel_url(), __( 'Return to Listings', 'another-wordpress-classifieds-plugin'));
 	}
 
 	if ($send_email) {

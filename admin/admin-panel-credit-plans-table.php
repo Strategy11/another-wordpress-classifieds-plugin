@@ -6,9 +6,9 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
     private $items_per_page;
     private $total_items;
 
-    public function __construct($page, $args=array()) {
-        $args = array_merge(array('plural' => 'awpcp-credit-plans'), $args);
-        parent::__construct($args);
+    public function __construct( $page, $args = array() ) {
+        $args = array_merge( array( 'plural' => 'awpcp-credit-plans' ), $args );
+        parent::__construct( $args );
         $this->page = $page;
     }
 
@@ -70,10 +70,10 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
         $columns = array();
 
         $columns['cb'] = '<input type="checkbox" />';
-        $columns['name'] = __('Name', 'another-wordpress-classifieds-plugin');
-        $columns['description'] = __('Description', 'another-wordpress-classifieds-plugin');
-        $columns['credits'] = __('Credits', 'another-wordpress-classifieds-plugin');
-        $columns['price'] = __('Price', 'another-wordpress-classifieds-plugin');
+        $columns['name'] = __( 'Name', 'another-wordpress-classifieds-plugin');
+        $columns['description'] = __( 'Description', 'another-wordpress-classifieds-plugin');
+        $columns['credits'] = __( 'Credits', 'another-wordpress-classifieds-plugin');
+        $columns['price'] = __( 'Price', 'another-wordpress-classifieds-plugin');
 
         return $columns;
     }

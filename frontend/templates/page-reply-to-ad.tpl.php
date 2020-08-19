@@ -4,7 +4,7 @@
     }
 ?>
 
-<?php $msg = __('You are responding to Ad: %s.', 'another-wordpress-classifieds-plugin'); ?>
+<?php $msg = __( 'You are responding to Ad: %s.', 'another-wordpress-classifieds-plugin'); ?>
 <p><?php echo sprintf($msg, $ad_link); ?></p>
 
 <form class="awpcp-reply-to-ad-form" method="post" name="myform">

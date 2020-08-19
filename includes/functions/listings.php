@@ -304,7 +304,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 			$output = sprintf( $output, $content_before_page, $content_after_page );
 
 			if (!$is_moderator && !$is_ad_owner && !$preview && $listing_renderer->is_disabled( $ad ) ) {
-				$message = __('The Ad you are trying to view is pending approval. Once the Administrator approves it, it will be active and visible.', 'another-wordpress-classifieds-plugin');
+				$message = __( 'The Ad you are trying to view is pending approval. Once the Administrator approves it, it will be active and visible.', 'another-wordpress-classifieds-plugin');
 				return str_replace( '<!--awpcp-single-ad-layout-->', awpcp_print_error( $message ), $output );
 			}
 
@@ -313,13 +313,13 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 			}
 
 			if ($show_messages && $is_moderator && $listing_renderer->is_disabled( $ad ) ) {
-				$message = __('This Ad is currently disabled until the Administrator approves it. Only you (the Administrator) and the author can see it.', 'another-wordpress-classifieds-plugin');
+				$message = __( 'This Ad is currently disabled until the Administrator approves it. Only you (the Administrator) and the author can see it.', 'another-wordpress-classifieds-plugin');
 				$messages[] = awpcp_print_error($message);
 			} else if ( $show_messages && ( $is_ad_owner || $preview ) && ! $listing_renderer->is_verified( $ad ) ) {
-				$message = __('This Ad is currently disabled until you verify the email address used for the contact information. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin');
+				$message = __( 'This Ad is currently disabled until you verify the email address used for the contact information. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin');
 				$messages[] = awpcp_print_error($message);
 			} else if ( $show_messages && ( $is_ad_owner || $preview ) && $listing_renderer->is_disabled( $ad ) ) {
-				$message = __('This Ad is currently disabled until the Administrator approves it. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin');
+				$message = __( 'This Ad is currently disabled until the Administrator approves it. Only you (the author) can see it.', 'another-wordpress-classifieds-plugin');
 				$messages[] = awpcp_print_error($message);
 			}
 
