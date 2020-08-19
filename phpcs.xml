@@ -32,6 +32,8 @@
         <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword" />
         <exclude name="WordPress.Arrays.ArrayDeclarationSpacing" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment" />
+        <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
+        <exclude name="WordPress.Arrays.CommaAfterArrayItem.NoComma" />
     </rule>
 
     <rule ref="Generic.WhiteSpace.ScopeIndent">
