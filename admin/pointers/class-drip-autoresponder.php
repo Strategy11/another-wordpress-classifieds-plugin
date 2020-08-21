@@ -21,7 +21,7 @@ class AWPCP_DripAutoresponder {
             'content' => $this->render_content(),
             'buttons' => array(
                 array(
-                    'label' => _x( "Yes, I'd like my free module and course, please", 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ),
+                    'label' => _x( "Yes, I'd like my course, please", 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ),
                     'event' => 'awpcp-autoresponder-user-subscribed',
                     'data' => array( $nonce ),
                     'elementClass' => 'button-primary',
