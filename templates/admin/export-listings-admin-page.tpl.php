@@ -122,7 +122,7 @@
 
     <div class="awpcp-step-2">
         <h2><?php echo esc_html_x( 'Export in Progress...', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></h2>
-        <p><?php echo esc_html_x( 'Your export file is being prepared. Please <u>do not leave</u> this page until the export finishes.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
+        <p><?php echo esc_html_x( 'Your export file is being prepared. Please do not leave this page until the export finishes.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
 
         <dl>
             <dt><?php echo esc_html_x( 'No. of listings:', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></dt>
