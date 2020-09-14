@@ -17,9 +17,9 @@ function awpcp_send_listing_posted_notification_to_moderators( $listing, $transa
 
     if ( $send_notification_to_administrators && $send_notification_to_moderators ) {
         $email_recipients = array_merge( array( awpcp_admin_email_to() ), awpcp_moderators_email_to() );
-    } else if ( $send_notification_to_administrators ) {
+    } elseif ( $send_notification_to_administrators ) {
         $email_recipients = array( awpcp_admin_email_to() );
-    } else if ( $send_notification_to_moderators ) {
+    } elseif ( $send_notification_to_moderators ) {
         $email_recipients = awpcp_moderators_email_to();
     } else {
         return false;
@@ -28,7 +28,7 @@ function awpcp_send_listing_posted_notification_to_moderators( $listing, $transa
     $user_message = awpcp_ad_posted_user_email( $listing, $transaction, $messages );
     $content = $user_message->body;
 
-    $admin_message = new AWPCP_Email;
+    $admin_message = new AWPCP_Email();
     $admin_message->to = $email_recipients;
     $admin_message->subject = __( 'New classified ad created', 'another-wordpress-classifieds-plugin' );
 
@@ -59,9 +59,9 @@ function awpcp_send_listing_updated_notification_to_moderators( $listing, $messa
 
     if ( $send_notification_to_administrators && $send_notification_to_moderators ) {
         $email_recipients = array_merge( array( awpcp_admin_email_to() ), awpcp_moderators_email_to() );
-    } else if ( $send_notification_to_administrators ) {
+    } elseif ( $send_notification_to_administrators ) {
         $email_recipients = array( awpcp_admin_email_to() );
-    } else if ( $send_notification_to_moderators ) {
+    } elseif ( $send_notification_to_moderators ) {
         $email_recipients = awpcp_moderators_email_to();
     } else {
         return false;
@@ -75,7 +75,7 @@ function awpcp_send_listing_updated_notification_to_moderators( $listing, $messa
     $user_message = awpcp_ad_updated_user_email( $listing, $messages );
     $content = $user_message->body;
 
-    $admin_message = new AWPCP_Email;
+    $admin_message = new AWPCP_Email();
     $admin_message->to = $email_recipients;
     $admin_message->subject = $subject;
 
@@ -134,7 +134,7 @@ function awpcp_listing_updated_user_message( $listing, $messages ) {
     $contact_name = $listing_renderer->get_contact_name( $ad );
     $contact_email = $listing_renderer->get_contact_email( $ad );
 
-    $email = new AWPCP_Email;
+    $email = new AWPCP_Email();
     $email->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
     $email->subject = get_awpcp_option('listingaddedsubject');
     $email->prepare( AWPCP_DIR . '/frontend/templates/email-place-ad-success-user.tpl.php', $params );
@@ -154,7 +154,7 @@ function awpcp_send_listing_awaiting_approval_notification_to_moderators(
     $content = awpcp_get_messages_for_listing_awaiting_approval_notification( $listing, $moderate_listings, $moderate_images );
     $messages = $content['messages'];
 
-    $mail = new AWPCP_Email;
+    $mail = new AWPCP_Email();
     $mail->to = $email_recipients;
     $mail->subject = $content['subject'];
     $template = AWPCP_DIR . '/frontend/templates/email-ad-awaiting-approval-admin.tpl.php';
@@ -172,9 +172,9 @@ function awpcp_get_recipients_for_listing_awaiting_approval_notification() {
 
     if ( $send_notification_to_administrators && $send_notification_to_moderators ) {
         $email_recipients = array_merge( array( awpcp_admin_email_to() ), awpcp_moderators_email_to() );
-    } else if ( $send_notification_to_administrators ) {
+    } elseif ( $send_notification_to_administrators ) {
         $email_recipients = array( awpcp_admin_email_to() );
-    } else if ( $send_notification_to_moderators ) {
+    } elseif ( $send_notification_to_moderators ) {
         $email_recipients = awpcp_moderators_email_to();
     } else {
         $email_recipients = array();
@@ -186,24 +186,29 @@ function awpcp_get_recipients_for_listing_awaiting_approval_notification() {
 function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing, $moderate_listings, $moderate_images ) {
     $listing_renderer = awpcp_listing_renderer();
 
-    $params = array( 'action' => 'manage-images', 'id' => $listing->ID );
-    $manage_images_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
+    $params = array( 'action' => 'edit', 'post' => $listing->ID );
+    $manage_images_url = add_query_arg( urlencode_deep( $params ), admin_url( 'post.php' ) );
 
     if ( $moderate_images && ! $moderate_listings ) {
+        /* translators: %s is the listing title. */
         $subject = __( 'Images on listing "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
 
-        $message = __( 'Images on Ad "%s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
+        /* translators: %1$s is the listing title. %2$s is the URL for managing listing images. */
+        $message = __( 'Images on Ad "%1$s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %2$s.', 'another-wordpress-classifieds-plugin');
         $messages = array( sprintf( $message, $listing_renderer->get_listing_title( $listing ), $manage_images_url ) );
     } else {
+        /* translators: %s is the listing title. */
         $subject = __( 'Listing "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
-        $message = __( 'The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
+        /* translators: %1$s is the listing title. %2$s is the URL for managing listing.*/
+        $message = __( 'The Ad "%1$s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %2$s.', 'another-wordpress-classifieds-plugin');
 
         $url = awpcp_get_quick_view_listing_url( $listing );
 
         $messages[] = sprintf( $message, $listing_renderer->get_listing_title( $listing ), $url );
 
         if ( $moderate_images ) {
+            /* translators: %s is the URL for managing listing images. */
             $message = __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin' );
             $messages[] = sprintf( $message, $manage_images_url );
         }

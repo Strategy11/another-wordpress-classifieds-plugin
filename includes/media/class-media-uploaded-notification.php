@@ -133,8 +133,8 @@ class AWPCP_Media_Uploaded_Notification {
 
         $view_listing_url = awpcp_get_quick_view_listing_url( $listing );
 
-        $query_args = array( 'action' => 'manage-images', 'id' => $listing->ID );
-        $manage_listing_media_url = add_query_arg( $query_args, awpcp_get_admin_listings_url() );
+        $query_args = array( 'action' => 'edit', 'post' => $listing->ID );
+        $manage_listing_media_url = add_query_arg( $query_args, admin_url( 'post.php' ) );
 
         $params = array(
             'attachments_awaiting_approval' => $attachments_awaiting_approval,
