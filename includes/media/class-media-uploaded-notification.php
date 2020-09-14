@@ -35,11 +35,11 @@ class AWPCP_Media_Uploaded_Notification {
     public function maybe_schedule_notification( $file, $listing ) {
         $context = $this->request->param( 'context' );
 
-        if ( $context == 'post-listing' && $this->is_listing_posted_notification_enabled() ) {
+        if ( $context === 'post-listing' && $this->is_listing_posted_notification_enabled() ) {
             return;
         }
 
-        if ( $context == 'edit-listing' && $this->is_listing_edited_notification_enabled() ) {
+        if ( $context === 'edit-listing' && $this->is_listing_edited_notification_enabled() ) {
             return;
         }
 
@@ -66,7 +66,7 @@ class AWPCP_Media_Uploaded_Notification {
     }
 
     private function schedule_single_event( $uploaded_file, $listing ) {
-        $event_name = "awpcp-media-uploaded-notification";
+        $event_name = 'awpcp-media-uploaded-notification';
         $event_args = array( $listing->ID );
 
         if ( wp_next_scheduled( $event_name, $event_args ) ) {
@@ -127,7 +127,7 @@ class AWPCP_Media_Uploaded_Notification {
             $subject = __( 'New media is awaiting approval in listing: <listing-title>', 'another-wordpress-classifieds-plugin' );
         }
 
-        $message = new AWPCP_Email;
+        $message = new AWPCP_Email();
         $message->to = array( awpcp_admin_email_to() );
         $message->subject = str_replace( '<listing-title>', $this->listing_renderer->get_listing_title( $listing ), $subject );
 
@@ -138,10 +138,10 @@ class AWPCP_Media_Uploaded_Notification {
 
         $params = array(
             'attachments_awaiting_approval' => $attachments_awaiting_approval,
-            'other_attachments' => $other_attachments,
-            'listing_title' =>  $this->listing_renderer->get_listing_title( $listing ),
-            'view_listing_url' => $view_listing_url,
-            'manage_listing_media_url' => $manage_listing_media_url,
+            'other_attachments'             => $other_attachments,
+            'listing_title'                 => $this->listing_renderer->get_listing_title( $listing ),
+            'view_listing_url'              => $view_listing_url,
+            'manage_listing_media_url'      => $manage_listing_media_url,
         );
 
         $template = AWPCP_DIR . '/templates/email/listing-media-upload-notification.plain.tpl.php';

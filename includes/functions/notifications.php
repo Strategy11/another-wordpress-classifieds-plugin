@@ -69,6 +69,7 @@ function awpcp_send_listing_updated_notification_to_moderators( $listing, $messa
 
     $listing_title = awpcp_listing_renderer()->get_listing_title( $listing );
 
+    /* translators: %s is the listing title. */
     $subject = __( 'Listing "%s" was updated', 'another-wordpress-classifieds-plugin' );
     $subject = sprintf( $subject, $listing_title );
 
@@ -221,6 +222,7 @@ function awpcp_get_messages_for_listing_awaiting_approval_notification( $listing
 
 /**
  * TODO: write tests for this function.
+ *
  * @since 3.4
  */
 function awpcp_send_listing_was_flagged_notification( $listing ) {
@@ -234,13 +236,13 @@ function awpcp_send_listing_was_flagged_notification( $listing ) {
     $flagged_listings_url = add_query_arg( $query_args, awpcp_get_admin_listings_url() );
 
     $params = array(
-        'site_name' => get_bloginfo( 'name' ),
+        'site_name'            => get_bloginfo( 'name' ),
         'flagged_listings_url' => $flagged_listings_url,
     );
 
     $template = AWPCP_DIR . '/templates/email/listing-was-flagged.plain.tpl.php';
 
-    $mail = new AWPCP_Email;
+    $mail = new AWPCP_Email();
     $mail->to = awpcp_admin_email_to();
     $mail->subject = str_replace(
         '<listing-title>',
