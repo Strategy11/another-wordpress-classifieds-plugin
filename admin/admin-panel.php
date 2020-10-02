@@ -50,7 +50,10 @@ class AWPCP_AdminPanel {
 
         $admin_menu_builder = new AWPCP_AdminMenuBuilder( awpcp()->container['listing_post_type'], awpcp()->router );
         add_action( 'admin_menu', array( $admin_menu_builder, 'build_menu' ) );
-
+        add_action( 'admin_menu', array( $admin_menu_builder, 'admin_menu_combine' ), 20 );
+        add_action( 'admin_head', array( $admin_menu_builder, 'hide_menu' ) );
+        add_action( 'admin_footer', array( $this, 'maybe_highlight_menu' ) );
+        
 		add_action('admin_notices', array($this, 'notices'));
 		add_action( 'awpcp-admin-notices', array( $this, 'check_duplicate_page_names' ) );
 
@@ -89,7 +92,7 @@ class AWPCP_AdminPanel {
 
     private function add_main_classifieds_admin_page( $page_title, $parent_menu, $handler_constructor, $router ) {
         return $router->add_admin_page(
-            __( 'Classified Admin', 'another-wordpress-classifieds-plugin' ),
+            __( 'Classified Ads', 'another-wordpress-classifieds-plugin' ),
             awpcp_admin_page_title( $page_title ),
             $parent_menu,
             $handler_constructor,
@@ -654,6 +657,23 @@ class AWPCP_AdminPanel {
         global $awpcp;
         $awpcp->settings->update_option('show-widget-modification-notice', false);
         die('Success!');
+    }
+
+    public function maybe_highlight_menu() {
+        global $post;
+
+        $post_type = awpcp()->container['listing_post_type'];
+
+        if ( $post_type  === $this->request->param('post_type') || ( is_object( $post ) && $post_type === $post->post_type ) ) {
+            echo "
+            <script type=\"text/javascript\">
+                jQuery(document).ready(function() {
+                    var awpcpMenu = jQuery( '#toplevel_page_awpcp' );
+                    jQuery( awpcpMenu ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
+                    jQuery( '#toplevel_page_awpcp a.wp-has-submenu' ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
+                });
+            </script>";
+        }
     }
 }
 

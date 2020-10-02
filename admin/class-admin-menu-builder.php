@@ -118,4 +118,34 @@ class AWPCP_AdminMenuBuilder {
         global $submenu;
         $submenu[ $parent_menu ][] = array( $custom_link->menu_title, $custom_link->capability, $custom_link->url );
     }
+
+    /**
+     * Combine submenus from post type and awpcp.php
+     * together and asign it to awpcp.php
+     *
+     * @since 4.0.17
+     */
+    public function admin_menu_combine() {
+        global $submenu;
+
+        $cpt_menu   = sprintf( 'edit.php?post_type=%s', $this->listing_post_type );
+        $admin_menu = 'awpcp.php';
+
+        if( isset( $submenu[$cpt_menu] ) && isset( $submenu[$admin_menu] ) ) {
+            $submenu[$admin_menu] = array_merge( $submenu[$cpt_menu], $submenu[$admin_menu] );
+        }
+    }
+
+    /**
+     * Removed the dashboard post type menw.
+     *
+     * This means the menu is still available to us, but hidden.
+     *
+     * @since 4.0.17
+     */
+    public function hide_menu() {
+        if ( current_user_can( 'administrator' ) ) {
+            remove_menu_page( sprintf( 'edit.php?post_type=%s', $this->listing_post_type ) );
+        }
+    }
 }
