@@ -132,19 +132,23 @@ class AWPCP_AdminMenuBuilder {
         $admin_menu = 'awpcp.php';
 
         if( isset( $submenu[$cpt_menu] ) && isset( $submenu[$admin_menu] ) ) {
-            $submenu[$admin_menu] = array_merge( $submenu[$cpt_menu], $submenu[$admin_menu] );
+            $submenu[$admin_menu] = array_merge( 
+                array_slice($submenu[$admin_menu], 0, 1, false),
+                $submenu[$cpt_menu],
+                array_slice($submenu[$admin_menu], 1, count($submenu[$admin_menu]), false)
+            );
         }
     }
 
     /**
-     * Removed the dashboard post type menw.
+     * Removed the dashboard post type menu.
      *
      * This means the menu is still available to us, but hidden.
      *
      * @since 4.0.17
      */
     public function hide_menu() {
-        if ( current_user_can( 'administrator' ) ) {
+        if ( awpcp_current_user_is_admin() ) {
             remove_menu_page( sprintf( 'edit.php?post_type=%s', $this->listing_post_type ) );
         }
     }

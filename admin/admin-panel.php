@@ -143,6 +143,16 @@ class AWPCP_AdminPanel {
 
         $router->add_admin_subpage(
             $parent_page,
+            __( 'Dashboard', 'another-wordpress-classifieds-plugin' ),
+            awpcp_admin_page_title( __( 'AWPCP', 'another-wordpress-classifieds-plugin' ) ),
+            $parent_page,
+            $router,
+            $admin_capability,
+            10
+        );
+
+        $router->add_admin_subpage(
+            $parent_page,
             __( 'Settings', 'another-wordpress-classifieds-plugin' ),
             awpcp_admin_page_title( __( 'Settings', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-admin-settings',
