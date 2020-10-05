@@ -34,6 +34,7 @@
         <exclude name="Generic.Formatting.MultipleStatementAlignment" />
         <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
         <exclude name="WordPress.Arrays.CommaAfterArrayItem.NoComma" />
+        <exclude name="WordPress.Arrays.MultipleStatementAlignment" />
     </rule>
 
     <rule ref="Generic.WhiteSpace.ScopeIndent">

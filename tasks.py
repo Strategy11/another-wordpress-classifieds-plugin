@@ -100,13 +100,13 @@ def get_date(c, tree):
     return c.run("git log --abbrev-commit -n 1 --pretty=format:'%%at' %s" % tree, hide='stdout').stdout
 
 def package_plugin(c, commit, date):
-    name = 'another-wordpress-classifieds-plugin'
+    name = ''
 
     package(c, commit, date, buildir='build/packages', exclude=[], name=name, subdir=name)
 
 def package_module(c, name, commit, date):
     name = 'awpcp-{0}'.format(name)
-    subdir = 'premium-modules/{0}'.format(name)
+    subdir = '../{0}'.format(name)
 
     package(c, commit, date, buildir='build/packages', exclude=[], name=name, subdir=subdir)
 
@@ -142,91 +142,91 @@ def i18n(c, ignore_metadata_modifications=True):
 
     plugins = {
         'another-wordpress-classifieds-plugin': {
-            'directory': 'another-wordpress-classifieds-plugin',
+            'directory': '',
             'languages': []#['en_US', 'es_ES', 'fr_FR', 'de_DE']
         },
         'awpcp-attachments': {
-            'directory': 'premium-modules/awpcp-attachments',
+            'directory': '../awpcp-attachments',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-authorize.net': {
-            'directory': 'premium-modules/awpcp-authorize.net',
+            'directory': '../awpcp-authorize.net',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-buddypress-listings': {
-            'directory': 'premium-modules/awpcp-buddypress-listings',
+            'directory': '../awpcp-buddypress-listings',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-campaign-manager': {
-            'directory': 'premium-modules/awpcp-campaign-manager',
+            'directory': '../awpcp-campaign-manager',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-category-icons': {
-            'directory': 'premium-modules/awpcp-category-icons',
+            'directory': '../awpcp-category-icons',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-comments-ratings': {
-            'directory': 'premium-modules/awpcp-comments-ratings',
+            'directory': '../awpcp-comments-ratings',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-coupons': {
-            'directory': 'premium-modules/awpcp-coupons',
+            'directory': '../awpcp-coupons',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-extra-fields': {
-            'directory': 'premium-modules/awpcp-extra-fields',
+            'directory': '../awpcp-extra-fields',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-featured-ads': {
-            'directory': 'premium-modules/awpcp-featured-ads',
+            'directory': '../awpcp-featured-ads',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-fee-per-category': {
-            'directory': 'premium-modules/awpcp-fee-per-category',
+            'directory': '../awpcp-fee-per-category',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-google-checkout': {
-            'directory': 'premium-modules/awpcp-google-checkout',
+            'directory': '../awpcp-google-checkout',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-mark-as-sold': {
-            'directory': 'premium-modules/awpcp-mark-as-sold',
+            'directory': '../awpcp-mark-as-sold',
             'languages': ['en_US', 'es_ES', 'fr_FR']
         },
         'awpcp-paypal-pro': {
-            'directory': 'premium-modules/awpcp-paypal-pro',
+            'directory': '../awpcp-paypal-pro',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-region-control': {
-            'directory': 'premium-modules/awpcp-region-control',
+            'directory': '../awpcp-region-control',
             'languages': ['en_US', 'es_ES', 'ru_RU']
         },
         'awpcp-restricted-categories': {
-            'directory': 'premium-modules/awpcp-restricted-categories',
+            'directory': '../awpcp-restricted-categories',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-rss-module': {
-            'directory': 'premium-modules/awpcp-rss-module',
+            'directory': '../awpcp-rss-module',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-stripe': {
-            'directory': 'premium-modules/awpcp-stripe',
+            'directory': '../awpcp-stripe',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-subscriptions': {
-            'directory': 'premium-modules/awpcp-subscriptions',
+            'directory': '../awpcp-subscriptions',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-videos': {
-            'directory': 'premium-modules/awpcp-videos',
+            'directory': '../awpcp-videos',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-xml-sitemap': {
-            'directory': 'premium-modules/awpcp-xml-sitemap',
+            'directory': '../awpcp-xml-sitemap',
             'languages': ['en_US', 'es_ES']
         },
         'awpcp-zip-code-search': {
-            'directory': 'premium-modules/awpcp-zip-code-search',
+            'directory': '../awpcp-zip-code-search',
             'languages': ['en_US', 'es_ES']
         }
     }
