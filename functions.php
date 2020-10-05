@@ -2487,8 +2487,8 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
     $listing_renderer = awpcp_listing_renderer();
 
 	// admin email
-	$params = array( 'action' => 'manage-images', 'id' => $ad->ID );
-    $manage_images_url = add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
+	$params = array( 'action' => 'edit', 'post' => $ad->ID );
+    $manage_images_url = add_query_arg( urlencode_deep( $params ), admin_url( 'post.php' ) );
 
 	if ( false == $ad_approve && $images_approve ) {
 		$subject = __( 'Images on Ad "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
