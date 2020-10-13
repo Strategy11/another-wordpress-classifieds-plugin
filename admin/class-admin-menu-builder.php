@@ -122,6 +122,7 @@ class AWPCP_AdminMenuBuilder {
     /**
      * Combine submenus from post type and awpcp.php
      * together and asign it to awpcp.php
+     * This is here for reverse compatibility.
      *
      * @since 4.0.17
      */
@@ -136,14 +137,4 @@ class AWPCP_AdminMenuBuilder {
         }
     }
 
-    /**
-     * Removed the dashboard post type menu.
-     *
-     * This means the menu is still available to us, but hidden.
-     *
-     * @since 4.0.17
-     */
-    public function hide_menu() {
-        remove_menu_page( 'edit.php?post_type=' . $this->listing_post_type );
-    }
 }

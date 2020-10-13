@@ -798,7 +798,7 @@ class AWPCP {
                 ),
                 'campaign-manager' => array(
                     'name' => __( 'Campaign Manager', 'another-wordpress-classifieds-plugin' ),
-                    'url' => 'https://awpcp.com/premium-modules/campaign-manager-module/?ref=panel',
+                    'url' => 'https://awpcp.com/downloads/campaign-manager-module/?ref=panel',
                     'installed' => defined( 'AWPCP_CAMPAIGN_MANAGER_MODULE' ),
                     'version' => 'AWPCP_CAMPAIGN_MANAGER_MODULE_DB_VERSION',
                     'required' => '4.0.0',
@@ -845,14 +845,6 @@ class AWPCP {
                     'version' => 'AWPCP_FPC_MODULE_DB_VERSION',
                     'required' => '4.0.0',
                 ),
-                'google-checkout' => array(
-                    'name' => __( 'Google Checkout', 'another-wordpress-classifieds-plugin' ),
-                    'url' => 'https://awpcp.com/premium-modules/google-checkout-module/?ref=panel',
-                    'installed' => defined( 'AWPCP_GOOGLE_CHECKOUT_MODULE' ),
-                    'version' => 'AWPCP_GOOGLE_CHECKOUT_MODULE_DB_VERSION',
-                    'required' => '4.0.0-RC1',
-                    'private' => true,
-                ),
                 'mark-as-sold' => array(
                     'name' => __( 'Mark as Sold', 'another-wordpress-classifieds-plugin' ),
                     'url' => 'https://awpcp.com/downloads/mark-as-sold-module/?ref=panel',
@@ -883,7 +875,7 @@ class AWPCP {
                 ),
                 'restricted-categories' => array(
                     'name' => __( 'Restricted Categories', 'another-wordpress-classifieds-plugin' ),
-                    'url' => 'https://awpcp.com/premium-modules/restricted-categories-module?ref=panel',
+                    'url' => 'https://awpcp.com/downloads/restricted-categories-module/?ref=panel',
                     'installed' => defined( 'AWPCP_RESTRICTED_CATEGORIES_MODULE' ),
                     'version' => 'AWPCP_RESTRICTED_CATEGORIES_MODULE_DB_VERSION',
                     'required' => '4.0.1',
@@ -897,7 +889,7 @@ class AWPCP {
                 ),
                 'stripe' => array(
                     'name' => __( 'Stripe', 'another-wordpress-classifieds-plugin' ),
-                    'url' => 'https://awpcp.com/downdloads/',
+                    'url' => 'https://awpcp.com/downloads/stripe-module/',
                     'installed' => defined( 'AWPCP_STRIPE_MODULE_DB_VERSION' ),
                     'version' => 'AWPCP_STRIPE_MODULE_DB_VERSION',
                     'required' => '4.0.0',

@@ -51,7 +51,6 @@ class AWPCP_AdminPanel {
         $admin_menu_builder = new AWPCP_AdminMenuBuilder( awpcp()->container['listing_post_type'], awpcp()->router );
         add_action( 'admin_menu', array( $admin_menu_builder, 'build_menu' ) );
         add_action( 'admin_menu', array( $admin_menu_builder, 'admin_menu_combine' ), 20 );
-        add_action( 'admin_head', array( $admin_menu_builder, 'hide_menu' ) );
         add_action( 'admin_footer', array( $this, 'maybe_highlight_menu' ) );
         
 		add_action('admin_notices', array($this, 'notices'));
@@ -141,15 +140,9 @@ class AWPCP_AdminPanel {
     private function configure_routes_for_admin_subpages( $parent_page, $router ) {
         $admin_capability = awpcp_admin_capability();
 
-        $router->add_admin_subpage(
-            $parent_page,
-            __( 'Dashboard', 'another-wordpress-classifieds-plugin' ),
-            awpcp_admin_page_title( __( 'AWPCP', 'another-wordpress-classifieds-plugin' ) ),
-            $parent_page,
-            $router,
-            $admin_capability,
-            10
-        );
+		add_submenu_page( $parent_page, 'AWPCP', __( 'Dashboard', 'another-wordpress-classifieds-plugin' ), $admin_capability, 'awpcp.php', $router );
+
+		add_submenu_page( $parent_page, 'AWPCP', __( 'Classifieds', 'another-wordpress-classifieds-plugin' ), awpcp_user_capability(), 'edit.php?post_type=awpcp_listing' );
 
         $router->add_admin_subpage(
             $parent_page,
@@ -673,17 +666,20 @@ class AWPCP_AdminPanel {
         global $post;
 
         $post_type = awpcp()->container['listing_post_type'];
+		$is_single_listing = $post_type === $this->request->param( 'post_type' ) || ( is_object( $post ) && $post_type === $post->post_type );
 
-        if ( $post_type  === $this->request->param('post_type') || ( is_object( $post ) && $post_type === $post->post_type ) ) {
-            echo "
-            <script type=\"text/javascript\">
+		if ( ! $is_single_listing ) {
+			return;
+		}
+
+        echo "<script>
                 jQuery(document).ready(function() {
                     var awpcpMenu = jQuery( '#toplevel_page_awpcp' );
                     jQuery( awpcpMenu ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
                     jQuery( '#toplevel_page_awpcp a.wp-has-submenu' ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
+                    jQuery( '#toplevel_page_awpcp a[href=\"edit.php?post_type=awpcp_listing\"]' ).parent().addClass( 'current' );
                 });
             </script>";
-        }
     }
 }
 
