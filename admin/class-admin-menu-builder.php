@@ -144,8 +144,10 @@ class AWPCP_AdminMenuBuilder {
      * @since 4.0.17
      */
     public function hide_menu() {
-        if ( awpcp_current_user_is_admin() ) {
+        if ( awpcp_current_user_is_moderator() ) {
             remove_menu_page( 'edit.php?post_type=' . $this->listing_post_type );
+        } else {
+            remove_menu_page( 'awpcp.php' );
         }
     }
 }
