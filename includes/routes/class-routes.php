@@ -39,11 +39,11 @@ class AWPCP_Routes {
     }
 
     public function add_admin_subpage( $parent_page, $menu_title, $page_title, $slug, $handler = null, $capability = 'install_plugins', $priority = 10 ) {
-        if ( $parent_page === 'edit.php?post_type=' . AWPCP_LISTING_POST_TYPE ) {
+        if ( $parent_page === 'edit.php?post_type=' . awpcp()->container['listing_post_type'] ) {
             // Add any submenu for post type to admin menu. 
             $parent_page = 'awpcp.php';
         }
-        
+
         $admin_page = $this->get_or_create_admin_page( $parent_page );
 
         $admin_page->subpages[ $slug ] = $this->create_admin_subpage(
