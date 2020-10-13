@@ -132,11 +132,7 @@ class AWPCP_AdminMenuBuilder {
         $admin_menu = 'awpcp.php';
 
         if( isset( $submenu[$cpt_menu] ) && isset( $submenu[$admin_menu] ) ) {
-            $submenu[$admin_menu] = array_merge( 
-                array_slice($submenu[$admin_menu], 0, 1, false),
-                $submenu[$cpt_menu],
-                array_slice($submenu[$admin_menu], 1, count($submenu[$admin_menu]), false)
-            );
+            array_splice( $submenu[$admin_menu], 1, 0, $submenu[$cpt_menu] );
         }
     }
 

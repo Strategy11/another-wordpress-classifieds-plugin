@@ -681,20 +681,9 @@ class AWPCP_AdminPanel {
                     var awpcpMenu = jQuery( '#toplevel_page_awpcp' );
                     jQuery( awpcpMenu ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
                     jQuery( '#toplevel_page_awpcp a.wp-has-submenu' ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
-                    jQuery( awpcpMenu ).find('a[href=\"awpcp-user-subscriptions\"]').attr('href', 'edit.php?post_type=awpcp_listing&page=awpcp-user-subscriptions'); 
                 });
             </script>";
         }
-        
-        // For backwards compatibility before 4.0.17
-        // Subscriptions submenu highlight under awpcp.php admin menu and fix URL.
-        echo "
-        <script type=\"text/javascript\">
-        jQuery(document).ready(function() {
-            var awpcpMenu = jQuery( '#toplevel_page_awpcp' );
-            jQuery( awpcpMenu ).find('a[href=\"awpcp-user-subscriptions\"]').attr('href', 'edit.php?post_type=awpcp_listing&page=awpcp-user-subscriptions'); 
-        });
-        </script>";
     }
 }
 
