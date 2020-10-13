@@ -128,7 +128,7 @@ class AWPCP_AdminMenuBuilder {
     public function admin_menu_combine() {
         global $submenu;
 
-        $cpt_menu   = sprintf( 'edit.php?post_type=%s', $this->listing_post_type );
+        $cpt_menu   = 'edit.php?post_type=' . $this->listing_post_type;
         $admin_menu = 'awpcp.php';
 
         if( isset( $submenu[$cpt_menu] ) && isset( $submenu[$admin_menu] ) ) {
