@@ -35,7 +35,7 @@ if ( isset( $errors ) && $errors ) {
     $content = esc_html__( 'This integration method allows you to post ads to Facebook using a Facebook Application. Please read {link_to_how_to_register_facebook_apps}How to Register and Configure a Facebook Application{/link_to_how_to_register_facebook_apps} and follow {link_to_facebook_integration_documentation}these instructions{/link_to_facebook_integration_documentation}.', 'another-wordpress-classifieds-plugin' );
     $content = str_replace( '{link_to_how_to_register_facebook_apps}', '<a href="https://developers.facebook.com/docs/web/tutorials/scrumptious/register-facebook-application/">', $content );
     $content = str_replace( '{/link_to_how_to_register_facebook_apps}', '</a>', $content );
-    $content = str_replace( '{link_to_facebook_integration_documentation}', '<a href="https://awpcp.com/documentation/#facebook-integration">', $content );
+    $content = str_replace( '{link_to_facebook_integration_documentation}', '<a href="https://awpcp.com/knowledge-base/facebook-integration/">', $content );
     $content = str_replace( '{/link_to_facebook_integration_documentation}', '</a>', $content );
 
     echo $content; // XSS Ok.
@@ -53,9 +53,9 @@ if ( isset( $errors ) && $errors ) {
 <p>
 <?php
     $content = esc_html__( 'Follow the instructiones to create the tasks on {webhook_instructions_for_zapier}Zapier{/webhook_instructions_for_zapier} or {webhook_instructions_for_ifttt}IFTTT{/webhook_instructions_for_ifttt}. Then update the settings at the bottom of this page to enter the webhook URLs associated with those tasks.', 'another-wordpress-classifieds-plugin' );
-    $content = str_replace( '{webhook_instructions_for_zapier}', '<a href="https://awpcp.com/documentation/#facebook-integration">', $content );
+    $content = str_replace( '{webhook_instructions_for_zapier}', '<a href="https://awpcp.com/knowledge-base/facebook-integration/">', $content );
     $content = str_replace( '{/webhook_instructions_for_zapier}', '</a>', $content );
-    $content = str_replace( '{webhook_instructions_for_ifttt}', '<a href="https://awpcp.com/documentation/#facebook-integration">', $content );
+    $content = str_replace( '{webhook_instructions_for_ifttt}', '<a href="https://awpcp.com/knowledge-base/facebook-integration/">', $content );
     $content = str_replace( '{/webhook_instructions_for_ifttt}', '</a>', $content );
 
     echo $content; // XSS Ok.
@@ -69,7 +69,7 @@ if ( isset( $errors ) && $errors ) {
     $content = esc_html__( 'If you are using Webhooks to send ads to Facebook, a Facebook Application can still be used to ask Facebook to clear the cache it has stored for ads pages. This is useful to ensure users always see the latest version when the ad is shared on Facebook Pages, Groups and user feeds. If you decide to use this feature, please read {link_to_how_to_register_facebook_apps}How to Register and Configure a Facebook Application{/link_to_how_to_register_facebook_apps} and follow {link_to_facebook_integration_documentation}these instructions{/link_to_facebook_integration_documentation}.', 'another-wordpress-classifieds-plugin' );
     $content = str_replace( '{link_to_how_to_register_facebook_apps}', '<a href="https://developers.facebook.com/docs/web/tutorials/scrumptious/register-facebook-application/">', $content );
     $content = str_replace( '{/link_to_how_to_register_facebook_apps}', '</a>', $content );
-    $content = str_replace( '{link_to_facebook_integration_documentation}', '<a href="https://awpcp.com/documentation/#facebook-integration">', $content );
+    $content = str_replace( '{link_to_facebook_integration_documentation}', '<a href="https://awpcp.com/knowledge-base/facebook-integration/">', $content );
     $content = str_replace( '{/link_to_facebook_integration_documentation}', '</a>', $content );
 
     echo $content; // XSS Ok.

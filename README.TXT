@@ -156,7 +156,7 @@ Our classifieds website builder software combined with our add-on modules is the
 * Announcements for events like yard sales, reunions, auctions, and school events
 
 = Can AWP Classifieds support paid and free listings? =
-Yes it can. You can do this by creating fee plans for 0.00 and some other paid amount at the same time. For more details, read [this article](https://awpcp.com/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#qs-freepaid).
+Yes it can. You can do this by creating fee plans for 0.00 and some other paid amount at the same time. For more details, read [this article](https://awpcp.com/knowledge-base/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#qs-freepaid).
 
 = Will AWP Classifieds work with my theme? =
 Our WordPress classifieds plugin will work with any well-written, WP compliant theme. Generally speaking, paid themes tend to be higher quality than free ones.
