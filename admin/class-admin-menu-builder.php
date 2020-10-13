@@ -145,7 +145,7 @@ class AWPCP_AdminMenuBuilder {
      */
     public function hide_menu() {
         if ( awpcp_current_user_is_admin() ) {
-            remove_menu_page( sprintf( 'edit.php?post_type=%s', $this->listing_post_type ) );
+            remove_menu_page( 'edit.php?post_type=' . $this->listing_post_type );
         }
     }
 }
