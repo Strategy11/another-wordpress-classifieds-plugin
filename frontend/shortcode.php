@@ -331,14 +331,18 @@ function awpcpui_process( $awpcppagename ) {
 
 	$layout = intval( get_query_var( 'layout' ) );
 
-	$isadmin = checkifisadmin();
+	$isadmin = awpcp_current_user_is_admin();
 
     awpcp_enqueue_main_script();
 
 	$isclassifiedpage = checkifclassifiedpage( $awpcppage );
 
     if ( ! $isclassifiedpage && $isadmin ) {
-		$output .= __( 'Hi admin, you need to go to your dashboard and setup your classifieds.', 'another-wordpress-classifieds-plugin' );
+		$output .= __( 'Hi admin, you need to select the page for your classifieds.', 'another-wordpress-classifieds-plugin' );
+		$settings_link = admin_url( 'admin.php?page=awpcp-admin-settings&g=pages-settings' );
+		$output .= ' <a href="' . esc_url( $settings_link ) . '">' .
+			__( 'Choose pages now', 'another-wordpress-classifieds-plugin' ) .
+			'</a>';
 
     } elseif ( ! $isclassifiedpage && ! $isadmin ) {
 		$output .= __( 'You currently have no classifieds', 'another-wordpress-classifieds-plugin' );
