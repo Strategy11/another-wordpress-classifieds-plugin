@@ -427,11 +427,11 @@ function awpcp_get_url_with_page_permastruct( $path ) {
 /**
  * @since 3.4
  */
-function awpcp_get_edit_listing_url( $listing ) {
+function awpcp_get_edit_listing_url( $listing, $context = 'display' ) {
     if ( awpcp_listing_authorization()->is_current_user_allowed_to_edit_listing( $listing ) ) {
-        $url = awpcp_get_edit_listing_direct_url( $listing );
+        $url = awpcp_get_edit_listing_direct_url( $listing, $context );
     } else if ( awpcp()->settings->get_option( 'requireuserregistration' ) ) {
-        $url = awpcp_get_edit_listing_direct_url( $listing );
+        $url = awpcp_get_edit_listing_direct_url( $listing, $context );
     } else {
         $url = awpcp_get_edit_listing_generic_url();
     }
@@ -442,9 +442,9 @@ function awpcp_get_edit_listing_url( $listing ) {
 /**
  * @since 3.4
  */
-function awpcp_get_edit_listing_direct_url( $listing ) {
+function awpcp_get_edit_listing_direct_url( $listing, $context = 'display' ) {
     if ( awpcp()->settings->get_option( 'enable-user-panel' ) ) {
-        return get_edit_post_link( $listing );
+        return get_edit_post_link( $listing, $context );
     } else {
         return awpcp_get_edit_listing_page_url_with_listing_id( $listing );
     }
