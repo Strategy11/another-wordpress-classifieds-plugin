@@ -24,7 +24,7 @@
 <?php if ( $include_edit_listing_url ): ?>
 <?php _e( 'The next link will take you to a page where you can edit the listing:', 'another-wordpress-classifieds-plugin' ); ?> 
 
-<?php echo awpcp_get_edit_listing_url( $ad, 'awpcp_place_ad_user_email' ); ?> 
+<?php echo awpcp_get_edit_listing_url( $ad, 'email' ); ?> 
 
 <?php endif; ?>
 <?php if (!empty($message)): ?>
