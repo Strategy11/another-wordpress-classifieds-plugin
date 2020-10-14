@@ -149,7 +149,6 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
      * @since 4.0.0
      */
     public function test_register_listings_table_actions() {
-        $this->container['QuickViewListingTableAction']           = null;
         $this->container['EnableListingTableAction']              = null;
         $this->container['ApproveImagesTableAction']              = null;
         $this->container['DisableListingTableAction']             = null;

@@ -90,7 +90,6 @@ class AWPCP_TestAWPCP extends AWPCP_UnitTestCase {
 
         $this->container['Admin']                     = $admin;
         $this->container['SettingsIntegration']       = Mockery::mock( 'AWPCP_SettingsIntegration' );
-        $this->container['QuickViewListingAdminPage'] = Mockery::mock( 'AWPCP_QuickViewListingAdminPage' );
 
         // Execution.
         $this->get_test_subject()->admin_setup();
