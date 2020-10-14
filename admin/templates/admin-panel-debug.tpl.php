@@ -10,12 +10,11 @@
 		<p>
         <?php
         printf(
-            /* translators: %1$s: Start link HTML, %2$s: end link HTML, %3$s: Start link HTML, %4$s: end link HTML */
-            esc_html__( 'If you are seeing multiple 404 Not Found errors in your website, it is possible that some Rewrite Rules are missing or corrupted. Please click the button bellow to navigate to the %1$s<permalinks-settings-link>Permalinks Settings%2$s</a> page. Opening that page in your browser will flush the Rewrite Rules in your site. WordPress will then ask all installed and active plugins to register their rules and those 404 Not Found errors should be gone. If that\'s not the case, please contact %3$s<support-link>customer support%4$s</a>.', 'another-wordpress-classifieds-plugin' ),
+            /* translators: %1$s: Start link HTML, %2$s: end link HTML, %3$s: Start link HTML */
+            esc_html__( 'If you are seeing multiple 404 Not Found errors in your website, it is possible that some Rewrite Rules are missing or corrupted. Please click the button bellow to navigate to the %1$sPermalinks Settings%2$s page. Opening that page in your browser will flush the Rewrite Rules in your site. WordPress will then ask all installed and active plugins to register their rules and those 404 Not Found errors should be gone. If that\'s not the case, please contact %3$scustomer support%1$s.', 'another-wordpress-classifieds-plugin' ),
             '<a href="https://awpcp.com/contact/">',
             '</a>',
             '<a href="' . esc_url( admin_url( 'options-permalink.php' ) ) . '">',
-            '</a>',
         );
         ?>
         </p>

@@ -70,7 +70,7 @@
                     <ul>
 
                         <?php
-                        $atag = sprintf( $tpl, 'https://awpcp.com/quick-start-guide/', __( 'Quick Start Guide', 'another-wordpress-classifieds-plugin' ) );
+                        $atag = sprintf( $tpl, 'https://awpcp.com/knowledge-base/quick-start-guide/', __( 'Quick Start Guide', 'another-wordpress-classifieds-plugin' ) );
                         ?>
                         <li>
                             <?php
