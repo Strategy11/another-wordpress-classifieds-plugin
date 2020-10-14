@@ -689,7 +689,7 @@ function awpcp_get_admin_listings_url() {
  */
 function awpcp_get_quick_view_listing_url( $listing, $url = false ) {
     if ( $url === false ) {
-        $url = awpcp_get_admin_listings_url();
+        $url = admin_url( 'admin.php' );
     }
 
     $params = array(

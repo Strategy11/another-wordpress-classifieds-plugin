@@ -55,7 +55,7 @@ class AWPCP_QuickViewListingTableAction implements AWPCP_ListTableActionInterfac
      * @since 4.0.0
      */
     public function get_url( $post, $current_url ) {
-        return awpcp_get_quick_view_listing_url( $post, $current_url );
+        return awpcp_get_quick_view_listing_url( $post );
     }
 
     /**

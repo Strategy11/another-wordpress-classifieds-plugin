@@ -88,7 +88,7 @@ class AWPCP_QuickViewListingAdminPage {
             'post_id'                => $post,
             'edit_listing_url'       => $this->wordpress->get_edit_post_link( $post ),
             'edit_listing_link_text' => $edit_listing_link_text,
-            'listings_url'           => remove_query_arg( array( 'page', 'post', '_wpnonce' ) ),
+            'listings_url'           => add_query_arg( array( 'post_type' => awpcp()->container['listing_post_type'] ), admin_url( 'edit.php' ) ),
             'content'                => $this->content_renderer->render_content_with_notices(
                 // TODO: Is it a good idea to call `the_content` on the admin?
                 apply_filters( 'the_content', $post->post_content ),
