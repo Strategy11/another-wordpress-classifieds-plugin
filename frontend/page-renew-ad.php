@@ -34,8 +34,9 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
     public $messages = array();
 
     protected function get_panel_url() {
-        if (awpcp_current_user_is_moderator() || !get_awpcp_option('enable-user-panel'))
+        if ( awpcp_current_user_is_moderator() ) {
             return awpcp_get_admin_listings_url();
+		}
         return awpcp_get_user_panel_url();
     }
 

@@ -60,11 +60,6 @@ class AWPCP_User_Panel {
             return;
         }
 
-        // Workaround for https://core.trac.wordpress.org/ticket/22895.
-        if ( $this->settings->get_option( 'enable-user-panel' ) ) {
-            add_submenu_page( 'edit.php?post_type=' . $this->listing_post_type, null, null, null, null, 'read', 9999 );
-        }
-
         if ( awpcp_payments_api()->credit_system_enabled() && ! awpcp_current_user_is_admin() ) {
             $this->add_users_page( $router );
         }

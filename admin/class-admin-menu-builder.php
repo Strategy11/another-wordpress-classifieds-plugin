@@ -132,23 +132,9 @@ class AWPCP_AdminMenuBuilder {
         $cpt_menu   = 'edit.php?post_type=' . $this->listing_post_type;
         $admin_menu = 'awpcp.php';
 
-        if( isset( $submenu[$cpt_menu] ) && isset( $submenu[$admin_menu] ) ) {
-            array_splice( $submenu[$admin_menu], 1, 0, $submenu[$cpt_menu] );
+        if ( isset( $submenu[ $cpt_menu ] ) && isset( $submenu[ $admin_menu ] ) ) {
+            array_splice( $submenu[ $admin_menu ], 1, 0, $submenu[ $cpt_menu ] );
         }
     }
-
-    /**
-     * Remove post type menu from WP Admin.
-     *
-     * This means the menu is still available to us, but hidden.
-     *
-     * @since 4.0.17
-     */
-    public function hide_menu() {
-        if ( awpcp_current_user_is_admin() ) {
-            remove_menu_page( 'edit.php?post_type=' . $this->listing_post_type );
-        }
-    }
-
 
 }

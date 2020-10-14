@@ -162,12 +162,9 @@ class AWPCP_RolesAndCapabilities {
      * @since 4.0.0
      */
     public function get_dashboard_capability() {
-        if ( $this->settings->get_option( 'enable-user-panel' ) ) {
-            return $this->get_subscriber_capability();
-        }
-
         return $this->get_moderator_capability();
     }
+
     /**
      * @SuppressWarnings(PHPMD.ElseExpression)
      */

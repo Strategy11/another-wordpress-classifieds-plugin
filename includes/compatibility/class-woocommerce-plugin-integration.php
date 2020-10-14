@@ -15,11 +15,7 @@ class AWPCP_WooCommercePluginIntegration {
     }
 
     public function filter_prevent_admin_access( $prevent_access ) {
-        if ( $this->settings->get_option( 'enable-user-panel' ) ) {
-            return false;
-        } else {
-            return $prevent_access;
-        }
+        return $prevent_access;
     }
 
     public function filter_unforce_ssl_checkout( $value ) {

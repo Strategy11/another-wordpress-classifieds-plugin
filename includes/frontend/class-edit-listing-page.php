@@ -255,10 +255,6 @@ class AWPCP_EditListingPage extends AWPCP_Page {
             'attempts' => intval( $this->request->post( 'attempts', 0 ) ),
         );
 
-        if ( 0 === $form['attempts'] && get_awpcp_option( 'enable-user-panel' ) ) {
-            $messages[] = $this->get_go_to_user_panel_message();
-        }
-
         $send_access_key_url = add_query_arg( array( 'step' => 'send-access-key' ), $this->url() );
 
         if ( empty( $form['ad_email'] ) ) {
@@ -473,10 +469,6 @@ class AWPCP_EditListingPage extends AWPCP_Page {
      */
     private function render_send_access_key_form( $form, $errors = array() ) {
         $messages = [];
-
-        if ( 0 === $form['attempts'] && $this->settings->get_option( 'enable-user-panel' ) ) {
-            $messages[] = $this->get_go_to_user_panel_message();
-        }
 
         $send_access_key_url = add_query_arg( array( 'step' => 'send-access-key' ), $this->url() );
 

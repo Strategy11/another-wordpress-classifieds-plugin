@@ -443,11 +443,7 @@ function awpcp_get_edit_listing_url( $listing, $context = 'display' ) {
  * @since 3.4
  */
 function awpcp_get_edit_listing_direct_url( $listing, $context = 'display' ) {
-    if ( awpcp()->settings->get_option( 'enable-user-panel' ) ) {
-        return get_edit_post_link( $listing, $context );
-    } else {
-        return awpcp_get_edit_listing_page_url_with_listing_id( $listing );
-    }
+    return awpcp_get_edit_listing_page_url_with_listing_id( $listing );
 }
 
 /**
@@ -516,11 +512,7 @@ function awpcp_get_edit_listing_page_url_with_listing_id( $listing ) {
  * @since 3.4
  */
 function awpcp_get_edit_listing_generic_url() {
-    if ( awpcp()->settings->get_option( 'enable-user-panel' ) ) {
-        return awpcp_get_user_panel_url();
-    } else {
-        return awpcp_get_page_url( 'edit-ad-page-name' );
-    }
+    return awpcp_get_page_url( 'edit-ad-page-name' );
 }
 
 /**
@@ -530,18 +522,6 @@ function awpcp_get_edit_listing_generic_url() {
  */
 function awpcp_get_renew_ad_url($ad_id) {
     $hash = awpcp_get_renew_ad_hash( $ad_id );
-
-    if ( get_awpcp_option( 'enable-user-panel' ) == 1 ) {
-        $url = awpcp_get_user_panel_url();
-
-        $params = [
-            'page'        => 'awpcp-admin-renew-listing',
-            'id'          => $ad_id,
-            'awpcprah'    => $hash,
-        ];
-
-        return add_query_arg( urlencode_deep( $params ), $url );
-    }
 
     $url = awpcp_get_page_url('renew-ad-page-name');
 

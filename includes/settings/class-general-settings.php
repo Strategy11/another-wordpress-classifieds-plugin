@@ -73,7 +73,6 @@ class AWPCP_GeneralSettings {
         );
 
         $this->register_general_settings_section( $settings_manager );
-        $this->register_classifieds_management_panel_settings( $settings_manager );
         $this->register_terms_of_service_settings( $settings_manager );
     }
 
@@ -217,34 +216,6 @@ class AWPCP_GeneralSettings {
                 'type'    => 'checkbox',
                 'default' => false,
                 'section' => 'general-settings',
-            ]
-        );
-    }
-
-    /**
-     * @since 4.0.0
-     */
-    private function register_classifieds_management_panel_settings( $settings_manager ) {
-        $settings_manager->add_settings_section(
-            [
-                'id'       => 'classifieds-management-panel',
-                'name'     => __( 'Classifieds Management Panel', 'another-wordpress-classifieds-plugin' ),
-                'priority' => 10,
-                'subgroup' => 'general-settings',
-            ]
-        );
-
-        $help_text = __( 'You must have registered users to use this setting. Turning it on will automatically enable "Require Registration" for AWPCP. Make sure you site allows users to register under <wp-settings-link>Settings->General</a>.', 'another-wordpress-classifieds-plugin' );
-        $help_text = str_replace( '<wp-settings-link>', sprintf( '<a href="%s">', admin_url( 'options-general.php' ) ), $help_text );
-
-        $settings_manager->add_setting(
-            [
-                'id'          => 'enable-user-panel',
-                'name'        => __( 'Enable User Ad Management Panel', 'another-wordpress-classifieds-plugin' ),
-                'type'        => 'checkbox',
-                'default'     => 0,
-                'description' => $help_text,
-                'section'     => 'classifieds-management-panel',
             ]
         );
     }
@@ -1083,16 +1054,6 @@ class AWPCP_GeneralSettings {
         $this->validate_akismet_settings( $options );
         $this->validate_captcha_settings( $options );
 
-        // Enabling User Ad Management Panel will automatically enable
-        // require Registration, if it isn’t enabled. Disabling this feature
-        // will not disable Require Registration.
-        $setting = 'enable-user-panel';
-
-        if ( isset( $options[ $setting ] ) && intval( $options[ $setting ] ) === 1 && ! get_awpcp_option( 'requireuserregistration' ) ) {
-            awpcp_flash( __( 'Require Registration setting was enabled automatically because you activated the User Ad Management panel.', 'another-wordpress-classifieds-plugin' ) );
-            $options['requireuserregistration'] = 1;
-        }
-
         do_action( 'awpcp_clear_categories_list_cache' );
         return $options;
     }
@@ -1204,14 +1165,7 @@ class AWPCP_GeneralSettings {
      * Registration Settings checks
      */
     public function validate_registration_settings( $options ) {
-        // if Require Registration is disabled, User Ad Management Panel should be
-        // disabled as well.
         $setting = 'requireuserregistration';
-        if ( isset( $options[ $setting ] ) && intval( $options[ $setting ] ) === 0 && get_awpcp_option( 'enable-user-panel' ) ) {
-            awpcp_flash( __( 'User Ad Management panel was automatically deactivated because you disabled Require Registration setting.', 'another-wordpress-classifieds-plugin' ) );
-            $options['enable-user-panel'] = 0;
-        }
-
         if ( isset( $options[ $setting ] ) && intval( $options[ $setting ] ) === 0 && get_awpcp_option( 'enable-credit-system' ) ) {
             awpcp_flash( __( 'Credit System was automatically disabled because you disabled Require Registration setting.', 'another-wordpress-classifieds-plugin' ) );
             $options['enable-credit-system'] = 0;
