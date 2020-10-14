@@ -83,11 +83,7 @@ class AWPCP_AdminMenuBuilder {
     }
 
     public function register_admin_subpage( $parent_menu, $subpage ) {
-		$callback = array( $this->router, 'on_admin_dispatch' );
-		if ( $subpage->slug === 'edit.php?post_type=awpcp_listing' ) {
-			$callback = null;
-		}
-		$hook = add_submenu_page( $parent_menu, $subpage->title, $subpage->menu_title, $subpage->capability, $subpage->slug, $callback );
+		$hook = add_submenu_page( $parent_menu, $subpage->title, $subpage->menu_title, $subpage->capability, $subpage->slug, array( $this->router, 'on_admin_dispatch' ) );
 
         $this->add_submenu_class( $parent_menu, $subpage->slug );
         add_action( "load-{$hook}", array( $this->router, 'on_admin_load' ) );

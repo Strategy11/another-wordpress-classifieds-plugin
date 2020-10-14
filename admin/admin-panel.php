@@ -140,25 +140,8 @@ class AWPCP_AdminPanel {
     private function configure_routes_for_admin_subpages( $parent_page, $router ) {
         $admin_capability = awpcp_admin_capability();
 
-        $router->add_admin_subpage(
-            $parent_page,
-            __( 'Dashboard', 'another-wordpress-classifieds-plugin' ),
-            awpcp_admin_page_title( 'AWPCP' ),
-            $parent_page,
-            $router,
-            $admin_capability,
-            10
-        );
-
-        $router->add_admin_subpage(
-            $parent_page,
-            __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
-            awpcp_admin_page_title( 'AWPCP' ),
-            'edit.php?post_type=awpcp_listing',
-            null,
-            awpcp_roles_and_capabilities()->get_moderator_capability(),
-            10
-        );
+		add_submenu_page( $parent_page, 'AWPCP', __( 'Dashboard', 'another-wordpress-classifieds-plugin' ), $admin_capability, $parent_page, $router );
+		add_submenu_page( $parent_page, 'AWPCP', __( 'Classifieds', 'another-wordpress-classifieds-plugin' ), awpcp_user_capability(), 'edit.php?post_type=awpcp_listing' );
 
         $router->add_admin_subpage(
             $parent_page,
