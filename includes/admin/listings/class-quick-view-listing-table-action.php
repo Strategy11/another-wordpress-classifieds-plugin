@@ -1,6 +1,7 @@
 <?php
 /**
  * @package AWPCP\Admin\Listings
+ * @deprecated 4.01
  */
 
 /**

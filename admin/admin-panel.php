@@ -346,16 +346,7 @@ class AWPCP_AdminPanel {
         $quick_view_admin_page_slug = 'awpcp-admin-quick-view-listing';
 
         if ( $this->request->param( 'page' ) === $quick_view_admin_page_slug ) {
-            $router->add_admin_subpage(
-                'edit.php?post_type=awpcp_listing',
-                __( 'Quick View', 'another-wordpress-classifieds-plugin' ),
-                awpcp_admin_page_title( __( 'Listing Quick View', 'another-wordpress-classifieds-plugin' ) ),
-                $quick_view_admin_page_slug,
-                function() {
-                    return awpcp()->container['QuickViewListingAdminPage'];
-                },
-                awpcp_roles_and_capabilities()->get_dashboard_capability()
-            );
+            $this->maybe_redirect_quick_page();
         }
 
         $renew_listing_subscriber_admin_page_slug = 'awpcp-admin-renew-listing';
@@ -373,6 +364,19 @@ class AWPCP_AdminPanel {
             );
         }
     }
+
+	/**
+	 * Reverse compatibility - redirect to view front-end.
+	 *
+	 * @since 4.01
+	 */
+	private function maybe_redirect_quick_page() {
+		$listing_id = isset( $_GET['post'] ) ? absint( wp_unslash( $_GET['post'] ) ) : 0;
+		if ( $listing_id ) {
+			wp_safe_redirect( get_permalink( $listing_id ) );
+			exit();
+		}
+	}
 
     private function configure_regular_routes( $parent_menu, $router ) {
         $parent_page = $this->configure_route_for_main_classifieds_admin_page( $parent_menu, $router );

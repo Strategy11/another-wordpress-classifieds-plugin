@@ -663,21 +663,12 @@ function awpcp_get_admin_listings_url() {
 }
 
 /**
- * Return a link to the Quick View admin page for the given listing.
+ * Return a link to the View page for the given listing.
  *
  * @since 4.0.4
  */
-function awpcp_get_quick_view_listing_url( $listing, $url = false ) {
-    if ( $url === false ) {
-        $url = admin_url( 'admin.php' );
-    }
-
-    $params = array(
-        'page' => 'awpcp-admin-quick-view-listing',
-        'post' => $listing->ID,
-    );
-
-    return add_query_arg( $params, $url );
+function awpcp_get_quick_view_listing_url( $listing ) {
+    return get_permalink( $listing->ID );
 }
 
 /**
