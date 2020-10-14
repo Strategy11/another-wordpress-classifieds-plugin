@@ -314,18 +314,6 @@ class AWPCP_EditListingPage extends AWPCP_Page {
     }
 
     /**
-     * @since 4.0.0
-     */
-    private function get_go_to_user_panel_message() {
-        $url = awpcp_get_user_panel_url();
-
-        $message = __( 'You are currently not logged in, if you have an account on this website you can log in and go to the Ad Management panel to edit your Ads.', 'another-wordpress-classifieds-plugin' );
-        $message = sprintf( '%s <a href="%s">%s</a>', $message, $url, __( 'Click here', 'another-wordpress-classifieds-plugin' ) );
-
-        return $message;
-    }
-
-    /**
      * Copied from old Edit Listing page.
      *
      * @since 4.0.0
