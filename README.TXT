@@ -136,10 +136,10 @@ Your classified directory should now be ready and working.
 
 == Frequently Asked Questions ==
 
-For the definitive FAQ section, please visit the [FAQ Section of the Forum]( https://awpcp.com/forum/faq/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion), or our [Quick Start](https://awpcp.com/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) guide.
+For the definitive FAQ section, please visit the [FAQ Section of the Forum]( https://awpcp.com/forum/faq/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion), or our [Quick Start](https://awpcp.com/knowledge-base/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) guide.
 
 = How do I install AWP Classifieds Plugin? =
-Please see our [Installation Guide](https://awpcp.com/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#qs-general), the [Quick Start Guide](https://awpcp.com/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) for common how-to scenarios, and our [Initial Setup](https://awpcp.com/knowledge-base/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#setup) page for instructions on how to get going quickly.
+Please see our [Installation Guide](https://awpcp.com/knowledge-base/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#qs-general), the [Quick Start Guide](https://awpcp.com/knowledge-base/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) for common how-to scenarios, and our [Initial Setup](https://awpcp.com/knowledge-base/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#setup) page for instructions on how to get going quickly.
 
 Full [documentation](https://awpcp.com/knowledge-base/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) for the plugin is also available.
 
@@ -164,7 +164,7 @@ Our WordPress classifieds plugin will work with any well-written, WP compliant t
 In general, we like WooThemes as a solid company with great products and support. You can check them out [here](http://woothemes.com) Or [StudioPress](http://studiopress.com​​)
 
 = Can this plugin be translated into my language? =
-Yes it can. Our Classifieds directory plugin comes with many user-provided translations under the /languages folder. For details on how to do it, our [translation guide](https://awpcp.com/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#qs-translate) will help get you started.
+Yes it can. Our Classifieds directory plugin comes with many user-provided translations under the /languages folder. For details on how to do it, our [translation guide](https://awpcp.com/knowledge-base/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#qs-translate) will help get you started.
 
 = Is AWP Classifieds compatible with WordPress Multisite (WPMU)? =
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
