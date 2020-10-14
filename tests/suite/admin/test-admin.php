@@ -173,7 +173,6 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
 
         // Verification.
         // phpcs:disable Squiz.PHP.CommentedOutCode.Found
-        $this->assertArrayHasKey( 'quick-view', $actions );
         $this->assertArrayHasKey( 'enable', $actions );
         $this->assertArrayHasKey( 'disable', $actions );
         $this->assertArrayHasKey( 'send-access-key', $actions );

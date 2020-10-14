@@ -144,8 +144,6 @@ class AWPCP_Test_Edit_Listing_Page extends AWPCP_UnitTestCase {
 
         $settings = Phake::mock( 'AWPCP_Settings_API' );
 
-        Phake::when( $settings )->get_option( 'enable-user-panel' )->thenReturn( false );
-
         Phake::when( $this->listings )->find_listings->thenReturn( array( $first_listing, $second_listing ) );
 
         Phake::when( $this->listing_renderer )->is_verified( $first_listing )->thenReturn( false );

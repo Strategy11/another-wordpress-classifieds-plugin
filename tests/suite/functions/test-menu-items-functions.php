@@ -94,28 +94,6 @@ class AWPCP_TestMenuItemsFunctions extends AWPCP_UnitTestCase {
         $this->assertTrue( isset( $items['search-listings'] ) );
     }
 
-    /**
-     * @issue https://github.com/drodenbaugh/awpcp/issues/695
-     */
-    public function test_post_listing_menu_item_url_does_not_point_to_admin_dashboard() {
-        $this->enable_basic_menu_items();
-
-        awpcp()->settings->update_option( 'enable-user-panel', true );
-
-        $this->login_as_subscriber();
-
-        $params = array(
-            'show-create-listing-button' => true,
-            'show-edit-listing-button' => true,
-            'show-browse-listings-button' => true,
-            'show-search-listings-button' => true,
-        );
-
-        $items = awpcp_get_menu_items( $params );
-
-        $this->assertNotContains( admin_url(), $items['post-listing']['url'] );
-    }
-
     public function test_view_categories_menu_item_is_generated_when_viewing_browse_listings_page() {
         /* preparation */
         awpcp_create_pages( 'another-wordpress-classifieds-plugin' );
