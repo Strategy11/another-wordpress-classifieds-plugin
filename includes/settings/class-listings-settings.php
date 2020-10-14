@@ -141,6 +141,8 @@ class AWPCP_ListingsSettings {
             0,
             ''
         );
+
+		awpcp_files_settings()->register_images_moderation_settings( $settings_manager );
     }
 
     /**

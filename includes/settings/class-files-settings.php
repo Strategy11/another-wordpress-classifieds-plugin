@@ -88,26 +88,21 @@ class AWPCP_FilesSettings {
     private function register_moderation_media_settings( $settings_manager ) {
         $settings_manager->add_settings_subgroup( [
             'id'       => 'moderation-media-settings',
-            'name'     => __( 'Moderation', 'another-wordpress-classifieds-plugin' ),
+            'name'     => __( 'Dimensions', 'another-wordpress-classifieds-plugin' ),
             'priority' => 20,
             'parent'   => 'attachments-settings',
         ] );
 
-        $this->register_images_moderation_settings( $settings_manager );
         $this->register_images_file_size_settings( $settings_manager );
     }
 
     /**
      * @since 4.0.0
      */
-    private function register_images_moderation_settings( $settings_manager ) {
+    public function register_images_moderation_settings( $settings_manager ) {
         $key = 'images-moderation-settings';
 
-        $settings_manager->add_settings_section( [
-            'id'       => 'images-moderation-settings',
-            'name'     => __( 'Images Moderation', 'another-wordpress-classifieds-plugin' ),
-            'subgroup' => 'moderation-media-settings',
-        ] );
+		$settings_manager->add_section( 'listings-moderation', __( 'Images Moderation', 'another-wordpress-classifieds-plugin' ), $key, 20, array( $settings_manager, 'section' ) );
 
         $settings_manager->add_setting( $key, 'imagesapprove', __( 'Hide images until admin approves them', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '');
 
@@ -253,7 +248,7 @@ class AWPCP_FilesSettings {
             [
                 'id'       => 'featured-image-on-lists',
                 'name'     => __( 'Primary Image (List of ads)', 'another-wordpress-classifieds-plugin'),
-                'subgroup' => 'presentation-media-settings',
+                'subgroup' => 'moderation-media-settings',
                 'callback' => [ $this, 'primary_image_excerpt_section_header' ],
                 'priority' => 35,
             ]
@@ -298,7 +293,7 @@ class AWPCP_FilesSettings {
             [
                 'id' => 'primary-image',
                 'name'     => __( 'Primary Image (Single ad page)', 'another-wordpress-classifieds-plugin'),
-                'subgroup' => 'presentation-media-settings',
+                'subgroup' => 'moderation-media-settings',
                 'callback' => [ $this, 'primary_image_section_header' ],
                 'priority' => 40,
             ]
@@ -315,7 +310,7 @@ class AWPCP_FilesSettings {
      * @since 4.0.0
      */
     private function register_thumbnails_image_settings( $settings_manager ) {
-        $group = 'presentation-media-settings';
+        $group = 'moderation-media-settings';
         $key = 'thumbnails';
 
         $settings_manager->add_section( $group, __( 'Thumbnails', 'another-wordpress-classifieds-plugin' ), 'thumbnails', 50, array( $this, 'thumbnails_section_header' ) );
