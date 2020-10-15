@@ -28,6 +28,7 @@
         <exclude name="WordPress.Security.EscapeOutput.UnsafePrintingFunction" />
         <exclude name="WordPress.Security.ValidatedSanitizedInput.InputNotValidated" />
         <exclude name="WordPress.Security.NonceVerification.Missing" />
+        <exclude name="WordPress.WP.I18n.UnorderedPlaceholdersText" />
         <exclude name="PSR2.Classes.PropertyDeclaration" />
         <exclude name="Squiz.Scope.MethodScope" />
         <exclude name="WordPress.Security.EscapeOutput.DeprecatedWhitelistCommentFound" />
@@ -61,6 +62,8 @@
         <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
         <exclude name="WordPress.Classes.ClassInstantiation.MissingParenthesis" />
         <exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase" />
+        <exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase" />
+        <exclude name="WordPress.NamingConventions.ValidVariableName.InterpolatedVariableNotSnakeCase" />
         <exclude name="PEAR.NamingConventions.ValidClassName" />
         <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
         <exclude name="WordPress.WhiteSpace.DisallowInlineTabs" />
@@ -68,6 +71,8 @@
         <exclude name="Generic.Formatting.DisallowMultipleStatements.SameLine" />
         <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
         <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
+        <exclude name="Squiz.Strings.ConcatenationSpacing.PaddingFound" />
+        <exclude name="WordPress.WhiteSpace.OperatorSpacing.SpacingBefore" />
     </rule>
 
     <rule ref="Generic.WhiteSpace.ScopeIndent">
