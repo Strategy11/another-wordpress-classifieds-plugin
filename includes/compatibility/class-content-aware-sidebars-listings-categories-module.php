@@ -123,7 +123,7 @@ class AWPCP_ContentAwareSidebarsListingsCategoriesModule extends CASModule {
 
         echo '<p class="button-controls">';
 
-        echo '<span class="add-to-group"><input data-cas-condition="' . $this->id . '" data-cas-module="' . $this->id . '" type="button" name="cas-condition-add" class="js-cas-condition-add button" value="' . __( 'Add to Group', ContentAwareSidebars::DOMAIN ) . '"></span>';
+        echo '<span class="add-to-group"><input data-cas-condition="' . esc_attr( $this->id ) . '" data-cas-module="' . esc_attr( $this->id ) . '" type="button" name="cas-condition-add" class="js-cas-condition-add button" value="' . esc_attr__( 'Add to Group', 'another-wordpress-classifieds-plugin' ) . '"></span>';
 
         echo '</p>';
 
