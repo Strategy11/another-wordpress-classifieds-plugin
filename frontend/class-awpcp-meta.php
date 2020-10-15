@@ -192,13 +192,13 @@ class AWPCP_Meta {
 
     private function render_meta_tags( $meta_tags, $group_name ) {
         // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo '<!-- START - Another WordPress Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL;
+        echo '<!-- START - AWP Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL;
 
         foreach ( $meta_tags as $tag ) {
             echo $tag . PHP_EOL;
         }
 
-        echo '<!-- END - Another WordPress Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL;
+        echo '<!-- END - AWP Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL;
         // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 

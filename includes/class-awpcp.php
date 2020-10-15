@@ -1564,7 +1564,7 @@ class AWPCP {
      */
     public function register_personal_data_exporters( $exporters ) {
         $exporters['another-wordpres-classifieds-plugin-user'] = array(
-            'exporter_friendly_name' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+            'exporter_friendly_name' => __( 'AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
             'callback'               => array(
                 new AWPCP_PersonalDataExporter( $this->get_user_personal_data_provider() ),
                 'export_personal_data',
@@ -1572,7 +1572,7 @@ class AWPCP {
         );
 
         $exporters['another-wordpres-classifieds-plugin-listings'] = array(
-            'exporter_friendly_name' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+            'exporter_friendly_name' => __( 'AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
             'callback'               => array(
                 new AWPCP_PersonalDataExporter( $this->get_listings_personal_data_provider() ),
                 'export_personal_data',
@@ -1580,7 +1580,7 @@ class AWPCP {
         );
 
         $exporters['another-wordpres-classifieds-plugin-payment'] = array(
-            'exporter_friendly_name' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+            'exporter_friendly_name' => __( 'AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
             'callback'               => array(
                 new AWPCP_PersonalDataExporter( $this->get_payment_personal_data_provider() ),
                 'export_personal_data',
@@ -1657,7 +1657,7 @@ class AWPCP {
      */
     public function register_personal_data_erasers( $erasers ) {
         $erasers['another-wordpress-classifieds-plugin-user'] = array(
-            'eraser_friendly_name' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+            'eraser_friendly_name' => __( 'AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
             'callback'             => array(
                 new AWPCP_PersonalDataEraser( $this->get_user_personal_data_provider() ),
                 'erase_personal_data',
@@ -1665,7 +1665,7 @@ class AWPCP {
         );
 
         $erasers['another-wordpres-classifieds-plugin-listings'] = array(
-            'eraser_friendly_name' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+            'eraser_friendly_name' => __( 'AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
             'callback'               => array(
                 new AWPCP_PersonalDataEraser( $this->get_listings_personal_data_provider() ),
                 'erase_personal_data',
@@ -1673,7 +1673,7 @@ class AWPCP {
         );
 
         $erasers['another-wordpres-classifieds-plugin-payment'] = array(
-            'eraser_friendly_name' => __( 'Another WordPress Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+            'eraser_friendly_name' => __( 'AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
             'callback'               => array(
                 new AWPCP_PersonalDataEraser( $this->get_payment_personal_data_provider() ),
                 'erase_personal_data',

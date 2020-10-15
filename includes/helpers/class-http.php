@@ -28,7 +28,7 @@ class AWPCP_HTTP {
 
             $message = '<strong>' . __( 'The server returned a 403 Forbidden error.', 'another-wordpress-classifieds-plugin' ) . '</strong>';
             $message.= '<br/><br/>';
-            $message.= __( "It look's like your server is not authorized to make requests to <host>. Please <support-link>contact Another WordPress Classifieds Plugin support</support-link> and ask them to add your IP address <ip-address> to the whitelist.", 'another-wordpress-classifieds-plugin' );
+            $message.= __( "It look's like your server is not authorized to make requests to <host>. Please <support-link>contact AWP Classifieds support</support-link> and ask them to add your IP address <ip-address> to the whitelist.", 'another-wordpress-classifieds-plugin' );
             $message.= '<br/><br/>';
             $message.= __( 'Include this error message with your report.', 'another-wordpress-classifieds-plugin' );
 
@@ -68,7 +68,7 @@ class AWPCP_HTTP {
             $message.= '<br/><br/>';
             $message.= '<code>curl: (' . $error_number . ') ' . $error_message . '</code>';
             $message.= '<br/><br/>';
-            $message.= __( "It look's like your server is not authorized to make requests to <host>. Please <support-link>contact Another WordPress Classifieds Plugin support</support-link> and ask them to add your IP address <ip-address> to the whitelist.", 'another-wordpress-classifieds-plugin' );
+            $message.= __( "It look's like your server is not authorized to make requests to <host>. Please <support-link>contact AWP Classifieds support</support-link> and ask them to add your IP address <ip-address> to the whitelist.", 'another-wordpress-classifieds-plugin' );
             $message.= '<br/><br/>';
             $message.= __( 'Include this error message with your report.', 'another-wordpress-classifieds-plugin' );
 

@@ -196,7 +196,7 @@ function awpcp_missing_autoload() {
  * @since 4.0.0
  */
 function awpcp_missing_autoload_notice() {
-    $message = esc_html__( 'Another WordPress Classifieds Plugin installation is incomplete. Please {support_link}contact support{/support_link}.', 'wordpress-seo' );
+    $message = esc_html__( 'AWP Classifieds Plugin installation is incomplete. Please {support_link}contact support{/support_link}.', 'wordpress-seo' );
     $message = str_replace( '{support_link}', '<a href="https://awpcp.com/contact/">', $message );
     $message = str_replace( '{/support_link}', '</a>', $message );
 

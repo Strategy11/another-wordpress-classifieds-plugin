@@ -28,7 +28,7 @@ class AWPCP_PrivacyPolicyContent {
             return;
         }
 
-        wp_add_privacy_policy_content( 'Another WordPress Classifieds Plugin', $this->get_privacy_policy_content() );
+        wp_add_privacy_policy_content( 'AWP Classifieds Plugin', $this->get_privacy_policy_content() );
     }
 
     /**
