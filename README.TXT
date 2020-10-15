@@ -4,8 +4,8 @@ Contributors: awpcp
 Tags: listings, classified ads, classified, classifieds, directory plugin, classifieds script, classified theme, wp classified, ads
 Requires at least: 4.9
 Requires PHP: 5.6
-Tested up to: 5.5
-Stable tag: 4.0.16
+Tested up to: 5.5.1
+Stable tag: 4.1
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -170,6 +170,17 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+
+= Version 4.1 =
+* New - Merge together Classifieds admin menus. (#3024)
+* Fix - Make sure manual upgrade routines are registered.
+* Fix - Update link for manage listing images in admin/moderator notifications. (#3035)
+* Fix - Do not render 'renew' button for listings without owner. (#3042)
+* Fix - Edit post url in place ad user notification email. (#3044)
+* Remove - Setting to allow users edit listings using the backend.
+* Remove - Quick view page and redirect to front end.
+* Tweak - Images moderation is now located in "Settings -> Classifieds -> Moderation" menu.
+* Tweak - Rename "Media -> Moderation" menu to "Media -> Dimensions".
 
 = Version 4.0.16 =
 * Enhancement - Optimize get_categories_hierarchy function by removing empty categories when ‘Hide empty categories from dropdowns’ setting is active. 

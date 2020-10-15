@@ -6,7 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Phake' => array($vendorDir . '/phake/phake/src'),
-    'PHPMD\\' => array($vendorDir . '/phpmd/phpmd/src/main/php'),
-    'Mockery' => array($vendorDir . '/mockery/mockery/library'),
 );
