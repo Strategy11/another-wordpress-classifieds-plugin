@@ -24,17 +24,22 @@
         <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
 
         <!-- Temporary exclusions -->
+        <exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped" />
         <exclude name="WordPress.Security.EscapeOutput.DeprecatedWhitelistCommentFound" />
         <exclude name="WordPress.WhiteSpace.ControlStructureSpacing" />
         <exclude name="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket" />
         <exclude name="PEAR.Functions.FunctionCallSignature.SpaceBeforeCloseBracket" />
         <exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
-        <exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword" />
+        <exclude name="Squiz.ControlStructures.ControlSignature" />
         <exclude name="WordPress.Arrays.ArrayDeclarationSpacing" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment" />
         <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar" />
         <exclude name="WordPress.Arrays.CommaAfterArrayItem.NoComma" />
         <exclude name="WordPress.Arrays.MultipleStatementAlignment" />
+        <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndFile" />
+        <exclude name="Squiz.PHP.EmbeddedPhp.NoSemicolon" />
+        <exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
+        <exclude name="Generic.WhiteSpace.ScopeIndent" />
     </rule>
 
     <rule ref="Generic.WhiteSpace.ScopeIndent">
