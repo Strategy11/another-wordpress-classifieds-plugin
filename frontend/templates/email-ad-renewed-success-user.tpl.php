@@ -19,7 +19,7 @@
 
 
 <?php
-    $text = __("If you have questions about your listing, please contact %s.", 'another-wordpress-classifieds-plugin');
+    $text = __( 'If you have questions about your listing, please contact %s.', 'another-wordpress-classifieds-plugin' );
     echo sprintf( $text, awpcp_admin_recipient_email_address() );
 ?>
 

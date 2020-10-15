@@ -8,7 +8,7 @@
 
 <?php echo $payments->render_account_balance(); ?>
 
-<h3><?php echo esc_html( __( 'Select a Credit Plan', 'add credit order step', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
+<h3><?php echo esc_html( __( 'Select a Credit Plan', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
 <form method="post">
 

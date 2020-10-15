@@ -25,6 +25,7 @@
 
         <!-- Temporary exclusions -->
         <exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped" />
+        <exclude name="WordPress.Security.EscapeOutput.UnsafePrintingFunction" />
         <exclude name="WordPress.Security.EscapeOutput.DeprecatedWhitelistCommentFound" />
         <exclude name="WordPress.WhiteSpace.ControlStructureSpacing" />
         <exclude name="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket" />
@@ -50,6 +51,10 @@
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing" />
         <exclude name="WordPress.Arrays.ArrayKeySpacingRestrictions" />
         <exclude name="PSR2.Files.ClosingTag.NotAllowed" />
+        <exclude name="WordPress.WhiteSpace.OperatorSpacing.NoSpaceBefore" />
+        <exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed" />
+        <exclude name="Squiz.PHP.EmbeddedPhp.SpacingAfterOpen" />
+        <exclude name="Squiz.Strings.DoubleQuoteUsage.NotRequired" />
     </rule>
 
     <rule ref="Generic.WhiteSpace.ScopeIndent">

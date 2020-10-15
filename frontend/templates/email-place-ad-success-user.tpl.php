@@ -1,17 +1,17 @@
 <?php echo get_awpcp_option('listingaddedbody') ?> 
 
-<?php _e("Listing Title", 'another-wordpress-classifieds-plugin') ?>: <?php echo $listing_title; ?> 
-<?php _e("Listing URL", 'another-wordpress-classifieds-plugin') ?>: <?php echo urldecode( url_showad( $ad->ID ) ); ?> 
-<?php _e("Listing ID", 'another-wordpress-classifieds-plugin') ?>: <?php echo $ad->ID; ?> 
-<?php _e("Listing Edit Email", 'another-wordpress-classifieds-plugin') ?>: <?php echo $contact_email; ?> 
+<?php esc_html_e( 'Listing Title', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $listing_title; ?>
+<?php esc_html_e( 'Listing URL', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo urldecode( url_showad( $ad->ID ) ); ?>
+<?php esc_html_e( 'Listing ID', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $ad->ID; ?>
+<?php esc_html_e( 'Listing Edit Email', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $contact_email; ?>
 <?php if ( $include_listing_access_key ): ?>
-<?php _e( "Listing Edit Key", 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $access_key; ?> 
+<?php esc_html_e( 'Listing Edit Key', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $access_key; ?>
 <?php endif; ?>
 
 <?php if ($transaction): ?>
-<?php echo sprintf( __( "%s Transaction", 'another-wordpress-classifieds-plugin' ), $blog_name ); ?>: <?php echo $transaction->id ?> 
+<?php printf( __( '%s Transaction', 'another-wordpress-classifieds-plugin' ), esc_html( $blog_name ) ); ?>: <?php echo $transaction->id ?>
 <?php   if ($transaction->get('txn-id')): ?>
-<?php _e("Payment Transaction", 'another-wordpress-classifieds-plugin')?>: <?php echo $transaction->get('txn-id') ?> 
+<?php esc_html_e( 'Payment Transaction', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $transaction->get('txn-id') ?>
 <?php   endif ?>
 <?php   if ( $show_total_amount ): ?>
 <?php echo esc_html( __( 'Order Total', 'another-wordpress-classifieds-plugin' ) ); ?> (<?php echo esc_html( $currency_code ); ?>): <?php echo esc_html( awpcp_format_money( $total_amount ) ); ?> 
@@ -33,7 +33,7 @@
 <?php echo $message ?> 
 
 <?php endif ?>
-<?php echo sprintf(__("If you have questions about your listing contact %s. Thank you for your business.", 'another-wordpress-classifieds-plugin'), $admin_email) ?> 
+<?php printf( __( 'If you have questions about your listing contact %s. Thank you for your business.', 'another-wordpress-classifieds-plugin' ), $admin_email ); ?>
 
 <?php echo $blog_name; ?> 
 <?php echo home_url(); ?> 
