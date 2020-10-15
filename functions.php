@@ -2498,7 +2498,8 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 	} else {
 		$subject = __( 'The Ad "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
-		$message = __( 'The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
+        /* translators: %1$s is the listing title. %2$s is the URL for managing listing.*/
+		$message = __( 'The Ad "%1$s" is awaiting approval. You can approve the Ad going to the Classified edit section and clicking the "Publish" button. Click here to continue: %2$s.', 'another-wordpress-classifieds-plugin');
 
         $url = awpcp_get_quick_view_listing_url( $ad );
 
