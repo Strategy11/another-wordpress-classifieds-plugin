@@ -172,15 +172,15 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 == Changelog ==
 
 = Version 4.1 =
-* New - Merge together Classifieds admin menus. (#3024)
+* New - Merge together Classifieds admin menus to remove extra duplication. (#3024)
+* Simplify the interface by only allowing users to edit listings from the front-end.
+* Remove the Quick view page in the admin area and use the front-end to avoid doing it two different ways.
+* Tweak - Images moderation is now located in "Settings -> Classifieds -> Moderation" menu.
+* Tweak - Combine all the image dimensions settings into the same page ("Media -> Dimensions").
 * Fix - Make sure manual upgrade routines are registered.
 * Fix - Update link for manage listing images in admin/moderator notifications. (#3035)
-* Fix - Do not render 'renew' button for listings without owner. (#3042)
+* Fix - Do not show the 'renew' button when it can't be used on listings without owner. (#3042)
 * Fix - Edit post url in place ad user notification email. (#3044)
-* Remove - Setting to allow users edit listings using the backend.
-* Remove - Quick view page and redirect to front end.
-* Tweak - Images moderation is now located in "Settings -> Classifieds -> Moderation" menu.
-* Tweak - Rename "Media -> Moderation" menu to "Media -> Dimensions".
 
 = Version 4.0.16 =
 * Enhancement - Optimize get_categories_hierarchy function by removing empty categories when ‘Hide empty categories from dropdowns’ setting is active. 
@@ -201,17 +201,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fix - Latests ads widget CSS classes. 
 * Fix - Quick search action URL when site permalink structure is set to Plain. 
 * Fix - AWPCP "init" action hook priorities to prevent issues while running first time verifications. 
-
-= Version 4.0.14 =
-* Enhancement - New Add setting to Notifications for enabling/disabling user notification after listing edit. 
-* Enhancement - Add sortfeatured parameter to [AWPCPLATESTLISTINGS] shortcode to list featured listings on top of the list. 
-* Fix - Register AWPCP custom post type and custom taxonomies earlier on 'init' action. 
-* Fix - Increase max fee amount value to a 10 digit including 2 decimals (99,999,999.99). 
-* Fix - Use 'wpautop' function to fix spacing issues on ad content field. 
-* Fix - Fix modules integration compatibility with search widget. 
-* Fix - Fix bug on category placeholder replacement. 
-* Tweak - Add notice to inform customer when submitted listing requires email validation. 
-* Tweak - Increase category filter width in 'Browse Ad' view. 
-* Tweak - Change 'http' to 'https' for Facebook and Twitter URLs. 
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>
