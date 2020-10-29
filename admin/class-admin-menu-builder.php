@@ -124,7 +124,7 @@ class AWPCP_AdminMenuBuilder {
      * together and asign it to awpcp.php
      * This is here for reverse compatibility.
      *
-     * @since 4.0.17
+     * @since 4.1
      */
     public function admin_menu_combine() {
         global $submenu;
@@ -136,5 +136,17 @@ class AWPCP_AdminMenuBuilder {
             array_splice( $submenu[ $admin_menu ], 1, 0, $submenu[ $cpt_menu ] );
         }
     }
+
+    /**
+     * Remove post type menu from WP Admin.
+     *
+     * This means the menu is still available to us, but hidden.
+     *
+     * @since 4.1.1
+     */
+    public function hide_menu() {
+        remove_menu_page( 'edit.php?post_type=' . $this->listing_post_type );
+    }
+
 
 }
