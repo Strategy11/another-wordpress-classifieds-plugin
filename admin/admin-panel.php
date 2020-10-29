@@ -52,7 +52,6 @@ class AWPCP_AdminPanel {
         add_action( 'admin_menu', array( $admin_menu_builder, 'build_menu' ) );
         add_action( 'admin_menu', array( $admin_menu_builder, 'admin_menu_combine' ), 20 );
         add_action( 'admin_footer', array( $this, 'maybe_highlight_menu' ) );
-        add_action( 'admin_head', array( $admin_menu_builder, 'hide_menu' ) );
         
 		add_action('admin_notices', array($this, 'notices'));
 		add_action( 'awpcp-admin-notices', array( $this, 'check_duplicate_page_names' ) );

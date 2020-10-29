@@ -137,16 +137,4 @@ class AWPCP_AdminMenuBuilder {
         }
     }
 
-    /**
-     * Remove post type menu from WP Admin.
-     *
-     * This means the menu is still available to us, but hidden.
-     *
-     * @since 4.1.1
-     */
-    public function hide_menu() {
-        remove_menu_page( 'edit.php?post_type=' . $this->listing_post_type );
-    }
-
-
 }
