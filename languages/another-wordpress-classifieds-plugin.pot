@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: AWP Classifieds Plugin 4.1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2020-10-29 20:04:08+00:00\n"
+"POT-Creation-Date: 2020-10-29 20:52:04+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10685,52 +10685,6 @@ msgid ""
 "When you agree to see listings or publish a listing on a restricted "
 "category, a cookie will be stored in your browser to remember your decision. "
 "The cookie will be stored on your browser for the remainder of that session."
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:324
-msgid "Foo"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:325
-msgctxt "context"
-msgid "Foo!"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:326
-msgid "Bar!"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:327
-msgid "Baz!"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:328
-msgctxt "context"
-msgid "Foo bar"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:337
-msgid "A"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:338
-msgctxt "context"
-msgid "B"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:339
-msgid "C"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:340
-msgid "D"
-msgstr ""
-
-#. #-#-#-#-#  another-wordpress-classifieds-plugin.pot (AWP Classifieds Plugin 4.1.1)  #-#-#-#-#
-#. Plugin URI of the plugin/theme
-#. #-#-#-#-#  another-wordpress-classifieds-plugin.pot (AWP Classifieds Plugin 4.1.1)  #-#-#-#-#
-#. Author URI of the plugin/theme
-msgid "https://awpcp.com/"
 msgstr ""
 
 #. Description of the plugin/theme
