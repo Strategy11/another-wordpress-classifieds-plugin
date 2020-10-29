@@ -2207,8 +2207,8 @@ function awpcp_uploaded_file_error($file) {
 		UPLOAD_ERR_CANT_WRITE   => __("Can't write file to disk.", 'another-wordpress-classifieds-plugin'),
 		UPLOAD_ERR_EXTENSION    => __("The file upload was stopped by extension.", 'another-wordpress-classifieds-plugin')
 	);
-
-	return array($file['error'], $upload_errors[$file['error']]);
+	$error = sanitize_text_field( wp_unslash( $file['error'] ) );
+	return array( $error, $upload_errors[ $error ] );
 }
 
 function awpcp_get_file_extension( $filename ) {

@@ -26,13 +26,13 @@ function awpcp_ordinalize($num) {
     $suff = 'th';
     if ( ! in_array( ( $num % 100 ), array( 11, 12, 13 ) ) ) {
         switch ( $num % 10 ) {
-            case 1:
+			case 1:
 				$suff = 'st';
 			break;
-            case 2:
+			case 2:
 				$suff = 'nd';
 			break;
-            case 3:
+			case 3:
 				$suff = 'rd';
 			break;
         }
