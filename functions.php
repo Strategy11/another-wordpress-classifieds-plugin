@@ -1086,7 +1086,7 @@ function awpcp_array_insert($array, $index, $key, $item, $where='before') {
 	$keys = array_keys($array);
 	$p = array_search( $index, $keys, true );
 
-	if ($p !== FALSE) {
+	if ( $p !== false ) {
 		if ($where === 'before')
 			array_splice($keys, max($p, 0), 0, $key);
 		else if ($where === 'after')

@@ -48,7 +48,7 @@ class AWPCP_CategoriesCheckboxListWalker extends AWPCP_CategoriesListWalker {
     }
 
     private function render_checked_attribute( $value, $selected_values ) {
-        return ;
+        return;
     }
 }
 

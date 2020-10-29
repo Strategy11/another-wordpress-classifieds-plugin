@@ -7,6 +7,7 @@
     <exclude-pattern>frontend/templates/email-send-all-ad-access-keys.tpl.php</exclude-pattern>
     <exclude-pattern>vendor/*</exclude-pattern>
     <exclude-pattern>tests/*</exclude-pattern>
+    <exclude-pattern>scripts/*</exclude-pattern>
 
     <rule ref="WordPress">
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />
@@ -22,6 +23,7 @@
         <exclude name="Squiz.Commenting.FileComment" />
         <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
         <exclude name="Squiz.Commenting.BlockComment" />
+        <exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing" />
 
         <!-- Temporary exclusions -->
         <exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped" />
@@ -73,6 +75,9 @@
         <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
         <exclude name="Squiz.Strings.ConcatenationSpacing.PaddingFound" />
         <exclude name="WordPress.WhiteSpace.OperatorSpacing.SpacingBefore" />
+        <exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
+        <exclude name="Squiz.WhiteSpace.LanguageConstructSpacing.IncorrectSingle" />
+        <exclude name="WordPress.PHP.IniSet.display_errors_Blacklisted" />
     </rule>
 
     <rule ref="Generic.WhiteSpace.ScopeIndent">

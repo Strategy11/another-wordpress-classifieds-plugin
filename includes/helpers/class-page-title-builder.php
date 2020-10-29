@@ -170,7 +170,7 @@ class AWPCP_PageTitleBuilder {
         $separator_regex = $this->build_separator_regex( trim( $sep ) );
 
         $left = '/^' . preg_quote($name, '/') . '\s*' . $separator_regex . '\s*/';
-        $right = '/' . '\s*' . $separator_regex . '\s*' . preg_quote($name, '/') . '/';
+        $right = '/\s*' . $separator_regex . '\s*' . preg_quote( $name, '/' ) . '/';
 
         if (preg_match($left, $title, $matches)) {
             $name_position = 'left';

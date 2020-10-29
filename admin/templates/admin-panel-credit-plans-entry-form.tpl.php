@@ -33,7 +33,7 @@
             <a class="button-primary save alignright" title="<?php echo esc_attr( $label ); ?>" href="#inline-edit" accesskey="s"><?php echo esc_html( $label ); ?></a>
             <img alt="" src="<?php echo esc_attr( admin_url( '/images/wpspin_light.gif' ) ); ?>" style="display: none;" class="waiting">
             <input type="hidden" value="<?php echo esc_attr( $id ) ?>" name="id">
-            <input type="hidden" value="<?php echo esc_attr( $_POST['action'] ); ?>" name="action">
+            <input type="hidden" value="<?php echo esc_attr( sanitize_text_field( wp_unslash( $_POST['action'] ) ) ); ?>" name="action" />
             <br class="clear">
         </p>
         </form>

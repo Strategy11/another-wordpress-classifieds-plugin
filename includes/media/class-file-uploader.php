@@ -145,7 +145,7 @@ class AWPCP_FileUploader {
             throw new AWPCP_Exception( $this->get_failed_to_open_output_stream_error_message( $file_path ) );
         }
 
-        for ( $i = 0; $i < $chunks_count; $i = $i + 1 ) {
+        for ( $i = 0; $i < $chunks_count; ++$i ) {
             $chunk_path = "$file_path.part$i";
 
             if ( ! file_exists( $chunk_path ) ) {

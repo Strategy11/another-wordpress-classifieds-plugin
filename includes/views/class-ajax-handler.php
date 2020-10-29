@@ -48,7 +48,7 @@ abstract class AWPCP_AjaxHandler {
     /**
      * @since 3.2.2
      */
-    public abstract function ajax();
+    abstract public function ajax();
 
     /**
      * @since 3.2.2

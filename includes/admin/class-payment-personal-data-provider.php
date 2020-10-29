@@ -53,7 +53,7 @@ class AWPCP_PaymentPersonalDataProvider implements AWPCP_PersonalDataProviderInt
             $data = $this->data_formatter->format_data( $items, $this->get_payment_transaction_properties( $payment_transaction ) );
 
             $export_items[] = array(
-                'group_id' =>  'awpcp-payments',
+                'group_id'    => 'awpcp-payments',
                 'group_label' => __( 'Classifieds Payment Information', 'another-wordpress-classifieds-plugin' ),
                 'item_id'     => "awpcp-payment-transaction-{$payment_transaction->id}",
                 'data'        => $data,

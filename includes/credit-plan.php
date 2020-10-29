@@ -58,7 +58,7 @@ class AWPCP_CreditPlan {
             $results = array();
 
             foreach($items as $item) {
-                $results[] = new AWPCP_CreditPlan((array) $item);
+                $results[] = new AWPCP_CreditPlan( (array) $item );
             }
 
             return $results;
