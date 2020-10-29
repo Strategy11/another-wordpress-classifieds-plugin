@@ -21,7 +21,7 @@
     "require-dev": {
         "antecedent/patchwork": "2.*",
         "brain/monkey": "dev-dev",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "0.*",
         "phake/phake": "3.*",
         "phpcompatibility/php-compatibility": "*",
         "phpmd/phpmd" : "@stable",
