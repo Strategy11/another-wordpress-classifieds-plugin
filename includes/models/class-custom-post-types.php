@@ -94,13 +94,9 @@ class AWPCP_Custom_Post_Types {
                 'description'          => __( 'A classified ad.', 'another-wordpress-classifieds-plugin' ),
                 'public'               => true,
                 'exclude_from_search'  => true,
-                'publicly_queryable'   => true,
-                'show_ui'              => true,
-                'show_in_nav_menus'    => true,
                 'show_in_menu'         => false,
                 'show_in_admin_bar'    => true,
                 'menu_icon'            => null,
-                'menu_position'        => 26,
                 'supports'             => array(
                     'title',
                     'editor',
