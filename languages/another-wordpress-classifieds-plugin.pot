@@ -1,11 +1,11 @@
-# Copyright (C) 2020 Another WordPress Classifieds Plugin (AWPCP)
-# This file is distributed under the same license as the Another WordPress Classifieds Plugin (AWPCP) package.
+# Copyright (C) 2020 AWP Classifieds Plugin
+# This file is distributed under the same license as the AWP Classifieds Plugin package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Another WordPress Classifieds Plugin (AWPCP) 4.1\n"
+"Project-Id-Version: AWP Classifieds Plugin 4.1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2020-10-15 19:49:31+00:00\n"
+"POT-Creation-Date: 2020-10-29 20:04:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -147,7 +147,7 @@ msgstr ""
 msgid "Classified Ads"
 msgstr ""
 
-#. #-#-#-#-#  another-wordpress-classifieds-plugin.pot (Another WordPress Classifieds Plugin (AWPCP) 4.1)  #-#-#-#-#
+#. #-#-#-#-#  another-wordpress-classifieds-plugin.pot (AWP Classifieds Plugin 4.1.1)  #-#-#-#-#
 #. Author of the plugin/theme
 #: admin/admin-panel.php:112
 msgid "AWPCP"
@@ -1446,7 +1446,7 @@ msgid ""
 msgstr ""
 
 #: admin/templates/admin-panel-uninstall.tpl.php:28
-msgid "Proceed with Uninstalling Another WordPress Classifieds Plugin"
+msgid "Proceed with Uninstalling AWP Classifieds Plugin"
 msgstr ""
 
 #: admin/templates/admin-panel-uninstall.tpl.php:33
@@ -1471,8 +1471,8 @@ msgstr ""
 
 #: admin/templates/admin-quick-start-guide-notice.tpl.php:2
 msgid ""
-"Hello and welcome to <strong>Another WordPress Classifieds</strong>. This "
-"plugin is super easy to use AND highly configurable."
+"Hello and welcome to <strong>AWP Classifieds</strong>. This plugin is super "
+"easy to use AND highly configurable."
 msgstr ""
 
 #: admin/templates/admin-quick-start-guide-notice.tpl.php:3
@@ -1547,7 +1547,7 @@ msgid "Get Help"
 msgstr ""
 
 #: admin/templates/admin-widget-modification-notice.tpl.php:2
-msgid "Thank you for using Another WordPress Classifieds Plugin."
+msgid "Thank you for using AWP Classifieds Plugin."
 msgstr ""
 
 #: admin/templates/admin-widget-modification-notice.tpl.php:3
@@ -1581,9 +1581,9 @@ msgstr ""
 #: admin/upgrade/class-manual-upgrade-admin-page.php:188
 msgctxt "awpcp upgrade"
 msgid ""
-"Another WordPress Classifieds Plugin needs to upgrade your database.  The "
-"operation may take several minutes, depending on the amount of information "
-"stored. Please press the Upgrade button shown below to start the process."
+"AWP Classifieds Plugin needs to upgrade your database.  The operation may "
+"take several minutes, depending on the amount of information stored. Please "
+"press the Upgrade button shown below to start the process."
 msgstr ""
 
 #: admin/upgrade/class-manual-upgrade-admin-page.php:191
@@ -1696,8 +1696,8 @@ msgstr ""
 
 #: awpcp.php:199
 msgid ""
-"Another WordPress Classifieds Plugin installation is incomplete. Please "
-"{support_link}contact support{/support_link}."
+"AWP Classifieds Plugin installation is incomplete. Please {support_link}"
+"contact support{/support_link}."
 msgstr ""
 
 #: cron.php:124
@@ -3145,11 +3145,11 @@ msgstr ""
 
 #. translators: %1$s is the listing title. %2$s is the URL for managing
 #. listing.
-#: functions.php:2502
+#: functions.php:2502 includes/functions/notifications.php:205
 msgid ""
 "The Ad \"%1$s\" is awaiting approval. You can approve the Ad going to the "
 "Classified edit section and clicking the \"Publish\" button. Click here to "
-"continue: %2%s."
+"continue: %2$s."
 msgstr ""
 
 #. translators: %s is the URL for managing listing images.
@@ -4195,11 +4195,14 @@ msgstr ""
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
+#. #-#-#-#-#  another-wordpress-classifieds-plugin.pot (AWP Classifieds Plugin 4.1.1)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
 #: includes/class-awpcp.php:1567 includes/class-awpcp.php:1575
 #: includes/class-awpcp.php:1583 includes/class-awpcp.php:1660
 #: includes/class-awpcp.php:1668 includes/class-awpcp.php:1676
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:6
-msgid "Another WordPress Classifieds Plugin"
+#: templates/privacy-policy.tpl.php:8
+msgid "AWP Classifieds Plugin"
 msgstr ""
 
 #: includes/class-categories-collection.php:47
@@ -4933,12 +4936,12 @@ msgstr ""
 msgid "Could not create resized versions of image %s."
 msgstr ""
 
-#: includes/functions/format.php:61
+#: includes/functions/format.php:67
 msgid "Classifieds Management System"
 msgstr ""
 
 #. translators: example: <First Name, Second Name, ...> and <Last Name>
-#: includes/functions/format.php:78
+#: includes/functions/format.php:84
 msgid "<comma-separated-names> and <single-name>"
 msgstr ""
 
@@ -5092,15 +5095,6 @@ msgstr ""
 msgid "Listing \"%s\" is awaiting approval"
 msgstr ""
 
-#. translators: %1$s is the listing title. %2$s is the URL for managing
-#. listing.
-#: includes/functions/notifications.php:205
-msgid ""
-"The Ad \"%1$s\" is awaiting approval. You can approve the Ad going to the "
-"Classified edit section and clicking the \"Publish\" button. Click here to "
-"continue: %2$s."
-msgstr ""
-
 #: includes/functions/notifications.php:250
 msgid "Listing <listing-title> was flagged"
 msgstr ""
@@ -5145,9 +5139,8 @@ msgstr ""
 #: includes/helpers/class-http.php:31 includes/helpers/class-http.php:71
 msgid ""
 "It look's like your server is not authorized to make requests to <host>. "
-"Please <support-link>contact Another WordPress Classifieds Plugin support</"
-"support-link> and ask them to add your IP address <ip-address> to the "
-"whitelist."
+"Please <support-link>contact AWP Classifieds support</support-link> and ask "
+"them to add your IP address <ip-address> to the whitelist."
 msgstr ""
 
 #: includes/helpers/class-http.php:33 includes/helpers/class-http.php:73
@@ -5454,43 +5447,43 @@ msgctxt "file uploads"
 msgid "There is no file handler for this kind of file (<mime-type>). Aborting."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:44
+#: includes/media/class-file-uploader.php:45
 msgid "Unable to find the uploaded file name."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:52
+#: includes/media/class-file-uploader.php:53
 msgid "File extension not allowed."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:99
+#: includes/media/class-file-uploader.php:100
 msgid "Temporary directory doesn't exists and couldn't be created."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:109
+#: includes/media/class-file-uploader.php:112
 msgid ""
 "There was an error trying to move the uploaded file to a temporary location."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:115
+#: includes/media/class-file-uploader.php:118
 msgid "There was an error trying to open PHP's input stream."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:133
+#: includes/media/class-file-uploader.php:136
 msgid ""
 "There was an error trying to write to the following file: <file-path>. "
 "Please make sure the webserver is allowed to write to the <parent-directory> "
 "directory."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:137
+#: includes/media/class-file-uploader.php:140
 msgid "There was an error trying to create the uploaded file on the server."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:152
+#: includes/media/class-file-uploader.php:155
 msgid "Missing chunk."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:156
+#: includes/media/class-file-uploader.php:159
 msgid "There was an error trying to open the input stream."
 msgstr ""
 
@@ -5672,23 +5665,23 @@ msgstr ""
 msgid "A classified ad."
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:147
+#: includes/models/class-custom-post-types.php:143
 #: includes/settings/class-listings-settings.php:599
 msgctxt "listing post type slug"
 msgid "classifieds"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:179
+#: includes/models/class-custom-post-types.php:175
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:180
+#: includes/models/class-custom-post-types.php:176
 msgctxt "taxonomy general name"
 msgid "Category"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:250
+#: includes/models/class-custom-post-types.php:246
 #: includes/settings/class-email-settings.php:47
 #: includes/settings/class-files-settings.php:44
 #: includes/settings/class-general-settings.php:46
@@ -9662,11 +9655,9 @@ msgid "Download %1$s (%2$s)"
 msgstr ""
 
 #: templates/admin/export-listings-admin-page.tpl.php:158
-msgctxt "listings-csv-export"
 msgid ""
 "Click \"Cleanup\" once the file has been downloaded in order to remove all "
-"temporary data created by Another WordPress Classifieds Plugin during the "
-"export process."
+"temporary data created by AWP Classifieds Plugin during the export process."
 msgstr ""
 
 #: templates/admin/export-listings-admin-page.tpl.php:160
@@ -10042,7 +10033,7 @@ msgstr ""
 #: templates/admin/main-classifieds-admin-page.tpl.php:11
 msgid ""
 "The version of the extra fields module that you are using is not compatible "
-"with this version of Another WordPress Classifieds Plugin."
+"with this version of AWP Classifieds Plugin."
 msgstr ""
 
 #: templates/admin/main-classifieds-admin-page.tpl.php:12
@@ -10050,7 +10041,7 @@ msgid "Please request updated Extra Fields module files"
 msgstr ""
 
 #: templates/admin/main-classifieds-admin-page.tpl.php:22
-msgid "Another WordPress Classifieds Plugin Stats"
+msgid "AWP Classifieds Plugin Stats"
 msgstr ""
 
 #: templates/admin/main-classifieds-admin-page.tpl.php:24
@@ -10202,8 +10193,8 @@ msgstr ""
 
 #: templates/admin/missing-paypal-merchant-id-setting-notice.tpl.php:3
 msgid ""
-"In order to verify payments made through PayPal, Another WordPress "
-"Classifieds Plugin needs to know your PayPal Merchant ID."
+"In order to verify payments made through PayPal, AWP Classifieds Plugin "
+"needs to know your PayPal Merchant ID."
 msgstr ""
 
 #: templates/admin/missing-paypal-merchant-id-setting-notice.tpl.php:5
@@ -10584,11 +10575,6 @@ msgctxt "upload media submit listing section"
 msgid "Loading..."
 msgstr ""
 
-#: templates/privacy-policy.tpl.php:8
-msgctxt "privacy policy"
-msgid "Another WordPress Classifieds Plugin"
-msgstr ""
-
 #: templates/privacy-policy.tpl.php:10
 msgid "Suggested text:"
 msgstr ""
@@ -10699,6 +10685,52 @@ msgid ""
 "When you agree to see listings or publish a listing on a restricted "
 "category, a cookie will be stored in your browser to remember your decision. "
 "The cookie will be stored on your browser for the remainder of that session."
+msgstr ""
+
+#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:324
+msgid "Foo"
+msgstr ""
+
+#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:325
+msgctxt "context"
+msgid "Foo!"
+msgstr ""
+
+#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:326
+msgid "Bar!"
+msgstr ""
+
+#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:327
+msgid "Baz!"
+msgstr ""
+
+#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:328
+msgctxt "context"
+msgid "Foo bar"
+msgstr ""
+
+#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:337
+msgid "A"
+msgstr ""
+
+#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:338
+msgctxt "context"
+msgid "B"
+msgstr ""
+
+#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:339
+msgid "C"
+msgstr ""
+
+#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:340
+msgid "D"
+msgstr ""
+
+#. #-#-#-#-#  another-wordpress-classifieds-plugin.pot (AWP Classifieds Plugin 4.1.1)  #-#-#-#-#
+#. Plugin URI of the plugin/theme
+#. #-#-#-#-#  another-wordpress-classifieds-plugin.pot (AWP Classifieds Plugin 4.1.1)  #-#-#-#-#
+#. Author URI of the plugin/theme
+msgid "https://awpcp.com/"
 msgstr ""
 
 #. Description of the plugin/theme
