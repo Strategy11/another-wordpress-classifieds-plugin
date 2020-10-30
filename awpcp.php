@@ -2,10 +2,10 @@
 /**
  * @package AWPCP
  *
- * Plugin Name: Another WordPress Classifieds Plugin (AWPCP)
+ * Plugin Name: AWP Classifieds Plugin
  * Plugin URI: https://awpcp.com/
  * Description: Run a free or paid classified ads service on your WordPress site.
- * Version: 4.0.17-beta.1
+ * Version: 4.1.1
  * Author: AWPCP
  * Author URI: https://awpcp.com/
  * License: GPLv2 or any later version
@@ -56,7 +56,7 @@ global $hascaticonsmodule;
 global $hasregionsmodule;
 global $hasextrafieldsmodule;
 
-$awpcp_db_version     = '4.0.17-beta.1';
+$awpcp_db_version     = '4.1.1';
 $awpcp_imagesurl      = AWPCP_URL . '/resources/images';
 $hascaticonsmodule    = 0;
 $hasextrafieldsmodule = $hasextrafieldsmodule ? true : false;
@@ -134,7 +134,7 @@ function awpcp_outdated_php_version() {
  * @since 4.0.0
  */
 function awpcp_render_plugin_required_php_version_notice() {
-    awpcp_required_php_version_notice( 'Another WordPress Classifieds Plugin' );
+    awpcp_required_php_version_notice( 'AWP Classifieds Plugin' );
 }
 
 /**
@@ -196,7 +196,7 @@ function awpcp_missing_autoload() {
  * @since 4.0.0
  */
 function awpcp_missing_autoload_notice() {
-    $message = esc_html__( 'Another WordPress Classifieds Plugin installation is incomplete. Please {support_link}contact support{/support_link}.', 'wordpress-seo' );
+    $message = esc_html__( 'AWP Classifieds Plugin installation is incomplete. Please {support_link}contact support{/support_link}.', 'wordpress-seo' );
     $message = str_replace( '{support_link}', '<a href="https://awpcp.com/contact/">', $message );
     $message = str_replace( '{/support_link}', '</a>', $message );
 

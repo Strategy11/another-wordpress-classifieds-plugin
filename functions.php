@@ -1086,7 +1086,7 @@ function awpcp_array_insert($array, $index, $key, $item, $where='before') {
 	$keys = array_keys($array);
 	$p = array_search( $index, $keys, true );
 
-	if ($p !== FALSE) {
+	if ( $p !== false ) {
 		if ($where === 'before')
 			array_splice($keys, max($p, 0), 0, $key);
 		else if ($where === 'after')
@@ -2207,8 +2207,8 @@ function awpcp_uploaded_file_error($file) {
 		UPLOAD_ERR_CANT_WRITE   => __("Can't write file to disk.", 'another-wordpress-classifieds-plugin'),
 		UPLOAD_ERR_EXTENSION    => __("The file upload was stopped by extension.", 'another-wordpress-classifieds-plugin')
 	);
-
-	return array($file['error'], $upload_errors[$file['error']]);
+	$error = sanitize_text_field( wp_unslash( $file['error'] ) );
+	return array( $error, $upload_errors[ $error ] );
 }
 
 function awpcp_get_file_extension( $filename ) {
@@ -2498,7 +2498,8 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 	} else {
 		$subject = __( 'The Ad "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
-		$message = __( 'The Ad "%s" is awaiting approval. You can approve the Ad going to the Manage Listings section and clicking the "Enable" action shown on top. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
+        /* translators: %1$s is the listing title. %2$s is the URL for managing listing.*/
+		$message = __( 'The Ad "%1$s" is awaiting approval. You can approve the Ad going to the Classified edit section and clicking the "Publish" button. Click here to continue: %2$s.', 'another-wordpress-classifieds-plugin');
 
         $url = awpcp_get_quick_view_listing_url( $ad );
 

@@ -67,7 +67,7 @@ class AWPCP_Request {
         }
 
         if ( empty( $domain ) ) {
-            $domain = isset( $_SERVER['SERVER_NAME'] ) ? $_SERVER['SERVER_NAME'] : '';
+            $domain = isset( $_SERVER['SERVER_NAME'] ) ? wp_strip_all_tags( wp_unslash( $_SERVER['SERVER_NAME'] ) ) : '';
         }
 
         $should_replace_www = $include_www ? false : true;

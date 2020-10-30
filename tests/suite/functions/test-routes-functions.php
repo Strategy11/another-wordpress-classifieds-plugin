@@ -42,19 +42,12 @@ class AWPCP_TestRouteFunctions extends AWPCP_UnitTestCase {
     //     $listing = awpcp_tests_create_listing();
 
     //     awpcp()->settings->set_or_update_option( 'requireuserregistration', true );
-    //     awpcp()->settings->set_or_update_option( 'enable-user-panel', true );
-    //     $url = awpcp_get_edit_listing_url( $listing );
-    //     $this->assertContains( (string) $listing->ID, $url );
-
-    //     awpcp()->settings->set_or_update_option( 'requireuserregistration', true );
-    //     awpcp()->settings->set_or_update_option( 'enable-user-panel', false );
     //     $url = awpcp_get_edit_listing_url( $listing );
     //     $this->assertContains( (string) $listing->ID, $url );
 
     //     Functions::expect( 'awpcp_get_edit_listing_url' )->once()->with( $listing );
 
     //     awpcp()->settings->set_or_update_option( 'requireuserregistration', true );
-    //     awpcp()->settings->set_or_update_option( 'enable-user-panel', false );
     //     awpcp()->settings->set_or_update_option( 'seofriendlyurls', true );
     //     $GLOBALS['wp_rewrite']->set_permalink_structure( '/%postname%/' );
     //     $url = awpcp_get_edit_listing_url( $listing );
@@ -90,24 +83,8 @@ class AWPCP_TestRouteFunctions extends AWPCP_UnitTestCase {
         $this->assertTrue( true );
     }
 
-    public function test_get_edit_listing_direct_url_when_user_panel_is_on() {
-        $listing = awpcp_tests_create_listing();
-
-        awpcp()->settings->set_or_update_option( 'enable-user-panel', true );
-
-        Functions::expect( 'awpcp_get_user_panel_url' )->once()->withNoArgs();
-
-        /* Execution */
-        $url = awpcp_get_edit_listing_direct_url( $listing );
-
-        /* Verification */
-        $this->assertContains( (string) $listing->ID, $url );
-    }
-
     public function test_get_edit_listing_direct_url_when_user_panel_is_off() {
         $listing = awpcp_tests_create_listing();
-
-        awpcp()->settings->set_or_update_option( 'enable-user-panel', false );
 
         Functions::expect( 'awpcp_get_edit_listing_page_url_with_listing_id' )->once()->with( $listing );
 

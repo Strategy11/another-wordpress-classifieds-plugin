@@ -7,7 +7,7 @@
 				if ( ! empty( $restored_pages ) ){
 					$message = __( 'The following pages were restored: <pages-list>.', 'another-wordpress-classifieds-plugin' );
 					$pages_names = array_map( 'awpcp_get_option', awpcp_get_properties( $restored_pages, 'page' ) );
-					$pages_list = '<strong>' . implode( '</strong>, <strong>', $pages_names ) . '</strong>' ;
+					$pages_list = '<strong>' . implode( '</strong>, <strong>', $pages_names ) . '</strong>';
 					echo awpcp_print_message( str_replace( '<pages-list>', $pages_list, $message ) );
 				}
 			?>

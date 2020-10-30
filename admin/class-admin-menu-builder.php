@@ -124,7 +124,7 @@ class AWPCP_AdminMenuBuilder {
      * together and asign it to awpcp.php
      * This is here for reverse compatibility.
      *
-     * @since 4.0.17
+     * @since 4.1
      */
     public function admin_menu_combine() {
         global $submenu;

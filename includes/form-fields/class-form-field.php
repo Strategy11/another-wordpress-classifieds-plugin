@@ -53,7 +53,7 @@ abstract class AWPCP_FormField {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function extract_value( $data ) {
-        _doing_it_wrong( __FUNCTION__, 'Overwrite this method in a subclass of FormField.', 'Another WordPress Classifieds Plugin 4.0.0' );
+        _doing_it_wrong( __FUNCTION__, 'Overwrite this method in a subclass of FormField.', 'AWP Classifieds Plugin 4.0.0' );
         return null;
     }
 

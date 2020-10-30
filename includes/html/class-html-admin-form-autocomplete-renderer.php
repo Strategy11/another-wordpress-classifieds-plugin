@@ -1,5 +1,6 @@
 <?php
 
+// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
 function awpcp_html_admin_form_Autocomplete_renderer() {
     return new AWPCP_HTML_Admin_Form_Autocomplete_Renderer();
 }

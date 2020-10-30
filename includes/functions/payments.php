@@ -107,7 +107,7 @@ function awpcp_paypal_verify_received_data_with_fsockopen($content, &$errors=arr
     $fp = fsockopen("ssl://$host", 443, $errno, $errstr, 30);
 
     if ($fp) {
-        fputs ($fp, $header . $content);
+        fputs( $fp, $header . $content );
 
         while(!feof($fp)) {
             $line = fgets($fp, 1024);
@@ -316,9 +316,9 @@ function awpcp_payment_failed_email($transaction, $message='') {
 
 function awpcp_paypal_supported_currencies() {
     return array(
-        'AUD','BRL','CAD','CZK','DKK','EUR','HKD','HUF','ILS','JPY','MYR',
-        'MXN','NOK','NZD','PHP','PLN','GBP','RUB','SGD','SEK','CHF','TWD',
-        'THB','TRY','USD',
+        'AUD', 'BRL', 'CAD', 'CZK', 'DKK', 'EUR', 'HKD', 'HUF', 'ILS', 'JPY', 'MYR',
+        'MXN', 'NOK', 'NZD', 'PHP', 'PLN', 'GBP', 'RUB', 'SGD', 'SEK', 'CHF', 'TWD',
+        'THB', 'TRY', 'USD',
     );
 }
 

@@ -155,7 +155,7 @@
             </a>
         </div>
         <div class="cleanup-link awpcp-note">
-            <p><?php echo esc_html_x( 'Click "Cleanup" once the file has been downloaded in order to remove all temporary data created by Another WordPress Classifieds Plugin during the export process.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+            <p><?php esc_html_e( 'Click "Cleanup" once the file has been downloaded in order to remove all temporary data created by AWP Classifieds Plugin during the export process.', 'another-wordpress-classifieds-plugin' ); ?>
                 <br/>
                 <a href="" class="button"><?php echo esc_html_x( 'Cleanup', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></a></p>
         </div>

@@ -122,7 +122,7 @@ class AWPCP_BasicRegionsAPI {
                 $data = array_map( 'trim', $region );
                 $this->save( array_merge( array( 'ad_id' => $ad->ID ), $data ) );
             }
-            $count = $count + 1;
+            ++$count;
         }
     }
 }

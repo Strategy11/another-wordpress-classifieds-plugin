@@ -20,10 +20,10 @@ class WP_Skeleton_Logger {
     }
 
     public static function instance() {
-        if (is_null(WP_Skeleton_Logger::$instance)) {
-            WP_Skeleton_Logger::$instance = new WP_Skeleton_Logger();
+        if ( is_null( self::$instance ) ) {
+            self::$instance = new self();
         }
-        return WP_Skeleton_Logger::$instance;
+        return self::$instance;
     }
 
     public function log($var, $type='debug', $print=false, $file=false) {

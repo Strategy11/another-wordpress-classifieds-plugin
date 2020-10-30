@@ -53,7 +53,8 @@ class AWPCP_Pages_Creator {
         $page_refs = awpcp_get_properties( $pages_to_restore, 'page' );
 
         // If we are restoring the main page, let's do it first!
-        if ( ( $p = array_search( 'main-page-name', $page_refs ) ) !== FALSE ) {
+		$p = array_search( 'main-page-name', $page_refs );
+        if ( $p !== false ) {
             // put the main page as the first page to restore
             array_splice( $pages_to_restore, 0, 0, array( $pages_to_restore[ $p ] ) );
             array_splice( $pages_to_restore, $p + 1, 1 );

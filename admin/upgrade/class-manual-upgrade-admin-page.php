@@ -185,7 +185,7 @@ class AWPCP_ManualUpgradeAdminPage {
 
     private function get_introduction_text( $context ) {
         if ( $context == 'plugin' ) {
-            return _x( 'Another WordPress Classifieds Plugin needs to upgrade your database.  The operation may take several minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
+            return _x( 'AWP Classifieds Plugin needs to upgrade your database.  The operation may take several minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.', 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
         }
 
         return _x( "AWPCP's premium modules need to upgrade the information stored in the database.  The operation may take several minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.", 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );

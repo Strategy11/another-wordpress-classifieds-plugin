@@ -5,7 +5,7 @@
 
 ?><div class="wp-suggested-text">
 
-    <h3><?php echo _x( 'Another WordPress Classifieds Plugin', 'privacy policy', 'another-wordpress-classifieds-plugin' ); // XSS Ok. ?></h3>
+    <h3><?php esc_html_e( 'AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ); ?></h3>
 
     <p><strong class="privacy-policy-tutorial"><?php echo __( 'Suggested text:' ); // XSS Ok. ?> </strong><?php echo _x( 'When you submit a classified listing, the content of the listing and its metadata are retained indefinitely. All users can see, edit or delete the personal information included on their listings at any time. Website administrators can also see and edit that information.', 'privacy policy', 'another-wordpress-classifieds-plugin' ); // XSS Ok. ?></p>
 

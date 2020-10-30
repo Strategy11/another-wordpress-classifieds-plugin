@@ -39,7 +39,8 @@ class AWPCP_FileUploader {
         $filename = $this->request->post( 'name' );
 
         if ( empty( $filename ) && isset( $_FILES['file']['name'] ) ) {
-            $filename = $_FILES['file']['name'];
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
+			$filename = sanitize_option( 'upload_path', $_FILES['file']['name'] );
         } else if ( empty( $filename ) ) {
             throw new AWPCP_Exception( __( 'Unable to find the uploaded file name.', 'another-wordpress-classifieds-plugin' ) );
         }
@@ -100,16 +101,18 @@ class AWPCP_FileUploader {
         }
 
         if ( ! empty( $_FILES ) && isset( $_FILES['file'] ) ) {
-            if ( $_FILES['file']['error'] ) {
+            if ( ! empty( $_FILES['file']['error'] ) ) {
                 list( $error_code, $error_message ) = awpcp_uploaded_file_error( $_FILES['file'] );
                 throw new AWPCP_Exception( $error_message );
             }
 
-            if ( ! is_uploaded_file( $_FILES['file']['tmp_name'] ) ) {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
+			$file_name = sanitize_option( 'upload_path', $_FILES['file']['tmp_name'] );
+            if ( ! is_uploaded_file( $file_name ) ) {
                 throw new AWPCP_Exception( __( 'There was an error trying to move the uploaded file to a temporary location.', 'another-wordpress-classifieds-plugin' ) );
             }
 
-            move_uploaded_file( $_FILES['file']['tmp_name'], $file_path );
+            move_uploaded_file( $file_name, $file_path );
         } else {
             if ( ! $input = fopen( 'php://input', 'rb' ) ) {
                 throw new AWPCP_Exception( __( "There was an error trying to open PHP's input stream.", 'another-wordpress-classifieds-plugin' ) );
@@ -145,7 +148,7 @@ class AWPCP_FileUploader {
             throw new AWPCP_Exception( $this->get_failed_to_open_output_stream_error_message( $file_path ) );
         }
 
-        for ( $i = 0; $i < $chunks_count; $i = $i + 1 ) {
+        for ( $i = 0; $i < $chunks_count; ++$i ) {
             $chunk_path = "$file_path.part$i";
 
             if ( ! file_exists( $chunk_path ) ) {

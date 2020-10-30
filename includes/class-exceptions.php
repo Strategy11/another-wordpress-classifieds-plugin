@@ -35,7 +35,7 @@ class AWPCP_Exceptions {
     }
 
     public function no_activations_left_license_request_exception( $module_name, $previous_exception = null ) {
-        $placeholders = array( 'module-name' => $this->strong( $module_name ), );
+        $placeholders = array( 'module-name' => $this->strong( $module_name ) );
 
         $message = __( 'Your license for <module-name> is valid, but is already active on another site. Contact <support-link>customer support</a> for further assistance.', 'another-wordpress-classifieds-plugin' );
         $message = $this->replace_content_placeholders( $placeholders, $message );

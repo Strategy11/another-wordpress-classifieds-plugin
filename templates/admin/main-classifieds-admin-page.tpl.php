@@ -8,7 +8,7 @@
 <?php if ( intval( $hasextrafieldsmodule ) === 1 && intval( $extrafieldsversioncompatibility ) !== 1 ) : ?>
 <div id="message" class="awpcp-updated updated fade">
     <p>
-        <?php esc_html_e( 'The version of the extra fields module that you are using is not compatible with this version of Another WordPress Classifieds Plugin.', 'another-wordpress-classifieds-plugin' ); ?>
+        <?php esc_html_e( 'The version of the extra fields module that you are using is not compatible with this version of AWP Classifieds Plugin.', 'another-wordpress-classifieds-plugin' ); ?>
         <a href="https://awpcp.com/contact/"><?php esc_html_e( 'Please request updated Extra Fields module files', 'another-wordpress-classifieds-plugin' ); ?></a>.
     </p>
 </div>
@@ -19,7 +19,7 @@
 
         <div class="postbox">
             <h3>
-                <?php esc_html_e( 'Another WordPress Classifieds Plugin Stats', 'another-wordpress-classifieds-plugin' ); ?>
+                <?php esc_html_e( 'AWP Classifieds Plugin Stats', 'another-wordpress-classifieds-plugin' ); ?>
                 <a href="<?php echo esc_url( admin_url( 'admin.php?page=awpcp-admin-settings' ) ); ?>">
                     <?php esc_html_e( 'Go to AWPCP Settings', 'another-wordpress-classifieds-plugin' ); ?>
                 </a>

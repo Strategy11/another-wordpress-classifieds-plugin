@@ -682,7 +682,7 @@ class AWPCP_AdminPanel {
                     var awpcpMenu = jQuery( '#toplevel_page_awpcp' );
                     jQuery( awpcpMenu ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
                     jQuery( '#toplevel_page_awpcp a.wp-has-submenu' ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
-                    jQuery( '#toplevel_page_awpcp a[href=\"edit.php?post_type=awpcp_listing\"]' ).parent().addClass( 'current' );
+					jQuery( '#toplevel_page_awpcp a[href=\"edit.php?post_type=awpcp_listing\"]' ).parent().addClass( 'current' );
                 });
             </script>";
     }

@@ -25,7 +25,7 @@ class AWPCP_CookieManager {
     }
 
     public function get_cookie( $name ) {
-        $encoded_value = isset( $_COOKIE[ $name ] ) ? $_COOKIE[ $name ] : '';
+        $encoded_value = isset( $_COOKIE[ $name ] ) ? sanitize_text_field( wp_unslash( $_COOKIE[ $name ] ) ) : '';
         $serialized_value = base64_decode( $encoded_value );
         return maybe_unserialize( $serialized_value );
     }

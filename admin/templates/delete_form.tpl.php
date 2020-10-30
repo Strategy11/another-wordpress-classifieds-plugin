@@ -16,8 +16,8 @@
             <a class="button-secondary cancel alignleft" title="<?php echo esc_attr( __( 'Cancel', 'another-wordpress-classifieds-plugin' ) ); ?>" href="#inline-edit" accesskey="c"><?php esc_html_e( 'Cancel', 'another-wordpress-classifieds-plugin' ); ?></a>
             <a class="button-primary delete alignright" title="<?php echo esc_attr( __( 'Delete', 'another-wordpress-classifieds-plugin' ) ); ?>" href="#inline-edit" accesskey="s"><?php esc_html_e( 'Delete', 'another-wordpress-classifieds-plugin' ); ?></a>
             <img alt="" src="<?php echo esc_url( admin_url( '/images/wpspin_light.gif' ) ); ?>" style="display: none;" class="waiting">
-            <input type="hidden" value="<?php echo esc_attr( $_POST['id'] ); // phpcs:ignore WordPress.Security ?>" name="id">
-            <input type="hidden" value="<?php echo esc_attr( $_POST['action'] ); // phpcs:ignore WordPress.Security ?>" name="action">
+            <input type="hidden" value="<?php echo esc_attr( sanitize_text_field( wp_unslash( $_POST['id'] ) ) ); ?>" name="id">
+            <input type="hidden" value="<?php echo esc_attr( sanitize_text_field( wp_unslash( $_POST['action'] ) ) ); ?>" name="action">
             <br class="clear">
         </p>
         </form>
