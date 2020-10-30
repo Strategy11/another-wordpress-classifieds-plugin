@@ -16,11 +16,11 @@ class AWPCP_WordPressPageEvents {
             return;
         }
 
-        if ( ! current_user_can( 'edit_page', $post_id ) ) {
+        if ( 'page' != $post_after->post_type ) {
             return;
         }
 
-        if ( 'page' != $post_after->post_type ) {
+        if ( ! current_user_can( 'edit_page', $post_id ) ) {
             return;
         }
 
