@@ -20,9 +20,6 @@
                                 <?php esc_html_e( 'Give a 5 star rating on WordPress.org.', 'another-wordpress-classifieds-plugin' ); ?>
                             </a>
                         </li>
-                        <li class="li_link">
-                            <a href="https://awpcp.com/premium-modules/?ref=panel"><?php esc_html_e( 'Buy a Premium Module', 'another-wordpress-classifieds-plugin' ); ?></a>
-                        </li>
                     </ul>
                 </div>
             </div>

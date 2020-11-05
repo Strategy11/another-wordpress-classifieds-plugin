@@ -135,10 +135,34 @@ class AWPCP_Admin {
      * @since 4.0.0
      */
     public function enqueue_scripts() {
+		if ( ! $this->is_awpcp_post_page() ) {
+			return;
+		}
         wp_enqueue_style( 'select2' );
         wp_enqueue_style( 'daterangepicker' );
         wp_enqueue_style( 'awpcp-admin-style' );
     }
+
+	/**
+	 * @since 4.1.2
+	 */
+	public function is_awpcp_post_page() {
+		global $pagenow;
+
+		if ( $pagenow !== 'post.php' && $pagenow !== 'post-new.php' && $pagenow !== 'edit.php' ) {
+			return false;
+		}
+
+		$post_type = isset( $_GET['post_type'] ) ? sanitize_title( wp_unslash( $_GET['post_type'] ) ) : '';
+
+		if ( empty( $post_type ) ) {
+			$post_id   = isset( $_GET['post'] ) ? absint( wp_unslash( $_GET['post'] ) ) : '';
+			$post      = get_post( $post_id );
+			$post_type = $post ? $post->post_type : '';
+		}
+
+		return $post_type === $this->post_type;
+	}
 
     /**
      * @since 4.0.0
