@@ -33,20 +33,28 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     public function user_subscribed() {
-        $posted_data = $this->get_posted_data();
-
-        if ( ! awpcp_is_valid_email_address( $posted_data['email'] ) ) {
-            return $this->error_response( _x( 'The email address entered is not valid.', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ) );
+        $email = sanitize_email( $this->request->post( 'email' ) );
+        if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
+            return $this->error_response( __( 'Invalid email address.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        $response = wp_remote_post( self::AC_FORM_URL, array(
-            'body' => array(
-                'fields[name]' => $posted_data['name'],
-                'fields[email]' => $posted_data['email'],
-                'fields[website]' => get_bloginfo( 'url' ),
-                'fields[gmt_offset]' => get_option( 'gmt_offset' ),
-            ),
-        ) );
+        $current_user = wp_get_current_user();
+
+        $response = wp_remote_post(
+            self::AC_FORM_URL,
+            array(
+                'body' => array(
+                    'firstname' => $current_user->first_name,
+                    'email'     => $email,
+                    'u'         => '15',
+                    'f'         => '15',
+                    'act'       => 'sub',
+                    'c'         => 0,
+                    'm'         => 0,
+                    'v'         => '2',
+                ),
+            )
+        );
 
         if ( $this->was_request_successful( $response ) ) {
             $this->disable_autoresponder();
