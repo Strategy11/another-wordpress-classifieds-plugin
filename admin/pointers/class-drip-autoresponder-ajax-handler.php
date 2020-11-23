@@ -6,7 +6,7 @@ function awpcp_drip_autoresponder_ajax_handler() {
 
 class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
 
-    const DRIP_FORM_URL = 'https://www.getdrip.com/forms/2206627/submissions';
+    const AC_FORM_URL = 'https://strategy1137274.activehosted.com/proc.php?jsonp=true';
 
     private $settings;
     private $request;
@@ -39,7 +39,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
             return $this->error_response( _x( 'The email address entered is not valid.', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        $response = wp_remote_post( self::DRIP_FORM_URL, array(
+        $response = wp_remote_post( self::AC_FORM_URL, array(
             'body' => array(
                 'fields[name]' => $posted_data['name'],
                 'fields[email]' => $posted_data['email'],
