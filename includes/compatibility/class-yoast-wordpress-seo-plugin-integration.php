@@ -72,10 +72,6 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
             return false;
         }
 
-        if ( ! class_exists( 'WPSEO_OpenGraph_Image' ) ) {
-            return false;
-        }
-
         return class_exists( 'WPSEO_OpenGraph' ) && class_exists( 'WPSEO_Meta' );
     }
 
@@ -344,11 +340,6 @@ class AWPCP_YoastWordPressSEOPluginIntegration {
     private function add_user_defined_image( $opengraph_image, $image_id, $image_url ) {
         if ( ! $image_id ) {
             $opengraph_image->add_image_by_url( $image_url );
-            return;
-        }
-
-        if ( $image_id === constant( 'WPSEO_OpenGraph_Image::EXTERNAL_IMAGE_ID' ) ) {
-            $opengraph_image->add_image( [ 'url' => $image_url ] );
             return;
         }
 
