@@ -19,13 +19,13 @@
   "license": "GPL-2.0",
   "gitHead": "d39075e4f45441a379753a66fdca4d50d279fd09",
   "devDependencies": {
-    "grunt": ">=0.4.0",
+    "grunt": "^1.3.0",
     "grunt-contrib-clean": "~1",
     "grunt-contrib-concat": "~1",
     "grunt-contrib-jshint": "^1",
     "grunt-contrib-less": "~1",
     "grunt-contrib-uglify": "^1",
     "grunt-contrib-watch": "~1",
-    "underscore": "^1.6.0"
+    "underscore": "^1.12.0"
   }
 }
