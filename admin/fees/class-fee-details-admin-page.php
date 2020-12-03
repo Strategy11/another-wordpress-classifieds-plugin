@@ -82,19 +82,21 @@ class AWPCP_Fee_Details_Admin_Page {
             'duration_interval' => $this->request->post( 'duration_interval' ),
             'images' => $this->request->post( 'images_allowed' ),
             'regions'           => $this->request->post( 'regions_allowed' ),
-            'title_characters' => $this->request->post( 'characters_allowed_in_title' ),
-            'characters' => $this->request->post( 'characters_allowed_in_description' ),
             'private' => $this->request->post( 'is_private', false ),
             'featured' => $this->request->post( 'use_for_featured_listings', false ),
         );
 
-        if ( ! $this->request->post( 'characters_allowed_in_title_enabled' ) ) {
-            $fee_data['characters'] = 0;
-        }
-
-        if ( ! $this->request->post( 'characters_allowed_in_description_enabled' ) ) {
-            $fee_data['title_characters'] = 0;
-        }
+		$values = array(
+			'title_characters' => 'characters_allowed_in_title',
+			'characters'       => 'characters_allowed_in_description',
+		);
+		foreach ( $values as $name => $value ) {
+			if ( ! $this->request->post( $value . '_enabled' ) ) {
+				$fee_data[ $name ] = 0;
+			} else {
+				$fee_data[ $name ] = $this->request->post( $value );
+			}
+		}
 
         return apply_filters( 'awpcp-fee-details-posted-data', $fee_data );
     }
