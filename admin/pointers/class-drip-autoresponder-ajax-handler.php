@@ -6,7 +6,7 @@ function awpcp_drip_autoresponder_ajax_handler() {
 
 class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
 
-    const DRIP_FORM_URL = 'https://www.getdrip.com/forms/2206627/submissions';
+    const DRIP_FORM_URL = 'https://strategy1137274.activehosted.com/proc.php?jsonp=true';
 
     private $settings;
     private $request;
@@ -20,7 +20,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
 
     public function ajax() {
         if ( ! wp_verify_nonce( $this->request->post( 'nonce' ), 'drip-autoresponder' ) ) {
-            return $this->error_response( __( 'You are not authorizred to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+            return $this->error_response( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $action = $this->request->post( 'action' );
@@ -33,20 +33,27 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     public function user_subscribed() {
-        $posted_data = $this->get_posted_data();
+		$posted_data = $this->get_posted_data();
 
-        if ( ! awpcp_is_valid_email_address( $posted_data['email'] ) ) {
-            return $this->error_response( _x( 'The email address entered is not valid.', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ) );
-        }
+		if ( ! awpcp_is_valid_email_address( $posted_data['email'] ) ) {
+			return $this->error_response( _x( 'The email address entered is not valid.', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ) );
+		}
 
-        $response = wp_remote_post( self::DRIP_FORM_URL, array(
-            'body' => array(
-                'fields[name]' => $posted_data['name'],
-                'fields[email]' => $posted_data['email'],
-                'fields[website]' => get_bloginfo( 'url' ),
-                'fields[gmt_offset]' => get_option( 'gmt_offset' ),
-            ),
-        ) );
+        $response = wp_remote_post(
+            self::DRIP_FORM_URL,
+            array(
+                'body' => array(
+                    'firstname' => $posted_data['name'],
+                    'email'     => $posted_data['email'],
+                    'u'         => '19',
+                    'f'         => '19',
+                    'act'       => 'sub',
+                    'c'         => 0,
+                    'm'         => 0,
+                    'v'         => '2',
+                ),
+            )
+        );
 
         if ( $this->was_request_successful( $response ) ) {
             $this->disable_autoresponder();
@@ -73,11 +80,9 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
             return false;
         }
 
-        if ( ! isset( $response['headers']['status'] ) || $response['headers']['status'] != '200 OK' ) {
-            return false;
-        }
+		$response = (array) $response;
 
-        if ( ! isset( $response['headers']['x-xhr-redirected-to'] ) ) {
+        if ( ! isset( $response['response']['code'] ) || $response['response']['code'] !== 200 ) {
             return false;
         }
 
