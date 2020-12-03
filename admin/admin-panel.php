@@ -821,7 +821,7 @@ function awpcp_subpages() {
             '[AWPCPSHOWAD]',
         ),
         'reply-to-ad-page-name' => array(
-            _x( 'Reply to Ad', 'page name', 'another-wordpress-classifieds-plugin' ),
+            __( 'Reply to Ad', 'another-wordpress-classifieds-plugin' ),
             '[AWPCPREPLYTOAD]',
         ),
         'edit-ad-page-name' => array(
@@ -829,19 +829,19 @@ function awpcp_subpages() {
             '[AWPCPEDITAD]',
         ),
         'place-ad-page-name' => array(
-            _x( 'Place Ad', 'page name', 'another-wordpress-classifieds-plugin' ),
+            __( 'Place Ad', 'another-wordpress-classifieds-plugin' ),
             '[AWPCPPLACEAD]',
         ),
         'renew-ad-page-name' => array(
-            _x( 'Renew Ad', 'page name', 'another-wordpress-classifieds-plugin' ),
+            __( 'Renew Ad', 'another-wordpress-classifieds-plugin' ),
             '[AWPCP-RENEW-AD]',
         ),
         'browse-ads-page-name' => array(
-            _x( 'Browse Ads', 'page name', 'another-wordpress-classifieds-plugin' ),
+            __( 'Browse Ads', 'another-wordpress-classifieds-plugin' ),
             '[AWPCPBROWSEADS]',
         ),
         'search-ads-page-name' => array(
-            _x( 'Search Ads', 'page name', 'another-wordpress-classifieds-plugin' ),
+            __( 'Search Ads', 'another-wordpress-classifieds-plugin' ),
             '[AWPCPSEARCHADS]',
         ),
 	);
