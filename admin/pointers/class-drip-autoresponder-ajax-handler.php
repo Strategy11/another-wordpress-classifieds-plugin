@@ -6,7 +6,7 @@ function awpcp_drip_autoresponder_ajax_handler() {
 
 class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
 
-    const AC_FORM_URL = 'https://strategy1137274.activehosted.com/proc.php?jsonp=true';
+    const DRIP_FORM_URL = 'https://strategy1137274.activehosted.com/proc.php?jsonp=true';
 
     private $settings;
     private $request;
@@ -20,7 +20,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
 
     public function ajax() {
         if ( ! wp_verify_nonce( $this->request->post( 'nonce' ), 'drip-autoresponder' ) ) {
-            return $this->error_response( __( 'You are not authorizred to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+            return $this->error_response( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $action = $this->request->post( 'action' );
@@ -33,21 +33,20 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     public function user_subscribed() {
-        $email = sanitize_email( $this->request->post( 'email' ) );
-        if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
-            return $this->error_response( __( 'Invalid email address.', 'another-wordpress-classifieds-plugin' ) );
-        }
+		$posted_data = $this->get_posted_data();
 
-        $current_user = wp_get_current_user();
+		if ( ! awpcp_is_valid_email_address( $posted_data['email'] ) ) {
+			return $this->error_response( _x( 'The email address entered is not valid.', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ) );
+		}
 
         $response = wp_remote_post(
-            self::AC_FORM_URL,
+            self::DRIP_FORM_URL,
             array(
                 'body' => array(
-                    'firstname' => $current_user->first_name,
-                    'email'     => $email,
-                    'u'         => '15',
-                    'f'         => '15',
+                    'firstname' => $posted_data['name'],
+                    'email'     => $posted_data['email'],
+                    'u'         => '19',
+                    'f'         => '19',
                     'act'       => 'sub',
                     'c'         => 0,
                     'm'         => 0,
@@ -81,11 +80,9 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
             return false;
         }
 
-        if ( ! isset( $response['headers']['status'] ) || $response['headers']['status'] != '200 OK' ) {
-            return false;
-        }
+		$response = (array) $response;
 
-        if ( ! isset( $response['headers']['x-xhr-redirected-to'] ) ) {
+        if ( ! isset( $response['response']['code'] ) || $response['response']['code'] !== 200 ) {
             return false;
         }
 
