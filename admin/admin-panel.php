@@ -833,7 +833,7 @@ function awpcp_subpages() {
             '[AWPCPPLACEAD]',
         ),
         'renew-ad-page-name' => array(
-            _x( 'Renew Ad', 'page name', 'another-wordpress-classifieds-plugin' ),
+            __( 'Renew Ad', 'another-wordpress-classifieds-plugin' ),
             '[AWPCP-RENEW-AD]',
         ),
         'browse-ads-page-name' => array(
