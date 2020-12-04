@@ -20,7 +20,7 @@ phpmd.xml export-ignore
 phpunit.xml export-ignore
 Pipfile export-ignore
 Pipfile.lock export-ignore
-scripts export-ignore
 tasks.py export-ignore
 tests export-ignore
 Vagrantfile export-ignore
+*/less export-ignore

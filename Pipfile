@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 invoke = "*"
-transifex-client = "*"
 
 [dev-packages]
 
