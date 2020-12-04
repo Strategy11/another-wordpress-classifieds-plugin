@@ -5,7 +5,7 @@ Tags: listings, classified ads, classified, classifieds, directory plugin, class
 Requires at least: 4.9
 Requires PHP: 5.6
 Tested up to: 5.5.1
-Stable tag: 4.1.1
+Stable tag: 4.1.2
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -171,6 +171,11 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 
 == Changelog ==
 
+= Version 4.1.2 =
+* Decrease conflicts and load by only loading admin resources when needed.
+* Fix: The character limit on a fee plan was only saving if both title and content had a custom limit.
+* Fix: Get rid of php warning with Yoast SEO installed.
+
 = Version 4.1.1 =
 * Fix - Restore post type menu accesibility for compatibility.
 
@@ -199,10 +204,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 
 = Version 4.0.15.1 =
 * Fix - Fix init priority for setting up modules.
-
-= Version 4.0.15 =
-* Fix - Latests ads widget CSS classes. 
-* Fix - Quick search action URL when site permalink structure is set to Plain. 
-* Fix - AWPCP "init" action hook priorities to prevent issues while running first time verifications. 
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>

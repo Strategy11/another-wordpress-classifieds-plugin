@@ -7,7 +7,7 @@
     <exclude-pattern>frontend/templates/email-send-all-ad-access-keys.tpl.php</exclude-pattern>
     <exclude-pattern>vendor/*</exclude-pattern>
     <exclude-pattern>tests/*</exclude-pattern>
-    <exclude-pattern>scripts/*</exclude-pattern>
+    <exclude-pattern>bin/*</exclude-pattern>
 
     <rule ref="WordPress">
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />

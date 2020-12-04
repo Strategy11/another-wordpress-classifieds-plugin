@@ -6,7 +6,7 @@ WP_CLI="sudo -u vagrant -- wp"
 WORDPRESS_VERSIONS='4.0.7 latest'
 
 REPO_DIR=`echo $(dirname $(pwd)) | sed s:/vagrant/www:/srv/www:`
-SCRIPTS_DIR="$REPO_DIR/scripts"
+SCRIPTS_DIR="$REPO_DIR/bin"
 
 # remove Nginx configuration file picked up by VVV
 if [ -f vvv-nginx.conf ]; then
