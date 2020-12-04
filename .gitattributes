@@ -23,4 +23,4 @@ Pipfile.lock export-ignore
 tasks.py export-ignore
 tests export-ignore
 Vagrantfile export-ignore
-*/less export-ignore
+less export-ignore
