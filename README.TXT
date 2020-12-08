@@ -4,7 +4,7 @@ Contributors: awpcp
 Tags: listings, classified ads, classified, classifieds, directory plugin, classifieds script, classified theme, wp classified, ads
 Requires at least: 4.9
 Requires PHP: 5.6
-Tested up to: 5.5.1
+Tested up to: 5.6
 Stable tag: 4.1.2
 License: GPLv2 or later
 
