@@ -44,6 +44,16 @@ class AWPCP_Custom_Post_Types {
         $this->settings                   = $settings;
     }
 
+	/**
+	 * @since 4.1.3
+	 */
+	public function register_custom_post() {
+		$this->register_custom_post_status();
+		$this->register_custom_post_types();
+		$this->register_custom_taxonomies();
+		$this->register_custom_image_sizes();
+	}
+
     /**
      * TODO: Do we really want to do this?
      *
@@ -70,7 +80,6 @@ class AWPCP_Custom_Post_Types {
      * @since 4.0.0
      */
     public function register_custom_post_types() {
-        $dashboard_capability = $this->roles_and_capabilities->get_dashboard_capability();
         $moderator_capability = $this->roles_and_capabilities->get_moderator_capability();
         $post_type_slug       = $this->get_post_type_slug();
 
@@ -108,17 +117,15 @@ class AWPCP_Custom_Post_Types {
                 'capability_type'      => 'awpcp_classified_ad',
                 'map_meta_cap'         => true,
                 'capabilities'         => array(
-                    // Moderators and subscribers.
-                    'edit_posts'             => $dashboard_capability,
-                    'edit_published_posts'   => $dashboard_capability,
-                    'delete_posts'           => $dashboard_capability,
-                    // Moderators only.
+                    'edit_posts'             => $moderator_capability,
+                    'edit_published_posts'   => $moderator_capability,
+                    'delete_posts'           => $moderator_capability,
                     'read_private_posts'     => $moderator_capability,
                     'edit_private_posts'     => $moderator_capability,
                     'edit_others_posts'      => $moderator_capability,
                     'publish_posts'          => $moderator_capability,
                     'delete_private_posts'   => $moderator_capability,
-                    'delete_published_posts' => $dashboard_capability,
+                    'delete_published_posts' => $moderator_capability,
                     'delete_others_posts'    => $moderator_capability,
                     'create_posts'           => $moderator_capability,
                 ),

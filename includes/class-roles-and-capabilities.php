@@ -165,9 +165,6 @@ class AWPCP_RolesAndCapabilities {
         return $this->get_moderator_capability();
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function create_moderator_role() {
         $role = get_role( 'awpcp-moderator' );
 
@@ -181,9 +178,6 @@ class AWPCP_RolesAndCapabilities {
         }
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function remove_moderator_role() {
         if ( get_role( 'awpcp-moderator' ) ) {
             return remove_role( 'awpcp-moderator' );

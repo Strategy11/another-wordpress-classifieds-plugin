@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2020-12-03 22:20:30+00:00\n"
+"POT-Creation-Date: 2021-01-12 22:29:26+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/wp-translations/"
@@ -64,11 +64,11 @@ msgstr "Цена"
 msgid "Attributes"
 msgstr "Аттрибуты"
 
-#: admin/admin-panel-fees-table.php:126 admin/admin-panel.php:163
+#: admin/admin-panel-fees-table.php:126 admin/admin-panel.php:155
 msgid "Categories"
 msgstr "Категории"
 
-#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:834
+#: admin/admin-panel-fees-table.php:129 includes/class-awpcp.php:831
 msgid "Featured Ads"
 msgstr "Избранные объявления"
 
@@ -131,97 +131,93 @@ msgstr "Удалить кредит"
 msgid "The specified User doesn't exists."
 msgstr "Указанный пользователь не существует."
 
-#: admin/admin-panel.php:83 admin/admin-panel.php:122 admin/admin-panel.php:132
+#: admin/admin-panel.php:74 admin/admin-panel.php:113 admin/admin-panel.php:123
 msgid "Manual Upgrade"
 msgstr "Ручное обновление"
 
-#: admin/admin-panel.php:89 admin/admin-panel.php:146 admin/admin-panel.php:809
-#: includes/models/class-custom-post-types.php:81
-#: includes/models/class-custom-post-types.php:83
+#: admin/admin-panel.php:80 admin/admin-panel.php:138 admin/admin-panel.php:802
+#: includes/models/class-custom-post-types.php:90
+#: includes/models/class-custom-post-types.php:92
 #: includes/settings/class-listings-settings.php:30
 msgid "Classifieds"
 msgstr "Доска объявлений"
 
-#: admin/admin-panel.php:94 includes/models/class-custom-post-types.php:92
+#: admin/admin-panel.php:85 includes/models/class-custom-post-types.php:101
 msgid "Classified Ads"
 msgstr ""
 
-#. Author of the plugin/theme
-msgid "AWPCP"
-msgstr "AWPCP"
-
-#: admin/admin-panel.php:143
+#: admin/admin-panel.php:135
 msgid "Dashboard"
 msgstr "Панель управления"
 
-#: admin/admin-panel.php:150 admin/admin-panel.php:151
-#: admin/admin-panel.php:512
+#: admin/admin-panel.php:142 admin/admin-panel.php:143
+#: admin/admin-panel.php:504
 msgid "Settings"
 msgstr "Настройки"
 
-#: admin/admin-panel.php:164
+#: admin/admin-panel.php:156
 #: templates/admin/main-classifieds-admin-page.tpl.php:86
 #: templates/admin/main-classifieds-admin-page.tpl.php:111
 msgid "Manage Categories"
 msgstr "Управление категориями"
 
-#: admin/admin-panel.php:213 admin/admin-panel.php:214
+#: admin/admin-panel.php:205 admin/admin-panel.php:206
 #: admin/form-fields/class-form-fields-admin-page.php:12
 #: includes/settings/class-display-settings.php:305
 #: includes/settings/class-display-settings.php:445
 msgid "Form Fields"
 msgstr "Поля форм"
 
-#: admin/admin-panel.php:223
+#: admin/admin-panel.php:215
 msgid "Credit Plans"
 msgstr "Кредитные планы"
 
-#: admin/admin-panel.php:224
+#: admin/admin-panel.php:216
 msgid "Manage Credit Plans"
 msgstr "Управление кредитными планами"
 
-#: admin/admin-panel.php:233
+#: admin/admin-panel.php:225
 msgid "Manage Credit"
 msgstr "Управление кредитами"
 
-#: admin/admin-panel.php:242 admin/fees/class-fees-admin-page.php:26
+#: admin/admin-panel.php:234 admin/fees/class-fees-admin-page.php:26
 #: templates/admin/main-classifieds-admin-page.tpl.php:56
 msgid "Fees"
 msgstr "Тарифы"
 
-#: admin/admin-panel.php:243
+#: admin/admin-panel.php:235
 msgid "Manage Listings Fees"
 msgstr ""
 
-#: admin/admin-panel.php:268 admin/admin-panel.php:269
+#: admin/admin-panel.php:260 admin/admin-panel.php:261
 msgid "Import & Export"
 msgstr "Импорт & Экспорт"
 
-#: admin/admin-panel.php:328 admin/templates/admin-panel-debug.tpl.php:3
+#: admin/admin-panel.php:320 admin/templates/admin-panel-debug.tpl.php:3
 msgid "Debug"
 msgstr "Отладка"
 
-#: admin/admin-panel.php:329 admin/templates/admin-panel-debug.tpl.php:24
+#: admin/admin-panel.php:321 admin/templates/admin-panel-debug.tpl.php:24
 msgid "Debug Information"
 msgstr "Отладочная информация"
 
-#: admin/admin-panel.php:338 admin/admin-panel.php:339
+#: admin/admin-panel.php:330 admin/admin-panel.php:331
 msgid "Uninstall"
 msgstr "Удалить"
 
-#: admin/admin-panel.php:357 admin/admin-panel.php:358
-#: admin/admin-panel.php:836 frontend/templates/page-renew-ad.tpl.php:3
+#: admin/admin-panel.php:349 admin/admin-panel.php:350
+#: admin/admin-panel.php:829 frontend/templates/page-renew-ad.tpl.php:3
 #: includes/admin/class-admin-container-configuration.php:183
 msgid "Renew Ad"
 msgstr "Возобновить объявление"
 
-#: admin/admin-panel.php:430
+#: admin/admin-panel.php:422
 msgid ""
 "Use the Account Balance column on the table below to manage credit balance "
 "for users."
 msgstr ""
 
-#: admin/admin-panel.php:449
+#: admin/admin-panel.php:441
 msgid ""
 "AWPCP features are currently disabled because the plugin needs you to "
 "perform a manual upgrade before continuing."
@@ -229,7 +225,7 @@ msgstr ""
 "Функции AWPCP в настоящее время отключены, так как плагин нужно обновить "
 "вручную, прежде чем продолжить."
 
-#: admin/admin-panel.php:450
+#: admin/admin-panel.php:442
 msgid ""
 "The duration for this upgrade operation varies between several minutes and a "
 "few hours, depending on the size of your database, the current network "
@@ -241,7 +237,7 @@ msgstr ""
 #. translators: %1$s is the opening tag for the link to the page explaining how
 #. to downgrade to a previous version of the plugin, %2$s is the closing tag
 #. for the link.
-#: admin/admin-panel.php:453
+#: admin/admin-panel.php:445
 msgid ""
 "If this is not a good time to go through the upgrade process, we recommend "
 "you to %1$sinstall the previous version again%2$s and plan to upgrade "
@@ -250,7 +246,7 @@ msgstr ""
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:459
+#: admin/admin-panel.php:451
 msgid ""
 "To upgrade, please %1$sgo to the Classifieds admin section%2$s or click the "
 "button below."
@@ -258,7 +254,7 @@ msgstr ""
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:469
+#: admin/admin-panel.php:461
 msgid ""
 "AWPCP features are currently disabled because the plugin needs you to "
 "perform a manual upgrade before continuing. Please %1$sgo to the Classifieds "
@@ -267,7 +263,7 @@ msgstr ""
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:491
+#: admin/admin-panel.php:483
 msgid ""
 "AWPCP needs you to perform a manual upgrade to update the database schema "
 "and the information stored there. All plugin features will continue to work "
@@ -275,7 +271,7 @@ msgid ""
 "admin section to Upgrade%2$s or click the button below."
 msgstr ""
 
-#: admin/admin-panel.php:565
+#: admin/admin-panel.php:557
 msgid ""
 "Page %1$s has the same URL as the %2$s from AWPCP. The WordPress page %1$s "
 "is going to be unreachable until this changes."
@@ -287,7 +283,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: admin/admin-panel.php:573
+#: admin/admin-panel.php:565
 msgid ""
 "The %1$s is dynamic; you don't need to create a real WordPress page to show "
 "the list of categories, the plugin will generate it for you. If the "
@@ -305,39 +301,39 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: admin/admin-panel.php:774 admin/class-categories-admin-page.php:70
+#: admin/admin-panel.php:767 admin/class-categories-admin-page.php:70
 #: admin/class-categories-admin-page.php:74
 msgid "Manage Category Icon"
 msgstr "Управление иконками категорий"
 
-#: admin/admin-panel.php:779 admin/class-categories-admin-page.php:45
+#: admin/admin-panel.php:772 admin/class-categories-admin-page.php:45
 #: admin/class-categories-admin-page.php:49
 #: admin/class-categories-admin-page.php:142
 msgid "Edit Category"
 msgstr "Редактировать категорию"
 
-#: admin/admin-panel.php:780 admin/class-categories-admin-page.php:56
+#: admin/admin-panel.php:773 admin/class-categories-admin-page.php:56
 #: admin/class-categories-admin-page.php:60
 msgid "Delete Category"
 msgstr "Удалить категорию"
 
-#: admin/admin-panel.php:786
+#: admin/admin-panel.php:779
 msgid "Select {category_name}"
 msgstr "Выбрать {category_name}"
 
-#: admin/admin-panel.php:824 frontend/page-reply-to-ad.php:13
+#: admin/admin-panel.php:817 frontend/page-reply-to-ad.php:13
 msgid "Reply to Ad"
 msgstr "Ответить на объявление"
 
-#: admin/admin-panel.php:832 admin/templates/admin-panel-listings.tpl.php:5
+#: admin/admin-panel.php:825 admin/templates/admin-panel-listings.tpl.php:5
 msgid "Place Ad"
 msgstr "Разместить объявление"
 
-#: admin/admin-panel.php:840 frontend/page-browse-ads.php:11
+#: admin/admin-panel.php:833 frontend/page-browse-ads.php:11
 msgid "Browse Ads"
 msgstr "Просмотр объявлений"
 
-#: admin/admin-panel.php:844 admin/templates/admin-panel-listings.tpl.php:11
+#: admin/admin-panel.php:837 admin/templates/admin-panel-listings.tpl.php:11
 #: frontend/page-search-ads.php:11
 msgid "Search Ads"
 msgstr "Искать объявления"
@@ -1715,16 +1711,9 @@ msgstr "Мы не смогли найти платежной транзакци�
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr "Объявление связаное с этой сделкой не существует."
 
-#: frontend/page-renew-ad.php:73
-msgid ""
-"The specified Ad doesn't exist or you reached this page directly, without "
-"specifying the Ad ID."
-msgstr ""
-"Указанное объявление не существует или вы попали на эту страницу напрямую, "
-"без указания ID объявления."
-
-#: frontend/page-renew-ad.php:76
-msgid "The specified Ad doesn't need to be renewed."
+#: frontend/page-renew-ad.php:74
+#, fuzzy
+msgid "That Ad doesn't need to be renewed."
 msgstr "Указанное объявление не нуждается в обновлении."
 
 #: frontend/page-renew-ad.php:79
@@ -3341,7 +3330,7 @@ msgid ""
 "one of the associated listings: <error-message>"
 msgstr ""
 
-#: includes/class-awpcp.php:761
+#: includes/class-awpcp.php:758
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -3349,96 +3338,96 @@ msgstr ""
 "AWPCP требуется библиотека обработки графики GD которая не установлена. "
 "Обратитесь поддержку веб-хостинга, чтобы это исправить."
 
-#: includes/class-awpcp.php:762
+#: includes/class-awpcp.php:759
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: includes/class-awpcp.php:778
+#: includes/class-awpcp.php:775
 msgid "Attachments"
 msgstr "Вложения"
 
-#: includes/class-awpcp.php:785
+#: includes/class-awpcp.php:782
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:792
+#: includes/class-awpcp.php:789
 msgid "BuddyPress Listings"
 msgstr "Объявления BuddyPress"
 
-#: includes/class-awpcp.php:799
+#: includes/class-awpcp.php:796
 msgid "Campaign Manager"
 msgstr "Менеджер кампаний"
 
-#: includes/class-awpcp.php:806
+#: includes/class-awpcp.php:803
 msgid "Category Icons"
 msgstr "Иконки категорий"
 
-#: includes/class-awpcp.php:813
+#: includes/class-awpcp.php:810
 msgid "Comments & Ratings"
 msgstr "Комментарии и рейтинги"
 
-#: includes/class-awpcp.php:820
+#: includes/class-awpcp.php:817
 msgid "Coupons/Discount"
 msgstr "Купоны/Скидки"
 
-#: includes/class-awpcp.php:827
+#: includes/class-awpcp.php:824
 msgid "Extra Fields"
 msgstr "Дополнительные поля"
 
-#: includes/class-awpcp.php:841
+#: includes/class-awpcp.php:838
 msgid "Fee per Category"
 msgstr "Тариф для категории"
 
-#: includes/class-awpcp.php:848
+#: includes/class-awpcp.php:845
 msgid "Mark as Sold"
 msgstr "Пометить как Продано"
 
-#: includes/class-awpcp.php:855
+#: includes/class-awpcp.php:852
 msgid "PayFast"
 msgstr "PayFast"
 
-#: includes/class-awpcp.php:862
+#: includes/class-awpcp.php:859
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:869
+#: includes/class-awpcp.php:866
 msgid "Regions Control"
 msgstr "Управление Регионами"
 
-#: includes/class-awpcp.php:876
+#: includes/class-awpcp.php:873
 msgid "Restricted Categories"
 msgstr "Ограниченные категории"
 
-#: includes/class-awpcp.php:883
+#: includes/class-awpcp.php:880
 msgid "RSS"
 msgstr "RSS"
 
-#: includes/class-awpcp.php:890
+#: includes/class-awpcp.php:887
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:897
+#: includes/class-awpcp.php:894
 msgid "Subscriptions"
 msgstr "Подписки"
 
-#: includes/class-awpcp.php:904 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:901 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Видео"
 
-#: includes/class-awpcp.php:912
+#: includes/class-awpcp.php:909
 msgid "XML Sitemap"
 msgstr "Карта сайта XML "
 
-#: includes/class-awpcp.php:920
+#: includes/class-awpcp.php:917
 msgid "ZIP Code Search Module"
 msgstr "Модуль поиска по почтовому индексу"
 
-#: includes/class-awpcp.php:1457
+#: includes/class-awpcp.php:1454
 msgid "This field is required."
 msgstr "Это поле является обязательным."
 
-#: includes/class-awpcp.php:1458
+#: includes/class-awpcp.php:1455
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:263
 #: includes/frontend/class-edit-listing-page.php:345
@@ -3446,32 +3435,32 @@ msgstr "Это поле является обязательным."
 msgid "Please enter a valid email address."
 msgstr "Пожалуйста, введите действующий адрес электронной почты."
 
-#: includes/class-awpcp.php:1459 includes/class-awpcp.php:1460
+#: includes/class-awpcp.php:1456 includes/class-awpcp.php:1457
 msgid "Please enter a valid URL."
 msgstr "Пожалуйста, введите правильный URL."
 
-#: includes/class-awpcp.php:1461
+#: includes/class-awpcp.php:1458
 msgid "Please enter a valid number."
 msgstr "Пожалуйста, введите правильный номер."
 
-#: includes/class-awpcp.php:1462
+#: includes/class-awpcp.php:1459
 msgid "Please enter a valid amount."
 msgstr "Пожалуйста, введите корректное количество."
 
-#: includes/class-awpcp.php:1463
+#: includes/class-awpcp.php:1460
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1496
+#: includes/class-awpcp.php:1493
 msgid "There are files currently being uploaded."
 msgstr "Несколько файлов загружаются."
 
-#: includes/class-awpcp.php:1497
+#: includes/class-awpcp.php:1494
 msgid "There are files pending to be uploaded."
 msgstr "Несколько файлов ожидают загрузки."
 
-#: includes/class-awpcp.php:1498
+#: includes/class-awpcp.php:1495
 msgid "You haven't uploaded any images or files."
 msgstr "Вы не загрузили ни одного файла."
 
@@ -3570,7 +3559,7 @@ msgstr "Не найдено объявления с номером %d."
 msgid "No Listing was found with old id: %d."
 msgstr ""
 
-#: includes/class-roles-and-capabilities.php:178
+#: includes/class-roles-and-capabilities.php:175
 msgid "Classifieds Moderator"
 msgstr "Модератор объявлений"
 
@@ -4791,13 +4780,13 @@ msgstr "Вам не разрешено загружать файлы."
 msgid "Destination directory doesn't exists and couldn't be created."
 msgstr "Конечный каталог не найден и не может быть создан."
 
-#: includes/models/class-custom-post-types.php:57
+#: includes/models/class-custom-post-types.php:67
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:127
 msgid "Disabled"
 msgstr "Отключено"
 
 #. translators: %d Number of posts on this state.
-#: includes/models/class-custom-post-types.php:64
+#: includes/models/class-custom-post-types.php:74
 msgid "Disabled <span class=\"count\">(%d)</span>"
 msgid_plural "Disabled <span class=\"count\">(%d)</span>"
 msgstr[0] ""
@@ -4805,43 +4794,43 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/models/class-custom-post-types.php:82
+#: includes/models/class-custom-post-types.php:91
 msgid "Classified Ad"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:85
+#: includes/models/class-custom-post-types.php:94
 msgid "Add New Classified Ad"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:86
+#: includes/models/class-custom-post-types.php:95
 msgid "Edit Classified Ad"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:87
+#: includes/models/class-custom-post-types.php:96
 msgid "New Classified Ad"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:88
+#: includes/models/class-custom-post-types.php:97
 msgid "View Classified Ad"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:89
+#: includes/models/class-custom-post-types.php:98
 msgid "Search Now"
 msgstr "Искать сейчас"
 
-#: includes/models/class-custom-post-types.php:90
+#: includes/models/class-custom-post-types.php:99
 msgid "No classifieds found"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:91
+#: includes/models/class-custom-post-types.php:100
 msgid "No classifieds found in Trash"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:94
+#: includes/models/class-custom-post-types.php:103
 msgid "A classified ad."
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:246
+#: includes/models/class-custom-post-types.php:253
 #: includes/settings/class-email-settings.php:47
 #: includes/settings/class-files-settings.php:44
 #: includes/settings/class-general-settings.php:46
@@ -9344,6 +9333,10 @@ msgstr ""
 msgid "Run a free or paid classified ads service on your WordPress site."
 msgstr ""
 
+#. Author of the plugin/theme
+msgid "AWPCP"
+msgstr "AWPCP"
+
 #: admin/admin-panel-fees-table.php:267
 msgctxt "all categories"
 msgid "All"
@@ -9354,17 +9347,17 @@ msgctxt "credit system on users table"
 msgid "Account Balance"
 msgstr "Состояние счета"
 
-#: admin/admin-panel.php:38
+#: admin/admin-panel.php:29
 msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Доска объявлений"
 
-#: admin/admin-panel.php:820 includes/settings/class-listings-settings.php:473
+#: admin/admin-panel.php:813 includes/settings/class-listings-settings.php:473
 msgctxt "page name"
 msgid "Show Ad"
 msgstr "Показать рекламу"
 
-#: admin/admin-panel.php:828
+#: admin/admin-panel.php:821
 msgctxt "page name"
 msgid "Edit Ad"
 msgstr "Редактировать объявление"
@@ -10578,17 +10571,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr "Быстрый обзор"
 
-#: includes/class-awpcp.php:1473
+#: includes/class-awpcp.php:1470
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c; Пред."
 
-#: includes/class-awpcp.php:1475
+#: includes/class-awpcp.php:1472
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "След. &#x3e;"
 
-#: includes/class-awpcp.php:1490
+#: includes/class-awpcp.php:1487
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
@@ -10893,23 +10886,23 @@ msgid "There is no file handler for this kind of file (<mime-type>). Aborting."
 msgstr ""
 "Для этого типа файла (<mime-type>) не предусмотрено обработчика. Отменяю."
 
-#: includes/models/class-custom-post-types.php:84
+#: includes/models/class-custom-post-types.php:93
 msgctxt "awpcp_listing"
 msgid "Add New"
 msgstr "Добавить"
 
-#: includes/models/class-custom-post-types.php:143
+#: includes/models/class-custom-post-types.php:150
 #: includes/settings/class-listings-settings.php:599
 msgctxt "listing post type slug"
 msgid "classifieds"
 msgstr ""
 
-#: includes/models/class-custom-post-types.php:175
+#: includes/models/class-custom-post-types.php:182
 msgctxt "taxonomy general name"
 msgid "Categories"
 msgstr "Рубрики"
 
-#: includes/models/class-custom-post-types.php:176
+#: includes/models/class-custom-post-types.php:183
 msgctxt "taxonomy general name"
 msgid "Category"
 msgstr "Категория"
@@ -11644,6 +11637,13 @@ msgstr ""
 msgctxt "context"
 msgid "B"
 msgstr ""
+
+#~ msgid ""
+#~ "The specified Ad doesn't exist or you reached this page directly, without "
+#~ "specifying the Ad ID."
+#~ msgstr ""
+#~ "Указанное объявление не существует или вы попали на эту страницу "
+#~ "напрямую, без указания ID объявления."
 
 #~ msgctxt "page name"
 #~ msgid "Reply to Ad"

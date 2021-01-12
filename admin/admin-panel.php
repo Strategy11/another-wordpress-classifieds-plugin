@@ -3,12 +3,6 @@
  * @package AWPCP\Admin
  */
 
-// phpcs:disable Generic
-// phpcs:disable PEAR
-// phpcs:disable PSR2
-// phpcs:disable Squiz
-// phpcs:disable WordPress
-
 require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
 
 function awpcp_admin_panel() {
@@ -18,9 +12,6 @@ function awpcp_admin_panel() {
     );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_AdminPanel {
 
     private $upgrade_tasks;
@@ -50,9 +41,9 @@ class AWPCP_AdminPanel {
 
         $admin_menu_builder = new AWPCP_AdminMenuBuilder( awpcp()->container['listing_post_type'], awpcp()->router );
         add_action( 'admin_menu', array( $admin_menu_builder, 'build_menu' ) );
-        add_action( 'admin_menu', array( $admin_menu_builder, 'admin_menu_combine' ), 20 );
-        add_action( 'admin_footer', array( $this, 'maybe_highlight_menu' ) );
-        
+		add_action( 'admin_menu', array( $admin_menu_builder, 'admin_menu_combine' ), 20 );
+		add_action( 'admin_footer', array( $this, 'maybe_highlight_menu' ) );
+
 		add_action('admin_notices', array($this, 'notices'));
 		add_action( 'awpcp-admin-notices', array( $this, 'check_duplicate_page_names' ) );
 
@@ -95,7 +86,7 @@ class AWPCP_AdminPanel {
             awpcp_admin_page_title( $page_title ),
             $parent_menu,
             $handler_constructor,
-            awpcp_admin_capability(),
+            awpcp_roles_and_capabilities()->get_moderator_capability(),
             'none',
             26
         );
@@ -109,7 +100,7 @@ class AWPCP_AdminPanel {
 
     private function configure_route_for_main_classifieds_admin_page( $parent_menu, $router ) {
         return $this->add_main_classifieds_admin_page(
-            __( 'AWPCP', 'another-wordpress-classifieds-plugin' ),
+            'AWPCP',
             $parent_menu,
             'awpcp_main_classifieds_admin_page',
             $router
@@ -139,11 +130,12 @@ class AWPCP_AdminPanel {
 
     private function configure_routes_for_admin_subpages( $parent_page, $router ) {
         $admin_capability = awpcp_admin_capability();
+		$moderator_capability = awpcp_roles_and_capabilities()->get_moderator_capability();
 
 		add_submenu_page( $parent_page, 'AWPCP', __( 'Dashboard', 'another-wordpress-classifieds-plugin' ), $admin_capability, $parent_page, $router );
 
 		$post_type    = awpcp()->container['listing_post_type'];
-		add_submenu_page( $parent_page, 'AWPCP', __( 'Classifieds', 'another-wordpress-classifieds-plugin' ), $admin_capability, 'edit.php?post_type=' . $post_type );
+		add_submenu_page( $parent_page, 'AWPCP', __( 'Classifieds', 'another-wordpress-classifieds-plugin' ), $moderator_capability, 'edit.php?post_type=' . $post_type );
 
         $router->add_admin_subpage(
             $parent_page,
@@ -346,7 +338,7 @@ class AWPCP_AdminPanel {
         $quick_view_admin_page_slug = 'awpcp-admin-quick-view-listing';
 
         if ( $this->request->param( 'page' ) === $quick_view_admin_page_slug ) {
-            $this->maybe_redirect_quick_page();
+			$this->maybe_redirect_quick_page();
         }
 
         $renew_listing_subscriber_admin_page_slug = 'awpcp-admin-renew-listing';
@@ -667,25 +659,26 @@ class AWPCP_AdminPanel {
         die('Success!');
     }
 
-    public function maybe_highlight_menu() {
-        global $post;
 
-        $post_type = awpcp()->container['listing_post_type'];
+	public function maybe_highlight_menu() {
+		global $post;
+
+		$post_type = awpcp()->container['listing_post_type'];
 		$is_single_listing = $post_type === $this->request->param( 'post_type' ) || ( is_object( $post ) && $post_type === $post->post_type );
 
 		if ( ! $is_single_listing ) {
 			return;
 		}
 
-        echo "<script>
-                jQuery(document).ready(function() {
-                    var awpcpMenu = jQuery( '#toplevel_page_awpcp' );
-                    jQuery( awpcpMenu ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
-                    jQuery( '#toplevel_page_awpcp a.wp-has-submenu' ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
-					jQuery( '#toplevel_page_awpcp a[href=\"edit.php?post_type=awpcp_listing\"]' ).parent().addClass( 'current' );
-                });
-            </script>";
-    }
+		echo "<script>
+			jQuery(document).ready(function() {
+				var awpcpMenu = jQuery( '#toplevel_page_awpcp' );
+				jQuery( awpcpMenu ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
+				jQuery( '#toplevel_page_awpcp a.wp-has-submenu' ).removeClass( 'wp-not-current-submenu' ).addClass( 'wp-has-current-submenu wp-menu-open' );
+				jQuery( '#toplevel_page_awpcp a[href=\"edit.php?post_type=awpcp_listing\"]' ).parent().addClass( 'current' );
+			});
+		</script>";
+	}
 }
 
 /**
@@ -851,9 +844,6 @@ function awpcp_subpages() {
 	return $pages;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_create_pages($awpcp_page_name, $subpages=true) {
 	$refname = 'main-page-name';
     $shortcode = '[AWPCPCLASSIFIEDSUI]';

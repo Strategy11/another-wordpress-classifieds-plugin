@@ -890,7 +890,7 @@ function awpcp_do_placeholder_ad_actions( $ad, $placeholder ) {
     if ( $is_owner && awpcp_listing_renderer()->has_expired_or_is_about_to_expire( $ad ) ) {
         $renew_url = awpcp_get_renew_ad_url( $ad->ID );
         $label     = _x( 'Renew', 'listing row action', 'another-wordpress-classifieds-plugin' );
-        return "<div class='awpcp-user-renew'><a  class='awpcp-action-button' href='{$renew_url}' title='{$label}' aria-label='{$label}'><i class='fa fa-redo'></i></a></div>";
+        return '<div class="awpcp-user-renew"><a class="button" href="' . esc_url( $renew_url ) . '">' . esc_html( $label ) . '</a></div>';
     }
 }
 
