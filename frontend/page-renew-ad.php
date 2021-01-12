@@ -61,21 +61,21 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         return awpcp_verify_renew_ad_hash( $ad->ID, $this->request->param( 'awpcprah' ) );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     */
     protected function _dispatch($default=null) {
         $action = $this->get_current_action( $default );
         $ad = $this->get_ad();
 
-        if (is_null($ad)) {
-            $message = __("The specified Ad doesn't exist or you reached this page directly, without specifying the Ad ID.", 'another-wordpress-classifieds-plugin');
+		if ( is_null( $ad ) ) {
+			$content = do_shortcode( '[AWPCPUSERLISTINGS] ' );
+			return $this->render('content', $content );
+		}
+
+		if ( ! in_array( $action, array( 'payment-completed', 'finish', true ) ) && ! $this->listing_renderer->is_about_to_expire( $ad ) && ! $this->listing_renderer->has_expired( $ad ) ) {
+			$message = __( 'That Ad doesn\'t need to be renewed.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
-        } else if ( ! in_array( $action, array( 'payment-completed', 'finish', true ) ) && ! $this->listing_renderer->is_about_to_expire( $ad ) && ! $this->listing_renderer->has_expired( $ad ) ) {
-            $message = __("The specified Ad doesn't need to be renewed.", 'another-wordpress-classifieds-plugin');
-            return $this->render('content', awpcp_print_error($message));
-        } else if ( !$this->verify_renew_ad_hash( $ad ) ) {
+		}
+
+		if ( ! $this->verify_renew_ad_hash( $ad ) ) {
             $message = __("There was an error trying to renew your Ad. The URL is not valid. Please contact the Administrator of this site for further assistance.", 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }

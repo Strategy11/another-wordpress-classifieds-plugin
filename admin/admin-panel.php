@@ -844,9 +844,6 @@ function awpcp_subpages() {
 	return $pages;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_create_pages($awpcp_page_name, $subpages=true) {
 	$refname = 'main-page-name';
     $shortcode = '[AWPCPCLASSIFIEDSUI]';
