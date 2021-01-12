@@ -5,7 +5,7 @@ Tags: listings, classified ads, classified, classifieds, directory plugin, class
 Requires at least: 4.9
 Requires PHP: 5.6
 Tested up to: 5.6
-Stable tag: 4.1.2
+Stable tag: 4.1.3
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -171,15 +171,21 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 
 == Changelog ==
 
-= Version 4.1.2 =
+= 4.1.3 =
+* Show list of user's listings on renewal page if no listing was selected.
+* Replace the renewal button icon with a label to make it more clear.
+* Fix: Show the classifieds menu to moderators.
+* Fix: Flush rewrite rules sooner. Hopefully this will fix the htaccess issue some sites are seeing.
+
+= 4.1.2 =
 * Decrease conflicts and load by only loading admin resources when needed.
 * Fix: The character limit on a fee plan was only saving if both title and content had a custom limit.
 * Fix: Get rid of php warning with Yoast SEO installed.
 
-= Version 4.1.1 =
+= 4.1.1 =
 * Fix - Restore post type menu accesibility for compatibility.
 
-= Version 4.1 =
+= 4.1 =
 * New - Merge together Classifieds admin menus to remove extra duplication. (#3024)
 * Simplify the interface by only allowing users to edit listings from the front-end.
 * Remove the Quick view page in the admin area and use the front-end to avoid doing it two different ways.
@@ -190,7 +196,7 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fix - Do not show the 'renew' button when it can't be used on listings without owner. (#3042)
 * Fix - Edit post url in place ad user notification email. (#3044)
 
-= Version 4.0.16 =
+= 4.0.16 =
 * Enhancement - Optimize get_categories_hierarchy function by removing empty categories when ‘Hide empty categories from dropdowns’ setting is active. 
 * Enhancement - Add setting to show/hide categories selector in Browse Ads page. 
 * Enhancement - Add ‘awpcp_country_list_options_countries’ filter to country list options. 
@@ -201,8 +207,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fix - Set post_type for query that retrieves expired listings. 
 * Tweak - Generate default values for some variables to prevent PHP notices. 
 * Tweak - Fix styling in checkout expiration date fields. 
-
-= Version 4.0.15.1 =
-* Fix - Fix init priority for setting up modules.
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>
