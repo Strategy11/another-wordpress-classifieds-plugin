@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2021-01-12 22:29:26+00:00\n"
+"POT-Creation-Date: 2021-07-07 23:26:02+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/wp-translations/"
@@ -72,40 +72,36 @@ msgstr "Anzeigen"
 msgid "Private"
 msgstr "Privat"
 
-#: admin/admin-panel-fees-table.php:195
+#: admin/admin-panel-fees-table.php:194
 msgid "<duration-amount> <duration-interval>"
 msgstr "<duration-amount> <duration-interval>"
 
-#: admin/admin-panel-fees-table.php:199
+#: admin/admin-panel-fees-table.php:198
 msgid "Duration: <payment-term-duration>"
 msgstr "Dauer: <payment-term-duration>"
 
-#: admin/admin-panel-fees-table.php:209
+#: admin/admin-panel-fees-table.php:208
 msgid "# of images: <number-of-images-allowed>"
 msgstr "Anzahl Bilder: <number-of-images-allowed>"
 
-#: admin/admin-panel-fees-table.php:219
-msgid "# of regions: <number-of-regions-allowed>"
-msgstr "Anzahl Regionen: <number-of-regions-allowed>"
-
-#: admin/admin-panel-fees-table.php:232 admin/admin-panel-fees-table.php:248
+#: admin/admin-panel-fees-table.php:221 admin/admin-panel-fees-table.php:237
 msgid "unlimited"
 msgstr "unbegrenzt"
 
-#: admin/admin-panel-fees-table.php:235
+#: admin/admin-panel-fees-table.php:224
 msgid "Chars in title: <characters-limit>"
 msgstr "Anzahl Zeichen im Titel: <characters-limit>"
 
-#: admin/admin-panel-fees-table.php:251
+#: admin/admin-panel-fees-table.php:240
 msgid "Chars in description: <characters-limit>"
 msgstr "Anzahl Zeichen in der Beschreibung: <characters-limit>"
 
-#: admin/admin-panel-fees-table.php:278 admin/admin-panel-fees-table.php:282
+#: admin/admin-panel-fees-table.php:267 admin/admin-panel-fees-table.php:271
 #: templates/admin/import/supported-csv-headers.tpl.php:31
 msgid "Yes"
 msgstr "Ja"
 
-#: admin/admin-panel-fees-table.php:278 admin/admin-panel-fees-table.php:282
+#: admin/admin-panel-fees-table.php:267 admin/admin-panel-fees-table.php:271
 #: templates/admin/import/supported-csv-headers.tpl.php:31
 msgid "No"
 msgstr "Nein"
@@ -646,15 +642,15 @@ msgstr "Die ausgewählte Gebühr existiert nicht."
 msgid "Fee successfully updated."
 msgstr "Gebühr erfolgreich aktualisiert."
 
-#: admin/fees/class-fee-details-admin-page.php:106
+#: admin/fees/class-fee-details-admin-page.php:105
 msgid "Create Fee Plan"
 msgstr "Erstelle einen Gebühren-Plan"
 
-#: admin/fees/class-fee-details-admin-page.php:118
+#: admin/fees/class-fee-details-admin-page.php:117
 msgid "No Fee Plan id was specified."
 msgstr "Es wurde keine Gebührenplan-ID angegeben."
 
-#: admin/fees/class-fee-details-admin-page.php:125
+#: admin/fees/class-fee-details-admin-page.php:124
 msgid "The specified Fee Plan doesn't exist or couldn't be loaded."
 msgstr ""
 "Der festgelegte Gebührenplan existiert nicht oder konnte nicht geladen "
@@ -3520,50 +3516,42 @@ msgid "Mark as Sold"
 msgstr "Als verkauft markieren"
 
 #: includes/class-awpcp.php:852
-msgid "PayFast"
-msgstr "Schnelle Bezahlung"
-
-#: includes/class-awpcp.php:859
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:866
+#: includes/class-awpcp.php:859
 msgid "Regions Control"
 msgstr "Regionskontrollmodul"
 
-#: includes/class-awpcp.php:873
-msgid "Restricted Categories"
-msgstr "Limitierte Kategorien"
-
-#: includes/class-awpcp.php:880
+#: includes/class-awpcp.php:866
 msgid "RSS"
 msgstr "RSS Modul"
 
-#: includes/class-awpcp.php:887
+#: includes/class-awpcp.php:873
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:894
+#: includes/class-awpcp.php:880
 msgid "Subscriptions"
 msgstr "Abos"
 
-#: includes/class-awpcp.php:901 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:887 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Videos"
 
-#: includes/class-awpcp.php:909
+#: includes/class-awpcp.php:895
 msgid "XML Sitemap"
 msgstr "XML Sitemap"
 
-#: includes/class-awpcp.php:917
+#: includes/class-awpcp.php:903
 msgid "ZIP Code Search Module"
 msgstr "ZIP Code Search Modul"
 
-#: includes/class-awpcp.php:1454
+#: includes/class-awpcp.php:1440
 msgid "This field is required."
 msgstr "Pflichtfeld"
 
-#: includes/class-awpcp.php:1455
+#: includes/class-awpcp.php:1441
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:263
 #: includes/frontend/class-edit-listing-page.php:345
@@ -3571,34 +3559,34 @@ msgstr "Pflichtfeld"
 msgid "Please enter a valid email address."
 msgstr "Bitte gib Deine E-Mail-Adresse ein!"
 
-#: includes/class-awpcp.php:1456 includes/class-awpcp.php:1457
+#: includes/class-awpcp.php:1442 includes/class-awpcp.php:1443
 msgid "Please enter a valid URL."
 msgstr "Bitte gib eine gültige URL (Webseitenadresse) ein!"
 
-#: includes/class-awpcp.php:1458
+#: includes/class-awpcp.php:1444
 msgid "Please enter a valid number."
 msgstr "Bitte gib eine Zahl ein!"
 
-#: includes/class-awpcp.php:1459
+#: includes/class-awpcp.php:1445
 msgid "Please enter a valid amount."
 msgstr "Bitte gib eine Menge ein!"
 
-#: includes/class-awpcp.php:1460
+#: includes/class-awpcp.php:1446
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 "Du hast die maximal zulässigen Kategorien für den ausgewählten Gebührenplan "
 "erreicht."
 
-#: includes/class-awpcp.php:1493
+#: includes/class-awpcp.php:1479
 msgid "There are files currently being uploaded."
 msgstr "Es werden gerade Dateien hochgeladen."
 
-#: includes/class-awpcp.php:1494
+#: includes/class-awpcp.php:1480
 msgid "There are files pending to be uploaded."
 msgstr "Dateien sind in der Warteschlange zum Upload."
 
-#: includes/class-awpcp.php:1495
+#: includes/class-awpcp.php:1481
 msgid "You haven't uploaded any images or files."
 msgstr "Du hast noch keine Bilder oder Dateien hochgeladen."
 
@@ -3680,7 +3668,7 @@ msgstr ""
 msgid "There was an error trying to save the listing details:"
 msgstr "Fehler beim Speichern der Anzeigendetails:"
 
-#: includes/class-listings-api.php:738
+#: includes/class-listings-api.php:736
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -3744,7 +3732,7 @@ msgstr "Hinzufügen"
 msgid "The name of the plan is required."
 msgstr "Mussfeld"
 
-#: includes/credit-plan.php:98 includes/payment-term.php:154
+#: includes/credit-plan.php:98 includes/payment-term.php:151
 msgid "The number of credits must be greater than zero."
 msgstr "Die Anzahl der Credits muss größer als 0 sein!"
 
@@ -5244,21 +5232,17 @@ msgid "The number of images allowed must be equal or greater than zero."
 msgstr "Die Anzahl der erlaubten Bilder muss größer oder kleiner 0 sein!"
 
 #: includes/payment-term.php:145
-msgid "The number of regions allowed must be equal or greater than zero."
-msgstr "Die Anzahl der erlaubten Regionen muss größer oder kleiner 0 sein!"
-
-#: includes/payment-term.php:148
 msgid "The number of characters allowed must be equal or greater than zero."
 msgstr "Die Anzahl der erlaubten Zeichen muss größer oder gleich 0 sein!"
 
-#: includes/payment-term.php:151
+#: includes/payment-term.php:148
 msgid ""
 "The number of characters allowed in the title must be equal or greater than "
 "zero."
 msgstr ""
 "Die Anzahl der erlaubten Zeichen im Titel muss größer oder gleich 0 sein!"
 
-#: includes/payment-term.php:157
+#: includes/payment-term.php:154
 msgid "The price must be equal or greater than zero."
 msgstr "Der Preis muss größer oder gleich 0 sein!"
 
@@ -9665,7 +9649,7 @@ msgstr ""
 msgid "AWPCP"
 msgstr "AWPCP Support Website"
 
-#: admin/admin-panel-fees-table.php:267
+#: admin/admin-panel-fees-table.php:256
 msgctxt "all categories"
 msgid "All"
 msgstr "Alle"
@@ -10969,17 +10953,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr "Schnellansicht"
 
-#: includes/class-awpcp.php:1470
+#: includes/class-awpcp.php:1456
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Prev"
 
-#: includes/class-awpcp.php:1472
+#: includes/class-awpcp.php:1458
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Next&#x3e;"
 
-#: includes/class-awpcp.php:1487
+#: includes/class-awpcp.php:1473
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
@@ -12127,6 +12111,18 @@ msgstr ""
 msgctxt "context"
 msgid "B"
 msgstr ""
+
+#~ msgid "# of regions: <number-of-regions-allowed>"
+#~ msgstr "Anzahl Regionen: <number-of-regions-allowed>"
+
+#~ msgid "PayFast"
+#~ msgstr "Schnelle Bezahlung"
+
+#~ msgid "Restricted Categories"
+#~ msgstr "Limitierte Kategorien"
+
+#~ msgid "The number of regions allowed must be equal or greater than zero."
+#~ msgstr "Die Anzahl der erlaubten Regionen muss größer oder kleiner 0 sein!"
 
 #~ msgid ""
 #~ "The specified Ad doesn't exist or you reached this page directly, without "
