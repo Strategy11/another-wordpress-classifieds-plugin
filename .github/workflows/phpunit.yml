@@ -17,13 +17,14 @@ jobs:
 
     name: PHP ${{ matrix.php }} tests in WP ${{ matrix.wordpress }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       # get the PHP version
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           tools: phpunit:${{ matrix.phpunit }}
+      - uses: php-actions/composer@v1
       - name: Installing WordPress
         run: |
           export WP_DEVELOP_DIR=/tmp/wordpress/
