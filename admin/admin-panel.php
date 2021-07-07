@@ -693,7 +693,7 @@ function checkifclassifiedpage() {
 	return $page_id === $id;
 }
 
-function awpcp_admin_categories_render_category_items($categories, &$children, $start=0, $per_page=10, &$count, $parent=0, $level=0) {
+function awpcp_admin_categories_render_category_items($categories, &$children, $start, $per_page, &$count, $parent=0, $level=0) {
     $categories_collection = awpcp_categories_collection();
 
 	$end = $start + $per_page;

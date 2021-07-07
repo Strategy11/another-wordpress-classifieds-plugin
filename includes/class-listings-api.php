@@ -28,7 +28,7 @@ class AWPCP_ListingsAPI {
     private $wordpress;
     private $db;
 
-    public function __construct( $attachments_logic, $attachments, $listing_renderer, $listings, $roles, /*AWPCP_Request*/ $request = null, $settings, $wordpress, $db ) {
+    public function __construct( $attachments_logic, $attachments, $listing_renderer, $listings, $roles, /*AWPCP_Request*/ $request, $settings, $wordpress, $db ) {
         $this->attachments_logic = $attachments_logic;
         $this->attachments = $attachments;
         $this->listing_renderer = $listing_renderer;

@@ -247,7 +247,7 @@ function category_is_child($catid) {
  * @author Dan Caragea
  * http://datemill.com
  */
-function smart_table($array, $table_cols=1, $opentable, $closetable) {
+function smart_table( $array, $table_cols, $opentable, $closetable ) {
     $usingtable = false;
     if (!empty($opentable) && !empty($closetable)) {
         $usingtable = true;
@@ -256,7 +256,7 @@ function smart_table($array, $table_cols=1, $opentable, $closetable) {
 }
 
 
-function smart_table2($array, $table_cols=1, $opentable, $closetable, $usingtable) {
+function smart_table2( $array, $table_cols, $opentable, $closetable, $usingtable ) {
     $myreturn="$opentable\n";
     $row=0;
     $total_vals=count($array);
