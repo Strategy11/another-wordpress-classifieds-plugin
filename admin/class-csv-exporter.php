@@ -258,12 +258,11 @@ class AWPCP_CSVExporter {
     }
 
     /**
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      * @return bool|string
      */
     private function header() {
         $out     = '';
-        $columns = call_user_func_array( 'array_merge', $this->columns );
+        $columns = $this->columns;
         foreach ( $columns as $colname => &$col ) {
             $out .= $colname;
             $out .= $this->settings['csv-file-separator'];
