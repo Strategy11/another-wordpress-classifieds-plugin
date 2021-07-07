@@ -17,7 +17,7 @@ jobs:
 
     name: PHP ${{ matrix.php }} tests in WP ${{ matrix.wordpress }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
 
       # get the PHP version
       - uses: shivammathur/setup-php@v2
@@ -44,4 +44,4 @@ jobs:
         run: |
           cd "/tmp/wordpress/src/wp-content/plugins/${GITHUB_REPOSITORY#*/}"
           pwd
-          vendor/bin/phpunit
+          phpunit
