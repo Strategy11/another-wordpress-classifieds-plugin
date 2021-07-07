@@ -339,9 +339,7 @@ class AWPCP_ListingsAPI {
      * @since 4.0.0
      */
     private function update_listing_regions( $listing, $regions ) {
-        $regions_allowed = $this->listing_renderer->get_number_of_regions_allowed( $listing );
-
-        awpcp_basic_regions_api()->update_ad_regions( $listing, $regions, $regions_allowed );
+        awpcp_basic_regions_api()->update_ad_regions( $listing, $regions );
     }
 
     /**
