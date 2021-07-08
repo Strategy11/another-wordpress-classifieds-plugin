@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2021-07-08 01:08:49+00:00\n"
+"POT-Creation-Date: 2021-07-08 01:13:15+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wp-translations/"
@@ -125,7 +125,7 @@ msgstr "O usuário especificado não existe."
 msgid "Manual Upgrade"
 msgstr "atualização manual"
 
-#: admin/admin-panel.php:80 admin/admin-panel.php:138 admin/admin-panel.php:802
+#: admin/admin-panel.php:80 admin/admin-panel.php:138 admin/admin-panel.php:804
 #: includes/models/class-custom-post-types.php:90
 #: includes/models/class-custom-post-types.php:92
 #: includes/settings/class-listings-settings.php:30
@@ -196,7 +196,7 @@ msgid "Uninstall"
 msgstr "Desinstalação"
 
 #: admin/admin-panel.php:349 admin/admin-panel.php:350
-#: admin/admin-panel.php:829 frontend/templates/page-renew-ad.tpl.php:3
+#: admin/admin-panel.php:831 frontend/templates/page-renew-ad.tpl.php:3
 #: includes/admin/class-admin-container-configuration.php:183
 msgid "Renew Ad"
 msgstr "Renove Anúncio"
@@ -309,39 +309,39 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel.php:767 admin/class-categories-admin-page.php:70
+#: admin/admin-panel.php:769 admin/class-categories-admin-page.php:70
 #: admin/class-categories-admin-page.php:74
 msgid "Manage Category Icon"
 msgstr "Gerenciar Categoria Ícone"
 
-#: admin/admin-panel.php:772 admin/class-categories-admin-page.php:45
+#: admin/admin-panel.php:774 admin/class-categories-admin-page.php:45
 #: admin/class-categories-admin-page.php:49
 #: admin/class-categories-admin-page.php:142
 msgid "Edit Category"
 msgstr "Editar Categoria"
 
-#: admin/admin-panel.php:773 admin/class-categories-admin-page.php:56
+#: admin/admin-panel.php:775 admin/class-categories-admin-page.php:56
 #: admin/class-categories-admin-page.php:60
 msgid "Delete Category"
 msgstr "Excluir Categoria"
 
-#: admin/admin-panel.php:779
+#: admin/admin-panel.php:781
 msgid "Select {category_name}"
 msgstr "Selecione {category_name}"
 
-#: admin/admin-panel.php:817 frontend/page-reply-to-ad.php:13
+#: admin/admin-panel.php:819 frontend/page-reply-to-ad.php:13
 msgid "Reply to Ad"
 msgstr "Responder a este anúncio"
 
-#: admin/admin-panel.php:825 admin/templates/admin-panel-listings.tpl.php:5
+#: admin/admin-panel.php:827 admin/templates/admin-panel-listings.tpl.php:5
 msgid "Place Ad"
 msgstr "Colocar anúncio"
 
-#: admin/admin-panel.php:833 frontend/page-browse-ads.php:11
+#: admin/admin-panel.php:835 frontend/page-browse-ads.php:11
 msgid "Browse Ads"
 msgstr "Consulte os anúncios"
 
-#: admin/admin-panel.php:837 admin/templates/admin-panel-listings.tpl.php:11
+#: admin/admin-panel.php:839 admin/templates/admin-panel-listings.tpl.php:11
 #: frontend/page-search-ads.php:11
 msgid "Search Ads"
 msgstr "Anúncios de pesquisa"
@@ -9588,12 +9588,12 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Classificados"
 
-#: admin/admin-panel.php:813 includes/settings/class-listings-settings.php:473
+#: admin/admin-panel.php:815 includes/settings/class-listings-settings.php:473
 msgctxt "page name"
 msgid "Show Ad"
 msgstr "Mostrar anúncio"
 
-#: admin/admin-panel.php:821
+#: admin/admin-panel.php:823
 msgctxt "page name"
 msgid "Edit Ad"
 msgstr "Editar anúncio"
