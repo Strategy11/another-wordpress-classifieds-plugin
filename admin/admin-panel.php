@@ -710,7 +710,6 @@ function awpcp_admin_categories_render_category_items($categories, &$children, $
                 $items[] = awpcp_admin_categories_render_category_item( $category_parent, $level - 1, $start, $per_page );
             } catch ( AWPCP_Exception $e ) {
 				// phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
-                // pass
             }
 		}
 

@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2021-07-07 23:26:02+00:00\n"
+"POT-Creation-Date: 2021-07-08 01:08:49+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/wp-translations/"
@@ -4596,31 +4596,31 @@ msgstr "Расширение файла %s не допускается."
 msgid "Temporary directory doesn't exists and couldn't be created."
 msgstr "Временный каталог не существует и невозможно создать."
 
-#: includes/media/class-file-uploader.php:112
+#: includes/media/class-file-uploader.php:113
 msgid ""
 "There was an error trying to move the uploaded file to a temporary location."
 msgstr "Произошла ошибка при попытке перемещения файла во временный каталог."
 
-#: includes/media/class-file-uploader.php:118
+#: includes/media/class-file-uploader.php:119
 msgid "There was an error trying to open PHP's input stream."
 msgstr "Произошла ошибка при открытии потока PHP."
 
-#: includes/media/class-file-uploader.php:136
+#: includes/media/class-file-uploader.php:137
 msgid ""
 "There was an error trying to write to the following file: <file-path>. "
 "Please make sure the webserver is allowed to write to the <parent-directory> "
 "directory."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:140
+#: includes/media/class-file-uploader.php:141
 msgid "There was an error trying to create the uploaded file on the server."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:155
+#: includes/media/class-file-uploader.php:156
 msgid "Missing chunk."
 msgstr "Отсутствет звено."
 
-#: includes/media/class-file-uploader.php:159
+#: includes/media/class-file-uploader.php:160
 msgid "There was an error trying to open the input stream."
 msgstr "Произошла ошибка при попытке открыть входящий поток."
 
@@ -9284,31 +9284,6 @@ msgstr "Не найдено объявлений."
 msgid "Suggested text:"
 msgstr "Предложенный текст:"
 
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:324
-msgid "Foo"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:326
-msgid "Bar!"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:327
-msgid "Baz!"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:337
-msgid "A"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:339
-msgid "C"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:340
-#, fuzzy
-msgid "D"
-msgstr "Идентификатор"
-
 #. Author URI of the plugin/theme
 msgid "https://awpcp.com/"
 msgstr ""
@@ -11607,20 +11582,9 @@ msgid ""
 "The cookie will be stored on your browser for the remainder of that session."
 msgstr ""
 
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:325
-msgctxt "context"
-msgid "Foo!"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:328
-msgctxt "context"
-msgid "Foo bar"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:338
-msgctxt "context"
-msgid "B"
-msgstr ""
+#, fuzzy
+#~ msgid "D"
+#~ msgstr "Идентификатор"
 
 #~ msgid "PayFast"
 #~ msgstr "PayFast"
