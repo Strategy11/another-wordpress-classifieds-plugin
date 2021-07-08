@@ -102,6 +102,7 @@ class AWPCP_FileUploader {
 
         if ( ! empty( $_FILES ) && isset( $_FILES['file'] ) ) {
             if ( ! empty( $_FILES['file']['error'] ) ) {
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
                 list( $error_code, $error_message ) = awpcp_uploaded_file_error( $_FILES['file'] );
                 throw new AWPCP_Exception( $error_message );
             }
