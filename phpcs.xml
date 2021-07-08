@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset name="Another WordPress Classifieds Plugin Standard">
+<ruleset name="AWPCP">
     <arg value="s" />
 
     <exclude-pattern>includes/functions/deprecated.php</exclude-pattern>
@@ -90,13 +90,6 @@
         <properties>
             <property name="tabIndent" value="false" />
         </properties>
-    </rule>
-
-    <!-- Run against the PHPCompatibility ruleset -->
-    <rule ref="PHPCompatibility">
-        <exclude name="PHPCompatibility.FunctionUse.ArgumentFunctionsReportCurrentValue.Changed"/>
-        <exclude name="PHPCompatibility.Constants.NewConstants.curl_http_version_2tlsFound" />
-        <exclude name="PHPCompatibility.FunctionNameRestrictions.ReservedFunctionNames.MethodDoubleUnderscore" />
     </rule>
 
     <!-- Check for cross-version support for PHP 5.6 and higher. -->
