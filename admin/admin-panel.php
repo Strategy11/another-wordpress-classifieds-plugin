@@ -693,7 +693,7 @@ function checkifclassifiedpage() {
 	return $page_id === $id;
 }
 
-function awpcp_admin_categories_render_category_items($categories, &$children, $start=0, $per_page=10, &$count, $parent=0, $level=0) {
+function awpcp_admin_categories_render_category_items($categories, &$children, $start, $per_page, &$count, $parent=0, $level=0) {
     $categories_collection = awpcp_categories_collection();
 
 	$end = $start + $per_page;
@@ -708,8 +708,10 @@ function awpcp_admin_categories_render_category_items($categories, &$children, $
             try {
                 $category_parent = $categories_collection->get( $category->parent );
                 $items[] = awpcp_admin_categories_render_category_item( $category_parent, $level - 1, $start, $per_page );
+
+			// phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
             } catch ( AWPCP_Exception $e ) {
-                // pass
+				// pass
             }
 		}
 

@@ -109,7 +109,7 @@ class AWPCP_BasicRegionsAPI {
         return $this->db->get_results( $this->db->prepare( $sql, $ad_id ) );
     }
 
-    public function update_ad_regions( $ad, $regions, $max_regions ) {
+    public function update_ad_regions( $ad, $regions, $max_regions = 1 ) {
         // remove existing regions before adding the new ones
         $this->delete_by_ad_id( $ad->ID );
 

@@ -29,7 +29,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2021-01-12 22:29:26+00:00\n"
+"POT-Creation-Date: 2021-07-08 01:13:15+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: French (France) (http://www.transifex.com/wp-translations/"
@@ -90,40 +90,36 @@ msgstr "Annonces mises en avant"
 msgid "Private"
 msgstr "Privé"
 
-#: admin/admin-panel-fees-table.php:195
+#: admin/admin-panel-fees-table.php:194
 msgid "<duration-amount> <duration-interval>"
 msgstr "<duration-amount> <duration-interval>"
 
-#: admin/admin-panel-fees-table.php:199
+#: admin/admin-panel-fees-table.php:198
 msgid "Duration: <payment-term-duration>"
 msgstr "Durée: <payment-term-duration>"
 
-#: admin/admin-panel-fees-table.php:209
+#: admin/admin-panel-fees-table.php:208
 msgid "# of images: <number-of-images-allowed>"
 msgstr "# d'images: <number-of-images-allowed>"
 
-#: admin/admin-panel-fees-table.php:219
-msgid "# of regions: <number-of-regions-allowed>"
-msgstr "# de régions: <number-of-regions-allowed>"
-
-#: admin/admin-panel-fees-table.php:232 admin/admin-panel-fees-table.php:248
+#: admin/admin-panel-fees-table.php:221 admin/admin-panel-fees-table.php:237
 msgid "unlimited"
 msgstr "illimité"
 
-#: admin/admin-panel-fees-table.php:235
+#: admin/admin-panel-fees-table.php:224
 msgid "Chars in title: <characters-limit>"
 msgstr "Caractères dans le titre: <characters-limit>"
 
-#: admin/admin-panel-fees-table.php:251
+#: admin/admin-panel-fees-table.php:240
 msgid "Chars in description: <characters-limit>"
 msgstr "Caractères dans la description: <characters-limit>"
 
-#: admin/admin-panel-fees-table.php:278 admin/admin-panel-fees-table.php:282
+#: admin/admin-panel-fees-table.php:267 admin/admin-panel-fees-table.php:271
 #: templates/admin/import/supported-csv-headers.tpl.php:31
 msgid "Yes"
 msgstr "Oui"
 
-#: admin/admin-panel-fees-table.php:278 admin/admin-panel-fees-table.php:282
+#: admin/admin-panel-fees-table.php:267 admin/admin-panel-fees-table.php:271
 #: templates/admin/import/supported-csv-headers.tpl.php:31
 msgid "No"
 msgstr "Non"
@@ -148,7 +144,7 @@ msgstr "L’utilisateur indiqué n’existe pas."
 msgid "Manual Upgrade"
 msgstr "Mise à jour manuelle"
 
-#: admin/admin-panel.php:80 admin/admin-panel.php:138 admin/admin-panel.php:802
+#: admin/admin-panel.php:80 admin/admin-panel.php:138 admin/admin-panel.php:804
 #: includes/models/class-custom-post-types.php:90
 #: includes/models/class-custom-post-types.php:92
 #: includes/settings/class-listings-settings.php:30
@@ -219,7 +215,7 @@ msgid "Uninstall"
 msgstr "Désinstaller"
 
 #: admin/admin-panel.php:349 admin/admin-panel.php:350
-#: admin/admin-panel.php:829 frontend/templates/page-renew-ad.tpl.php:3
+#: admin/admin-panel.php:831 frontend/templates/page-renew-ad.tpl.php:3
 #: includes/admin/class-admin-container-configuration.php:183
 msgid "Renew Ad"
 msgstr "Renouveler l’annonce"
@@ -349,39 +345,39 @@ msgstr[1] ""
 "catégories AWPCP, vous pouvez la supprimer et ce message d'erreur "
 "disparaîtra. Sinon, assurez-vous de ne pas avoir les noms de page en double."
 
-#: admin/admin-panel.php:767 admin/class-categories-admin-page.php:70
+#: admin/admin-panel.php:769 admin/class-categories-admin-page.php:70
 #: admin/class-categories-admin-page.php:74
 msgid "Manage Category Icon"
 msgstr "Gestion des icônes de rubrique"
 
-#: admin/admin-panel.php:772 admin/class-categories-admin-page.php:45
+#: admin/admin-panel.php:774 admin/class-categories-admin-page.php:45
 #: admin/class-categories-admin-page.php:49
 #: admin/class-categories-admin-page.php:142
 msgid "Edit Category"
 msgstr "Modifier la rubrique"
 
-#: admin/admin-panel.php:773 admin/class-categories-admin-page.php:56
+#: admin/admin-panel.php:775 admin/class-categories-admin-page.php:56
 #: admin/class-categories-admin-page.php:60
 msgid "Delete Category"
 msgstr "Supprimer la rubrique"
 
-#: admin/admin-panel.php:779
+#: admin/admin-panel.php:781
 msgid "Select {category_name}"
 msgstr "Sélectionnez {category_name}"
 
-#: admin/admin-panel.php:817 frontend/page-reply-to-ad.php:13
+#: admin/admin-panel.php:819 frontend/page-reply-to-ad.php:13
 msgid "Reply to Ad"
 msgstr "Répondre à l’annonce"
 
-#: admin/admin-panel.php:825 admin/templates/admin-panel-listings.tpl.php:5
+#: admin/admin-panel.php:827 admin/templates/admin-panel-listings.tpl.php:5
 msgid "Place Ad"
 msgstr "Ajouter une annonce"
 
-#: admin/admin-panel.php:833 frontend/page-browse-ads.php:11
+#: admin/admin-panel.php:835 frontend/page-browse-ads.php:11
 msgid "Browse Ads"
 msgstr "Parcourir toutes les annonces"
 
-#: admin/admin-panel.php:837 admin/templates/admin-panel-listings.tpl.php:11
+#: admin/admin-panel.php:839 admin/templates/admin-panel-listings.tpl.php:11
 #: frontend/page-search-ads.php:11
 msgid "Search Ads"
 msgstr "Rechercher des annonces"
@@ -675,15 +671,15 @@ msgstr "La participation demandée n’existe pas."
 msgid "Fee successfully updated."
 msgstr "Frais mis à jour avec succès."
 
-#: admin/fees/class-fee-details-admin-page.php:106
+#: admin/fees/class-fee-details-admin-page.php:105
 msgid "Create Fee Plan"
 msgstr "Créer un forfait"
 
-#: admin/fees/class-fee-details-admin-page.php:118
+#: admin/fees/class-fee-details-admin-page.php:117
 msgid "No Fee Plan id was specified."
 msgstr "Aucun identifiant de forfait n'a été spécifié."
 
-#: admin/fees/class-fee-details-admin-page.php:125
+#: admin/fees/class-fee-details-admin-page.php:124
 msgid "The specified Fee Plan doesn't exist or couldn't be loaded."
 msgstr "Le plan tarifaire spécifié n'existe pas ou n'a pas pu être chargé."
 
@@ -3597,50 +3593,42 @@ msgid "Mark as Sold"
 msgstr "Marqué comme Vendu"
 
 #: includes/class-awpcp.php:852
-msgid "PayFast"
-msgstr "PayFast"
-
-#: includes/class-awpcp.php:859
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:866
+#: includes/class-awpcp.php:859
 msgid "Regions Control"
 msgstr "Contrôle des régions"
 
-#: includes/class-awpcp.php:873
-msgid "Restricted Categories"
-msgstr "Rubriques restreintes"
-
-#: includes/class-awpcp.php:880
+#: includes/class-awpcp.php:866
 msgid "RSS"
 msgstr "Flux RSS"
 
-#: includes/class-awpcp.php:887
+#: includes/class-awpcp.php:873
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:894
+#: includes/class-awpcp.php:880
 msgid "Subscriptions"
 msgstr "Abonnements"
 
-#: includes/class-awpcp.php:901 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:887 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Vidéos"
 
-#: includes/class-awpcp.php:909
+#: includes/class-awpcp.php:895
 msgid "XML Sitemap"
 msgstr "Plan du site XML"
 
-#: includes/class-awpcp.php:917
+#: includes/class-awpcp.php:903
 msgid "ZIP Code Search Module"
 msgstr "Module de recherche de code postal"
 
-#: includes/class-awpcp.php:1454
+#: includes/class-awpcp.php:1440
 msgid "This field is required."
 msgstr "Ce champ est obligatoire."
 
-#: includes/class-awpcp.php:1455
+#: includes/class-awpcp.php:1441
 #: includes/form-fields/class-form-fields-validator.php:105
 #: includes/frontend/class-edit-listing-page.php:263
 #: includes/frontend/class-edit-listing-page.php:345
@@ -3648,34 +3636,34 @@ msgstr "Ce champ est obligatoire."
 msgid "Please enter a valid email address."
 msgstr "Veuillez saisir une adresse e-mail valide."
 
-#: includes/class-awpcp.php:1456 includes/class-awpcp.php:1457
+#: includes/class-awpcp.php:1442 includes/class-awpcp.php:1443
 msgid "Please enter a valid URL."
 msgstr "Veuillez indiquer une URL valide."
 
-#: includes/class-awpcp.php:1458
+#: includes/class-awpcp.php:1444
 msgid "Please enter a valid number."
 msgstr "Veuillez saisir un nombre valide."
 
-#: includes/class-awpcp.php:1459
+#: includes/class-awpcp.php:1445
 msgid "Please enter a valid amount."
 msgstr "Veuillez saisir un montant valide."
 
-#: includes/class-awpcp.php:1460
+#: includes/class-awpcp.php:1446
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 "Vous avez atteint le nombre maximum de catégories autorisées pour le forfait "
 "sélectionné."
 
-#: includes/class-awpcp.php:1493
+#: includes/class-awpcp.php:1479
 msgid "There are files currently being uploaded."
 msgstr "Il y a des fichiers en cours de téléchargement."
 
-#: includes/class-awpcp.php:1494
+#: includes/class-awpcp.php:1480
 msgid "There are files pending to be uploaded."
 msgstr "Il y a des fichiers en attente de téléchargement."
 
-#: includes/class-awpcp.php:1495
+#: includes/class-awpcp.php:1481
 msgid "You haven't uploaded any images or files."
 msgstr "Vous n’avez téléchargé aucune image ni aucun fichier."
 
@@ -3756,7 +3744,7 @@ msgstr ""
 "Une erreur s'est produite lors de la tentative d'enregistrement des détails "
 "de l'annonce:"
 
-#: includes/class-listings-api.php:738
+#: includes/class-listings-api.php:736
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -3820,7 +3808,7 @@ msgstr "Ajouter au groupe"
 msgid "The name of the plan is required."
 msgstr "Un nom pour le plan est obligatoire."
 
-#: includes/credit-plan.php:98 includes/payment-term.php:154
+#: includes/credit-plan.php:98 includes/payment-term.php:151
 msgid "The number of credits must be greater than zero."
 msgstr "Le nombre de crédits doit être supérieur à zéro."
 
@@ -4888,18 +4876,18 @@ msgstr "Extension de fichier non autorisée."
 msgid "Temporary directory doesn't exists and couldn't be created."
 msgstr "Le répertoire temporaire n’existe pas et n’a pas pu être créé."
 
-#: includes/media/class-file-uploader.php:112
+#: includes/media/class-file-uploader.php:113
 msgid ""
 "There was an error trying to move the uploaded file to a temporary location."
 msgstr ""
 "Une erreur est intervenue en tentant de déplacer le fichier chargé dans le "
 "répertoire temporaire."
 
-#: includes/media/class-file-uploader.php:118
+#: includes/media/class-file-uploader.php:119
 msgid "There was an error trying to open PHP's input stream."
 msgstr "Une erreur est intervenue en tentant d’ouvrir le flux d’entrée PHP."
 
-#: includes/media/class-file-uploader.php:136
+#: includes/media/class-file-uploader.php:137
 msgid ""
 "There was an error trying to write to the following file: <file-path>. "
 "Please make sure the webserver is allowed to write to the <parent-directory> "
@@ -4909,17 +4897,17 @@ msgstr ""
 "suivant: <chemin-fichier>. Assurez-vous que le serveur Web est autorisé à "
 "écrire dans le répertoire <répertoire-parent>."
 
-#: includes/media/class-file-uploader.php:140
+#: includes/media/class-file-uploader.php:141
 msgid "There was an error trying to create the uploaded file on the server."
 msgstr ""
 "Une erreur s'est produite lors de la tentative de création du fichier "
 "téléchargé sur le serveur."
 
-#: includes/media/class-file-uploader.php:155
+#: includes/media/class-file-uploader.php:156
 msgid "Missing chunk."
 msgstr "Valeur Manquante."
 
-#: includes/media/class-file-uploader.php:159
+#: includes/media/class-file-uploader.php:160
 msgid "There was an error trying to open the input stream."
 msgstr "Une erreur est intervenue en tentant d’ouvrir le flux d’entrée."
 
@@ -5353,14 +5341,10 @@ msgid "The number of images allowed must be equal or greater than zero."
 msgstr "Le nombre d’images autorisé doit être supérieur ou égal à zéro."
 
 #: includes/payment-term.php:145
-msgid "The number of regions allowed must be equal or greater than zero."
-msgstr "Le nombre de Régions autorisées doit être supérieur ou égal à zéro."
-
-#: includes/payment-term.php:148
 msgid "The number of characters allowed must be equal or greater than zero."
 msgstr "Le nombre de caractères autorisé doit être supérieur ou égal à zéro."
 
-#: includes/payment-term.php:151
+#: includes/payment-term.php:148
 msgid ""
 "The number of characters allowed in the title must be equal or greater than "
 "zero."
@@ -5368,7 +5352,7 @@ msgstr ""
 "Le nombre de caractères autorisé dans le titre doit être supérieur ou égal à "
 "zéro."
 
-#: includes/payment-term.php:157
+#: includes/payment-term.php:154
 msgid "The price must be equal or greater than zero."
 msgstr "Le prix doit être égal ou supérieur à zéro."
 
@@ -9825,31 +9809,6 @@ msgstr "Aucune Annonce n’a été trouvée."
 msgid "Suggested text:"
 msgstr "Texte suggéré:"
 
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:324
-msgid "Foo"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:326
-msgid "Bar!"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:327
-msgid "Baz!"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:337
-msgid "A"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:339
-msgid "C"
-msgstr ""
-
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:340
-#, fuzzy
-msgid "D"
-msgstr "ID"
-
 #. Author URI of the plugin/theme
 msgid "https://awpcp.com/"
 msgstr ""
@@ -9862,7 +9821,7 @@ msgstr ""
 msgid "AWPCP"
 msgstr "AWPCP"
 
-#: admin/admin-panel-fees-table.php:267
+#: admin/admin-panel-fees-table.php:256
 msgctxt "all categories"
 msgid "All"
 msgstr "Tout"
@@ -9877,12 +9836,12 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Petites annonces"
 
-#: admin/admin-panel.php:813 includes/settings/class-listings-settings.php:473
+#: admin/admin-panel.php:815 includes/settings/class-listings-settings.php:473
 msgctxt "page name"
 msgid "Show Ad"
 msgstr "Afficher l'annonce"
 
-#: admin/admin-panel.php:821
+#: admin/admin-panel.php:823
 msgctxt "page name"
 msgid "Edit Ad"
 msgstr "Modifier l’annonce"
@@ -11189,17 +11148,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr "Aperçu rapide"
 
-#: includes/class-awpcp.php:1470
+#: includes/class-awpcp.php:1456
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Précedent"
 
-#: includes/class-awpcp.php:1472
+#: includes/class-awpcp.php:1458
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Suivant&#x3e;"
 
-#: includes/class-awpcp.php:1487
+#: includes/class-awpcp.php:1473
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
@@ -12339,20 +12298,21 @@ msgstr ""
 "pour rappeler votre décision. Le cookie sera stocké sur votre navigateur "
 "pour le reste de la session."
 
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:325
-msgctxt "context"
-msgid "Foo!"
-msgstr ""
+#, fuzzy
+#~ msgid "D"
+#~ msgstr "ID"
 
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:328
-msgctxt "context"
-msgid "Foo bar"
-msgstr ""
+#~ msgid "# of regions: <number-of-regions-allowed>"
+#~ msgstr "# de régions: <number-of-regions-allowed>"
 
-#: vendor/brain/monkey/tests/cases/unit/Api/FunctionsTest.php:338
-msgctxt "context"
-msgid "B"
-msgstr ""
+#~ msgid "PayFast"
+#~ msgstr "PayFast"
+
+#~ msgid "Restricted Categories"
+#~ msgstr "Rubriques restreintes"
+
+#~ msgid "The number of regions allowed must be equal or greater than zero."
+#~ msgstr "Le nombre de Régions autorisées doit être supérieur ou égal à zéro."
 
 #~ msgid ""
 #~ "The specified Ad doesn't exist or you reached this page directly, without "

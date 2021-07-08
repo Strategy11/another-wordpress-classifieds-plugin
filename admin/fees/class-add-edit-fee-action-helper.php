@@ -33,7 +33,6 @@ class AWPCP_Add_Edit_Fee_Action_Helper {
             'duration_amount' => $this->request->post( 'duration_amount' ),
             'duration_interval' => $this->request->post( 'duration_interval' ),
             'images' => $this->request->post( 'images_allowed' ),
-            'regions' => $this->request->post( 'regions_allowed' ),
             'characters' => $this->request->post( 'characters_allowed_in_description' ),
             'title_characters' => $this->request->post( 'characters_allowed_in_title' ),
             'private' => $this->request->post( 'private', false ),

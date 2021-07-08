@@ -848,13 +848,6 @@ class AWPCP {
                     'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
                     'required' => '4.0.1',
                 ),
-                'payfast' => array(
-                    'name' => __( 'PayFast', 'another-wordpress-classifieds-plugin' ),
-                    'url' => 'https://awpcp.com/downloads/regions-module/?ref=panel',
-                    'installed' => defined( 'AWPCP_PAYFAST_MODULE_DB_VERSION' ),
-                    'version' => 'AWPCP_PAYFAST_MODULE_DB_VERSION',
-                    'required' => '4.0.0',
-                ),
                 'paypal-pro' => array(
                     'name' => __(  'PayPal Pro', 'another-wordpress-classifieds-plugin'  ),
                     'url' => 'https://awpcp.com/downloads/paypal-pro-module/?ref=user-panel',
@@ -868,13 +861,6 @@ class AWPCP {
                     'installed' => defined( 'AWPCP_REGION_CONTROL_MODULE' ),
                     'version' => 'AWPCP_REGION_CONTROL_MODULE_DB_VERSION',
                     'required' => '4.0.0',
-                ),
-                'restricted-categories' => array(
-                    'name' => __( 'Restricted Categories', 'another-wordpress-classifieds-plugin' ),
-                    'url' => 'https://awpcp.com/downloads/restricted-categories-module/?ref=panel',
-                    'installed' => defined( 'AWPCP_RESTRICTED_CATEGORIES_MODULE' ),
-                    'version' => 'AWPCP_RESTRICTED_CATEGORIES_MODULE_DB_VERSION',
-                    'required' => '4.0.1',
                 ),
                 'rss' => array(
                     'name' => __( 'RSS', 'another-wordpress-classifieds-plugin' ),

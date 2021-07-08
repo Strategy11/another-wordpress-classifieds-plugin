@@ -28,7 +28,7 @@ class AWPCP_ListingsAPI {
     private $wordpress;
     private $db;
 
-    public function __construct( $attachments_logic, $attachments, $listing_renderer, $listings, $roles, /*AWPCP_Request*/ $request = null, $settings, $wordpress, $db ) {
+    public function __construct( $attachments_logic, $attachments, $listing_renderer, $listings, $roles, /*AWPCP_Request*/ $request, $settings, $wordpress, $db ) {
         $this->attachments_logic = $attachments_logic;
         $this->attachments = $attachments;
         $this->listing_renderer = $listing_renderer;
@@ -339,9 +339,7 @@ class AWPCP_ListingsAPI {
      * @since 4.0.0
      */
     private function update_listing_regions( $listing, $regions ) {
-        $regions_allowed = $this->listing_renderer->get_number_of_regions_allowed( $listing );
-
-        awpcp_basic_regions_api()->update_ad_regions( $listing, $regions, $regions_allowed );
+        awpcp_basic_regions_api()->update_ad_regions( $listing, $regions );
     }
 
     /**

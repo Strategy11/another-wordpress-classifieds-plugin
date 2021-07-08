@@ -5,7 +5,7 @@ Tags: listings, classified ads, classified, classifieds, directory plugin, class
 Requires at least: 4.9
 Requires PHP: 5.6
 Tested up to: 5.6
-Stable tag: 4.1.3
+Stable tag: 4.1.4
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -52,7 +52,7 @@ Looking for other types of directories? Check out [Business Directory Plugin](ht
 == Ad Listing Payment Features ==
 
 * Allows for paid or free ads
-* Supports PayPal, PayPal Pro, Authorize.net, PayFast, Stripe and 2Checkout for paid ads
+* Supports PayPal, PayPal Pro, Authorize.net, Stripe and 2Checkout for paid ads
 * Allow for image posting limits higher than free ads
 * Multiple fee scales for posting ads (allows you to have longer ad postings with higher fees)
 * Variable ad expiration lengths connected to fee scale (e.g. allow ads to run for 30 days for $10, 60 days for $15, etc)
@@ -99,7 +99,6 @@ Looking for other types of directories? Check out [Business Directory Plugin](ht
 * [Attachments](https://awpcp.com/downloads/attachments-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows users to attach PDFs, text files or other images to their classifieds (great for job boards!)
 * [Ad Campaign Manager](https://awpcp.com/downloads/campaign-manager-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - add your own advertisements in 5 different positions
 * [ZIP Search](https://awpcp.com/downloads/zip-code-search-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - search for ads that have address fields within a radius of a postal code
-* [Restricted Categories](https://awpcp.com/downloads/restricted-categories-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - restrict content from users unless they accept a disclaimer from your site
 
 == Premium Payment Gateways for Paid Classified Listings ==
 
@@ -108,7 +107,6 @@ Want to accept credit cards on your site for paid listings in your classifieds d
 * [Stripe](https://awpcp.com/downloads/stripe-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - accept payments via Stripe for ads
 * [PayPal Pro]( https://awpcp.com/downloads/paypal-pro-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows you to have an embedded payment form on your site for use with PayPal Pro accounts
 * [Authorize.net Gateway](https://awpcp.com/downloads/authorizenet-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows users to purchase ads, subscriptions and credit plans using Authorize.net
-* [PayFast](https://awpcp.com/downloads/payfast-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - accept payments via PayFast for South Africa (ZAR) for ads
 
 These are just some of the features of our easy WordPress Classifieds Plugin.
 
@@ -170,6 +168,12 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+
+= 4.1.4 =
+* Updated for PHP 8 support.
+* Remove mentions of deprecated modules.
+* Fix: The link to download the debug info works now.
+* Fix: Remove a regions setting that is no longer used.
 
 = 4.1.3 =
 * Show list of user's listings on renewal page if no listing was selected.
