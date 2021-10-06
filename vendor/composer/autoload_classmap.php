@@ -533,5 +533,6 @@ return array(
     'AWPCP_WordPress_Scripts' => $baseDir . '/includes/wordpress/class-wordpress-scripts.php',
     'AWPCP_WordPress_Status_Header_Filter' => $baseDir . '/frontend/class-wordpress-status-header-filter.php',
     'AWPCP_YoastWordPressSEOPluginIntegration' => $baseDir . '/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php',
+    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'fileop' => $baseDir . '/includes/class-fileop.php',
 );
