@@ -28,13 +28,13 @@ function awpcp_ordinalize($num) {
         switch ( $num % 10 ) {
 			case 1:
 				$suff = 'st';
-			break;
+				break;
 			case 2:
 				$suff = 'nd';
-			break;
+				break;
 			case 3:
 				$suff = 'rd';
-			break;
+				break;
         }
         return "{$num}{$suff}";
     }

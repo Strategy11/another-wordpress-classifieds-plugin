@@ -12,8 +12,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder '.', '/vagrant', nfs:true
 
   config.vm.provision "shell", inline: "sed -i s/enabled=1/enabled=0/ /etc/yum.repos.d/fedora-updates-testing.repo"
-  # config.vm.provision "shell", path: "scripts/fix-slow-dns.sh"
-  config.vm.provision "shell", path: "scripts/vagrant-bootstrap.sh"
+  # config.vm.provision "shell", path: "bin/fix-slow-dns.sh"
+  config.vm.provision "shell", path: "bin/vagrant-bootstrap.sh"
 
   config.vm.define :development do |local|
     local.vm.box = "chef/fedora-20"

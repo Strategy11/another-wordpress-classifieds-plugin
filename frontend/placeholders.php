@@ -29,10 +29,19 @@ function awpcp_content_placeholders() {
         'adcontact_name'           => array(
             'callback' => 'awpcp_do_placeholder_contact_name',
         ),
+        'ad_contact_name'          => array(
+            'callback' => 'awpcp_do_placeholder_contact_name',
+        ),
         'adcontactphone'           => array(
             'callback' => 'awpcp_do_placeholder_contact_phone',
         ),
+        'ad_contact_phone'         => array(
+            'callback' => 'awpcp_do_placeholder_contact_phone',
+        ),
         'adcontactemail'           => array(
+            'callback' => 'awpcp_do_placeholder_contact_email',
+        ),
+        'ad_contact_email'         => array(
             'callback' => 'awpcp_do_placeholder_contact_email',
         ),
         'codecontact'              => array(
@@ -42,6 +51,9 @@ function awpcp_content_placeholders() {
             'callback' => 'awpcp_do_placeholder_website_link',
         ),
         'addetails'                => array(
+            'callback' => 'awpcp_do_placeholder_details',
+        ),
+        'ad_details'               => array(
             'callback' => 'awpcp_do_placeholder_details',
         ),
         'location'                 => array(
@@ -60,6 +72,9 @@ function awpcp_content_placeholders() {
             'callback' => 'awpcp_do_placeholder_location',
         ),
         'aditemprice'              => array(
+            'callback' => 'awpcp_do_placeholder_price',
+        ),
+        'ad_item-price'            => array(
             'callback' => 'awpcp_do_placeholder_price',
         ),
         'ad_startdate'             => array(
@@ -161,6 +176,7 @@ function awpcp_content_placeholders() {
         'contact_url'          => array(),
         'website_link'         => array(),
         'website_url'          => array(),
+		'websiteurl'           => array(),
         'county'               => array(
             'callback' => 'awpcp_do_placeholder_location',
         ),
@@ -890,7 +906,7 @@ function awpcp_do_placeholder_ad_actions( $ad, $placeholder ) {
     if ( $is_owner && awpcp_listing_renderer()->has_expired_or_is_about_to_expire( $ad ) ) {
         $renew_url = awpcp_get_renew_ad_url( $ad->ID );
         $label     = _x( 'Renew', 'listing row action', 'another-wordpress-classifieds-plugin' );
-        return "<div class='awpcp-user-renew'><a  class='awpcp-action-button' href='{$renew_url}' title='{$label}' aria-label='{$label}'><i class='fa fa-redo'></i></a></div>";
+        return '<div class="awpcp-user-renew"><a class="button" href="' . esc_url( $renew_url ) . '">' . esc_html( $label ) . '</a></div>';
     }
 }
 

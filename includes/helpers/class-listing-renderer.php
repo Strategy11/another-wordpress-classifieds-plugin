@@ -264,7 +264,7 @@ class AWPCP_ListingRenderer {
         $regions_allowed = 0;
 
         if ( $payment_term ) {
-            $regions_allowed = (int) $payment_term->get_regions_allowed();
+            $regions_allowed = 1;
         }
 
         $existing_regions = $this->get_regions( $listing );

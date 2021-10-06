@@ -9,8 +9,8 @@
 build/
 # NPM dependencies for Grunt tasks
 node_modules/
-scripts/vvv-hosts
-scripts/vvv-nginx.conf
+bin/vvv-hosts
+bin/vvv-nginx.conf
 
 # Top level vendor directory
 /vendor/

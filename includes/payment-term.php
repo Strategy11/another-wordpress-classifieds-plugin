@@ -141,9 +141,6 @@ class AWPCP_PaymentTerm {
         if ($data['images'] < 0)
             $errors[] = __( 'The number of images allowed must be equal or greater than zero.', 'another-wordpress-classifieds-plugin');
 
-        if ($data['regions'] < 0)
-            $errors[] = __( 'The number of regions allowed must be equal or greater than zero.', 'another-wordpress-classifieds-plugin' );
-
         if ($data['characters'] < 0)
             $errors[] = __( 'The number of characters allowed must be equal or greater than zero.', 'another-wordpress-classifieds-plugin');
 

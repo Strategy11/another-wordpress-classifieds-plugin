@@ -4,26 +4,26 @@ on: [push]
 
 jobs:
   build-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
-        php: [7.3, 7.4] # TODO: Add 5.6 with phpunit 4.x
-        wordpress: [master] # TODO: Add WP 4.9
-        exclude:
+        include:
           - php: 7.3
-            wordpress: 4.9
+            wordpress: master
+            phpunit: 6.5.14
           - php: 7.4
-            wordpress: 4.9
+            wordpress: master
+            phpunit: 6.5.14
+
     name: PHP ${{ matrix.php }} tests in WP ${{ matrix.wordpress }}
     steps:
       - uses: actions/checkout@v2
 
       # get the PHP version
-      - uses: shivammathur/setup-php@v1
+      - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-
-      - uses: php-actions/composer@v1
+          tools: phpunit:${{ matrix.phpunit }}
       - name: Installing WordPress
         run: |
           export WP_DEVELOP_DIR=/tmp/wordpress/
@@ -44,4 +44,4 @@ jobs:
         run: |
           cd "/tmp/wordpress/src/wp-content/plugins/${GITHUB_REPOSITORY#*/}"
           pwd
-          vendor/bin/phpunit
+          phpunit

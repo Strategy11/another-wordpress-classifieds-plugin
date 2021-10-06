@@ -6,8 +6,8 @@
 $allowed_html = [
     'strong' => [],
     'a'      => [
-        'href',
-        'title',
+        'href'  => true,
+        'title' => true,
     ],
 ];
 

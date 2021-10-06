@@ -180,7 +180,6 @@ class AWPCP_FeesTable extends WP_List_Table {
         $features = [
             'duration'                  => $this->get_payment_term_duration( $item ),
             'images'                    => $this->get_number_of_images( $item ),
-            'regions'                   => $this->get_number_of_regions( $item ),
             'characters-in-title'       => $this->get_characters_limit_for_title( $item ),
             'characters-in-description' => $this->get_characters_limit_for_description( $item ),
         ];
@@ -208,16 +207,6 @@ class AWPCP_FeesTable extends WP_List_Table {
     private function get_number_of_images( $payment_term ) {
         $description = __( '# of images: <number-of-images-allowed>', 'another-wordpress-classifieds-plugin' );
         $description = str_replace( '<number-of-images-allowed>', '<strong>' . $payment_term->images . '</strong>', $description );
-
-        return $description;
-    }
-
-    /**
-     * @since 4.0.0
-     */
-    private function get_number_of_regions( $payment_term ) {
-        $description = __( '# of regions: <number-of-regions-allowed>', 'another-wordpress-classifieds-plugin' );
-        $description = str_replace( '<number-of-regions-allowed>', '<strong>' . $payment_term->regions . '</strong>', $description );
 
         return $description;
     }

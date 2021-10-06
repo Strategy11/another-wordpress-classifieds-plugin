@@ -262,7 +262,7 @@ def i18n(c, ignore_metadata_modifications=True):
         print('')
 
     if ignore_metadata_modifications:
-        c.run('source scripts/remove-irrelevant-translations-modifications.sh')
+        c.run('source bin/remove-irrelevant-translations-modifications.sh')
 
 @task
 def compile_po_files(c):

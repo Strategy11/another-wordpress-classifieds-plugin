@@ -143,10 +143,7 @@ class AWPCP {
         //       Perhaps delaying rewrite rules generation until next request makes
         //       makes more sense.
         $custom_post_types = awpcp_custom_post_types();
-        add_action( 'init', array( $custom_post_types, 'register_custom_post_status' ), 5 );
-        add_action( 'init', array( $custom_post_types, 'register_custom_post_types' ), 5 );
-        add_action( 'init', array( $custom_post_types, 'register_custom_taxonomies' ), 5 );
-        add_action( 'init', array( $custom_post_types, 'register_custom_image_sizes' ), 5 );
+		add_action( 'init', array( $custom_post_types, 'register_custom_post' ), 5 );
         add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
 
         $listing_permalinks = $this->container['ListingsPermalinks'];
@@ -574,10 +571,10 @@ class AWPCP {
         add_filter( 'wp_privacy_personal_data_erasers', array( $this, 'register_personal_data_erasers' ) );
 
         if ( get_option( 'awpcp-flush-rewrite-rules' ) ) {
-            add_action( 'shutdown', 'flush_rewrite_rules' );
+			add_action( 'plugins_loaded', 'flush_rewrite_rules' );
 
             update_option( 'awpcp-flush-rewrite-rules', false );
-        }
+		}
     }
 
     private function ajax_setup() {
@@ -851,13 +848,6 @@ class AWPCP {
                     'version' => 'AWPCP_MARK_AS_SOLD_MODULE_DB_VERSION',
                     'required' => '4.0.1',
                 ),
-                'payfast' => array(
-                    'name' => __( 'PayFast', 'another-wordpress-classifieds-plugin' ),
-                    'url' => 'https://awpcp.com/downloads/regions-module/?ref=panel',
-                    'installed' => defined( 'AWPCP_PAYFAST_MODULE_DB_VERSION' ),
-                    'version' => 'AWPCP_PAYFAST_MODULE_DB_VERSION',
-                    'required' => '4.0.0',
-                ),
                 'paypal-pro' => array(
                     'name' => __(  'PayPal Pro', 'another-wordpress-classifieds-plugin'  ),
                     'url' => 'https://awpcp.com/downloads/paypal-pro-module/?ref=user-panel',
@@ -871,13 +861,6 @@ class AWPCP {
                     'installed' => defined( 'AWPCP_REGION_CONTROL_MODULE' ),
                     'version' => 'AWPCP_REGION_CONTROL_MODULE_DB_VERSION',
                     'required' => '4.0.0',
-                ),
-                'restricted-categories' => array(
-                    'name' => __( 'Restricted Categories', 'another-wordpress-classifieds-plugin' ),
-                    'url' => 'https://awpcp.com/downloads/restricted-categories-module/?ref=panel',
-                    'installed' => defined( 'AWPCP_RESTRICTED_CATEGORIES_MODULE' ),
-                    'version' => 'AWPCP_RESTRICTED_CATEGORIES_MODULE_DB_VERSION',
-                    'required' => '4.0.1',
                 ),
                 'rss' => array(
                     'name' => __( 'RSS', 'another-wordpress-classifieds-plugin' ),
