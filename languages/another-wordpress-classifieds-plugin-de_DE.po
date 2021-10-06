@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2021-07-08 01:13:15+00:00\n"
+"POT-Creation-Date: 2021-10-06 16:02:07+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/wp-translations/"
@@ -49,7 +49,7 @@ msgstr "Credits"
 #: admin/admin-panel-fees-table.php:122
 #: admin/fees/class-fee-details-form.php:225
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
-#: frontend/placeholders.php:502
+#: frontend/placeholders.php:518
 #: includes/settings/class-display-settings.php:490
 #: includes/settings/class-payment-general-settings.php:61
 msgid "Price"
@@ -1988,43 +1988,43 @@ msgstr ""
 "Es wurde keine Anzeige mit der ID {listing_id} gefunden. Zurück zu "
 "{browse_listings_link} Alle Anzeigen durchsuchen {/ browse_listings_link}."
 
-#: frontend/placeholders.php:435
+#: frontend/placeholders.php:451
 msgid "Seller"
 msgstr "Verkäufer"
 
-#: frontend/placeholders.php:463
+#: frontend/placeholders.php:479
 msgid "Visit Website"
 msgstr "Webseite"
 
-#: frontend/placeholders.php:648 includes/functions/listings.php:369
+#: frontend/placeholders.php:664 includes/functions/listings.php:369
 msgid "Location"
 msgstr "Ort"
 
 #. translators: %d is the number of views for this ad.
-#: frontend/placeholders.php:686
+#: frontend/placeholders.php:702
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] "Anzeigenaufrufe: %d."
 msgstr[1] "Anzeigenaufrufe: %d"
 
 #. translators: %d is the number of views for this ad.
-#: frontend/placeholders.php:691
+#: frontend/placeholders.php:707
 msgid "Total views: %d"
 msgstr "Aufrufe: %d"
 
-#: frontend/placeholders.php:746
+#: frontend/placeholders.php:762
 msgid "Phone"
 msgstr "Telefonnummer"
 
-#: frontend/placeholders.php:810
+#: frontend/placeholders.php:826
 msgid "Flag Ad"
 msgstr "Merken"
 
-#: frontend/placeholders.php:825
+#: frontend/placeholders.php:841
 msgid "Tweet This"
 msgstr "Tweet This"
 
-#: frontend/placeholders.php:861
+#: frontend/placeholders.php:877
 msgid "Share on Facebook"
 msgstr "Share on Facebook"
 
@@ -10245,7 +10245,7 @@ msgctxt "upload listing images form"
 msgid "Checkout"
 msgstr "Buchung abschließen"
 
-#: frontend/placeholders.php:892
+#: frontend/placeholders.php:908
 #: includes/admin/listings/trait-renew-listing-table-action.php:36
 msgctxt "listing row action"
 msgid "Renew"
