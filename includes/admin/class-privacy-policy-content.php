@@ -18,7 +18,7 @@ class AWPCP_PrivacyPolicyContent {
     /**
      * @var string
      */
-    private $template = '/privacy-policy.tpl.php';
+    private $template = AWPCP_DIR . '/templates/privacy-policy.tpl.php';
 
     /**
      * @since 3.8.6
