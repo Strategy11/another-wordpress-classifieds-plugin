@@ -405,10 +405,11 @@ function awpcp_do_placeholder_details( $ad, $placeholder ) {
     $placeholders['addetails'] = apply_filters( 'awpcp-ad-details', stripslashes_deep( $ad->post_content ) );
 
     if ( get_awpcp_option( 'hyperlinkurlsinadtext' ) ) {
-        $pattern                   = '#(?<!")(https?://[^\s]+)(?!")#';
-        $nofollow                  = get_awpcp_option( 'visitwebsitelinknofollow' ) ? 'rel="nofollow"' : '';
-        $link                      = sprintf( '<a %s href="$1">$1</a>', $nofollow );
-        $placeholders['addetails'] = preg_replace( $pattern, $link, $placeholders['addetails'] );
+        $placeholders['addetails'] = make_clickable( $placeholders['addetails'] );
+        if ( ! get_awpcp_option( 'visitwebsitelinknofollow' ) ) {
+            // Remove the nofollow attr.
+            $placeholders['addetails'] = str_replace( ' rel="nofollow"', '', $placeholders['addetails'] );
+        }
     }
 
     $placeholders['addetails'] = wpautop( $placeholders['addetails'] );
