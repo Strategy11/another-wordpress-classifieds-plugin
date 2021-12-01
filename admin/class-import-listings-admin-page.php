@@ -283,7 +283,6 @@ class AWPCP_ImportListingsAdminPage {
 
         $import_session->set_params( array(
             'date_format' => $this->request->post( 'date_format' ),
-            'date_separator' => $this->request->post( 'date_separator' ),
             'category_separator' => $this->request->post( 'category_separator' ),
             'time_separator' => $this->request->post( 'time_separator' ),
             'images_separator' => $this->request->post( 'images_separator' ),
@@ -316,10 +315,10 @@ class AWPCP_ImportListingsAdminPage {
                 'define_default_dates' => $define_default_dates,
                 'default_start_date' => '',
                 'default_end_date' => '',
-                'date_format' => 'us_date',
+                'date_format'          => 'auto',
                 'listing_status' => 'default',
                 'time_separator' => ':',
-                'date_separator' => '/',
+                'date_separator' => '/', // For reverse compatibility with custom template.
                 'category_separator' => ';',
                 'images_separator' => ';',
                 'create_missing_categories' => false,

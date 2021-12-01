@@ -33,7 +33,7 @@
                         'span_attributes'    => array(
                             'class' => 'red',
                         ),
-                        'content'            => '<strong>' . __( 'Get a Premium Module!', 'another-wordpress-classifieds-plugin' ) . '</strong>',
+                        'content'            => '<strong>' . __( 'Get more features!', 'another-wordpress-classifieds-plugin' ) . '</strong>',
                     );
                     // phpcs:ignore WordPress.Security.EscapeOutput
                     echo awpcp_html_postbox_handle( $params );

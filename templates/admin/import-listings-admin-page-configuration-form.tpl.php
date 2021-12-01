@@ -54,30 +54,18 @@
                             </th>
                             <td>
                                 <?php echo awpcp_form_error( 'date_format', $form_errors ); ?>
-                                <input id="awpcp-importer-format-us-date" type="radio" name="date_format" value="us_date"<?php echo $form_data['date_format'] == 'us_date' ? ' checked="checked"' : ''; ?>/>
-                                <label for="awpcp-importer-format-us-date">
-                                    <?php echo esc_html( __( 'US Date Only (mm/dd/year)', 'another-wordpress-classifieds-plugin' ) ); ?></label>
-                                <br/>
 
-                                <input id="awpcp-importer-format-uk-date" type="radio" name="date_format" value="uk_date"<?php echo $form_data['date_format'] == 'uk_date' ? ' checked="checked"' : ''; ?>/>
-                                <label for="awpcp-importer-format-uk-date"><?php echo esc_html( __( 'UK Date Only (dd/mm/year)', 'another-wordpress-classifieds-plugin' ) ); ?></label>
-                                <br/>
-
-                                <input id="awpcp-importer-format-eur-date" type="radio" name="date_format" value="eur_date" <?php echo $form_data['date_format'] == "eur_date" ? 'checked:="checked"' : ''; ?> />
-                                <label for="awpcp-importer-format-eur-date"><?php echo esc_html( __( 'EUR Date Only (year/mm/dd)', 'another-wordpress-classifieds-plugin' ) ); ?></label>
-                                <br/>
-
-                                <input id="awpcp-importer-format-us-date-time" type="radio" name="date_format" value="us_date_time"<?php echo $form_data['date_format'] == 'us_date_time' ? ' checked="checked"' : ''; ?>/>
-                                <label for="awpcp-importer-format-us-date-time">
-                                    <?php echo esc_html( __( 'US Date and Time (mm/dd/year hh:mm:ss)', 'another-wordpress-classifieds-plugin' ) ); ?></label>
-                                <br/>
-
-                                <input id="awpcp-importer-format-uk-date-time" type="radio" name="date_format" value="uk_date_time" <?php echo $form_data['date_format'] == "uk_date_time" ? 'checked:="checked"' : ''; ?> />
-                                <label for="awpcp-importer-format-uk-date-time"><?php echo esc_html( __( 'UK Date and Time (dd/mm/year hh:mm:ss)', 'another-wordpress-classifieds-plugin' ) ); ?></label>
-                                <br />
-
-                                <input id="awpcp-importer-format-eur-date-time" type="radio" name="date_format" value="eur_date_time" <?php echo $form_data['date_format'] == "eur_date_time" ? 'checked:="checked"' : ''; ?> />
-                                <label for="awpcp-importer-format-eur-date-time"><?php echo esc_html( __( 'EUR Date and Time (year/mm/dd hh:mm:ss)', 'another-wordpress-classifieds-plugin' ) ); ?></label>
+								<select name="date_format" id="awpcp-importer-format">
+									<option value="auto">
+										<?php esc_html_e( 'Automatic', 'another-wordpress-classifieds-plugin' ); ?>
+									</option>
+									<option value="uk_date" <?php selected( $form_data['date_format'], 'uk_date' ); ?>>
+										<?php esc_html_e( 'UK (dd/mm/year)', 'another-wordpress-classifieds-plugin' ); ?>
+									</option>
+									<option value="eur_date" <?php selected( $form_data['date_format'], 'eur_date' ); ?>>
+										<?php esc_html_e( 'EUR (year/mm/dd)', 'another-wordpress-classifieds-plugin' ); ?>
+									</option>
+								</select>
                             </td>
                         </tr>
                         <tr class="csv-separators">
@@ -85,13 +73,6 @@
                                 <?php echo esc_html( __( 'Separators Used in CSV', 'another-wordpress-classifieds-plugin' ) ); ?>
                             </th>
                             <td>
-                                <p>
-                                    <label for="awpcp-importer-date-separator"><?php echo esc_html( __( 'Date Separator', 'another-wordpress-classifieds-plugin' ) ); ?></label>
-                                    <input id="awpcp-importer-date-separator" type="text" maxlength="1" size="1" name="date_separator"
-                                           value="<?php echo esc_attr( $form_data['date_separator'] ); ?>"/>
-                                    <?php echo awpcp_form_error( 'date_separator', $form_errors ); ?>
-                                </p>
-
 
                                 <p><label for="awpcp-importer-time-separator"><?php echo esc_html( __( 'Time Separator', 'another-wordpress-classifieds-plugin' ) ); ?></label>
                                     <input id="awpcp-importer-time-separator" type="text" maxlength="1" size="1" name="time_separator"

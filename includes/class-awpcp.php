@@ -877,7 +877,7 @@ class AWPCP {
                     'required' => '4.0.0',
                 ),
                 'subscriptions' => array(
-                    'name' => __( 'Subscriptions', 'another-wordpress-classifieds-plugin' ),
+                    'name' => __( 'Membership to Post', 'another-wordpress-classifieds-plugin' ),
                     'url' => 'https://awpcp.com/downloads/subscriptions-module/?ref=panel',
                     'installed' => defined( 'AWPCP_SUBSCRIPTIONS_MODULE' ),
                     'version' => 'AWPCP_SUBSCRIPTIONS_MODULE_DB_VERSION',

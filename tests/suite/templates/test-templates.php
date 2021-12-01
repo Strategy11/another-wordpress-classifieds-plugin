@@ -121,7 +121,6 @@ class AWPCP_TestTemplates extends AWPCP_UnitTestCase {
                 'default_end_date' => null,
                 'date_format' => null,
                 'time_separator' => null,
-                'date_separator' => null,
                 'images_separator' => null,
                 'create_missing_categories' => null,
                 'assign_listings_to_user' => null,

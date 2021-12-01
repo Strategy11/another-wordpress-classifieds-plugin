@@ -264,8 +264,16 @@ class AWPCP_CSVExporter {
         $out     = '';
         $columns = $this->columns;
         foreach ( $columns as $colname => &$col ) {
-            $out .= $colname;
-            $out .= $this->settings['csv-file-separator'];
+			if ( empty( $col['name'] ) ) {
+				// These labels are nested, so go another level.
+				foreach ( $col as $colname2 => &$col2 ) {
+					$out .= $colname2;
+					$out .= $this->settings['csv-file-separator'];
+				}
+			} else {
+				$out .= $colname;
+				$out .= $this->settings['csv-file-separator'];
+			}
         }
 
         $out = substr( $out, 0, - 1 );
@@ -323,8 +331,9 @@ class AWPCP_CSVExporter {
         $value = get_post_meta( $this->listing->ID, $column['name'], true );
 
         if ( $column['name'] === '_awpcp_start_date' || $column['name'] === '_awpcp_end_date' ) {
-            $value = date_create( $value );
-            $value = date_format( $value, 'm/d/y H:i:s' );
+			$value = date_create( $value );
+			$format = apply_filters( 'awpcp_export_date_format', 'Y-m-d H:i:s' );
+			$value = date_format( $value, $format );
         }
 
         if ( $column['name'] === '_awpcp_sequence_id' ) {
