@@ -77,10 +77,6 @@ module.exports = function( grunt ) {
 					{
 						from: /(\b)*\$this\-\>version(\s)*= \'(\d+\.)(\d+\.)?(\*|\d+)?([\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?\'/g,
 						to: '$this->version = \'<%= compress.version %>\''
-					},
-					{
-						from: /define\( \'WPBDP_VERSION\', \'(\d+\.)(\d+\.)?(\*|\d+)?([\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?\'/g,
-						to: 'define( \'WPBDP_VERSION\', \'<%= compress.version %>\''
 					}
 				]
 			});
@@ -89,8 +85,8 @@ module.exports = function( grunt ) {
 		registerStableTag: function( config ) {
 			grunt.config.set( 'replace.stabletag-' + config.name, {
 				src: [
-					config.path +'/README.txt',
-					config.path + '/README.TXT'
+					config.pluginPath +'README.txt',
+					config.pluginPath + 'README.TXT'
 				],
 				overwrite: true,
 				replacements: [
@@ -105,19 +101,19 @@ module.exports = function( grunt ) {
 		registerCommentVersion: function( config ) {
 			grunt.config.set( 'replace.comment-' + config.name, {
 				src: [
-					config.path + '/*.php',
-					config.path + '/**/*.php',
-					config.path + '/!node_modules/**',
-					config.path + '/!translations/**',
-					config.path + '/!languages/**',
-					config.path + '/!bin/**',
-					config.path + '/!tests/**'
+					config.pluginPath + '*.php',
+					config.pluginPath + '**/*.php',
+					config.pluginPath + '!node_modules/**',
+					config.pluginPath + '!translations/**',
+					config.pluginPath + '!languages/**',
+					config.pluginPath + '!bin/**',
+					config.pluginPath + '!tests/**'
 				],
 				overwrite: true,
 				replacements: [
 					{
 						from: 'since x.x',
-						to: 'since v<%= compress.version %>'
+						to: 'since <%= compress.version %>'
 					}
 				]
 			});

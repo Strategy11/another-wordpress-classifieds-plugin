@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2021-10-06 16:02:07+00:00\n"
+"POT-Creation-Date: 2021-12-01 22:08:53+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/wp-translations/"
@@ -48,7 +48,7 @@ msgstr "Créditos"
 #: admin/admin-panel-fees-table.php:122
 #: admin/fees/class-fee-details-form.php:225
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
-#: frontend/placeholders.php:518
+#: frontend/placeholders.php:519
 #: includes/settings/class-display-settings.php:490
 #: includes/settings/class-payment-general-settings.php:61
 msgid "Price"
@@ -67,7 +67,7 @@ msgid "Featured Ads"
 msgstr "Anúncios em destaque"
 
 #: admin/admin-panel-fees-table.php:131
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:128
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:109
 msgid "Private"
 msgstr "Privado"
 
@@ -414,7 +414,7 @@ msgstr "Apagar categoria"
 #: frontend/templates/payments-billing-form.tpl.php:123
 #: includes/listings/class-listing-action-with-confirmation.php:8
 #: includes/settings/renderers/class-button-settings-renderer.php:41
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:203
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:184
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:47
 msgid "Cancel"
 msgstr "Cancelar"
@@ -554,7 +554,7 @@ msgstr "O diretório especificado não é um caminho válido."
 msgid "The specified directory does not exists."
 msgstr "O diretório especificado não existe."
 
-#: admin/class-import-listings-admin-page.php:369
+#: admin/class-import-listings-admin-page.php:368
 msgid ""
 "(<percentage>) <number-of-rows-processed> of <number-of-rows> rows "
 "processed. <number-of-rows-imported> rows imported and <number-of-rows-"
@@ -729,11 +729,11 @@ msgstr ""
 "Nenhum usuário pôde ser designado a esta listagem. Nossa tentativa de criar "
 "um novo usuário falhou e apresentou o seguinte erro: <error-message>."
 
-#: admin/import/class-csv-importer-delegate.php:509
+#: admin/import/class-csv-importer-delegate.php:476
 msgid "The payment term type must be 'fee' or 'subscription'."
 msgstr "O tipo de termo de pagamento deve ser 'taxa' or 'subscrição'."
 
-#: admin/import/class-csv-importer-delegate.php:515
+#: admin/import/class-csv-importer-delegate.php:482
 msgid ""
 "There is no payment term with type {payment_term_type} and ID "
 "{payment_term_id}."
@@ -741,7 +741,7 @@ msgstr ""
 "Não há têrmo de pagamento com tipo {payment_term_type} e ID "
 "{payment_term_id}."
 
-#: admin/import/class-csv-importer-delegate.php:529
+#: admin/import/class-csv-importer-delegate.php:496
 msgid ""
 "No images directory was configured. Are you sure you uploaded a ZIP file or "
 "defined a local directory?"
@@ -749,12 +749,12 @@ msgstr ""
 "Nenhuma imagem de diretório foi configurada. Tem certeza que você carregou "
 "um arquivo .ZIP ou definido um diretório local?"
 
-#: admin/import/class-csv-importer-delegate.php:717
+#: admin/import/class-csv-importer-delegate.php:684
 msgid "The value for Extra Field %s's is not allowed. Allowed values are: %%s"
 msgstr ""
 "O valor para Campo Extra %s's não é permitido. O valores permitidos são: %%s"
 
-#: admin/import/class-csv-importer-delegate.php:726
+#: admin/import/class-csv-importer-delegate.php:693
 msgid ""
 "The value for Extra Field %s's is not allowed. Allowed value is one of: %%s"
 msgstr ""
@@ -1261,8 +1261,8 @@ msgid "Give a 5 star rating on WordPress.org."
 msgstr ""
 
 #: admin/templates/admin-sidebar.tpl.php:36
-msgid "Get a Premium Module!"
-msgstr "Obter um Módulo premium!"
+msgid "Get more features!"
+msgstr ""
 
 #: admin/templates/admin-sidebar.tpl.php:61
 msgid "Found a bug?"
@@ -1972,43 +1972,43 @@ msgstr ""
 "para{browse_listings_link}navegue em todos os anúncios{/"
 "browse_listings_link}."
 
-#: frontend/placeholders.php:451
+#: frontend/placeholders.php:452
 msgid "Seller"
 msgstr "Vendedor"
 
-#: frontend/placeholders.php:479
+#: frontend/placeholders.php:480
 msgid "Visit Website"
 msgstr "Visite o site"
 
-#: frontend/placeholders.php:664 includes/functions/listings.php:369
+#: frontend/placeholders.php:665 includes/functions/listings.php:369
 msgid "Location"
 msgstr "Localização"
 
 #. translators: %d is the number of views for this ad.
-#: frontend/placeholders.php:702
+#: frontend/placeholders.php:703
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] "Este anúncio foi visualizado %d tempo."
 msgstr[1] "Este anúncio foi visualizado %d tempo."
 
 #. translators: %d is the number of views for this ad.
-#: frontend/placeholders.php:707
+#: frontend/placeholders.php:708
 msgid "Total views: %d"
 msgstr "Total de visualizações: %d"
 
-#: frontend/placeholders.php:762
+#: frontend/placeholders.php:763
 msgid "Phone"
 msgstr "Telefone"
 
-#: frontend/placeholders.php:826
+#: frontend/placeholders.php:827
 msgid "Flag Ad"
 msgstr "anúncio bandeira"
 
-#: frontend/placeholders.php:841
+#: frontend/placeholders.php:842
 msgid "Tweet This"
 msgstr "Tweet Este"
 
-#: frontend/placeholders.php:877
+#: frontend/placeholders.php:878
 msgid "Share on Facebook"
 msgstr "Compartilhar no Facebook "
 
@@ -2411,7 +2411,7 @@ msgstr "Preço máximo"
 msgid "Pay With 2Checkout"
 msgstr "Pagar com 2Checkout"
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:819
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:820
 #: includes/admin/class-listings-personal-data-provider.php:115
 #: includes/admin/class-listings-personal-data-provider.php:125
 #: includes/admin/import/class-csv-importer-columns.php:231
@@ -2457,7 +2457,7 @@ msgstr "Linha de endereço 2"
 msgid "State"
 msgstr "Estado"
 
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:839
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:840
 #: includes/admin/class-listings-personal-data-provider.php:117
 #: includes/admin/class-listings-personal-data-provider.php:127
 #: includes/admin/import/class-csv-importer-columns.php:261
@@ -2629,51 +2629,51 @@ msgstr "Busca por categoria"
 msgid "Search"
 msgstr "Pesquisa"
 
-#: functions.php:461
+#: functions.php:462
 msgid "%s ago"
 msgstr "%s atrás"
 
-#: functions.php:630
+#: functions.php:631
 msgid "Ads per page:"
 msgstr "Anúncios por páginas:"
 
-#: functions.php:647
+#: functions.php:648
 msgid "Page {current_page_number} of {number_of_pages}"
 msgstr "Página {current_page_number} de {number_of_pages}"
 
-#: functions.php:760
+#: functions.php:761
 msgid "None"
 msgstr "Nenhum"
 
-#: functions.php:820
+#: functions.php:821
 msgid "separate countries by commas"
 msgstr "países separados por vírgulas"
 
-#: functions.php:829
+#: functions.php:830
 msgid "State/Province"
 msgstr "Estado / Província"
 
-#: functions.php:830
+#: functions.php:831
 msgid "separate states by commas"
 msgstr "estados separados por vírgulas"
 
-#: functions.php:840
+#: functions.php:841
 msgid "separate cities by commas"
 msgstr "cidades separadas por vírgulas"
 
-#: functions.php:849
+#: functions.php:850
 msgid "County/Village/Other"
 msgstr "País / Aldeia / Outros"
 
-#: functions.php:850
+#: functions.php:851
 msgid "separate counties by commas"
 msgstr "locais separados por vírgulas"
 
-#: functions.php:1064
+#: functions.php:1065
 msgid "-- Choose a Country --"
 msgstr "Escolha um país"
 
-#: functions.php:1822 templates/components/media-center.tpl.php:14
+#: functions.php:1823 templates/components/media-center.tpl.php:14
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -2685,7 +2685,7 @@ msgstr ""
 "pálido aguardam aprovação. Os arquivos que estão aguardando aprovação e "
 "rejeitadas arquivos, não pode ser mostrado no frontend."
 
-#: functions.php:1841
+#: functions.php:1842
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -2693,55 +2693,55 @@ msgstr ""
 "Esta versão do AWPCP %1$s módulo não é compatível com a versão AWPCP %2$s . "
 "Favor entrar AWPCP %1$s %3$s ou mais recente!"
 
-#: functions.php:1843
+#: functions.php:1844
 msgid "Error"
 msgstr "Erro"
 
-#: functions.php:2201
+#: functions.php:2202
 msgid "No errors."
 msgstr "Sem erros."
 
-#: functions.php:2202
+#: functions.php:2203
 msgid "The file is larger than upload_max_filesize."
 msgstr "O arquivo é maior que upload_max_filesize."
 
-#: functions.php:2203
+#: functions.php:2204
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "O arquivo é maior do que a forma MAX_FILE_SIZE."
 
-#: functions.php:2204
+#: functions.php:2205
 msgid "The file was only partially uploaded."
 msgstr "O arquivo foi enviado apenas parcialmente."
 
-#: functions.php:2205
+#: functions.php:2206
 msgid "No file was uploaded."
 msgstr "Nenhum arquivo foi enviado."
 
-#: functions.php:2206
+#: functions.php:2207
 msgid "Missing temporary directory."
 msgstr "Faltando diretório temporário."
 
-#: functions.php:2207
+#: functions.php:2208
 msgid "Can't write file to disk."
 msgstr "Não é possível gravar arquivo em disco."
 
-#: functions.php:2208
+#: functions.php:2209
 msgid "The file upload was stopped by extension."
 msgstr "O upload do arquivo foi parado por extensão."
 
-#: functions.php:2448
+#: functions.php:2449
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Seu anúncio \"%s\" foi aprovado"
 
-#: functions.php:2471
+#: functions.php:2472
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Seu anúncio \"%s\" foi atualizado com sucesso"
 
-#: functions.php:2494
+#: functions.php:2495
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Imagens do anúncio \"%s\"estão aguardando aprovação"
 
-#: functions.php:2496
+#: functions.php:2497
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
@@ -2751,13 +2751,13 @@ msgstr ""
 "imagens que vão para a seção Gerenciar Imagens para esse anúncio e clicando "
 "no \"Ativar\" botão abaixo de cada imagem. Clique aqui para continuar: %s ."
 
-#: functions.php:2499
+#: functions.php:2500
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "O Anúncio \"%s\" está aguardando aprovação"
 
 #. translators: %1$s is the listing title. %2$s is the URL for managing
 #. listing.
-#: functions.php:2502 includes/functions/notifications.php:205
+#: functions.php:2503 includes/functions/notifications.php:205
 msgid ""
 "The Ad \"%1$s\" is awaiting approval. You can approve the Ad going to the "
 "Classified edit section and clicking the \"Publish\" button. Click here to "
@@ -2765,7 +2765,7 @@ msgid ""
 msgstr ""
 
 #. translators: %s is the URL for managing listing images.
-#: functions.php:2509 includes/functions/notifications.php:213
+#: functions.php:2510 includes/functions/notifications.php:213
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -2775,27 +2775,27 @@ msgstr ""
 "Imagens para esse anúncio e clicando no \\ \"Activar \" botão abaixo de cada "
 "imagem. Clique aqui para continuar: %s ."
 
-#: functions.php:3045
+#: functions.php:3046
 msgid "Email sent %s."
 msgstr "E-mail enviado %s ."
 
-#: functions.php:3182
+#: functions.php:3183
 msgid "Not Installed"
 msgstr "Não instalado"
 
-#: functions.php:3186
+#: functions.php:3187
 msgid "Installed"
 msgstr "Instalado"
 
-#: functions.php:3194
+#: functions.php:3195
 msgid "SSL Support: Yes."
 msgstr "Suporta SSL: Sim."
 
-#: functions.php:3196
+#: functions.php:3197
 msgid "SSL Support: No."
 msgstr "Suporta SSL: Não."
 
-#: functions.php:3199
+#: functions.php:3200
 msgid "OpenSSL version:"
 msgstr "OpenSSL versão:"
 
@@ -3004,12 +3004,12 @@ msgid "Configuration"
 msgstr "Configuração"
 
 #: includes/admin/import/class-importer-form-steps.php:29
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:195
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:176
 msgid "Import"
 msgstr "Importar"
 
 #: includes/admin/import/class-importer-form-steps.php:32
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:194
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:175
 msgid "Test Import"
 msgstr "Importação de teste"
 
@@ -3120,13 +3120,13 @@ msgid_plural "An error occurred trying to mark {count} ads as standard."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-mark-as-spam-listing-table-action.php:148
+#: includes/admin/listings/class-mark-as-spam-listing-table-action.php:154
 msgid "The ad was marked as SPAM and removed."
 msgid_plural "{count} ads were marked as SPAM and removed."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-mark-as-spam-listing-table-action.php:155
+#: includes/admin/listings/class-mark-as-spam-listing-table-action.php:161
 msgid "There was an error trying to mark the ad as SPAM."
 msgid_plural "There was an error trying to mark {count} ads as SPAM."
 msgstr[0] ""
@@ -3458,8 +3458,8 @@ msgid "Stripe"
 msgstr "Stripe"
 
 #: includes/class-awpcp.php:880
-msgid "Subscriptions"
-msgstr "Assinaturas"
+msgid "Membership to Post"
+msgstr ""
 
 #: includes/class-awpcp.php:887 templates/components/media-manager.tpl.php:50
 msgid "Videos"
@@ -4852,7 +4852,7 @@ msgid "Destination directory doesn't exists and couldn't be created."
 msgstr "diretório de destino não existe e não pode ser criado."
 
 #: includes/models/class-custom-post-types.php:67
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:127
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:108
 msgid "Disabled"
 msgstr "Desativado"
 
@@ -8951,87 +8951,72 @@ msgstr ""
 msgid "Date Format"
 msgstr "Formato da Data"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:59
-msgid "US Date Only (mm/dd/year)"
-msgstr "US Data Only (mm/dd/ano)"
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:60
+msgid "Automatic"
+msgstr ""
 
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:63
-msgid "UK Date Only (dd/mm/year)"
+#, fuzzy
+msgid "UK (dd/mm/year)"
 msgstr "UK Data Only (dd/mm/ano)"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:67
-msgid "EUR Date Only (year/mm/dd)"
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:66
+msgid "EUR (year/mm/dd)"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:72
-msgid "US Date and Time (mm/dd/year hh:mm:ss)"
-msgstr "US Data e hora (mm/hh/dd/ano hh:mm:ss)"
-
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:76
-msgid "UK Date and Time (dd/mm/year hh:mm:ss)"
-msgstr "BR Data e Hora  (dd/mm/year hh:mm:ss)"
-
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:80
-msgid "EUR Date and Time (year/mm/dd hh:mm:ss)"
-msgstr ""
-
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:85
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:73
 msgid "Separators Used in CSV"
 msgstr "Separadores utilizados em CSV"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:89
-msgid "Date Separator"
-msgstr "Separador de data"
-
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:96
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:77
 msgid "Time Separator"
 msgstr "Separador de tempo"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:103
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:84
 msgid "Category Separator"
 msgstr "Separador de Categoria"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:110
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:91
 msgid "Image Separator"
 msgstr "Separador de imagem"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:112
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:93
 msgid "(semi-colon)"
 msgstr "ponto e vírgula (;)"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:120
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:101
 msgid "Post status of imported listings"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:124
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:105
 msgid "Leave current post status"
 msgstr ""
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:125
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:106
 msgid "Pending Review"
 msgstr "Revisão pendente"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:126
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:107
 msgid "Draft"
 msgstr "Rascunho"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:129
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:110
 msgid "Published"
 msgstr "Publicado"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:135
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:116
 msgid "How to handle missing categories?"
 msgstr "Como lidar com categorias ausentes?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:139
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:120
 msgid "Create missing categories"
 msgstr "Crie categorias ausentes"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:140
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:121
 msgid "Generate an error"
 msgstr "Gere um erro"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:143
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:124
 msgid ""
 "Define whether you want to create missing categories or generate an error "
 "whenever a category in the CSV file is not found in the system."
@@ -9039,7 +9024,7 @@ msgstr ""
 "Defina se você deseja criar categorias ausentes ou gerar um erro sempre que "
 "uma categoria no arquivo CSV não for encontrada no sistema."
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:154
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:135
 msgid ""
 "If checked, listings will be assigned to the user specified in the CSV file "
 "or a default user that can be defined below."
@@ -9047,11 +9032,11 @@ msgstr ""
 "Se marcada, os anúncios serão atribuídos ao usuário especificado no arquivo "
 "CSV ou a um usuário padrão que pode ser definido abaixo."
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:171
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:152
 msgid "Default user"
 msgstr "Usuário padrão"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:200
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:181
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:44
 msgid ""
 "Press the button below to cancel the current import operation and discard "
@@ -9779,19 +9764,19 @@ msgctxt "alternate CA info for cURL"
 msgid "Missing"
 msgstr "Valores"
 
-#: admin/class-import-listings-admin-page.php:370
+#: admin/class-import-listings-admin-page.php:369
 msgctxt ""
 "description for messages used to show feedback for the Import Listings "
 "operation"
 msgid "<message-type> in line <message-line>"
 msgstr "<message-type> em linha <message-line>"
 
-#: admin/class-import-listings-admin-page.php:381
+#: admin/class-import-listings-admin-page.php:380
 msgctxt "text for page subtitle and submit button"
 msgid "Test Import"
 msgstr "Importação de teste"
 
-#: admin/class-import-listings-admin-page.php:383
+#: admin/class-import-listings-admin-page.php:382
 msgctxt "text for page subtitle and submit button"
 msgid "Import"
 msgstr "Importar"
@@ -10000,28 +9985,28 @@ msgctxt "csv importer"
 msgid "Invalid default start date."
 msgstr "Padrão inválido para a data de início."
 
-#: admin/import/class-csv-importer-delegate.php:469
-#: admin/import/class-csv-importer-delegate.php:470
+#: admin/import/class-csv-importer-delegate.php:436
+#: admin/import/class-csv-importer-delegate.php:437
 msgctxt "csv importer"
 msgid "The end date is missing and no default value was defined."
 msgstr "A data final está perdida e nenhum valor padrão foi definido."
 
-#: admin/import/class-csv-importer-delegate.php:471
+#: admin/import/class-csv-importer-delegate.php:438
 msgctxt "csv importer"
 msgid "Invalid default end date."
 msgstr "Padrão inválido para a data final."
 
-#: admin/import/class-csv-importer-delegate.php:538
+#: admin/import/class-csv-importer-delegate.php:505
 msgctxt "csv importer"
 msgid "Image file with name <image-name> not found."
 msgstr "Arquivo de imagem com nome <image-name> não foi encontrado."
 
-#: admin/import/class-csv-importer-delegate.php:605
+#: admin/import/class-csv-importer-delegate.php:572
 msgctxt "csv importer"
 msgid "There was an error trying to store imported data into the database."
 msgstr "Há um erro tentando armazenar dados importados para a base de dados."
 
-#: admin/import/class-csv-importer-delegate.php:626
+#: admin/import/class-csv-importer-delegate.php:593
 msgctxt "csv importer"
 msgid ""
 "There was an error trying to import one of the images: {image-validation-"
@@ -10192,7 +10177,7 @@ msgctxt "upload listing images form"
 msgid "Checkout"
 msgstr "Conferência"
 
-#: frontend/placeholders.php:908
+#: frontend/placeholders.php:909
 #: includes/admin/listings/trait-renew-listing-table-action.php:36
 msgctxt "listing row action"
 msgid "Renew"
@@ -10223,7 +10208,7 @@ msgctxt "listing row action"
 msgid "Make Standard"
 msgstr "Faça Padrão"
 
-#: includes/admin/listings/class-mark-as-spam-listing-table-action.php:84
+#: includes/admin/listings/class-mark-as-spam-listing-table-action.php:90
 msgctxt "listing row action"
 msgid "SPAM"
 msgstr "SPAM"
@@ -10604,12 +10589,12 @@ msgctxt "transaction items"
 msgid "Total Amount"
 msgstr "Valor total"
 
-#: functions.php:771
+#: functions.php:772
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr "%s e %d mais."
 
-#: functions.php:1230
+#: functions.php:1231
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr "Classificados site"
@@ -11758,22 +11743,22 @@ msgctxt "admin forms"
 msgid "required"
 msgstr "requerido"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:148
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:129
 msgctxt "csv-importer"
 msgid "Assign listings to a user?"
 msgstr "Atribuir anúncios a um usuário?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:153
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:134
 msgctxt "csv-importer"
 msgid "Assign listings to a user"
 msgstr "Atribuir anúncios a um usuário"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:160
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:141
 msgctxt "csv-importer"
 msgid "Define a default user?"
 msgstr "Definir um usuário padrão?"
 
-#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:165
+#: templates/admin/import-listings-admin-page-configuration-form.tpl.php:146
 msgctxt "csv-importer"
 msgid ""
 "The default user will be used when the username column is not present in the "
@@ -12019,6 +12004,24 @@ msgstr ""
 "Quando você concorda em ver anúncios ou publicar um anúncio em uma categoria "
 "restrita, um cookie será armazenado no seu navegador para lembrar sua "
 "decisão. O cookie será armazenado no seu navegador pelo restante da sessão."
+
+#~ msgid "Get a Premium Module!"
+#~ msgstr "Obter um Módulo premium!"
+
+#~ msgid "Subscriptions"
+#~ msgstr "Assinaturas"
+
+#~ msgid "US Date Only (mm/dd/year)"
+#~ msgstr "US Data Only (mm/dd/ano)"
+
+#~ msgid "US Date and Time (mm/dd/year hh:mm:ss)"
+#~ msgstr "US Data e hora (mm/hh/dd/ano hh:mm:ss)"
+
+#~ msgid "UK Date and Time (dd/mm/year hh:mm:ss)"
+#~ msgstr "BR Data e Hora  (dd/mm/year hh:mm:ss)"
+
+#~ msgid "Date Separator"
+#~ msgstr "Separador de data"
 
 #, fuzzy
 #~ msgid "D"

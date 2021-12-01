@@ -5,7 +5,7 @@ Tags: listings, classified ads, classified, classifieds, directory plugin, class
 Requires at least: 4.9
 Requires PHP: 5.6
 Tested up to: 5.8.1
-Stable tag: 4.1.5
+Stable tag: 4.1.6
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -168,6 +168,14 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+= 4.1.6 =
+* New: Simplify importing dates. It's smarter now with fewer settings.
+* New: Use a more global date format in the CSV export. This can be changed with the new awpcp_export_date_format hook.
+* Fix: Some servers were looking for the privacy policy file in the wrong location.
+* Fix: When ad content was clickable, it was adding p tags to the link.
+* Fix: The ad exporter was missing column headings.
+* Fix: The option to mark as spam was showing in the bulk options when Akisment was disabled.
+
 = 4.1.5 =
 * New: Allow more field placeholders based on the slug (like ad_contact_email and more)
 
@@ -201,17 +209,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fix - Update link for manage listing images in admin/moderator notifications. (#3035)
 * Fix - Do not show the 'renew' button when it can't be used on listings without owner. (#3042)
 * Fix - Edit post url in place ad user notification email. (#3044)
-
-= 4.0.16 =
-* Enhancement - Optimize get_categories_hierarchy function by removing empty categories when ‘Hide empty categories from dropdowns’ setting is active. 
-* Enhancement - Add setting to show/hide categories selector in Browse Ads page. 
-* Enhancement - Add ‘awpcp_country_list_options_countries’ filter to country list options. 
-* Fix - Update category metadata value when it’s created while submitting an ad on admin dashboard. 
-* Fix - Register manual upgrade routines only when plugin is outdated. 
-* Fix - Prevent removing existing regions data on ad update when no new regions data is present. 
-* Fix - Update PHPMailer instantiation to match WP 5.5 changes. (#2999, #3018)
-* Fix - Set post_type for query that retrieves expired listings. 
-* Tweak - Generate default values for some variables to prevent PHP notices. 
-* Tweak - Fix styling in checkout expiration date fields. 
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>
