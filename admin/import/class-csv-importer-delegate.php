@@ -383,7 +383,7 @@ class AWPCP_CSV_Importer_Delegate {
             $parsed_value = $this->parse_date(
                 $date,
                 $this->import_session->get_param( 'date_format' ),
-                $this->import_session->get_param( 'date_separator' ),
+                '',
                 $this->import_session->get_param( 'time_separator' )
             );
 
@@ -398,8 +398,8 @@ class AWPCP_CSV_Importer_Delegate {
 
         $parsed_value = $this->parse_date(
             $default_date,
-            'us_date',
-            $this->import_session->get_param( 'date_separator' ),
+            'auto',
+            '',
             $this->import_session->get_param( 'time_separator' )
         );
 
@@ -411,54 +411,21 @@ class AWPCP_CSV_Importer_Delegate {
         return $parsed_value;
     }
 
-    public function parse_date($val, $date_time_format, $date_separator, $time_separator, $format = "Y-m-d H:i:s") {
-        $date_formats = array(
-            'us_date' => array(
-                array('%m', '%d', '%y'), // support both two and four digits years
-                array('%m', '%d', '%Y'),
-            ),
-            'uk_date' => array(
-                array('%d', '%m', '%y'),
-                array('%d', '%m', '%Y'),
-            ),
-            'eur_date' => array(
-                array('%y', '%m', '%d'),
-                array('%Y', '%m', '%d'),
-            ),
-        );
+    public function parse_date($val, $date_time_format, $deprecated, $time_separator, $format = "Y-m-d H:i:s") {
+		if ( $date_time_format === 'eur_date' ) {
+			// PHP assumes European formats with -.
+			$val = str_replace( '/', '-', $val );
 
-        $date_formats['us_date_time'] = $date_formats['us_date'];
-        $date_formats['uk_date_time'] = $date_formats['uk_date'];
-        $date_formats['eur_date_time'] = $date_formats['eur_date'];
+		} elseif ( $date_time_format === 'uk_date' ) {
+			// Rearrange UK dates in case of 2-digit year.
+			$val = str_replace( '-', '/', $val );
+			$bits = explode( '/', $val );
+			if ( count( $bits ) === 3 ) {
+				$val  = $bits[1] . '/' . $bits[0] .'/'. $bits[2];
+			}
+		}
 
-        if (in_array($date_time_format, array('us_date_time', 'uk_date_time', 'eur_date_time')))
-            $suffix = implode($time_separator, array('%H', '%M', '%S'));
-        else
-            $suffix = '';
-
-        $date = null;
-        foreach ($date_formats[$date_time_format] as $_format) {
-            $_format = trim(sprintf("%s %s", implode($date_separator, $_format), $suffix));
-            $parsed = awpcp_strptime( $val, $_format );
-            if ($parsed && empty($parsed['unparsed'])) {
-                $date = $parsed;
-                break;
-            }
-        }
-
-        if (is_null($date))
-            return null;
-
-        $datetime = new DateTime();
-
-        try {
-            $datetime->setDate($parsed['tm_year'] + 1900, $parsed['tm_mon'] + 1, $parsed['tm_mday']);
-            $datetime->setTime($parsed['tm_hour'], $parsed['tm_min'], $parsed['tm_sec']);
-        } catch (Exception $ex) {
-            echo "Exception: " . $ex->getMessage();
-        }
-
-        return $datetime->format($format);
+		return date( $format, strtotime( $val ) );
     }
 
     private function parse_end_date_column( $end_date, $row_data ) {
@@ -482,7 +449,7 @@ class AWPCP_CSV_Importer_Delegate {
 
         $parsed_value = $this->parse_date(
             $default_start_date,
-            'us_date',
+            'auto',
             $this->options['date-separator'],
             $this->options['time-separator']
         );

@@ -57,7 +57,7 @@ Looking for other types of directories? Check out [Business Directory Plugin](ht
 * Multiple fee scales for posting ads (allows you to have longer ad postings with higher fees)
 * Variable ad expiration lengths connected to fee scale (e.g. allow ads to run for 30 days for $10, 60 days for $15, etc)
 * Supports a "credit system" or pay with regular currency per ad. Mix and match if you want.
-* Support for ad "subscriptions" (packages of ads for a single price)
+* Support for ad memberships (packages of ads for a single price)
 
 == Posting Controls for your WordPress classified ads  ==
 
@@ -90,7 +90,7 @@ Looking for other types of directories? Check out [Business Directory Plugin](ht
 * [Featured Ads](https://awpcp.com/downloads/featured-ads-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows you to promote certain ads over others by charging a fee for them, featured ads are displayed using CSS to highlight them. Featured ads are always returned first in a category, the overall ad list, or in search results. Also has a widget for placement anywhere on your site. Full admin control of featured ads, too
 * [BuddyPress](https://awpcp.com/downloads/buddypress-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows users to manage their listing ads in the BuddyPress profile directly, see events from ad posting in the activity stream and more
 * [Fee per Category](https://awpcp.com/downloads/fee-per-category-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows you to charge for certain categories and not others, giving you more freedom on how to configure your classified section. Allows for multiple fee plans per category, as well as a default plan to cover "all other unspecified" categories
-* [Subscriptions](https://awpcp.com/downloads/subscriptions-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows power users to place blocks of ads at a time, great for real estate agents, car dealers, anyone who wants to place ads in bulk
+* [Membership to Post](https://awpcp.com/downloads/subscriptions-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows power users to place blocks of ads at a time, great for real estate agents, car dealers, anyone who wants to place ads in bulk
 * [Comments/Ratings](https://awpcp.com/downloads/comments-ratings-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allow users to rate classified ads, and add ratings and comments on listings
 * [RSS Feeds](https://awpcp.com/downloads/rss-feeds-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows you syndicate your ads for your users to download in their favorite RSS reader and come back to your site more often!
 * [Coupons/Discounts](https://awpcp.com/downloads/coupons-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows you to offer coupon codes for ad promotions to your users, coupons can be a percent off, or a fixed amount, have expiration dates and be tracked by usage
@@ -106,7 +106,7 @@ Want to accept credit cards on your site for paid listings in your classifieds d
 
 * [Stripe](https://awpcp.com/downloads/stripe-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - accept payments via Stripe for ads
 * [PayPal Pro]( https://awpcp.com/downloads/paypal-pro-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows you to have an embedded payment form on your site for use with PayPal Pro accounts
-* [Authorize.net Gateway](https://awpcp.com/downloads/authorizenet-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows users to purchase ads, subscriptions and credit plans using Authorize.net
+* [Authorize.net Gateway](https://awpcp.com/downloads/authorizenet-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows users to purchase ads and credit plans using Authorize.net
 
 These are just some of the features of our easy WordPress Classifieds Plugin.
 

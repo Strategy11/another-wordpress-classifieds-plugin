@@ -240,6 +240,7 @@ function awpcp_strip_all_tags_deep( $string ) {
 
 /**
  * @since 3.0.2
+ * @todo Check if add-ons use this and deprecate.
  */
 function awpcp_strptime( $date, $format ) {
 	if ( function_exists( 'strptime' ) ) {

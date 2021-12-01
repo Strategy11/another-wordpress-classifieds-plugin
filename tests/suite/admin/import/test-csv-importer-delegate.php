@@ -80,7 +80,6 @@ class AWPCP_Test_CSV_Importer_Delegate extends AWPCP_UnitTestCase {
         Phake::when( $this->import_session )->is_test_mode_enabled->thenReturn( false );
         Phake::when( $this->import_session )->get_param( 'create_missing_categories' )->thenReturn( true );
         Phake::when( $this->import_session )->get_param( 'date_format' )->thenReturn( 'us_date' );
-        Phake::when( $this->import_session )->get_param( 'date_separator' )->thenReturn( '/' );
         Phake::when( $this->import_session )->get_param( 'time_separator' )->thenReturn( ':' );
         Phake::when( $this->import_session )->get_param( 'category_separator' )->thenReturn( ';' );
 
