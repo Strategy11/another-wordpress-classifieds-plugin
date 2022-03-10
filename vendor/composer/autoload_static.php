@@ -424,6 +424,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_SecureURLRedirectionHandler' => __DIR__ . '/../..' . '/includes/class-secure-url-redirection-handler.php',
         'AWPCP_SelectSettingsRenderer' => __DIR__ . '/../..' . '/includes/settings/renderers/class-select-settings-renderer.php',
         'AWPCP_SendAccessKeyListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-send-access-key-listing-table-action.php',
+        'AWPCP_SendEmails' => __DIR__ . '/../..' . '/includes/admin/listings/class-send-emails.php',
         'AWPCP_SendToFacebookGroupListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-send-to-facebook-group-listing-table-action.php',
         'AWPCP_SendToFacebookHelper' => __DIR__ . '/../..' . '/includes/helpers/class-send-to-facebook-helper.php',
         'AWPCP_SendToFacebookPageListingTableAction' => __DIR__ . '/../..' . '/includes/admin/listings/class-send-to-facebook-page-listing-table-action.php',

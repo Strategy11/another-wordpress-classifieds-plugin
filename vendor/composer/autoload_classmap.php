@@ -423,6 +423,7 @@ return array(
     'AWPCP_SecureURLRedirectionHandler' => $baseDir . '/includes/class-secure-url-redirection-handler.php',
     'AWPCP_SelectSettingsRenderer' => $baseDir . '/includes/settings/renderers/class-select-settings-renderer.php',
     'AWPCP_SendAccessKeyListingTableAction' => $baseDir . '/includes/admin/listings/class-send-access-key-listing-table-action.php',
+    'AWPCP_SendEmails' => $baseDir . '/includes/admin/listings/class-send-emails.php',
     'AWPCP_SendToFacebookGroupListingTableAction' => $baseDir . '/includes/admin/listings/class-send-to-facebook-group-listing-table-action.php',
     'AWPCP_SendToFacebookHelper' => $baseDir . '/includes/helpers/class-send-to-facebook-helper.php',
     'AWPCP_SendToFacebookPageListingTableAction' => $baseDir . '/includes/admin/listings/class-send-to-facebook-page-listing-table-action.php',

@@ -109,55 +109,9 @@ function doadexpirations() {
         ),
     ));
 
+	$email_info = compact( 'notify_expiring', 'notify_admin', 'subject', 'bodybase' );
     foreach ($ads as $ad) {
-        $listings_logic->expire_listing( $ad );
-
-        if ( $notify_expiring == false && $notify_admin == false ) {
-            continue;
-        }
-
-        $adtitle = get_adtitle( $ad->ID );
-        $adstartdate = date( "D M j Y G:i:s", strtotime( get_adstartdate( $ad->ID ) ) );
-
-        $body = $bodybase;
-        $body.= "\n\n";
-        $body.= __( "Listing Details", 'another-wordpress-classifieds-plugin' );
-        $body.= "\n\n";
-        $body.= __( "Ad Title:", 'another-wordpress-classifieds-plugin' );
-        $body.= " $adtitle";
-        $body.= "\n\n";
-        $body.= __( "Posted:", 'another-wordpress-classifieds-plugin' );
-        $body.= " $adstartdate";
-        $body.= "\n\n";
-
-        $body.= __( "Renew your ad by visiting:", 'another-wordpress-classifieds-plugin' );
-        $body.= " " . urldecode( awpcp_get_renew_ad_url( $ad->ID ) );
-        $body.= "\n\n";
-
-        if ( $notify_expiring ) {
-            $user_email = awpcp_format_recipient_address( get_adposteremail( $ad->ID ) );
-            if ( ! empty( $user_email ) ) {
-                $email = new AWPCP_Email();
-
-                $email->to = $user_email;
-                $email->from = awpcp_admin_email_from();
-                $email->subject = $subject;
-                $email->body = $body;
-
-                $email->send();
-            }
-        }
-
-        if ( $notify_admin ) {
-            $email = new AWPCP_Email();
-
-            $email->to = awpcp_admin_email_to();
-            $email->from = awpcp_admin_email_from();
-            $email->subject = $subject;
-            $email->body = $body;
-
-            $email->send();
-        }
+		$listings_logic->expire_listing_with_notice( $ad, $email_info );
     }
 }
 
