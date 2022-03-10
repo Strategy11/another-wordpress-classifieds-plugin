@@ -174,7 +174,7 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fix: Some servers were looking for the privacy policy file in the wrong location.
 * Fix: When ad content was clickable, it was adding p tags to the link.
 * Fix: The ad exporter was missing column headings.
-* Fix: The option to mark as spam was showing in the bulk options when Akisment was disabled.
+* Fix: The option to mark as spam was showing in the bulk options when Akismet was disabled.
 
 = 4.1.5 =
 * New: Allow more field placeholders based on the slug (like ad_contact_email and more)

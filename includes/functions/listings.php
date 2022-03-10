@@ -24,6 +24,13 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
         return apply_filters( 'awpcp_browse_ads_template_filter' );
     }
 
+	// Correctly set the context for the featured ads module.
+	if ( isset( $query_vars['context'] ) && ! isset( $query_vars['classifieds_query'] ) ) {
+		$query_vars['classifieds_query'] = [
+			'context' => $query_vars['context'],
+		];
+	}
+
     $results_per_page = awpcp_get_results_per_page( $query_vars );
     $results_offset   = awpcp_get_results_offset( $results_per_page, $query_vars );
 
