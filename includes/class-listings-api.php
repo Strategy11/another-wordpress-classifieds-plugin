@@ -674,9 +674,14 @@ class AWPCP_ListingsAPI {
         return $this->disable_listing( $listing );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
+	/**
+	 * @since x.x
+	 */
+	public function expire_listing_with_notice( $listing, $email_info = array() ) {
+		$this->expire_listing( $listing );
+		AWPCP_SendEmails::send_expiring( $listing, $email_info );
+	}
+
     public function renew_listing( $listing, $end_date = false ) {
         if ( $end_date === false ) {
             $period_start_date = null;
