@@ -25,7 +25,7 @@ class AWPCP_ListingIsAboutToExpireNotification {
     }
 
     private function days_before_listing_expires( $listing ) {
-        $end_date = strtotime( $this->listing_renderer->get_end_date( $listing ) );
+        $end_date = strtotime( $this->listing_renderer->get_plain_end_date( $listing ) );
         $extended_end_date = awpcp_extend_date_to_end_of_the_day( $end_date );
 
         if ( $this->listing_renderer->has_expired( $listing ) ) {
