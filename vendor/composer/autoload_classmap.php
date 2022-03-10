@@ -271,7 +271,6 @@ return array(
     'AWPCP_ListingFileValidator' => $baseDir . '/includes/media/class-listing-file-validator.php',
     'AWPCP_ListingFormFields' => $baseDir . '/includes/form-fields/class-listing-form-fields.php',
     'AWPCP_ListingInfromationMetabox' => $baseDir . '/includes/admin/listings/class-listing-information-metabox.php',
-    'AWPCP_ListingIsAboutToExpireNotification' => $baseDir . '/includes/class-listing-is-about-to-expire-notification.php',
     'AWPCP_ListingOrderPostedData' => $baseDir . '/includes/frontend/class-listing-order-posted-data.php',
     'AWPCP_ListingOwnerMetabox' => $baseDir . '/includes/admin/listings/class-listing-owner-metabox.php',
     'AWPCP_ListingPaymentTransactionHandler' => $baseDir . '/includes/class-listing-payment-transaction-handler.php',

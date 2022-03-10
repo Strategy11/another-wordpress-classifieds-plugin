@@ -264,7 +264,7 @@ require_once AWPCP_DIR . '/includes/class-legacy-listings-metadata.php';
 require_once AWPCP_DIR . '/includes/class-listing-authorization.php';
 require_once AWPCP_DIR . '/includes/class-listing-payment-transaction-handler.php';
 require_once AWPCP_DIR . '/includes/class-renew-listing-payment-transaction-handler.php';
-require_once AWPCP_DIR . '/includes/class-listing-is-about-to-expire-notification.php';
+require_once AWPCP_DIR . '/includes/admin/listings/class-send-emails.php';
 require_once AWPCP_DIR . '/includes/class-listings-collection.php';
 require_once AWPCP_DIR . '/includes/class-missing-pages-finder.php';
 require_once AWPCP_DIR . '/includes/class-pages-creator.php';

@@ -366,9 +366,6 @@ class AWPCP_ListingRenderer {
         return $this->has_expired_on_date( $listing, current_time( 'timestamp' ) );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     private function has_expired_on_date( $listing, $timestamp ) {
         $end_date = $this->get_plain_end_date( $listing );
 
@@ -380,6 +377,24 @@ class AWPCP_ListingRenderer {
 
         return $end_date < $timestamp;
     }
+
+	/**
+	 * @since x.x
+	 *
+	 * @return float
+	 */
+	public function days_until_expires( $listing ) {
+		$end_date          = strtotime( $this->get_plain_end_date( $listing ) );
+		$extended_end_date = awpcp_extend_date_to_end_of_the_day( $end_date );
+
+		if ( $this->has_expired( $listing ) ) {
+			$time_left = 0;
+		} else {
+			$time_left = $extended_end_date - current_time( 'timestamp' );
+		}
+
+		return $time_left / ( 24 * 60 * 60 );
+	}
 
     /**
      * @param object $listing   An instance of WP_Post.
