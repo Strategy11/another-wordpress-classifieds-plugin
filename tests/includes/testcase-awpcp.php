@@ -53,11 +53,11 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Shim since haystack requires an array now.
 	 */
-	public function assertContains( $needle, $haystack ) {
+	public static function assertContains( $needle, $haystack, $message = '' ): void {
 		if ( is_string( $haystack ) ) {
-			return $this->assertStringContains( $needle, $haystack );
+			return self::assertStringContains( $needle, $haystack, $message );
 		}
-		return parent::assertContains( $needle, $haystack );
+		return parent::assertContains( $needle, $haystack, $message );
 	}
 
     // /**
