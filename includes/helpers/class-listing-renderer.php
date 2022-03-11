@@ -383,7 +383,7 @@ class AWPCP_ListingRenderer {
 	 *
 	 * @return float
 	 */
-	public function days_until_expires( $listing ) {
+	public function days_until_expired( $listing ) {
 		if ( $this->has_expired( $listing ) ) {
 			return 0;
 		}

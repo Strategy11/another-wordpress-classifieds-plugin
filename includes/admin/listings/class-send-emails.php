@@ -125,30 +125,49 @@ class AWPCP_SendEmails {
 		}
 	}
 
+	/**
+	 * @since x.x
+	 */
 	public static function renewal_subject( $listing ) {
 		$subject_template = get_awpcp_option( 'renew-ad-email-subject' );
-		$subject_template = str_replace( '%d', '%s', $subject_template );
-
-		return sprintf( $subject_template, self::days_before_listing_expires( $listing ) );
+		self::add_days_until_expiration( $listing, $subject_template );
+		return $subject_template;
 	}
 
+	/**
+	 * Replace the placeholder with number of days.
+	 *
+	 * @since x.x
+	 */
+	private static function add_days_until_expiration( $listing, &$string ) {
+		if ( strpos( $string, '%d' ) === false && strpos( $string, '%s' ) === false ) {
+			// There's no placeholder included.
+			return;
+		}
+
+		$string = str_replace( '%d', '%s', $string );
+		sprintf( $string, self::days_before_listing_expires( $listing ) );
+	}
+
+	/**
+	 * @since x.x
+	 */
 	private static function days_before_listing_expires( $listing ) {
 		$listing_renderer = awpcp_listing_renderer();
-		$days_left        = $listing_renderer->days_until_expires( $listing );
+		$days_left        = $listing_renderer->days_until_expired( $listing );
 
-		if ( $days_left == 0 || $days_left >= 1 ) {
+		if ( $days_left === 0 || $days_left >= 1 ) {
 			return floor( $days_left );
 		}
 		return __( 'less than 1', 'another-wordpress-classifieds-plugin' );
 	}
 
+	/**
+	 * @since x.x
+	 */
 	public static function renewal_body( $listing ) {
-		$settings     = awpcp()->settings;
-		$introduction = $settings->get_option( 'renew-ad-email-body' );
-		if ( strpos( $introduction, '%d' ) !== false ) {
-			$days_before_listing_expires = self::days_before_listing_expires( $listing );
-			$introduction = sprintf( str_replace( '%d', '%s', $introduction ), $days_before_listing_expires );
-		}
+		$introduction = get_awpcp_option( 'renew-ad-email-body' );
+		self::add_days_until_expiration( $listing, $introduction );
 
 		$listing_renderer = awpcp_listing_renderer();
 		$listing_title    = $listing_renderer->get_listing_title( $listing );
