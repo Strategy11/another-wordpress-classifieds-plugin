@@ -31,9 +31,10 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          tools: phpunit:${{ matrix.phpunit }}, phpunit-polyfills
+          tools: phpunit-polyfills
       - name: Installing Composer
         run: |
+          composer require --no-update phpunit/phpunit:"${{ matrix.phpunit }}" --no-interaction
           composer install
       - name: Installing WordPress
         run: |
