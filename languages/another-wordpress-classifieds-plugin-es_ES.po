@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2021-12-01 22:08:53+00:00\n"
+"POT-Creation-Date: 2022-03-11 17:28:08+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:55+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Spanish (Spain) (http://www.transifex.com/wp-translations/"
@@ -1486,22 +1486,6 @@ msgstr ""
 "La instalación de Another WordPress Classifieds Plugin está incomplete. Por "
 "favor {support_link}contact al equipo de soporte{/support_link}."
 
-#: cron.php:124
-msgid "Listing Details"
-msgstr "Detalles del anuncio"
-
-#: cron.php:126
-msgid "Ad Title:"
-msgstr "Título del Anuncio:"
-
-#: cron.php:129
-msgid "Posted:"
-msgstr "Publicado: "
-
-#: cron.php:133
-msgid "Renew your ad by visiting:"
-msgstr "Renová tu anuncio visitando:"
-
 #. translators: %s is the title of the listing.
 #: frontend/ad-functions.php:179
 #: includes/listings/class-listing-renewed-email-notifications.php:86
@@ -2029,7 +2013,7 @@ msgstr "Vendedor"
 msgid "Visit Website"
 msgstr "Visitar el Sitio Web"
 
-#: frontend/placeholders.php:665 includes/functions/listings.php:369
+#: frontend/placeholders.php:665 includes/functions/listings.php:378
 msgid "Location"
 msgstr "Ubicación"
 
@@ -3292,6 +3276,26 @@ msgstr[1] ""
 "Ocurrió un error enviando {count} mensajes de correo electrónico con las "
 "claves de acceso."
 
+#: includes/admin/listings/class-send-emails.php:63
+msgid "Listing Details"
+msgstr "Detalles del anuncio"
+
+#: includes/admin/listings/class-send-emails.php:65
+msgid "Ad Title:"
+msgstr "Título del Anuncio:"
+
+#: includes/admin/listings/class-send-emails.php:68
+msgid "Posted:"
+msgstr "Publicado: "
+
+#: includes/admin/listings/class-send-emails.php:72
+msgid "Renew your ad by visiting:"
+msgstr "Renová tu anuncio visitando:"
+
+#: includes/admin/listings/class-send-emails.php:162
+msgid "less than 1"
+msgstr "menos de 1"
+
 #: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:143
 msgid "Ad sent to Facebook group."
 msgid_plural "{count} ads sent to Facebook group."
@@ -3675,10 +3679,6 @@ msgstr ""
 "Su licencia para <module-name> es válida, pero ya está activa en otro sitio. "
 "Contacte el <support-link>servicio al cliente</a> para asistencia adicional."
 
-#: includes/class-listing-is-about-to-expire-notification.php:42
-msgid "less than 1"
-msgstr "menos de 1"
-
 #: includes/class-listings-api.php:112 includes/class-listings-api.php:315
 msgid ""
 "There was an unexpected error trying to save the listing details. Please try "
@@ -3699,7 +3699,7 @@ msgstr ""
 msgid "There was an error trying to save the listing details:"
 msgstr "Ocurrió un error guardando los detalles del anuncio:"
 
-#: includes/class-listings-api.php:736
+#: includes/class-listings-api.php:742
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -4290,22 +4290,22 @@ msgstr "Por favor ingresa los detalles de tu anuncio."
 msgid "Top Level Category"
 msgstr "Categoría de Nivel Superior"
 
-#: includes/functions/listings.php:251
+#: includes/functions/listings.php:260
 #: includes/listings/class-listings-content-renderer.php:171
 msgid "Are you sure you want to flag this ad?"
 msgstr "¿Seguro que desea marcar este anuncio?"
 
-#: includes/functions/listings.php:252
+#: includes/functions/listings.php:261
 #: includes/listings/class-listings-content-renderer.php:172
 msgid "This Ad has been flagged."
 msgstr "Este anuncio ha sido reportado."
 
-#: includes/functions/listings.php:253
+#: includes/functions/listings.php:262
 #: includes/listings/class-listings-content-renderer.php:173
 msgid "An error occurred while trying to flag the Ad."
 msgstr "Se produjo un error al intentar reportar el anuncio."
 
-#: includes/functions/listings.php:290
+#: includes/functions/listings.php:299
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
@@ -4313,7 +4313,7 @@ msgstr ""
 "Lo sentimos, este anuncio no está disponible. Por favor intente explorar o "
 "buscar los anuncios existentes."
 
-#: includes/functions/listings.php:307
+#: includes/functions/listings.php:316
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
@@ -4321,12 +4321,12 @@ msgstr ""
 "El anuncio que está tratando de ver está pendiente de ser aprobado. Cuando "
 "el administrador lo aprueve, quedará activo y visible."
 
-#: includes/functions/listings.php:312
+#: includes/functions/listings.php:321
 #: includes/listings/class-listings-content-renderer.php:107
 msgid "Your email address was successfully verified."
 msgstr "Su dirección de correo electrónico fue verificado con éxito."
 
-#: includes/functions/listings.php:316
+#: includes/functions/listings.php:325
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
@@ -4334,7 +4334,7 @@ msgstr ""
 "Este anuncio está actualmente deshabilitado hasta que el Adminstrador lo "
 "apruebe. Unicamente usted (el administrador) y el autor pueden verlo."
 
-#: includes/functions/listings.php:319
+#: includes/functions/listings.php:328
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
@@ -4343,7 +4343,7 @@ msgstr ""
 "dirección de correo electrónico que utilizó como información de contacto. "
 "Solo el autor (usted) puede ver el anuncio."
 
-#: includes/functions/listings.php:322
+#: includes/functions/listings.php:331
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."

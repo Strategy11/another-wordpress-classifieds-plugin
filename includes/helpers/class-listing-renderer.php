@@ -379,7 +379,7 @@ class AWPCP_ListingRenderer {
     }
 
 	/**
-	 * @since x.x
+	 * @since 4.1.7
 	 *
 	 * @return float
 	 */

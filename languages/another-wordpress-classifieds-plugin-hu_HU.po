@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2021-12-01 22:08:53+00:00\n"
+"POT-Creation-Date: 2022-03-11 17:28:08+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/wp-translations/"
@@ -1280,22 +1280,6 @@ msgid ""
 "contact support{/support_link}."
 msgstr ""
 
-#: cron.php:124
-msgid "Listing Details"
-msgstr "Listázás részletei"
-
-#: cron.php:126
-msgid "Ad Title:"
-msgstr "Hirdetés címe:"
-
-#: cron.php:129
-msgid "Posted:"
-msgstr "Közzétéve:"
-
-#: cron.php:133
-msgid "Renew your ad by visiting:"
-msgstr "Újítsa meg hirdetését ennek a lapnak meglátogatásával:"
-
 #. translators: %s is the title of the listing.
 #: frontend/ad-functions.php:179
 #: includes/listings/class-listing-renewed-email-notifications.php:86
@@ -1793,7 +1777,7 @@ msgstr "Eladó"
 msgid "Visit Website"
 msgstr "Weboldal meglátogatása"
 
-#: frontend/placeholders.php:665 includes/functions/listings.php:369
+#: frontend/placeholders.php:665 includes/functions/listings.php:378
 msgid "Location"
 msgstr "Helyszín"
 
@@ -3009,6 +2993,26 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
+#: includes/admin/listings/class-send-emails.php:63
+msgid "Listing Details"
+msgstr "Listázás részletei"
+
+#: includes/admin/listings/class-send-emails.php:65
+msgid "Ad Title:"
+msgstr "Hirdetés címe:"
+
+#: includes/admin/listings/class-send-emails.php:68
+msgid "Posted:"
+msgstr "Közzétéve:"
+
+#: includes/admin/listings/class-send-emails.php:72
+msgid "Renew your ad by visiting:"
+msgstr "Újítsa meg hirdetését ennek a lapnak meglátogatásával:"
+
+#: includes/admin/listings/class-send-emails.php:162
+msgid "less than 1"
+msgstr "kevesebb mint 1"
+
 #: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:143
 msgid "Ad sent to Facebook group."
 msgid_plural "{count} ads sent to Facebook group."
@@ -3347,10 +3351,6 @@ msgstr ""
 "A  <module-name> licenc érvényes de már aktív egy másik oldalon.További "
 "segítségért lépjen kapcsolatba <support-link>az ügyfélszolgálattal</a> "
 
-#: includes/class-listing-is-about-to-expire-notification.php:42
-msgid "less than 1"
-msgstr "kevesebb mint 1"
-
 #: includes/class-listings-api.php:112 includes/class-listings-api.php:315
 msgid ""
 "There was an unexpected error trying to save the listing details. Please try "
@@ -3367,7 +3367,7 @@ msgstr ""
 msgid "There was an error trying to save the listing details:"
 msgstr ""
 
-#: includes/class-listings-api.php:736
+#: includes/class-listings-api.php:742
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -3900,22 +3900,22 @@ msgstr ""
 msgid "Top Level Category"
 msgstr "Fő Kategória"
 
-#: includes/functions/listings.php:251
+#: includes/functions/listings.php:260
 #: includes/listings/class-listings-content-renderer.php:171
 msgid "Are you sure you want to flag this ad?"
 msgstr "Biztos megjelöli ezt a hirdetést?"
 
-#: includes/functions/listings.php:252
+#: includes/functions/listings.php:261
 #: includes/listings/class-listings-content-renderer.php:172
 msgid "This Ad has been flagged."
 msgstr "a HIRDETÉST MEGJELÖLTÜK."
 
-#: includes/functions/listings.php:253
+#: includes/functions/listings.php:262
 #: includes/listings/class-listings-content-renderer.php:173
 msgid "An error occurred while trying to flag the Ad."
 msgstr "A hirdetés megjelölése során hiba történt."
 
-#: includes/functions/listings.php:290
+#: includes/functions/listings.php:299
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
@@ -3923,7 +3923,7 @@ msgstr ""
 "Ez a listázás sajnos nem elérhető. Próbálkozzon létező listázásokat keresni "
 "vagy böngészni."
 
-#: includes/functions/listings.php:307
+#: includes/functions/listings.php:316
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
@@ -3931,12 +3931,12 @@ msgstr ""
 "Az ön által megtekinteni kívánt hirdetés jóváhagyása folyamatban van. Miután "
 "az adminisztrátor jóváhagyja, látható és aktív lesz."
 
-#: includes/functions/listings.php:312
+#: includes/functions/listings.php:321
 #: includes/listings/class-listings-content-renderer.php:107
 msgid "Your email address was successfully verified."
 msgstr "Email címét megerősítettük."
 
-#: includes/functions/listings.php:316
+#: includes/functions/listings.php:325
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
@@ -3944,7 +3944,7 @@ msgstr ""
 "Ez a hirdetés nem aktív, amíg az adminisztrátor jóvá nem hagyja. Csak ön (az "
 "adminisztrátor) és a hirdetés létrehozója láthatja."
 
-#: includes/functions/listings.php:319
+#: includes/functions/listings.php:328
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
@@ -3952,7 +3952,7 @@ msgstr ""
 "Ez a hirdetés nem aktív, amíg meg nem erősíti az email címét. Csak ön (a "
 "hirdetés létrehozója) láthatja."
 
-#: includes/functions/listings.php:322
+#: includes/functions/listings.php:331
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."
