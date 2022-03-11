@@ -50,6 +50,6 @@ jobs:
         run: |
           cd "/tmp/wordpress/src/wp-content/plugins/${GITHUB_REPOSITORY#*/}"
           pwd
-          composer dump-autoload
+          composer dump-autoload --dev
           phpunit --version
           phpunit
