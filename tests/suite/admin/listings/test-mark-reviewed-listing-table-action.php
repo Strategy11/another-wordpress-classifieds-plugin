@@ -54,7 +54,7 @@ class AWPCP_MarkReviewedListingTableActionTest extends AWPCP_UnitTestCase {
         $label = $action->get_label( null );
 
         // Verification.
-        $this->assertStringContains( 'Reviewed', $label );
+        $this->assertStringContainsString( 'Reviewed', $label );
     }
 
     /**
@@ -149,8 +149,8 @@ class AWPCP_MarkReviewedListingTableActionTest extends AWPCP_UnitTestCase {
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertStringContains( 'notice-success', $messages[0] );
-        $this->assertStringContains( 'reviewed', $messages[0] );
+        $this->assertStringContainsString( 'notice-success', $messages[0] );
+        $this->assertStringContainsString( 'reviewed', $messages[0] );
     }
 
     /**
@@ -167,7 +167,7 @@ class AWPCP_MarkReviewedListingTableActionTest extends AWPCP_UnitTestCase {
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertStringContains( 'notice-error', $messages[0] );
-        $this->assertStringContains( 'reviewed', $messages[0] );
+        $this->assertStringContainsString( 'notice-error', $messages[0] );
+        $this->assertStringContainsString( 'reviewed', $messages[0] );
     }
 }

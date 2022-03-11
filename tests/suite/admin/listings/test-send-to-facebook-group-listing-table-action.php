@@ -58,7 +58,7 @@ class AWPCP_SendToFacebookGroupListingTableActionTest extends AWPCP_UnitTestCase
         $label = $action->get_label( null );
 
         // Verification.
-        $this->assertStringContains( 'Facebook Group', $label );
+        $this->assertStringContainsString( 'Facebook Group', $label );
     }
 
     /**
@@ -151,8 +151,8 @@ class AWPCP_SendToFacebookGroupListingTableActionTest extends AWPCP_UnitTestCase
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertStringContains( 'notice-success', $messages[0] );
-        $this->assertStringContains( 'sent to Facebook group', $messages[0] );
+        $this->assertStringContainsString( 'notice-success', $messages[0] );
+        $this->assertStringContainsString( 'sent to Facebook group', $messages[0] );
     }
 
     /**
@@ -169,8 +169,8 @@ class AWPCP_SendToFacebookGroupListingTableActionTest extends AWPCP_UnitTestCase
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertStringContains( 'notice-error', $messages[0] );
-        $this->assertStringContains( 'group selected', $messages[0] );
+        $this->assertStringContainsString( 'notice-error', $messages[0] );
+        $this->assertStringContainsString( 'group selected', $messages[0] );
     }
 
     /**
@@ -187,8 +187,8 @@ class AWPCP_SendToFacebookGroupListingTableActionTest extends AWPCP_UnitTestCase
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertStringContains( 'notice-error', $messages[0] );
-        $this->assertStringContains( 'disabled', $messages[0] );
+        $this->assertStringContainsString( 'notice-error', $messages[0] );
+        $this->assertStringContainsString( 'disabled', $messages[0] );
     }
 
     /**
@@ -205,8 +205,8 @@ class AWPCP_SendToFacebookGroupListingTableActionTest extends AWPCP_UnitTestCase
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertStringContains( 'notice-error', $messages[0] );
-        $this->assertStringContains( 'already sent', $messages[0] );
+        $this->assertStringContainsString( 'notice-error', $messages[0] );
+        $this->assertStringContainsString( 'already sent', $messages[0] );
     }
 
     /**
@@ -223,7 +223,7 @@ class AWPCP_SendToFacebookGroupListingTableActionTest extends AWPCP_UnitTestCase
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertStringContains( 'notice-error', $messages[0] );
-        $this->assertStringContains( 'to the Facebook group.', $messages[0] );
+        $this->assertStringContainsString( 'notice-error', $messages[0] );
+        $this->assertStringContainsString( 'to the Facebook group.', $messages[0] );
     }
 }
