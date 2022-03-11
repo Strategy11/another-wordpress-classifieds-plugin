@@ -29,7 +29,10 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          tools: phpunit-polyfills, antecedent/patchwork
+          tools: phpunit-polyfills
+      - name: Installing Composer
+        run: |
+          composer install
       - name: Installing WordPress
         run: |
           export WP_DEVELOP_DIR=/tmp/wordpress/
