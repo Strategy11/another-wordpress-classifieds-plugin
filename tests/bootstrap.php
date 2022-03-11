@@ -26,6 +26,8 @@ if ( file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' ) ) {
 	include dirname( __FILE__ ) . '/../vendor/autoload.php';
 }
 
+include AWPCP_DIR . '/vendor/autoload.php';
+
 if ( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
 	require getenv( 'WP_DEVELOP_DIR' ) . 'tests/phpunit/includes/bootstrap.php';
 } else {
