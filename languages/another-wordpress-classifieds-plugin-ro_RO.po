@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2021-12-01 22:08:53+00:00\n"
+"POT-Creation-Date: 2022-03-11 17:31:08+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/wp-translations/"
@@ -1488,22 +1488,6 @@ msgstr ""
 "Instalarea AWPCP este incompletă. Vă rugăm să {support_link}contactați "
 "asistența tehnică{/support_link}."
 
-#: cron.php:124
-msgid "Listing Details"
-msgstr "Detalii anunț"
-
-#: cron.php:126
-msgid "Ad Title:"
-msgstr "Titlu Anunț:"
-
-#: cron.php:129
-msgid "Posted:"
-msgstr "Postat la:"
-
-#: cron.php:133
-msgid "Renew your ad by visiting:"
-msgstr "Reînnoiți anunțul dvs. vizitând:"
-
 #. translators: %s is the title of the listing.
 #: frontend/ad-functions.php:179
 #: includes/listings/class-listing-renewed-email-notifications.php:86
@@ -2022,7 +2006,7 @@ msgstr "Vânzător"
 msgid "Visit Website"
 msgstr "Vizitează website"
 
-#: frontend/placeholders.php:665 includes/functions/listings.php:369
+#: frontend/placeholders.php:665 includes/functions/listings.php:378
 msgid "Location"
 msgstr "Locație"
 
@@ -3321,6 +3305,26 @@ msgstr[1] ""
 msgstr[2] ""
 "Eroare la încercarea de a trimite {count} email-uri cu cheile de acces."
 
+#: includes/admin/listings/class-send-emails.php:63
+msgid "Listing Details"
+msgstr "Detalii anunț"
+
+#: includes/admin/listings/class-send-emails.php:65
+msgid "Ad Title:"
+msgstr "Titlu Anunț:"
+
+#: includes/admin/listings/class-send-emails.php:68
+msgid "Posted:"
+msgstr "Postat la:"
+
+#: includes/admin/listings/class-send-emails.php:72
+msgid "Renew your ad by visiting:"
+msgstr "Reînnoiți anunțul dvs. vizitând:"
+
+#: includes/admin/listings/class-send-emails.php:162
+msgid "less than 1"
+msgstr "mai mic decât 1"
+
 #: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:143
 msgid "Ad sent to Facebook group."
 msgid_plural "{count} ads sent to Facebook group."
@@ -3737,10 +3741,6 @@ msgstr ""
 "alt website. Contactați <support-link>suportul tehnic</a> pentru mai "
 "asistență ulterioară."
 
-#: includes/class-listing-is-about-to-expire-notification.php:42
-msgid "less than 1"
-msgstr "mai mic decât 1"
-
 #: includes/class-listings-api.php:112 includes/class-listings-api.php:315
 msgid ""
 "There was an unexpected error trying to save the listing details. Please try "
@@ -3761,7 +3761,7 @@ msgstr ""
 msgid "There was an error trying to save the listing details:"
 msgstr "Eroare la încercarea de a salva detaliile de listare:"
 
-#: includes/class-listings-api.php:736
+#: includes/class-listings-api.php:742
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -4338,23 +4338,23 @@ msgstr "Introduceți detaliile anunțului."
 msgid "Top Level Category"
 msgstr "Categorie de prim nivel"
 
-#: includes/functions/listings.php:251
+#: includes/functions/listings.php:260
 #: includes/listings/class-listings-content-renderer.php:171
 msgid "Are you sure you want to flag this ad?"
 msgstr "Sunteți sigur că vreți să reclamați acest anunț ca nepotrivit?"
 
-#: includes/functions/listings.php:252
+#: includes/functions/listings.php:261
 #: includes/listings/class-listings-content-renderer.php:172
 msgid "This Ad has been flagged."
 msgstr "Acest anunț a fost marcat nepotrivit."
 
-#: includes/functions/listings.php:253
+#: includes/functions/listings.php:262
 #: includes/listings/class-listings-content-renderer.php:173
 msgid "An error occurred while trying to flag the Ad."
 msgstr ""
 "A apărut o eroare în timp ce s-a încercat marcarea anunțului ca nepotrivit."
 
-#: includes/functions/listings.php:290
+#: includes/functions/listings.php:299
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
@@ -4362,7 +4362,7 @@ msgstr ""
 "Ne pare rău, acest anunț nu este disponibil. Vă rugăm să încercați să "
 "explorați sau să căutați între anunțurile existente."
 
-#: includes/functions/listings.php:307
+#: includes/functions/listings.php:316
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
@@ -4370,12 +4370,12 @@ msgstr ""
 "Anunțul pe care încercați să îl vedeți se află în așteptare pentru aprobare. "
 "De îndată ce administatorul îl aproba, va deveni activ și vizibil."
 
-#: includes/functions/listings.php:312
+#: includes/functions/listings.php:321
 #: includes/listings/class-listings-content-renderer.php:107
 msgid "Your email address was successfully verified."
 msgstr "Adresa dvs. de email a fost verificată cu succes."
 
-#: includes/functions/listings.php:316
+#: includes/functions/listings.php:325
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
@@ -4383,7 +4383,7 @@ msgstr ""
 "Acest anunț este dezactivat până când administratorul îl va aproba. Doar "
 "dvs. (Administatorul) și autorul îl pot vedea."
 
-#: includes/functions/listings.php:319
+#: includes/functions/listings.php:328
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
@@ -4391,7 +4391,7 @@ msgstr ""
 "Acest anunț este dezactivat până când veți verifica adresa dvs. de email "
 "folosită pentru detaliile de contact. Doar dvs. (autorul) îl puteți vedea."
 
-#: includes/functions/listings.php:322
+#: includes/functions/listings.php:331
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."

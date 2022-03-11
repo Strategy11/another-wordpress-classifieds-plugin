@@ -675,7 +675,7 @@ class AWPCP_ListingsAPI {
     }
 
 	/**
-	 * @since x.x
+	 * @since 4.1.7
 	 */
 	public function expire_listing_with_notice( $listing, $email_info = array() ) {
 		$this->expire_listing( $listing );

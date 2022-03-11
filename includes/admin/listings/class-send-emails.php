@@ -6,12 +6,12 @@
 /**
  * Handle preping and sending emails.
  *
- * @since x.x
+ * @since 4.1.7
  */
 class AWPCP_SendEmails {
 
 	/**
-	 * @since x.x
+	 * @since 4.1.7
 	 */
 	public static function send_expiring( $ad, $email_info = [] ) {
 		if ( empty( $email_info ) ) {
@@ -53,7 +53,7 @@ class AWPCP_SendEmails {
 	}
 
 	/**
-	 * @since x.x
+	 * @since 4.1.7
 	 */
 	private static function expiring_body( $listing, $body ) {
 		$renderer   = awpcp_listing_renderer();
@@ -77,7 +77,7 @@ class AWPCP_SendEmails {
 	}
 
 	/**
-	 * @since x.x
+	 * @since 4.1.7
 	 */
 	public static function get_expiring_email() {
 		$email_info = [
@@ -104,7 +104,7 @@ class AWPCP_SendEmails {
 	 * can be renewed. We double check here to make
 	 * sure users can use the link in the email immediately.
 	 *
-	 * @since x.x
+	 * @since 4.1.7
 	 */
 	public static function send_renewal( $listing ) {
 		$listing_renderer = awpcp_listing_renderer();
@@ -126,7 +126,7 @@ class AWPCP_SendEmails {
 	}
 
 	/**
-	 * @since x.x
+	 * @since 4.1.7
 	 */
 	public static function renewal_subject( $listing ) {
 		$subject_template = get_awpcp_option( 'renew-ad-email-subject' );
@@ -137,7 +137,7 @@ class AWPCP_SendEmails {
 	/**
 	 * Replace the placeholder with number of days.
 	 *
-	 * @since x.x
+	 * @since 4.1.7
 	 */
 	private static function add_days_until_expiration( $listing, &$string ) {
 		if ( strpos( $string, '%d' ) === false && strpos( $string, '%s' ) === false ) {
@@ -150,7 +150,7 @@ class AWPCP_SendEmails {
 	}
 
 	/**
-	 * @since x.x
+	 * @since 4.1.7
 	 */
 	private static function days_before_listing_expires( $listing ) {
 		$listing_renderer = awpcp_listing_renderer();
@@ -163,7 +163,7 @@ class AWPCP_SendEmails {
 	}
 
 	/**
-	 * @since x.x
+	 * @since 4.1.7
 	 */
 	public static function renewal_body( $listing ) {
 		$introduction = get_awpcp_option( 'renew-ad-email-body' );
@@ -184,7 +184,7 @@ class AWPCP_SendEmails {
 	}
 
 	/**
-	 * @since x.x
+	 * @since 4.1.7
 	 */
 	private static function renewal_link( $listing ) {
 		return urldecode( awpcp_get_renew_ad_url( $listing->ID ) );

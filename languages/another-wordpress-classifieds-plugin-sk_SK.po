@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2021-12-01 22:08:53+00:00\n"
+"POT-Creation-Date: 2022-03-11 17:31:08+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Slovak (Slovakia) (http://www.transifex.com/wp-translations/"
@@ -1263,22 +1263,6 @@ msgid ""
 "contact support{/support_link}."
 msgstr ""
 
-#: cron.php:124
-msgid "Listing Details"
-msgstr "Detaily výpisov"
-
-#: cron.php:126
-msgid "Ad Title:"
-msgstr "Názov inzerátu: "
-
-#: cron.php:129
-msgid "Posted:"
-msgstr "Pridané:"
-
-#: cron.php:133
-msgid "Renew your ad by visiting:"
-msgstr "Obnoviť inzerát navštívením: "
-
 #. translators: %s is the title of the listing.
 #: frontend/ad-functions.php:179
 #: includes/listings/class-listing-renewed-email-notifications.php:86
@@ -1766,7 +1750,7 @@ msgstr "Predajca"
 msgid "Visit Website"
 msgstr "Navštívte stránku"
 
-#: frontend/placeholders.php:665 includes/functions/listings.php:369
+#: frontend/placeholders.php:665 includes/functions/listings.php:378
 msgid "Location"
 msgstr "Poloha"
 
@@ -3024,6 +3008,26 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
+#: includes/admin/listings/class-send-emails.php:63
+msgid "Listing Details"
+msgstr "Detaily výpisov"
+
+#: includes/admin/listings/class-send-emails.php:65
+msgid "Ad Title:"
+msgstr "Názov inzerátu: "
+
+#: includes/admin/listings/class-send-emails.php:68
+msgid "Posted:"
+msgstr "Pridané:"
+
+#: includes/admin/listings/class-send-emails.php:72
+msgid "Renew your ad by visiting:"
+msgstr "Obnoviť inzerát navštívením: "
+
+#: includes/admin/listings/class-send-emails.php:162
+msgid "less than 1"
+msgstr ""
+
 #: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:143
 msgid "Ad sent to Facebook group."
 msgid_plural "{count} ads sent to Facebook group."
@@ -3386,10 +3390,6 @@ msgid ""
 "site. Contact <support-link>customer support</a> for further assistance."
 msgstr ""
 
-#: includes/class-listing-is-about-to-expire-notification.php:42
-msgid "less than 1"
-msgstr ""
-
 #: includes/class-listings-api.php:112 includes/class-listings-api.php:315
 msgid ""
 "There was an unexpected error trying to save the listing details. Please try "
@@ -3406,7 +3406,7 @@ msgstr ""
 msgid "There was an error trying to save the listing details:"
 msgstr ""
 
-#: includes/class-listings-api.php:736
+#: includes/class-listings-api.php:742
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -3929,28 +3929,28 @@ msgstr ""
 msgid "Top Level Category"
 msgstr "Kategória najvyššej úrovne"
 
-#: includes/functions/listings.php:251
+#: includes/functions/listings.php:260
 #: includes/listings/class-listings-content-renderer.php:171
 msgid "Are you sure you want to flag this ad?"
 msgstr "Ste si istý, že chcete označiť tento inzerát?"
 
-#: includes/functions/listings.php:252
+#: includes/functions/listings.php:261
 #: includes/listings/class-listings-content-renderer.php:172
 msgid "This Ad has been flagged."
 msgstr "Tento inzerát bol označený."
 
-#: includes/functions/listings.php:253
+#: includes/functions/listings.php:262
 #: includes/listings/class-listings-content-renderer.php:173
 msgid "An error occurred while trying to flag the Ad."
 msgstr "Nastala chyba pri pokuse o označenie inzerátu."
 
-#: includes/functions/listings.php:290
+#: includes/functions/listings.php:299
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
 msgstr ""
 
-#: includes/functions/listings.php:307
+#: includes/functions/listings.php:316
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
@@ -3958,12 +3958,12 @@ msgstr ""
 "Inzerát, ktorý si želáte zobraziť čaká na schválenie. Akonáhle ho "
 "administrátor schváli, bude aktívny a viditeľný."
 
-#: includes/functions/listings.php:312
+#: includes/functions/listings.php:321
 #: includes/listings/class-listings-content-renderer.php:107
 msgid "Your email address was successfully verified."
 msgstr "Vaša e-mailová adresa bola úspešne overená."
 
-#: includes/functions/listings.php:316
+#: includes/functions/listings.php:325
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
@@ -3971,7 +3971,7 @@ msgstr ""
 "Inzerát je vypnutý než ho administrátor schváli. Môžete ho vidieť iba vy "
 "(administrátor) a autor."
 
-#: includes/functions/listings.php:319
+#: includes/functions/listings.php:328
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
@@ -3979,7 +3979,7 @@ msgstr ""
 "Inzerát je vypnutý než overíme emailovú adresu. Môžete ho vidieť iba vy "
 "(administrátor) a autor."
 
-#: includes/functions/listings.php:322
+#: includes/functions/listings.php:331
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."
