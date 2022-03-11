@@ -50,6 +50,16 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
         // $this->save_current_user();
     }
 
+	/**
+	 * Shim since haystack requires an array now.
+	 */
+	public function assertContains( $needle, $haystack ) {
+		if ( is_string( $haystack ) ) {
+			return $this->assertStringContains( $needle, $haystack );
+		}
+		return parent::assertContains( $needle, $haystack );
+	}
+
     // /**
     //  * TODO: We probably won't need this if we stop using WordPress testing framework.
     //  */

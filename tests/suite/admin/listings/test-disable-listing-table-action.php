@@ -50,8 +50,8 @@ class AWPCP_DisableListingTableActionTest extends AWPCP_UnitTestCase {
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertContains( 'notice-success', $messages[0] );
-        $this->assertContains( 'is-dismissible', $messages[0] );
+        $this->assertStringContains( 'notice-success', $messages[0] );
+        $this->assertStringContains( 'is-dismissible', $messages[0] );
     }
 }
 
