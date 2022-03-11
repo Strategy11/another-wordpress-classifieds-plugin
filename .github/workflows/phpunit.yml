@@ -53,4 +53,4 @@ jobs:
         run: |
           cd "/tmp/wordpress/src/wp-content/plugins/${GITHUB_REPOSITORY#*/}"
           pwd
-          phpunit
+          vendor/bin/phpunit
