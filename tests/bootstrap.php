@@ -61,10 +61,10 @@ if ( ! defined( 'OBJECT' ) ) {
     define( 'OBJECT', 'OBJECT' );
 }
 
-require dirname( __FILE__ ) . '/includes/shims.php';
-require dirname( __FILE__ ) . '/includes/functions.php';
-require dirname( __FILE__ ) . '/includes/testcase-awpcp.php';
-require dirname( __FILE__ ) . '/includes/testcase-step-decorator.php';
-require dirname( __FILE__ ) . '/includes/class-listings-table-search-mode-test-case.php';
-require dirname( __FILE__ ) . '/includes/class-container-configuration-test-case.php';
+require_once dirname( __FILE__ ) . '/includes/shims.php';
+require_once dirname( __FILE__ ) . '/includes/functions.php';
+require_once dirname( __FILE__ ) . '/includes/testcase-awpcp.php';
+require_once dirname( __FILE__ ) . '/includes/testcase-step-decorator.php';
+require_once dirname( __FILE__ ) . '/includes/class-listings-table-search-mode-test-case.php';
+require_once dirname( __FILE__ ) . '/includes/class-container-configuration-test-case.php';
 
