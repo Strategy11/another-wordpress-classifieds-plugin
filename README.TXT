@@ -168,6 +168,12 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+= 4.1.7 =
+* Set listings to expired more frequently. Instead of only doing this on the cron, do it when we check if the listing is expired.
+* Fix: Allow ads to expire more than once.
+* Fix: EU dates were showing the wrong expiration dates in emails.
+* Fix: When used with featured ads, they weren't always showing at the top on the main page.
+
 = 4.1.6 =
 * New: Simplify importing dates. It's smarter now with fewer settings.
 * New: Use a more global date format in the CSV export. This can be changed with the new awpcp_export_date_format hook.
@@ -195,19 +201,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Decrease conflicts and load by only loading admin resources when needed.
 * Fix: The character limit on a fee plan was only saving if both title and content had a custom limit.
 * Fix: Get rid of php warning with Yoast SEO installed.
-
-= 4.1.1 =
-* Fix - Restore post type menu accesibility for compatibility.
-
-= 4.1 =
-* New - Merge together Classifieds admin menus to remove extra duplication. (#3024)
-* Simplify the interface by only allowing users to edit listings from the front-end.
-* Remove the Quick view page in the admin area and use the front-end to avoid doing it two different ways.
-* Tweak - Images moderation is now located in "Settings -> Classifieds -> Moderation" menu.
-* Tweak - Combine all the image dimensions settings into the same page ("Media -> Dimensions").
-* Fix - Make sure manual upgrade routines are registered.
-* Fix - Update link for manage listing images in admin/moderator notifications. (#3035)
-* Fix - Do not show the 'renew' button when it can't be used on listings without owner. (#3042)
-* Fix - Edit post url in place ad user notification email. (#3044)
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>
