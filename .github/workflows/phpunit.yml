@@ -31,7 +31,6 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          tools: phpunit-polyfills
       - name: Installing Composer
         run: |
           composer require --no-update phpunit/phpunit:"${{ matrix.phpunit }}" --no-interaction
@@ -56,4 +55,6 @@ jobs:
         run: |
           cd "/tmp/wordpress/src/wp-content/plugins/${GITHUB_REPOSITORY#*/}"
           pwd
+          vendor/bin/phpunit --version
+          phpunit --version
           phpunit
