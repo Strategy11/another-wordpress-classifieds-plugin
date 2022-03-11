@@ -32,14 +32,14 @@ if ( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
 	require '../../../../tests/phpunit/includes/bootstrap.php';
 }
 
-require AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
+require_once AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
 
 Phake::setClient( Phake::CLIENT_PHPUNIT6 );
 
-require AWPCP_DIR . '/functions.php';
-require AWPCP_DIR . '/includes/functions/assets.php';
-require AWPCP_DIR . '/includes/functions/listings.php';
-require AWPCP_DIR . '/includes/functions/routes.php';
+require_once AWPCP_DIR . '/functions.php';
+require_once AWPCP_DIR . '/includes/functions/assets.php';
+require_once AWPCP_DIR . '/includes/functions/listings.php';
+require_once AWPCP_DIR . '/includes/functions/routes.php';
 
 /**
  * TODO: We probably won't need this if we stop using WordPress testing framework.
