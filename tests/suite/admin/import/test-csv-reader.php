@@ -9,8 +9,8 @@ class AWPCP_Test_CSV_Reader extends AWPCP_UnitTestCase {
         ini_set( 'auto_detect_line_endings', true );
     }
 
-    public function teardown() {
-        parent::teardown();
+    public function tearDown(): void {
+        parent::tearDown();
 
         ini_set( 'auto_detect_line_endings', $this->auto_detect_line_endings );
     }

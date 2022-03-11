@@ -13,8 +13,8 @@ class AWPCP_Test_Task_Queue extends AWPCP_UnitTestCase {
         Phake::when( $this->settings )->get_runtime_option( 'awpcp-uploads-dir' )->thenReturn( $this->uploads_dir );
     }
 
-    public function teardown() {
-        parent::teardown();
+    public function tearDown(): void {
+        parent::tearDown();
 
         if ( file_exists( "{$this->uploads_dir}/task-queue.lock" ) ) {
             unlink( "{$this->uploads_dir}/task-queue.lock" );

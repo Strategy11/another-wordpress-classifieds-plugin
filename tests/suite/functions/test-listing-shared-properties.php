@@ -20,7 +20,7 @@ class AWPCP_Test_Listing_Shared_Propeties extends AWPCP_UnitTestCase {
         touch( $uploads_dir . '/images/test-image-2.jpg' );
     }
 
-    public function teardown() {
+    public function tearDown(): void {
         parent::setUp();
 
         $uploads_dir = $GLOBALS['awpcp']->settings->get_runtime_option( 'awpcp-uploads-dir' );

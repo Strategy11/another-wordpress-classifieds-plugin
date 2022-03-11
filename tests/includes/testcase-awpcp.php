@@ -95,14 +95,14 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
     /**
      * Code executed at the end of every test.
      */
-    public function teardown() {
+    public function tearDown(): void {
         array_map( 'Patchwork\restore', $this->redefined_functions );
         // $this->restore_mysql_mode();
         // $this->restore_current_user();
         // $this->resume_all_filters();
         Monkey\teardown();
 
-        parent::teardown();
+        parent::tearDown();
     }
 
     // /**

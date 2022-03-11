@@ -12,9 +12,9 @@ class AWPCP_TestFileCache extends AWPCP_UnitTestCase {
         $this->property = 'test-' . time();
     }
 
-    public function teardown() {
+    public function tearDown(): void {
         awpcp_rmdir( $this->cache_dir );
-        parent::teardown();
+        parent::tearDown();
     }
 
     public function test_cache() {

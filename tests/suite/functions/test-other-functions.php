@@ -10,8 +10,8 @@ class AWPCP_TestFunctions extends AWPCP_UnitTestCase {
         $this->_SERVER = $_SERVER;
     }
 
-    public function teardown() {
-        parent::teardown();
+    public function tearDown(): void {
+        parent::tearDown();
         $_SERVER = $this->_SERVER;
     }
 

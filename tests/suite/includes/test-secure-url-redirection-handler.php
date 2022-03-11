@@ -19,8 +19,8 @@ class AWPCP_TestSecureURLRedirectionHandler extends AWPCP_UnitTestCase {
         awpcp()->settings->set_or_update_option( 'force-secure-urls', true );
     }
 
-    public function teardown() {
-        parent::teardown();
+    public function tearDown(): void {
+        parent::tearDown();
 
         global $wp_filter;
         $wp_filter['wp_redirect'] = $this->wp_redirect_filters;
