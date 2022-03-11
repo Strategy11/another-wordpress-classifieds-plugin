@@ -43,7 +43,6 @@
             <file>tests/suite/frontend/test-submit-listing-form-steps.php</file>
             <file>tests/suite/functions/test-pagination-functions.php</file>
             <file>tests/suite/functions/assets/test-select2-functions.php</file>
-            <file>tests/suite/functions/routes/test-get-quick-view-listing-url.php</file>
             <file>tests/suite/includes/test-awpcp.php</file>
             <file>tests/suite/includes/test-listings-api.php</file>
             <file>tests/suite/includes/test-listing-authorization.php</file>
