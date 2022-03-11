@@ -49,5 +49,6 @@ jobs:
       - name: PhpUnit tests
         run: |
           cd "/tmp/wordpress/src/wp-content/plugins/${GITHUB_REPOSITORY#*/}"
+          composer install
           pwd
           phpunit
