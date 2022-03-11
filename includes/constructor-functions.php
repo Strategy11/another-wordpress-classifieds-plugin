@@ -175,10 +175,10 @@ function awpcp_attachments_logic() {
 }
 
 /**
- * @since 4.0.0 Extracted from class-facebook-cache-helper.php.
+ * @since 4.0.0
  */
 function awpcp_facebook_cache_helper() {
-
+	_deprecated_function( __FUNCTION__, '4.1.8' );
 }
 
 /**

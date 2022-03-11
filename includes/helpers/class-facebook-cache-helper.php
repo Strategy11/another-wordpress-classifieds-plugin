@@ -9,30 +9,7 @@
  */
 class AWPCP_FacebookCacheHelper {
 
-    /**
-     * @var FacebookIntegration
-     */
-    private $facebook_integration;
-
-    /**
-     * @var ListingRenderer
-     */
-    private $listing_renderer;
-
-    /**
-     * @var ListingsCollection
-     */
-    private $ads;
-
-    /**
-     * @var Settings
-     */
-    private $settings;
-
-    public function __construct( $facebook_integration, $listing_renderer, $ads, $settings ) {
-    }
-
     public function handle_clear_cache_event_hook( $ad_id ) {
-
+		_deprecated_function( __FUNCTION__, '4.1.8' );
     }
 }

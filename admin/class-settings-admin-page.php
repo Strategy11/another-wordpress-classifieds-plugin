@@ -113,8 +113,6 @@ class AWPCP_SettingsAdminPage {
         return $group;
     }
 
-    // phpcs:disable
-
 	private function instantiate_auxiliar_pages() {
 		$pages = awpcp_classfieds_pages_settings();
 	}
@@ -124,9 +122,6 @@ function awpcp_classfieds_pages_settings() {
 	return new AWPCP_Classified_Pages_Settings( awpcp_missing_pages_finder() );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_Classified_Pages_Settings {
 
 	private $missing_pages_finder;

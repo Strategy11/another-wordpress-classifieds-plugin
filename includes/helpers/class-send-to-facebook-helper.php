@@ -46,6 +46,17 @@ class AWPCP_SendToFacebookHelper {
     }
 
     public function send_listing_to_facebook( $listing_id ) {
+        try {
+            $listing = $this->listings->get( $listing_id );
+        } catch ( AWPCP_Exception $e ) {
+            return;
+        }
+
+        try {
+            $this->send_listing_to_facebook_page( $listing );
+        } catch ( AWPCP_Exception $e ) {
+            // pass
+        }
     }
 
     /**
@@ -196,6 +207,6 @@ class AWPCP_SendToFacebookHelper {
      * @throws AWPCP_Exception  If the listing is not public.
      */
     public function send_listing_to_facebook_group( $listing ) {
-        
+        _deprecated_function( __FUNCTION__, '4.1.8' );
     }
 }

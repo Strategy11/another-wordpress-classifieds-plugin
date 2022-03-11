@@ -11,56 +11,26 @@ class AWPCP_SendToFacebookGroupListingTableAction implements
     AWPCP_ConditionalListTableActionInterface {
 
     /**
-     * @var object
-     */
-    private $facebook_helper;
-
-    /**
-     * @var object
-     */
-    private $wordpress;
-
-    /**
-     * @var object
-     */
-    private $roles;
-
-    /**
-     * @since 4.0.0
-     *
-     * @param object $facebook_helper An instance of Send To Facebook Helper.
-     * @param object $roles           An instance of Roles and Capabilities.
-     * @param object $wordpress       An instance of WordPress.
-     */
-    public function __construct( $facebook_helper, $roles, $wordpress ) {
-        $this->facebook_helper = $facebook_helper;
-        $this->roles           = $roles;
-        $this->wordpress       = $wordpress;
-    }
-
-    /**
      * @since 4.0.0
      */
     public function is_needed() {
+		_deprecated_function( __FUNCTION__, '4.1.8' );
         return $this->roles->current_user_is_moderator();
     }
 
     /**
      * @since 4.0.0
-     *
-     * @param object $post  An instance of WP_Post.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function should_show_action_for( $post ) {
+    public function should_show_action_for() {
+		_deprecated_function( __FUNCTION__, '4.1.8' );
         return false; // Available as a bulk action only.
     }
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function get_icon_class( $post ) {
+    public function get_icon_class() {
+		_deprecated_function( __FUNCTION__, '4.1.8' );
         return '';
     }
 
@@ -68,39 +38,38 @@ class AWPCP_SendToFacebookGroupListingTableAction implements
      * @since 4.0.0
      */
     public function get_title() {
+		_deprecated_function( __FUNCTION__, '4.1.8' );
         return '';
     }
 
     /**
-     * @param object $post  An instance of WP_Post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function get_label( $post ) {
+    public function get_label() {
+		_deprecated_function( __FUNCTION__, '4.1.8' );
         return $this->get_title();
     }
 
     /**
-     * @param object $post          An instance of WP_Post.
-     * @param string $current_url   The URL of the current page.
      * @since 4.0.0
      */
-    public function get_url( $post, $current_url ) {
+    public function get_url() {
+		_deprecated_function( __FUNCTION__, '4.1.8' );
     }
 
     /**
-     * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */
-    public function process_item( $post ) {
+    public function process_item() {
+		_deprecated_function( __FUNCTION__, '4.1.8' );
         return 'success';
     }
 
     /**
-     * @param array $result_codes   An array of result codes from this action.
      * @since 4.0.0
      */
-    public function get_messages( $result_codes ) {
+    public function get_messages() {
+		_deprecated_function( __FUNCTION__, '4.1.8' );
         return array();
     }
 }

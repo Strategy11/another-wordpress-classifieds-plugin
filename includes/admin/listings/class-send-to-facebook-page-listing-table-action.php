@@ -13,11 +13,6 @@ class AWPCP_SendToFacebookPageListingTableAction implements
     /**
      * @var object
      */
-    private $facebook_helper;
-
-    /**
-     * @var object
-     */
     private $wordpress;
 
     /**
@@ -33,7 +28,6 @@ class AWPCP_SendToFacebookPageListingTableAction implements
      * @param object $wordpress       An instance of WordPress.
      */
     public function __construct( $facebook_helper, $roles, $wordpress ) {
-        $this->facebook_helper = $facebook_helper;
         $this->roles           = $roles;
         $this->wordpress       = $wordpress;
     }

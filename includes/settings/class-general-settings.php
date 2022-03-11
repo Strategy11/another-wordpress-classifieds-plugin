@@ -712,8 +712,7 @@ class AWPCP_GeneralSettings {
                 'id'       => 'facebook-settings',
                 'priority' => 100,
 				'conditions' => array(
-					'zapier-webhook-for-facebook-page-integration',
-					'ifttt-webhook-base-url-for-facebook-page-integration',
+					'sends-listings-to-facebook-automatically',
 				),
             ]
         );
@@ -723,6 +722,26 @@ class AWPCP_GeneralSettings {
                 'name'   => __( 'Facebook', 'another-wordpress-classifieds-plugin' ),
                 'id'     => 'facebook-settings',
                 'parent' => 'facebook-settings',
+            ]
+        );
+
+        $settings_manager->add_settings_section(
+            [
+                'id'       => 'general',
+                'name'     => '',
+                'priority' => 10,
+                'subgroup' => 'facebook-settings',
+            ]
+        );
+
+        $settings_manager->add_setting(
+            [
+                'id'          => 'sends-listings-to-facebook-automatically',
+                'name'        => __( 'Send Ads to Facebook Automatically', 'another-wordpress-classifieds-plugin' ),
+                'type'        => 'checkbox',
+                'default'     => 0,
+                'description' => __( 'If checked, Ads will be sent to Facebook shortly after they are posted, enabled or edited, whichever occurs first. Please note that ads will be sent only once and disabled ads cannot be sent to Facebook.', 'another-wordpress-classifieds-plugin' ),
+                'section'     => 'general',
             ]
         );
 
