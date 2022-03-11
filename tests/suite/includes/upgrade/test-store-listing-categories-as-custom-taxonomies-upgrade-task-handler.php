@@ -15,8 +15,8 @@ class AWPCP_Test_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Hand
 	private $category_id;
 	private $stored_term_id;
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         if ( ! defined( 'AWPCP_TABLE_CATEGORIES' ) ) {
             define( 'AWPCP_TABLE_CATEGORIES', 'categories' );

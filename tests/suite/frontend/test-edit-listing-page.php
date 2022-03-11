@@ -12,8 +12,8 @@ use Brain\Monkey\Functions;
  */
 class AWPCP_Test_Edit_Listing_Page extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->attachments = Phake::mock( 'AWPCP_Attachments_Collection' );
         $this->listing_upload_limits = Phake::mock( 'AWPCP_ListingUploadLimits' );

@@ -13,8 +13,8 @@ class AWPCP_ListingFieldsMetaboxTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->post = (object) array(
             'ID'          => wp_rand() + 1,

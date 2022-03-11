@@ -244,6 +244,8 @@ function awpcp_render_classifieds_bar( $components = array() ) {
  * @return Show Ad page content.
  */
 function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, $show_messages=true ) {
+	_deprecated_function( __FUNCTION__, '4.0', 'Use an instance of Listings Content Renderer instead.' );
+
 	global $wpdb;
 
 	awpcp_maybe_add_thickbox();

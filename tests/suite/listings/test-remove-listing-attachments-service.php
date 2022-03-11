@@ -8,8 +8,8 @@
  */
 class AWPCP_RemoveListingAttachmentsServiceTest extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listing_post_type = 'awpcp_listing';
         $this->attachments       = Mockery::mock( 'AWPCP_Attachments_Collection' );

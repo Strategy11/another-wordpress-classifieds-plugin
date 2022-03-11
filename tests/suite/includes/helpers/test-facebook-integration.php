@@ -9,8 +9,8 @@ use Brain\Monkey\Functions;
 
 class AWPCP_TestSendListingToFacebookHelper extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->facebook_config  = Phake::mock( 'AWPCP_Facebook' );
         $this->facebook_helper  = Phake::mock( 'AWPCP_SendToFacebookHelper' );

@@ -8,8 +8,8 @@
  */
 class AWPCP_TestListingPaymentTransactionHandler extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listing = (object) array( 'ID' => wp_rand() + 1 );
 

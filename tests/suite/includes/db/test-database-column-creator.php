@@ -7,8 +7,8 @@ class AWPCP_TestDatabaseColumnCreator extends AWPCP_UnitTestCase {
 
     private $table_name = 'awpcp_test_database_column_creator';
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         global $wpdb;
         // TOOD: is there a helper function to create tables?
@@ -31,8 +31,8 @@ class AWPCP_TestDatabaseColumnCreator extends AWPCP_UnitTestCase {
         $this->assertEquals( 'varchar(255)', $columns[1]->Type );
     }
 
-    public function teardown() {
-        parent::teardown();
+    public function tearDown(): void {
+        parent::tearDown();
 
         global $wpdb;
         $wpdb->query( sprintf( 'DROP TABLE IF EXISTS %s' , $this->table_name ) );

@@ -13,8 +13,8 @@ class AWPCP_SendAccessKeyListingTableActionTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->email_factory    = null;
         $this->listing_renderer = null;
@@ -135,7 +135,7 @@ class AWPCP_SendAccessKeyListingTableActionTest extends AWPCP_UnitTestCase {
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertContains( 'notice-success', $messages[0] );
+        $this->assertStringContainsString( 'notice-success', $messages[0] );
     }
 
     /**
@@ -152,6 +152,6 @@ class AWPCP_SendAccessKeyListingTableActionTest extends AWPCP_UnitTestCase {
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertContains( 'notice-error', $messages[0] );
+        $this->assertStringContainsString( 'notice-error', $messages[0] );
     }
 }

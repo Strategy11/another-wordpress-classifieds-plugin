@@ -13,8 +13,8 @@ class AWPCP_SettingsContainerConfigurationTest extends AWPCP_ContainerConfigurat
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         // XXX: The Settings class does some stuff on the constructor.
         Functions\when( 'get_option' )->justReturn( false );

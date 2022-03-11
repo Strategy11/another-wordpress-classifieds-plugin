@@ -2,8 +2,8 @@
 
 class AWPCP_Test_Delete_Attachment_Ajax_Action extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->attachments_logic = Phake::mock( 'AWPCP_Attachments_Logic' );
     }

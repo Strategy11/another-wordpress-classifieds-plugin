@@ -2,8 +2,8 @@
 
 class AWPCP_TestUsersCollection extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->payments = Phake::mock( 'AWPCP_PaymentsAPI' );
         $this->settings = Phake::mock( 'AWPCP_Settings_API' );

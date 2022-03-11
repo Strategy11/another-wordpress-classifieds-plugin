@@ -11,8 +11,8 @@ class AWPCP_TestSpamSubmitter extends AWPCP_UnitTestCase {
     /**
      * Prepares mock objects before each test.
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->subject = new stdClass();
 

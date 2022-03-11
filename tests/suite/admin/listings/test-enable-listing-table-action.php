@@ -11,8 +11,8 @@ class AWPCP_EnableListingTableActionTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listings_logic   = Mockery::mock( 'AWPCP_Listings_API' );
         $this->listing_renderer = Mockery::mock( 'AWPCP_ListingRenderer' );
@@ -79,7 +79,7 @@ class AWPCP_EnableListingTableActionTest extends AWPCP_UnitTestCase {
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertContains( 'notice-success', $messages[0] );
-        $this->assertContains( 'is-dismissible', $messages[0] );
+        $this->assertStringContainsString( 'notice-success', $messages[0] );
+        $this->assertStringContainsString( 'is-dismissible', $messages[0] );
     }
 }

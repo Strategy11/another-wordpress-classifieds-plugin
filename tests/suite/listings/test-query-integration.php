@@ -17,8 +17,8 @@ class AWPCP_QueryIntegrationTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->settings = Mockery::mock( 'AWPCP_SettingsAPI' );
         $this->db       = Mockery::mock( 'wpdb' );

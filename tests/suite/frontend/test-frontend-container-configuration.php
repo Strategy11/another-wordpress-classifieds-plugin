@@ -13,8 +13,8 @@ class AWPCP_FrontendContainerConfigurationTest extends AWPCP_ContainerConfigurat
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $awpcp = (object) [
             'container' => [

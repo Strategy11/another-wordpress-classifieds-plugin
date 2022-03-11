@@ -11,7 +11,7 @@ class AWPCP_SendToFacebookHelperTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
+    public function setUp(): void {
         $this->facebook         = Mockery::mock( 'AWPCP_SendToFacebookHelper' );
         $this->listing_renderer = Mockery::mock( 'AWPCP_ListingRenderer' );
         $this->settings         = Mockery::mock( 'AWPCP_Settings' );

@@ -8,8 +8,8 @@ use function Patchwork\relay;
 
 class AWPCP_Test_Media_Uploaded_Notification extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listing = (object) array( 'ID' => rand() + 1 );
         $this->attachment = (object) array();

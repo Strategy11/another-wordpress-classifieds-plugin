@@ -13,8 +13,8 @@ class AWPCP_ContainerConfigurationTest extends AWPCP_ContainerConfigurationTestC
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
         $GLOBALS['wpdb'] = (object) [];

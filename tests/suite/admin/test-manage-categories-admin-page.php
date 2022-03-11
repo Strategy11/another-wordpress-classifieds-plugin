@@ -2,8 +2,8 @@
 
 class AWPCP_Test_Manage_Categories_Admin_Page extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->categories = Phake::mock( 'AWPCP_Categories_Collection' );
         $this->template_renderer = Phake::mock( 'AWPCP_Template_Renderer' );

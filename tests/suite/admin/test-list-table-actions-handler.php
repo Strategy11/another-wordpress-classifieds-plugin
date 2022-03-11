@@ -59,7 +59,7 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         ob_end_clean();
 
         // Verification.
-        $this->assertContains( $message, $output );
+        $this->assertStringContainsString( $message, $output );
     }
 
     /**
@@ -95,8 +95,8 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
 
         // Verification.
         $this->assertContains( 'custom-action', array_keys( $actions ) );
-        $this->assertContains( 'Label', $actions['custom-action'] );
-        $this->assertContains( 'URL', $actions['custom-action'] );
+        $this->assertStringContainsString( 'Label', $actions['custom-action'] );
+        $this->assertStringContainsString( 'URL', $actions['custom-action'] );
     }
 
     /**

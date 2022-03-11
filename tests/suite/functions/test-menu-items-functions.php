@@ -6,8 +6,8 @@
  */
 class AWPCP_TestMenuItemsFunctions extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->pause_filter( 'awpcp_menu_items' );
 

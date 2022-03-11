@@ -5,16 +5,16 @@
  */
 class AWPCP_TestFileCache extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->cache_dir = WP_CONTENT_DIR . '/uploads/test/awpcp/cache-' . time();
         $this->property = 'test-' . time();
     }
 
-    public function teardown() {
+    public function tearDown(): void {
         awpcp_rmdir( $this->cache_dir );
-        parent::teardown();
+        parent::tearDown();
     }
 
     public function test_cache() {

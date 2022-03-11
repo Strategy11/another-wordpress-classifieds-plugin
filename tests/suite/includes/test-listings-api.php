@@ -12,8 +12,8 @@ use Brain\Monkey\Functions;
  */
 class AWPCP_TestListingsAPI extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->timezone_identifier = date_default_timezone_get();
 
@@ -29,11 +29,11 @@ class AWPCP_TestListingsAPI extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function teardown() {
+    public function tearDown(): void {
         // phpcs:ignore WordPress.WP.TimezoneChange.timezone_change_date_default_timezone_set
         date_default_timezone_set( $this->timezone_identifier );
 
-        parent::teardown();
+        parent::tearDown();
     }
 
     /**

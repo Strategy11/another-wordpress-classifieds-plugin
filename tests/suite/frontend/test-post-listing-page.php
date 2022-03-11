@@ -4,8 +4,8 @@ use function Patchwork\redefine;
 
 class AWPCP_Test_Post_Listing_Page extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->transaction = Phake::mock( 'AWPCP_Payment_Transaction' );
 

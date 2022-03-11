@@ -13,7 +13,7 @@ class AWPCP_MakeStandardListingTableActionTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
+    public function setUp(): void {
         $this->listing_renderer = null;
         $this->wordpress        = null;
     }
@@ -54,7 +54,7 @@ class AWPCP_MakeStandardListingTableActionTest extends AWPCP_UnitTestCase {
         $label = $action->get_label( null );
 
         // Verification.
-        $this->assertContains( 'Standard', $label );
+        $this->assertStringContainsString( 'Standard', $label );
     }
 
     /**
@@ -144,8 +144,8 @@ class AWPCP_MakeStandardListingTableActionTest extends AWPCP_UnitTestCase {
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertContains( 'notice-success', $messages[0] );
-        $this->assertContains( 'standard', $messages[0] );
+        $this->assertStringContainsString( 'notice-success', $messages[0] );
+        $this->assertStringContainsString( 'standard', $messages[0] );
     }
 
     /**
@@ -162,8 +162,8 @@ class AWPCP_MakeStandardListingTableActionTest extends AWPCP_UnitTestCase {
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertContains( 'notice-error', $messages[0] );
-        $this->assertContains( 'standard', $messages[0] );
+        $this->assertStringContainsString( 'notice-error', $messages[0] );
+        $this->assertStringContainsString( 'standard', $messages[0] );
     }
 }
 

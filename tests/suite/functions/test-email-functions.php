@@ -5,8 +5,8 @@
  */
 class AWPCP_TestEmailFunctions extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->key = '5d36e4dffdd39407db5979e34c6a86f8';
     }

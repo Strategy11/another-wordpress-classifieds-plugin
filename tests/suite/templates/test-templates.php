@@ -69,8 +69,8 @@ class AWPCP_TemplateTester {
  */
 class AWPCP_TestTemplates extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
         $this->tester = new AWPCP_TemplateTester();
     }
 

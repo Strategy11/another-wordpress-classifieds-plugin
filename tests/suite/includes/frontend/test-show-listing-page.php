@@ -13,8 +13,8 @@ class AWPCP_ShowListingPageTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listings_content_renderer = Mockery::mock( 'AWPCP_ListingsContentRenderer' );
         $this->listings_logic            = Mockery::mock( 'AWPCP_ListingsAPI' );

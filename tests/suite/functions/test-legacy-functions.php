@@ -5,8 +5,8 @@
  */
 class AWPCP_TestLegacyFunctions extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $terms = get_terms( 'awpcp_listing_category', array( 'hide_empty' => false ) );
 

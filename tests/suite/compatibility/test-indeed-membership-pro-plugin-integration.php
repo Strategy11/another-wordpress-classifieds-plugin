@@ -13,8 +13,8 @@ class AWPCP_IndeedMemebershipProPluginIntegrationTest extends AWPCP_UnitTestCase
     /**
      * @since 4.0.4
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->query = Mockery::mock( 'AWPCP_Query' );
     }

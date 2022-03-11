@@ -17,15 +17,8 @@ function awpcp_listing_renderer() {
 
 /**
  * @since 3.3
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- * @SuppressWarnings(PHPMD.ExcessivePublicCount)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_ListingRenderer {
-
-    // phpcs:disable Generic
-    // phpcs:disable Squiz
-    // phpcs:disable WordPress
 
     private $disabled_status = 'disabled';
     private $categories;
@@ -346,10 +339,6 @@ class AWPCP_ListingRenderer {
         return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_content_needs_review', true );
     }
 
-    // phpcs:enable Generic
-    // phpcs:enable Squiz
-    // phpcs:enable WordPress
-
     /**
      * @param object $listing  An instance of WP_Post.
      * @since 4.0.0
@@ -358,32 +347,25 @@ class AWPCP_ListingRenderer {
         return ! ! $this->wordpress->get_post_meta( $listing->ID, '_awpcp_flagged', true );
     }
 
-    // phpcs:disable Generic
-    // phpcs:disable Squiz
-    // phpcs:disable WordPress
-
     /**
      * @since 4.0.0
      */
     public function is_expired( $listing ) {
-        if ( $this->disabled_status !== $listing->post_status ) {
-            return false;
-        }
+		$expired     = $this->has_expired( $listing );
+		$is_disabled = $this->disabled_status === $listing->post_status;
 
-        if ( ! $this->wordpress->get_post_meta( $listing->ID, '_awpcp_expired', true ) ) {
-            return false;
-        }
+		if ( $expired && ! $is_disabled ) {
+			// This listing has expired, but isn't marked as expired.
+			awpcp_listings_api()->expire_listing_with_notice( $listing );
+		}
 
-        return true;
+		return $expired;
     }
 
     public function has_expired( $listing ) {
         return $this->has_expired_on_date( $listing, current_time( 'timestamp' ) );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     private function has_expired_on_date( $listing, $timestamp ) {
         $end_date = $this->get_plain_end_date( $listing );
 
@@ -395,6 +377,23 @@ class AWPCP_ListingRenderer {
 
         return $end_date < $timestamp;
     }
+
+	/**
+	 * @since x.x
+	 *
+	 * @return float
+	 */
+	public function days_until_expired( $listing ) {
+		if ( $this->has_expired( $listing ) ) {
+			return 0;
+		}
+
+		$end_date          = strtotime( $this->get_plain_end_date( $listing ) );
+		$extended_end_date = awpcp_extend_date_to_end_of_the_day( $end_date );
+		$time_left         = $extended_end_date - current_time( 'timestamp' );
+
+		return $time_left / ( 24 * 60 * 60 );
+	}
 
     /**
      * @param object $listing   An instance of WP_Post.
@@ -468,8 +467,4 @@ class AWPCP_ListingRenderer {
         $url = $this->get_edit_listing_url( $listing );
         return apply_filters( 'awpcp-delete-listing-url', $url, $listing );
     }
-
-    // phpcs:enable Generic
-    // phpcs:enable Squiz
-    // phpcs:enable WordPress
 }

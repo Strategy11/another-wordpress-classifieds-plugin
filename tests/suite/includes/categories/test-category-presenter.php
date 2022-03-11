@@ -13,7 +13,7 @@ class AWPCP_CategoryPresenterTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
+    public function setUp(): void {
         $this->categories_collection = Mockery::mock( 'AWPCP_CategoriesCollection' );
     }
 

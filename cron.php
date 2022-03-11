@@ -82,83 +82,25 @@ function awpcp_check_license_status() {
  * See https://github.com/drodenbaugh/awpcp/issues/808#issuecomment-42561940
  */
 function doadexpirations() {
-    $listings_logic = awpcp_listings_api();
+	$listings_logic = awpcp_listings_api();
 
-    $notify_admin = get_awpcp_option('notifyofadexpired');
-    $notify_expiring = get_awpcp_option('notifyofadexpiring');
+	$ads = awpcp_listings_collection()->find_valid_listings(array(
+		'post_type'   => AWPCP_LISTING_POST_TYPE,
+		'post_status' => 'publish',
+		'meta_query'  => array(
+			array(
+				'key'     => '_awpcp_end_date',
+				'value'   => current_time( 'mysql' ),
+				'compare' => '<=',
+				'type'    => 'DATETIME',
+			),
+		),
+	));
 
-    // allow users to use %s placeholder for the website name in the subject line
-    $subject = get_awpcp_option('adexpiredsubjectline');
-    $subject = sprintf( $subject, awpcp_get_blog_name() );
-    $bodybase = get_awpcp_option('adexpiredbodymessage');
-
-    $ads = awpcp_listings_collection()->find_valid_listings(array(
-        'post_type' => AWPCP_LISTING_POST_TYPE,
-        'meta_query' => array(
-            'relation' => 'AND',
-            array(
-                'key' => '_awpcp_end_date',
-                'value' => current_time( 'mysql' ),
-                'compare' => '<=',
-                'type' => 'DATETIME',
-            ),
-            [
-                'key'     => '_awpcp_expired',
-                'compare' => 'NOT EXISTS',
-            ],
-        ),
-    ));
-
-    foreach ($ads as $ad) {
-        $listings_logic->expire_listing( $ad );
-
-        if ( $notify_expiring == false && $notify_admin == false ) {
-            continue;
-        }
-
-        $adtitle = get_adtitle( $ad->ID );
-        $adstartdate = date( "D M j Y G:i:s", strtotime( get_adstartdate( $ad->ID ) ) );
-
-        $body = $bodybase;
-        $body.= "\n\n";
-        $body.= __( "Listing Details", 'another-wordpress-classifieds-plugin' );
-        $body.= "\n\n";
-        $body.= __( "Ad Title:", 'another-wordpress-classifieds-plugin' );
-        $body.= " $adtitle";
-        $body.= "\n\n";
-        $body.= __( "Posted:", 'another-wordpress-classifieds-plugin' );
-        $body.= " $adstartdate";
-        $body.= "\n\n";
-
-        $body.= __( "Renew your ad by visiting:", 'another-wordpress-classifieds-plugin' );
-        $body.= " " . urldecode( awpcp_get_renew_ad_url( $ad->ID ) );
-        $body.= "\n\n";
-
-        if ( $notify_expiring ) {
-            $user_email = awpcp_format_recipient_address( get_adposteremail( $ad->ID ) );
-            if ( ! empty( $user_email ) ) {
-                $email = new AWPCP_Email();
-
-                $email->to = $user_email;
-                $email->from = awpcp_admin_email_from();
-                $email->subject = $subject;
-                $email->body = $body;
-
-                $email->send();
-            }
-        }
-
-        if ( $notify_admin ) {
-            $email = new AWPCP_Email();
-
-            $email->to = awpcp_admin_email_to();
-            $email->from = awpcp_admin_email_from();
-            $email->subject = $subject;
-            $email->body = $body;
-
-            $email->send();
-        }
-    }
+	$email_info = AWPCP_SendEmails::get_expiring_email();
+	foreach ( $ads as $ad ) {
+		$listings_logic->expire_listing_with_notice( $ad, $email_info );
+	}
 }
 
 /**
@@ -235,35 +177,12 @@ function awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $list
  * This functions runs daily.
  */
 function awpcp_ad_renewal_email() {
-    $listing_renderer = awpcp_listing_renderer();
-    $wordpress        = awpcp_wordpress();
-
 	if (!(get_awpcp_option('sent-ad-renew-email') == 1)) {
 		return;
 	}
 
-    $notification = awpcp_listing_is_about_to_expire_notification();
-    $admin_sender_email = awpcp_admin_email_from();
-
 	foreach ( awpcp_listings_collection()->find_listings_about_to_expire() as $listing ) {
-        // When the user clicks the renew ad link, AWPCP uses
-        // the is_about_to_expire() method to decide if the Ad
-        // can be renewed. We double check here to make
-        // sure users can use the link in the email immediately.
-        if ( ! $listing_renderer->is_about_to_expire( $listing ) ) {
-            continue;
-        }
-
-        $email = new AWPCP_Email();
-
-        $email->from = $admin_sender_email;
-        $email->to = awpcp_format_recipient_address( $listing_renderer->get_contact_email( $listing ) );
-        $email->subject = $notification->render_subject( $listing );
-        $email->body = $notification->render_body( $listing );
-
-		if ( $email->send() ) {
-            $wordpress->update_post_meta( $listing->ID, '_awpcp_renew_email_sent', true );
-		}
+		AWPCP_SendEmails::send_renewal( $listing );
 	}
 }
 

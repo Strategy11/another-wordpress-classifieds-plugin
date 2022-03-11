@@ -11,8 +11,8 @@ class AWPCP_ListingFormFieldsTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.2
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->authorization = null;
     }

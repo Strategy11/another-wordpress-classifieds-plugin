@@ -34,7 +34,7 @@ class AWPCP_ListingsContentRenderer {
             return awpcp_print_error( $message );
         }
 
-        if ( ! $this->listing_renderer->is_public( $post ) && ! $user_can_see_disabled_listing ) {
+        if ( ( ! $this->listing_renderer->is_public( $post ) || $this->listing_renderer->is_expired( $post ) ) && ! $user_can_see_disabled_listing ) {
             $message = __( 'The listing you are trying to view is not available right now.', 'another-wordpress-classifieds-plugin' );
             return awpcp_print_error( $message );
         }
@@ -189,9 +189,8 @@ class AWPCP_ListingsContentRenderer {
         $layout = awpcp_do_placeholders( $post, $layout, 'single' );
 
         $output = str_replace( '<!--awpcp-single-ad-layout-->', $layout, $output );
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters( 'awpcp-show-ad', $output, $post->ID );
-        // phpcs:enable
 
         return $output;
     }

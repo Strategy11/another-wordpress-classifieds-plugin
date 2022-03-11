@@ -13,7 +13,7 @@ class AWPCP_ListingsCollectionTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
+    public function setUp(): void {
         $this->query = (object) array(
             'posts'       => array(),
             'found_posts' => 0,

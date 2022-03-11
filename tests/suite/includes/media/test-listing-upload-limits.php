@@ -2,8 +2,8 @@
 
 class AWPCP_TestListingUploadLimits extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->attachments = Phake::mock( 'AWPCP_Attachments_Collection' );
         $this->file_types = Phake::mock( 'AWPCP_FileTypes' );

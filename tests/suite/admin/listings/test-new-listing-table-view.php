@@ -11,7 +11,7 @@ class AWPCP_NewListingTableViewTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
+    public function setUp(): void {
         $this->table_view_test_helper = new AWPCP_ListingTableViewTestHelper( $this );
 
         $this->listings_collection = Mockery::mock( 'AWPCP_ListingsCollection' );

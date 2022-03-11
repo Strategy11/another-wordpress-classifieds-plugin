@@ -5,8 +5,8 @@
  */
 class AWPCP_TestPageTitleBuilder extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listing = (object) array( 'ID' => rand() + 1, 'post_title' => 'Test Ad' );
         $this->listing_renderer = Phake::mock( 'AWPCP_ListingRenderer' );

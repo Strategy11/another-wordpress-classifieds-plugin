@@ -2,8 +2,8 @@
 
 class AWPCP_Media_Manager_Component extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->attachment_properties = Phake::mock( 'AWPCP_Attachment_Properties' );
         $this->javascript = Phake::mock( 'AWPCP_JavaScript' );

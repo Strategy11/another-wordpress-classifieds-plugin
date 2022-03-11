@@ -2,8 +2,8 @@
 
 class AWPCP_Test_Listing_Title_Form_Field extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listing_renderer = Phake::mock( 'AWPCP_ListingRenderer' );
         $this->payments = Phake::mock( 'AWPCP_PaymentsAPI' );

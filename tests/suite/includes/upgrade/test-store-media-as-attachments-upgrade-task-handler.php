@@ -7,8 +7,8 @@ use Brain\Monkey\Functions;
 
 class AWPCP_Test_Store_Media_As_Attachments_Upgrade_Task_Handler extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->settings  = Phake::mock( 'AWPCP_Settings_API' );
         $this->wordpress = Phake::mock( 'AWPCP_WordPress' );

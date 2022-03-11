@@ -15,8 +15,8 @@ class AWPCP_Image_Placeholders_Test extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.1
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->attachment_properties  = Mockery::mock( 'AWPCP_Attachment_Properties' );
         $this->attachments_collection = Mockery::mock( 'AWPCP_Attachments_Collection' );

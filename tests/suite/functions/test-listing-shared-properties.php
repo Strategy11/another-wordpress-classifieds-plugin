@@ -5,8 +5,8 @@ use function Patchwork\always;
 
 class AWPCP_Test_Listing_Shared_Propeties extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->db = $GLOBALS['wpdb'];
 
@@ -20,8 +20,8 @@ class AWPCP_Test_Listing_Shared_Propeties extends AWPCP_UnitTestCase {
         touch( $uploads_dir . '/images/test-image-2.jpg' );
     }
 
-    public function teardown() {
-        parent::setup();
+    public function tearDown(): void {
+        parent::setUp();
 
         $uploads_dir = $GLOBALS['awpcp']->settings->get_runtime_option( 'awpcp-uploads-dir' );
 

@@ -19,13 +19,12 @@
         ]
     },
     "require-dev": {
+        "yoast/phpunit-polyfills": "^1.0",
         "antecedent/patchwork": "2.*",
         "brain/monkey": "dev-dev",
         "dealerdirect/phpcodesniffer-composer-installer": "0.*",
         "phake/phake": "3.*",
         "phpcompatibility/php-compatibility": "*",
-        "phpmd/phpmd" : "@stable",
-        "phpunit/phpunit": "6.*",
         "squizlabs/php_codesniffer": "^3.4.0",
         "wp-coding-standards/wpcs": "*"
     }

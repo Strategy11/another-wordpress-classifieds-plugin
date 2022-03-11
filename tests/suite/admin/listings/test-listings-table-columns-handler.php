@@ -11,8 +11,8 @@ class AWPCP_ListingsTableColumnsHandlerTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listing_renderer    = Mockery::mock( 'AWPCP_ListingRenderer' );
         $this->listings_collection = Mockery::mock( 'AWPCP_ListingsCollection' );

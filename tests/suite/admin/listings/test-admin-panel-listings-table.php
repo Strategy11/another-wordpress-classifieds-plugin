@@ -2,8 +2,8 @@
 
 class Test_Listings_Table extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->page = Phake::mock( 'AWPCP_Admin_Listings' );
         $this->listing_renderer = Phake::mock( 'AWPCP_ListingRenderer' );
