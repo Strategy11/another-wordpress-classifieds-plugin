@@ -17,27 +17,21 @@ define( 'WP_TESTS_DATA_DIR', dirname( __FILE__ ) . '/data' );
 define( 'AWPCP_DIR', dirname( __DIR__ ) );
 define( 'AWPCP_URL', 'https://example.org/wp-content/plugins/another-wordpress-classifieds-plugin' );
 
-$patchwork = AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
-if ( file_exists( $patchwork ) ) {
-	require_once $patchwork;
-}
+require AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
+require AWPCP_DIR . '/vendor/autoload.php';
 
 Phake::setClient( Phake::CLIENT_PHPUNIT6 );
 
-if ( file_exists( dirname( __FILE__ ) . '/../vendor/autoload.php' ) ) {
-	include dirname( __FILE__ ) . '/../vendor/autoload.php';
-}
+require_once AWPCP_DIR . '/functions.php';
+require_once AWPCP_DIR . '/includes/functions/assets.php';
+require_once AWPCP_DIR . '/includes/functions/listings.php';
+require_once AWPCP_DIR . '/includes/functions/routes.php';
 
 if ( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
 	require getenv( 'WP_DEVELOP_DIR' ) . 'tests/phpunit/includes/bootstrap.php';
 } else {
 	require '../../../../tests/phpunit/includes/bootstrap.php';
 }
-
-require_once AWPCP_DIR . '/functions.php';
-require_once AWPCP_DIR . '/includes/functions/assets.php';
-require_once AWPCP_DIR . '/includes/functions/listings.php';
-require_once AWPCP_DIR . '/includes/functions/routes.php';
 
 /**
  * TODO: We probably won't need this if we stop using WordPress testing framework.

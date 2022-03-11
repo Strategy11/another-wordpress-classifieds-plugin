@@ -139,6 +139,6 @@ class AWPCP_UnflagListingTableActionTest extends AWPCP_UnitTestCase {
         $messages = $action->get_messages( $result_codes );
 
         // Verification.
-        $this->assertContains( 'notice-success', $messages[0] );
+        $this->assertStringContainsString( 'notice-success', $messages[0] );
     }
 }
