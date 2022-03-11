@@ -5,11 +5,6 @@
  * @package AWPCP/Tests
  */
 
-// phpcs:disable Squiz.PHP.CommentedOutCode.Found
-// phpcs:disable Squiz.Commenting.InlineComment.SpacingBefore
-// phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
-// phpcs:disable Squiz.Commenting.InlineComment.SpacingAfter
-
 echo 'Welcome to the Test Suite' . PHP_EOL;
 echo 'Version: 1.0' . PHP_EOL . PHP_EOL;
 
