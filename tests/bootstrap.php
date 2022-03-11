@@ -32,7 +32,7 @@ if ( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
 	require '../../../../tests/phpunit/includes/bootstrap.php';
 }
 
-require AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
+include AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
 
 Phake::setClient( Phake::CLIENT_PHPUNIT6 );
 

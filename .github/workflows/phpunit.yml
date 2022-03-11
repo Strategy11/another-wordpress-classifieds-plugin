@@ -18,10 +18,8 @@ jobs:
         include:
           - php: 7.3
             wordpress: master
-            phpunit: 6.5.14
           - php: 7.4
             wordpress: master
-            phpunit: 6.5.14
 
     name: PHP ${{ matrix.php }} tests in WP ${{ matrix.wordpress }}
     steps:
