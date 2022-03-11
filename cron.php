@@ -82,29 +82,25 @@ function awpcp_check_license_status() {
  * See https://github.com/drodenbaugh/awpcp/issues/808#issuecomment-42561940
  */
 function doadexpirations() {
-    $listings_logic = awpcp_listings_api();
+	$listings_logic = awpcp_listings_api();
 
-    $ads = awpcp_listings_collection()->find_valid_listings(array(
-        'post_type' => AWPCP_LISTING_POST_TYPE,
-        'meta_query' => array(
-            'relation' => 'AND',
-            array(
-                'key' => '_awpcp_end_date',
-                'value' => current_time( 'mysql' ),
-                'compare' => '<=',
-                'type' => 'DATETIME',
-            ),
-            [
-                'key'     => '_awpcp_expired',
-                'compare' => 'NOT EXISTS',
-            ],
-        ),
-    ));
+	$ads = awpcp_listings_collection()->find_valid_listings(array(
+		'post_type'   => AWPCP_LISTING_POST_TYPE,
+		'post_status' => 'publish',
+		'meta_query'  => array(
+			array(
+				'key'     => '_awpcp_end_date',
+				'value'   => current_time( 'mysql' ),
+				'compare' => '<=',
+				'type'    => 'DATETIME',
+			),
+		),
+	));
 
 	$email_info = AWPCP_SendEmails::get_expiring_email();
-    foreach ($ads as $ad) {
+	foreach ( $ads as $ad ) {
 		$listings_logic->expire_listing_with_notice( $ad, $email_info );
-    }
+	}
 }
 
 /**

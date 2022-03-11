@@ -384,14 +384,13 @@ class AWPCP_ListingRenderer {
 	 * @return float
 	 */
 	public function days_until_expires( $listing ) {
+		if ( $this->has_expired( $listing ) ) {
+			return 0;
+		}
+
 		$end_date          = strtotime( $this->get_plain_end_date( $listing ) );
 		$extended_end_date = awpcp_extend_date_to_end_of_the_day( $end_date );
-
-		if ( $this->has_expired( $listing ) ) {
-			$time_left = 0;
-		} else {
-			$time_left = $extended_end_date - current_time( 'timestamp' );
-		}
+		$time_left         = $extended_end_date - current_time( 'timestamp' );
 
 		return $time_left / ( 24 * 60 * 60 );
 	}

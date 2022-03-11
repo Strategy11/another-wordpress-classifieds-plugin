@@ -703,6 +703,7 @@ class AWPCP_ListingsAPI {
         }
 
         $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_renew_email_sent' );
+		$this->wordpress->delete_post_meta( $listing->ID, '_awpcp_expired' );
 
         // Let update_listing_metadata() update the most recent start date if necessary.
         $this->update_listing_metadata(

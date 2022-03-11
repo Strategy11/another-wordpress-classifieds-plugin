@@ -59,19 +59,19 @@ class AWPCP_SendEmails {
 		$renderer   = awpcp_listing_renderer();
 		$start_date = date( 'D M j Y G:i:s', strtotime( $renderer->get_plain_start_date( $listing ) ) );
 
-		$body.= "\n\n";
-		$body.= __( 'Listing Details', 'another-wordpress-classifieds-plugin' );
-		$body.= "\n\n";
-		$body.= __( 'Ad Title:', 'another-wordpress-classifieds-plugin' );
-		$body.= ' ' . $renderer->get_listing_title( $listing );
-		$body.= "\n\n";
-		$body.= __( 'Posted:', 'another-wordpress-classifieds-plugin' );
-		$body.= ' ' . $start_date;
-		$body.= "\n\n";
+		$body .= "\n\n";
+		$body .= __( 'Listing Details', 'another-wordpress-classifieds-plugin' );
+		$body .= "\n\n";
+		$body .= __( 'Ad Title:', 'another-wordpress-classifieds-plugin' );
+		$body .= ' ' . $renderer->get_listing_title( $listing );
+		$body .= "\n\n";
+		$body .= __( 'Posted:', 'another-wordpress-classifieds-plugin' );
+		$body .= ' ' . $start_date;
+		$body .= "\n\n";
 
-		$body.= __( 'Renew your ad by visiting:', 'another-wordpress-classifieds-plugin' );
-		$body.= ' ' . urldecode( awpcp_get_renew_ad_url( $listing->ID ) );
-		$body.= "\n\n";
+		$body .= __( 'Renew your ad by visiting:', 'another-wordpress-classifieds-plugin' );
+		$body .= ' ' . self::renewal_link( $listing );
+		$body .= "\n\n";
 
 		return $body;
 	}
@@ -154,7 +154,7 @@ class AWPCP_SendEmails {
 		$listing_title    = $listing_renderer->get_listing_title( $listing );
 		$start_date       = $listing_renderer->get_start_date( $listing );
 		$end_date         = $listing_renderer->get_end_date( $listing );
-		$renew_url        = urldecode( awpcp_get_renew_ad_url( $listing->ID ) );
+		$renew_url        = self::renewal_link( $listing );
 
 		ob_start();
 		include AWPCP_DIR . '/templates/email/listing-is-about-to-expire-notification.plain.tpl.php';
@@ -162,5 +162,12 @@ class AWPCP_SendEmails {
 		ob_end_clean();
 
 		return $content;
+	}
+
+	/**
+	 * @since x.x
+	 */
+	private static function renewal_link( $listing ) {
+		return urldecode( awpcp_get_renew_ad_url( $listing->ID ) );
 	}
 }
