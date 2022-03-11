@@ -13,8 +13,8 @@ class AWPCP_Test_CSV_Importer_Delegate extends AWPCP_UnitTestCase {
     /**
      * Runs before every test.
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->row_data = array(
             'title'         => 'Test Row',

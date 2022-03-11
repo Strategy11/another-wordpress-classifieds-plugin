@@ -2,8 +2,8 @@
 
 class AWPCP_TestListingIsAboutToExpireNotification extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listing_renderer = Phake::mock( 'AWPCP_ListingRenderer' );
         $this->settings = Phake::mock( 'AWPCP_Settings_API' );

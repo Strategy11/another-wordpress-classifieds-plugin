@@ -2,8 +2,8 @@
 
 class AWPCP_Test_Attachment_Action_Ajax_Handler extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->attachment_action = Phake::mock( 'AWPCP_Attachment_Ajax_Action' );
         $this->attachments = Phake::mock( 'AWPCP_Attachments_Collection' );

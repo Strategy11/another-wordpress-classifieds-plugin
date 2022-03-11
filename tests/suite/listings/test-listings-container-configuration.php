@@ -13,8 +13,8 @@ class AWPCP_ListingsContainerConfigurationTest extends AWPCP_ContainerConfigurat
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         Functions\when( 'awpcp_roles_and_capabilities' )->justReturn( null );
         Functions\when( 'awpcp_categories_registry' )->justReturn( null );

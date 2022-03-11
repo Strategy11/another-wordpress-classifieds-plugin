@@ -15,8 +15,8 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->post_type    = 'post_type';
         $this->container    = array(

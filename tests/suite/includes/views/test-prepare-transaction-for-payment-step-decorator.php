@@ -5,8 +5,8 @@
  */
 class AWPCP_TestPrepareTransactionForPaymentStepDecorator extends AWPCP_StepDecoratorTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->payment_completed = 'payment_completed';
         $this->checkout = 'checkout';

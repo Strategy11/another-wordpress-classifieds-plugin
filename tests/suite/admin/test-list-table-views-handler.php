@@ -11,7 +11,7 @@ class AWPCP_ListTableViewsHandlerTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
+    public function setUp(): void {
         $this->views   = array();
         $this->request = Mockery::mock( 'AWPCP_Request' );
     }

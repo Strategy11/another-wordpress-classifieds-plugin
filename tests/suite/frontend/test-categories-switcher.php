@@ -15,8 +15,8 @@ class AWPCP_Test_Categories_Switcher extends AWPCP_UnitTestCase {
     /**
      * Prepares common resources for this test case.
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         wp_insert_term( 'Test Category', 'awpcp_listing_category' );
 

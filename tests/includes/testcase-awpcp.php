@@ -42,8 +42,8 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
     /**
      * Code executed at the begining of every test.
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         Monkey\setup();
 

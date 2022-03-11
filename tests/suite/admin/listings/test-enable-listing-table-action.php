@@ -11,8 +11,8 @@ class AWPCP_EnableListingTableActionTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listings_logic   = Mockery::mock( 'AWPCP_Listings_API' );
         $this->listing_renderer = Mockery::mock( 'AWPCP_ListingRenderer' );

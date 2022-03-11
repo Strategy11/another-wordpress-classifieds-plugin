@@ -7,8 +7,8 @@ class AWPCP_TestDatabaseColumnCreator extends AWPCP_UnitTestCase {
 
     private $table_name = 'awpcp_test_database_column_creator';
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         global $wpdb;
         // TOOD: is there a helper function to create tables?

@@ -11,8 +11,8 @@ class AWPCP_CompleteListingTableViewTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->test_helper = new AWPCP_ListingTableViewTestHelper( $this );
 

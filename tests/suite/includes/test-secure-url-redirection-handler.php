@@ -6,8 +6,8 @@
  */
 class AWPCP_TestSecureURLRedirectionHandler extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         global $wp_filter;
         $this->wp_redirect_filters = awpcp_array_data( 'wp_redirect', array(), $wp_filter );

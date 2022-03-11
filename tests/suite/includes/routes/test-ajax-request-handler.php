@@ -6,8 +6,8 @@ class AWPCP_Custom_Request_Handler {
 
 class AWPCP_Test_Ajax_Request_Handler extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->routes = Phake::mock( 'AWPCP_Routes' );
         $this->request = Phake::mock( 'AWPCP_Request' );

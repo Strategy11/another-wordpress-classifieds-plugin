@@ -2,8 +2,8 @@
 
 class AWPCP_TestSpamFilter extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->subject = new stdClass();
 

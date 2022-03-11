@@ -5,8 +5,8 @@
  */
 class AWPCP_TestFunctions extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
         $this->_SERVER = $_SERVER;
     }
 

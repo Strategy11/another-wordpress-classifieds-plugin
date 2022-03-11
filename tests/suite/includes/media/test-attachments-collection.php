@@ -2,8 +2,8 @@
 
 class AWPCP_Test_Attachments_Collection extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->file_types = Phake::mock( 'AWPCP_FileTypes' );
         $this->wordpress = Phake::mock( 'AWPCP_WordPress' );

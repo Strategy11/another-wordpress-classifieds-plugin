@@ -13,8 +13,8 @@ class AWPCP_TestAWPCP extends AWPCP_UnitTestCase {
     /**
      * Code executed at the before every test method is run.
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->container = [];
 

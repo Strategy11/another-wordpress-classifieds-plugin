@@ -10,8 +10,8 @@ class AWPCP_Test_Query extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.4
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listing_post_type = 'awpcp_listing';
     }

@@ -2,8 +2,8 @@
 
 class AWPCP_TestPremiumModules extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
         $this->premium_modules = awpcp()->get_premium_modules_information();
     }
 

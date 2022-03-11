@@ -5,8 +5,8 @@
  */
 class AWPCP_TestUsersAutocomplete extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->test_user = $this->get_test_user();
 

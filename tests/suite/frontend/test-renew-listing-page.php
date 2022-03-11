@@ -2,8 +2,8 @@
 
 class AWPCP_Test_Renew_Listing_Page extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listing_renderer = Phake::mock( 'AWPCP_ListingRenderer' );
         $this->listings = Phake::mock( 'AWPCP_ListingsCollection' );

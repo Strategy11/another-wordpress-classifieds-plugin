@@ -11,8 +11,8 @@ class AWPCP_TermsOfServiceFormFieldTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.2
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->roles             = Mockery::mock( 'AWPCP_RolesAndCapabilities' );
         $this->settings          = Mockery::mock( 'AWPCP_Settings' );

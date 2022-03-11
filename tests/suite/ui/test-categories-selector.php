@@ -13,7 +13,7 @@ class AWPCP_CategoriesSelectorTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
+    public function setUp(): void {
         $this->categories_selector_helper = Mockery::mock( 'AWPCP_Categories_Selector_Helper' );
         $this->categories_collection      = Mockery::mock( 'AWPCP_Categories_Collection' );
         $this->template_renderer          = Mockery::mock( 'AWPCP_Template_Renderer' );

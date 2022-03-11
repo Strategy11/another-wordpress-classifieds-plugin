@@ -10,8 +10,8 @@ class AWPCP_Test_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler extend
 
 	private $post_properties;
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->db = $GLOBALS['wpdb'];
 

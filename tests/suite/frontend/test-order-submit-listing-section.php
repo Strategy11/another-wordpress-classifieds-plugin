@@ -11,8 +11,8 @@ class AWPCP_OrderSubmitListingSectionTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->payments          = null;
         $this->listings_logic    = Mockery::mock( 'AWPCP_ListingsAPI' );

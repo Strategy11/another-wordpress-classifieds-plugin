@@ -13,8 +13,8 @@ class AWPCP_MediaContainerConfigurationTest extends AWPCP_ContainerConfiguration
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         // Constructors functions still required by the constructors of the
         // classes registered in this container.

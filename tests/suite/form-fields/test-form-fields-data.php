@@ -14,8 +14,8 @@ class AWPCP_FormFieldsDataTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->authorization    = Mockery::mock( 'AWPCP_ListingAuthorization' );
         $this->listing_renderer = Mockery::mock( 'AWPCP_ListingRenderer' );

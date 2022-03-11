@@ -5,8 +5,8 @@
  */
 class AWPCP_TestMeta extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listing = awpcp_tests_create_empty_listing();
 

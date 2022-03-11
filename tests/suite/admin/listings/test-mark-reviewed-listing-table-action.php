@@ -13,7 +13,7 @@ class AWPCP_MarkReviewedListingTableActionTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
+    public function setUp(): void {
         $this->listing_renderer = null;
         $this->wordpress        = null;
     }

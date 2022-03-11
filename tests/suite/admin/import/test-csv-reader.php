@@ -2,8 +2,8 @@
 
 class AWPCP_Test_CSV_Reader extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->auto_detect_line_endings = ini_get( 'auto_detect_line_endings' );
         ini_set( 'auto_detect_line_endings', true );

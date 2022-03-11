@@ -13,7 +13,7 @@ class AWPCP_ListingInformationMetaboxTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
+    public function setUp(): void {
         $this->listings_logic    = Mockery::mock( 'AWPCP_ListingsAPI' );
         $this->listing_renderer  = Mockery::mock( 'AWPCP_ListingRenderer' );
         $this->payments          = Mockery::mock( 'AWPCP_Payments' );

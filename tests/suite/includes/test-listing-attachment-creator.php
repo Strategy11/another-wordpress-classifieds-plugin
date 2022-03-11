@@ -2,8 +2,8 @@
 
 class AWPCP_TestListingAttachmentCreator extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->markTestIncomplete( 'Test not yet implement.' );
     }

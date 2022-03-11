@@ -13,8 +13,8 @@ class AWPCP_ListingsTableNavHandlerTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->html_renderer = Mockery::mock( 'AWPCP_HTMLRenderer' );
         $this->request       = Mockery::mock( 'AWPCP_Request' );

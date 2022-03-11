@@ -2,8 +2,8 @@
 
 class AWPCP_Test_Upload_Listing_Media_Ajax_Handler extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listings = Phake::mock( 'AWPCP_ListingsCollection' );
         $this->file_uploader = Phake::mock( 'AWPCP_FileUploader' );

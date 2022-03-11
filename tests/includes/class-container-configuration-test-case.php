@@ -16,8 +16,8 @@ abstract class AWPCP_ContainerConfigurationTestCase extends AWPCP_UnitTestCase i
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->definitions = [];
     }

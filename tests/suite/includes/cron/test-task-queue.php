@@ -2,8 +2,8 @@
 
 class AWPCP_Test_Task_Queue extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->uploads_dir = '/tmp/awpcp-task-queue';
 

@@ -2,8 +2,8 @@
 
 class AWPCP_Test_Plugin_Integrations extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         delete_option( 'awpcp_plugin_integrations' );
     }

@@ -2,8 +2,8 @@
 
 class AWPCP_Test_Attachments_Logic extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->file_types = Phake::mock( 'AWPCP_FileTypes' );
         $this->attachments = Phake::mock( 'AWPCP_Attachments_Collection' );

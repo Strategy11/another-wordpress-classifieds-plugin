@@ -16,8 +16,8 @@ class AWPCP_FormFieldsDataValidatorTest extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->roles = Mockery::mock( 'AWPCP_RolesAndCapabilities' );
 

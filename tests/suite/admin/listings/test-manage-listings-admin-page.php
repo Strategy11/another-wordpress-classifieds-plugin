@@ -2,8 +2,8 @@
 
 class AWPCP_Test_Manage_Listings_Admin_Page extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->markTestSkipped( 'TODO: Where is the AWPCP_Admin_Listings class?' );
 

@@ -2,8 +2,8 @@
 
 class AWPCP_Test_Edit_Listing_Link_Placeholder extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listing_renderer = Phake::mock( 'AWPCP_ListingRenderer' );
         $this->authorization = Phake::mock( 'AWPCP_ListingAuthorization' );

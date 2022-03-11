@@ -5,8 +5,8 @@
  */
 class AWPCP_TestCreditPlansNotices extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->settings = Phake::mock( 'AWPCP_Settings_API' );
         Phake::when( $this->settings )->get_option( 'enable-credit-system' )->thenReturn( true );

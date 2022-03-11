@@ -5,8 +5,8 @@
  */
 class AWPCP_TestEmailVerificationCronJobs extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->listings_collection = awpcp_listings_collection();
 

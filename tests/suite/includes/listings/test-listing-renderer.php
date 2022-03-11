@@ -13,8 +13,8 @@ class AWPCP_Test_Listing_Renderer extends AWPCP_UnitTestCase {
     /**
      * @since 4.0.0
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->wordpress = Mockery::mock( 'AWPCP_WordPress' );
     }

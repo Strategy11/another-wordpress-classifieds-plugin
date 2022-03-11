@@ -5,8 +5,8 @@
  */
 class AWPCP_TestFileCache extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->cache_dir = WP_CONTENT_DIR . '/uploads/test/awpcp/cache-' . time();
         $this->property = 'test-' . time();

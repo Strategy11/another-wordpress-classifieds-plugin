@@ -2,8 +2,8 @@
 
 class AWPCP_TestBasicRegionsAPI extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->db = Phake::mock( 'wpdb' );
     }

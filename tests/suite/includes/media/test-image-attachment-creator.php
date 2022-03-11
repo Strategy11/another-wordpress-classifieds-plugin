@@ -13,8 +13,8 @@ class AWPCP_Test_Image_Attachment_Creator extends AWPCP_UnitTestCase {
     /**
      * * @since unknown
      */
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->attachments_creator    = Phake::mock( 'AWPCP_Listing_Attachment_Creator' );
         $this->attachments_logic      = Mockery::mock( 'AWPCP_Attachments_Logic' );

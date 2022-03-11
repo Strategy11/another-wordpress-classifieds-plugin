@@ -12,8 +12,8 @@ use Brain\Monkey\Functions;
  */
 class AWPCP_TestListingsAPI extends AWPCP_UnitTestCase {
 
-    public function setup() {
-        parent::setup();
+    public function setUp(): void {
+        parent::setUp();
 
         $this->timezone_identifier = date_default_timezone_get();
 
