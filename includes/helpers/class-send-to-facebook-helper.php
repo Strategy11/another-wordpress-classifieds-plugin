@@ -3,11 +3,6 @@
  * @package AWPCP\Listings\Facebook
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_send_to_facebook_helper() {
     return new AWPCP_SendToFacebookHelper(
         AWPCP_Facebook::instance(),
@@ -51,25 +46,6 @@ class AWPCP_SendToFacebookHelper {
     }
 
     public function send_listing_to_facebook( $listing_id ) {
-        try {
-            $listing = $this->listings->get( $listing_id );
-        } catch ( AWPCP_Exception $e ) {
-            return;
-        }
-
-        try {
-            $this->send_listing_to_facebook_page( $listing );
-        } catch ( AWPCP_Exception $e ) {
-            // pass
-        }
-
-        try {
-            $this->send_listing_to_facebook_group( $listing );
-        } catch ( AWPCP_Exception $e ) {
-            // pass
-        }
-
-        $this->facebook_integration->maybe_schedelue_send_to_facebook_action( $listing );
     }
 
     /**
@@ -92,10 +68,6 @@ class AWPCP_SendToFacebookHelper {
             throw new AWPCP_NoIntegrationMethodDefined();
         }
 
-        if ( 'facebook-api' === $integration_method ) {
-            $listing_sent = $this->send_listing_to_facebook_page_using_facebook_api( $listing );
-        }
-
         if ( 'webhooks' === $integration_method ) {
             $listing_sent = $this->send_listing_to_facebook_page_using_webhook( $listing );
         }
@@ -107,48 +79,6 @@ class AWPCP_SendToFacebookHelper {
         $this->wordpress->update_post_meta( $listing->ID, '_awpcp_sent_to_facebook_page', true );
 
         return $listing_sent;
-    }
-
-    /**
-     * @since 3.8.6
-     */
-    private function send_listing_to_facebook_page_using_facebook_api( $listing ) {
-        $this->facebook->set_access_token( 'page_token' );
-
-        if ( ! $this->facebook->is_page_set() ) {
-            throw new AWPCP_NoFacebookObjectSelectedException( 'There is no Facebook Page selected.' );
-        }
-
-        $this->do_facebook_request(
-            $listing,
-            '/' . $this->settings->get_option( 'facebook-page' ) . '/feed',
-            'POST'
-        );
-
-        return true;
-    }
-
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
-    private function do_facebook_request( $listing, $path, $method ) {
-        $params = array(
-            'link' => url_showad( $listing->ID ),
-        );
-
-        try {
-            $response = $this->facebook->api_request( $path, $method, $params );
-        } catch ( Exception $e ) {
-            $message = __( "There was an error trying to contact Facebook servers: %s.", 'another-wordpress-classifieds-plugin' );
-            $message = sprintf( $message, $e->getMessage() );
-            throw new AWPCP_Exception( $message );
-        }
-
-        if ( ! $response || ! isset( $response->id ) ) {
-            $message = __( 'Facebook API returned the following errors: %s.', 'another-wordpress-classifieds-plugin' );
-            $message = sprintf( $message, $this->facebook->get_last_error()->message );
-            throw new AWPCP_Exception( $message );
-        }
     }
 
     /**
@@ -266,89 +196,6 @@ class AWPCP_SendToFacebookHelper {
      * @throws AWPCP_Exception  If the listing is not public.
      */
     public function send_listing_to_facebook_group( $listing ) {
-        if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_sent_to_facebook_group', true ) ) {
-            throw new AWPCP_ListingAlreadySharedException( __( 'The ad was already sent to a Facebook Group.', 'another-wordpress-classifieds-plugin' ) );
-        }
-
-        if ( ! $this->listing_renderer->is_public( $listing ) ) {
-            throw new AWPCP_ListingDisabledException( __( "The ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
-        }
-
-        $integration_method = $this->settings->get_option( 'facebook-integration-method' );
-        $listing_sent       = false;
-
-        if ( empty( $integration_method ) ) {
-            throw new AWPCP_NoIntegrationMethodDefined();
-        }
-
-        if ( 'facebook-api' === $integration_method ) {
-            $listing_sent = $this->send_listing_to_facebook_group_using_facebook_api( $listing );
-        }
-
-        if ( 'webhooks' === $integration_method ) {
-            throw new AWPCP_WebhooksNotCurrentlySupported();
-        }
-
-        if ( ! $listing_sent ) {
-            throw new AWPCP_Exception( 'Unknown error.' );
-        }
-
-        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_sent_to_facebook_group', true );
-
-        return $listing_sent;
-    }
-
-    /**
-     * @since 3.8.6
-     */
-    private function send_listing_to_facebook_group_using_facebook_api( $listing ) {
-        $this->facebook->set_access_token( 'user_token' );
-
-        if ( ! $this->facebook->is_group_set() ) {
-            throw new AWPCP_NoFacebookObjectSelectedException( 'There is no Facebook Group selected.' );
-        }
-
-        $this->do_facebook_request(
-            $listing,
-            '/' . $this->settings->get_option( 'facebook-group' ) . '/feed',
-            'POST'
-        );
-
-        return true;
-    }
-
-    /**
-     * Users should choose Friends (or something more public), not Only Me, when the application
-     * request the permission, to avoid error:
-     *
-     * OAuthException: (#200) Insufficient permission to post to target on behalf of the viewer.
-     *
-     * http://stackoverflow.com/a/19653226/201354
-     *
-     * @since 3.8.6
-     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
-     */
-    private function send_listing_to_facebook_group_using_webhook( $listing ) {
-        $webhooks = $this->get_webhooks_for_facebook_group_integration( $listing );
-
-        if ( empty( $webhooks ) ) {
-            throw new AWPCP_Exception( 'There is no webhook configured to send ads to a Facebook Group.' );
-        }
-
-        return $this->process_webhooks( $webhooks );
-    }
-
-    /**
-     * We expect to add support for sending ads to Facebook Groups using webhooks
-     * in the near future as the corresponding Zapier and IFTTT integrations
-     * get approved.
-     *
-     * @since 3.8.6
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    private function get_webhooks_for_facebook_group_integration( $listing ) {
-        return array();
+        
     }
 }
-
-// phpcs:enable

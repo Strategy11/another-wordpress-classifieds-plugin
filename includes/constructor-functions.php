@@ -178,14 +178,7 @@ function awpcp_attachments_logic() {
  * @since 4.0.0 Extracted from class-facebook-cache-helper.php.
  */
 function awpcp_facebook_cache_helper() {
-    $container = awpcp()->container;
 
-    return new AWPCP_FacebookCacheHelper(
-        awpcp_facebook_integration(),
-        $container['ListingRenderer'],
-        $container['ListingsCollection'],
-        $container['Settings']
-    );
 }
 
 /**

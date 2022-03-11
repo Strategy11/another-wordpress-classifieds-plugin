@@ -69,8 +69,6 @@ class AWPCP_TestAWPCP extends AWPCP_UnitTestCase {
         $this->container['SendListingToFacebookHelper']     = Mockery::mock( 'AWPCP_SendToFacebookHelper' );
         $this->container['CategoriesListCache']             = Mockery::mock( 'AWPCP_CategoriesListCache' );
 
-        Functions\when( 'awpcp_facebook_cache_helper' )->justReturn( Mockery::mock( 'AWPCP_FacebookCacheHelper' ) );
-
         Functions\when( 'wp_doing_ajax' )->justReturn( true );
         Functions\when( 'is_admin' )->justReturn( true );
 

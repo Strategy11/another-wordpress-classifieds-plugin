@@ -216,6 +216,7 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_HTML_Text_Renderer' => __DIR__ . '/../..' . '/includes/html/class-html-text-renderer.php',
         'AWPCP_HTTP' => __DIR__ . '/../..' . '/includes/helpers/class-http.php',
         'AWPCP_HTTP_Exception' => __DIR__ . '/../..' . '/includes/exceptions.php',
+        'AWPCP_HiddenSettingsRenderer' => __DIR__ . '/../..' . '/includes/settings/renderers/class-hidden-settings-renderer.php',
         'AWPCP_IDListingsTableSearchMode' => __DIR__ . '/../..' . '/includes/admin/listings/class-id-listings-table-search-mode.php',
         'AWPCP_IOError' => __DIR__ . '/../..' . '/includes/exceptions.php',
         'AWPCP_ImageFileProcessor' => __DIR__ . '/../..' . '/includes/media/class-image-file-processor.php',

@@ -99,17 +99,6 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             return new AWPCP_Template_Renderer();
         } );
 
-        $container['SendListingToFacebookHelper'] = $container->service( function( $container ) {
-            return new AWPCP_SendToFacebookHelper(
-                AWPCP_Facebook::instance(),
-                awpcp_facebook_integration(),
-                $container['ListingRenderer'],
-                $container['ListingsCollection'],
-                $container['Settings'],
-                $container['WordPress']
-            );
-        } );
-
         $container['FormFieldsData'] = $container->service( function( $container ) {
             return new AWPCP_FormFieldsData(
                 $container['ListingAuthorization'],
