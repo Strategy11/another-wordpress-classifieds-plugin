@@ -55,9 +55,9 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	public static function assertContains( $needle, $haystack, $message = '' ): void {
 		if ( is_string( $haystack ) ) {
-			parent::assertStringContains( $needle, $haystack, $message );
+			static::assertStringContains( $needle, $haystack, $message );
 		}
-		parent::assertContains( $needle, $haystack, $message );
+		static::assertContains( $needle, $haystack, $message );
 	}
 
     // /**
