@@ -650,7 +650,7 @@ function awpcp_pagination($config, $url) {
 
 	for ($i=1; $i <= $pages; $i++) {
 		$less    = $i < ( $page - $radius );
-		$greater = $i > ( $page + $radius )
+		$greater = $i > ( $page + $radius );
         if ( $page == $i ) {
             $items[] = sprintf( '<span class="awpcp-pagination-links--link">%d</span>', $i );
         } elseif ( ! $less && ! $greater ) {

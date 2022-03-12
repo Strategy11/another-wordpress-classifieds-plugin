@@ -246,7 +246,6 @@ class AWPCP_CSV_Importer_Delegate {
 
     /**
      * @since 4.0.0
-     * @throws AWPCP_Exception
      */
     private function create_user( $username, $contact_email ) {
         if ( empty( $username ) && empty( $contact_email ) ) {
@@ -671,6 +670,7 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
             break;
 
         case 'Checkbox':
+			// Process with multiple.
         case 'Select Multiple':
             // value can be any combination of items from options list
             $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed values are: %%s", 'another-wordpress-classifieds-plugin' ), $name );

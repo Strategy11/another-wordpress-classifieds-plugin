@@ -234,7 +234,7 @@ class AWPCP_Facebook_Page_Settings {
 
 		if ( isset( $_GET['code_error'] ) && isset( $_GET['error_message'] )  ) {
             $error_message = __( 'We could not obtain a valid access token from Facebook. The API returned the following error: %s', 'another-wordpress-classifieds-plugin' );
-            $error_message = sprintf( $error_message, sanitize_text_field( wp_unslash( urldecode_deep( $_GET['error_message'] ) ) ) );
+            $error_message = sprintf( $error_message, sanitize_text_field( urldecode_deep( wp_unslash( $_GET['error_message'] ) ) ) );
 
             $errors[] = esc_html( $error_message );
 		} else if ( isset( $_GET['code_error'] ) ) {

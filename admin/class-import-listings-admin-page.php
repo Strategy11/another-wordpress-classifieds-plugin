@@ -93,10 +93,15 @@ class AWPCP_ImportListingsAdminPage {
         );
 
         if ( $_FILES['csv_file']['error'] != UPLOAD_ERR_OK ) {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
             $file_error              = awpcp_uploaded_file_error( $_FILES['csv_file'] );
             $form_errors['csv_file'] = $file_error[1];
+
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
         } else if ( substr( $_FILES['csv_file']['name'], -4 ) !== '.csv' ) {
             $form_errors['csv_file'] = __( "The uploaded file doesn't look like a CSV file. Please upload a valid CSV file.", 'another-wordpress-classifieds-plugin' );
+
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
         } else if ( ! @move_uploaded_file( $_FILES['csv_file']['tmp_name'], "$working_directory/source.csv" ) ) {
             $form_errors['csv_file'] = __( 'There was an error moving the uploaded CSV file to a proper location.', 'another-wordpress-classifieds-plugin' );
         }
@@ -105,12 +110,16 @@ class AWPCP_ImportListingsAdminPage {
 
         if ( $form_data['images_source'] == 'zip' ) {
             if ( ! in_array( $_FILES['zip_file']['error'], array( UPLOAD_ERR_OK, UPLOAD_ERR_NO_FILE ) ) ) {
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
                 $file_error              = awpcp_uploaded_file_error( $_FILES['zip_file'] );
                 $form_errors['zip_file'] = $file_error[1];
             } else if ( $_FILES['zip_file']['error'] == UPLOAD_ERR_NO_FILE ) {
+				// phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
                 // all good...
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
             } else if ( substr( $_FILES['zip_file']['name'], -4 ) !== '.zip' ) {
                 $form_errors['zip_file'] = __( "The uploaded file doesn't look like a ZIP file. Please upload a valid ZIP file.", 'another-wordpress-classifieds-plugin' );
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
             } else if ( ! @move_uploaded_file( $_FILES['zip_file']['tmp_name'], "$working_directory/images.zip" ) ) {
                 $form_errors['zip_file'] = __( 'There was an error moving the uploaded ZIP file to a proper location.', 'another-wordpress-classifieds-plugin' );
             }
