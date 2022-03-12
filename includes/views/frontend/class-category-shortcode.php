@@ -41,9 +41,6 @@ class AWPCP_CategoryShortcode {
         return $output;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function get_shortcode_attrs( $attrs ) {
         if ( ! isset( $attrs['show_categories_list'] ) && isset( $attrs['children'] ) ) {
             $attrs['show_categories_list'] = $attrs['children'];
@@ -144,9 +141,6 @@ class AWPCP_CategoryShortcode {
         return $categories;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function render_categories_list( array $categories_ids ) {
 
         $categories_list_params['category_id'] = $categories_ids;

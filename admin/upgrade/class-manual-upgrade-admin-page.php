@@ -97,9 +97,6 @@ class AWPCP_ManualUpgradeAdminPage {
         }
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function get_tasks_defintions( $pending_upgrade_tasks, $upgrade_session, $context ) {
         $upgrade_tasks = array();
         $asynchronous_tasks = array();
@@ -137,9 +134,6 @@ class AWPCP_ManualUpgradeAdminPage {
         return $this->split_tasks_defintions( $upgrade_tasks, $asynchronous_tasks );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function split_tasks_defintions( $pending_upgrade_tasks, $asynchronous_tasks ) {
         $last_blocking_task = null;
         $storing_blocking_tasks = true;
@@ -189,9 +183,6 @@ class AWPCP_ManualUpgradeAdminPage {
         return _x( "AWPCP's premium modules need to upgrade the information stored in the database.  The operation may take several minutes, depending on the amount of information stored. Please press the Upgrade button shown below to start the process.", 'awpcp upgrade', 'another-wordpress-classifieds-plugin' );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function get_tasks_groups( $asynchronous_tasks ) {
         $groups = array();
 

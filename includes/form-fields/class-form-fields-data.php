@@ -5,8 +5,6 @@
 
 /**
  * Class used to retrieve data posted through listing's form fields.
- *
- * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
  */
 class AWPCP_FormFieldsData {
 

@@ -10,9 +10,6 @@ function awpcp_multiple_region_selector( $regions, $options ) {
     return awpcp_multiple_region_selector_with_template( $regions, $options, 'default' );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_multiple_region_selector_with_template( $regions, $options, $template_name ) {
     if ( $template_name === 'form-table' ) {
         $template = AWPCP_DIR . '/templates/admin/profile/contact-information-region-selector.tpl.php';
@@ -26,9 +23,6 @@ function awpcp_multiple_region_selector_with_template( $regions, $options, $temp
     return $selector;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_MultipleRegionSelector {
 
     private $template = '';

@@ -658,9 +658,6 @@ class AWPCP_CSV_Importer_Delegate {
  *                    that the extra field was assigned to, or if the extra field was
  *                    not assigned to any category.
  *                    required fields may be empty if enforce is false.
- * @SuppressWarnings(PHPMD.NPathComplexity)
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
 function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, $enforce, &$errors ) {
     $validation_errors = array();

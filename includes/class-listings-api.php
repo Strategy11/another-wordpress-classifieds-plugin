@@ -282,9 +282,6 @@ class AWPCP_ListingsAPI {
         return $metadata;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     public function update_listing( $listing, $listing_data ) {
         $listing_data = wp_parse_args( $listing_data, array(
             'post_fields' => array(),
@@ -395,9 +392,6 @@ class AWPCP_ListingsAPI {
         $this->mark_listing_as_needs_verification( $listing );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     private function should_mark_listing_as_verified( $listing, $transaction ) {
         if ( ! $this->settings->get_option( 'enable-email-verification' ) ) {
             return true;

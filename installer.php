@@ -43,9 +43,6 @@ function awpcp_installer() {
     return $instance;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_Installer {
 
     private static $instance = null;

@@ -8,8 +8,6 @@ use Brain\Monkey\Functions;
 
 /**
  * Unit tests for Form Fields Data Validator.
- *
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_FormFieldsDataValidatorTest extends AWPCP_UnitTestCase {
 

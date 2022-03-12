@@ -69,7 +69,6 @@ class AWPCP_ListingFieldsMetabox {
      * @param object $template_renderer         An instance of Template Renderer.
      * @param object $wordpress                 An instance of WordPress.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct( $post_type, $listings_logic, $form_fields_data, $form_fields_validator, $form_fields, $date_form_fields, $media_center, $template_renderer, $wordpress, $listing_authorization ) {
         $this->post_type = $post_type;
@@ -176,7 +175,6 @@ class AWPCP_ListingFieldsMetabox {
      * @param int    $post_id   The ID of the post being saved.
      * @param object $post      The post being saved.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function save( $post_id, $post ) {
         if (

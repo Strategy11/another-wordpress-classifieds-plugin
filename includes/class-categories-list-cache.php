@@ -46,7 +46,6 @@ class AWPCP_CategoriesListCache {
      * Handler for the set_object_terms action.
      *
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function on_set_object_terms( $object_id, $terms, $term_taxonomy_ids, $taxonomy ) {
         if ( $this->listing_category_taxonomy !== $taxonomy ) {

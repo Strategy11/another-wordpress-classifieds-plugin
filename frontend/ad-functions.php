@@ -54,7 +54,6 @@ function awpcp_calculate_end_date($increment, $period, $start_date) {
  * @param $id	Ad ID.
  * @param $transaction	Payment Transaction associated to the Ad being posted
  * @deprecated 4.0.0    This is function is no longer used.
- * @SuppressWarnings(PHPMD)
  */
 function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment_status=null) {
     if ( is_null( $payment_status ) && ! is_null( $transaction ) ) {
@@ -80,7 +79,6 @@ function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment
 
 /**
  * @deprecated 4.0.0    This function is no longer used.
- * @SuppressWarnings(PHPMD)
  */
 function awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) {
     $payment_is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
@@ -107,9 +105,6 @@ function awpcp_should_enable_new_listing_with_payment_status( $listing, $payment
     return awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) ? false : true;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_should_disable_existing_listing( $listing ) {
     if ( awpcp_current_user_is_moderator() ) {
         $should_disable = false;
@@ -190,7 +185,6 @@ function awpcp_send_ad_renewed_email($ad) {
 /**
  * @since 2.0.7
  * @deprecated 4.0.0 No longer used by internal code.
- * @SuppressWarnings(PHPMD)
  */
 function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
 	if (is_null($text)) {
@@ -209,9 +203,6 @@ function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
 	return sprintf("%s %s", sprintf($text, $ad->get_end_date()), $return);
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 	$output = '';
 	$awpcppage = get_currentpagename();
@@ -265,7 +256,6 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 
 /**
  * @since 3.0.2
- * @SuppressWarnings(PHPMD)
  */
 function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 	$admin_email = awpcp_admin_recipient_email_address();
@@ -382,9 +372,6 @@ function awpcp_login_form($message=null, $redirect=null) {
 	return $login_form->render( $redirect, $message );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_user_payment_terms_sort($a, $b) {
 	$result = strcasecmp($a->type, $b->type);
 	if ($result == 0) {

@@ -26,9 +26,6 @@ class AWPCP_WordPress_Status_Header_Filter {
         $this->request  = $request;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function filter_status_header( $status_header, $code, $description, $protocol ) {
         if ( intval( $code ) !== 200 ) {
             return $status_header;

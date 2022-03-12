@@ -8,9 +8,6 @@ use Brain\Monkey\Functions;
 /**
  * Unit tests for the class that integrates with WP Query to support Classifieds
  * query parameters.
- *
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class AWPCP_QueryIntegrationTest extends AWPCP_UnitTestCase {
 

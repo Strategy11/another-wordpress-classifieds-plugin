@@ -204,9 +204,6 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         return $this->render($template, $params);
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     protected function process_contact_form() {
         $ad = $this->get_ad();
 

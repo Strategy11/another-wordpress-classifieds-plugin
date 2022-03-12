@@ -10,8 +10,6 @@ class AWPCP_Test_Migrate_Media_Information_Task_Handler extends AWPCP_UnitTestCa
 
     /**
      * Test run task method.
-     *
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function test_run_task() {
         $settings = Phake::mock( 'AWPCP_Settings' );

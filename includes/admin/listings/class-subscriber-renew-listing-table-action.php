@@ -56,8 +56,6 @@ class AWPCP_SubscriberRenewListingTableAction implements
      *
      * @param object $post          An instance of WP_Post.
      * @param string $current_url   The URL of the current page.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $current_url
      */
     public function get_url( $post, $current_url ) {
         return awpcp_get_renew_ad_url( $post->ID );
@@ -67,8 +65,6 @@ class AWPCP_SubscriberRenewListingTableAction implements
      * @since 4.0.0
      *
      * @param object $post  An instance of WP_Post.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function process_item( $post ) {
     }
@@ -77,8 +73,6 @@ class AWPCP_SubscriberRenewListingTableAction implements
      * @since 4.0.0
      *
      * @param array $result_codes   An array of result codes from this action.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_messages( $result_codes ) {
         return [];

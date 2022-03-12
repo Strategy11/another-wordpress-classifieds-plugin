@@ -112,7 +112,6 @@ function awpcp_render_categories_dropdown_options( &$categories, &$hierarchy, $s
 /**
  * @since 3.4
  * @since 4.0.0     Accepts an array of selected categories.
- * @SuppressWarnings(PHPMD)
  */
 function awpcp_render_categories_dropdown_option( $category, $selected_categories, $level ) {
     $category_name = esc_html( wp_unslash( $category->name ) );
@@ -174,7 +173,6 @@ function awpcp_count_listings_in_categories() {
  *       (up to, at least, version 3.6.3.1).
  *
  * @since 4.0.0
- * @SuppressWarnings(PHPMD)
  */
 function awpcp_count_listings_in_category( $category_id ) {
     $cache_entry_key = 'term-padded-count-' . $category_id;

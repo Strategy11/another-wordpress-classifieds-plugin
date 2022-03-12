@@ -51,9 +51,6 @@ class AWPCP_Image_Placeholders {
         return $this->cache[ $ad->ID ][ $placeholder ];
     }
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     private function render_image_placeholders( $ad, $placeholder ) {
         global $awpcp_imagesurl;
 

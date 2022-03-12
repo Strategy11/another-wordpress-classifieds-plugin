@@ -77,7 +77,6 @@ class AWPCP_MarkAsSPAMListingTableAction implements
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
         return 'fa fa-flag';
@@ -93,7 +92,6 @@ class AWPCP_MarkAsSPAMListingTableAction implements
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
         return $this->get_title();

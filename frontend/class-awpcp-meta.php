@@ -5,8 +5,6 @@
 
 /**
  * Generates meta tags for listings.
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_Meta {
 
@@ -240,9 +238,6 @@ class AWPCP_Meta {
         $this->render_meta_tags( $meta_tags, 'Basic' );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function get_the_date( $the_date, $format = '' ) {
         if ( ! $format ) {
             $format = get_option( 'date_format' );
@@ -251,9 +246,6 @@ class AWPCP_Meta {
         return mysql2date( $format, $this->properties['published-time'] );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function get_the_modified_date( $the_date, $format ) {
         if ( ! $format ) {
             $format = get_option( 'date_format' );

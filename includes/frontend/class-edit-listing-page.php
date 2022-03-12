@@ -5,8 +5,6 @@
 
 /**
  * Edit Listing Page.
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_EditListingPage extends AWPCP_Page {
 

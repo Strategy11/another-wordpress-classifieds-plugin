@@ -59,9 +59,6 @@ class AWPCP_DatabaseException extends AWPCP_Exception {
         parent::__construct( $this->prepare_exception_message( $exception_message, $db_error ) );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     private function prepare_exception_message( $exception_message, $db_error ) {
         if ( ! empty( $db_error ) ) {
             return $exception_message . ' ' . $db_error;

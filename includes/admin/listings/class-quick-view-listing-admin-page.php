@@ -108,7 +108,6 @@ class AWPCP_QuickViewListingAdminPage {
     /**
      * Handles quick view quick actions, enable, disable and send key.
      *
-     * @SuppressWarnings(PHPMD.ExitExpression)
      * @since 4.0.8
      */
     public function handle_quick_actions() {

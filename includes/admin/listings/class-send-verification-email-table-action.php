@@ -49,8 +49,6 @@ class AWPCP_SendVerificationEmailTableAction implements
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function should_show_action_for( $post ) {
         return false; // Available as a bulk action only.
@@ -58,7 +56,6 @@ class AWPCP_SendVerificationEmailTableAction implements
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
         return 'fa fa-check-double';
@@ -73,7 +70,6 @@ class AWPCP_SendVerificationEmailTableAction implements
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
         return $this->get_title();

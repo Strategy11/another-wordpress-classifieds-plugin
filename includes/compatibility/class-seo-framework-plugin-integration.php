@@ -21,12 +21,6 @@ function awpcp_seo_framework_integration() {
 	);
 }
 
-/**
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.TooManyMethods)
- */
 class AWPCP_SEOFrameworkIntegration {
 
 	private $current_listing;

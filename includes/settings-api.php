@@ -47,7 +47,6 @@ class AWPCP_Settings_API {
 
     /**
      * @since 4.0.0     Updated to use Settings Manager.
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
      */
 	public function get_option( $name, $default = '', $reload = false ) {
         if ( $reload ) {
@@ -121,7 +120,6 @@ class AWPCP_Settings_API {
 
 	/**
 	 * @param $force boolean - true to update unregistered options
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
 	 */
 	public function update_option( $name, $value, $force = false ) {
 		if ( $force || array_key_exists( $name, $this->options ) ) {

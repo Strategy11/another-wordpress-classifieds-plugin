@@ -31,7 +31,6 @@ class AWPCP_SendAccessKeyListingTableAction implements AWPCP_ListTableActionInte
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function should_show_action_for( $post ) {
         return true;
@@ -39,7 +38,6 @@ class AWPCP_SendAccessKeyListingTableAction implements AWPCP_ListTableActionInte
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
         return 'fa fa-key';
@@ -55,7 +53,6 @@ class AWPCP_SendAccessKeyListingTableAction implements AWPCP_ListTableActionInte
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
         return $this->get_title();

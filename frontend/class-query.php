@@ -5,7 +5,6 @@
 
 /**
  * @since 3.6
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_Query {
 

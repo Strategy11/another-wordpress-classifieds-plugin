@@ -823,7 +823,6 @@ class AWPCP_QueryIntegration {
      * @param array  $clauses   An array of SQL clauses.
      * @param object $query     An instance of WP_Query.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD)
      */
     private function add_clauses_to_order_by_multiple_meta_keys( $clauses, $query ) {
         $orderby = array();

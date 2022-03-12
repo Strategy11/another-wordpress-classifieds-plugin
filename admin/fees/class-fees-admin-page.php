@@ -48,9 +48,6 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
         return $this->url( $params, $base );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
-     */
     public function actions( $fee, $filter = false ) {
         $actions = array();
 
@@ -108,8 +105,6 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
      *
      * Please test thoroughly before enabling this feature again,
      * to make sure it works with recent modifications.
-     *
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function transfer() {
         $fee = AWPCP_Fee::find_by_id( awpcp_request_param( 'id', 0 ) );
@@ -155,9 +150,6 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
         echo $this->render( $template, $params );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function delete() {
         $id  = awpcp_request_param( 'id', 0 );
         $fee = AWPCP_Fee::find_by_id( $id );

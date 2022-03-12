@@ -33,10 +33,6 @@ class AWPCP_ImportListingsAdminPage {
         echo $this->handle_request();
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     */
     private function handle_request() {
         if ( $this->request->post( 'cancel' ) || $this->request->post( 'finish' ) ) {
             return $this->delete_current_import_session();
@@ -85,12 +81,6 @@ class AWPCP_ImportListingsAdminPage {
         return $this->show_upload_files_form();
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     */
     private function upload_files() {
         $import_session = $this->import_session = $this->import_sessions_manager->create_import_session();
 
@@ -254,9 +244,6 @@ class AWPCP_ImportListingsAdminPage {
         return $this->show_configuration_form();
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function save_configuration() {
         $import_session = $this->get_import_session();
 
@@ -347,9 +334,6 @@ class AWPCP_ImportListingsAdminPage {
         return $this->show_import_form();
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function show_import_form() {
         $import_session = $this->get_import_session();
 

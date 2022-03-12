@@ -36,9 +36,6 @@ class AWPCP_RolesAndCapabilities {
         return $this->get_administrator_roles_names_from_string( $selected_roles );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function get_administrator_roles_names_from_string( $string ) {
         $configured_roles = explode( ',', $string );
 

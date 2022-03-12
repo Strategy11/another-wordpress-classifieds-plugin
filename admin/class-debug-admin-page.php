@@ -81,7 +81,6 @@ class AWPCP_DebugAdminPage {
 	 * Allow users to download Debug Info as an JSON file.
 	 *
 	 * @since 2.0.7
-     * @SuppressWarnings(PHPMD.ExitExpression)
 	 */
 	public function export_to_json() {
         $content = [
@@ -408,7 +407,6 @@ class AWPCP_DebugAdminPage {
 
     /**
      * @since 4.0.0     Removed setting name argument.
-     * @SuppressWarnings(PHPMD.DevelopmentCodeFragment)
      */
 	private function sanitize_setting_value( $value ) {
         static $hosts_regexp = '';

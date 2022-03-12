@@ -5,8 +5,6 @@
 
 /**
  * Unit tests for Listing Renderer class.
- *
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_Test_Listing_Renderer extends AWPCP_UnitTestCase {
 

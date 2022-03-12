@@ -16,8 +16,6 @@ function awpcp_categories_switcher() {
 
 /**
  * The Categories Swticher component.
- *
- * @SuppressWarnings(PHPMD)
  */
 class AWPCP_Categories_Switcher {
 

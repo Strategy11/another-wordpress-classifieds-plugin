@@ -5,7 +5,6 @@
 
 /**
  * @since 4.1.0
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_ExportListingsAdminPage {
 
@@ -25,12 +24,6 @@ class AWPCP_ExportListingsAdminPage {
 	    return awpcp_render_template( $template, array() );
     }
 
-	/**
-	 * @SuppressWarnings(PHPMD.StaticAccess)
-	 * @SuppressWarnings(PHPMD.ElseExpression)
-	 * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-	 * @SuppressWarnings(PHPMD.NPathComplexity)
-	 */
     public function ajax() {
 	    $verify_nonce = check_ajax_referer( 'awpcp-export-csv' );
 	    if ( ! current_user_can( 'administrator' ) || ! $verify_nonce ) {

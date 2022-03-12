@@ -55,7 +55,6 @@ class AWPCP_EnableListingTableAction implements
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
         return 'fa fa-check';
@@ -63,14 +62,12 @@ class AWPCP_EnableListingTableAction implements
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_title() {
         return _x( 'Enable', 'listing row action', 'another-wordpress-classifieds-plugin' );
     }
 
     /**
-     * @SuppressWarnings(UnusedFormalParameter)
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */

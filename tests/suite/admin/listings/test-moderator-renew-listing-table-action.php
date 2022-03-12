@@ -7,8 +7,6 @@ use Brain\Monkey\Functions;
 
 /**
  * Tests for Renew Listing Table Action class.
- *
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_ModeratorRenewListingTableActionTest extends AWPCP_UnitTestCase {
 

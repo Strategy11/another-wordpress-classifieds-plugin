@@ -42,9 +42,6 @@ class AWPCP_TemplateTester {
         }
     }
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     public function __call( $method, $args ) {
         if ( isset( $this->methods[ $method ] ) ) {
             return $this->methods[ $method ];
@@ -62,8 +59,6 @@ class AWPCP_TemplateTester {
  * it can be interpreted by PHP without errors.
  *
  * The logic in every template will not be tested here, sadly!.
- *
- * @SuppressWarnings(PHPMD)
  */
 class AWPCP_TestTemplates extends AWPCP_UnitTestCase {
 

@@ -85,9 +85,6 @@ class AWPCP_ListingPaymentTransactionHandler {
         }
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function consolidate_transaction( $listing, $transaction ) {
         $previous_listing_payment_status     = $transaction->get( 'previous-ad-payment-status' );
         $listing_had_accepted_payment_status = $this->is_accepted_payment_status( $previous_listing_payment_status );

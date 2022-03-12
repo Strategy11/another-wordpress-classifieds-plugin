@@ -299,9 +299,6 @@ class AWPCP_Pages {
     }
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcpui_homescreen() {
 	global $classicontent;
 
@@ -313,9 +310,6 @@ function awpcpui_homescreen() {
 	return $classicontent;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcpui_process( $awpcppagename ) {
 	global $hasregionsmodule;
 
@@ -354,9 +348,6 @@ function awpcpui_process( $awpcppagename ) {
 	return $output;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_load_classifieds( $awpcppagename ) {
 	if ( get_awpcp_option( 'main_page_display' ) ) {
         $query = array(
@@ -374,10 +365,6 @@ function awpcp_load_classifieds( $awpcppagename ) {
 	return $output;
 }
 
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_display_the_classifieds_page_body( $awpcppagename ) {
 	global $hasregionsmodule;
 
@@ -418,9 +405,6 @@ function awpcp_display_the_classifieds_page_body( $awpcppagename ) {
 	return $output;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_menu_items() {
     $params = array(
         'show-create-listing-button'  => get_awpcp_option( 'show-menu-item-place-ad' ),
@@ -445,9 +429,6 @@ function awpcp_menu_items() {
     return awpcp_render_template( $template, $params );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_get_menu_items( $params ) {
     $items = array();
 
@@ -527,9 +508,6 @@ function awpcp_get_menu_items( $params ) {
     return $items;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_should_show_edit_listing_menu( $params ) {
     if ( get_awpcp_option( 'onlyadmincanplaceads' ) && ! awpcp_current_user_is_admin() ) {
         return false;
@@ -546,9 +524,6 @@ function awpcp_should_show_edit_listing_menu( $params ) {
     return true;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_get_edit_listing_menu_item() {
     $listings      = awpcp_listings_collection();
     $authorization = awpcp_listing_authorization();

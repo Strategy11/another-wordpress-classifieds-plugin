@@ -472,8 +472,6 @@ class AWPCP {
     /**
      * Make sure disabled posts are returned in the posts array
      * in order to avoid a not found page and display a message instead.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function redirect_deleted_ads( $handle_404, $wp_query ) {
         $classifieds_page_url = awpcp_get_main_page_url();
@@ -487,8 +485,6 @@ class AWPCP {
 
     /**
      * Returns pending ad to avoid WordPress default 404 handling and display a message instead.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function return_pending_post( $handle_404, $query ) {
         $post_id = $query->get( 'p' );
@@ -507,8 +503,6 @@ class AWPCP {
 
     /**
      * Return expired ad so owner can renew.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function expired_ads( $handle_404, $query ) {
         $post_id = $query->get( 'p' );

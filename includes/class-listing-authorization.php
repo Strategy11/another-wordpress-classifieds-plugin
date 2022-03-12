@@ -84,8 +84,6 @@ class AWPCP_ListingAuthorization {
      * @since 4.0.0
      *
      * @param object $listing An instance of WP_Post.
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     public function is_current_user_allowed_to_edit_listing_start_date( $listing ) {
         if ( $this->roles->current_user_is_moderator() ) {
@@ -126,7 +124,6 @@ class AWPCP_ListingAuthorization {
     /**
      * @param object $listing   An instance of WP_Post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function is_current_user_allowed_to_edit_listing_end_date( $listing ) {
         return $this->roles->current_user_is_moderator();

@@ -12,10 +12,6 @@ function awpcp_listings_collection() {
 
 /**
  * @since 3.2.2
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class AWPCP_ListingsCollection {
 
@@ -520,9 +516,6 @@ class AWPCP_ListingsCollection {
      * -------------------------------------------------------------------------
      */
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     private function add_orderby_query_parameters( $query ) {
 		if ( isset( $query['orderby'] ) ) {
             $query['_orderby'] = $query['orderby'];
@@ -831,7 +824,6 @@ class AWPCP_ListingsCollection {
 
     /**
      * @param array $query  An array of query vars.
-     * @SuppressWarnings(PHPMD)
      */
     private function execute_query( $query ) {
         if ( isset( $query['_meta_order'] ) ) {

@@ -17,9 +17,6 @@ function awpcp_delete_listing_ajax_handler() {
     );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_DeleteListingAjaxHandler implements AWPCP_Table_Entry_Action_Handler {
 
     private $listings_logic;

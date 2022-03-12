@@ -10,7 +10,6 @@ class AWPCP_TestSSLClientAjaxHandler {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExitExpression)
      */
     public function ajax() {
         if ( ! awpcp_current_user_is_admin() ) {

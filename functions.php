@@ -80,7 +80,6 @@ function awpcp_query_vars($query_vars) {
 
 /**
  * @since 3.2.1
- * @SuppressWarnings(PHPMD)
  */
 function awpcp_rel_canonical_url() {
 	global $wp_the_query;
@@ -113,7 +112,6 @@ function awpcp_rel_canonical_url() {
  *
  * @since unknown
  * @since 3.2.1	logic moved to awpcp_rel_canonical_url()
- * @SuppressWarnings(PHPMD)
  */
 function awpcp_rel_canonical() {
 	$url = awpcp_rel_canonical_url();
@@ -135,8 +133,6 @@ function awpcp_rel_canonical() {
  * when AWPCP main page is also the front page.
  *
  * http://wordpress.stackexchange.com/questions/51530/rewrite-rules-problem-when-rule-includes-homepage-slug
- *
- * @SuppressWarnings(PHPMD)
  */
 function awpcp_redirect_canonical($redirect_url, $requested_url) {
 	global $wp_query;

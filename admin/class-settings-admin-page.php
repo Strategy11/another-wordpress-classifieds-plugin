@@ -16,8 +16,6 @@ function awpcp_settings_admin_page() {
 
 /**
  * Admin page that allows administrators to configure the plugin.
- *
- * @SuppressWarnings(PHPMD)
  */
 class AWPCP_SettingsAdminPage {
 
@@ -174,9 +172,6 @@ class AWPCP_Facebook_Page_Settings {
 		add_action( 'awpcp-admin-settings-page--facebook-settings', array($this, 'dispatch'));
 	}
 
-    /**
-     * @SuppressWarnings(PHPMD.ExitExpression)
-     */
 	public function maybe_redirect() {
 		if ( !isset( $_GET['g'] ) || $_GET['g'] != 'facebook-settings' || $this->get_current_action() != 'obtain_user_token' )
 			return;
@@ -210,9 +205,6 @@ class AWPCP_Facebook_Page_Settings {
 		return 'display_settings';
 	}
 
-    /**
-     * @SuppressWarnings(PHPMD.ExitExpression)
-     */
 	private function redirect_with_error( $error_code, $error_message ) {
 		$params = array( 'code_error' => $error_code, 'error_message' => $error_message );
 		$settings_url = admin_url( 'admin.php?page=awpcp-admin-settings&g=facebook-settings' );
@@ -232,10 +224,6 @@ class AWPCP_Facebook_Page_Settings {
 		}
 	}
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
-     */
 	private function display_settings( $errors=array() ) {
         $fb = AWPCP_Facebook::instance();
 

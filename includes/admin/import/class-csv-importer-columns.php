@@ -45,7 +45,6 @@ class AWPCP_CSVImporterColumns {
      * and Extra Fields.
      *
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function get_default_supported_columns() {
         return [

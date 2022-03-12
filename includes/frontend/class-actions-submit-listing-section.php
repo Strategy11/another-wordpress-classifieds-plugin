@@ -66,7 +66,6 @@ class AWPCP_ActionsSubmitListingSection {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function render( $listing, $transaction = null, $mode = 'create' ) {
         if ( is_null( $listing ) || 'create' === $mode ) {

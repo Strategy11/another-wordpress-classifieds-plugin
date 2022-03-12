@@ -185,7 +185,6 @@ class AWPCP_Uninstaller {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     private function delete_options() {
 		$options_to_delete = array(

@@ -123,9 +123,6 @@ class AWPCP_SendToFacebookHelper {
         return true;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     private function do_facebook_request( $listing, $path, $method ) {
         $params = array(
             'link' => url_showad( $listing->ID ),

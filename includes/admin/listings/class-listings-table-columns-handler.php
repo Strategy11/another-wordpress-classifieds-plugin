@@ -124,7 +124,6 @@ class AWPCP_ListingsTableColumnsHandler {
      * @param string $column    The name of the column that is being rendered.
      * @param int    $post_id   The ID of the current post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function manage_posts_custom_column( $column, $post_id ) {
         try {

@@ -40,9 +40,6 @@ class AWPCP_UsersCollection {
         return $user;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function find( $params ) {
         $params = wp_parse_args(
             $params,
@@ -125,11 +122,6 @@ class AWPCP_UsersCollection {
         return $query;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     */
     private function consolidate_users_information( $params, $users_information ) {
         $users = array();
 
@@ -213,9 +205,6 @@ class AWPCP_UsersCollection {
         return $name;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function get_user_public_name_using_selected_format( $user_info ) {
         $format = $this->settings->get_option( 'user-name-format' );
 

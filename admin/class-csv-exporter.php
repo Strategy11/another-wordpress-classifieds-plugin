@@ -64,7 +64,6 @@ class AWPCP_CSVExporter {
 
     /**
      * @throws AWPCP_Exception If unable to create exports directory.
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function setup_working_dir( $workingdir ) {
         $this->workingdir = $workingdir;
@@ -348,8 +347,6 @@ class AWPCP_CSVExporter {
     }
 
     /**
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     *
      * @return array|bool
      */
     private function extract_data() {
