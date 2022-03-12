@@ -46,7 +46,7 @@
         <exclude name="WordPress.Arrays.ArrayIndentation.ItemNotAligned" />
         <exclude name="WordPress.Arrays.CommaAfterArrayItem.NoComma" />
         <exclude name="WordPress.Arrays.MultipleStatementAlignment" />
-        <exclude name="WordPress.Arrays.ArrayIndentation.CloseBraceNotAligned" /
+        <exclude name="WordPress.Arrays.ArrayIndentation.CloseBraceNotAligned" />
         <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace" />
         <exclude name="Squiz.PHP.EmbeddedPhp" />
         <exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
