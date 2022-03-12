@@ -32,7 +32,7 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function method() {
-        return strtoupper( sanitize_text_field( $_SERVER['REQUEST_METHOD'] ) );
+        return strtoupper( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) );
     }
 
     /**

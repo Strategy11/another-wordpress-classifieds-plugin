@@ -677,6 +677,7 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
             $values_list = explode( ';', $value );
             $value = explode( ';', $value );
 
+			// Process with single selects too.
         case 'Select':
         case 'Radio Button':
             $values_list = is_array( $values_list ) ? $values_list : array( $value );

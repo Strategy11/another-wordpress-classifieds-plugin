@@ -113,12 +113,15 @@ class AWPCP_ImportListingsAdminPage {
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
                 $file_error              = awpcp_uploaded_file_error( $_FILES['zip_file'] );
                 $form_errors['zip_file'] = $file_error[1];
-            } else if ( $_FILES['zip_file']['error'] == UPLOAD_ERR_NO_FILE ) {
+
 				// phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
+            } else if ( $_FILES['zip_file']['error'] == UPLOAD_ERR_NO_FILE ) {
                 // all good...
+
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
             } else if ( substr( $_FILES['zip_file']['name'], -4 ) !== '.zip' ) {
                 $form_errors['zip_file'] = __( "The uploaded file doesn't look like a ZIP file. Please upload a valid ZIP file.", 'another-wordpress-classifieds-plugin' );
+
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
             } else if ( ! @move_uploaded_file( $_FILES['zip_file']['tmp_name'], "$working_directory/images.zip" ) ) {
                 $form_errors['zip_file'] = __( 'There was an error moving the uploaded ZIP file to a proper location.', 'another-wordpress-classifieds-plugin' );
