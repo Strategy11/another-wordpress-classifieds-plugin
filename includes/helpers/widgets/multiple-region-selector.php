@@ -92,7 +92,6 @@ class AWPCP_MultipleRegionSelector {
             $enabled_fields = awpcp_get_enabled_region_fields( $context );
         }
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $fields = apply_filters( 'awpcp-region-fields', false, $context, $enabled_fields );
 
         if ( false === $fields ) {
@@ -103,7 +102,6 @@ class AWPCP_MultipleRegionSelector {
     }
 
     private function get_region_field_options( $context, $type, $selected, $hierarchy ) {
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $options = apply_filters( 'awpcp-region-field-options', false, $context, $type, $selected, $hierarchy );
 
         if ( false !== $options ) {
@@ -218,7 +216,6 @@ class AWPCP_MultipleRegionSelector {
             );
         }
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $options = apply_filters( 'awpcp-multiple-region-selector-configuration', $this->options, $context, $fields );
 
         $uuid          = uniqid();

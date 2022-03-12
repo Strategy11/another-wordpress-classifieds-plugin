@@ -3,11 +3,6 @@
  * @package AWPCP\Payments
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_Payment_Transaction {
 
 	// public static $PAYMENT_STATUS_UNKNOWN = 'Unknown';

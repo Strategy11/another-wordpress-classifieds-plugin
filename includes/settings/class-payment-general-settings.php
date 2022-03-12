@@ -33,8 +33,6 @@ class AWPCP_PaymentSettings {
         $this->register_credit_system_settings( $settings_manager );
     }
 
-    // phpcs:disable
-
     /**
      * @since 4.0.0
      */

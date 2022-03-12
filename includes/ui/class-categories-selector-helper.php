@@ -3,8 +3,6 @@
  * @package AWPCP\UI
  */
 
-// phpcs:disable
-
 function awpcp_categories_selector_helper() {
     return new AWPCP_Categories_Selector_Helper();
 }

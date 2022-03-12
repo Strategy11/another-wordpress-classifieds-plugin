@@ -3,8 +3,6 @@
  * @package AWPCP\Templates\Admin
  */
 
-// phpcs:disable
-
 ?><div class="awpcp-manage-categories-category-form-container postbox-container">
     <div class="metabox-holder">
         <div class="metabox-sortables">

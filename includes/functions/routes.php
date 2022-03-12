@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 /**
  * Returns the current name of the AWPCP main page.
  */

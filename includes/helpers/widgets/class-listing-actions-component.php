@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 function awpcp_listing_actions_component() {
     return new AWPCP_ListingActionsComponent();
 }
@@ -20,9 +18,6 @@ function awpcp_listing_actions_component() {
  */
 class AWPCP_ListingActionsComponent {
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
-     */
     public function render( $listing ) {
         $actions = apply_filters( 'awpcp-listing-actions', array(), $listing );
 

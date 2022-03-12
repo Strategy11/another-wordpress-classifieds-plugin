@@ -51,7 +51,6 @@ class AWPCP_StoreCategoriesOrderAsTermMetaTaskHandler implements AWPCP_Upgrade_T
      * @since 4.0.0
      */
     private function get_categories_query_vars() {
-        // @phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query
         return [
             'orderby'    => 'term_id',
             'order'      => 'ASC',
@@ -62,12 +61,10 @@ class AWPCP_StoreCategoriesOrderAsTermMetaTaskHandler implements AWPCP_Upgrade_T
                 ],
             ],
         ];
-        // @phpcs:enable
     }
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_pending_items( $last_item_id ) {
         $query_vars = array_merge(

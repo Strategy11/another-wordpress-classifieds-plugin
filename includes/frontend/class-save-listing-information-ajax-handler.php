@@ -189,7 +189,6 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
      * @since 4.0.0
      */
     private function save_listing_information( $listing, $post_data ) {
-        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         do_action( 'awpcp-before-save-listing', $listing, $post_data );
 
         $this->listings_logic->update_listing( $listing, $post_data );
@@ -201,7 +200,6 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
          * @deprecated 4.0.0    Use awpcp_listing_information_saved instead.
          */
         do_action( 'awpcp-save-ad-details', $listing, null );
-        // @phpcs:enable
 
         /**
          * Fires once the information for a classified ad has been saved.

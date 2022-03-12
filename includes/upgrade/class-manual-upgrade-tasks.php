@@ -50,10 +50,6 @@ class AWPCP_Manual_Upgrade_Tasks {
             ]
         );
 
-        // @phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine
-        // @phpcs:disable WordPress.Arrays.MultipleStatementAlignment.DoubleArrowNotAligned
-        // @phpcs:disable PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket
-
         $this->upgrade_tasks->register_upgrade_task( array(
             'slug' => 'awpcp-migrate-regions-information',
             'name' => __( 'Migrate Regions Information', 'another-wordpress-classifieds-plugin' ),

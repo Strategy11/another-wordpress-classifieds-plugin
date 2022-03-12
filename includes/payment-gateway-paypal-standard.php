@@ -35,11 +35,6 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         return self::INTEGRATION_BUTTON;
     }
 
-    /**
-     * phpcs:disable WordPress.Security.NonceVerification.Missing
-     *
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function verify_transaction( $transaction ) {
         $errors = array();
 
@@ -159,7 +154,6 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         }
 
         // TODO: handle this filter for Ads and Subscriptions.
-        // @phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $duplicated = apply_filters( 'awpcp-payments-is-duplicated-transaction', false, $txn_id );
         if ( $duplicated ) {
             $message                           = __( 'It appears this transaction has already been processed. If you do not see your ad in the system please contact the site adminstrator for assistance.', 'another-wordpress-classifieds-plugin' );

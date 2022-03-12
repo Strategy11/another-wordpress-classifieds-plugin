@@ -3,14 +3,6 @@
  * @package AWPCP
  */
 
-/**
- * @phpcs:disable Generic
- * @phpcs:disable PEAR
- * @phpcs:disable PSR2
- * @phpcs:disable Squiz
- * @phpcs:disable WordPress
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP {
 
     public $installer = null;

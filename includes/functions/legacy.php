@@ -22,8 +22,6 @@ function countlistings( $is_active ) {
     return awpcp_listings_collection()->count_disabled_listings();
 }
 
-// phpcs:disable
-
 function get_awpcp_setting($column, $option) {
     global $wpdb;
     $tbl_ad_settings = $wpdb->prefix . "awpcp_adsettings";

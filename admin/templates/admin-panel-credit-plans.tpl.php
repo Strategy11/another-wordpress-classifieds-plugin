@@ -6,7 +6,7 @@
 ?><div class="metabox-holder">
     <div class="awpcp-credit-system-settings-postbox postbox">
         <?php
-        // @phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_html_postbox_handle( array( 'content' => esc_html( __( 'Credit System Settings', 'another-wordpress-classifieds-plugin' ) ) ) );
         ?>
         <div class="inside">
@@ -32,8 +32,7 @@
 
     <?php $url = $page->url( array( 'action' => 'add-credit-plan' ) ); ?>
     <?php $label = __( 'Add Credit Plan', 'another-wordpress-classifieds-plugin' ); ?>
-    <?php // @phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+    <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
     <a class="add button-primary" title="<?php echo esc_attr( $label ); ?>" href="<?php echo esc_attr( $url ); ?>" accesskey="s"><?php echo esc_html( $label ); ?></a>
     <?php echo $table->display(); ?>
-    <?php // phpcs:enable ?>
 </form>

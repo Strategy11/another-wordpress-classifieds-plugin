@@ -1,7 +1,4 @@
 <?php
-/**
- * @phpcs:disable
- */
 
 /**
  * Return mime types associated with image files.

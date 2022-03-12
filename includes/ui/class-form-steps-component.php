@@ -3,8 +3,6 @@
  * @package AWPCP\UI
  */
 
-// phpcs:disable
-
 class AWPCP_FormStepsComponent {
 
     /**

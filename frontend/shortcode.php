@@ -73,7 +73,6 @@ class AWPCP_Pages {
         awpcp_maybe_add_thickbox();
         wp_enqueue_script( 'awpcp-page-show-ad' );
         if ( ! isset( $this->output['place-ad'] ) ) {
-            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
             do_action( 'awpcp-shortcode', 'place-ad' );
 
             if ( ! isset( $this->place_ad_page ) ) {
@@ -88,7 +87,6 @@ class AWPCP_Pages {
 
 	public function edit_ad() {
         if ( ! isset( $this->output['edit-ad'] ) ) {
-            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
             do_action( 'awpcp-shortcode', 'edit-ad' );
 
             if ( ! isset( $this->edit_ad_page ) ) {
@@ -127,7 +125,6 @@ class AWPCP_Pages {
 
 	public function reply_to_ad() {
         if ( ! isset( $this->output['reply-to-ad'] ) ) {
-            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
             do_action( 'awpcp-shortcode', 'reply-to-ad' );
 
             $page                        = awpcp_reply_to_listing_page();

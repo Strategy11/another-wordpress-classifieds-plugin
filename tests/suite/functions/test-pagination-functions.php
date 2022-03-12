@@ -10,12 +10,6 @@ use Brain\Monkey\Functions;
  */
 class AWPCP_Test_Pagination_Functions extends AWPCP_UnitTestCase {
 
-    /**
-     * @phpcs:disable WordPress.Security.NonceVerification.NoNonceVerification
-     * @phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-     * @phpcs:disable WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-     * @phpcs:disable WordPress.Security.ValidatedSanitizedInput.MissingUnslash
-     */
     public function test_pagination_forms_keep_page_id_url_parameter() {
         $_GET['page_id'] = wp_rand();
 

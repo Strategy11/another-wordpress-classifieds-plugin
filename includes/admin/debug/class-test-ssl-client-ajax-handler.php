@@ -17,9 +17,6 @@ class AWPCP_TestSSLClientAjaxHandler {
             die();
         }
 
-        // phpcs:disable WordPress.WP.AlternativeFunctions
-        // phpcs:disable WordPress.XSS.EscapeOutput
-
         if ( ! function_exists( 'curl_init' ) ) {
             die( 'cURL not available.' );
         }

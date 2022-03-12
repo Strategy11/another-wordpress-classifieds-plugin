@@ -54,14 +54,9 @@ class AWPCP_CategoriesListWalker extends Walker {
     protected function list_container() {
         $container = '<div id="awpcpcatlayout" class="awpcp-categories-list">[categories-list]</div><div class="fixfloat"></div>';
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-categories-list-container', $container, $this->options );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $args is defined in the parent class.
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         if ( $this->options['collapsible_categories'] ) {
             $element_start = '<ul %s data-collapsible="true">';

@@ -53,12 +53,8 @@ class AWPCP_DisplaySettings {
         return $new_options;
     }
 
-    // phpcs:disable
-
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_layout_and_presentation_settings( $settings_manager ) {
         $settings_manager->add_settings_subgroup( [

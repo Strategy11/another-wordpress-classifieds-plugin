@@ -3,8 +3,6 @@
  * @package AWPCP\Tests
  */
 
-// @phpcs:disable Squiz.Commenting
-
 class AWPCP_TestFacebookCacheHelper extends AWPCP_UnitTestCase {
 
     public function test_clear_ad_cache_uses_the_user_token_in_the_post_request() {

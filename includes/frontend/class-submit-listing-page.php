@@ -221,9 +221,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
             $listing = $this->listings->get( $listing_id );
         }
 
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         do_action( 'awpcp-before-post-listing-page' );
-        // phpcs:disable
 
         wp_enqueue_script( 'awpcp-submit-listing-page' );
 

@@ -49,16 +49,11 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             'buys'              => $object->buys,
         );
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $params = apply_filters( 'awpcp-get-payment-term-fee-params-from-db', $params, $object );
 
         return new AWPCP_Fee( $params );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable) All extracted vars.
-     */
     public static function query( $args = array() ) {
         global $wpdb;
 
@@ -160,7 +155,6 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             $this->defaults['buys'] = 0;
         }
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $this->defaults = apply_filters( 'awpcp-prepare-payment-term-fee-default-properties', $this->defaults );
 
         return $this->defaults;
@@ -172,7 +166,6 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $data['ads']  = 1;
         $data['buys'] = (int) $data['buys'];
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-sanitize-payment-term-fee-data', $data );
     }
 
@@ -202,14 +195,9 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             unset( $data['adterm_id'] );
         }
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-translate-payment-term-fee-data', $data, $_data );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable) $default
-     */
     public function save( &$errors = array() ) {
         global $wpdb;
 
@@ -235,7 +223,6 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
                 $result = $wpdb->update( AWPCP_TABLE_ADFEES, $data, array( 'adterm_id' => $this->id ) );
 
                 if ( $result !== false ) {
-                    // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
                     do_action( 'awpcp-payment-term-fee-updated', $this );
                 }
             } else {
@@ -243,7 +230,6 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
                 $this->id = $wpdb->insert_id;
 
                 if ( $result !== false ) {
-                    // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
                     do_action( 'awpcp-payment-term-fee-created', $this );
                 }
             }

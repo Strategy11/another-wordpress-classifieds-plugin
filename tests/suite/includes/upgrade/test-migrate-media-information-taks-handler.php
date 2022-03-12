@@ -34,15 +34,14 @@ class AWPCP_Test_Migrate_Media_Information_Task_Handler extends AWPCP_UnitTestCa
         Phake::when( $db )->get_results->thenReturn( $photos );
         Phake::when( $db )->get_var->thenReturn( 1 )->thenReturn( 0 );
 
-        // phpcs:disable WordPress.VIP.FileSystemWritesDisallow.file_ops_touch
+        // phpcs:ignore WordPress.VIP.FileSystemWritesDisallow.file_ops_touch
         touch( $uploads_dir . $filename );
-        // phpcs:enable
+
         $handler = Phake::partialMock( 'AWPCP_Migrate_Media_Information_Task_Handler', $settings, $db );
         Phake::when( $handler )->photos_table_exists->thenReturn( true );
         $result = $handler->run_task();
-        // phpcs:disable WordPress.VIP.FileSystemWritesDisallow.file_ops_unlink
+        // phpcs:ignore WordPress.VIP.FileSystemWritesDisallow.file_ops_unlink
         unlink( $uploads_dir . $filename );
-        // phpcs:enable
 
         Phake::verify( $db )->insert( Phake::capture( $table ), Phake::capture( $entry ) );
 

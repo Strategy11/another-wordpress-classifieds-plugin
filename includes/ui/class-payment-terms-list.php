@@ -3,8 +3,6 @@
  * @package AWPCP\UI
  */
 
-// phpcs:disable
-
 function awpcp_payment_terms_list() {
     return new AWPCP_Payment_Terms_List(
         awpcp_payments_api(),
@@ -12,9 +10,6 @@ function awpcp_payment_terms_list() {
     );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_Payment_Terms_List {
 
     private $payments;

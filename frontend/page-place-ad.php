@@ -4,12 +4,6 @@
  *
  */
 
-// phpcs:disable Generic
-// phpcs:disable PEAR
-// phpcs:disable PSR2
-// phpcs:disable Squiz
-// phpcs:disable WordPress
-
 require_once(AWPCP_DIR . '/includes/helpers/page.php');
 
 function awpcp_place_listing_page() {
@@ -32,7 +26,6 @@ function awpcp_place_listing_page() {
 
 /**
  * @since  2.1.4
- * @SuppressWarnings(PHPMD)
  */
 class AWPCP_Place_Ad_Page extends AWPCP_Page {
 

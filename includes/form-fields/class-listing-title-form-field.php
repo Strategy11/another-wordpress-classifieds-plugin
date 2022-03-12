@@ -3,8 +3,6 @@
  * @package AWPCP\FormFields
  */
 
-// phpcs:disable
-
 function awpcp_listing_title_form_field( $slug ) {
     return new AWPCP_ListingTitleFormField(
         $slug,

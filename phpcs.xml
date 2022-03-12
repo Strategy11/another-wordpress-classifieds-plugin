@@ -24,6 +24,7 @@
         <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found" />
         <exclude name="Squiz.Commenting.BlockComment" />
         <exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing" />
+        <exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores" />
 
         <!-- Temporary exclusions -->
         <exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped" />

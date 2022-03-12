@@ -335,7 +335,6 @@ class AWPCP_DebugAdminPage {
             return __( 'N/A', 'another-wordpress-classifieds-plugin' );
         }
 
-        // phpcs:disable WordPress.WP.AlternativeFunctions.curl_curl_version
         $version = curl_version();
 
         if ( ! isset( $version[ $element ] ) ) {
@@ -427,7 +426,7 @@ class AWPCP_DebugAdminPage {
             $email_regexp = '/[_a-z0-9-+]+(\.[_a-z0-9-+]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})/';
         }
 
-        // phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_print_r
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
         $sanitized = ( is_object( $value ) || is_array( $value ) ) ? print_r( $value, true ) : $value;
 
         // Remove Website domain.

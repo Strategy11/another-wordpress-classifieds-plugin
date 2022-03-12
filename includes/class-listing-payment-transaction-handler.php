@@ -3,8 +3,6 @@
  * @package AWPCP\Payments
  */
 
-// phpcs:disable
-
 function awpcp_listing_payment_transaction_handler() {
     return new AWPCP_ListingPaymentTransactionHandler(
         awpcp_listing_renderer(),
@@ -15,9 +13,6 @@ function awpcp_listing_payment_transaction_handler() {
     );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_ListingPaymentTransactionHandler {
 
     private $listing_renderer;

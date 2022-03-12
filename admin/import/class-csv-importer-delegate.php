@@ -3,11 +3,6 @@
  * @package AWPCP\Admin\Import
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_CSV_Importer_Delegate {
 
     private $import_session;

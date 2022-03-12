@@ -3,8 +3,6 @@
  * @package AWPCP\Tests
  */
 
-// @phpcs:disable Squiz.Commenting
-
 use Brain\Monkey\Functions;
 
 class AWPCP_TestSendListingToFacebookHelper extends AWPCP_UnitTestCase {

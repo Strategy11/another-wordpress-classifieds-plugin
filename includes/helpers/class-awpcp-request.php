@@ -3,13 +3,6 @@
  * @package AWPCP\Helpers
  */
 
-// phpcs:disable WordPress
-// phpcs:disable Squiz
-// phpcs:disable Generic
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_Request {
 
     /**
@@ -98,11 +91,8 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function param( $name, $default = '' ) {
-        // phpcs:disable WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized
-        // phpcs:disable WordPress.CSRF.NonceVerification.NoNonceVerification
+        // phpcs:ignore WordPress.CSRF.NonceVerification.NoNonceVerification
         return isset( $_REQUEST[ $name ] ) ? wp_unslash( $_REQUEST[ $name ] ) : $default; // Input var okay.
-        // phpcs:enable WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized
-        // phpcs:enable WordPress.CSRF.NonceVerification.NoNonceVerification
     }
 
     /**

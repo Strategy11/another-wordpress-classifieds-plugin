@@ -3,8 +3,6 @@
  * @package AWPCP\Templates
  */
 
-// phpcs:disable
-
 ?><?php if ( ! $table_only ) : ?>
 <p><?php _ex('You can additionally purchase a Credit Plan to add credit to your account. If you select to pay using credits, the price of the selected payment term will be deducted from your account balance after you have completed payment.', 'credit plans table', 'another-wordpress-classifieds-plugin') ?></p>
 <?php endif ?>

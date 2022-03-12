@@ -3,8 +3,6 @@
  * @package AWPCP\Frontend
  */
 
-// phpcs:disable
-
 require_once(AWPCP_DIR . '/frontend/page-place-ad.php');
 
 function awpcp_renew_listing_page() {

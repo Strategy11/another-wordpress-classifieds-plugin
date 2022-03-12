@@ -72,7 +72,7 @@ class AWPCP_FacebookCacheHelper {
         $response = wp_remote_post( 'https://graph.facebook.com/', $args );
 
         if ( $this->is_successful_response( $response ) ) {
-            do_action( 'awpcp-listing-facebook-cache-cleared', $ad ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
+            do_action( 'awpcp-listing-facebook-cache-cleared', $ad );
         } else {
             $this->facebook_integration->schedule_clear_cache_action( $ad, 5 * MINUTE_IN_SECONDS );
         }

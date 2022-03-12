@@ -16,8 +16,6 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
      * @param AWPCP_Container $container    An instance of Container.
      */
     public function modify( $container ) {
-        // @phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine
-        // @phpcs:disable PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket
         $container['Settings'] = $container->service( function( $container ) {
             return new AWPCP_Settings_API(
                 $container['SettingsManager']

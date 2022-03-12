@@ -3,11 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- */
 class AWPCP_RolesAndCapabilities {
 
     private $settings;

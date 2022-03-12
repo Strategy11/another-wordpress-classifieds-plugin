@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 /**
  * @since 3.4
  * @since 4.0.0     Replaced $hide_empty boolean parameter with optional callable $filter

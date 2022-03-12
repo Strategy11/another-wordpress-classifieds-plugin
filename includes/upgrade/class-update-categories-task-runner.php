@@ -29,8 +29,6 @@ abstract class AWPCP_Update_Categories_Task_Runner implements AWPCP_Upgrade_Task
      */
     protected $db;
 
-    // @phpcs:disable Squiz.Commenting.FunctionComment
-
     public function __construct( $delegate, $categories, $wordpress, $db ) {
         $this->delegate   = $delegate;
         $this->categories = $categories;

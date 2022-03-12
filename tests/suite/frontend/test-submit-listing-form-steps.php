@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Frontend
  */
 
-// phpcs:disable Squiz.Commenting.FunctionComment.Missing
-
 use Brain\Monkey\Functions;
 
 /**

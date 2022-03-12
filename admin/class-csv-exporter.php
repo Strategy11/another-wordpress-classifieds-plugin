@@ -9,13 +9,9 @@
  * CSV export.
  *
  * @since 4.1.0
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_CSVExporter {
-    // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fwrite
-    // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fclose
-    // phpcs:disableWordPress.WP.AlternativeFunctions.file_system_read_fopen
+
     const BATCH_SIZE = 20;
 
     private $settings = array(

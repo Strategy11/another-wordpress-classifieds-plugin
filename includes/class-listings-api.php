@@ -5,14 +5,8 @@
 
 /**
  * Listings logic.
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class AWPCP_ListingsAPI {
-
-    // phpcs:disable Generic,Squiz,WordPress,PSR2,PEAR
 
     private $disabled_status = 'disabled';
     private $attachments_logic;
@@ -836,8 +830,6 @@ class AWPCP_ListingsAPI {
         return (bool) $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_flagged' );
     }
 
-    // phpcs:disable Generic,Squiz,WordPress,PSR2,PEAR
-
     public function increase_visits_count( $listing ) {
         $number_of_visits = absint( get_post_meta( $listing->ID, '_awpcp_views', true ) );
 
@@ -850,8 +842,6 @@ class AWPCP_ListingsAPI {
     public function delete_listing( $listing ) {
         return wp_delete_post( $listing->ID, true ) !== false;
     }
-
-    // phpcs:enable
 
     /**
      * @since 4.0.0

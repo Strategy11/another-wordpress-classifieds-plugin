@@ -3,8 +3,6 @@
  * @package AWPCP\Listings
  */
 
-// phpcs:disable
-
 /**
  */
 class AWPCP_ListingUploadLimits {

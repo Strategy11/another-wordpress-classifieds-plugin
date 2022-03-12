@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Templates
  */
 
-// phpcs:disable
-
 class AWPCP_TemplateTester {
 
     private $methods = array();

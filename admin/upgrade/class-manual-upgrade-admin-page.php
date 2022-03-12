@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// @phpcs:disable
-
 function awpcp_manual_upgrade_admin_page() {
     $container = awpcp()->container;
 

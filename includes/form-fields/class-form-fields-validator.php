@@ -142,10 +142,8 @@ class AWPCP_FormFieldsValidator {
             }
         }
 
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         // TODO: Replace null with a payment term object, if that still makes sense here.
         return apply_filters( 'awpcp-validate-post-listing-details', $errors, $data, null );
-        // phpcs:enable
     }
 
     /**

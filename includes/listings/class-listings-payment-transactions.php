@@ -41,9 +41,7 @@ class AWPCP_ListingsPaymentTransactions {
         $payment_type = $data['payment_type'];
         $user_id      = $data['user_id'];
 
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         $number_of_categories_allowed = apply_filters( 'awpcp-number-of-categories-allowed-in-post-listing-order-step', 1, $payment_term );
-        // phpcs:enable
 
         $transaction->user_id = $user_id;
         $transaction->set( 'category', array_slice( $categories, 0, $number_of_categories_allowed ) );

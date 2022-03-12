@@ -39,7 +39,6 @@ class AWPCP_ListingsContentRenderer {
             return awpcp_print_error( $message );
         }
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters( 'awpcp-show-listing-content-replacement', null, $content, $post );
 
         if ( ! is_null( $output ) ) {
@@ -174,10 +173,8 @@ class AWPCP_ListingsContentRenderer {
             ]
         );
 
-        // phpcs:disable
         $content_before_page = apply_filters( 'awpcp-content-before-listing-page', '' );
         $content_after_page  = apply_filters( 'awpcp-content-after-listing-page', '' );
-        // phpcs:enable
 
         $output = '<div id="classiwrapper">%s<!--awpcp-single-ad-layout-->%s</div><!--close classiwrapper-->';
         $output = sprintf( $output, $content_before_page, $content_after_page );
@@ -189,7 +186,6 @@ class AWPCP_ListingsContentRenderer {
         $layout = awpcp_do_placeholders( $post, $layout, 'single' );
 
         $output = str_replace( '<!--awpcp-single-ad-layout-->', $layout, $output );
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters( 'awpcp-show-ad', $output, $post->ID );
 
         return $output;

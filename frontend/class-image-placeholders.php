@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 function awpcp_image_placeholders() {
     $container = awpcp()->container;
 

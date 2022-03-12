@@ -3,12 +3,8 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 /**
  * Returns the IDs of the pages used by the AWPCP plugin.
- *
- * @SuppressWarnings(PHPMD)
  */
 function exclude_awpcp_child_pages($excluded=array()) {
 	global $wpdb, $table_prefix;
@@ -2971,9 +2967,8 @@ function createdefaultcategory($idtomake,$titletocallit) {
     $query = 'UPDATE ' . AWPCP_TABLE_CATEGORIES . ' SET category_id = 1 WHERE category_id = %d';
     $query = $wpdb->prepare( $query, $wpdb->insert_id );
 
-    // @phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
     $wpdb->query( $query ); // WPCS: unprepared SQL OK
-    // @phpcs:enable WordPress.DB.DirectDatabaseQuery.NoCaching
 }
 
 function create_ad_postedby_list($name) {
@@ -3048,8 +3043,6 @@ function awpcp_format_email_sent_datetime() {
 
 /**
  * Make sure the IP isn't a reserved IP address.
- *
- * @phpcs:disable
  */
 function awpcp_validip($ip) {
 
@@ -3081,7 +3074,6 @@ function awpcp_validip($ip) {
 
     }
 }
-// @phpcs:enable
 
 /**
  * @since 4.0.0     Rewrote to use use filter_var() and wp_unslash().
@@ -3172,9 +3164,6 @@ function awpcp_user_agent_header() {
     return $user_agent;
 }
 
-// @phpcs:disable WordPress.WP.AlternativeFunctions.curl_curl_version_ssl
-// @phpcs:disable WordPress.WP.AlternativeFunctions.curl_curl_version
-
 /**
  * @since 3.7.6
  */
@@ -3201,7 +3190,6 @@ function awpcp_get_curl_info() {
 
     return implode( '<br>', $output );
 }
-// @phpcs:enable
 
 /**
  * @since 3.7.8

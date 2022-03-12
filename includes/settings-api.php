@@ -15,8 +15,6 @@ function awpcp_settings_api() {
  */
 class AWPCP_Settings_API {
 
-    // phpcs:disable
-
 	private $runtime_settings = array();
 
 	public $setting_name = 'awpcp-options';

@@ -32,9 +32,7 @@ class AWPCP_CategoryShortcode {
     public function render( $attrs ) {
         $attrs = $this->get_shortcode_attrs( $attrs );
 
-        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters( 'awpcp-category-shortcode-content-replacement', null, $attrs );
-        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
 
         if ( is_null( $output ) ) {
             return $this->render_shortcode_content( $attrs );

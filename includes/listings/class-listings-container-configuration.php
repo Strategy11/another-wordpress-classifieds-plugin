@@ -114,9 +114,6 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
         );
     }
 
-    // @phpcs:disable PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket
-    // @phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine
-
     /**
      * @since 4.0.0
      */

@@ -3,11 +3,6 @@
  * @package AWPCP\Admin
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- */
 class AWPCP_FeesTable extends WP_List_Table {
 
     private $page;

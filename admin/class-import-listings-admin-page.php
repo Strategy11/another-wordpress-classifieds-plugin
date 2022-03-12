@@ -3,11 +3,6 @@
  * @package AWPCP\Admin\Importer
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- */
 class AWPCP_ImportListingsAdminPage {
 
     private $import_session = false;

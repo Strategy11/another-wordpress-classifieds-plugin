@@ -3,8 +3,6 @@
  * @package AWPCP\Templates
  */
 
-// phpcs:disable
-
 ?><h2><?php _ex('Select Payment Term', 'renew ad order step', 'another-wordpress-classifieds-plugin') ?></h2>
 
 <?php foreach ($messages as $message): ?>

@@ -27,9 +27,8 @@ class AWPCP_UninstallerTest extends AWPCP_UnitTestCase {
         ];
 
         $uploads_dir = sys_get_temp_dir() . '/' . md5( wp_rand() );
-        // phpcs:disable WordPress.VIP.FileSystemWritesDisallow.directory_mkdir
+        // phpcs:ignore WordPress.VIP.FileSystemWritesDisallow.directory_mkdir
         mkdir( $uploads_dir );
-        // phpcs:disable
 
         $this->listings_logic         = Mockery::mock( 'AWPCP_ListingsAPI' );
         $this->listings_collection    = Mockery::mock( 'AWPCP_ListingsCollection' );
@@ -98,9 +97,8 @@ class AWPCP_UninstallerTest extends AWPCP_UnitTestCase {
         $uninstaller->uninstall();
 
         if ( file_exists( $uploads_dir ) ) {
-            // phpcs:disable WordPress.VIP.FileSystemWritesDisallow.directory_rmdir
+            // phpcs:ignore WordPress.VIP.FileSystemWritesDisallow.directory_rmdir
             rmdir( $uploads_dir );
-            // phpcs:enable
         }
     }
 }

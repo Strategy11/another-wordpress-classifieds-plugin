@@ -103,7 +103,7 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                 ),
             ),
         );
-        // @phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
+
         return apply_filters( 'awpcp-fee-details-form-definition', $form_definition, $params );
     }
 

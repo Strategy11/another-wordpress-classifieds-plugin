@@ -139,9 +139,7 @@ class AWPCP_FormFieldsData {
             $data['metadata']['_awpcp_end_date'] = awpcp_set_datetime_date( current_time( 'mysql' ), $data['metadata']['_awpcp_end_date'] );
         }
 
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         // TODO: We no longer pass an array that filters can use to extract data from.
         return apply_filters( 'awpcp-get-posted-data', $data, 'details', [] );
-        // phpcs:enable
     }
 }

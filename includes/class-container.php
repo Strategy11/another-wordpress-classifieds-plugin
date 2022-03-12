@@ -86,8 +86,6 @@ class AWPCP_Container implements ArrayAccess {
         }
     }
 
-    // phpcs:disable Squiz.Commenting.FunctionComment.IncorrectTypeHint
-
     /**
      * Returns a closure that creates a service object using the given constructor
      * function.

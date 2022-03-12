@@ -3,9 +3,6 @@
  * @package AWPCP
  */
 
-// @phpcs:disable Squiz.Commenting
-// @phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_trigger_error
-
 function awpcp_task_queue() {
     static $instance = null;
 
@@ -143,9 +140,7 @@ class AWPCP_TaskQueue {
 
     private function run_task( $task ) {
         try {
-            // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
             $exit_code = apply_filters( "awpcp-task-{$task->get_name()}", false, $task );
-            // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
         } catch ( AWPCP_Exception $e ) {
             $exit_code = false;
         }

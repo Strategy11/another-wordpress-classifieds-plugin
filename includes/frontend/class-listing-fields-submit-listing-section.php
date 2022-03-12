@@ -186,7 +186,6 @@ class AWPCP_ListingFieldsSubmitListingSection {
             $data['regions'][] = $user_region;
         }
 
-        // @phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-listing-details-user-info', $data, $user_id );
     }
 

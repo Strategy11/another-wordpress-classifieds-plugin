@@ -3,23 +3,6 @@
  * @package AWPCP\Listings
  */
 
-// phpcs:disable Generic.Commenting
-// phpcs:disable Generic.Formatting
-// phpcs:disable Generic.Functions
-// phpcs:disable PEAR.Functions
-// phpcs:disable PSR2.ControlStructures
-// phpcs:disable Squiz.Commenting
-// phpcs:disable Squiz.Functions
-// phpcs:disable Squiz.PHP
-// phpcs:disable Squiz.Strings
-// phpcs:disable WordPress.Arrays
-// phpcs:disable WordPress.Classes
-// phpcs:disable WordPress.NamingConventions
-// phpcs:disable WordPress.PHP
-// phpcs:disable WordPress.VIP
-// phpcs:disable WordPress.WP
-// phpcs:disable WordPress.WhiteSpace
-
 /**
  * Return an array of Ad Fees.
  *
@@ -39,7 +22,6 @@ function awpcp_get_fees() {
  * Generic function to calculate an date relative to a given start date.
  *
  * @since 2.0.7
- * @SuppressWarnings(PHPMD)
  */
 function awpcp_calculate_end_date($increment, $period, $start_date) {
 	$periods = array('D' => 'DAY', 'W' => 'WEEK', 'M' => 'MONTH', 'Y' => 'YEAR');

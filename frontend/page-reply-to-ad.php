@@ -3,8 +3,6 @@
  * @package AWPCP\Frontend
  */
 
-// phpcs:disable
-
 require_once(AWPCP_DIR . '/includes/helpers/page.php');
 
 function awpcp_reply_to_listing_page() {

@@ -74,7 +74,6 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
             ),
         );
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $actions = apply_filters( 'awpcp-admin-fees-table-actions', $actions, $this, $fee, $filter );
 
         if ( is_array( $filter ) ) {
@@ -113,8 +112,6 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
      * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function transfer() {
-        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
-        // phpcs:disable WordPress.Security.NonceVerification.Missing
         $fee = AWPCP_Fee::find_by_id( awpcp_request_param( 'id', 0 ) );
         if ( is_null( $fee ) ) {
             awpcp_flash( __( "The specified Fee doesn't exists.", 'another-wordpress-classifieds-plugin' ), 'error' );
@@ -156,8 +153,6 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
         $template = AWPCP_DIR . '/admin/templates/admin-panel-fees-delete.tpl.php';
 
         echo $this->render( $template, $params );
-        // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
-        // phpcs:enable WordPress.Security.NonceVerification.Missing
     }
 
     /**
@@ -204,9 +199,8 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
 
                     $template = AWPCP_DIR . '/admin/templates/admin-panel-fees-delete.tpl.php';
 
-                    // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo $this->render( $template, $params );
-                    // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 
                     return;
                 }

@@ -3,8 +3,6 @@
  * @package AWPCP\Frontend
  */
 
-// phpcs:disable
-
 // TODO: Remove this file.
 
 ?><h2><?php echo esc_html( __( 'Enter Ad Details', 'another-wordpress-classifieds-plugin' ) ); ?></h2>

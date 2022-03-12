@@ -3,8 +3,6 @@
  * @package AWPCP\Listings
  */
 
-// phpcs:disable
-
 function awpcp_categories_collection() {
     return new AWPCP_Categories_Collection(
         'awpcp_listing_category',

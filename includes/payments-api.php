@@ -3,11 +3,6 @@
  * @package AWPCP\Payments
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_PaymentsAPI {
 
     private $request = null;

@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 class AWPCP_Exception extends Exception {
 
     private $errors = null;

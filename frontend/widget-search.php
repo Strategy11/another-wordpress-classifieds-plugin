@@ -3,11 +3,6 @@
  * @package AWPCP\Widgets
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_Search_Widget extends WP_Widget {
 
 	function __construct() {

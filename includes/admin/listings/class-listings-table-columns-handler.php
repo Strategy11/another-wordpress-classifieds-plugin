@@ -51,7 +51,6 @@ class AWPCP_ListingsTableColumnsHandler {
         }
 
         if ( 'payment_term' === $query->query_vars['orderby'] ) {
-            // phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key
             $query->query_vars['meta_key'] = '_awpcp_payment_term_id';
             $query->query_vars['orderby']  = 'meta_value_num';
         }

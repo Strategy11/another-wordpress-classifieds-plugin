@@ -1,8 +1,6 @@
 <?php
 /**
  * @package AWPCP
- * @phpcs:disable Squiz.Commenting.FunctionComment.Missing
- * @phpcs:disable Squiz.Commenting.VariableComment.Missing
  */
 
 /**
