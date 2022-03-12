@@ -95,7 +95,6 @@ require_once AWPCP_DIR . '/includes/helpers/class-payment-transaction-helper.php
 require_once AWPCP_DIR . '/includes/helpers/class-recaptcha-v3.php';
 require_once AWPCP_DIR . '/includes/helpers/class-spam-filter.php';
 require_once AWPCP_DIR . '/includes/helpers/class-spam-submitter.php';
-require_once AWPCP_DIR . '/includes/helpers/facebook.php';
 require_once AWPCP_DIR . '/includes/helpers/list-table.php';
 require_once AWPCP_DIR . '/includes/helpers/email.php';
 require_once AWPCP_DIR . '/includes/helpers/javascript.php';
