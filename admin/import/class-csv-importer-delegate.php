@@ -289,7 +289,7 @@ class AWPCP_CSV_Importer_Delegate {
         $category_ids = [];
         foreach ($categories as $category) {
             $category = $this->get_category( $category );
-            $category_ids[] =  $category ? $category->term_id : null;
+            $category_ids[] = $category ? $category->term_id : null;
         }
 
         return $category_ids;
@@ -537,7 +537,7 @@ class AWPCP_CSV_Importer_Delegate {
             $listing_data['post_fields']['post_status'] = $import_settings['listing_status'];
         }
 
-        if ($import_settings['listing_status'] === 'default' &&  $listing_data['post_fields']['post_status'] === "") {
+        if ($import_settings['listing_status'] === 'default' && $listing_data['post_fields']['post_status'] === "") {
             $listing_data['post_fields']['post_status'] = 'pending';
         }
 

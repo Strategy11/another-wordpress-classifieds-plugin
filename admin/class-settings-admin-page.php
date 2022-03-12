@@ -177,10 +177,13 @@ class AWPCP_Facebook_Page_Settings {
 			return;
 
 		if ( isset( $_GET[ 'error_code' ] ) ) {
-			return $this->redirect_with_error( $_GET[ 'error_code' ], urlencode( $_GET['error_message'] )  );
+			return $this->redirect_with_error(
+				sanitize_text_field( wp_unslash( $_GET[ 'error_code' ] ) ),
+				urlencode( sanitize_text_field( wp_unslash( $_GET['error_message'] ) ) )
+			);
 		}
 
-		$code = isset( $_GET['code'] ) ? $_GET['code'] : '';
+		$code = isset( $_GET['code'] ) ? sanitize_text_field( wp_unslash( $_GET['code'] ) ) : '';
 
 		$fb = AWPCP_Facebook::instance();
 		$access_token = $fb->token_from_code( $code );
@@ -231,7 +234,7 @@ class AWPCP_Facebook_Page_Settings {
 
 		if ( isset( $_GET['code_error'] ) && isset( $_GET['error_message'] )  ) {
             $error_message = __( 'We could not obtain a valid access token from Facebook. The API returned the following error: %s', 'another-wordpress-classifieds-plugin' );
-            $error_message = sprintf( $error_message, wp_unslash( urldecode_deep( $_GET['error_message'] ) ) );
+            $error_message = sprintf( $error_message, sanitize_text_field( wp_unslash( urldecode_deep( $_GET['error_message'] ) ) ) );
 
             $errors[] = esc_html( $error_message );
 		} else if ( isset( $_GET['code_error'] ) ) {

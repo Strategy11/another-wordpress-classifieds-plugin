@@ -523,7 +523,7 @@ function awpcp_get_renew_ad_url($ad_id) {
 
     $url = awpcp_get_page_url('renew-ad-page-name');
 
-    $params =  [
+    $params = [
         'ad_id'    => $ad_id,
         'awpcprah' => $hash,
     ];
