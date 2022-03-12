@@ -16,8 +16,6 @@ function awpcp_settings_admin_page() {
 
 /**
  * Admin page that allows administrators to configure the plugin.
- *
- * @SuppressWarnings(PHPMD)
  */
 class AWPCP_SettingsAdminPage {
 
@@ -113,8 +111,6 @@ class AWPCP_SettingsAdminPage {
         return $group;
     }
 
-    // phpcs:disable
-
 	private function instantiate_auxiliar_pages() {
 		$pages = awpcp_classfieds_pages_settings();
 		$facebook = new AWPCP_Facebook_Page_Settings();
@@ -125,9 +121,6 @@ function awpcp_classfieds_pages_settings() {
 	return new AWPCP_Classified_Pages_Settings( awpcp_missing_pages_finder() );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_Classified_Pages_Settings {
 
 	private $missing_pages_finder;
@@ -179,18 +172,18 @@ class AWPCP_Facebook_Page_Settings {
 		add_action( 'awpcp-admin-settings-page--facebook-settings', array($this, 'dispatch'));
 	}
 
-    /**
-     * @SuppressWarnings(PHPMD.ExitExpression)
-     */
 	public function maybe_redirect() {
 		if ( !isset( $_GET['g'] ) || $_GET['g'] != 'facebook-settings' || $this->get_current_action() != 'obtain_user_token' )
 			return;
 
 		if ( isset( $_GET[ 'error_code' ] ) ) {
-			return $this->redirect_with_error( $_GET[ 'error_code' ], urlencode( $_GET['error_message'] )  );
+			return $this->redirect_with_error(
+				sanitize_text_field( wp_unslash( $_GET[ 'error_code' ] ) ),
+				urlencode( sanitize_text_field( wp_unslash( $_GET['error_message'] ) ) )
+			);
 		}
 
-		$code = isset( $_GET['code'] ) ? $_GET['code'] : '';
+		$code = isset( $_GET['code'] ) ? sanitize_text_field( wp_unslash( $_GET['code'] ) ) : '';
 
 		$fb = AWPCP_Facebook::instance();
 		$access_token = $fb->token_from_code( $code );
@@ -215,9 +208,6 @@ class AWPCP_Facebook_Page_Settings {
 		return 'display_settings';
 	}
 
-    /**
-     * @SuppressWarnings(PHPMD.ExitExpression)
-     */
 	private function redirect_with_error( $error_code, $error_message ) {
 		$params = array( 'code_error' => $error_code, 'error_message' => $error_message );
 		$settings_url = admin_url( 'admin.php?page=awpcp-admin-settings&g=facebook-settings' );
@@ -237,10 +227,6 @@ class AWPCP_Facebook_Page_Settings {
 		}
 	}
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
-     */
 	private function display_settings( $errors=array() ) {
         $fb = AWPCP_Facebook::instance();
 
@@ -248,7 +234,7 @@ class AWPCP_Facebook_Page_Settings {
 
 		if ( isset( $_GET['code_error'] ) && isset( $_GET['error_message'] )  ) {
             $error_message = __( 'We could not obtain a valid access token from Facebook. The API returned the following error: %s', 'another-wordpress-classifieds-plugin' );
-            $error_message = sprintf( $error_message, wp_unslash( urldecode_deep( $_GET['error_message'] ) ) );
+            $error_message = sprintf( $error_message, urldecode_deep( sanitize_text_field( wp_unslash( $_GET['error_message'] ) ) ) );
 
             $errors[] = esc_html( $error_message );
 		} else if ( isset( $_GET['code_error'] ) ) {

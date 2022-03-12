@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 function awpcp_image_placeholders() {
     $container = awpcp()->container;
 
@@ -53,9 +51,6 @@ class AWPCP_Image_Placeholders {
         return $this->cache[ $ad->ID ][ $placeholder ];
     }
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     private function render_image_placeholders( $ad, $placeholder ) {
         global $awpcp_imagesurl;
 
@@ -164,7 +159,7 @@ class AWPCP_Image_Placeholders {
 
                     $images[] = $content;
 
-                    $shown = $shown + 1;
+                    ++$shown;
                 }
 
                 $placeholders['awpcpshowadotherimages'] = join('', $images);

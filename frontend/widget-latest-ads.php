@@ -8,8 +8,6 @@
  */
 class AWPCP_LatestAdsWidget extends WP_Widget {
 
-    // @phpcs:disable
-
     public function __construct($id=null, $name=null, $description=null) {
         $id = is_null($id) ? 'awpcp-latest-ads': $id;
         $name = is_null($name) ? __( 'AWPCP Latest Ads', 'another-wordpress-classifieds-plugin') : $name;
@@ -88,9 +86,6 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         return join("\n", $html);
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function get_item_thumbnail_position_css_class( $thumbnail_position, $version ) {
         if ( $thumbnail_position == 'left' || $thumbnail_position == 'right' ) {
             $css_class = sprintf( 'awpcp-listings-widget-item-with-%s-thumbnail-in-%s', $thumbnail_position, $version );
@@ -101,9 +96,6 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         return $css_class;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function render_item( $item, $instance, $html_class ) {
         $listing_title = $this->listing_renderer->get_listing_title( $item );
         $item_url = $this->listing_renderer->get_view_listing_url( $item );
@@ -209,9 +201,6 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
         include(AWPCP_DIR . '/frontend/templates/widget-latest-ads-form.tpl.php');
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function update($new_instance, $old_instance) {
         $instance['title'] = sanitize_text_field( $new_instance['title'] );
         $instance['limit'] = sanitize_text_field( $new_instance['limit'] );

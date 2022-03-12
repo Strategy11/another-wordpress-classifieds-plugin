@@ -48,9 +48,7 @@ class AWPCP_PaymentInformationValidator {
         $user_errors         = $this->validate_selected_user( $data );
 
         $errors = array_merge( $categories_errors, $payment_term_errors, $user_errors );
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         $errors = apply_filters( 'awpcp-validate-post-listing-order', $errors, $data );
-        // phpcs:enable
 
         return $errors;
     }

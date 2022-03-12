@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 class AWPCP_FileTypes {
 
     private $file_types = null;

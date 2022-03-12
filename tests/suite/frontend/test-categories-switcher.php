@@ -5,8 +5,6 @@
  * @package AWPCP\Tests\Frontend\Components
  */
 
-// phpcs:disable
-
 /**
  * TestCase for Categories Switcher class.
  */

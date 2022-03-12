@@ -55,7 +55,6 @@ class AWPCP_UnflagListingTableAction implements
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
         return 'fa fa-user-check';
@@ -71,7 +70,6 @@ class AWPCP_UnflagListingTableAction implements
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
         return $this->get_title();

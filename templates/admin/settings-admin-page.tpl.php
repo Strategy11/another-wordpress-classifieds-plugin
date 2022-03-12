@@ -27,7 +27,7 @@
 
             <?php
                 // TODO: DO we still need this?
-                do_action( 'awpcp-admin-settings-page--' . $current_group['id'] ); // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
+                do_action( 'awpcp-admin-settings-page--' . $current_group['id'] );
             ?>
 
 			<form class="settings-form" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>" method="post">

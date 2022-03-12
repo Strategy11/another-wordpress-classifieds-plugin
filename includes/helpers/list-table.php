@@ -1,7 +1,6 @@
 <?php
 /**
  * @package AWPCP
- * @phpcs:disable
  */
 
 if ( ! class_exists( 'WP_List_Table' ) ) {

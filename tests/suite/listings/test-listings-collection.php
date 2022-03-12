@@ -134,7 +134,6 @@ class AWPCP_ListingsCollectionTest extends AWPCP_UnitTestCase {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function find_methods_provider() {
         $user_id     = wp_rand() + 1;

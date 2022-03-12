@@ -84,7 +84,6 @@ class AWPCP_FormFieldsRenderer {
     public function render_field( $field, $form_value, $form_errors, $listing, $context ) {
         $output = $field->render( $form_value, $form_errors, $listing, $context );
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters(
             'awpcp-render-form-field-' . $field->get_slug(),
             $output,
@@ -95,7 +94,6 @@ class AWPCP_FormFieldsRenderer {
             $context
         );
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters(
             'awpcp-render-form-field',
             $output,

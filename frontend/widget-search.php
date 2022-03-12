@@ -3,11 +3,6 @@
  * @package AWPCP\Widgets
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_Search_Widget extends WP_Widget {
 
 	function __construct() {
@@ -57,6 +52,7 @@ class AWPCP_Search_Widget extends WP_Widget {
      */
     private function render_region_fields( $instance ) {
         if ( isset( $_REQUEST['regions'][0] ) ) {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
             $regions = array( stripslashes_deep( $_REQUEST['regions'][0] ) );
         } else {
             $regions = array();
@@ -182,11 +178,8 @@ class AWPCP_Search_Widget extends WP_Widget {
 		return apply_filters( 'awpcp-search-listings-widget-update-widget', $instance, $new_instance );
 	}
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
 	function form($instance) {
-		$instance = wp_parse_args((array) $instance, $this->defaults());
+		$instance = wp_parse_args( (array) $instance, $this->defaults() );
 
 		$title         = strip_tags( $instance['title'] );
 		$subtitle      = strip_tags( $instance['subtitle'] );
@@ -200,5 +193,3 @@ class AWPCP_Search_Widget extends WP_Widget {
         
 	}
 }
-
-// phpcs:enable

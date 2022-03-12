@@ -3,8 +3,6 @@
  * @package AWPCP\Templates
  */
 
-// phpcs:disable
-
 ?><?php
     foreach ($errors as $index => $error) {
         if (is_numeric($index)) {

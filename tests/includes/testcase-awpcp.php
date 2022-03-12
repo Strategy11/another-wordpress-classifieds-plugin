@@ -3,12 +3,6 @@
  * @package AWPCP\Tests
  */
 
-// phpcs:disable Squiz.Commenting.InlineComment
-// phpcs:disable Squiz.PHP.CommentedOutCode.Found
-// phpcs:disable WordPress.NamingConventions.ValidVariableName.MemberNotSnakeCase
-// phpcs:disable WordPress.VIP.DirectDatabaseQuery.DirectQuery
-// phpcs:disable WordPress.VIP.DirectDatabaseQuery.NoCaching
-
 use Brain\Monkey;
 use Brain\Monkey\Functions;
 

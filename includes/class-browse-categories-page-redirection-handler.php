@@ -47,10 +47,6 @@ class AWPCP_Browse_Categories_Page_Redirection_Handler {
         return $this->redirect();
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ExitExpression)
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function redirect() {
         $category_id = $this->request->get_category_id();
         $params      = wp_parse_args( wp_parse_url( awpcp_current_url(), PHP_URL_QUERY ) );

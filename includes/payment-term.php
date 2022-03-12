@@ -3,11 +3,8 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 /**
  * @since 2.1.4
- * @SuppressWarnings(PHPMD)
  */
 class AWPCP_PaymentTerm {
 

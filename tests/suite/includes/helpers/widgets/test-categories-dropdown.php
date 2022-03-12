@@ -3,8 +3,6 @@
  * @package AWPCP\Tests
  */
 
-// phpcs:disable
-
 class AWPCP_Test_Categories_Dropdown extends AWPCP_UnitTestCase {
 
     public function setUp(): void {
@@ -19,9 +17,6 @@ class AWPCP_Test_Categories_Dropdown extends AWPCP_UnitTestCase {
         $this->assertInstanceOf( 'AWPCP_CategoriesDropdown', $dropdown );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     public function test_render() {
         $all_categories = array(
             (object) array(

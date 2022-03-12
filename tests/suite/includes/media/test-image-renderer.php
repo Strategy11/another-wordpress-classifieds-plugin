@@ -23,7 +23,6 @@ class AWPCP_ImageRendererTest extends AWPCP_UnitTestCase {
     /**
      * @dataProvider render_attachment_thumbnail_data_provider
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function test_render_attachment_thumbnail( $thumbnails_per_row, $thumbnail_width, $default_size ) {
         $sizes = '(max-width: 767px) 100vw, (max-width: 1023px) 33.33vw';

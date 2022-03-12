@@ -5,14 +5,8 @@
 
 /**
  * Listings logic.
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class AWPCP_ListingsAPI {
-
-    // phpcs:disable Generic,Squiz,WordPress,PSR2,PEAR
 
     private $disabled_status = 'disabled';
     private $attachments_logic;
@@ -288,9 +282,6 @@ class AWPCP_ListingsAPI {
         return $metadata;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     public function update_listing( $listing, $listing_data ) {
         $listing_data = wp_parse_args( $listing_data, array(
             'post_fields' => array(),
@@ -322,7 +313,7 @@ class AWPCP_ListingsAPI {
         $this->update_listing_metadata( $listing, $listing_data['metadata'] );
         
         if ( ! empty( $listing_data['regions'] ) ) {
-            foreach( (array)$listing_data['regions'] as $region ) {
+            foreach( (array) $listing_data['regions'] as $region ) {
                 if( ! empty( implode( $region ) ) ) {
                     $this->update_listing_regions( $listing, $listing_data['regions'] );
                     break;
@@ -401,9 +392,6 @@ class AWPCP_ListingsAPI {
         $this->mark_listing_as_needs_verification( $listing );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     private function should_mark_listing_as_verified( $listing, $transaction ) {
         if ( ! $this->settings->get_option( 'enable-email-verification' ) ) {
             return true;
@@ -625,7 +613,7 @@ class AWPCP_ListingsAPI {
         $images_must_be_approved = $this->settings->get_option( 'imagesapprove', false );
 
         if ( ! $images_must_be_approved ) {
-            $images = $this->attachments->find_attachments_of_type_awaiting_approval( 'image', array( 'post_parent' => $listing->ID, ) );
+            $images = $this->attachments->find_attachments_of_type_awaiting_approval( 'image', array( 'post_parent' => $listing->ID ) );
 
             foreach ( $images as $image ) {
                 $this->attachments_logic->approve_attachment( $image );
@@ -836,8 +824,6 @@ class AWPCP_ListingsAPI {
         return (bool) $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_flagged' );
     }
 
-    // phpcs:disable Generic,Squiz,WordPress,PSR2,PEAR
-
     public function increase_visits_count( $listing ) {
         $number_of_visits = absint( get_post_meta( $listing->ID, '_awpcp_views', true ) );
 
@@ -850,8 +836,6 @@ class AWPCP_ListingsAPI {
     public function delete_listing( $listing ) {
         return wp_delete_post( $listing->ID, true ) !== false;
     }
-
-    // phpcs:enable
 
     /**
      * @since 4.0.0

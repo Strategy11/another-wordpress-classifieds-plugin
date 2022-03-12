@@ -3,8 +3,6 @@
  * @package AWPCP\Templates\Admin
  */
 
-// phpcs:disable
-
 ?><div class="awpcp-manage-categories-category-form-container postbox-container">
     <div class="metabox-holder">
         <div class="metabox-sortables">
@@ -33,7 +31,7 @@
 
                                 <div class="form-field">
                                     <label for="m-awpcp-category-form__description-field"><?php esc_html_e( 'Description', 'another-wordpress-classifieds-plugin' ); ?></label>
-                                    <textarea id="m-awpcp-category-form__description-field" type="text" name="category_description" rows="4"><?php esc_html_e( $form_values['category_description'] ); ?></textarea>
+                                    <textarea id="m-awpcp-category-form__description-field" type="text" name="category_description" rows="4"><?php esc_html( $form_values['category_description'] ); ?></textarea>
                                 </div>
                             </div>
 
@@ -49,7 +47,7 @@
 
                                 <div class="form-field">
                                     <label for="m-awpcp-category-form__order-field"><?php esc_html_e( 'Category list order', 'another-wordpress-classifieds-plugin' ); ?></label>
-                                    <input id="m-awpcp-category-form__order-field" type="text" name="category_order" value="<?php esc_attr_e( $form_values['category_order'] ); ?>" size="20"/>
+                                    <input id="m-awpcp-category-form__order-field" type="text" name="category_order" value="<?php esc_attr( $form_values['category_order'] ); ?>" size="20"/>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +56,7 @@
                         <?php // echo $promptmovetocat; ?>
 
                         <p class="submit inline-edit-save">
-                            <input type="submit" class="button-primary button" name="createeditadcategory" value="<?php esc_attr_e( $form_submit ); ?>" />
+                            <input type="submit" class="button-primary button" name="createeditadcategory" value="<?php esc_attr( $form_submit ); ?>" />
                         </p>
                     </form>
                     </div>

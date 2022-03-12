@@ -730,9 +730,6 @@ function awpcp_admin_categories_render_category_items($categories, &$children, $
 	return $items;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_admin_categories_render_category_item($category, $level, $start, $per_page) {
 	global $hascaticonsmodule;
 
@@ -913,8 +910,6 @@ function awpcp_create_subpages($awpcp_page_id) {
  * This functions takes care of checking if the main AWPCP
  * page exists, finding its id and verifying that the new
  * page doesn't exist already. Useful for module plugins.
- *
- * @SuppressWarnings(PHPMD)
  */
 function awpcp_create_subpage($refname, $name, $shortcode, $awpcp_page_id=null) {
 	$id = 0;
@@ -982,8 +977,6 @@ function awpcp_admin_sidebar($float='') {
 
 /**
  * XXX: this may belong to AdminPage class
- *
- * @SuppressWarnings(PHPMD)
  */
 function awpcp_admin_sidebar_output($html, $float) {
 	global $awpcp;

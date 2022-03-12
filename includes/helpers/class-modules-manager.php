@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 /**
  * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */

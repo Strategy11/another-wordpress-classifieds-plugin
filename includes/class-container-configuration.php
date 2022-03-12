@@ -5,8 +5,6 @@
 
 /**
  * Main Container Configuration.
- *
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 
@@ -14,12 +12,8 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
      * Modifies the given dependency injection container.
      *
      * @param AWPCP_Container $container    The Dependency Injection Container.
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     public function modify( $container ) {
-        // @phpcs:disable PEAR.Functions.FunctionCallSignature.CloseBracketLine
-        // @phpcs:disable PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket
         $container['wpdb'] = function( $container ) {
             return $GLOBALS['wpdb'];
         };
@@ -215,7 +209,6 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_upgrade_task_handlers_for_4_0_0( $container ) {
         $container['FixIDCollisionForListingCategoriesUpgradeTaskHandler'] = $container->service(

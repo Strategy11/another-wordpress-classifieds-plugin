@@ -48,7 +48,6 @@ class AWPCP_SendToFacebookPageListingTableAction implements
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function should_show_action_for( $post ) {
         return false; // Available as a bulk action only.
@@ -56,7 +55,6 @@ class AWPCP_SendToFacebookPageListingTableAction implements
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
         return awpcp_add_font_awesome_style_class_for_brands( 'fa-facebook-square' );
@@ -72,7 +70,6 @@ class AWPCP_SendToFacebookPageListingTableAction implements
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
         return $this->get_title();

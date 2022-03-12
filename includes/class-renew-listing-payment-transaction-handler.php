@@ -97,8 +97,6 @@ class AWPCP_Renew_Listing_Payment_Transaction_Handler {
         awpcp_send_ad_renewed_email( $listing );
 
         // TODO: MOVE inside Ad::renew() ?
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         do_action( 'awpcp-renew-ad', $listing->ad_id, $transaction );
-        // phpcs:enable
     }
 }

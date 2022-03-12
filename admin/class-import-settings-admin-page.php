@@ -62,8 +62,6 @@ class AWPCP_Import_Settings_Admin_Page {
 
     /**
      * Executed during admin_init when this page is visited.
-     *
-     * @SuppressWarnings(PHPMD.ExitExpression)
      */
     public function on_admin_init() {
         if ( ! isset( $_FILES['settings_file'] ) ) { // WPCS: Input var okay.

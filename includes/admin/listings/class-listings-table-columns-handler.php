@@ -51,7 +51,6 @@ class AWPCP_ListingsTableColumnsHandler {
         }
 
         if ( 'payment_term' === $query->query_vars['orderby'] ) {
-            // phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_key
             $query->query_vars['meta_key'] = '_awpcp_payment_term_id';
             $query->query_vars['orderby']  = 'meta_value_num';
         }
@@ -125,7 +124,6 @@ class AWPCP_ListingsTableColumnsHandler {
      * @param string $column    The name of the column that is being rendered.
      * @param int    $post_id   The ID of the current post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function manage_posts_custom_column( $column, $post_id ) {
         try {

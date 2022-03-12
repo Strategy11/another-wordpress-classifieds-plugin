@@ -7,8 +7,6 @@ use Brain\Monkey\Functions;
 
 /**
  * Tests for Admin Container Configuration.
- *
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_AdminContainerConfigurationTest extends AWPCP_ContainerConfigurationTestCase {
 

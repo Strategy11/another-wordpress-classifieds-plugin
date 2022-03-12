@@ -3,11 +3,6 @@
  * @package AWPCP\Payments
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_PaymentsAPI {
 
     private $request = null;
@@ -163,7 +158,7 @@ class AWPCP_PaymentsAPI {
 
         if (is_null($user_id)) return 0;
 
-        return (double) get_user_meta($user_id, 'awpcp-account-balance', true);
+        return (float) get_user_meta($user_id, 'awpcp-account-balance', true);
     }
 
     public function add_credit($user_id, $amount) {

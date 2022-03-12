@@ -134,7 +134,6 @@ class AWPCP_ListingInfromationMetabox {
      * TODO: What happens when update_listing throws an exception?
      *
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function save( $post_id, $post ) {
         if ( ! awpcp_current_user_is_moderator() ) {

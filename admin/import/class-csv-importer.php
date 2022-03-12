@@ -85,7 +85,6 @@ class AWPCP_CSV_Importer {
         }
 
         if ( $number_of_rows_imported && ! $this->import_session->is_test_mode_enabled() ) {
-            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
             do_action( 'awpcp-listings-imported' );
         }
 

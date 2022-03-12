@@ -103,7 +103,7 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                 ),
             ),
         );
-        // @phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
+
         return apply_filters( 'awpcp-fee-details-form-definition', $form_definition, $params );
     }
 
@@ -154,9 +154,6 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
         return array_combine( $values, $labels );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.LongVariable)
-     */
     private function get_features_fields_definition( $params ) {
         $characters_allowed_in_title       = awpcp_get_property( $params['fee'], 'title_characters' );
         $characters_allowed_in_description = awpcp_get_property( $params['fee'], 'characters' );

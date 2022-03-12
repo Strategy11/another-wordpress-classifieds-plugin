@@ -5,8 +5,6 @@
 
 /**
  * Entry point for all plugin features available from the Classified Ads admin menu.
- *
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_Admin {
 
@@ -166,7 +164,6 @@ class AWPCP_Admin {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function filter_items_per_page_user_option( $items_per_page, $option, $user ) {
         return apply_filters( 'awpcp_listings_table_items_per_page', $items_per_page, $user );

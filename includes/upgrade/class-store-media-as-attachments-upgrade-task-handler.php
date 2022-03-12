@@ -123,8 +123,6 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         $new_name = wp_unique_filename( $tmp_dir, $file_name );
         $tmp_name = "{$tmp_dir}{$new_name}";
 
-        // phpcs:disable Generic.PHP.NoSilencedErrors.Discouraged
-        // phpcs:disable WordPress.PHP.NoSilencedErrors.Discouraged
         $file_was_copied = @copy( $file_path, $tmp_name );
 
         if ( ! $file_was_copied ) {

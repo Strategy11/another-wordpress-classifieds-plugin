@@ -32,9 +32,7 @@ class AWPCP_CategoryShortcode {
     public function render( $attrs ) {
         $attrs = $this->get_shortcode_attrs( $attrs );
 
-        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         $output = apply_filters( 'awpcp-category-shortcode-content-replacement', null, $attrs );
-        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
 
         if ( is_null( $output ) ) {
             return $this->render_shortcode_content( $attrs );
@@ -43,9 +41,6 @@ class AWPCP_CategoryShortcode {
         return $output;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function get_shortcode_attrs( $attrs ) {
         if ( ! isset( $attrs['show_categories_list'] ) && isset( $attrs['children'] ) ) {
             $attrs['show_categories_list'] = $attrs['children'];
@@ -146,9 +141,6 @@ class AWPCP_CategoryShortcode {
         return $categories;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function render_categories_list( array $categories_ids ) {
 
         $categories_list_params['category_id'] = $categories_ids;

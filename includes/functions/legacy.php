@@ -22,8 +22,6 @@ function countlistings( $is_active ) {
     return awpcp_listings_collection()->count_disabled_listings();
 }
 
-// phpcs:disable
-
 function get_awpcp_setting($column, $option) {
     global $wpdb;
     $tbl_ad_settings = $wpdb->prefix . "awpcp_adsettings";
@@ -197,7 +195,7 @@ function get_adparentcatname( $cat_ID ) {
     return get_adcatname( $cat_ID );
 }
 
-function get_cat_parent_ID($cat_ID){
+function get_cat_parent_ID($cat_ID){ // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
     global $wpdb;
 
     $query = 'SELECT category_parent_id FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';

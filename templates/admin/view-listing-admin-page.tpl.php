@@ -3,7 +3,6 @@
  * @package AWPCP\Admin\Listings
  */
 
-// phpcs:disable Generic,PEAR,Squiz,WordPress
 ?>
 <div style="padding:20px" class="postbox">
     <div style="padding:4px 0px;; margin-bottom:5px;">

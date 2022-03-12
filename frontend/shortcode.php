@@ -73,7 +73,6 @@ class AWPCP_Pages {
         awpcp_maybe_add_thickbox();
         wp_enqueue_script( 'awpcp-page-show-ad' );
         if ( ! isset( $this->output['place-ad'] ) ) {
-            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
             do_action( 'awpcp-shortcode', 'place-ad' );
 
             if ( ! isset( $this->place_ad_page ) ) {
@@ -88,7 +87,6 @@ class AWPCP_Pages {
 
 	public function edit_ad() {
         if ( ! isset( $this->output['edit-ad'] ) ) {
-            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
             do_action( 'awpcp-shortcode', 'edit-ad' );
 
             if ( ! isset( $this->edit_ad_page ) ) {
@@ -127,7 +125,6 @@ class AWPCP_Pages {
 
 	public function reply_to_ad() {
         if ( ! isset( $this->output['reply-to-ad'] ) ) {
-            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
             do_action( 'awpcp-shortcode', 'reply-to-ad' );
 
             $page                        = awpcp_reply_to_listing_page();
@@ -302,9 +299,6 @@ class AWPCP_Pages {
     }
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcpui_homescreen() {
 	global $classicontent;
 
@@ -316,9 +310,6 @@ function awpcpui_homescreen() {
 	return $classicontent;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcpui_process( $awpcppagename ) {
 	global $hasregionsmodule;
 
@@ -357,9 +348,6 @@ function awpcpui_process( $awpcppagename ) {
 	return $output;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_load_classifieds( $awpcppagename ) {
 	if ( get_awpcp_option( 'main_page_display' ) ) {
         $query = array(
@@ -377,10 +365,6 @@ function awpcp_load_classifieds( $awpcppagename ) {
 	return $output;
 }
 
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_display_the_classifieds_page_body( $awpcppagename ) {
 	global $hasregionsmodule;
 
@@ -421,9 +405,6 @@ function awpcp_display_the_classifieds_page_body( $awpcppagename ) {
 	return $output;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_menu_items() {
     $params = array(
         'show-create-listing-button'  => get_awpcp_option( 'show-menu-item-place-ad' ),
@@ -448,9 +429,6 @@ function awpcp_menu_items() {
     return awpcp_render_template( $template, $params );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_get_menu_items( $params ) {
     $items = array();
 
@@ -530,9 +508,6 @@ function awpcp_get_menu_items( $params ) {
     return $items;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_should_show_edit_listing_menu( $params ) {
     if ( get_awpcp_option( 'onlyadmincanplaceads' ) && ! awpcp_current_user_is_admin() ) {
         return false;
@@ -549,9 +524,6 @@ function awpcp_should_show_edit_listing_menu( $params ) {
     return true;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_get_edit_listing_menu_item() {
     $listings      = awpcp_listings_collection();
     $authorization = awpcp_listing_authorization();

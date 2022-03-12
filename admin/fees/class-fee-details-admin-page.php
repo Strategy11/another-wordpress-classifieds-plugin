@@ -3,8 +3,6 @@
  * @package AWPCP\Admin\Fess
  */
 
-// @phpcs:disable
-
 function awpcp_fee_details_admin_page() {
     return new AWPCP_Fee_Details_Admin_Page(
         awpcp_fee_details_form(),

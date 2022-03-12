@@ -3,11 +3,6 @@
  * @package AWPCP\Admin\Importer
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- */
 class AWPCP_ImportListingsAdminPage {
 
     private $import_session = false;
@@ -38,10 +33,6 @@ class AWPCP_ImportListingsAdminPage {
         echo $this->handle_request();
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     */
     private function handle_request() {
         if ( $this->request->post( 'cancel' ) || $this->request->post( 'finish' ) ) {
             return $this->delete_current_import_session();
@@ -90,12 +81,6 @@ class AWPCP_ImportListingsAdminPage {
         return $this->show_upload_files_form();
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     */
     private function upload_files() {
         $import_session = $this->import_session = $this->import_sessions_manager->create_import_session();
 
@@ -108,10 +93,15 @@ class AWPCP_ImportListingsAdminPage {
         );
 
         if ( $_FILES['csv_file']['error'] != UPLOAD_ERR_OK ) {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
             $file_error              = awpcp_uploaded_file_error( $_FILES['csv_file'] );
             $form_errors['csv_file'] = $file_error[1];
+
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
         } else if ( substr( $_FILES['csv_file']['name'], -4 ) !== '.csv' ) {
             $form_errors['csv_file'] = __( "The uploaded file doesn't look like a CSV file. Please upload a valid CSV file.", 'another-wordpress-classifieds-plugin' );
+
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
         } else if ( ! @move_uploaded_file( $_FILES['csv_file']['tmp_name'], "$working_directory/source.csv" ) ) {
             $form_errors['csv_file'] = __( 'There was an error moving the uploaded CSV file to a proper location.', 'another-wordpress-classifieds-plugin' );
         }
@@ -120,12 +110,19 @@ class AWPCP_ImportListingsAdminPage {
 
         if ( $form_data['images_source'] == 'zip' ) {
             if ( ! in_array( $_FILES['zip_file']['error'], array( UPLOAD_ERR_OK, UPLOAD_ERR_NO_FILE ) ) ) {
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
                 $file_error              = awpcp_uploaded_file_error( $_FILES['zip_file'] );
                 $form_errors['zip_file'] = $file_error[1];
+
+				// phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
             } else if ( $_FILES['zip_file']['error'] == UPLOAD_ERR_NO_FILE ) {
                 // all good...
+
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
             } else if ( substr( $_FILES['zip_file']['name'], -4 ) !== '.zip' ) {
                 $form_errors['zip_file'] = __( "The uploaded file doesn't look like a ZIP file. Please upload a valid ZIP file.", 'another-wordpress-classifieds-plugin' );
+
+				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
             } else if ( ! @move_uploaded_file( $_FILES['zip_file']['tmp_name'], "$working_directory/images.zip" ) ) {
                 $form_errors['zip_file'] = __( 'There was an error moving the uploaded ZIP file to a proper location.', 'another-wordpress-classifieds-plugin' );
             }
@@ -259,9 +256,6 @@ class AWPCP_ImportListingsAdminPage {
         return $this->show_configuration_form();
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function save_configuration() {
         $import_session = $this->get_import_session();
 
@@ -352,9 +346,6 @@ class AWPCP_ImportListingsAdminPage {
         return $this->show_import_form();
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function show_import_form() {
         $import_session = $this->get_import_session();
 

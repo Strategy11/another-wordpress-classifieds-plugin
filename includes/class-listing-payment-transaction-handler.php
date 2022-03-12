@@ -3,8 +3,6 @@
  * @package AWPCP\Payments
  */
 
-// phpcs:disable
-
 function awpcp_listing_payment_transaction_handler() {
     return new AWPCP_ListingPaymentTransactionHandler(
         awpcp_listing_renderer(),
@@ -15,9 +13,6 @@ function awpcp_listing_payment_transaction_handler() {
     );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_ListingPaymentTransactionHandler {
 
     private $listing_renderer;
@@ -90,9 +85,6 @@ class AWPCP_ListingPaymentTransactionHandler {
         }
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function consolidate_transaction( $listing, $transaction ) {
         $previous_listing_payment_status     = $transaction->get( 'previous-ad-payment-status' );
         $listing_had_accepted_payment_status = $this->is_accepted_payment_status( $previous_listing_payment_status );

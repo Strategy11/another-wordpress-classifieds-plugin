@@ -117,7 +117,6 @@ script;
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
     private function create_action_link( $action, $post, $current_url ) {
         $label = $action->get_label( $post );
@@ -135,7 +134,6 @@ script;
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
     private function create_action_button( $action, $post, $current_url ) {
         $label      = $action->get_label( $post );

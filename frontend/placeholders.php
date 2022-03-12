@@ -234,8 +234,6 @@ function awpcp_content_placeholders() {
     );
 
     $placeholders = array_merge( $legacy_placeholders, $placeholders );
-
-    // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
     $placeholders = apply_filters( 'awpcp-content-placeholders', $placeholders );
 
     foreach ( $placeholders as $placeholder => $params ) {
@@ -401,7 +399,6 @@ function awpcp_do_placeholder_details( $ad, $placeholder ) {
         return $replacements[ $ad->ID ][ $placeholder ];
     }
 
-    // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
     $placeholders['addetails'] = apply_filters( 'awpcp-ad-details', stripslashes_deep( $ad->post_content ) );
 
     if ( get_awpcp_option( 'hyperlinkurlsinadtext' ) ) {

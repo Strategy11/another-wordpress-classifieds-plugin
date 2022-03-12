@@ -20,10 +20,6 @@ class AWPCP_Categories_Renderer_Data_Provider {
         $this->categories = $categories;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function get_categories( $params ) {
         if ( ! is_null( $params['category_id'] ) && $params['show_children_categories'] ) {
             try {

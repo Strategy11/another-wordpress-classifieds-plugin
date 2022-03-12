@@ -3,11 +3,6 @@
  * @package AWPCP\Payments
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_Payment_Transaction {
 
 	// public static $PAYMENT_STATUS_UNKNOWN = 'Unknown';
@@ -169,10 +164,10 @@ class AWPCP_Payment_Transaction {
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
 	public static function find_or_create($id) {
-		$transaction = AWPCP_Payment_Transaction::find_by_id($id);
+		$transaction = self::find_by_id($id);
 
 		if (is_null($transaction)) {
-            return AWPCP_Payment_Transaction::create();
+            return self::create();
 		}
 
 		return $transaction;
@@ -336,16 +331,22 @@ class AWPCP_Payment_Transaction {
         switch ($status) {
             case self::STATUS_COMPLETED:
                 $verify[] = self::STATUS_COMPLETED;
+				// Plus below statuses.
             case self::STATUS_PAYMENT_COMPLETED:
                 $verify[] = self::STATUS_PAYMENT_COMPLETED;
+				// Plus below statuses.
             case self::STATUS_PAYMENT:
                 $verify[] = self::STATUS_PAYMENT;
+				// Plus below statuses.
             case self::STATUS_CHECKOUT:
                 $verify[] = self::STATUS_CHECKOUT;
+				// Plus below statuses.
             case self::STATUS_READY:
                 $verify[] = self::STATUS_READY;
+				// Plus below statuses.
             case self::STATUS_OPEN:
                 $verify[] = self::STATUS_OPEN;
+				// Plus below statuses.
             case self::STATUS_NEW:
                 $verify[] = self::STATUS_NEW;
                 break;

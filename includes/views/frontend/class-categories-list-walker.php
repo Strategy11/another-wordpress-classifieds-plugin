@@ -54,14 +54,9 @@ class AWPCP_CategoriesListWalker extends Walker {
     protected function list_container() {
         $container = '<div id="awpcpcatlayout" class="awpcp-categories-list">[categories-list]</div><div class="fixfloat"></div>';
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-categories-list-container', $container, $this->options );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $args is defined in the parent class.
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function start_lvl( &$output, $depth = 0, $args = array() ) {
         if ( $this->options['collapsible_categories'] ) {
             $element_start = '<ul %s data-collapsible="true">';
@@ -78,16 +73,10 @@ class AWPCP_CategoriesListWalker extends Walker {
         }
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $args is defined in the parent class.
-     */
     public function end_lvl( &$output, $depth = 0, $args = array() ) {
         $output .= '</ul>';
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function start_el( &$output, $category, $depth = 0, $args = array(), $current_object_id = 0 ) {
         if ( $this->is_first_element_in_row( $depth ) ) {
             $output .= $this->first_level_ul_start();
@@ -158,9 +147,6 @@ class AWPCP_CategoriesListWalker extends Walker {
         return $this->element_wrapper_start( $tag, $class );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     protected function element( $category, $depth, $args, $current_object_id ) {
         $element = '[category-icon]<a class="[category-class]" href="[category-url]">[category-name]</a> [listings-count][js-handler]';
 
@@ -231,9 +217,6 @@ class AWPCP_CategoriesListWalker extends Walker {
         $this->elements_count = $this->elements_count + 1;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $args is defined in the parent class.
-     */
     public function end_el( &$output, $object, $depth = 0, $args = array() ) {
         $output .= '</li>';
 

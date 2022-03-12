@@ -10,7 +10,6 @@
 class AWPCP_QuickViewListingTableAction implements AWPCP_ListTableActionInterface {
 
     /**
-     * @SuppressWarnings(UnusedFormalParameter)
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
      */
@@ -27,7 +26,6 @@ class AWPCP_QuickViewListingTableAction implements AWPCP_ListTableActionInterfac
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
         return 'fa fa-eye';
@@ -41,10 +39,8 @@ class AWPCP_QuickViewListingTableAction implements AWPCP_ListTableActionInterfac
     }
 
     /**
-     * @SuppressWarnings(UnusedFormalParameter)
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
         return $this->get_title();
@@ -62,7 +58,6 @@ class AWPCP_QuickViewListingTableAction implements AWPCP_ListTableActionInterfac
     /**
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function process_item( $post ) {
     }
@@ -70,7 +65,6 @@ class AWPCP_QuickViewListingTableAction implements AWPCP_ListTableActionInterfac
     /**
      * @param array $result_codes   An array of result codes from this action.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_messages( $result_codes ) {
         return array();

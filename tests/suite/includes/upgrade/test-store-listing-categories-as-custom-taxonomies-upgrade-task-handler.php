@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Upgrade
  */
 
-// phpcs:disable
-
 use Brain\Monkey\Functions;
 
 class AWPCP_Test_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler extends AWPCP_UnitTestCase {

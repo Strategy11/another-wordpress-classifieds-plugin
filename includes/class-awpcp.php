@@ -3,14 +3,6 @@
  * @package AWPCP
  */
 
-/**
- * @phpcs:disable Generic
- * @phpcs:disable PEAR
- * @phpcs:disable PSR2
- * @phpcs:disable Squiz
- * @phpcs:disable WordPress
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP {
 
     public $installer = null;
@@ -430,8 +422,6 @@ class AWPCP {
 
                 $handler = awpcp_license_settings_actions_request_handler();
                 add_action( 'wp_redirect', array( $handler, 'dispatch' ) );
-            } else {
-                // load resources required in admin screens only, visible to non-admin users only.
             }
         } else {
             // load resources required in frontend screens only.
@@ -480,8 +470,6 @@ class AWPCP {
     /**
      * Make sure disabled posts are returned in the posts array
      * in order to avoid a not found page and display a message instead.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function redirect_deleted_ads( $handle_404, $wp_query ) {
         $classifieds_page_url = awpcp_get_main_page_url();
@@ -495,8 +483,6 @@ class AWPCP {
 
     /**
      * Returns pending ad to avoid WordPress default 404 handling and display a message instead.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function return_pending_post( $handle_404, $query ) {
         $post_id = $query->get( 'p' );
@@ -515,8 +501,6 @@ class AWPCP {
 
     /**
      * Return expired ad so owner can renew.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function expired_ads( $handle_404, $query ) {
         $post_id = $query->get( 'p' );
@@ -1752,7 +1736,7 @@ class AWPCP {
         }
 
         $unique_transaction_id = $transaction->id;
-        $referrer = isset( $_COOKIE['ap_id'] ) ? $_COOKIE['ap_id'] : null;
+        $referrer = isset( $_COOKIE['ap_id'] ) ? sanitize_text_field( wp_unslash( $_COOKIE['ap_id'] ) ) : null;
         $email = '';
 
         if ( $transaction->get( 'ad_id' ) ) {

@@ -46,7 +46,6 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
         $listings_logic,

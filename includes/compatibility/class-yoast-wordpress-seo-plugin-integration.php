@@ -17,12 +17,6 @@ function awpcp_yoast_wordpress_seo_plugin_integration() {
     );
 }
 
-/**
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- * @SuppressWarnings(PHPMD.StaticAccess)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.TooManyMethods)
- */
 class AWPCP_YoastWordPressSEOPluginIntegration {
 
     private $current_listing;

@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 function awpcp_search_listings_page() {
     return new AWPCP_SearchAdsPage(
         'awpcp-search-ads',
@@ -16,7 +14,6 @@ function awpcp_search_listings_page() {
 
 /**
  * @since  2.1.4
- * @SuppressWarnings(PHPMD)
  */
 class AWPCP_SearchAdsPage extends AWPCP_Page {
 

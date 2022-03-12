@@ -69,7 +69,6 @@ class AWPCP_ListingFieldsMetabox {
      * @param object $template_renderer         An instance of Template Renderer.
      * @param object $wordpress                 An instance of WordPress.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct( $post_type, $listings_logic, $form_fields_data, $form_fields_validator, $form_fields, $date_form_fields, $media_center, $template_renderer, $wordpress, $listing_authorization ) {
         $this->post_type = $post_type;
@@ -176,7 +175,6 @@ class AWPCP_ListingFieldsMetabox {
      * @param int    $post_id   The ID of the post being saved.
      * @param object $post      The post being saved.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function save( $post_id, $post ) {
         if (
@@ -251,7 +249,6 @@ class AWPCP_ListingFieldsMetabox {
      * @since 4.0.0
      */
     private function save_listing_information( $listing, $post_data ) {
-        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         do_action( 'awpcp-before-save-listing', $listing, $post_data );
 
         $this->listings_logic->update_listing( $listing, $post_data );
@@ -263,7 +260,6 @@ class AWPCP_ListingFieldsMetabox {
          * @deprecated 4.0.0    Use awpcp_listing_information_saved instead.
          */
         do_action( 'awpcp-save-ad-details', $listing, null );
-        // @phpcs:enable
 
         /**
          * Fires once the information for a classified ad has been saved.

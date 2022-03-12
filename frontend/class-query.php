@@ -5,7 +5,6 @@
 
 /**
  * @since 3.6
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_Query {
 
@@ -40,7 +39,6 @@ class AWPCP_Query {
             $is_single_listing_page = true;
         }
 
-        // @phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-is-single-listing-page', $is_single_listing_page );
     }
 

@@ -59,7 +59,6 @@ class AWPCP_FilteredArray implements ArrayAccess, IteratorAggregate {
      * @param mixed $offset     Offset to set.
      * @param mixed $value      Value to store.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function offsetSet( $offset, $value ) {
     }
@@ -67,7 +66,6 @@ class AWPCP_FilteredArray implements ArrayAccess, IteratorAggregate {
     /**
      * @param mied $offset  Offset to unset.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function offsetUnset( $offset ) {
     }

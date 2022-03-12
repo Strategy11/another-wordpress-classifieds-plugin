@@ -3,11 +3,6 @@
  * @package AWPCP\Listings\Facebook
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_send_to_facebook_helper() {
     return new AWPCP_SendToFacebookHelper(
         AWPCP_Facebook::instance(),
@@ -128,9 +123,6 @@ class AWPCP_SendToFacebookHelper {
         return true;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     private function do_facebook_request( $listing, $path, $method ) {
         $params = array(
             'link' => url_showad( $listing->ID ),
@@ -261,9 +253,9 @@ class AWPCP_SendToFacebookHelper {
      * http://stackoverflow.com/a/19653226/201354
      *
      * @param object $listing   An instance of WP_Post.
-     * @throws AWPCP_Exception  If no group has been selected on the configuration.
-     * @throws AWPCP_Exception  If the listing was already shared to a Facebook group.
-     * @throws AWPCP_Exception  If the listing is not public.
+     * throws AWPCP_Exception  If no group has been selected on the configuration.
+     * throws AWPCP_Exception  If the listing was already shared to a Facebook group.
+     * throws AWPCP_Exception  If the listing is not public.
      */
     public function send_listing_to_facebook_group( $listing ) {
         if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_sent_to_facebook_group', true ) ) {

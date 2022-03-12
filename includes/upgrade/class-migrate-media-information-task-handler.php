@@ -3,8 +3,6 @@
  * @package AWPCP\Upgrade
  */
 
-// phpcs:disable
-
 class AWPCP_Migrate_Media_Information_Task_Handler {
 
     /**
@@ -25,8 +23,6 @@ class AWPCP_Migrate_Media_Information_Task_Handler {
     /**
      * TODO: do this in the next version upgrade
      * $this->db->query( 'DROP TABLE ' . AWPCP_TABLE_ADPHOTOS );
-     *
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function run_task() {
         $mime_types = awpcp_mime_types();

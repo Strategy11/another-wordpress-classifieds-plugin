@@ -47,7 +47,6 @@ abstract class AWPCP_ContainerConfigurationTestCase extends AWPCP_UnitTestCase i
     /**
      * @param mixed $offset     The name of the offset to check.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function offsetExists( $offset ) {
         return true;
@@ -56,7 +55,6 @@ abstract class AWPCP_ContainerConfigurationTestCase extends AWPCP_UnitTestCase i
     /**
      * @param mixed $offset     The name of the offset to get.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function offsetGet( $offset ) {
         return null;
@@ -74,7 +72,6 @@ abstract class AWPCP_ContainerConfigurationTestCase extends AWPCP_UnitTestCase i
     /**
      * @param mixed $offset     The name of the offset to unset.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function offsetUnset( $offset ) {
     }

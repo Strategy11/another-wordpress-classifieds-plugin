@@ -3,11 +3,6 @@
  * @package AWPCP\Admin
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- */
 class AWPCP_FeesTable extends WP_List_Table {
 
     private $page;
@@ -18,9 +13,6 @@ class AWPCP_FeesTable extends WP_List_Table {
         $this->page = $page;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     */
     private function parse_query() {
         $user = wp_get_current_user();
         $ipp = (int) get_user_meta($user->ID, 'fees-items-per-page', true);

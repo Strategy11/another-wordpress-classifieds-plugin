@@ -5,8 +5,6 @@
 
 /**
  * Generates meta tags for listings.
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_Meta {
 
@@ -95,34 +93,27 @@ class AWPCP_Meta {
     }
 
     private function configure_rel_canonical() {
-        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         if ( apply_filters( 'awpcp-should-generate-rel-canonical', true, $this ) ) {
             remove_action( 'wp_head', 'rel_canonical' );
             add_action( 'wp_head', 'awpcp_rel_canonical' );
         }
-        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
     }
 
     private function configure_opengraph_meta_tags() {
-        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         if ( apply_filters( 'awpcp-should-generate-opengraph-tags', true, $this ) ) {
             add_action( 'wp_head', array( $this, 'opengraph' ) );
             $this->doing_opengraph = true;
         }
-        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
     }
 
     private function configure_description_meta_tag() {
-        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         if ( apply_filters( 'awpcp-should-generate-basic-meta-tags', true, $this ) ) {
             add_action( 'wp_head', array( $this, 'generate_basic_meta_tags' ) );
             $this->doin_description_meta_tag = true;
         }
-        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
     }
 
     private function configure_title_generation() {
-        // @phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         if ( apply_filters( 'awpcp-should-generate-title', true, $this ) ) {
             add_action( 'wp_title', array( $this->title_builder, 'build_title' ), 10, 3 );
         }
@@ -130,7 +121,6 @@ class AWPCP_Meta {
         if ( apply_filters( 'awpcp-should-generate-single-post-title', true, $this ) ) {
             add_action( 'single_post_title', array( $this->title_builder, 'build_single_post_title' ) );
         }
-        // @phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
 
         // SEO Ultimate.
         if ( defined( 'SU_PLUGIN_NAME' ) ) {
@@ -191,7 +181,6 @@ class AWPCP_Meta {
     }
 
     private function render_meta_tags( $meta_tags, $group_name ) {
-        // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
         echo '<!-- START - AWP Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL;
 
         foreach ( $meta_tags as $tag ) {
@@ -199,7 +188,6 @@ class AWPCP_Meta {
         }
 
         echo '<!-- END - AWP Classifieds Plugin ' . $group_name . ' meta tags -->' . PHP_EOL;
-        // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
     public function get_listing_metadata() {
@@ -250,9 +238,6 @@ class AWPCP_Meta {
         $this->render_meta_tags( $meta_tags, 'Basic' );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function get_the_date( $the_date, $format = '' ) {
         if ( ! $format ) {
             $format = get_option( 'date_format' );
@@ -261,9 +246,6 @@ class AWPCP_Meta {
         return mysql2date( $format, $this->properties['published-time'] );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function get_the_modified_date( $the_date, $format ) {
         if ( ! $format ) {
             $format = get_option( 'date_format' );

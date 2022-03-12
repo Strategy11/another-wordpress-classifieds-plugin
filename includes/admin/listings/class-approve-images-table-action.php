@@ -37,7 +37,6 @@ class AWPCP_ApproveImagesTableAction implements AWPCP_ListTableActionInterface {
      * @param object $post An instance of WP_Post.
      *
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function should_show_action_for( $post ) {
         return false;
@@ -53,7 +52,6 @@ class AWPCP_ApproveImagesTableAction implements AWPCP_ListTableActionInterface {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
         return 'fa fa-key';
@@ -70,7 +68,6 @@ class AWPCP_ApproveImagesTableAction implements AWPCP_ListTableActionInterface {
      * @param object $post An instance of WP_Post.
      *
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
         return $this->get_title();

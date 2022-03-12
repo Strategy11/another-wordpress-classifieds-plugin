@@ -3,11 +3,6 @@
  * @package AWPCP\Admin\Import
  */
 
-// phpcs:disable
-
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_CSV_Importer_Delegate {
 
     private $import_session;
@@ -251,7 +246,6 @@ class AWPCP_CSV_Importer_Delegate {
 
     /**
      * @since 4.0.0
-     * @throws AWPCP_Exception
      */
     private function create_user( $username, $contact_email ) {
         if ( empty( $username ) && empty( $contact_email ) ) {
@@ -294,7 +288,7 @@ class AWPCP_CSV_Importer_Delegate {
         $category_ids = [];
         foreach ($categories as $category) {
             $category = $this->get_category( $category );
-            $category_ids[] =  $category ? $category->term_id : null;
+            $category_ids[] = $category ? $category->term_id : null;
         }
 
         return $category_ids;
@@ -542,7 +536,7 @@ class AWPCP_CSV_Importer_Delegate {
             $listing_data['post_fields']['post_status'] = $import_settings['listing_status'];
         }
 
-        if ($import_settings['listing_status'] === 'default' &&  $listing_data['post_fields']['post_status'] === "") {
+        if ($import_settings['listing_status'] === 'default' && $listing_data['post_fields']['post_status'] === "") {
             $listing_data['post_fields']['post_status'] = 'pending';
         }
 
@@ -663,9 +657,6 @@ class AWPCP_CSV_Importer_Delegate {
  *                    that the extra field was assigned to, or if the extra field was
  *                    not assigned to any category.
  *                    required fields may be empty if enforce is false.
- * @SuppressWarnings(PHPMD.NPathComplexity)
- * @SuppressWarnings(PHPMD.CyclomaticComplexity)
- * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
  */
 function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, $enforce, &$errors ) {
     $validation_errors = array();
@@ -679,12 +670,14 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
             break;
 
         case 'Checkbox':
+			// Process with multiple.
         case 'Select Multiple':
             // value can be any combination of items from options list
             $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed values are: %%s", 'another-wordpress-classifieds-plugin' ), $name );
             $values_list = explode( ';', $value );
             $value = explode( ';', $value );
 
+			// Process with single selects too.
         case 'Select':
         case 'Radio Button':
             $values_list = is_array( $values_list ) ? $values_list : array( $value );

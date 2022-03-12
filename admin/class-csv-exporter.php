@@ -9,13 +9,9 @@
  * CSV export.
  *
  * @since 4.1.0
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_CSVExporter {
-    // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fwrite
-    // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fclose
-    // phpcs:disableWordPress.WP.AlternativeFunctions.file_system_read_fopen
+
     const BATCH_SIZE = 20;
 
     private $settings = array(
@@ -68,7 +64,6 @@ class AWPCP_CSVExporter {
 
     /**
      * @throws AWPCP_Exception If unable to create exports directory.
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function setup_working_dir( $workingdir ) {
         $this->workingdir = $workingdir;
@@ -352,8 +347,6 @@ class AWPCP_CSVExporter {
     }
 
     /**
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     *
      * @return array|bool
      */
     private function extract_data() {

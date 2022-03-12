@@ -52,8 +52,6 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
      * A handler for the {@see 'parse_request'} action.
      *
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function maybe_redirect_from_old_listing_url( $query ) {
         $vars                 = $query->query_vars;
@@ -159,9 +157,6 @@ class AWPCP_URL_Backwards_Compatibility_Redirection_Helper {
         return intval( $category_id );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ExitExpression)
-     */
     private function redirect( $redirect_url ) {
         global $wp_version;
 

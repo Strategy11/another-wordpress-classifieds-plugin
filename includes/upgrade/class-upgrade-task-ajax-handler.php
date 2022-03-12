@@ -3,8 +3,6 @@
  * @package AWPCP\Upgrade
  */
 
-// @phpcs:disable Squiz.Commenting
-
 class AWPCP_Upgrade_Task_Ajax_Handler extends AWPCP_AjaxHandler {
 
     /**

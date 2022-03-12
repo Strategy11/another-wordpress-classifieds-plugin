@@ -5,8 +5,6 @@
 
 /**
  * Unit tests for Listing Renderer class.
- *
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_Test_Listing_Renderer extends AWPCP_UnitTestCase {
 
@@ -18,10 +16,6 @@ class AWPCP_Test_Listing_Renderer extends AWPCP_UnitTestCase {
 
         $this->wordpress = Mockery::mock( 'AWPCP_WordPress' );
     }
-
-    // phpcs:disable Generic
-    // phpcs:disable Squiz
-    // phpcs:disable WordPress
 
     public function test_get_listing_title() {
         $listing = (object) array( 'post_title' => 'Test Listing' );
@@ -162,10 +156,6 @@ class AWPCP_Test_Listing_Renderer extends AWPCP_UnitTestCase {
         // Verification.
         $this->assertTrue( $is_flagged );
     }
-
-    // phpcs:disable Generic
-    // phpcs:disable Squiz
-    // phpcs:disable WordPress
 
     public function test_has_expired() {
         $this->markTestSkipped();

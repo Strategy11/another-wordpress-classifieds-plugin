@@ -194,8 +194,6 @@ class AWPCP_Test_CSV_Importer_Delegate extends AWPCP_UnitTestCase {
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable) $listing
      */
     public function test_import_row_with_payment_term() {
         $payment_term = (object) [

@@ -52,8 +52,6 @@ abstract class AWPCP_PaymentGateway {
     }
 
     /**
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
      * @param array $data billing details.
      * @param array $errors errors.
      *
@@ -111,10 +109,6 @@ abstract class AWPCP_PaymentGateway {
         return empty( $errors );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
-     */
     protected function get_user_info( $user_id = false ) {
         $fields = array( 'first_name', 'last_name', 'user_email', 'awpcp-profile' );
         $data   = awpcp_users_collection()->find_by_id( $user_id, $fields );
@@ -134,9 +128,6 @@ abstract class AWPCP_PaymentGateway {
         return $info;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     protected function render_billing_form( $transaction, $data = array(), $hidden = array(), $errors = array() ) {
         wp_enqueue_script( 'awpcp-billing-form' );
         $listing_id = awpcp_request()->param( 'listing_id' );

@@ -3,17 +3,10 @@
  * @package AWPCP\WordPress
  */
 
-// phpcs:disable Squiz.Commenting
-// phpcs:disable WordPress.VIP.RestrictedFunctions.get_posts_get_posts
-
 function awpcp_wordpress() {
     return new AWPCP_WordPress();
 }
 
-/**
- * @SuppressWarnings(BooleanArgumentFlag)
- * @SuppressWarnings(TooManyPublicMethods)
- */
 class AWPCP_WordPress {
 
     /* Users */

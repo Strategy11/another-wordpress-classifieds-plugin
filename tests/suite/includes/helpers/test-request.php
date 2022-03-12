@@ -9,7 +9,6 @@ use Brain\Monkey\Functions;
 
 /**
  * @group core
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_TestRequest extends AWPCP_UnitTestCase {
 

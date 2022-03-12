@@ -4,12 +4,6 @@
  *
  */
 
-// phpcs:disable Generic
-// phpcs:disable PEAR
-// phpcs:disable PSR2
-// phpcs:disable Squiz
-// phpcs:disable WordPress
-
 require_once(AWPCP_DIR . '/includes/helpers/page.php');
 
 function awpcp_place_listing_page() {
@@ -32,7 +26,6 @@ function awpcp_place_listing_page() {
 
 /**
  * @since  2.1.4
- * @SuppressWarnings(PHPMD)
  */
 class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
@@ -1301,9 +1294,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->preview_step();
         } else if ( $this->should_show_upload_files_step( $ad ) ) {
             return $this->upload_images_step();
-        } else if ((bool) get_awpcp_option('pay-before-place-ad')) {
+        } elseif ( (bool) get_awpcp_option( 'pay-before-place-ad' ) ) {
             return $this->finish_step();
-        } else if ((bool) get_awpcp_option('show-ad-preview-before-payment')) {
+        } elseif ( (bool) get_awpcp_option( 'show-ad-preview-before-payment' ) ) {
             return $this->preview_step();
         } else {
             return $this->checkout_step();

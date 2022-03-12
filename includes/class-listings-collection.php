@@ -12,10 +12,6 @@ function awpcp_listings_collection() {
 
 /**
  * @since 3.2.2
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class AWPCP_ListingsCollection {
 
@@ -158,11 +154,9 @@ class AWPCP_ListingsCollection {
     public function find_listings( $query = array() ) {
         $query = $this->add_orderby_query_parameters( $query );
 
-        // phpcs:disable
         $posts = $this->query_posts( apply_filters( 'awpcp-find-listings-query', $query ) );
 
         return apply_filters( 'awpcp-find-listings', $posts, $query );
-        // phpcs:enable
     }
 
     /**
@@ -194,7 +188,6 @@ class AWPCP_ListingsCollection {
      * @since 3.3
      */
     public function count_listings( $query_vars = [] ) {
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $query_vars = apply_filters( 'awpcp-find-listings-query', $query_vars );
 
         /**
@@ -523,9 +516,6 @@ class AWPCP_ListingsCollection {
      * -------------------------------------------------------------------------
      */
 
-    /**
-     * @SuppressWarnings(PHPMD)
-     */
     private function add_orderby_query_parameters( $query ) {
 		if ( isset( $query['orderby'] ) ) {
             $query['_orderby'] = $query['orderby'];
@@ -834,7 +824,6 @@ class AWPCP_ListingsCollection {
 
     /**
      * @param array $query  An array of query vars.
-     * @SuppressWarnings(PHPMD)
      */
     private function execute_query( $query ) {
         if ( isset( $query['_meta_order'] ) ) {
@@ -849,15 +838,11 @@ class AWPCP_ListingsCollection {
             add_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
         }
 
-        // phpcs:disable
         do_action( 'awpcp-before-execute-listings-query', $query );
-        // phpcs:enable
 
         $posts_query = $this->wordpress->create_posts_query( $query );
 
-        // phpcs:disable
         do_action( 'awpcp-after-execute-listings-query', $query );
-        // phpcs:enable
 
         if ( isset( $query['regions'] ) ) {
             remove_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );

@@ -62,9 +62,7 @@ class AWPCP_ExecuteListingActionAjaxHandler extends AWPCP_AjaxHandler {
             throw new AWPCP_Exception( str_replace( '{action}', $action, __( 'Unknown action: {action}', 'another-wordpress-classifieds-plugin' ) ) );
         }
 
-        // phpcs:disable WordPress.NamingConventions.ValidHookName.UseUnderscores
         $response = apply_filters( "awpcp-custom-listing-action-$action", [], $listing );
-        // phpcs:enable WordPress.NamingConventions.ValidHookName.UseUnderscores
 
         if ( isset( $response['error'] ) ) {
             return $this->error_response( $response['error'] );

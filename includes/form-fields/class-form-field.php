@@ -29,9 +29,6 @@ abstract class AWPCP_FormField {
         return false;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function is_readonly( $value ) {
         return false;
     }
@@ -49,8 +46,6 @@ abstract class AWPCP_FormField {
      * FormFieldsData::get_stored_data() or FormFieldsData::get_posted_data().
      *
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function extract_value( $data ) {
         _doing_it_wrong( __FUNCTION__, 'Overwrite this method in a subclass of FormField.', 'AWP Classifieds Plugin 4.0.0' );

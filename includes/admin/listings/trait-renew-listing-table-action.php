@@ -22,8 +22,6 @@ trait AWPCP_RenewListingTableAction {
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_icon_class( $post ) {
         return 'fa fa-redo';
@@ -40,8 +38,6 @@ trait AWPCP_RenewListingTableAction {
      * @since 4.0.0
      *
      * @param object $post  An instance of WP_Post.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_label( $post ) {
         return $this->get_title();

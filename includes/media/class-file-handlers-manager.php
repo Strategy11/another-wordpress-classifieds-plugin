@@ -60,7 +60,6 @@ class AWPCP_File_Handlers_Manager {
 
     public function get_file_handlers() {
         if ( is_null( $this->handlers ) ) {
-            // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
             $this->handlers = apply_filters( 'awpcp-file-handlers', array() );
         }
 

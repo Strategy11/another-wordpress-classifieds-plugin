@@ -7,8 +7,6 @@ use Brain\Monkey\Functions;
 
 /**
  * @group core
- *
- * @SuppressWarnings(PHPMD)
  */
 class AWPCP_TestListingsAPI extends AWPCP_UnitTestCase {
 

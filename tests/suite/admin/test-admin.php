@@ -10,8 +10,6 @@
  */
 class AWPCP_AdminTest extends AWPCP_UnitTestCase {
 
-    // phpcs:disable WordPress.Variables.GlobalVariables.OverrideProhibited
-
     /**
      * @since 4.0.0
      */
@@ -172,7 +170,6 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
         $actions = $admin->register_listings_table_actions( array() );
 
         // Verification.
-        // phpcs:disable Squiz.PHP.CommentedOutCode.Found
         $this->assertArrayHasKey( 'enable', $actions );
         $this->assertArrayHasKey( 'disable', $actions );
         $this->assertArrayHasKey( 'send-access-key', $actions );
@@ -186,7 +183,6 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
         $this->assertArrayHasKey( 'send-to-facebook-group', $actions );
         $this->assertArrayHasKey( 'mark-reviewed', $actions );
         // // $this->assertArrayHasKey( 'manage-attachments', $actions );
-        // // phpcs:enable Squiz.PHP.CommentedOutCode.Found
     }
 
     /**

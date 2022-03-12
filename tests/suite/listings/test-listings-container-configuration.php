@@ -55,9 +55,7 @@ class AWPCP_ListingsContainerConfigurationTest extends AWPCP_ContainerConfigurat
      * @since 4.0.0
      */
     public function test_query_integration_definition() {
-        // phpcs:disable
         $GLOBALS['wpdb'] = null;
-        // phpcs:enable
 
         $this->test_class_definition( 'QueryIntegration' );
     }

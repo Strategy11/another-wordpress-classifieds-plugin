@@ -194,9 +194,6 @@ class AWPCP_Custom_Post_Types {
 
         register_taxonomy_for_object_type( 'awpcp_listing_category', 'awpcp_listing' );
 
-        // phpcs:disable Squiz.PHP.CommentedOutCode.Found
-        // phpcs:disable Squiz.Commenting.InlineComment.InvalidEndChar
-        // phpcs:disable Squiz.Commenting.InlineComment.SpacingBefore
         // $terms = get_terms(
         //     'awpcp_listing_category',
         //     array(

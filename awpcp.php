@@ -167,7 +167,7 @@ function awpcp_required_php_version_notice( $product_name ) {
  * @since 4.0.0
  */
 function awpcp_activation_failed_notice( $content ) {
-    // @phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo '<div class="notice notice-error">' . $content . '</div>';
 }
 
@@ -177,11 +177,11 @@ function awpcp_activation_failed_notice( $content ) {
 function awpcp_self_deactivate() {
     deactivate_plugins( plugin_basename( AWPCP_FILE ) );
 
-    // @phpcs:disable WordPress.Security.NonceVerification.Recommended
+    // phpcs:disable WordPress.Security.NonceVerification.Recommended
     if ( isset( $_GET['activate'] ) ) {
         unset( $_GET['activate'] );
     }
-    // @phpcs:enable WordPress.Security.NonceVerification.Recommended
+    // phpcs:enable WordPress.Security.NonceVerification.Recommended
 }
 
 /**

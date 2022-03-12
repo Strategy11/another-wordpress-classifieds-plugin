@@ -3,8 +3,6 @@
  * @package AWPCP\FormFields
  */
 
-// phpcs:disable
-
 function awpcp_listing_details_form_field( $slug ) {
     return new AWPCP_ListingDetailsFormField(
         $slug,
@@ -14,9 +12,6 @@ function awpcp_listing_details_form_field( $slug ) {
     );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_ListingDetailsFormField extends AWPCP_FormField {
 
     private $listing_renderer;

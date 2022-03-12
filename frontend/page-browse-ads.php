@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 function awpcp_browse_listings_page() {
     return new AWPCP_BrowseAdsPage(
         'awpcp-browse-ads',
@@ -14,9 +12,6 @@ function awpcp_browse_listings_page() {
     );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_BrowseAdsPage extends AWPCP_Page {
 
     private $request;

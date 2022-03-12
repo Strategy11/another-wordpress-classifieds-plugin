@@ -5,8 +5,6 @@
 
 /**
  * Edit Listing Page.
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_EditListingPage extends AWPCP_Page {
 
@@ -268,8 +266,6 @@ class AWPCP_EditListingPage extends AWPCP_Page {
         }
 
         if ( empty( $errors ) ) {
-            // phpcs:disable WordPress.VIP.SlowDBQuery.slow_db_query_meta_query
-            // phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query
             $listings = $this->listings->find_listings(
                 [
                     'meta_query' => [
@@ -347,8 +343,6 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
         $ads = array();
         if ( empty( $errors ) ) {
-            // phpcs:disable WordPress.VIP.SlowDBQuery.slow_db_query_meta_query
-            // phpcs:disable WordPress.DB.SlowDBQuery.slow_db_query_meta_query
             $ads = $this->listings->find_listings(
                 [
                     'meta_query' => [

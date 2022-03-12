@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// @phpcs:disable Squiz.Commenting
-
 class AWPCP_UploadsManager {
 
     private $settings;

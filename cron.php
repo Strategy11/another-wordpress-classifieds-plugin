@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 // ensure we get the expiration hooks scheduled properly:
 function awpcp_schedule_activation() {
     $cron_jobs = array(

@@ -75,7 +75,6 @@ class AWPCP_ListingContactNameFormField extends AWPCP_FormField {
      * @param array  $errors    An array of form errors.
      * @param object $listing   An instance of WP_Post.
      * @param mixed  $context   The context in which this field is being rendered.
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function render( $value, $errors, $listing, $context ) {
         $params = array(

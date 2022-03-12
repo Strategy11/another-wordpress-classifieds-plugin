@@ -79,7 +79,6 @@ class AWPCP_ListingFormFields {
             unset( $fields['ad_details'] );
         }
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         return apply_filters( 'awpcp-form-fields', $fields );
     }
 

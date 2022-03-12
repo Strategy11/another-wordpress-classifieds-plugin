@@ -81,7 +81,6 @@ class AWPCP_DebugAdminPage {
 	 * Allow users to download Debug Info as an JSON file.
 	 *
 	 * @since 2.0.7
-     * @SuppressWarnings(PHPMD.ExitExpression)
 	 */
 	public function export_to_json() {
         $content = [
@@ -335,7 +334,6 @@ class AWPCP_DebugAdminPage {
             return __( 'N/A', 'another-wordpress-classifieds-plugin' );
         }
 
-        // phpcs:disable WordPress.WP.AlternativeFunctions.curl_curl_version
         $version = curl_version();
 
         if ( ! isset( $version[ $element ] ) ) {
@@ -409,7 +407,6 @@ class AWPCP_DebugAdminPage {
 
     /**
      * @since 4.0.0     Removed setting name argument.
-     * @SuppressWarnings(PHPMD.DevelopmentCodeFragment)
      */
 	private function sanitize_setting_value( $value ) {
         static $hosts_regexp = '';
@@ -427,7 +424,7 @@ class AWPCP_DebugAdminPage {
             $email_regexp = '/[_a-z0-9-+]+(\.[_a-z0-9-+]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})/';
         }
 
-        // phpcs:disable WordPress.PHP.DevelopmentFunctions.error_log_print_r
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_print_r
         $sanitized = ( is_object( $value ) || is_array( $value ) ) ? print_r( $value, true ) : $value;
 
         // Remove Website domain.

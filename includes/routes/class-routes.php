@@ -3,8 +3,6 @@
  * @package AWPCP
  */
 
-// phpcs:disable
-
 function awpcp_routes() {
     return new AWPCP_Routes();
 }

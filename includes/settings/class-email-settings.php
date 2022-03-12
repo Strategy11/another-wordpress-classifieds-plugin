@@ -22,7 +22,6 @@ class AWPCP_EmailSettings {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD)
      */
     public function register_settings( $settings_manager ) {
         $settings_manager->add_settings_group(

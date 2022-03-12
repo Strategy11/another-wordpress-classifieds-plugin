@@ -10,9 +10,6 @@ function awpcp_multiple_region_selector( $regions, $options ) {
     return awpcp_multiple_region_selector_with_template( $regions, $options, 'default' );
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 function awpcp_multiple_region_selector_with_template( $regions, $options, $template_name ) {
     if ( $template_name === 'form-table' ) {
         $template = AWPCP_DIR . '/templates/admin/profile/contact-information-region-selector.tpl.php';
@@ -26,9 +23,6 @@ function awpcp_multiple_region_selector_with_template( $regions, $options, $temp
     return $selector;
 }
 
-/**
- * @SuppressWarnings(PHPMD)
- */
 class AWPCP_MultipleRegionSelector {
 
     private $template = '';
@@ -92,7 +86,6 @@ class AWPCP_MultipleRegionSelector {
             $enabled_fields = awpcp_get_enabled_region_fields( $context );
         }
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $fields = apply_filters( 'awpcp-region-fields', false, $context, $enabled_fields );
 
         if ( false === $fields ) {
@@ -103,7 +96,6 @@ class AWPCP_MultipleRegionSelector {
     }
 
     private function get_region_field_options( $context, $type, $selected, $hierarchy ) {
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $options = apply_filters( 'awpcp-region-field-options', false, $context, $type, $selected, $hierarchy );
 
         if ( false !== $options ) {
@@ -218,7 +210,6 @@ class AWPCP_MultipleRegionSelector {
             );
         }
 
-        // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
         $options = apply_filters( 'awpcp-multiple-region-selector-configuration', $this->options, $context, $fields );
 
         $uuid          = uniqid();

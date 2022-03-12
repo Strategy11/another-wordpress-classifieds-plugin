@@ -3,8 +3,6 @@
  * @package AWPCP\Frontend
  */
 
-// phpcs:disable
-
 require_once(AWPCP_DIR . '/frontend/page-place-ad.php');
 
 function awpcp_renew_listing_page() {
@@ -134,9 +132,6 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         }
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     protected function get_renew_ad_page_implementation($ad) {
         $term = $this->listing_renderer->get_payment_term( $ad );
 
@@ -151,9 +146,6 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         }
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function get_return_link($ad) {
         if (is_admin()) {
             return sprintf('<a href="%1$s">%2$s</a>', $this->get_panel_url(), __( 'Return to Listings', 'another-wordpress-classifieds-plugin'));
@@ -202,9 +194,6 @@ class AWPCP_RenewAdPageImplementation {
         $this->request = $request;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     protected function validate_order($data, &$errors=array()) {
         if ( is_null( $data['payment_term'] ) ) {
             $errors[] = __( 'You should choose one of the available Payment Terms.', 'another-wordpress-classifieds-plugin');
@@ -215,11 +204,6 @@ class AWPCP_RenewAdPageImplementation {
         }
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     */
     public function order_step() {
         $ad                  = $this->page->get_ad();
         $transaction         = $this->page->get_transaction(true);

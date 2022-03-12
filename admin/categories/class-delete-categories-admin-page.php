@@ -82,9 +82,6 @@ class AWPCP_Delete_Categories_Admin_Page {
         awpcp_flash_error( $message );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function delete_categories( $selected_categories, $target_category, $should_move_listings ) {
         $categories_deleted     = 0;
         $categories_not_deleted = 0;
