@@ -163,8 +163,6 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
         $this->container['MarkPaidListingTableAction']            = null;
         $this->container['MarkVerifiedListingTableAction']        = null;
         $this->container['SendVerificationEmailTableAction']      = null;
-        $this->container['SendToFacebookPageListingTableAction']  = null;
-        $this->container['SendToFacebookGroupListingTableAction'] = null;
 
         $admin = $this->get_test_subject();
 
@@ -182,8 +180,6 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
         $this->assertArrayHasKey( 'renew', $actions );
         $this->assertArrayHasKey( 'make-featured', $actions );
         $this->assertArrayHasKey( 'make-standard', $actions );
-        $this->assertArrayHasKey( 'send-to-facebook-page', $actions );
-        $this->assertArrayHasKey( 'send-to-facebook-group', $actions );
         $this->assertArrayHasKey( 'mark-reviewed', $actions );
         // // $this->assertArrayHasKey( 'manage-attachments', $actions );
         // // phpcs:enable Squiz.PHP.CommentedOutCode.Found

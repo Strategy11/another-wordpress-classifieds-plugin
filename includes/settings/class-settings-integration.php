@@ -65,7 +65,7 @@ class AWPCP_SettingsIntegration {
      * @since 4.0.0
      */
     public function add_settings_sections() {
-        foreach ( $this->settings_manager->get_settings_groups() as $group ) {
+        foreach ( $this->settings_manager->get_settings_groups( true ) as $group ) {
             $this->add_settings_sections_for_group( $group );
         }
     }
@@ -117,7 +117,7 @@ class AWPCP_SettingsIntegration {
 
             add_settings_field(
                 $setting['id'],
-                $setting['name'],
+                $setting['type'] === 'hidden' ? '' : $setting['name'],
                 [ $this->settings_renderer, 'render_setting' ],
                 $section['subgroup'],
                 $section['id'],

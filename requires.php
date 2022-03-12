@@ -85,7 +85,6 @@ require_once AWPCP_DIR . '/includes/helpers/class-akismet-wrapper-base.php';
 require_once AWPCP_DIR . '/includes/helpers/class-akismet-wrapper.php';
 require_once AWPCP_DIR . '/includes/helpers/class-akismet-wrapper-factory.php';
 require_once AWPCP_DIR . '/includes/helpers/class-awpcp-request.php';
-require_once AWPCP_DIR . '/includes/helpers/class-facebook-cache-helper.php';
 require_once AWPCP_DIR . '/includes/helpers/class-file-cache.php';
 require_once AWPCP_DIR . '/includes/helpers/class-http.php';
 require_once AWPCP_DIR . '/includes/helpers/class-listing-akismet-data-source.php';
@@ -94,10 +93,8 @@ require_once AWPCP_DIR . '/includes/helpers/class-listing-reply-akismet-data-sou
 require_once AWPCP_DIR . '/includes/helpers/class-page-title-builder.php';
 require_once AWPCP_DIR . '/includes/helpers/class-payment-transaction-helper.php';
 require_once AWPCP_DIR . '/includes/helpers/class-recaptcha-v3.php';
-require_once AWPCP_DIR . '/includes/helpers/class-send-to-facebook-helper.php';
 require_once AWPCP_DIR . '/includes/helpers/class-spam-filter.php';
 require_once AWPCP_DIR . '/includes/helpers/class-spam-submitter.php';
-require_once AWPCP_DIR . '/includes/helpers/facebook.php';
 require_once AWPCP_DIR . '/includes/helpers/list-table.php';
 require_once AWPCP_DIR . '/includes/helpers/email.php';
 require_once AWPCP_DIR . '/includes/helpers/javascript.php';

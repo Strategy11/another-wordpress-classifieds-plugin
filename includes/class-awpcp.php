@@ -221,7 +221,6 @@ class AWPCP {
         add_action( 'awpcp_register_settings', array( $general_settings, 'register_settings' ) );
         add_filter( 'awpcp_validate_settings_general-settings', array( $general_settings, 'validate_group_settings' ), 10, 2 );
         add_filter( 'awpcp_validate_settings_general-settings', array( $general_settings, 'validate_general_settings' ), 10, 2 );
-        add_filter( 'awpcp_validate_settings_facebook-settings', [ $general_settings, 'validate_facebook_settings' ] );
         add_filter( 'awpcp_validate_settings_subgroup_date-time-format-settings', array( $general_settings, 'validate_date_time_format_settings' ), 10, 2 );
         add_filter( 'awpcp_validate_settings_subgroup_registration-settings',[ $general_settings, 'validate_registration_settings' ] );
         add_filter( 'awpcp_validate_settings_subgroup_currency-format-settings',[ $general_settings, 'validate_currency_settings' ] );
@@ -263,6 +262,7 @@ class AWPCP {
         $renderers['select']         = $this->container['SelectSettingsRenderer'];
         $renderers['textarea']       = $this->container['TextareaSettingsRenderer'];
         $renderers['radio']          = $this->container['RadioSettingsRenderer'];
+		$renderers['hidden']         = $this->container['HiddenSettingsRenderer'];
         $renderers['textfield']      = $this->container['TextfieldSettingsRenderer'];
         $renderers['button']         = $this->container['ButtonSettingsRenderer'];
         $renderers['password']       = $this->container['TextfieldSettingsRenderer'];
@@ -354,13 +354,6 @@ class AWPCP {
         $handler = awpcp_renew_listing_payment_transaction_handler();
         add_action( 'awpcp-transaction-status-updated', array( $handler, 'process_payment_transaction' ), 20 );
         add_filter( 'awpcp-process-payment-transaction', array( $handler, 'process_payment_transaction' ), 20 );
-
-        // load resources always required
-        $facebook_cache_helper = awpcp_facebook_cache_helper();
-        add_action( 'awpcp-clear-ad-facebook-cache', array( $facebook_cache_helper, 'handle_clear_cache_event_hook' ), 10, 1 );
-
-        $send_to_facebook_helper = $this->container['SendListingToFacebookHelper'];
-        add_action( 'awpcp-send-listing-to-facebook', array( $send_to_facebook_helper, 'send_listing_to_facebook' ) );
 
         $categories_list_cache = $this->container['CategoriesListCache'];
 

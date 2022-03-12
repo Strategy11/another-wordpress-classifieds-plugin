@@ -123,6 +123,12 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
+        $container['HiddenSettingsRenderer'] = $container->service( function( $container ) {
+            return new AWPCP_HiddenSettingsRenderer(
+                $container['Settings']
+            );
+        } );
+
         $container['TextfieldSettingsRenderer'] = $container->service( function( $container ) {
             return new AWPCP_TextfieldSettingsRenderer(
                 $container['Settings']

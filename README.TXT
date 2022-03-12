@@ -37,7 +37,6 @@ Looking for other types of directories? Check out [Business Directory Plugin](ht
 * Classified ads can have character limits, supported by plans (different plans can have different limits)
 * Classified ads can be displayed on any page for a single category using shortcodes
 * Auto-verify ads with email links to post immediately upon click
-* Classified ads can be 'Sent to Facebook' inside of ad management
 * Support for displaying ad events in BuddyPress activity stream with [BuddyPress module](https://awpcp.com/downloads/buddypress-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
 * Classified ads can be edited via front end, back end with or without registration (depending on settings)
 * Multiple levels of directory categories supported
@@ -72,7 +71,6 @@ Looking for other types of directories? Check out [Business Directory Plugin](ht
 * Ad Management panel, visible by users and admins for easier ad creation/editing/delete.
 * Admin can post ads on behalf of other users with the ads displaying as if the user posted them initially
 * Email verification step can be used to auto-post ads upon successful verification link click
-* Ads can be posted to a Facebook page manually or automatically
 
 == Classified Directory Image Features ==
 

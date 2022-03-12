@@ -242,22 +242,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
             );
         } );
 
-        $container['SendToFacebookPageListingTableAction'] = $container->service( function( $container ) {
-            return new AWPCP_SendToFacebookPageListingTableAction(
-                $container['SendListingToFacebookHelper'],
-                $container['RolesAndCapabilities'],
-                $container['WordPress']
-            );
-        } );
-
-        $container['SendToFacebookGroupListingTableAction'] = $container->service( function( $container ) {
-            return new AWPCP_SendToFacebookGroupListingTableAction(
-                $container['SendListingToFacebookHelper'],
-                $container['RolesAndCapabilities'],
-                $container['WordPress']
-            );
-        } );
-
         $container['ListingsTableNavHandler'] = $container->service( function( $container ) {
             return new AWPCP_ListingsTableNavHandler(
                 $container['HTMLRenderer'],

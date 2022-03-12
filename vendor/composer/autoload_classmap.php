@@ -215,6 +215,7 @@ return array(
     'AWPCP_HTML_Text_Renderer' => $baseDir . '/includes/html/class-html-text-renderer.php',
     'AWPCP_HTTP' => $baseDir . '/includes/helpers/class-http.php',
     'AWPCP_HTTP_Exception' => $baseDir . '/includes/exceptions.php',
+    'AWPCP_HiddenSettingsRenderer' => $baseDir . '/includes/settings/renderers/class-hidden-settings-renderer.php',
     'AWPCP_IDListingsTableSearchMode' => $baseDir . '/includes/admin/listings/class-id-listings-table-search-mode.php',
     'AWPCP_IOError' => $baseDir . '/includes/exceptions.php',
     'AWPCP_ImageFileProcessor' => $baseDir . '/includes/media/class-image-file-processor.php',

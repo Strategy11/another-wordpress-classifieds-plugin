@@ -31,8 +31,30 @@ class AWPCP_SettingsManager {
     /**
      * @since 4.0.0
      */
-    public function get_settings_groups() {
-        return $this->groups;
+    public function get_settings_groups( $conditions = false ) {
+		$groups = $this->groups;
+		if ( ! $conditions ) {
+			return $groups;
+		}
+
+		// Check if the group should be included.
+		foreach ( $groups as $k => $group ) {
+			if ( empty( $group['conditions'] ) ) {
+				continue;
+			}
+
+			$clear = true;
+			foreach ( $group['conditions'] as $condition ) {
+				$value = get_awpcp_option( $condition );
+				if ( ! empty( $value ) ) {
+					$clear = false;
+				}
+			}
+			if ( $clear ) {
+				unset( $groups[ $k ] );
+			}
+		}
+        return $groups;
     }
 
     /**
@@ -54,6 +76,7 @@ class AWPCP_SettingsManager {
             'id'       => null,
             'name'     => null,
             'priority' => 10,
+			'conditions' => '',
         ] );
 
         $group['subgroups'] = [];
