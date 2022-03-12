@@ -5,7 +5,7 @@
 
 function awpcp_send_to_facebook_helper() {
     return new AWPCP_SendToFacebookHelper(
-        AWPCP_Facebook::instance(),
+        '',
         awpcp_facebook_integration(),
         awpcp_listing_renderer(),
         awpcp_listings_collection(),
@@ -15,16 +15,6 @@ function awpcp_send_to_facebook_helper() {
 }
 
 class AWPCP_SendToFacebookHelper {
-
-    /**
-     * @var Facebook
-     */
-    private $facebook;
-
-    /**
-     * @var FacebookIntegration
-     */
-    private $facebook_integration;
 
     /**
      * @var ListingsCollection
@@ -37,8 +27,6 @@ class AWPCP_SendToFacebookHelper {
     private $settings;
 
     public function __construct( $facebook, $facebook_integration, $listing_renderer, $listings, $settings, $wordpress ) {
-        $this->facebook             = $facebook;
-        $this->facebook_integration = $facebook_integration;
         $this->listing_renderer     = $listing_renderer;
         $this->listings             = $listings;
         $this->settings             = $settings;
