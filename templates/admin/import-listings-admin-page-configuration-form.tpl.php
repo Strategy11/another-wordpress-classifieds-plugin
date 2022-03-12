@@ -88,8 +88,7 @@
                                 <p>
                                     <label for="awpcp-importer-image-separator"><?php echo esc_html( __( 'Image Separator', 'another-wordpress-classifieds-plugin' ) ); ?></label>
                                     <input id="awpcp-importer-image-separator" type="text" maxlength="1" size="1" name="images_separator"
-                                           value="<?php echo esc_attr( $form_data['images_separator'] ); ?>" disabled="disabled"/> <?php echo esc_html( __( '(semi-colon)',
-                                        'another-wordpress-classifieds-plugin' ) ); ?>
+                                           value="<?php echo esc_attr( $form_data['images_separator'] ); ?>" disabled="disabled"/> <?php esc_html_e( '(semi-colon)', 'another-wordpress-classifieds-plugin' ); ?>
                                     <?php echo awpcp_form_error( 'images_separator', $form_errors ); ?>
                                 </p>
                             </td>

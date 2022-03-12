@@ -159,7 +159,7 @@ class AWPCP_Image_Placeholders {
 
                     $images[] = $content;
 
-                    $shown = $shown + 1;
+                    ++$shown;
                 }
 
                 $placeholders['awpcpshowadotherimages'] = join('', $images);

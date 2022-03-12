@@ -422,8 +422,6 @@ class AWPCP {
 
                 $handler = awpcp_license_settings_actions_request_handler();
                 add_action( 'wp_redirect', array( $handler, 'dispatch' ) );
-            } else {
-                // load resources required in admin screens only, visible to non-admin users only.
             }
         } else {
             // load resources required in frontend screens only.
@@ -1738,7 +1736,7 @@ class AWPCP {
         }
 
         $unique_transaction_id = $transaction->id;
-        $referrer = isset( $_COOKIE['ap_id'] ) ? $_COOKIE['ap_id'] : null;
+        $referrer = isset( $_COOKIE['ap_id'] ) ? sanitize_text_field( wp_unslash( $_COOKIE['ap_id'] ) ) : null;
         $email = '';
 
         if ( $transaction->get( 'ad_id' ) ) {

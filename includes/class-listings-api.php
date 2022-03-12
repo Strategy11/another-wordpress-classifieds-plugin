@@ -313,7 +313,7 @@ class AWPCP_ListingsAPI {
         $this->update_listing_metadata( $listing, $listing_data['metadata'] );
         
         if ( ! empty( $listing_data['regions'] ) ) {
-            foreach( (array)$listing_data['regions'] as $region ) {
+            foreach( (array) $listing_data['regions'] as $region ) {
                 if( ! empty( implode( $region ) ) ) {
                     $this->update_listing_regions( $listing, $listing_data['regions'] );
                     break;
@@ -613,7 +613,7 @@ class AWPCP_ListingsAPI {
         $images_must_be_approved = $this->settings->get_option( 'imagesapprove', false );
 
         if ( ! $images_must_be_approved ) {
-            $images = $this->attachments->find_attachments_of_type_awaiting_approval( 'image', array( 'post_parent' => $listing->ID, ) );
+            $images = $this->attachments->find_attachments_of_type_awaiting_approval( 'image', array( 'post_parent' => $listing->ID ) );
 
             foreach ( $images as $image ) {
                 $this->attachments_logic->approve_attachment( $image );

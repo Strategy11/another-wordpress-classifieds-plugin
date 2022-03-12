@@ -223,11 +223,11 @@ function is_awpcp_admin_page() {
         return false;
     }
 
-    if ( ! empty( $_REQUEST['action'] ) && string_starts_with( $_REQUEST['action'], 'awpcp' ) ) {
+    if ( ! empty( $_REQUEST['action'] ) && string_starts_with( sanitize_text_field( wp_unslash( $_REQUEST['action'] ) ), 'awpcp' ) ) {
         return true;
     }
 
-    if ( ! empty( $_REQUEST['page'] ) && string_starts_with( $_REQUEST['page'], 'awpcp' ) ) {
+    if ( ! empty( $_REQUEST['page'] ) && string_starts_with( sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ), 'awpcp' ) ) {
         return true;
     }
 

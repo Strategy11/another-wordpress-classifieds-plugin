@@ -206,12 +206,12 @@ class AWPCP_Payment_Terms_List {
 
         return array(
             'currency_amount'       => awpcp_format_money( $payment_term_price ),
-            'currency_button_label' => __( 'Select', 'another-wordpress-classifieds-plugin' ),//$currency_button_label,
+            'currency_button_label' => __( 'Select', 'another-wordpress-classifieds-plugin' ),
             'currency_option'       => $this->get_payment_option( $payment_term, 'money' ),
 
             'credits_amount'        => $payment_term_credits,
             'credits_label'         => __( 'credits', 'another-wordpress-classifieds-plugin' ),
-            'credits_button_label'  => __( 'Select', 'another-wordpress-classifieds-plugin' ),//$credits_button_label,
+            'credits_button_label'  => __( 'Select', 'another-wordpress-classifieds-plugin' ),
             'credits_option'        => $this->get_payment_option( $payment_term, 'credits' ),
         );
     }

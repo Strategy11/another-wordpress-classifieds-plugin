@@ -32,7 +32,7 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function method() {
-        return strtoupper( $_SERVER['REQUEST_METHOD'] );
+        return strtoupper( sanitize_text_field( $_SERVER['REQUEST_METHOD'] ) );
     }
 
     /**
@@ -81,6 +81,7 @@ class AWPCP_Request {
      * @since 4.0.0
      */
     private function filter_input( $var_name, $filter ) {
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
         $var_name = isset( $_SERVER[$var_name] ) ? $_SERVER[$var_name] : null;
         return filter_var( $var_name, $filter );
     }
@@ -91,7 +92,7 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function param( $name, $default = '' ) {
-        // phpcs:ignore WordPress.CSRF.NonceVerification.NoNonceVerification
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
         return isset( $_REQUEST[ $name ] ) ? wp_unslash( $_REQUEST[ $name ] ) : $default; // Input var okay.
     }
 
@@ -109,6 +110,7 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function get( $name, $default='' ) {
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
         return isset( $_GET[ $name ] ) ? $_GET[ $name ] : $default;
     }
 
@@ -140,6 +142,7 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function post( $name, $default='' ) {
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
         return isset( $_POST[ $name ] ) ? $_POST[ $name ] : $default;
     }
 
@@ -265,6 +268,7 @@ class AWPCP_Request {
 
         $regexp = '/' . implode( '|', self::$bot_user_agents_keywords ) . '/';
 
+		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
         return (bool) preg_match( $regexp, strtolower( $_SERVER['HTTP_USER_AGENT'] ) );
     }
 }

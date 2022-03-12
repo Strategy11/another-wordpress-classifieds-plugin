@@ -23,7 +23,7 @@ function awpcp_build_categories_hierarchy( &$categories, $filter = null, $callba
 /**
  * @since 4.0.0
  */
-function __awpcp_build_categories_hierarchy( $categories, $filter = null, $callback = null ) {
+function __awpcp_build_categories_hierarchy( $categories, $filter = null, $callback = null ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionDoubleUnderscore
     $hierarchy = array( 'root' => array() );
 
     $filter_categories  = is_callable( $filter );

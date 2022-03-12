@@ -195,7 +195,7 @@ function get_adparentcatname( $cat_ID ) {
     return get_adcatname( $cat_ID );
 }
 
-function get_cat_parent_ID($cat_ID){
+function get_cat_parent_ID($cat_ID){ // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
     global $wpdb;
 
     $query = 'SELECT category_parent_id FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';

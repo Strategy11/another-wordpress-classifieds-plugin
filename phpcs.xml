@@ -80,6 +80,7 @@
         <exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
         <exclude name="Squiz.WhiteSpace.LanguageConstructSpacing.IncorrectSingle" />
         <exclude name="WordPress.PHP.IniSet.display_errors_Blacklisted" />
+        <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedCatch" />
     </rule>
 
     <rule ref="Generic.WhiteSpace.ScopeIndent">

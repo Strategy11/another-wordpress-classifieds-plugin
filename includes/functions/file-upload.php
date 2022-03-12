@@ -41,7 +41,7 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
 
 	if (empty($size) || $size <= 0) {
 		$message = "There was an error trying to find out the file size of the image %s.";
-		return __(sprintf($message, $filename), 'another-wordpress-classifieds-plugin');
+		return sprintf( $message, $filename );
 	}
 
 	if (!(in_array($ext, $allowed_extensions))) {

@@ -235,11 +235,8 @@ function awpcp_strip_all_tags_deep( $string ) {
  * @todo Check if add-ons use this and deprecate.
  */
 function awpcp_strptime( $date, $format ) {
-	if ( function_exists( 'strptime' ) ) {
-		return strptime( $date, $format );
-	} else {
-		return awpcp_strptime_replacement( $date, $format );
-	}
+	_deprecated_function( __FUNCTION__, '4.1.8' );
+	return awpcp_strptime_replacement( $date, $format );
 }
 
 /**
@@ -453,7 +450,7 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 		case 'time-elapsed':
 			return sprintf( __( '%s ago' ), human_time_diff( strtotime( $date ) ) );
 		case 'awpcp':
-			return date_i18n( awpcp_get_datetime_format(), $timestamp ) ;
+			return date_i18n( awpcp_get_datetime_format(), $timestamp );
 		case 'awpcp-date':
 			return date_i18n( awpcp_get_date_format(), $timestamp );
 		case 'awpcp-time':
@@ -652,13 +649,11 @@ function awpcp_pagination($config, $url) {
     }
 
 	for ($i=1; $i <= $pages; $i++) {
+		$less    = $i < ( $page - $radius );
+		$greater = $i > ( $page + $radius )
         if ( $page == $i ) {
             $items[] = sprintf( '<span class="awpcp-pagination-links--link">%d</span>', $i );
-        } else if ( $i < ( $page - $radius ) ) {
-            // pass
-        } else if ( $i > ( $page + $radius ) ) {
-            // pass
-        } else {
+        } elseif ( ! $less && ! $greater ) {
             $items[] = awpcp_render_pagination_item( $i, $i, $results, $params, $url );
         }
 	}
@@ -1436,7 +1431,7 @@ function awpcp_parse_bool($value) {
 }
 
 function awpcp_get_currency_code() {
-    $currency_code = get_awpcp_option( ''. 'currency-code' );
+    $currency_code = get_awpcp_option( 'currency-code' );
 
     if ( function_exists( 'mb_strtoupper' ) ) {
         return mb_strtoupper( $currency_code );
@@ -2796,7 +2791,7 @@ function awpcp_unique_filename( $path, $filename, $directories ) {
     do {
         $hash = hash( 'crc32b', "$name-$extension-$file_size-$timestamp-$salt-$counter" );
         $new_filename = "$name-$hash.$extension";
-        $counter = $counter + 1;
+        ++$counter;
     } while ( awpcp_is_filename_already_used( $new_filename, $directories ) );
 
     return $new_filename;
@@ -2875,7 +2870,7 @@ function add_slashes_recursive( $variable ) {
         }
     }
 
-    return $variable ;
+    return $variable;
 }
 
 function string_contains_string_at_position($haystack, $needle, $pos = 0, $case=true) {
@@ -2910,7 +2905,7 @@ function clean_field($foo) {
     return add_slashes_recursive($foo);
 }
 
-function isValidURL($url) {
+function isValidURL($url) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
     return preg_match('|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url);
 }
 
@@ -2976,7 +2971,7 @@ function awpcp_strip_html_tags( $text )
 {
     // Remove invisible content
     $text = preg_replace(
-    array(
+		array(
             '@<head[^>]*?>.*?</head>@siu',
             '@<style[^>]*?>.*?</style>@siu',
             '@<script[^>]*?.*?</script>@siu',
@@ -2986,7 +2981,7 @@ function awpcp_strip_html_tags( $text )
             '@<noframes[^>]*?.*?</noframes>@siu',
             '@<noscript[^>]*?.*?</noscript>@siu',
             '@<noembed[^>]*?.*?</noembed>@siu',
-    // Add line breaks before and after blocks
+			// Add line breaks before and after blocks
             '@</?((address)|(blockquote)|(center)|(del))@iu',
             '@</?((div)|(h[1-9])|(ins)|(isindex)|(p)|(pre))@iu',
             '@</?((dir)|(dl)|(dt)|(dd)|(li)|(menu)|(ol)|(ul))@iu',
@@ -2994,13 +2989,14 @@ function awpcp_strip_html_tags( $text )
             '@</?((form)|(button)|(fieldset)|(legend)|(input))@iu',
             '@</?((label)|(select)|(optgroup)|(option)|(textarea))@iu',
             '@</?((frameset)|(frame)|(iframe))@iu',
-    ),
-    array(
+		),
+		array(
             ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
             "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0",
             "\n\$0", "\n\$0",
-    ),
-    $text );
+		),
+		$text
+	);
     return strip_tags( $text );
 }
 // END FUNCTION
@@ -3044,16 +3040,16 @@ function awpcp_validip($ip) {
 
     if (!empty($ip) && ip2long($ip)!=-1) {
 
-        $reserved_ips = array (
-        array('0.0.0.0','2.255.255.255'),
-        array('10.0.0.0','10.255.255.255'),
-        array('127.0.0.0','127.255.255.255'),
-        array('169.254.0.0','169.254.255.255'),
-        array('172.16.0.0','172.31.255.255'),
-        array('192.0.2.0','192.0.2.255'),
-        array('192.168.0.0','192.168.255.255'),
-        array('255.255.255.0','255.255.255.255')
-        );
+		$reserved_ips = array(
+			array( '0.0.0.0', '2.255.255.255' ),
+			array( '10.0.0.0', '10.255.255.255' ),
+			array( '127.0.0.0', '127.255.255.255' ),
+			array( '169.254.0.0', '169.254.255.255' ),
+			array( '172.16.0.0', '172.31.255.255' ),
+			array( '192.0.2.0', '192.0.2.255' ),
+			array( '192.168.0.0', '192.168.255.255' ),
+			array( '255.255.255.0', '255.255.255.255' )
+		);
 
         foreach ($reserved_ips as $r) {
             $min = ip2long($r[0]);

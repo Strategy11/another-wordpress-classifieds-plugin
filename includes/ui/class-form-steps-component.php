@@ -45,7 +45,7 @@ class AWPCP_FormStepsComponent {
         $steps_count = 0;
 
         foreach ( $steps as $step => $name ) {
-            $steps_count = $steps_count + 1;
+            ++$steps_count;
 
             if ( $selected_step == $step ) {
                 $step_class = 'current';
