@@ -626,7 +626,7 @@ class AWPCP_AdminPanel {
     public function filter_admin_body_classes( $admin_body_classes ) {
         global $current_screen;
 
-        if ( $current_screen->base == 'users' && awpcp_request_param( 'action' ) == 'awpcp-manage-credits' ) {
+        if ( $current_screen && $current_screen->base === 'users' && awpcp_request_param( 'action' ) === 'awpcp-manage-credits' ) {
             $admin_body_classes = $admin_body_classes ? "$admin_body_classes awpcp-manage-credits-admin-page" : 'awpcp-manage-credits-admin-page';
         }
 
