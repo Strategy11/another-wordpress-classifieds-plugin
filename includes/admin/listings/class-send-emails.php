@@ -140,17 +140,18 @@ class AWPCP_SendEmails {
 	 * @since 4.1.7
 	 */
 	private static function add_days_until_expiration( $listing, &$string ) {
-		if ( strpos( $string, '%d' ) === false && strpos( $string, '%s' ) === false ) {
+		$string = str_replace( '%d', '%s', $string );
+		if ( strpos( $string, '%s' ) === false ) {
 			// There's no placeholder included.
 			return;
 		}
 
-		$string = str_replace( '%d', '%s', $string );
-		sprintf( $string, self::days_before_listing_expires( $listing ) );
+		$string = sprintf( $string, self::days_before_listing_expires( $listing ) );
 	}
 
 	/**
 	 * @since 4.1.7
+	 * @return string
 	 */
 	private static function days_before_listing_expires( $listing ) {
 		$listing_renderer = awpcp_listing_renderer();
