@@ -101,8 +101,6 @@ class AWPCP_Manual_Upgrade_Tasks {
             'context' => 'plugin',
         ) );
 
-        // @phpcs:enable
-
         $this->upgrade_tasks->register_upgrade_task(
             [
                 'slug'     => 'awpcp-fix-id-collision-for-listing-categories',

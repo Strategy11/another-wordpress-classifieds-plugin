@@ -60,6 +60,7 @@ class AWPCP_ListingsPaymentTransactions {
         // Let other parts of the plugin know a transaction is being processed.
         $this->payments->process_transaction( $transaction );
 
+        $transaction_errors = array();
         $this->payments->set_transaction_status_to_ready_to_checkout( $transaction, $transaction_errors );
 
         if ( $transaction_errors ) {

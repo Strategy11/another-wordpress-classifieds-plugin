@@ -3,15 +3,12 @@ name: PHPUnit
 on:
   # Trigger the workflow on push or pull request,
   # but only for the main branch
-  push:
-    branches:
-      - master
   pull_request:
-    branches:
-      - master
+    types: [ opened, labeled, synchronize ]
 
 jobs:
   build-test:
+    if: contains(github.event.pull_request.labels.*.name, 'ready to merge')
     runs-on: ubuntu-18.04
     strategy:
       matrix:

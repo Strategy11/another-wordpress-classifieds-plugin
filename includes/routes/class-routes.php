@@ -118,8 +118,7 @@ class AWPCP_Routes {
             $slug,
             $handler,
             $capability,
-            $priority,
-            'users-page'
+            $priority
         );
     }
 

@@ -213,6 +213,7 @@ function awpcp_load_main_plugin() {
 
 /**
  * @since 4.0.0     Modified to instantiate the container directly.
+ * @return AWPCP
  */
 function awpcp() {
     global $awpcp;

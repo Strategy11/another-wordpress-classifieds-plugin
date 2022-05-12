@@ -204,9 +204,6 @@ class AWPCP_Custom_Post_Types {
         // foreach ( $terms as $term ) {
         //     wp_delete_term( $term->term_id, 'awpcp_listing_category' );
         // }
-        // phpcs:enable Squiz.PHP.CommentedOutCode.Found
-        // phpcs:enable Squiz.Commenting.InlineComment.InvalidEndChar
-        // phpcs:enable Squiz.Commenting.InlineComment.SpacingBefore
     }
 
     /**

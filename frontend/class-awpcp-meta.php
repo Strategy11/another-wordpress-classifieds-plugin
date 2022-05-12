@@ -163,7 +163,7 @@ class AWPCP_Meta {
     }
 
     private function remove_wp_title_filter() {
-        remove_filter( 'wp_title', array( $this->title_builder, 'build_title' ), 10, 3 );
+        remove_filter( 'wp_title', array( $this->title_builder, 'build_title' ) );
     }
 
     /**

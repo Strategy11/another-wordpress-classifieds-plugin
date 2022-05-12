@@ -71,8 +71,6 @@ abstract class AWPCP_Update_Categories_Task_Runner implements AWPCP_Upgrade_Task
         return $this->delegate->get_item_id( $item );
     }
 
-    // @phpcs:enable
-
     /**
      * Subclasses should use this method to return an array with outdated
      * categories IDs as keys (pre-4.0.0 or conflciting IDs for example) and

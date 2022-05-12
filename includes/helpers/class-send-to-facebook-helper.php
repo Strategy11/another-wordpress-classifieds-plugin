@@ -342,5 +342,3 @@ class AWPCP_SendToFacebookHelper {
         return array();
     }
 }
-
-// phpcs:enable

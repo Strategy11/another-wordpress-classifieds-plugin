@@ -1508,5 +1508,3 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         return $this->render($template, $params);
     }
 }
-
-// phpcs:enable

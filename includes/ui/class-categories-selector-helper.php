@@ -85,5 +85,3 @@ class AWPCP_Categories_Selector_Helper {
         return array_reverse( $category_parents );
     }
 }
-
-// phpcs:enable

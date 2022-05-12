@@ -175,15 +175,6 @@ function awpcp_count_listings_in_categories() {
  * @since 4.0.0
  */
 function awpcp_count_listings_in_category( $category_id ) {
-    $cache_entry_key = 'term-padded-count-' . $category_id;
-    $cache_entry_found = false;
-
-    // $listings_count = intval( wp_cache_get( $cache_entry_key , 'awpcp', false, $cache_entry_found ) );
-
-    if ( $cache_entry_found ) {
-        return $listings_count;
-    }
-
     $children_categories = get_term_children( $category_id , 'awpcp_listing_category' );
 
     $listings_count = awpcp_listings_collection()->count_enabled_listings( array(
@@ -205,5 +196,3 @@ function total_ads_in_cat( $category_id ) {
     $listings_count = awpcp_get_count_of_listings_in_categories();
     return isset( $listings_count[ $category_id ] ) ? $listings_count[ $category_id ] : 0;
 }
-
-// phpcs:enable

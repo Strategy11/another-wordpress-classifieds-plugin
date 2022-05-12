@@ -85,6 +85,8 @@ class AWPCP_UsersCollection {
         $query  = 'SELECT <wp-users>.' . implode( ', <wp-users>.', $params['standard_fields'] ) . ', <wp-usermeta>.meta_key, <wp-usermeta>.meta_value ';
         $query .= 'FROM <wp-users> ';
 
+        $conditions = array();
+
         if ( ! empty( $params['role'] ) ) {
             $query       .= 'JOIN <wp-usermeta> AS user_roles ON (user_roles.user_id = <wp-users>.ID) ';
             $conditions[] = "user_roles.meta_key = '{$wpdb->prefix}capabilities'";
@@ -105,7 +107,7 @@ class AWPCP_UsersCollection {
             $conditions[] = "(<wp-users>.user_login LIKE '%<term>%' OR <wp-users>.display_name LIkE '%<term>%' OR <wp-usermeta>.meta_value LIKE '%<term>%')";
         }
 
-        if ( isset( $conditions ) && ! empty( $conditions ) ) {
+        if ( ! empty( $conditions ) ) {
             $query .= 'WHERE ' . implode( ' AND ', $conditions ) . ' ';
         }
 

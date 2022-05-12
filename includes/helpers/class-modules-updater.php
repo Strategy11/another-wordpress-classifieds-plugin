@@ -147,7 +147,7 @@ class AWPCP_ModulesUpdater {
 	}
 
     public function filter_http_request_args( $args, $url ) {
-		remove_filter( 'http_request_args', array( $this, 'filter_http_request_args' ), 10, 2 );
+		remove_filter( 'http_request_args', array( $this, 'filter_http_request_args' ) );
 
 		$args['user-agent'] = awpcp_user_agent_header();
 

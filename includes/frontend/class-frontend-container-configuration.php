@@ -217,6 +217,4 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
     }
-
-    // @phpcs:enable
 }

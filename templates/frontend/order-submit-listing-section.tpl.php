@@ -52,7 +52,6 @@
                     );
 
                     echo awpcp_form_error( 'user', $form_errors );
-                    // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
                     ?>
                 </div>
 

@@ -37,7 +37,7 @@ class AWPCP_PaymentTerm {
     public function __construct( $data = array() ) {
         $data = $this->normalize($data);
         $data = $this->sanitize($data);
-        $this->update($data, true);
+        $this->update( $data );
     }
 
     public static function get_duration_intervals() {

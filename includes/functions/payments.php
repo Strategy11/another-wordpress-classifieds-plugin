@@ -192,7 +192,7 @@ function awpcp_payfast_verify_received_data( $data = array() ) {
     }
 
     if ( strcmp( $response, 'ERROR' ) === 0 ) {
-        $response = awpcp_payfast_verify_received_data_with_fsockopen( $content, $errors );
+        $response = awpcp_payfast_verify_received_data_with_fsockopen( $content );
     }
 
     return $response;
@@ -267,12 +267,12 @@ function awpcp_payfast_verify_received_data_with_fsockopen( $content ) {
 
         if ( strcmp( $line, "\r\n" ) == 0 ) {
             $header_processed = true;
-        } else if ( $header_processed ) {
+        } elseif ( $header_processed ) {
             $response .= $line;
         }
     }
 
-    $response = explode( "\r\n", curl_exec( $ch ) );
+    $response = explode( "\r\n", $response );
     $response = trim( $response[0] );
 
     if ( in_array( $response, array( 'VALID', 'INVALID' ) ) ) {

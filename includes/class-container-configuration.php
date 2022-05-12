@@ -164,7 +164,6 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 $container['Settings']
             );
         } );
-        // @phpcs:enable
 
         $this->register_media_objects( $container );
         $this->register_categories_ui_objects( $container );

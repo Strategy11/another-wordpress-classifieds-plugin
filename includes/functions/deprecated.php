@@ -97,7 +97,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
         return false;
     } else if ( $action == 'copy' && ! @copy( $tmpname, $newpath ) ) {
         $error = _x( 'The file %s could not be copied to the destination directory.', 'upload files', 'another-wordpress-classifieds-plugin' );
-        $error = sprintf( $message, '<strong>' . $filename . '</strong>' );
+        $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
         return false;
     }
 
@@ -410,9 +410,7 @@ function awpcp_create_captcha($type='default') {
  *                      Multiple Region Selector class.
  */
 function awpcp_region_fields( $context='details', $enabled_fields = null ) {
-    if ( function_exists( '_doing_it_wrong' ) ) {
-        _doing_it_wrong( 'awpcp_region_fields', 'This function is now implemented as a private method on Multiple Region Selector class and will be removed in future versions.', 'another-wordpress-classifieds-plugin', '4.0.0' );
-    }
+    _doing_it_wrong( 'awpcp_region_fields', 'This function is now implemented as a private method on Multiple Region Selector class and will be removed in future versions.', '4.0.0' );
 
     if ( is_null( $enabled_fields ) ) {
         $enabled_fields = awpcp_get_enabled_region_fields( $context );

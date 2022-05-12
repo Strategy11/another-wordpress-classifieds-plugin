@@ -845,15 +845,15 @@ class AWPCP_ListingsCollection {
         do_action( 'awpcp-after-execute-listings-query', $query );
 
         if ( isset( $query['regions'] ) ) {
-            remove_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
+            remove_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ) );
         }
 
         if ( isset( $query['_meta_order'] ) ) {
-            remove_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ), 10, 2 );
+            remove_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ) );
         }
 
         if ( isset( $query['_custom_order'] ) ) {
-            remove_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ), 10, 2 );
+            remove_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ) );
         }
 
         return $posts_query;
