@@ -88,14 +88,6 @@ namespace {
 	}
 
 	/**
-	 * From CAS plugin.
-	 */
-	class CAS_Walker_Checklist {
-		public function __construct( $tree_type, $fields ) {
-		}
-	}
-
-	/**
 	 * Yoast SEO.
 	 */
 	class WPSEO_Meta {

@@ -19,7 +19,6 @@ class AWPCP_Compatibility {
             $this->load_plugin_integration_used_in_frontend_screens();
         }
 
-        $this->load_content_aware_sidebars_integration();
         $this->load_woocommerce_integration();
     }
 
@@ -57,14 +56,6 @@ class AWPCP_Compatibility {
 
         $integration = awpcp_indeed_membership_pro_plugin_integration();
         $integration->setup();
-    }
-
-    private function load_content_aware_sidebars_integration() {
-        if ( class_exists( 'ContentAwareSidebars' ) && class_exists( 'CASModule' ) && class_exists( 'CAS_Walker_Checklist' ) ) {
-            require_once AWPCP_DIR . '/includes/compatibility/class-content-aware-sidebars-listings-categories-module.php';
-            require_once AWPCP_DIR . '/includes/compatibility/class-content-aware-sidebars-categories-walker.php';
-            add_filter( 'cas-module-pre-deploy', 'awpcp_register_content_aware_sidebars_listings_categories_module' );
-        }
     }
 
     private function load_woocommerce_integration() {
