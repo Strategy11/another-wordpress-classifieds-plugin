@@ -2307,6 +2307,8 @@ function awpcp_phpmailer() {
     } elseif ( !is_object( $phpmailer ) || !is_a( $phpmailer, 'PHPMailer' ) ) {
         require_once ABSPATH . WPINC . '/class-phpmailer.php';
         require_once ABSPATH . WPINC . '/class-smtp.php';
+
+        /** @phpstan-ignore-next-line */
         $phpmailer = new PHPMailer( true );
     }
 
