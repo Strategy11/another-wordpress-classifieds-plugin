@@ -51,9 +51,6 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
 
     /**
      * @throws AWPCP_Exception  If a custom post can't be created.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function process_item( $item, $last_item_id ) {
         // Ignore incomplete ad records.
@@ -147,9 +144,6 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         return $this->maybe_insert_post_with_id( $wanted_post_id, $post_data );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function update_post_status_with_item_properties( $data, $item ) {
         $listing_expired = strtotime( $item->ad_enddate ) < current_time( 'timestamp' );
 

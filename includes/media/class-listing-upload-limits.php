@@ -19,9 +19,6 @@ class AWPCP_ListingUploadLimits {
         $this->settings = $settings;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function get_upload_limits_for_payment_term( $payment_term ) {
         if ( awpcp_are_images_allowed() ) {
             $upload_limits = array( 'images' => $this->get_upload_limits_for_images_in_payment_term( $payment_term ) );
@@ -52,9 +49,6 @@ class AWPCP_ListingUploadLimits {
         );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function get_upload_limits_for_free_board() {
         if ( awpcp_are_images_allowed() ) {
             $upload_limits = array( 'images' => $this->get_upload_limits_for_images_in_free_board() );
@@ -96,9 +90,6 @@ class AWPCP_ListingUploadLimits {
         return false;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function get_listing_upload_limits( $listing ) {
         $payment_term = $this->listing_renderer->get_payment_term( $listing );
 
@@ -111,9 +102,6 @@ class AWPCP_ListingUploadLimits {
         return apply_filters( 'awpcp-listing-upload-limits', $upload_limits, $listing, $payment_term );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function get_listing_upload_limits_for_images( $listing, $payment_term ) {
         if ( is_object( $payment_term ) ) {
             $upload_limits = $this->get_upload_limits_for_images_in_payment_term( $payment_term );
@@ -128,9 +116,6 @@ class AWPCP_ListingUploadLimits {
         return $upload_limits;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     public function get_listing_upload_limits_by_file_type( $listing, $file_type ) {
         $upload_limits = $this->get_listing_upload_limits( $listing );
 

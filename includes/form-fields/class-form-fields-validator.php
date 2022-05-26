@@ -41,10 +41,6 @@ class AWPCP_FormFieldsValidator {
      *
      * @param array  $data  Array of data to validate.
      * @param object $post  An instance of WP_Post.
-     *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function get_validation_errors( $data, $post ) {
         $errors = array();
@@ -150,7 +146,6 @@ class AWPCP_FormFieldsValidator {
      * @param array  $data  Array of data to validate.
      * @param object $post  An instance of WP_Post.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     private function get_validation_errors_for_regions( $data, $post ) {
         return array();

@@ -22,8 +22,6 @@ class AWPCP_UpdateMostRecentDate implements AWPCP_Upgrade_Task_Runner {
 
     /**
      * @since 4.0.5
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $last_item_id
      */
     public function count_pending_items( $last_item_id ) {
         $sql    = <<<SQL
@@ -42,8 +40,6 @@ SQL;
 
     /**
      * @since 4.0.5
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $last_item_id
      */
     public function get_pending_items( $last_item_id ) {
         $sql    = <<<SQL
@@ -63,8 +59,6 @@ SQL;
 
     /**
      * @since 4.0.5
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $last_item_id
      */
     public function process_item( $item, $last_item_id ) {
         update_post_meta( absint( $item->ID ), '_awpcp_most_recent_start_date', $item->renewed );

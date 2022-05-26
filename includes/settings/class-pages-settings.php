@@ -10,8 +10,6 @@ class AWPCP_PagesSettings {
 
     /**
      * Handler for awpcp_register_settings action.
-     *
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function register_settings( $settings_manager ) {
         $settings_manager->add_settings_group(

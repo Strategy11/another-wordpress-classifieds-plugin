@@ -22,7 +22,6 @@ class AWPCP_SelectSettingsRenderer {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function render_setting( $setting ) {
         $current = stripslashes( $this->settings->get_option( $setting['id'] ) );

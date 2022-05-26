@@ -5,8 +5,6 @@
 
 /**
  * Submit Listing Page.
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_SubmitListingPage extends AWPCP_Page {
 
@@ -41,6 +39,11 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     private $authorization;
 
     /**
+     * @var AWPCP_PaymentsAPI
+     */
+    private $payments;
+
+    /**
      * @since 4.0.0
      */
     public function __construct( $sections_generator, $listing_renderer, $listings_logic, $listings, $authorization, $payments, $settings, $request ) {
@@ -70,7 +73,6 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     /**
      * @since 4.0.0
      * @throws AWPCP_Exception If the current user is not allowed to access the page.
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     private function process_request() {
         if ( ! $this->authorization->is_current_user_allowed_to_submit_listing() ) {
@@ -104,8 +106,6 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     private function do_current_step() {
         $step = $this->get_current_step();
@@ -387,6 +387,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         }
 
         if ( ! $transaction->is_completed() ) {
+            $errors = array();
             $this->payments->set_transaction_status_to_completed( $transaction, $errors );
 
             if ( ! empty( $errors ) ) {

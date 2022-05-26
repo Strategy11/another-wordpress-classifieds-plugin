@@ -63,7 +63,6 @@ class AWPCP_ListingDatePickerFormField extends AWPCP_FormField {
      * @param array  $context   Information about the context where the form field
      *                          is being rendered.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function render( $value, $errors, $listing, $context ) {
         $hidden_value    = '';

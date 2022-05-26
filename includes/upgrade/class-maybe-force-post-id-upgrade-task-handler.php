@@ -33,7 +33,6 @@ class AWPCP_MaybeForcePostIDUpgradeTaskHandler implements AWPCP_Upgrade_Task_Run
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function count_pending_items( $last_item_id ) {
         if ( $this->wordpress->get_option( 'awpcp_mfpi_maybe_force_post_id' ) ) {
@@ -45,7 +44,6 @@ class AWPCP_MaybeForcePostIDUpgradeTaskHandler implements AWPCP_Upgrade_Task_Run
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_pending_items( $last_item_id ) {
         if ( $this->wordpress->get_option( 'awpcp_mfpi_maybe_force_post_id' ) ) {
@@ -58,7 +56,6 @@ class AWPCP_MaybeForcePostIDUpgradeTaskHandler implements AWPCP_Upgrade_Task_Run
     /**
      * @since 4.0.0
      * @throws AWPCP_Exception If a post with a greater ID cannot be created.
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function process_item( $item, $last_item_id ) {
         $max_legacy_post_id = $this->get_max_legacy_post_id();

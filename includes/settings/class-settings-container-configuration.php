@@ -5,8 +5,6 @@
 
 /**
  * Register constructor for classes necessary to support plugin settings.
- *
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 

@@ -318,7 +318,6 @@ class AWPCP_SendToFacebookHelper {
      * http://stackoverflow.com/a/19653226/201354
      *
      * @since 3.8.6
-     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
      */
     private function send_listing_to_facebook_group_using_webhook( $listing ) {
         $webhooks = $this->get_webhooks_for_facebook_group_integration( $listing );
@@ -336,7 +335,6 @@ class AWPCP_SendToFacebookHelper {
      * get approved.
      *
      * @since 3.8.6
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     private function get_webhooks_for_facebook_group_integration( $listing ) {
         return array();

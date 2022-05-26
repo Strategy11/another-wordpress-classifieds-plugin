@@ -10,7 +10,6 @@ class AWPCP_ReadingSettingsIntegration {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function filter_plugin_pages( $html, $params, $pages ) {
         if ( 'page_for_posts' === $params['id'] ) {

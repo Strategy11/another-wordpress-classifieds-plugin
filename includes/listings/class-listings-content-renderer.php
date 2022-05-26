@@ -145,7 +145,6 @@ class AWPCP_ListingsContentRenderer {
      * @param string $content   The content of the post.
      * @param object $post      An instance of WP_Post.
      * @return Show Ad page content.
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function render_content_without_notices( $content, $post ) {
         // Filters to provide alternative method of storing custom layouts.

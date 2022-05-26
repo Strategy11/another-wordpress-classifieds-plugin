@@ -29,8 +29,6 @@ class AWPCP_ImageFileProcessor {
 
     /**
      * Entry point.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function process_file( $listing, $file ) {
         $this->try_to_fix_image_rotation( $file );

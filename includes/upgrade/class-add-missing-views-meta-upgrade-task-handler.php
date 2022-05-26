@@ -22,8 +22,6 @@ class AWPCP_AddMissingViewsMetaUpgradeTaskHandler implements AWPCP_Upgrade_Task_
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $last_item_id
      */
     public function count_pending_items( $last_item_id ) {
         return $this->listings->count_listings(
@@ -50,8 +48,6 @@ class AWPCP_AddMissingViewsMetaUpgradeTaskHandler implements AWPCP_Upgrade_Task_
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $last_item_id
      */
     public function get_pending_items( $last_item_id ) {
         return $this->listings->find_listings(
@@ -75,8 +71,6 @@ class AWPCP_AddMissingViewsMetaUpgradeTaskHandler implements AWPCP_Upgrade_Task_
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $last_item_id
      */
     public function process_item( $item, $last_item_id ) {
         add_post_meta( absint( $item ), '_awpcp_views', 0 );

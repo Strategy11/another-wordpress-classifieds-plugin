@@ -48,7 +48,6 @@ trait AWPCP_ReplaceConflictingListingsUpgradeTaskHelper {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function update_records( $old_listing_id, $new_listing_id ) {
     }

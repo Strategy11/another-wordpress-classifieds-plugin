@@ -21,9 +21,6 @@ class AWPCP_FormStepsComponent {
         return $this->render_steps( $selected_step, $this->form_steps->get_steps( $params ) );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
-     */
     private function render_steps( $selected_step, $steps ) {
         $form_steps = $this->prepare_steps( $steps, $selected_step );
 
@@ -35,9 +32,6 @@ class AWPCP_FormStepsComponent {
         return $content;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function prepare_steps( $steps, $selected_step ) {
         $form_steps = array();
 

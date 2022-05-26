@@ -360,6 +360,10 @@ class AWPCP_PaymentsAPI {
         return $this->set_transaction_status($transaction, AWPCP_Payment_Transaction::STATUS_READY, $errors);
     }
 
+    /**
+     * @param AWPCP_Payment_Transaction $transaction
+     * @param array                     &$errors
+     */
     public function set_transaction_status_to_checkout($transaction, &$errors=array()) {
         return $this->set_transaction_status($transaction, AWPCP_Payment_Transaction::STATUS_CHECKOUT, $errors);
     }
@@ -368,11 +372,19 @@ class AWPCP_PaymentsAPI {
         return $this->set_transaction_status($transaction, AWPCP_Payment_Transaction::STATUS_PAYMENT, $errors);
     }
 
+    /**
+     * @param AWPCP_Payment_Transaction $transaction
+     * @param array                     &$errors
+     */
     public function set_transaction_status_to_payment_completed($transaction, &$errors=array()) {
         return $this->set_transaction_status($transaction, AWPCP_Payment_Transaction::STATUS_PAYMENT_COMPLETED, $errors);
     }
 
-    public function set_transaction_status_to_completed($transaction, &$errors=array()) {
+    /**
+     * @param AWPCP_Payment_Transaction $transaction
+     * @param array                     &$errors
+     */
+    public function set_transaction_status_to_completed( $transaction, &$errors = array() ) {
         return $this->set_transaction_status($transaction, AWPCP_Payment_Transaction::STATUS_COMPLETED, $errors);
     }
 

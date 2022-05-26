@@ -43,9 +43,6 @@ class AWPCP_FileTypes {
         );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
-     */
     public function get_allowed_file_extensions() {
         $extensions = array();
 

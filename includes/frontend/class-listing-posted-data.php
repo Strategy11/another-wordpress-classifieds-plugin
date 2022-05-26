@@ -121,6 +121,7 @@ class AWPCP_ListingPostedData {
         );
 
         // TODO: Make sure users are allowed to change the start/end date fields when authorized.
+        /** @phpstan-ignore-next-line */
         if ( empty( $post_data['metadata']['_awpcp_start_date'] ) ) {
             $post_data['metadata']['_awpcp_start_date'] = $now;
         }
@@ -169,7 +170,6 @@ class AWPCP_ListingPostedData {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     private function prepare_content( $content, $characters_allowed ) {
         $allow_html = (bool) get_awpcp_option( 'allowhtmlinadtext' );

@@ -12,6 +12,7 @@ parameters:
 		- */languages/*
 		- */tests/*
 		- stubs.php
+		- */includes/class-fileop.php
 	ignoreErrors:
 		- '#Access to an undefined property#'
 		- '#no (typehint|value type|return type)+ specified.#'

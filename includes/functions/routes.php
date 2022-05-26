@@ -570,8 +570,8 @@ function awpcp_get_reply_to_ad_url($ad_id, $ad_title=null) {
         $title = sanitize_title($ad_title);
     } else {
         try {
-            $listing = $listings->get( $ad_id );
-            $title = sanitize_title( awpcp_listing_renderer()->get_listing_title( $listing ) );
+            $listing = awpcp_listings_collection()->get( $ad_id );
+            $title   = sanitize_title( awpcp_listing_renderer()->get_listing_title( $listing ) );
         } catch ( AWPCP_Exception $e ) {
             $title = '';
         }

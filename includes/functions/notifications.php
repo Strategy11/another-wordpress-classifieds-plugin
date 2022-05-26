@@ -91,56 +91,8 @@ function awpcp_send_listing_updated_notification_to_moderators( $listing, $messa
 }
 
 function awpcp_listing_updated_user_message( $listing, $messages ) {
-    $admin_email = awpcp_admin_recipient_email_address();
-
-    $payments_api = awpcp_payments_api();
-    $show_total_amount = $payments_api->payments_enabled();
-    $show_total_credits = $payments_api->credit_system_enabled();
-    $currency_code = awpcp_get_currency_code();
-    $blog_name = awpcp_get_blog_name();
-
-    if ( ! is_null( $transaction ) ) {
-        $transaction_totals = $transaction->get_totals();
-        $total_amount = $transaction_totals['money'];
-        $total_credits = $transaction_totals['credits'];
-    } else {
-        $total_amount = 0;
-        $total_credits = 0;
-    }
-
-    if ( get_awpcp_option( 'requireuserregistration' ) ) {
-        $include_listing_access_key = false;
-        $include_edit_listing_url = true;
-    } else {
-        $include_listing_access_key = get_awpcp_option( 'include-ad-access-key' );
-        $include_edit_listing_url = false;
-    }
-
-    $params = compact(
-        'ad',
-        'admin_email',
-        'transaction',
-        'currency_code',
-        'show_total_amount',
-        'show_total_credits',
-        'include_listing_access_key',
-        'include_edit_listing_url',
-        'total_amount',
-        'total_credits',
-        'message',
-        'blog_name'
-    );
-
-    $listing_renderer = awpcp_listing_renderer();
-    $contact_name = $listing_renderer->get_contact_name( $ad );
-    $contact_email = $listing_renderer->get_contact_email( $ad );
-
-    $email = new AWPCP_Email();
-    $email->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
-    $email->subject = get_awpcp_option('listingaddedsubject');
-    $email->prepare( AWPCP_DIR . '/frontend/templates/email-place-ad-success-user.tpl.php', $params );
-
-    return $email;
+    _deprecated_function( __FUNCTION__, '4.2', 'awpcp_ad_posted_user_email' );
+    return awpcp_ad_posted_user_email( $listing, null, $messages );
 }
 
 function awpcp_send_listing_awaiting_approval_notification_to_moderators(

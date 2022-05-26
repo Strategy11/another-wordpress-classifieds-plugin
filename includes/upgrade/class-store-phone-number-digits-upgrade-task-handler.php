@@ -29,9 +29,6 @@ class AWPCP_Store_Phone_Number_Digits_Upgrade_Task_Handler implements AWPCP_Upgr
         return $this->db->get_results( $this->db->prepare( $query, intval( $last_item_id ) ) );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function process_item( $item, $last_item_id ) {
         $phone_number_digits = awpcp_get_digits_from_string( $item->ad_contact_phone );
 

@@ -111,7 +111,7 @@ class AWPCP_UploadMediaSubmitListingSection {
      * @since 4.0.0
      */
     private function render_media_manager( $listing ) {
-        $allowed_files = $this->listing_upload_limits->get_listing_upload_limits( $listing );
+        $upload_limits = $this->listing_upload_limits->get_listing_upload_limits( $listing );
 
         $images_allowed  = 0;
         $images_uploaded = 0;
@@ -137,14 +137,14 @@ class AWPCP_UploadMediaSubmitListingSection {
             'show_background_color_explanation' => $this->settings->get_option( 'imagesapprove' ),
             'media_manager_configuration'       => [
                 'nonce'              => wp_create_nonce( 'awpcp-manage-listing-media-' . $listing->ID ),
-                'allowed_files'      => $allowed_files,
+                'allowed_files'      => $upload_limits,
                 'show_admin_actions' => $this->roles->current_user_is_moderator(),
             ],
             'media_uploader_configuration'      => [
                 'listing_id'    => $listing->ID,
                 'context'       => 'post-listing',
                 'nonce'         => wp_create_nonce( 'awpcp-upload-media-for-listing-' . $listing->ID ),
-                'allowed_files' => $allowed_files,
+                'allowed_files' => $upload_limits,
             ],
             'listing'                           => $listing,
             'files'                             => $this->attachments->find_attachments(

@@ -107,7 +107,6 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function process_item( $item, $last_item_id ) {
         if ( $this->post_has_conflicting_id( $item ) ) {

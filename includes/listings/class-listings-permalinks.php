@@ -5,8 +5,6 @@
 
 /**
  * Clases used to define permalink structure and create listings permalinks.
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class AWPCP_ListingsPermalinks {
     /**

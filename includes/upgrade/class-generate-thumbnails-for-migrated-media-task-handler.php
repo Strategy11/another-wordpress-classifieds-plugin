@@ -27,9 +27,6 @@ class AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler implements AWPCP_Upgra
         }
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function count_pending_items( $last_item_id ) {
         $query = $this->wordpress->create_posts_query(
             [
@@ -47,9 +44,6 @@ class AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler implements AWPCP_Upgra
         return $query->found_posts;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function get_pending_items( $last_item_id ) {
         $query = $this->wordpress->create_posts_query(
             [
@@ -70,9 +64,6 @@ class AWPCP_GenerateThumbnailsForMigratedMediaTaskHandler implements AWPCP_Upgra
         return $query->posts;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function process_item( $item, $last_item_id ) {
         if ( ! function_exists( 'wp_generate_attachment_metadata' ) ) {
             require_once ABSPATH . 'wp-admin/includes/admin.php';

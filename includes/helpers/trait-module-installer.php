@@ -10,7 +10,6 @@ trait AWPCP_ModuleInstaller {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function install_or_upgrade( $module ) {
         if ( $this->is_new_installation( $module ) ) {
@@ -24,7 +23,6 @@ trait AWPCP_ModuleInstaller {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function is_new_installation( $module ) {
         return true;
@@ -32,7 +30,6 @@ trait AWPCP_ModuleInstaller {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function install_module( $module ) {
     }
@@ -65,7 +62,6 @@ trait AWPCP_ModuleInstaller {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function after_install_or_upgrade( $module ) {
     }

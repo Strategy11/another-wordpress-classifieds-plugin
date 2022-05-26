@@ -72,9 +72,6 @@ abstract class AWPCP_Module {
         // Overwrite in children classes if necessary.
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function configure_routes( $routes ) {
         // Overwrite in children classes if necessary.
     }
@@ -91,9 +88,6 @@ abstract class AWPCP_Module {
         return $this->module_setup();
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     protected function module_setup() {
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             $this->ajax_setup();

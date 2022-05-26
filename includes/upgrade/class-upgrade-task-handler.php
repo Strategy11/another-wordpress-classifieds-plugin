@@ -43,9 +43,6 @@ class AWPCP_Upgrade_Task_Handler {
         return array( $result['pending_items_count_before'], $result['pending_items_count_now'] );
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $task
-     */
     private function run_task_step( $task, $last_item_id ) {
         $pending_items_count_before = $this->implementation->count_pending_items( $last_item_id );
         $pending_items              = $this->implementation->get_pending_items( $last_item_id );

@@ -27,9 +27,6 @@ class AWPCP_FormFields {
         return [];
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function get_field( $slug ) {
         _deprecated_function( __FUNCTION__, '4.0.0', 'AWPCP_FormFieldsRenderer::get_field()' );
         return (object) [];
@@ -40,25 +37,16 @@ class AWPCP_FormFields {
         return [];
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function update_fields_order( $order ) {
         _deprecated_function( __FUNCTION__, '4.0.0', '' );
         return false;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function render_fields( $form_values, $form_errors, $listing, $context ) {
         _deprecated_function( __FUNCTION__, '4.0.0', 'AWPCP_FormFieldsRenderer::render_fields()' );
         return '';
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function render_field( $field, $form_value, $form_errors, $listing, $context ) {
         _deprecated_function( __FUNCTION__, '4.0.0', 'AWPCP_FormFieldsRenderer::render_field()' );
         return '';

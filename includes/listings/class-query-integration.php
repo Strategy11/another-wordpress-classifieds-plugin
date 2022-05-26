@@ -5,10 +5,6 @@
 
 /**
  * Class that integrates with WP_Query.
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
- * @SuppressWarnings(PHPMD.TooManyMethods)
  */
 class AWPCP_QueryIntegration {
 
