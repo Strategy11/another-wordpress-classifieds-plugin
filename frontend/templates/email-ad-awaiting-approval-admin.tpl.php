@@ -4,4 +4,4 @@
 <?php endforeach; ?>
 
 <?php echo awpcp_get_blog_name(); ?> 
-<?php echo home_url(); ?> 
+<?php echo home_url(); ?>

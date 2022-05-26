@@ -1791,13 +1791,13 @@ function awpcp_form_help_text( $field_id, $help_text ) {
         return null;
     }
 
-    $params = wp_parse_args( $params, array(
+    $params = array(
         'text' => $help_text,
         'attributes' => array(
             'for' => $field_id,
             'class' => array( 'helptext', 'awpcp-form-helptext' ),
         ),
-    ) );
+    );
 
     return awpcp_html_label( $params );
 }
@@ -2704,7 +2704,7 @@ function awpcp_detect_encoding( $content ) {
     if ( function_exists( 'mb_detect_encoding' ) ) {
         return mb_detect_encoding( $content, $encodings, true );
     } else {
-        return awpcp_mb_detect_encoding( $content, $encodings, true );
+        return awpcp_mb_detect_encoding( $content, $encodings );
     }
 }
 
@@ -2712,7 +2712,7 @@ function awpcp_detect_encoding( $content ) {
  * http://php.net/manual/en/function.mb-detect-encoding.php#113983
  * @since 3.6.0
  */
-function awpcp_mb_detect_encoding( $conent, $encodings ) {
+function awpcp_mb_detect_encoding( $string, $encodings ) {
     if ( ! function_exists( 'iconv' ) ) {
         return false;
     }

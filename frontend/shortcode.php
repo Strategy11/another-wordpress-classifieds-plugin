@@ -326,7 +326,7 @@ function awpcpui_process( $awpcppagename ) {
 
     awpcp_enqueue_main_script();
 
-	$isclassifiedpage = checkifclassifiedpage( $awpcppage );
+	$isclassifiedpage = checkifclassifiedpage();
 
     if ( ! $isclassifiedpage && $isadmin ) {
 		$output .= __( 'Hi admin, you need to select the page for your classifieds.', 'another-wordpress-classifieds-plugin' );

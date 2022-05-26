@@ -16,10 +16,12 @@ namespace {
 	define( 'ABSPATH', realpath( __FILE__ . '/../../../../' ) );
 	define( 'WP_CONTENT_DIR', ABSPATH . 'wp-content' );
 	define( 'WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins' );
+	define( 'WP_LANG_DIR', WP_CONTENT_DIR . '/languages' );
 	define( 'WP_CONTENT_URL', get_option( 'siteurl' ) . '/wp-content' );
 	define( 'WP_PLUGIN_URL', WP_CONTENT_URL . '/plugins' );
 	define( 'WPINC', 'wp-includes' );
 	define( 'PCLZIP_OPT_REMOVE_ALL_PATH', 77004 );
+	define( 'PCLZIP_OPT_EXTRACT_AS_STRING', 77006 );
 	define( 'EP_PAGES', 4096 );
 
 	define( 'COOKIE_DOMAIN', '' );
@@ -29,6 +31,7 @@ namespace {
 	define( 'AWPCP_DIR', dirname( __FILE__ ) );
 	define( 'AWPCP_FILE', AWPCP_DIR . '/awpcp.php' );
 	define( 'AWPCP_URL', rtrim( plugin_dir_url( AWPCP_FILE ), '/' ) );
+	define( 'AWPCP_BASENAME', plugin_basename( AWPCP_FILE ) );
 
 	define( 'AWPCP_TABLE_ADFEES', 'wp_awpcp_adfees' );
 	define( 'AWPCP_TABLE_ADS',  'wp_awpcp_ads' );
@@ -60,6 +63,10 @@ namespace {
 	}
 
 	function awpcp_payfast_verify_received_data_with_fsockopen( $content ) {
+	}
+
+	/** Add-ons */
+	function display_x_fields_data( $adid, $single = true ) {
 	}
 
 	/** Integrations */
@@ -106,3 +113,8 @@ namespace {
    }
 }
 
+namespace PHPMailer {
+
+	class PHPMailer {}
+
+}

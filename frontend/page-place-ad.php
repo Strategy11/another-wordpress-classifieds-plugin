@@ -1482,6 +1482,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         }
 
         if (!$transaction->is_completed()) {
+            $errors = array();
             $this->payments->set_transaction_status_to_completed( $transaction, $errors );
 
             if (!empty($errors)) {
