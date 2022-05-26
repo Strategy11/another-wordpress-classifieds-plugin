@@ -3,9 +3,6 @@
  * @package AWPCP
  */
 
-/**
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- */
 class AWPCP_ModulesManager {
 
     private $plugin;
@@ -41,10 +38,6 @@ class AWPCP_ModulesManager {
         }
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
-     */
     private function load_module( $module ) {
         $module->load_textdomain();
 

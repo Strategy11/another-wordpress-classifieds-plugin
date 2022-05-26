@@ -51,8 +51,6 @@ require_once AWPCP_DIR . '/includes/compatibility/class-facebook-all-plugin-inte
 require_once AWPCP_DIR . '/includes/compatibility/class-jetpack-plugin-integration.php';
 require_once AWPCP_DIR . '/includes/compatibility/class-mashshare-plugin-integration.php';
 require_once AWPCP_DIR . '/includes/compatibility/class-plugin-integrations.php';
-require_once AWPCP_DIR . '/includes/compatibility/class-profile-builder-plugin-integration.php';
-require_once AWPCP_DIR . '/includes/compatibility/class-profile-builder-login-form-implementation.php';
 require_once AWPCP_DIR . '/includes/compatibility/class-simple-facebook-opengrap-tags-plugin-integration.php';
 require_once AWPCP_DIR . '/includes/compatibility/class-woocommerce-plugin-integration.php';
 require_once AWPCP_DIR . '/includes/compatibility/class-wp-members-login-form-implementation.php';

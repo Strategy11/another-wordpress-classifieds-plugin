@@ -48,6 +48,8 @@ class AWPCP_ListingsPayments {
         $this->listings_logic->update_listing_payment_term( $listing, $new_payment_term );
 
         $this->payments->set_transaction_item_from_payment_term( $transaction, $new_payment_term, $payment_type );
+
+        $errors = array();
         $this->payments->set_transaction_status_to_completed( $transaction, $errors );
 
         if ( $errors ) {

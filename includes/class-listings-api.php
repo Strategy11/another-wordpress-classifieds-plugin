@@ -800,8 +800,6 @@ class AWPCP_ListingsAPI {
         return $email_sent;
     }
 
-    // phpcs:enable Generic,Squiz,WordPress,PSR2,PEAR
-
     /**
      * @param object $listing   An instance of WP_Post.
      * @since 3.4

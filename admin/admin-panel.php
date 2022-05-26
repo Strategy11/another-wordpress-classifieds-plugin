@@ -640,11 +640,7 @@ class AWPCP_AdminPanel {
     }
 
 	public function upgrade() {
-		global $plugin_page;
-
-		if (!isset($this->upgrade) && isset($this->pages[$plugin_page]))
-			$this->upgrade = new AWPCP_AdminUpgrade($plugin_page, $this->pages[$plugin_page]);
-		return $this->upgrade->dispatch();
+        _deprecated_function( __METHOD__, '4.2' );
 	}
 
     public function disable_quick_start_guide_notice() {

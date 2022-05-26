@@ -66,8 +66,6 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     private function do_current_step() {
         $step = $this->get_current_step();
@@ -164,7 +162,6 @@ class AWPCP_EditListingPage extends AWPCP_Page {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function do_finish_step() {
         $ad       = $this->get_ad();
@@ -240,8 +237,6 @@ class AWPCP_EditListingPage extends AWPCP_Page {
      * Copied from old Edit Listing page.
      *
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     public function do_enter_email_and_access_key_step( $show_errors = true ) {
         $errors   = [];
@@ -282,7 +277,6 @@ class AWPCP_EditListingPage extends AWPCP_Page {
                     ],
                 ]
             );
-            // phpcs:enable
 
             if ( ! empty( $listings ) ) {
                 $this->ad = $listings[0];
@@ -331,8 +325,6 @@ class AWPCP_EditListingPage extends AWPCP_Page {
      * Copied from old Edit Listing page.
      *
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     private function process_send_access_key_form( $form, $errors = array() ) {
         if ( empty( $form['ad_email'] ) ) {
@@ -354,7 +346,6 @@ class AWPCP_EditListingPage extends AWPCP_Page {
                     ],
                 ]
             );
-            // phpcs:enable
 
             if ( empty( $ads ) ) {
                 $errors[] = __( 'The email address you entered does not match any of the Ads in our system.', 'another-wordpress-classifieds-plugin' );

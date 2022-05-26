@@ -111,5 +111,3 @@ class AWPCP_CSV_Importer_Exception extends Exception {
 
 class AWPCP_HTTP_Exception extends Exception {
 }
-
-// phpcs:enable

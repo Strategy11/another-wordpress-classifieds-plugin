@@ -22,8 +22,6 @@ class AWPCP_RadioSettingsRenderer {
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function render_setting( $setting ) {
         $current = esc_html( stripslashes( $this->settings->get_option( $setting['id'] ) ) );

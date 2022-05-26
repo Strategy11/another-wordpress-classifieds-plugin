@@ -15,11 +15,6 @@ function awpcp_general_settings() {
 
 /**
  * Register general plugin settings.
- *
- * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
- * @SuppressWarnings(PHPMD.ExcessiveClassLength)
- * @SuppressWarnings(PHPMD.TooManyMethods)
- * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class AWPCP_GeneralSettings {
 
@@ -78,7 +73,6 @@ class AWPCP_GeneralSettings {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_general_settings_section( $settings_manager ) {
         $settings_manager->add_settings_section(
@@ -396,8 +390,6 @@ class AWPCP_GeneralSettings {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_anti_spam_settings( $settings_manager ) {
         $group = 'anit-spam';
@@ -703,7 +695,6 @@ class AWPCP_GeneralSettings {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_facebook_settings( $settings_manager ) {
         $settings_manager->add_settings_group(
@@ -932,7 +923,6 @@ class AWPCP_GeneralSettings {
 
     /**
      * @since 3.8.6
-     * @SuppressWarnings(PHPMD.ElseExpression)
      */
     public function facebook_user_authorization_section() {
         /**
@@ -1083,7 +1073,6 @@ class AWPCP_GeneralSettings {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
     private function validate_captcha_settings( &$options ) {
         $option_name               = 'captcha-enabled-in-place-listing-form';

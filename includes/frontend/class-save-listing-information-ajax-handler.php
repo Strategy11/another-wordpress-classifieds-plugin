@@ -45,7 +45,6 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
         $listing_category_taxonomy,

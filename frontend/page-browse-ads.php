@@ -7,8 +7,7 @@ function awpcp_browse_listings_page() {
     return new AWPCP_BrowseAdsPage(
         'awpcp-browse-ads',
         __( 'Browse Ads', 'another-wordpress-classifieds-plugin' ),
-        awpcp_template_renderer(),
-        awpcp_request()
+        awpcp_template_renderer()
     );
 }
 
@@ -16,7 +15,7 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
 
     private $request;
 
-    public function __construct( $page, $title, $template_renderer, $request ) {
+    public function __construct( $page, $title, $template_renderer ) {
         parent::__construct( $page, $title, $template_renderer );
 
         $this->request = awpcp_request();
@@ -43,7 +42,7 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
         if ( is_null( $output ) && $category_id ) {
             return $this->render_listings_from_category( $category_id );
         } elseif ( is_null( $output ) ) {
-            return $this->render_all_listings( $category_id );
+            return $this->render_all_listings();
         } else {
             return $output;
         }

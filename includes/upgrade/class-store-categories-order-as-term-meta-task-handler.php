@@ -41,7 +41,6 @@ class AWPCP_StoreCategoriesOrderAsTermMetaTaskHandler implements AWPCP_Upgrade_T
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function count_pending_items( $last_item_id ) {
         return $this->categories->count_categories( $this->get_categories_query_vars() );
@@ -79,7 +78,6 @@ class AWPCP_StoreCategoriesOrderAsTermMetaTaskHandler implements AWPCP_Upgrade_T
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function process_item( $item, $last_item_id ) {
         $categories_registry = $this->categories_registry->get_categories_registry();

@@ -8,6 +8,7 @@
     <exclude-pattern>vendor/*</exclude-pattern>
     <exclude-pattern>tests/*</exclude-pattern>
     <exclude-pattern>bin/*</exclude-pattern>
+    <exclude-pattern>stubs.php</exclude-pattern>
 
     <rule ref="WordPress">
         <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed" />

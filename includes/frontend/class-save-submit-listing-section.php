@@ -60,8 +60,6 @@ class AWPCP_SaveSubmitListingSection {
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function render( $listing, $transaction, $mode = 'create' ) {
         $params = $this->get_params( $transaction, $mode );

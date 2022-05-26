@@ -25,8 +25,6 @@ class AWPCP_AddMissingPhoneDigits implements AWPCP_Upgrade_Task_Runner {
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $last_item_id
      */
     public function count_pending_items( $last_item_id ) {
         $query_vars = $this->prepare_query_vars();
@@ -53,8 +51,6 @@ class AWPCP_AddMissingPhoneDigits implements AWPCP_Upgrade_Task_Runner {
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $last_item_id
      */
     public function get_pending_items( $last_item_id ) {
         $query_vars = $this->prepare_query_vars(
@@ -67,8 +63,6 @@ class AWPCP_AddMissingPhoneDigits implements AWPCP_Upgrade_Task_Runner {
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $last_item_id
      */
     public function process_item( $item, $last_item_id ) {
         $contact_phone = $this->wordpress->get_post_meta( $item->ID, '_awpcp_contact_phone', true );

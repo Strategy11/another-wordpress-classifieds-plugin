@@ -96,7 +96,7 @@ class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
             $msg = __("The amount you have paid does not match the required amount for this transaction. Please contact us to clarify the problem.", 'another-wordpress-classifieds-plugin');
             $transaction->errors['validation'] = $msg;
             $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_INVALID;
-            awpcp_payment_failed_email($transaction, $message);
+            awpcp_payment_failed_email( $transaction, $msg );
             return false;
         }
 
@@ -104,17 +104,17 @@ class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
             $msg = __("There was an error processing your transaction. If funds have been deducted from your account, they have not been processed to our account. You will need to contact PayPal about the matter.", 'another-wordpress-classifieds-plugin');
             $transaction->errors['validation'] = $msg;
             $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_INVALID;
-            awpcp_payment_failed_email($transaction, $message);
+            awpcp_payment_failed_email( $transaction, $msg );
             return false;
         }
 
         // TODO: handle this filter for Ads and Subscriptions
-        $duplicated = apply_filters('awpcp-payments-is-duplicated-transaction', false, $txn_id);
+        $duplicated = apply_filters( 'awpcp-payments-is-duplicated-transaction', false, $x_trans_id );
         if ($duplicated) {
             $msg = __("It appears this transaction has already been processed. If you do not see your ad in the system please contact the site adminstrator for assistance.", 'another-wordpress-classifieds-plugin');
             $transaction->errors['validation'] = $msg;
             $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_INVALID;
-            awpcp_payment_failed_email($transaction, $message);
+            awpcp_payment_failed_email( $transaction, $msg );
             return false;
         }
 

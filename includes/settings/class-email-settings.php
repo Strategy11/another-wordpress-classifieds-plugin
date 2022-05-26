@@ -99,7 +99,6 @@ class AWPCP_EmailSettings {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_email_messages_settings( $settings_manager ) {
         $settings_manager->add_settings_subgroup(

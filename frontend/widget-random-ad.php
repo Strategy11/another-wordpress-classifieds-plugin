@@ -8,7 +8,7 @@
  */
 class AWPCP_RandomAdWidget extends AWPCP_LatestAdsWidget {
 
-    public function __construct( $id = null, $name = null, $description = null ) {
+    public function __construct() {
         parent::__construct(
             'awpcp-random-ads',
             __( 'AWPCP Random Ads', 'another-wordpress-classifieds-plugin' ),
@@ -38,5 +38,6 @@ class AWPCP_RandomAdWidget extends AWPCP_LatestAdsWidget {
     public function form( $instance ) {
         $instance = array_merge( $this->defaults(), $instance );
         include AWPCP_DIR . '/frontend/templates/widget-latest-ads-form.tpl.php';
+        return '';
     }
 }

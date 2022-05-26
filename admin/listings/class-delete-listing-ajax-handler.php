@@ -60,7 +60,8 @@ class AWPCP_DeleteListingAjaxHandler implements AWPCP_Table_Entry_Action_Handler
         if ( $this->listings_logic->delete_listing( $listing ) ) {
             return $ajax_handler->success();
         } else {
-            return $ajax_handler->error( array( 'message' => implode( '<br/>', $errors ) ) );
+            $message = __( 'That Ad failed to delete.', 'another-wordpress-classifieds-plugin' );
+            return $ajax_handler->error( array( 'message' => $message ) );
         }
     }
 }

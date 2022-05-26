@@ -105,8 +105,6 @@ return array(
     'AWPCP_Container' => $baseDir . '/includes/class-container.php',
     'AWPCP_ContainerConfiguration' => $baseDir . '/includes/class-container-configuration.php',
     'AWPCP_ContainerConfigurationInterface' => $baseDir . '/includes/interface-container-configuration.php',
-    'AWPCP_ContentAwareSidebarsCategoriesWalker' => $baseDir . '/includes/compatibility/class-content-aware-sidebars-categories-walker.php',
-    'AWPCP_ContentAwareSidebarsListingsCategoriesModule' => $baseDir . '/includes/compatibility/class-content-aware-sidebars-listings-categories-module.php',
     'AWPCP_CookieManager' => $baseDir . '/includes/class-cookie-manager.php',
     'AWPCP_CreateEmptyListingAjaxHandler' => $baseDir . '/includes/frontend/class-create-empty-listing-ajax-handler.php',
     'AWPCP_Create_Category_Admin_Page' => $baseDir . '/admin/categories/class-create-category-admin-page.php',

@@ -106,8 +106,6 @@ class ComposerStaticInit0d2ab1280316e8e18ee92f08de988c8d
         'AWPCP_Container' => __DIR__ . '/../..' . '/includes/class-container.php',
         'AWPCP_ContainerConfiguration' => __DIR__ . '/../..' . '/includes/class-container-configuration.php',
         'AWPCP_ContainerConfigurationInterface' => __DIR__ . '/../..' . '/includes/interface-container-configuration.php',
-        'AWPCP_ContentAwareSidebarsCategoriesWalker' => __DIR__ . '/../..' . '/includes/compatibility/class-content-aware-sidebars-categories-walker.php',
-        'AWPCP_ContentAwareSidebarsListingsCategoriesModule' => __DIR__ . '/../..' . '/includes/compatibility/class-content-aware-sidebars-listings-categories-module.php',
         'AWPCP_CookieManager' => __DIR__ . '/../..' . '/includes/class-cookie-manager.php',
         'AWPCP_CreateEmptyListingAjaxHandler' => __DIR__ . '/../..' . '/includes/frontend/class-create-empty-listing-ajax-handler.php',
         'AWPCP_Create_Category_Admin_Page' => __DIR__ . '/../..' . '/admin/categories/class-create-category-admin-page.php',

@@ -1,8 +1,16 @@
-on: [push]
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [ opened, labeled, synchronize ]
 
 name: Inspections
 jobs:
   runPHPCSInspection:
+    if: contains(github.event.pull_request.labels.*.name, 'ready to merge')
     name: Run PHPCS inspection
     runs-on: ubuntu-latest
     steps:

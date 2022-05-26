@@ -415,8 +415,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         } );
     }
 
-    // @phpcs:enable
-
     /**
      * @since 4.0.0
      */

@@ -75,8 +75,6 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
      * accept the terms of service every time they submit the form.
      *
      * @since 4.0.3
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function extract_value( $data ) {
         return null;
@@ -95,8 +93,6 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
      * checked using a hidden input field.
      *
      * @since 4.0.2
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $listing, $context
      */
     public function render( $value, $errors, $listing, $context ) {
         $text      = $this->settings->get_option( 'tos' );

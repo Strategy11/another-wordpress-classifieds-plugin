@@ -111,8 +111,6 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
         $this->assertEquals( false, has_filter( 'handle_bulk_actions-edit-post_type', array( $this->actions, 'handle_action' ) ) );
     }
 
-    // phpcs:enable
-
     /**
      * @since 4.0.0
      */

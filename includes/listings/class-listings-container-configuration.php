@@ -6,15 +6,12 @@
 /**
  * Register constructors for classes necessary to provide the Listing custom
  * post type.
- *
- * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 
     /**
      * @param object $container     An instance of Container.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function modify( $container ) {
         $container['listing_post_type']         = 'awpcp_listing';
@@ -263,6 +260,4 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
     }
-
-    // @phpcs:enable
 }

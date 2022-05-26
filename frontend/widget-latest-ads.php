@@ -199,6 +199,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     public function form($instance) {
         $instance = array_merge($this->defaults(), $instance);
         include(AWPCP_DIR . '/frontend/templates/widget-latest-ads-form.tpl.php');
+        return '';
     }
 
     public function update($new_instance, $old_instance) {

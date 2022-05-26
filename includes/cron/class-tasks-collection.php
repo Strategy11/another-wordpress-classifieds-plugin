@@ -23,7 +23,7 @@ class AWPCP_TasksCollection {
         ) );
 
         if ( $result === false ) {
-            $messsage = __( 'There was an error trying to save the task to the database.', 'another-wordpress-classifieds-plugin' );
+            $message = __( 'There was an error trying to save the task to the database.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( $message );
         }
 

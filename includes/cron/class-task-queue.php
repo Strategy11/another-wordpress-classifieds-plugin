@@ -157,6 +157,4 @@ class AWPCP_TaskQueue {
 
         return false;
     }
-
-    // @phpcs:enable
 }

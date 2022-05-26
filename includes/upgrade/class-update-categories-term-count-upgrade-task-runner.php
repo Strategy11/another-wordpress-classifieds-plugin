@@ -50,7 +50,6 @@ class AWPCP_Update_Categories_Term_Count_Upgrade_Task_Runner implements AWPCP_Up
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function process_item( $item, $last_item_id ) {
         wp_update_term_count_now( [ $item->term_taxonomy_id ], $this->listing_category_taxonomy );

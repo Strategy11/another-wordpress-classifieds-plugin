@@ -292,8 +292,6 @@ class AWPCP_DisplaySettings {
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_form_settings( $settings_manager ) {
         $settings_manager->add_settings_subgroup( [

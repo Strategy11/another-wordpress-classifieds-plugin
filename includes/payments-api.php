@@ -341,6 +341,10 @@ class AWPCP_PaymentsAPI {
 
     /**
      * TODO: should throw an exception if the status can't be set
+     *
+     * @param AWPCP_Payment_Transaction $transaction
+     * @param string                    $status
+     * @param array                     &$errors
      */
     private function set_transaction_status($transaction, $status, &$errors) {
         if ($result = $transaction->set_status($status, $errors)) {
@@ -352,27 +356,51 @@ class AWPCP_PaymentsAPI {
         return $result;
     }
 
+    /**
+     * @param AWPCP_Payment_Transaction $transaction
+     * @param array                     &$errors
+     */
     public function set_transaction_status_to_open($transaction, &$errors=array()) {
         return $this->set_transaction_status($transaction, AWPCP_Payment_Transaction::STATUS_OPEN, $errors);
     }
 
+    /**
+     * @param AWPCP_Payment_Transaction $transaction
+     * @param array                     &$errors
+     */
     public function set_transaction_status_to_ready_to_checkout($transaction, &$errors=array()) {
         return $this->set_transaction_status($transaction, AWPCP_Payment_Transaction::STATUS_READY, $errors);
     }
 
+    /**
+     * @param AWPCP_Payment_Transaction $transaction
+     * @param array                     &$errors
+     */
     public function set_transaction_status_to_checkout($transaction, &$errors=array()) {
         return $this->set_transaction_status($transaction, AWPCP_Payment_Transaction::STATUS_CHECKOUT, $errors);
     }
 
+    /**
+     * @param AWPCP_Payment_Transaction $transaction
+     * @param array                     &$errors
+     */
     public function set_transaction_status_to_payment($transaction, &$errors=array()) {
         return $this->set_transaction_status($transaction, AWPCP_Payment_Transaction::STATUS_PAYMENT, $errors);
     }
 
+    /**
+     * @param AWPCP_Payment_Transaction $transaction
+     * @param array                     &$errors
+     */
     public function set_transaction_status_to_payment_completed($transaction, &$errors=array()) {
         return $this->set_transaction_status($transaction, AWPCP_Payment_Transaction::STATUS_PAYMENT_COMPLETED, $errors);
     }
 
-    public function set_transaction_status_to_completed($transaction, &$errors=array()) {
+    /**
+     * @param AWPCP_Payment_Transaction $transaction
+     * @param array                     &$errors
+     */
+    public function set_transaction_status_to_completed( $transaction, &$errors = array() ) {
         return $this->set_transaction_status($transaction, AWPCP_Payment_Transaction::STATUS_COMPLETED, $errors);
     }
 

@@ -66,9 +66,6 @@ class AWPCP_ListingRegionsFormField extends AWPCP_FormField {
         return $data[ $this->get_slug() ];
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter) $context
-     */
     public function render( $value, $errors, $listing, $context ) {
         $options = array(
             'showTextField' => false,

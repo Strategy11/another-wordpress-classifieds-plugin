@@ -19,7 +19,7 @@ class AWPCP_Image_File_Validator extends AWPCP_ListingFileValidator {
 
         if ( ! isset( $img_info[ 0 ] ) && ! isset( $img_info[ 1 ] ) ) {
             $message = _x( 'There was an error trying to find out the dimension of <filename>. The file was not uploaded.', 'upload files', 'another-wordpress-classifieds-plugin' );
-            $message = str_replace( '<filename>', '<strong>' . $file->get_real_name() . '</strong>' );
+            $message = str_replace( '<filename>', '<strong>' . $file->get_real_name() . '</strong>', $message );
             throw new AWPCP_Exception( $message );
         }
 

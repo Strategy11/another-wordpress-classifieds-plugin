@@ -70,10 +70,6 @@ class AWPCP_Test_Listing_Renderer extends AWPCP_UnitTestCase {
         $this->assertContains( (string) $listing->ID, $renderer->get_view_listing_link( $listing ) );
     }
 
-    // phpcs:enable Generic
-    // phpcs:enable Squiz
-    // phpcs:enable WordPress
-
     /**
      * @since 4.0.0
      */
@@ -228,10 +224,6 @@ class AWPCP_Test_Listing_Renderer extends AWPCP_UnitTestCase {
         Phake::when( $wordpress )->get_post_meta( $listing->ID, '_awpcp_end_date', true )->thenReturn( $after_next_day );
         $this->assertFalse( $renderer->is_about_to_expire( $listing ) );
     }
-
-    // phpcs:enable Generic
-    // phpcs:enable Squiz
-    // phpcs:enable WordPress
 
     /**
      * @since 4.0.4

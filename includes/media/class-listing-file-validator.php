@@ -96,7 +96,6 @@ abstract class AWPCP_ListingFileValidator {
     /**
      * @param object $file              An instance of Upload File Logic.
      * @param object $upload_limits     The upload limits for this kind of file.
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     protected function additional_verifications( $file, $upload_limits ) {
         // nothing here!

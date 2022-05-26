@@ -83,6 +83,14 @@ class AWPCP_FormFieldsData {
      * @since 4.0.0
      *
      * @param object $post  An instance of WP_Post.
+     * @return array {
+     *     @type int    $ID
+     *     @type array  $post_fields
+     *     @type array  $metadata
+     *     @type array  $categories
+     *     @type array  $regions
+     *     @type string $terms_of_service
+     * }
      */
     public function get_posted_data( $post ) {
         $data = [
@@ -138,6 +146,6 @@ class AWPCP_FormFieldsData {
         }
 
         // TODO: We no longer pass an array that filters can use to extract data from.
-        return apply_filters( 'awpcp-get-posted-data', $data, 'details', [] );
+        return (array) apply_filters( 'awpcp-get-posted-data', $data, 'details', [] );
     }
 }

@@ -29,7 +29,6 @@ class AWPCP_Update_Attachment_Allowed_Status_Ajax_Action implements AWPCP_Attach
     /**
      * @since 4.0.0     Attemtps to remove _awpcp_has_images_awaiting_approval if
      *                  there are no other attachments awaiting approval.
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function do_action( $ajax_handler, $attachment, $listing ) {
         $current_action = $this->request->param( 'action' );

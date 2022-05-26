@@ -1,0 +1,21 @@
+parameters:
+	level: 1
+	reportUnmatchedIgnoredErrors: false
+	bootstrapFiles:
+		- vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
+		- stubs.php
+		- functions.php
+		- cron.php
+	excludePaths:
+		- */assets/*
+		- */vendor/*
+		- */languages/*
+		- */tests/*
+		- stubs.php
+		- */includes/class-fileop.php
+		- */bin/*
+	ignoreErrors:
+		- '#Access to an undefined property#'
+		- '#no (typehint|value type|return type)+ specified.#'
+		- '#might not be defined.#'
+		- '#Function (apply_filters)+ invoked with#'

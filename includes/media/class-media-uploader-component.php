@@ -43,7 +43,6 @@ class AWPCP_MediaUploaderComponent {
 
     /**
      * @param array $configuration  An array of configuration options.
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     private function render_component( $configuration ) {
         ob_start();

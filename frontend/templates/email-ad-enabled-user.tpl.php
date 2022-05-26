@@ -7,4 +7,4 @@ printf( esc_html__( 'Hello %s,', 'another-wordpress-classifieds-plugin'), esc_ht
 <?php echo sprintf( $message, $listing_title, urldecode( url_showad( $listing->ID ) ) ); ?> 
 
 <?php echo awpcp_get_blog_name() ?> 
-<?php echo home_url() ?> 
+<?php echo home_url(); ?>

@@ -37,7 +37,7 @@ class AWPCP_Facebook {
             return;
         }
 
-        if ( ! $user_id || ! $user_token ) {
+        if ( ! $user_token ) {
             $errors[] = __( 'Missing a valid User Access Token.', 'another-wordpress-classifieds-plugin' );
             return;
         }

@@ -17,7 +17,7 @@ class AWPCP_Upgrade_Sessions {
             $session_data = $this->get_default_session_data( $context );
         }
 
-        return new AWPCP_Upgrade_Session( $session_data, $this->wordpress );
+        return new AWPCP_Upgrade_Session( $session_data );
     }
 
     private function get_default_session_data( $context ) {

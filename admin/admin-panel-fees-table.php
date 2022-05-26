@@ -42,7 +42,7 @@ class AWPCP_FeesTable extends WP_List_Table {
                 break;
 
             case 'regions':
-                $orderby = sprintf( 'regions &1$s, adterm_name', $params['order'] );
+                $orderby = sprintf( 'regions %1$s, adterm_name', $params['order'] );
                 break;
 
             case 'title-characters':
@@ -236,7 +236,7 @@ class AWPCP_FeesTable extends WP_List_Table {
     }
 
     public function column_price($item) {
-        return awpcp_format_money( $item->price, 2 );
+        return awpcp_format_money( $item->price );
     }
 
     public function column_credits($item) {

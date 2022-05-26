@@ -82,8 +82,6 @@ class AWPCP_MediaManagerComponent {
 
     /**
      * @param array $options    An array of options.
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     private function render_component( $options ) {
         $thumbnails_width = $this->settings->get_option( 'imgthumbwidth' );

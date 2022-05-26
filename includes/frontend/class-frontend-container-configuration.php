@@ -11,7 +11,6 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
     /**
      * @param AWPCP_Container $container    The plugin's container.
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function modify( $container ) {
         $container['Query'] = $container->service(
@@ -217,6 +216,4 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
     }
-
-    // @phpcs:enable
 }

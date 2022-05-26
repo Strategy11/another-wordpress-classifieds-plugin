@@ -144,9 +144,6 @@ class AWPCP_Payment_Transaction {
         }
     }
 
-	/**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-	 */
 	public static function find_by_id($id) {
         global $wpdb;
 
@@ -160,9 +157,6 @@ class AWPCP_Payment_Transaction {
         return empty($results) ? null : array_shift($results);
 	}
 
-    /**
-     * @SuppressWarnings(PHPMD.StaticAccess)
-     */
 	public static function find_or_create($id) {
 		$transaction = self::find_by_id($id);
 
@@ -182,8 +176,6 @@ class AWPCP_Payment_Transaction {
 
 	/**
 	 * @since 2.1.4
-     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
-     * @SuppressWarnings(PHPMD.ElseExpression)
 	 */
 	public function save() {
 		global $wpdb;
@@ -225,6 +217,9 @@ class AWPCP_Payment_Transaction {
 
 	/* Transaction Status */
 
+    /**
+     * @param array &$errors
+     */
 	private function verify_open_conditions(&$errors) {
 		if (get_awpcp_option('enable-credit-system') && empty($this->user_id)) {
 			$errors[] = __( 'The transaction must be assigned to a WordPress user.', 'another-wordpress-classifieds-plugin');
@@ -235,7 +230,7 @@ class AWPCP_Payment_Transaction {
 	}
 
     /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
+     * @param array &$errors
      */
     private function verify_ready_to_checkout_conditions(&$errors) {
         $items = count($this->get_items());
@@ -273,13 +268,13 @@ class AWPCP_Payment_Transaction {
         return true;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    private function verify_checkout_conditions(&$errors) {
+    private function verify_checkout_conditions() {
         return true;
 	}
 
+    /**
+     * @param array &$errors
+     */
     public function verify_payment_conditions(&$errors) {
         $payment_method = awpcp_payments_api()->get_transaction_payment_method($this);
 
@@ -291,6 +286,9 @@ class AWPCP_Payment_Transaction {
         return true;
     }
 
+    /**
+     * @param array &$errors
+     */
     public function verify_payment_completed_conditions(&$errors) {
         if (empty($this->payment_status)) {
             $errors[] = __( 'The payment status for this transaction hasn\'t been defined.', 'another-wordpress-classifieds-plugin');
@@ -301,7 +299,7 @@ class AWPCP_Payment_Transaction {
     }
 
     /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+     * @param array &$errors
      */
     public function verify_completed_conditions(&$errors) {
         return true;
@@ -321,8 +319,8 @@ class AWPCP_Payment_Transaction {
     }
 
     /**
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @param string $status
+     * @param array  &$errors
      */
     public function set_status($status, &$errors) {
         $allowed = true;
@@ -365,7 +363,7 @@ class AWPCP_Payment_Transaction {
             $allowed = $this->verify_ready_to_checkout_conditions($errors);
         }
         if ( $allowed && in_array( self::STATUS_CHECKOUT, $verify ) ) {
-            $allowed = $this->verify_checkout_conditions($errors);
+            $allowed = $this->verify_checkout_conditions();
         }
         if ( $allowed && in_array( self::STATUS_PAYMENT, $verify ) ) {
             $allowed = $this->verify_payment_conditions($errors);

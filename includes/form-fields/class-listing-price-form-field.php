@@ -52,9 +52,6 @@ class AWPCP_ListingPriceFormField extends AWPCP_FormField {
         return $data['metadata']['_awpcp_price'] / 100;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
     public function render( $value, $errors, $listing, $context ) {
         $params = array(
             'required'                      => $this->is_required(),

@@ -37,6 +37,6 @@ class AWPCP_PrivacyPolicyContent {
     private function get_privacy_policy_content() {
         $content = awpcp_render_template( $this->template, array() );
 
-        return wp_kses_post( $content, false );
+        return wp_kses_post( $content );
     }
 }

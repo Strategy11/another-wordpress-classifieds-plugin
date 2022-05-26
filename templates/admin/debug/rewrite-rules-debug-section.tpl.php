@@ -6,8 +6,8 @@
 ?><table class="widefat striped">
     <thead>
         <tr>
-            <th><?php echo esc_html__( 'Pattern', 'another-wordpress-classifieds-plugin' ); ?></th>
-            <th><?php echo esc_html( 'Replacement', 'another-wordpress-classifieds-plugin' ); ?></th>
+            <th><?php esc_html_e( 'Pattern', 'another-wordpress-classifieds-plugin' ); ?></th>
+            <th><?php esc_html_e( 'Replacement', 'another-wordpress-classifieds-plugin' ); ?></th>
         </tr>
     </thead>
     <tbody>

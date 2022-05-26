@@ -71,11 +71,6 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
      * @param int    $last_item_id  The ID of the last item processed by the routine.
      *
      * @throws AWPCP_Exception  If the associated file cannot be copied or stored.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function process_item( $item, $last_item_id ) {
         if ( ! function_exists( 'media_handle_upload' ) ) {

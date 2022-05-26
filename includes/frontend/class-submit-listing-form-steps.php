@@ -68,9 +68,6 @@ class AWPCP_SubmitListingFormSteps implements AWPCP_FormSteps {
         return $steps;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     */
     private function should_show_login_step( $transaction ) {
         if ( ! is_user_logged_in() && ! $this->settings->get_option( 'requireuserregistration' ) ) {
             return false;

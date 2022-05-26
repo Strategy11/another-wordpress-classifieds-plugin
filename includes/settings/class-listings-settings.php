@@ -39,8 +39,6 @@ class AWPCP_ListingsSettings {
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_moderation_settings( $settings_manager ) {
         $settings_manager->add_settings_subgroup(
@@ -456,8 +454,6 @@ class AWPCP_ListingsSettings {
 
     /**
      * @since 4.0.0
-     * @SuppressWarnings(PHPMD.ElseExpression)
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_url_settings( $settings_manager ) {
         $key = 'listing-url';
@@ -619,8 +615,6 @@ class AWPCP_ListingsSettings {
      *
      *       Alternatively, we could add filters and actions for sections and
      *       invidiual settings.
-     *
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function seo_settings_validated( $options, $group, $subgroup ) {
         update_option( 'awpcp-flush-rewrite-rules', true );

@@ -99,4 +99,8 @@ class AWPCP_Page {
             $this, $page_template, $content_template, $content_params
         );
     }
+
+    public function transaction_error() {
+        return __( 'There was an error processing your request. Please try again or contact an Administrator.', 'another-wordpress-classifieds-plugin' );
+    }
 }

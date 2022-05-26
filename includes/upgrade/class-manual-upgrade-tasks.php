@@ -37,8 +37,6 @@ class AWPCP_Manual_Upgrade_Tasks {
 
     /**
      * Register manual upgrade rotuines.
-     *
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function register_upgrade_tasks() {
         $this->upgrade_tasks->register_upgrade_task(
@@ -83,8 +81,6 @@ class AWPCP_Manual_Upgrade_Tasks {
 
     /**
      * @since 4.0.0
-     *
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     private function register_upgrade_tasks_for_4_0_0() {
         $this->upgrade_tasks->register_upgrade_task( array(
@@ -100,8 +96,6 @@ class AWPCP_Manual_Upgrade_Tasks {
             'handler' => 'StoreListingsAsCustomPostTypesUpgradeTaskHandler',
             'context' => 'plugin',
         ) );
-
-        // @phpcs:enable
 
         $this->upgrade_tasks->register_upgrade_task(
             [

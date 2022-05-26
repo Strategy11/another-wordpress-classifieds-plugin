@@ -50,9 +50,6 @@ class AWPCP_Upgrade_Tasks_Manager {
         return count( $pending_tasks ) > 0;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     */
     public function get_pending_tasks( $query = array() ) {
         $default_args = array(
             'type'            => null,

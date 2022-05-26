@@ -50,7 +50,6 @@ class AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler implements AWPC
      * Count number items that need to be processed.
      *
      * @param int $last_item_id     The ID of the last item processed by the routine.
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function count_pending_items( $last_item_id ) {
         $collisions = $this->categories_registry->get_id_collisions();
@@ -62,7 +61,6 @@ class AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler implements AWPC
      * Get items that need to be processed.
      *
      * @param int $last_item_id     The ID of the last item processed by the routine.
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function get_pending_items( $last_item_id ) {
         $collisions = $this->categories_registry->get_id_collisions();

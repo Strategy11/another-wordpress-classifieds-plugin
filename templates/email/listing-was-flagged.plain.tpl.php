@@ -6,4 +6,3 @@ $text = str_replace( '<site-name>', $site_name, $text );
 $text = str_replace( '<flagged-listings-url>', $flagged_listings_url, $text );
 
 echo $text;
-?> 
