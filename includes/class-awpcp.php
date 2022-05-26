@@ -362,6 +362,8 @@ class AWPCP {
         add_action( 'awpcp_edit_ad', [ $categories_list_cache, 'clear' ] );
         add_action( 'awpcp_disable_ad', [ $categories_list_cache, 'clear' ] );
         add_action( 'awpcp_delete_ad', [ $categories_list_cache, 'clear' ] );
+        add_action( 'awpcp_after_trash_ad', [ $categories_list_cache, 'clear' ] );
+        add_action( 'awpcp_after_untrash_ad', [ $categories_list_cache, 'clear' ] );
         add_action( 'awpcp-category-added', [ $categories_list_cache, 'clear' ] );
         add_action( 'awpcp-category-edited', [ $categories_list_cache, 'clear' ] );
         add_action( 'awpcp-category-deleted', [ $categories_list_cache, 'clear' ] );
