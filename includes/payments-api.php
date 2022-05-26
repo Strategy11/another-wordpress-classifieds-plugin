@@ -341,6 +341,10 @@ class AWPCP_PaymentsAPI {
 
     /**
      * TODO: should throw an exception if the status can't be set
+     *
+     * @param AWPCP_Payment_Transaction $transaction
+     * @param string                    $status
+     * @param array                     &$errors
      */
     private function set_transaction_status($transaction, $status, &$errors) {
         if ($result = $transaction->set_status($status, $errors)) {

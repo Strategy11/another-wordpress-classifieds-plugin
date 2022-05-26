@@ -349,6 +349,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
             $this->validate_order(compact('user', 'category', 'payment_term'), $form_errors);
 
+            /** @phpstan-ignore-next-line */
             if (empty($form_errors) && empty($transaction_errors)) {
                 $number_of_categories_allowed = apply_filters(
                     'awpcp-number-of-categories-allowed-in-post-listing-order-step', 1, $payment_term
@@ -398,12 +399,14 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         // are we done here? what next?
         if ( ! empty( $category ) && ! is_null( $payment_term ) ) {
+            /** @phpstan-ignore-next-line */
             if (empty($form_errors) && empty($transaction_errors)) {
                 $payments->set_transaction_status_to_ready_to_checkout($transaction, $transaction_errors);
 
+                /** @phpstan-ignore-next-line */
                 if ($pay_first && empty($transaction_errors)) {
                     return $this->checkout_step();
-                } else if (empty($transaction_errors)) {
+                } else if (empty($transaction_errors)) { /** @phpstan-ignore-line */
                     return $this->details_step();
                 }
             }
@@ -484,9 +487,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $payments->set_transaction_status_to_checkout( $transaction, $errors );
         }
 
+        /** @phpstan-ignore-next-line */
         if ( empty( $errors ) && $transaction->payment_is_not_required() ) {
             $payments->set_transaction_status_to_payment_completed($transaction, $errors);
 
+            /** @phpstan-ignore-next-line */
             if ( empty( $errors ) ) {
                 return $this->payment_completed_step();
             }
@@ -1485,6 +1490,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $errors = array();
             $this->payments->set_transaction_status_to_completed( $transaction, $errors );
 
+            /** @phpstan-ignore-next-line */
             if (!empty($errors)) {
                 return $this->render('content', join(',', array_map('awpcp_print_error', $errors)));
             }

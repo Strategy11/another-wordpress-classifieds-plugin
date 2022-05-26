@@ -112,9 +112,3 @@ namespace {
    function wpseo_replace_vars( $text, $args, $omit = [] ) {
    }
 }
-
-namespace PHPMailer {
-
-	class PHPMailer {}
-
-}

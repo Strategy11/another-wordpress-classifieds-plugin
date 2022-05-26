@@ -285,6 +285,8 @@ class AWPCP_RenewAdPageImplementation {
         // if everything is fine move onto the next step
         if ( ! is_null( $payment_term ) ) {
             $this->payments->set_transaction_status_to_ready_to_checkout( $transaction, $transaction_errors );
+
+            /** @phpstan-ignore-next-line */
             if (empty($transaction_errors)) {
                 return $this->checkout_step();
             }
@@ -336,6 +338,7 @@ class AWPCP_RenewAdPageImplementation {
             $this->payments->set_transaction_status_to_checkout( $transaction, $errors );
         }
 
+        /** @phpstan-ignore-next-line */
         if ( empty($errors) && $transaction->payment_is_not_required() ) {
             $this->payments->set_transaction_status_to_payment_completed( $transaction, $errors );
 
@@ -409,8 +412,10 @@ class AWPCP_RenewAdPageImplementation {
         }
 
         if (!$transaction->is_completed()) {
+            $errors = array();
             $this->payments->set_transaction_status_to_completed( $transaction, $errors );
 
+            /** @phpstan-ignore-next-line */
             if (!empty($errors)) {
                 return $this->page->render('content', join(',', array_map($errors, 'awpcp_print_error')));
             }
