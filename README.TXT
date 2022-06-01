@@ -174,6 +174,7 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fix: Remove Content aware sidebars integration. This is old and no longer compatible
 * Fix: Expiration emails didn't include the number of days left.
 * Fix: Deleting an ad wasn't decreasing category ad count.
+* Fix: The "Clear form" button wasn't allowing the category to be set again.
 * A lot of code cleanup.
 
 = 4.1.7 =
