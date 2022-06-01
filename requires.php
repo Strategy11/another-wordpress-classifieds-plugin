@@ -16,7 +16,6 @@ require_once AWPCP_DIR . '/includes/functions/format.php';
 require_once AWPCP_DIR . '/includes/functions/hooks.php';
 require_once AWPCP_DIR . '/includes/functions/l10n.php';
 require_once AWPCP_DIR . '/includes/functions/listings.php';
-require_once AWPCP_DIR . '/includes/functions/notices.php';
 require_once AWPCP_DIR . '/includes/functions/notifications.php';
 require_once AWPCP_DIR . '/includes/functions/payments.php';
 require_once AWPCP_DIR . '/includes/functions/routes.php';
@@ -55,7 +54,6 @@ require_once AWPCP_DIR . '/includes/compatibility/class-simple-facebook-opengrap
 require_once AWPCP_DIR . '/includes/compatibility/class-woocommerce-plugin-integration.php';
 require_once AWPCP_DIR . '/includes/compatibility/class-wp-members-login-form-implementation.php';
 require_once AWPCP_DIR . '/includes/compatibility/class-wp-members-plugin-integration.php';
-require_once AWPCP_DIR . '/includes/compatibility/class-yoast-wordpress-seo-plugin-integration.php';
 require_once AWPCP_DIR . '/includes/compatibility/class-seo-framework-plugin-integration.php';
 require_once AWPCP_DIR . '/includes/compatibility/class-navxt-plugin-integration.php';
 

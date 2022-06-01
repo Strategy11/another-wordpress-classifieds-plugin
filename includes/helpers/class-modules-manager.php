@@ -76,8 +76,10 @@ class AWPCP_ModulesManager {
 
         $module_information = $modules_information[ $module->slug ];
 
-        if ( isset( $module_information['removed'] ) && is_callable( $module_information['removed'] ) ) {
-            $this->notices['modules-removed'][] = $module;
+        if ( ! empty( $module_information['removed'] ) ) {
+            if ( is_callable( $module_information['removed'] ) ) {
+                $this->notices['modules-removed'][] = $module;
+            }
             throw new AWPCP_Exception( 'Module is no longer supported.' );
         }
 

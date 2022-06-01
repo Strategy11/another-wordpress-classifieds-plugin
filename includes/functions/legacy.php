@@ -305,3 +305,17 @@ function smart_table2( $array, $table_cols, $opentable, $closetable, $usingtable
     $myreturn.="$closetable\n";
     return $myreturn;
 }
+
+/**
+ * Displays a message explaining that the XML Sitemap module is no longer
+ * available and users should install or configure a SEO or XML Sitemap plugin
+ * that supports Custom Post Types.
+ *
+ * @since 4.0.0
+ * @deprecated 4.2
+ */
+function awpcp_xml_sitemap_module_removed_notice() {
+    _deprecated_function( __FUNCTION__, '4.2' );
+
+    return '';
+}
