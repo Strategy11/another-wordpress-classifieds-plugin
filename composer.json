@@ -29,5 +29,10 @@
         "wp-coding-standards/wpcs": "*",
         "php-stubs/wordpress-stubs": "^5.9",
         "phpstan/phpstan": "^1.6"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
