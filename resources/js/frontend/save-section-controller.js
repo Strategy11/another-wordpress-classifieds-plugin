@@ -95,7 +95,7 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
             self.$resetButton.click( function( event ) {
                 event.preventDefault();
 
-                self.clearListingInformation();
+                window.location.reload();
             } );
 
             self.$element.addClass( 'rendered' );
