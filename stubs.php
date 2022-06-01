@@ -93,22 +93,4 @@ namespace {
 		public static function get_api_key() {
 		}
 	}
-
-	/**
-	 * Yoast SEO.
-	 */
-	class WPSEO_Meta {
-
-		/**
-		 * @return string
-		 */
-		public static function get_value( $key, $postid = 0 ) {
-		}
-	}
-
-	/**
-	 * @return string
-	 */
-   function wpseo_replace_vars( $text, $args, $omit = [] ) {
-   }
 }
