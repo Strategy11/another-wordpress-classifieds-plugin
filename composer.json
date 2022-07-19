@@ -20,15 +20,15 @@
     },
     "require-dev": {
         "yoast/phpunit-polyfills": "^1.0",
-        "antecedent/patchwork": "2.*",
+        "antecedent/patchwork": "^2.1.21",
         "brain/monkey": "dev-dev",
         "dealerdirect/phpcodesniffer-composer-installer": "0.*",
-        "phake/phake": "3.*",
+        "phake/phake": "^4.0",
         "phpcompatibility/php-compatibility": "*",
-        "squizlabs/php_codesniffer": "^3.4.0",
+        "squizlabs/php_codesniffer": "^3.7.0",
         "wp-coding-standards/wpcs": "*",
-        "php-stubs/wordpress-stubs": "^5.9",
-        "phpstan/phpstan": "^1.6"
+        "php-stubs/wordpress-stubs": "^6.0",
+        "phpstan/phpstan": "^1.8"
     },
     "config": {
         "allow-plugins": {
