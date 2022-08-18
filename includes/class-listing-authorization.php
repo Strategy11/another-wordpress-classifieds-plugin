@@ -68,7 +68,7 @@ class AWPCP_ListingAuthorization {
             return true;
         }
 
-        if ( absint( $listing->post_author ) === $this->request->get_current_user()->ID ) {
+        if ( absint( $listing->post_author ) === get_current_user_id() ) {
             return true;
         }
 

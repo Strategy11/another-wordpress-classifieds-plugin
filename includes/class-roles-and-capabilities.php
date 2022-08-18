@@ -7,13 +7,10 @@ class AWPCP_RolesAndCapabilities {
 
     private $settings;
 
-    private $request;
-
     private $stop_nesting = false;
 
     public function __construct( $settings, $request ) {
         $this->settings = $settings;
-        $this->request  = $request;
     }
 
     public function setup_roles_capabilities() {
@@ -196,7 +193,7 @@ class AWPCP_RolesAndCapabilities {
             _doing_it_wrong( __FUNCTION__, "Trying to call current_user_is_*() before the current user has been set.", '3.3.1' );
         }
 
-        return $this->user_can( $this->request->get_current_user(), $capabilities );
+        return $this->user_can( wp_get_current_user(), $capabilities );
     }
 
     private function user_can( $user, $capabilities ) {

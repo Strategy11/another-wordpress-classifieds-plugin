@@ -10,17 +10,12 @@ function awpcp_users_field() {
 
 abstract class AWPCP_UserField {
 
-    protected $request;
-
-    public function __construct( $request ) {
-        $this->request = $request;
-    }
-
     abstract public function render( $args = array() );
 
     protected function find_selected_user( $args ) {
         if ( ! is_null( $args['selected'] ) && empty( $args['selected'] ) ) {
-            if ( $current_user = $this->request->get_current_user() ) {
+            $current_user = wp_get_current_user();
+            if ( $current_user ) {
                 $args['selected'] = $current_user->ID;
             }
         }

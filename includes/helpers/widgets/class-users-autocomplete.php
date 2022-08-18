@@ -1,7 +1,7 @@
 <?php
 
 function awpcp_users_autocomplete() {
-    return new AWPCP_UsersAutocomplete( awpcp_users_collection(), awpcp_request(), awpcp()->js );
+    return new AWPCP_UsersAutocomplete( awpcp_users_collection(), '', awpcp()->js );
 }
 
 class AWPCP_UsersAutocomplete extends AWPCP_UserField {
@@ -9,8 +9,7 @@ class AWPCP_UsersAutocomplete extends AWPCP_UserField {
     private $users;
     private $javascript;
 
-    public function __construct( $users, $request, $javascript  ) {
-        parent::__construct( $request );
+    public function __construct( $users, $void = '', $javascript  ) {
         $this->users = $users;
         $this->javascript = $javascript;
     }

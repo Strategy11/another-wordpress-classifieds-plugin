@@ -1,17 +1,15 @@
 <?php
 
 function awpcp_drip_autoresponder() {
-    return new AWPCP_DripAutoresponder( awpcp()->settings, awpcp_request() );
+    return new AWPCP_DripAutoresponder( awpcp()->settings );
 }
 
 class AWPCP_DripAutoresponder {
 
     private $settings;
-    private $request;
 
-    public function __construct( $settings, $request ) {
+    public function __construct( $settings ) {
         $this->settings = $settings;
-        $this->request = $request;
     }
 
     public function register_pointer( $pointers ) {
@@ -67,7 +65,7 @@ class AWPCP_DripAutoresponder {
         $template = str_replace( '<title>', $title, $template );
         $template = str_replace( '<content>', $content, $template );
         $template = str_replace( '<label>', __( 'Email Address', 'another-wordpress-classifieds-plugin' ), $template );
-        $template = str_replace( '<user-email>', $this->request->get_current_user()->user_email, $template );
+        $template = str_replace( '<user-email>', wp_get_current_user()->user_email, $template );
 
         return $template;
     }
