@@ -9,7 +9,7 @@ class AWPCP_RolesAndCapabilities {
 
     private $stop_nesting = false;
 
-    public function __construct( $settings, $request ) {
+    public function __construct( $settings ) {
         $this->settings = $settings;
     }
 
@@ -91,7 +91,7 @@ class AWPCP_RolesAndCapabilities {
         $cap = 'edit_others_awpcp_classified_ads';
         if ( ! $this->stop_nesting && current_user_can( 'administrator' ) && ! current_user_can( $cap ) ) {
             $this->stop_nesting = true;
-            $this->setup_roles_capabilities( 'skip' );
+            $this->setup_roles_capabilities();
         }
         return $cap;
     }
