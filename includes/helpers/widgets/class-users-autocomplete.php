@@ -1,7 +1,7 @@
 <?php
 
 function awpcp_users_autocomplete() {
-    return new AWPCP_UsersAutocomplete( awpcp_users_collection(), awpcp_request(), awpcp()->js );
+    return new AWPCP_UsersAutocomplete();
 }
 
 class AWPCP_UsersAutocomplete extends AWPCP_UserField {
@@ -9,10 +9,12 @@ class AWPCP_UsersAutocomplete extends AWPCP_UserField {
     private $users;
     private $javascript;
 
-    public function __construct( $users, $request, $javascript  ) {
-        parent::__construct( $request );
-        $this->users = $users;
-        $this->javascript = $javascript;
+    public function __construct( $users = null, $void = null, $javascript = null  ) {
+        if ( $void ) {
+            _deprecated_argument( 'AWPCP_UsersAutocomplete', '4.2.1', 'The second parameter is no longer used.' );
+        }
+        $this->users = $users ? $users : awpcp_users_collection();
+        $this->javascript = $javascript ? $javascript : awpcp()->js;
     }
 
     public function render( $args = array() ) {

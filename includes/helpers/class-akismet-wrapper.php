@@ -22,7 +22,7 @@ class AWPCP_AkismetWrapper extends AWPCP_AkismetWrapperBase {
     public function get_reporter_data() {
         $reporter_data = array( 'site_domain' => $this->request->domain() );
 
-        $current_user = $this->request->get_current_user();
+        $current_user = wp_get_current_user();
 
         if ( is_object( $current_user ) ) {
             $reporter_data['reporter'] = $current_user->user_login;

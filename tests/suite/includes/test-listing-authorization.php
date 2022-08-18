@@ -38,7 +38,7 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
 
         $this->request = Phake::mock( 'AWPCP_Request' );
 
-        Phake::when( $this->request )->get_current_user()->thenReturn( $user );
+        wp_get_current_user()->thenReturn( $user );
 
         $this->roles_and_capabilities->shouldReceive( 'current_user_is_moderator' )->andReturn( false );
 

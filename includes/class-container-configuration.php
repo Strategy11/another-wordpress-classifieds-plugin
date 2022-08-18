@@ -55,8 +55,7 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
 
         $container['RolesAndCapabilities'] = $container->service( function( $container ) {
             return new AWPCP_RolesAndCapabilities(
-                $container['Settings'],
-                $container['Request']
+                $container['Settings']
             );
         } );
 

@@ -66,7 +66,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     function get_posted_data() {
-        $current_user = $this->request->get_current_user();
+        $current_user = wp_get_current_user();
         $name_alternatives = array( 'display_name', 'user_login', 'username' );
 
         return array(

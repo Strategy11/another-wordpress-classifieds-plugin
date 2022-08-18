@@ -260,8 +260,7 @@ class AWPCP_TestRequest extends AWPCP_UnitTestCase {
     public function test_get_current() {
         $this->login_as_administrator();
 
-        $request      = new AWPCP_Request();
-        $current_user = $request->get_current_user();
+        $current_user = wp_get_current_user();
 
         $this->assertObjectHasAttribute( 'ID', $current_user );
         $this->assertGreaterThan( 0, $current_user->ID );
@@ -270,8 +269,7 @@ class AWPCP_TestRequest extends AWPCP_UnitTestCase {
     public function test_get_current_user_if_there_is_no_user() {
         $this->logout();
 
-        $request      = new AWPCP_Request();
-        $current_user = $request->get_current_user();
+        $current_user = wp_get_current_user();
 
         $this->assertObjectHasAttribute( 'ID', $current_user );
         $this->assertEquals( 0, $current_user->ID );
