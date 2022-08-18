@@ -37,7 +37,6 @@ class AWPCP_AdminPanel {
 		add_action('admin_init', array($this, 'init'));
         add_action( 'admin_init', array( awpcp()->router, 'on_admin_init' ) );
 		add_action('admin_enqueue_scripts', array($this, 'scripts'));
-		add_action('admin_menu', array($this, 'menu'));
 
         $admin_menu_builder = new AWPCP_AdminMenuBuilder( awpcp()->container['listing_post_type'], awpcp()->router );
         add_action( 'admin_menu', array( $admin_menu_builder, 'build_menu' ) );
@@ -631,12 +630,6 @@ class AWPCP_AdminPanel {
         }
 
         return $admin_body_classes;
-    }
-
-	public function menu() {
-	}
-
-    public function dispatch() {
     }
 
 	public function upgrade() {

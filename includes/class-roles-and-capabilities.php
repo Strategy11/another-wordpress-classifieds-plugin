@@ -9,6 +9,8 @@ class AWPCP_RolesAndCapabilities {
 
     private $request;
 
+    private $stop_nesting = false;
+
     public function __construct( $settings, $request ) {
         $this->settings = $settings;
         $this->request  = $request;
@@ -19,7 +21,7 @@ class AWPCP_RolesAndCapabilities {
 
         $administrator_roles = $this->get_administrator_roles_names();
         $subscriber_roles    = $this->get_subscriber_roles_names();
-        $current_user        = $this->request->get_current_user();
+        $current_user        = wp_get_current_user();
 
         array_walk( $administrator_roles, array( $this, 'add_administrator_capabilities_to_role' ) );
         array_walk( $subscriber_roles, array( $this, 'add_subscriber_capabilities_to_role' ) );
@@ -89,7 +91,12 @@ class AWPCP_RolesAndCapabilities {
      * @since 4.0.0
      */
     public function get_moderator_capability() {
-        return 'edit_others_awpcp_classified_ads';
+        $cap = 'edit_others_awpcp_classified_ads';
+        if ( ! $this->stop_nesting && current_user_can( 'administrator' ) && ! current_user_can( $cap ) ) {
+            $this->stop_nesting = true;
+            $this->setup_roles_capabilities( 'skip' );
+        }
+        return $cap;
     }
 
     private function add_capabilities_to_role( $role, $capabilities ) {
