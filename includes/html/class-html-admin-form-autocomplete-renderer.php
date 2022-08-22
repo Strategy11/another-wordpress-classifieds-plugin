@@ -36,8 +36,8 @@ class AWPCP_HTML_Admin_Form_Autocomplete_Renderer implements AWPCP_HTML_Element_
                         'autocomplete-selected-value' => true,
                         'value' => $element_definition['#value'],
                     ),
-                )
-            )
+                ),
+            ),
         );
 
         return $html_renderer->render_element( $form_field_definition );

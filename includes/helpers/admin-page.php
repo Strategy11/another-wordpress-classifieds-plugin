@@ -1,6 +1,6 @@
 <?php
 
-require_once(AWPCP_DIR . '/includes/helpers/page.php');
+require_once AWPCP_DIR . '/includes/helpers/page.php';
 
 
 class AWPCP_AdminPage extends AWPCP_Page {
@@ -32,7 +32,7 @@ class AWPCP_AdminPageWithTable extends AWPCP_AdminPage {
             'action2', 'action', // action and bulk actions
             'selected', // selected rows for bulk actions
             '_wpnonce',
-            '_wp_http_referer'
+            '_wp_http_referer',
         );
     }
 

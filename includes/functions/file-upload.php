@@ -22,6 +22,7 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
 	$newpath = trailingslashit($directory) . $newname;
 
 	if ( !file_exists( $tmpname ) ) {
+		/* translators: %s the file name */
 		return sprintf( __( 'The specified image file does not exists: %s.', 'another-wordpress-classifieds-plugin' ), $tmpname );
 	}
 
@@ -40,43 +41,53 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
 	}
 
 	if (empty($size) || $size <= 0) {
-		$message = "There was an error trying to find out the file size of the image %s.";
+		/* translators: %s the file name */
+		$message = __( 'There was an error trying to find out the file size of the image %s.', 'another-wordpress-classifieds-plugin' );
 		return sprintf( $message, $filename );
 	}
 
 	if (!(in_array($ext, $allowed_extensions))) {
+		/* translators: %s the file name */
 		return sprintf( __( 'The file %s has an invalid extension and was rejected.', 'another-wordpress-classifieds-plugin'), $filename );
 
 	} elseif ($size < $min_size) {
+		/* translators: %1$s the file name, %2$d the size limit */
 		$message = __( 'The size of %1$s was too small. The file was not uploaded. File size must be greater than %2$d bytes.', 'another-wordpress-classifieds-plugin');
 		return sprintf($message, $filename, $min_size);
 
 	} elseif ($size > $max_size) {
-		$message = __( 'The file %s was larger than the maximum allowed file size of %s bytes. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
+		/* translators: %1$s the file name, %2$s the size limit */
+		$message = __( 'The file %1$s was larger than the maximum allowed file size of %2$s bytes. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
 		return sprintf($message, $filename, $max_size);
 
 	} elseif (!isset($imginfo[0]) && !isset($imginfo[1])) {
+		/* translators: %s the file name */
 		return sprintf( __( 'The file %s does not appear to be a valid image file.', 'another-wordpress-classifieds-plugin' ), $filename );
 
 	} elseif ( $imginfo[0] < $min_width ) {
-		$message = __( 'The image %s did not meet the minimum width of %s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
+		/* translators: %1$s the file name, %2$s the size limit */
+		$message = __( 'The image %1$s did not meet the minimum width of %2$s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
 		return sprintf($message, $filename, $min_width);
 
 	} elseif ($imginfo[1] < $min_height) {
-		$message = __( 'The image %s did not meet the minimum height of %s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
+		/* translators: %1$s the file name, %2$s the size limit */
+		$message = __( 'The image %1$s did not meet the minimum height of %2$s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
 		return sprintf( $message, $filename, $min_height );
 	}
 
 	if ($uploaded && !@move_uploaded_file($tmpname, $newpath)) {
+		/* translators: %s the file name */
 		$message = __( 'The file %s could not be moved to the destination directory.', 'another-wordpress-classifieds-plugin');
 		return sprintf($message, $filename);
 
 	} else if (!$uploaded && !@copy($tmpname, $newpath)) {
+		/* translators: %s the file name */
 		$message = __( 'The file %s could not be moved to the destination directory.', 'another-wordpress-classifieds-plugin');
 		return sprintf($message, $filename);
 	}
 
 	if (!awpcp_create_image_versions($newname, $directory)) {
+		/* translators: %s the file name */
 		$message = __( 'Could not create resized versions of image %s.', 'another-wordpress-classifieds-plugin');
 		@unlink($newpath);
 		return sprintf($message, $filename);

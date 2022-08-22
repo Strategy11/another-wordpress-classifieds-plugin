@@ -4,6 +4,7 @@
 
     <exclude-pattern>includes/functions/deprecated.php</exclude-pattern>
     <exclude-pattern>includes/functions/listings.php</exclude-pattern>
+    <exclude-pattern>includes/functions/legacy.php</exclude-pattern>
     <exclude-pattern>frontend/templates/email-send-all-ad-access-keys.tpl.php</exclude-pattern>
     <exclude-pattern>vendor/*</exclude-pattern>
     <exclude-pattern>tests/*</exclude-pattern>
@@ -54,7 +55,6 @@
         <exclude name="WordPress.PHP.DontExtract.extract_extract" />
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing" />
         <exclude name="WordPress.Arrays.ArrayKeySpacingRestrictions" />
-        <exclude name="PSR2.Files.ClosingTag.NotAllowed" />
         <exclude name="WordPress.WhiteSpace.OperatorSpacing.NoSpaceBefore" />
         <exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed" />
         <exclude name="Generic.WhiteSpace.ArbitraryParenthesesSpacing" />
@@ -66,11 +66,10 @@
         <exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase" />
         <exclude name="WordPress.NamingConventions.ValidVariableName.InterpolatedVariableNotSnakeCase" />
         <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
-        <exclude name="WordPress.WhiteSpace.DisallowInlineTabs" />
         <exclude name="Squiz.PHP.DisallowMultipleAssignments" />
         <exclude name="Generic.Formatting.DisallowMultipleStatements.SameLine" />
-        <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie" />
         <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
+        <exclude name="Squiz.Strings.DoubleQuoteUsage.NotRequired" />
         <exclude name="Squiz.Strings.ConcatenationSpacing.PaddingFound" />
         <exclude name="WordPress.WhiteSpace.OperatorSpacing.SpacingBefore" />
         <exclude name="PEAR.Functions.FunctionCallSignature.Indent" />

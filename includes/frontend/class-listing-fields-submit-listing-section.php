@@ -118,7 +118,6 @@ class AWPCP_ListingFieldsSubmitListingSection {
             return $form_data;
         }
 
-
         foreach ( $user_data['metadata'] as $field => $value ) {
             if ( empty( $form_data['metadata'][ $field ] ) ) {
                 $form_data['metadata'][ $field ] = $value;

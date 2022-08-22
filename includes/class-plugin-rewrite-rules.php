@@ -103,38 +103,38 @@ class AWPCP_Plugin_Rewrite_Rules {
                 array(
                     'regex' => '(<page-uri>)/(\d+)(?:.*)',
                     'redirect' => 'index.php?pagename=$matches[1]&id=$matches[2]',
-                    'position' => 'top'
+                    'position' => 'top',
                 ),
             ),
             'edit-ad-page-name' => array(
                 array(
                     'regex' => '(<page-uri>)(?:/([0-9]+))?',
                     'redirect' => 'index.php?pagename=$matches[1]&id=$matches[2]',
-                    'position' => 'top'
+                    'position' => 'top',
                 ),
             ),
             'browse-ads-page-name' => array(
                 array(
                     'regex' => '(<page-uri>)/(\d+)(?:.*)',
                     'redirect' => 'index.php?pagename=$matches[1]&cid=$matches[2]',
-                    'position' => 'top'
+                    'position' => 'top',
                 ),
             ),
             'main-page-name' => array(
                 array(
                     'regex' => '(<page-uri>)/(setregion)/(.+?)/(.+?)',
                     'redirect' => 'index.php?pagename=$matches[1]&regionid=$matches[3]',
-                    'position' => 'top'
+                    'position' => 'top',
                 ),
                 array(
                     'regex' => '(<page-uri>)/(classifiedsrss)/(\d+)',
                     'redirect' => 'index.php?pagename=$matches[1]&awpcp-action=rss&cid=$matches[3]',
-                    'position' => 'top'
+                    'position' => 'top',
                 ),
                 array(
                     'regex' => '(<page-uri>)/(classifiedsrss)',
                     'redirect' => 'index.php?pagename=$matches[1]&awpcp-action=rss',
-                    'position' => 'top'
+                    'position' => 'top',
                 ),
             ),
         );
@@ -144,7 +144,7 @@ class AWPCP_Plugin_Rewrite_Rules {
                 array(
                     'regex' => '(<page-uri>)/(\d+)(?:.*)',
                     'redirect' => 'index.php?pagename=$matches[1]&id=$matches[2]',
-                    'position' => 'top'
+                    'position' => 'top',
                 ),
             );
         }
@@ -155,7 +155,7 @@ class AWPCP_Plugin_Rewrite_Rules {
             array_unshift( $rewrite_rules['main-page-name'], array(
                 'regex' => '(<page-uri>)/('.$view_categories.')',
                 'redirect' => 'index.php?pagename=$matches[1]&layout=2',
-                'position' => 'top'
+                'position' => 'top',
             ) );
         }
 

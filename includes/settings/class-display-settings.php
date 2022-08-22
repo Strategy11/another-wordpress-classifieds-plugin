@@ -116,8 +116,8 @@ class AWPCP_DisplaySettings {
 								<div class="awpcp-title">$ad_title</div><br/>
 								<div class="showawpcpadpage">
 									$featureimg
-									<div class="awpcp-subtitle">' . __( "Contact Information", 'another-wordpress-classifieds-plugin' ) . '</div>
-									<a href="$codecontact">' . __( "Contact", 'another-wordpress-classifieds-plugin' ) . ' $adcontact_name</a>
+									<div class="awpcp-subtitle">' . __( 'Contact Information', 'another-wordpress-classifieds-plugin' ) . '</div>
+									<a href="$codecontact">' . __( 'Contact', 'another-wordpress-classifieds-plugin' ) . ' $adcontact_name</a>
 									$adcontactphone
 									$location
 									$awpcpvisitwebsite
@@ -127,7 +127,7 @@ class AWPCP_DisplaySettings {
 								<div class="fixfloat"></div>
 								$showadsense1
 								<div class="showawpcpadpage">
-									<div class="awpcp-subtitle">' . __( "More Information", 'another-wordpress-classifieds-plugin' ) . '</div>
+									<div class="awpcp-subtitle">' . __( 'More Information', 'another-wordpress-classifieds-plugin' ) . '</div>
 									$addetails
 								</div>
 								$showadsense2
@@ -351,7 +351,7 @@ class AWPCP_DisplaySettings {
             __( "The selected format will be used to show a user's name in dropdown fields, text fields and templates.", 'another-wordpress-classifieds-plugin' ),
             array(
                 'options' => array(
-                    'user_login'      => esc_html( "<Username>" ),
+                    'user_login'      => esc_html( '<Username>' ),
                     'firstname_first' => esc_html( '<First Name> <Last Name>' ),
                     'lastname_first'  => esc_html( '<Last Name> <First Name>' ),
                     'firstname'       => esc_html( '<First Name>' ),

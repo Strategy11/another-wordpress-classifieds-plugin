@@ -1,6 +1,6 @@
 <?php
 
-require_once(AWPCP_DIR . '/includes/helpers/page.php');
+require_once AWPCP_DIR . '/includes/helpers/page.php';
 
 
 class AWPCP_BasePage extends AWPCP_Page {
@@ -77,6 +77,7 @@ class AWPCP_BasePage extends AWPCP_Page {
         if ( isset( $this->steps[ $step_name ] ) ) {
             return $this->steps[ $step_name ];
         } else {
+            /* translators: %s the step name */
             $message = __( 'Unkown step "%s". Please contact the administrator about this error.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $step_name ) );
         }

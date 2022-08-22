@@ -185,8 +185,8 @@ function awpcp_count_listings_in_category( $category_id ) {
                 'field' => 'term_id',
                 'terms' => array_merge( array( $category_id ), $children_categories ),
                 'operator' => 'IN',
-            )
-        )
+            ),
+        ),
     ) );
 
     return $listings_count;

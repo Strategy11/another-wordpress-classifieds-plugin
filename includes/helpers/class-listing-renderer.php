@@ -229,7 +229,7 @@ class AWPCP_ListingRenderer {
                 'country' => $region->country,
                 'county' => $region->county,
                 'state' => $region->state,
-                'city' => $region->city
+                'city'    => $region->city,
             );
         }
 

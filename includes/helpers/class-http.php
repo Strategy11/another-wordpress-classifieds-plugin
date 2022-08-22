@@ -64,7 +64,7 @@ class AWPCP_HTTP {
         curl_close( $ch );
 
         if ( in_array( $error_number, array( 7 ), true ) ) {
-            $message = '<strong>' . __( "It was not possible to establish a connection with <host>. The connection failed with the following error:", 'another-wordpress-classifieds-plugin' ) . '</strong>';
+            $message = '<strong>' . __( 'It was not possible to establish a connection with <host>. The connection failed with the following error:', 'another-wordpress-classifieds-plugin' ) . '</strong>';
             $message.= '<br/><br/>';
             $message.= '<code>curl: (' . $error_number . ') ' . $error_message . '</code>';
             $message.= '<br/><br/>';
@@ -79,7 +79,7 @@ class AWPCP_HTTP {
 
             throw new AWPCP_HTTP_Exception( $message );
         } elseif ( in_array( $error_number, array( 35 ), true ) ) {
-            $message = '<strong>' . __( "It was not possible to establish a connection with <host>. A problem occurred in the SSL/TSL handshake:", 'another-wordpress-classifieds-plugin' ) . '</strong>';
+            $message = '<strong>' . __( 'It was not possible to establish a connection with <host>. A problem occurred in the SSL/TSL handshake:', 'another-wordpress-classifieds-plugin' ) . '</strong>';
 
             $message.= '<br/><br/>';
             $message.= '<code>curl: (' . $error_number . ') ' . $error_message . '</code>';

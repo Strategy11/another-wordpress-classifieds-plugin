@@ -28,7 +28,7 @@ class AWPCP_FilesSettings {
         $settings_manager->add_settings_group( [
             'id'       =>'attachments-settings',
             'name'     => __( 'Media', 'another-wordpress-classifieds-plugin' ),
-            'priority' => 50
+            'priority' => 50,
         ] );
 
         $this->register_general_media_settings( $settings_manager );
@@ -192,7 +192,7 @@ class AWPCP_FilesSettings {
             'subgroup' => 'presentation-media-settings',
             'name'     => __( 'Images Presentation', 'another-wordpress-classifieds-plugin' ),
             'id'       => 'images-presentation-settings',
-            'priority' => 20
+            'priority' => 20,
         ] );
 
         $options = array(0 => 0, 1 => 1, 2 => 2, 3 => 3, 4 => 4);

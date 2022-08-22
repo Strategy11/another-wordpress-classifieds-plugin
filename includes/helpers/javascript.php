@@ -45,7 +45,7 @@ class AWPCP_JavaScript {
         $this->print_variable( 'options', '__awpcp_js_data', $this->data );
         $this->print_variable( 'localization', '__awpcp_js_l10n', $this->l10n );
 
-        echo "})(jQuery, window);";
+        echo '})(jQuery, window);';
         echo "/* ]]> */\n";
         echo "</script>\n";
     }

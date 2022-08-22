@@ -26,8 +26,8 @@ class AWPCP_HTML_Admin_Form_Textfield_Renderer implements AWPCP_HTML_Element_Ren
                         'value' => $element_definition['#value'],
                         'name' => $element_definition['#name'],
                     ),
-                )
-            )
+                ),
+            ),
         );
 
         return $html_renderer->render_element( $form_field_definition );

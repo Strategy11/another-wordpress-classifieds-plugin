@@ -45,7 +45,7 @@ class AWPCP_PaymentTerm {
             self::INTERVAL_DAY,
             self::INTERVAL_WEEK,
             self::INTERVAL_MONTH,
-            self::INTERVAL_YEAR
+            self::INTERVAL_YEAR,
         );
     }
 
@@ -266,7 +266,7 @@ class AWPCP_PaymentTerm {
     public function get_duration() {
         $amount = $this->duration_amount;
         $interval = $this->get_duration_interval();
-        return sprintf("%d %s", $amount, $interval);
+        return sprintf( '%d %s', $amount, $interval );
     }
 
     public function get_characters_allowed() {
