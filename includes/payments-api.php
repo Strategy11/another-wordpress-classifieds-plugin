@@ -664,30 +664,27 @@ class AWPCP_PaymentsAPI {
         $credit_plan     = $this->get_credit_plan( $transaction->get( 'credit-plan' ) );
         $account_balance = $this->get_account_balance( $transaction->user_id );
         $credits_used    = $transaction->get_total_credits();
+        $credits_after   = false;
 
         if ( $credit_plan ) {
-            $message = sprintf(
-                'You currently have %s credits in your account. The balance after this transaction is completed successfully will be %s.',
-                $this->format_account_balance( $transaction->user_id ),
-                number_format( $account_balance + $credit_plan->credits - $credits_used )
-            );
-
-            return awpcp_print_message( $message );
+            $credits_after = number_format( $account_balance + $credit_plan->credits - $credits_used );
+        } elseif ( $credits_used ) {
+            $credits_after = number_format( $account_balance - $credits_used );
         }
 
-        if ( $credits_used ) {
-            $message = sprintf(
-                'You currently have %s credits in your account. The balance after this transaction is completed successfully will be %s.',
-                $this->format_account_balance( $transaction->user_id ),
-                number_format( $account_balance - $credits_used )
-            );
-
-            return awpcp_print_message( $message );
+        if ( $credits_after === false ) {
+            // No need to show the balance if credits are not used nor purchased in
+            // the transaction.
+            return '';
         }
 
-        // No need to show the balance if credits are not used nor purchased in
-        // the transaction.
-        return '';
+        $message = sprintf(
+            __( 'You currently have %1$s credits in your account. The balance after this transaction is completed successfully will be %2$s.', 'another-wordpress-classifieds-plugin' ),
+            $this->format_account_balance( $transaction->user_id ),
+            $credits_after
+        );
+
+        return awpcp_print_message( $message );
     }
 
     public function render_account_balance() {
