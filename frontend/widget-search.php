@@ -186,7 +186,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 		$show_keyword  = absint( $instance['show_keyword'] );
 		$show_by       = absint( $instance['show_by'] );
         $show_category = absint( $instance['show_category'] );
-        
+
         $additional_fields = apply_filters( 'awpcp-search-listings-widget-additional-form-fields', '', $instance, $this );
 
         include(AWPCP_DIR . '/frontend/templates/widget-search-form.tpl.php');

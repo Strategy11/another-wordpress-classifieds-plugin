@@ -121,7 +121,7 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
             $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox awpcp-clearfix"><div class="awpcplatestthumb awpcp-clearfix">%2$s</div><div class="awpcp-listings-widget-item--title-and-content">%3$s %4$s</div>%5$s</div></li>';
         } else {
             $html_class .= ' awpcp-listings-widget-item-without-thumbnail';
-            
+
             $template = '<li class="awpcp-listings-widget-item %1$s"><div class="awpcplatestbox awpcp-clearfix"><div class="awpcp-listings-widget-item--title-and-content">%3$s %4$s</div>%5$s</div></li>';
         }
 

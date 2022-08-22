@@ -145,7 +145,7 @@ function awpcp_redirect_canonical($redirect_url, $requested_url) {
 	// with rewrite rules is the front page
 	} else if (is_page() && !is_feed() && isset($wp_query->queried_object) &&
         'page' == get_option( 'show_on_front' ) && in_array( $wp_query->queried_object->ID, $ids ) &&
-        $wp_query->queried_object->ID == get_option( 'page_on_front' ) 
+        $wp_query->queried_object->ID == get_option( 'page_on_front' )
     ) {
         $awpcp_rewrite = true;
 	}
@@ -2275,7 +2275,7 @@ function awpcp_phpmailer() {
     global $phpmailer;
 
     // (Re)create it, if it's gone missin.
-    // Add support for WP5.5 PHPMailer changes. 
+    // Add support for WP5.5 PHPMailer changes.
     if (  version_compare( get_bloginfo('version'), '5.5', '>=' ) ) {
         if ( ! ( $phpmailer instanceof PHPMailer\PHPMailer\PHPMailer ) ) {
             require_once ABSPATH . WPINC . '/PHPMailer/PHPMailer.php';
