@@ -29,7 +29,6 @@ class AWPCP_NavXTPluginIntegration {
      */
     private $post;
 
-
     public function __construct( $listing_post_type ) {
         $this->listing_post_type = $listing_post_type;
     }

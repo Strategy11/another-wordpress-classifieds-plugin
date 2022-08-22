@@ -685,7 +685,6 @@ function awpcp_get_user_panel_url( $params=array() ) {
     return add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 }
 
-
 function awpcp_current_url() {
     return ( is_ssl() ? 'https://' : 'http://' ) . wp_strip_all_tags( wp_unslash( $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ) );
 }

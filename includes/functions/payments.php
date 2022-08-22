@@ -48,7 +48,6 @@ function awpcp_paypal_verify_received_data_with_curl($postfields='', $cainfo=tru
     return $response;
 }
 
-
 /**
  * @since 3.8.6
  */
@@ -124,7 +123,6 @@ function awpcp_paypal_verify_received_data_with_fsockopen($content, &$errors=arr
 
     return $response;
 }
-
 
 /**
  * Verify data received from PayPal IPN notifications and returns PayPal's

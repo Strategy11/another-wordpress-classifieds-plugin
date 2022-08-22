@@ -57,7 +57,6 @@ require_once AWPCP_DIR . '/includes/compatibility/class-wp-members-plugin-integr
 require_once AWPCP_DIR . '/includes/compatibility/class-seo-framework-plugin-integration.php';
 require_once AWPCP_DIR . '/includes/compatibility/class-navxt-plugin-integration.php';
 
-
 require_once AWPCP_DIR . '/includes/form-fields/class-form-field.php';
 require_once AWPCP_DIR . '/includes/form-fields/class-form-fields.php';
 require_once AWPCP_DIR . '/includes/form-fields/class-listing-form-fields.php';

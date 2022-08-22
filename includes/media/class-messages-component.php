@@ -21,7 +21,7 @@ class AWPCP_MessagesComponent {
         $component_id = uniqid();
 
         $this->javascript->set( 'messages-data-for-' . $component_id, array(
-            'channels' => $channels
+            'channels' => $channels,
         ) );
 
         return $component_id;

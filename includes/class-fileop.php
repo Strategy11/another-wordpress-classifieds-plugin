@@ -8,7 +8,7 @@
  */
 class fileop {
 
-	var $op_mode='disk';	// 'disk' or 'ftp'
+	var $op_mode = 'disk'; // 'disk' or 'ftp'
 	var $ftp_id=null;
 
 	function __construct() {
@@ -53,7 +53,6 @@ class fileop {
 		}
 	}
 
-
 	// both params should have a full basepath (for 'disk' op mode)
 	function copy($source,$destination) {
 		$myreturn=false;
@@ -68,7 +67,6 @@ class fileop {
 		}
 		return $myreturn;
 	}
-
 
 	// $source should have a full basepath (for 'disk' op mode)
 	function delete($source) {
@@ -87,7 +85,6 @@ class fileop {
 		}
 		return $myreturn;
 	}
-
 
 	// both params should have a full basepath (for 'disk' op mode)
 	function rename($source,$destination) {
@@ -254,9 +251,9 @@ class fileop {
 		$myreturn=false;
 		if (substr($source,-1)=='/') {
 			@ftp_chdir($this->ftp_id,$source);
-			$files=ftp_nlist($this->ftp_id,'-aF .');	// array or false on error. -F will append / to dirs
+			$files = ftp_nlist( $this->ftp_id, '-aF .' ); // array or false on error. -F will append / to dirs
 			if (empty($files)) {
-				$temp=ftp_rawlist($this->ftp_id,'-aF .');	// array or false on error. -F will append / to dirs
+				$temp = ftp_rawlist( $this->ftp_id, '-aF .' ); // array or false on error. -F will append / to dirs
 				if (!empty($temp)) {
 					for ($i=0;isset($temp[$i]);++$i) {
 						$files[]=preg_replace('/.*:\d\d /','',$temp[$i]);

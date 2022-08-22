@@ -3,5 +3,5 @@
 esc_html_e( 'An ad has been renewed. A copy of the details sent to the customer can be found below:', 'another-wordpress-classifieds-plugin' );
 ?>
 
-
-<?php echo $body ?>
+<?php
+echo $body;

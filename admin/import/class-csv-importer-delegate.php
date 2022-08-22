@@ -542,7 +542,7 @@ class AWPCP_CSV_Importer_Delegate {
 
         // save phone as digits.
         if (!empty($listing_data['metadata']['_awpcp_contact_phone'])) {
-             $listing_data['metadata']['_awpcp_contact_phone_number_digits'] = awpcp_get_digits_from_string( $listing_data['metadata']['_awpcp_contact_phone']);
+            $listing_data['metadata']['_awpcp_contact_phone_number_digits'] = awpcp_get_digits_from_string( $listing_data['metadata']['_awpcp_contact_phone']);
         }
 
         // If a valid payment term was found, an instance of that payment term is
@@ -696,7 +696,6 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
                     $validation_errors[] = $msg;
                 }
             }
-
 
             break;
 

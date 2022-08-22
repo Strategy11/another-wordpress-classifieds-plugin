@@ -2,7 +2,6 @@
 
 require_once AWPCP_DIR . '/includes/helpers/page.php';
 
-
 class AWPCP_AdminPage extends AWPCP_Page {
 
     protected $template = 'admin/templates/admin-page.tpl.php';
@@ -18,7 +17,6 @@ class AWPCP_AdminPage extends AWPCP_Page {
         return true;
     }
 }
-
 
 class AWPCP_AdminPageWithTable extends AWPCP_AdminPage {
 

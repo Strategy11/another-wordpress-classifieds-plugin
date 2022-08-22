@@ -412,12 +412,10 @@ function awpcp_do_placeholder_details( $ad, $placeholder ) {
     $placeholders['addetails'] = wpautop( $placeholders['addetails'] );
     $placeholders['details']   = $placeholders['addetails'];
 
-
     $replacements[ $ad->ID ] = $placeholders;
 
     return $replacements[ $ad->ID ][ $placeholder ];
 }
-
 
 /**
  * @since 3.0
@@ -439,7 +437,6 @@ function awpcp_do_placeholder_excerpt( $ad, $placeholder ) {
     return $replacements[ $placeholder ];
 }
 
-
 /**
  * @since 3.0
  */
@@ -454,14 +451,12 @@ function awpcp_do_placeholder_contact_name( $ad, $placeholder ) {
     return esc_html( stripslashes( $contact_name ) );
 }
 
-
 /**
  * @since 3.0
  */
 function awpcp_do_placeholder_website_url( $ad, $placeholder ) {
     return awpcp_listing_renderer()->get_website_url( $ad );
 }
-
 
 /**
  * @since 3.0
@@ -491,7 +486,6 @@ function awpcp_do_placeholder_website_link( $ad, $placeholder ) {
 
     return $replacements[ $placeholder ];
 }
-
 
 /**
  * @since 3.0
@@ -529,7 +523,6 @@ function awpcp_do_placeholder_price( $ad, $placeholder ) {
     return awpcp_array_data( $placeholder, '', $replacements );
 }
 
-
 /**
  * @since 3.0
  */
@@ -561,7 +554,6 @@ function awpcp_do_placeholder_dates( $ad, $placeholder ) {
     return $replacements[ $placeholder ];
 }
 
-
 /**
  * @since 3.0
  */
@@ -569,14 +561,12 @@ function awpcp_do_placeholder_images( $ad, $placeholder ) {
     return awpcp_image_placeholders()->do_image_placeholders( $ad, $placeholder );
 }
 
-
 /**
  * @since 3.0
  */
 function awpcp_do_placeholder_views( $ad, $placeholder ) {
     return $ad->ad_views;
 }
-
 
 /**
  * @since 3.0
@@ -590,7 +580,6 @@ function awpcp_do_placeholder_legacy_dates( $ad, $placeholder ) {
 
     return $replacements[ $placeholder ];
 }
-
 
 /**
  * @since 3.0
@@ -687,7 +676,6 @@ function awpcp_do_placeholder_location( $ad, $placeholder ) {
     return $replacements[ $placeholder ];
 }
 
-
 /**
  * @since 3.0
  */
@@ -712,7 +700,6 @@ function awpcp_do_placeholder_legacy_views( $ad, $placeholder ) {
     return $replacements[ $placeholder ];
 }
 
-
 /**
  * @since 3.0
  */
@@ -731,14 +718,12 @@ function awpcp_do_placeholder_extra_fields( $ad, $placeholder, $context ) {
     return $replacements[ $placeholder ];
 }
 
-
 /**
  * @since 3.0
  */
 function awpcp_do_placeholder_contact_url( $ad, $placeholder ) {
     return awpcp_get_reply_to_ad_url( $ad->ID, awpcp_listing_renderer()->get_listing_title( $ad ) );
 }
-
 
 /**
  * @since 3.0
@@ -816,7 +801,6 @@ function awpcp_do_placeholder_adsense( $ad, $placeholder ) {
     return $replacements[ $ad->ID ][ $placeholder ];
 }
 
-
 /**
  * @since 3.0
  */
@@ -830,7 +814,6 @@ function awpcp_do_placeholder_flag_link( $ad, $placeholder ) {
 
     return $replacements[ $placeholder ];
 }
-
 
 /**
  * @since 3.0
@@ -847,7 +830,6 @@ function awpcp_do_placeholder_twitter_button( $ad, $placeholder ) {
 
     return $button;
 }
-
 
 /**
  * @since 3.2.2
@@ -867,7 +849,6 @@ function awpcp_do_placeholder_twitter_button_url( $ad, $placeholder ) {
     );
 }
 
-
 /**
  * @since 3.0
  */
@@ -883,7 +864,6 @@ function awpcp_do_placeholder_facebook_button( $ad, $placeholder ) {
 
     return sprintf( $button, esc_url( $href ), esc_attr( $title ) );
 }
-
 
 /**
  * @since 3.2.2

@@ -51,8 +51,8 @@ function awpcp_calculate_end_date($increment, $period, $start_date) {
  * because the payment_status is stored in the Ad object. We need, however, to update
  * the payment_status when the Ad is placed AND renewed. ~2012-09-19
  *
- * @param $id	Ad ID.
- * @param $transaction	Payment Transaction associated to the Ad being posted
+ * @param $id          Ad ID.
+ * @param $transaction Payment Transaction associated to the Ad being posted
  * @deprecated 4.0.0    This is function is no longer used.
  */
 function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment_status=null) {
@@ -147,7 +147,6 @@ function awpcp_ad_renewed_user_email( $ad ) {
 	return $mail;
 }
 
-
 /**
  * @since 3.0.2
  * @deprecated 4.0.0    Use ListingRenewedEmailNotifications::send_admin_notification().
@@ -165,7 +164,6 @@ function awpcp_ad_renewed_admin_email( $ad, $body ) {
 
 	return $mail;
 }
-
 
 /**
  * @since 2.1.2
@@ -252,7 +250,6 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 
 	return $output;
 }
-
 
 /**
  * @since 3.0.2

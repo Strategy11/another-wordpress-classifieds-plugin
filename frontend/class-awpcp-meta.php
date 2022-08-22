@@ -230,7 +230,6 @@ class AWPCP_Meta {
         return $default;
     }
 
-
     public function generate_basic_meta_tags() {
         $metadata  = $this->get_listing_metadata();
         $meta_tags = $this->meta_tags_genertor->generate_basic_meta_tags( $metadata );

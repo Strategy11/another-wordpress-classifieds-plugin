@@ -191,7 +191,6 @@ function awpcp_calculate_end_of_renew_email_date_range_from_now() {
     return $target_date;
 }
 
-
 /**
  * Remove incomplete payment transactions
  */

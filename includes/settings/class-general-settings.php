@@ -1013,7 +1013,6 @@ class AWPCP_GeneralSettings {
         return $groups;
     }
 
-
     public function validate_group_settings( $options ) {
         if ( ! isset( $options['awpcpadminaccesslevel'] ) ) {
             return $options;

@@ -8,7 +8,6 @@
  */
 class AWPCP_ListingRenewedEmailNotifications {
 
-
     /**
      * @var object
      */

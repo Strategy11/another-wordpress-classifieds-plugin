@@ -42,7 +42,7 @@ class AWPCP_Categories_Collection {
         $category    = $this->get_category_by_id( $category_id );
 
         if ( $category === false || is_null( $category ) ) {
-            /* translators: %s the category id */
+            /* translators: %d the category id */
             $message = __( 'No category was found with ID: %d', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $category_id ) );
         }

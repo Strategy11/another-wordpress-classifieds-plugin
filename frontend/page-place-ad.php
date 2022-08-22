@@ -4,7 +4,7 @@
  *
  */
 
-require_once(AWPCP_DIR . '/includes/helpers/page.php');
+require_once AWPCP_DIR . '/includes/helpers/page.php';
 
 function awpcp_place_listing_page() {
     return new AWPCP_Place_Ad_Page(
@@ -22,7 +22,6 @@ function awpcp_place_listing_page() {
         awpcp_request()
     );
 }
-
 
 /**
  * @since  2.1.4
@@ -396,7 +395,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $payment_term = null;
         }
 
-
         // are we done here? what next?
         if ( ! empty( $category ) && ! is_null( $payment_term ) ) {
             /** @phpstan-ignore-next-line */
@@ -411,7 +409,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                 }
             }
         }
-
 
         // display initial form and show errors, if any
         $messages = $this->messages;
@@ -503,10 +500,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-
         // proceess transaction to grab Payment Method information
         $payments->set_transaction_payment_method($transaction);
-
 
         // show checkout page.
 

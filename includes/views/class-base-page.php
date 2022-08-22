@@ -2,7 +2,6 @@
 
 require_once AWPCP_DIR . '/includes/helpers/page.php';
 
-
 class AWPCP_BasePage extends AWPCP_Page {
 
     private $request_method = null;

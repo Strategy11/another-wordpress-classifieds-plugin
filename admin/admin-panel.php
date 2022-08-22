@@ -3,7 +3,7 @@
  * @package AWPCP\Admin
  */
 
-require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
+require_once AWPCP_DIR . '/admin/admin-panel-users.php';
 
 function awpcp_admin_panel() {
     return new AWPCP_AdminPanel(
@@ -648,7 +648,6 @@ class AWPCP_AdminPanel {
         die('Success!');
     }
 
-
 	public function maybe_highlight_menu() {
 		global $post;
 
@@ -759,7 +758,6 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 
 	$awpcpeditcategoryword = __("Edit Category",'another-wordpress-classifieds-plugin');
 	$awpcpdeletecategoryword = __("Delete Category",'another-wordpress-classifieds-plugin');
-
 
 	$row = '<tr>';
     $row .= '<td style="padding:5px;text-align:center;">';

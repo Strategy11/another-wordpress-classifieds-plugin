@@ -25,7 +25,6 @@ define( 'AWPCP_TABLE_ADPHOTOS', $wpdb->prefix . 'awpcp_adphotos' );
 // TODO: remove these constants after another major release (Added in 3.5.3)
 define( 'AWPCP_TABLE_PAGENAME', $wpdb->prefix . 'awpcp_pagename' );
 
-
 function awpcp_installer() {
     static $instance = null;
 
@@ -158,7 +157,7 @@ class AWPCP_Installer {
                 'rec_period' => 30,
                 'rec_increment' => 'D',
                 'buys' => 0,
-                'imagesallowed' => 6
+                'imagesallowed' => 6,
             );
 
             $wpdb->insert(AWPCP_TABLE_ADFEES, $data);
@@ -341,7 +340,8 @@ class AWPCP_Installer {
             'browsecatspagename' => 'browse-categories-page-name',
             'categoriesviewpagename' => 'view-categories-page-name',
             'paymentthankyoupagename' => 'payment-thankyou-page-name',
-            'paymentcancelpagename' => 'payment-cancel-page-name');
+            'paymentcancelpagename'   => 'payment-cancel-page-name',
+        );
 
         // Users who upgraded from 1.8.9.4 to 2.0.4 have an installation
         // with no AWPCP pages. The pages exist, but are not recognized
@@ -1158,8 +1158,6 @@ class AWPCP_Installer {
     private function enable_routine_to_add_awpcp_contact_phone_number_digits() {
         $this->upgrade_tasks->enable_upgrade_task( 'awpcp-add-contact-phone-number-digits' );
     }
-
-
 
     /**
      * Increase pending data and validation errors stored by mistake.

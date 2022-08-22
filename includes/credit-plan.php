@@ -12,7 +12,7 @@ class AWPCP_CreditPlan {
                 'credits' => null,
                 'price' => null,
                 'created' => null,
-                'updated' => null
+                'updated'     => null,
             );
         }
 
@@ -33,7 +33,7 @@ class AWPCP_CreditPlan {
             'orderby' => 'name',
             'order' => 'asc',
             'offset' => 0,
-            'limit' => 0
+            'limit'   => 0,
         )));
 
         $query = 'SELECT %s FROM ' . AWPCP_TABLE_CREDIT_PLANS . ' ';

@@ -9,7 +9,6 @@
 class AWPCP_DisplaySettings {
     private $settings_manager;
 
-
     public function __construct( $settings_manager ) {
         $this->settings_manager = $settings_manager;
     }
