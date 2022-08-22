@@ -262,7 +262,7 @@ function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_Listing
                 'key' => '_awpcp_verification_emails_sent',
                 'value' => 1,
                 'compare' => '<=',
-                'type' => 'UNSIGNED'
+                'type'    => 'UNSIGNED',
             ),
         ),
     ) );

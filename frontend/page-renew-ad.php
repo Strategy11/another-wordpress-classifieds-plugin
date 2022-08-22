@@ -3,7 +3,7 @@
  * @package AWPCP\Frontend
  */
 
-require_once(AWPCP_DIR . '/frontend/page-place-ad.php');
+require_once AWPCP_DIR . '/frontend/page-place-ad.php';
 
 function awpcp_renew_listing_page() {
     return new AWPCP_RenewAdPage(
@@ -310,7 +310,7 @@ class AWPCP_RenewAdPageImplementation {
 
             'messages' => $messages,
             'form_errors' => $form_errors,
-            'transaction_errors' => $transaction_errors
+            'transaction_errors'         => $transaction_errors,
         );
 
         $template = AWPCP_DIR . '/frontend/templates/page-renew-ad-order-step.tpl.php';
@@ -366,7 +366,7 @@ class AWPCP_RenewAdPageImplementation {
             'payments' => $this->payments,
             'transaction' => $transaction,
             'messages' => $this->messages,
-            'hidden' => array('step' => 'checkout')
+            'hidden'      => array( 'step' => 'checkout' ),
         );
 
         // here we reuse the Place Ad template, because is generic enough for our needs
@@ -387,7 +387,7 @@ class AWPCP_RenewAdPageImplementation {
             'transaction' => $transaction,
             'messages' => $this->messages,
             'url' => $this->page->url(),
-            'hidden' => array('step' => 'finish')
+            'hidden'      => array( 'step' => 'finish' ),
         );
 
         // here we reuse the Place Ad template, because is generic enough for our needs

@@ -339,7 +339,7 @@ function awpcp_render_listings_items( $listings, $context, $options = array() ) 
 	foreach ( $listings as $i => $listing ) {
 		$rendered_listing = awpcp_do_placeholders( $listing, $layout, $context );
 		$rendered_listing = str_replace( "\$awpcpdisplayaditems", $parity[$i % 2], $rendered_listing );
-		
+
 		if ( 'latest-listings-shortcode' === $context && ! empty( $options['featured_on_top'] ) && $listing_renderer->is_featured( $listing ) ) {
 			$featured[] = apply_filters( 'awpcp-render-listing-item', $rendered_listing, $listing, $i + 1 );
 			continue;

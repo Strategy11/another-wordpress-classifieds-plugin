@@ -320,7 +320,7 @@ function awpcp_time_formats() {
 			's' => 'ss',
 			'T' => null,
 			'c' => null,
-			'r' => null
+			'r' => null,
 		);
 	}
 
@@ -2176,7 +2176,7 @@ function awpcp_uploaded_file_error($file) {
 		UPLOAD_ERR_NO_FILE      => __("No file was uploaded.", 'another-wordpress-classifieds-plugin'),
 		UPLOAD_ERR_NO_TMP_DIR   => __("Missing temporary directory.", 'another-wordpress-classifieds-plugin'),
 		UPLOAD_ERR_CANT_WRITE   => __("Can't write file to disk.", 'another-wordpress-classifieds-plugin'),
-		UPLOAD_ERR_EXTENSION    => __("The file upload was stopped by extension.", 'another-wordpress-classifieds-plugin')
+		UPLOAD_ERR_EXTENSION    => __( 'The file upload was stopped by extension.', 'another-wordpress-classifieds-plugin' ),
 	);
 	$error = sanitize_text_field( wp_unslash( $file['error'] ) );
 	return array( $error, $upload_errors[ $error ] );
@@ -2391,7 +2391,7 @@ function awpcp_moderators_email_to() {
 
     $users = awpcp_users_collection()->find( array(
         'fields' => array( 'public_name', 'user_email' ),
-        'role' => 'awpcp-moderator'
+        'role'   => 'awpcp-moderator',
     ) );
 
     foreach ( $users as $user ) {
@@ -2944,8 +2944,7 @@ function create_ad_postedby_list($name) {
     return awpcp_html_options( array( 'current-value' => $name, 'options' => array_combine( $names, $names ) ) );
 }
 
-function awpcp_strip_html_tags( $text )
-{
+function awpcp_strip_html_tags( $text ) {
     // Remove invisible content
     $text = preg_replace(
 		array(
@@ -3025,7 +3024,7 @@ function awpcp_validip($ip) {
 			array( '172.16.0.0', '172.31.255.255' ),
 			array( '192.0.2.0', '192.0.2.255' ),
 			array( '192.168.0.0', '192.168.255.255' ),
-			array( '255.255.255.0', '255.255.255.255' )
+			array( '255.255.255.0', '255.255.255.255' ),
 		);
 
         foreach ($reserved_ips as $r) {

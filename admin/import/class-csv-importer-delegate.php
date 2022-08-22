@@ -216,7 +216,7 @@ class AWPCP_CSV_Importer_Delegate {
             return (object) array(
                 'ID' => $user_data['user']->ID,
                 'created' => true,
-                'password' => $user_data['password']
+                'password' => $user_data['password'],
             );
         }
 

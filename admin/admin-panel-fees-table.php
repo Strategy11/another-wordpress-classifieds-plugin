@@ -83,7 +83,7 @@ class AWPCP_FeesTable extends WP_List_Table {
             'orderby' => $orderby,
             'order' => $params['order'],
             'offset' => $this->items_per_page * ($params['paged'] - 1),
-            'limit' => $this->items_per_page
+            'limit'   => $this->items_per_page,
         );
     }
 
@@ -95,7 +95,7 @@ class AWPCP_FeesTable extends WP_List_Table {
 
         $this->set_pagination_args(array(
             'total_items' => $total_items,
-            'per_page' => $this->items_per_page
+            'per_page'    => $this->items_per_page,
         ));
 
         $this->_column_headers = array($this->get_columns(), array(), $this->get_sortable_columns());
@@ -249,7 +249,7 @@ class AWPCP_FeesTable extends WP_List_Table {
         }
 
         $categories = awpcp_categories_collection()->find_categories(array(
-            'include' => $item->categories
+            'include' => $item->categories,
         ));
 
         return awpcp_get_comma_separated_categories_list( $categories );

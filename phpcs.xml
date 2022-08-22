@@ -35,6 +35,7 @@
         <exclude name="WordPress.Security.ValidatedSanitizedInput.InputNotValidated" />
         <exclude name="WordPress.Security.NonceVerification.Missing" />
         <exclude name="WordPress.WP.I18n.UnorderedPlaceholdersText" />
+        <exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
         <exclude name="PSR2.Classes.PropertyDeclaration" />
         <exclude name="Squiz.Scope.MethodScope" />
         <exclude name="WordPress.Security.EscapeOutput.DeprecatedWhitelistCommentFound" />
@@ -70,13 +71,11 @@
         <exclude name="Generic.Formatting.DisallowMultipleStatements.SameLine" />
         <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
         <exclude name="Squiz.Strings.DoubleQuoteUsage.NotRequired" />
-        <exclude name="Squiz.Strings.ConcatenationSpacing.PaddingFound" />
         <exclude name="WordPress.WhiteSpace.OperatorSpacing.SpacingBefore" />
         <exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
         <exclude name="Squiz.WhiteSpace.LanguageConstructSpacing.IncorrectSingle" />
         <exclude name="WordPress.PHP.IniSet.display_errors_Blacklisted" />
         <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedCatch" />
-
         <exclude name="Squiz.Commenting.InlineComment" />
     </rule>
 

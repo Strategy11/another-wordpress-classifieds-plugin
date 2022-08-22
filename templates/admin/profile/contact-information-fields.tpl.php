@@ -29,12 +29,14 @@
 		'maxRegions' => 1,
 	);
 
-	$selected_region = array( array(
-		'country' => awpcp_array_data( 'country', '', $profile ),
-		'state' => awpcp_array_data( 'state', '', $profile ),
-		'city' => awpcp_array_data( 'city', '', $profile ),
-		'county' => awpcp_array_data( 'county', '', $profile ),
-	) );
+	$selected_region = array(
+		array(
+			'country' => awpcp_array_data( 'country', '', $profile ),
+			'state' => awpcp_array_data( 'state', '', $profile ),
+			'city' => awpcp_array_data( 'city', '', $profile ),
+			'county' => awpcp_array_data( 'county', '', $profile ),
+		)
+	);
 
 	$selector = awpcp_multiple_region_selector_with_template( $selected_region, $selector_options, 'form-table' );
 

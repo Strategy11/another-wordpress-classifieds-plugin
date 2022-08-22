@@ -10,7 +10,7 @@ class AWPCP_Admin_Page_URL_Builder {
         'action2', 'action', // action and bulk actions
         'selected', // selected rows for bulk actions
         '_wpnonce',
-        '_wp_http_referer'
+        '_wp_http_referer',
     );
 
     public function set_blacklisted_params( $blacklisted_params ) {
