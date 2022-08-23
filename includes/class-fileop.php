@@ -41,7 +41,7 @@ class fileop {
 		if ($this->op_mode=='disk') {
 			$myreturn=@chmod($file,$mode);
 		} elseif ($this->op_mode=='ftp') {
-			$file=str_replace(_BASEPATH_.'/',_FTPPATH_,$file);
+			$file   = str_replace( _BASEPATH_ . '/', _FTPPATH_, $file );
 			$old_de=ini_get('display_errors');
 			ini_set('display_errors',0);
 			if (function_exists('ftp_chmod')) {
@@ -59,7 +59,7 @@ class fileop {
 		if ($this->op_mode=='disk') {
 			$myreturn=$this->_disk_copy($source,$destination);
 		} elseif ($this->op_mode=='ftp') {
-			$destination=str_replace(_BASEPATH_.'/',_FTPPATH_,$destination);
+			$destination = str_replace( _BASEPATH_ . '/', _FTPPATH_, $destination );
 			$old_de=ini_get('display_errors');
 			ini_set('display_errors',0);
 			$myreturn=$this->_ftp_copy($source,$destination);
@@ -77,7 +77,7 @@ class fileop {
 			if (is_dir($source) && substr($source,-1)!='/') {
 				$source.='/';
 			}
-			$source=str_replace(_BASEPATH_.'/',_FTPPATH_,$source);
+			$source = str_replace( _BASEPATH_ . '/', _FTPPATH_, $source );
 			$old_de=ini_get('display_errors');
 			ini_set('display_errors',0);
 			$myreturn=$this->_ftp_delete($source);
@@ -92,8 +92,8 @@ class fileop {
 		if ($this->op_mode=='disk') {
 			$myreturn=@rename($source,$destination);
 		} elseif ($this->op_mode=='ftp') {
-			$source=str_replace(_BASEPATH_.'/',_FTPPATH_,$source);
-			$destination=str_replace(_BASEPATH_.'/',_FTPPATH_,$destination);
+			$source      = str_replace( _BASEPATH_ . '/', _FTPPATH_, $source );
+			$destination = str_replace( _BASEPATH_ . '/', _FTPPATH_, $destination );
 			$old_de=ini_get('display_errors');
 			ini_set('display_errors',0);
 			$myreturn=@ftp_rename($this->ftp_id,$source,$destination);
@@ -126,8 +126,8 @@ class fileop {
 				}
 			}
 		} elseif ($this->op_mode=='ftp') {
-			$myfilename=str_replace(_BASEPATH_.'/',_FTPPATH_,$myfilename);
-			$tmpfname=tempnam(_BASEPATH_.'/tmp','ftp');
+			$myfilename = str_replace( _BASEPATH_ . '/', _FTPPATH_, $myfilename );
+			$tmpfname   = tempnam( _BASEPATH_ . '/tmp', 'ftp' );
 			$temp=fopen($tmpfname,'wb+');
 			fwrite($temp,$mydata);
 			rewind($temp);
@@ -158,7 +158,7 @@ class fileop {
 	function backup_file($myfilename) {
 		$ext=substr($myfilename,strrpos($myfilename,'.'));
 		$basename=substr($myfilename,0,strlen($myfilename)-strlen($ext));
-		$backupfile=$basename.'~'.$ext;
+		$backupfile = $basename . '~' . $ext;
 		if (is_file($backupfile)) {
 			$this->delete($backupfile);
 		}
@@ -171,7 +171,7 @@ class fileop {
 			if ($this->op_mode=='disk') {
 				$myreturn=@mkdir($fullpath,0755);
 			} elseif ($this->op_mode=='ftp') {
-				$ftp_fullpath=str_replace(_BASEPATH_.'/',_FTPPATH_,$fullpath);
+				$ftp_fullpath = str_replace( _BASEPATH_ . '/', _FTPPATH_, $fullpath );
 				$old_de=ini_get('display_errors');
 				ini_set('display_errors',0);
 				$myreturn=@ftp_mkdir($this->ftp_id,$ftp_fullpath);
@@ -192,7 +192,7 @@ class fileop {
 			$d=dir($source);
 			while ($file=$d->read()) {
 				if ($file!='.' && $file!='..') {
-					$myreturn=$this->_disk_copy($source.'/'.$file, $destination.'/'.$file);
+					$myreturn = $this->_disk_copy( $source . '/' . $file, $destination . '/' . $file );
 				}
 			}
 			$d->close();
@@ -215,7 +215,7 @@ class fileop {
 			$d=dir($source);
 			while ($file=$d->read()) {
 				if ($file!='.' && $file!='..') {
-					$myreturn=$this->_ftp_copy($source.'/'.$file, $destination.'/'.$file);
+					$myreturn = $this->_ftp_copy( $source . '/' . $file, $destination . '/' . $file );
 				}
 			}
 			$d->close();
@@ -234,7 +234,7 @@ class fileop {
 			$d=dir($source);
 			while ($file=$d->read()) {
 				if ($file!='.' && $file!='..') {
-					$myreturn=$this->_disk_delete($source.'/'.$file);
+					$myreturn = $this->_disk_delete( $source . '/' . $file );
 				}
 			}
 			$d->close();
@@ -263,7 +263,7 @@ class fileop {
 			if ($files!==false) {
 				for ($i=0;isset($files[$i]);++$i) {
 					if ($files[$i]!='./' && $files[$i]!='../') {
-						$myreturn=$this->_ftp_delete($source.'/'.$files[$i]);
+						$myreturn = $this->_ftp_delete( $source . '/' . $files[ $i ] );
 					}
 				}
 				$myreturn=@ftp_rmdir($this->ftp_id,$source);

@@ -117,7 +117,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 
         echo '<div class="awpcp-search-listings-widget">';
 		echo $before_widget . $before_title . $title . $after_title;
-		echo '<form method=\'get\' action="'.url_searchads().'">';
+		echo '<form method="get" action="' . url_searchads() . '">';
 
         $url_params = wp_parse_args( parse_url( url_searchads(), PHP_URL_QUERY ) );
         foreach ( $url_params as $param => $value ) {

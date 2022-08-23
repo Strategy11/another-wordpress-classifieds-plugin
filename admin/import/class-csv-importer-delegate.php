@@ -415,7 +415,7 @@ class AWPCP_CSV_Importer_Delegate {
 			$val = str_replace( '-', '/', $val );
 			$bits = explode( '/', $val );
 			if ( count( $bits ) === 3 ) {
-				$val  = $bits[1] . '/' . $bits[0] .'/'. $bits[2];
+				$val = $bits[1] . '/' . $bits[0] . '/' . $bits[2];
 			}
 		}
 

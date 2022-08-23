@@ -35,7 +35,7 @@
 			'state' => awpcp_array_data( 'state', '', $profile ),
 			'city' => awpcp_array_data( 'city', '', $profile ),
 			'county' => awpcp_array_data( 'county', '', $profile ),
-		)
+		),
 	);
 
 	$selector = awpcp_multiple_region_selector_with_template( $selected_region, $selector_options, 'form-table' );

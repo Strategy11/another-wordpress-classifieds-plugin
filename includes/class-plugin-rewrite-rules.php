@@ -153,7 +153,7 @@ class AWPCP_Plugin_Rewrite_Rules {
 
         if ( $view_categories ) {
             array_unshift( $rewrite_rules['main-page-name'], array(
-                'regex' => '(<page-uri>)/('.$view_categories.')',
+                'regex' => '(<page-uri>)/(' . $view_categories . ')',
                 'redirect' => 'index.php?pagename=$matches[1]&layout=2',
                 'position' => 'top',
             ) );

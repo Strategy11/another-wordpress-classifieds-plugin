@@ -214,7 +214,7 @@ function awpcp_payfast_verify_received_data_with_curl( $content = '', $cainfo = 
     curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 2 );
     curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
 
-    curl_setopt( $ch, CURLOPT_URL, 'https://'. $host .'/eng/query/validate' );
+    curl_setopt( $ch, CURLOPT_URL, 'https://' . $host . '/eng/query/validate' );
     curl_setopt( $ch, CURLOPT_POST, true );
     curl_setopt( $ch, CURLOPT_POSTFIELDS, $content );
     curl_setopt( $ch, CURLOPT_TIMEOUT, 30 );
@@ -256,7 +256,7 @@ function awpcp_payfast_verify_received_data_with_fsockopen( $content ) {
     $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
     $header .= 'Content-Length: ' . strlen( $content ) . "\r\n\r\n";
 
-    $socket = fsockopen( 'ssl://'. $host, 443, $errno, $errstr, 30 );
+    $socket = fsockopen( 'ssl://' . $host, 443, $errno, $errstr, 30 );
 
     fputs( $socket, $header . $content );
 
