@@ -216,7 +216,7 @@ class AWPCP_CSV_Importer_Delegate {
             return (object) array(
                 'ID' => $user_data['user']->ID,
                 'created' => true,
-                'password' => $user_data['password']
+                'password' => $user_data['password'],
             );
         }
 
@@ -415,7 +415,7 @@ class AWPCP_CSV_Importer_Delegate {
 			$val = str_replace( '-', '/', $val );
 			$bits = explode( '/', $val );
 			if ( count( $bits ) === 3 ) {
-				$val  = $bits[1] . '/' . $bits[0] .'/'. $bits[2];
+				$val = $bits[1] . '/' . $bits[0] . '/' . $bits[2];
 			}
 		}
 
@@ -542,7 +542,7 @@ class AWPCP_CSV_Importer_Delegate {
 
         // save phone as digits.
         if (!empty($listing_data['metadata']['_awpcp_contact_phone'])) {
-             $listing_data['metadata']['_awpcp_contact_phone_number_digits'] = awpcp_get_digits_from_string( $listing_data['metadata']['_awpcp_contact_phone']);
+            $listing_data['metadata']['_awpcp_contact_phone_number_digits'] = awpcp_get_digits_from_string( $listing_data['metadata']['_awpcp_contact_phone']);
         }
 
         // If a valid payment term was found, an instance of that payment term is
@@ -696,7 +696,6 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
                     $validation_errors[] = $msg;
                 }
             }
-
 
             break;
 

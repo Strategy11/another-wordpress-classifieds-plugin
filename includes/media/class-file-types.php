@@ -39,7 +39,7 @@ class AWPCP_FileTypes {
                     'extensions' => array( 'gif' ),
                     'mime_types' => array( 'image/gif' ),
                 ),
-            )
+            ),
         );
     }
 
@@ -117,7 +117,6 @@ class AWPCP_FileTypes {
     public function get_file_mime_types_in_group( $group ) {
         return $this->get_mime_types( $this->get_file_types_in_group( $group ) );
     }
-
 
     public function get_video_mime_types() {
         return $this->get_mime_types( $this->get_file_types_in_group( 'video' ) );

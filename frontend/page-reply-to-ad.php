@@ -3,7 +3,7 @@
  * @package AWPCP\Frontend
  */
 
-require_once(AWPCP_DIR . '/includes/helpers/page.php');
+require_once AWPCP_DIR . '/includes/helpers/page.php';
 
 function awpcp_reply_to_listing_page() {
     return new AWPCP_ReplyToAdPage(
@@ -220,7 +220,6 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
         $sender_name = stripslashes($form['awpcp_sender_name']);
         $sender_email = stripslashes($form['awpcp_sender_email']);
         $message = awpcp_strip_html_tags(stripslashes($form['awpcp_contact_message']));
-
 
         if (get_awpcp_option('usesenderemailinsteadofadmin')) {
             $sender = awpcp_strip_html_tags($sender_name);

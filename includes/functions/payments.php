@@ -12,9 +12,9 @@
  */
 function awpcp_paypal_verify_received_data_with_curl($postfields='', $cainfo=true, &$errors=array()) {
     if (get_awpcp_option('paylivetestmode') == 1) {
-        $paypal_url = "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr";
+        $paypal_url = 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr';
     } else {
-        $paypal_url = "https://ipnpb.paypal.com/cgi-bin/webscr";
+        $paypal_url = 'https://ipnpb.paypal.com/cgi-bin/webscr';
     }
 
     $ch = curl_init($paypal_url);
@@ -48,15 +48,14 @@ function awpcp_paypal_verify_received_data_with_curl($postfields='', $cainfo=tru
     return $response;
 }
 
-
 /**
  * @since 3.8.6
  */
 function awpcp_paypal_verify_received_data_wp_remote( $postfields='', &$errors = array() ) {
     if ( get_awpcp_option( 'paylivetestmode' ) == 1 ) {
-        $paypal_url = "https://ipnpb.sandbox.paypal.com/cgi-bin/webscr";
+        $paypal_url = 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr';
     } else {
-        $paypal_url = "https://ipnpb.paypal.com/cgi-bin/webscr";
+        $paypal_url = 'https://ipnpb.paypal.com/cgi-bin/webscr';
     }
 
     $params = array(
@@ -91,9 +90,9 @@ function awpcp_paypal_verify_received_data_wp_remote( $postfields='', &$errors =
  */
 function awpcp_paypal_verify_received_data_with_fsockopen($content, &$errors=array()) {
     if (get_awpcp_option('paylivetestmode') == 1) {
-        $host = "ipnpb.sandbox.paypal.com";
+        $host = 'ipnpb.sandbox.paypal.com';
     } else {
-        $host = "ipnpb.paypal.com";
+        $host = 'ipnpb.paypal.com';
     }
 
     $response = 'ERROR';
@@ -103,7 +102,7 @@ function awpcp_paypal_verify_received_data_with_fsockopen($content, &$errors=arr
     $header.= "Host: $host\r\n";
     $header.= "Connection: close\r\n";
     $header.= "Content-Type: application/x-www-form-urlencoded\r\n";
-    $header.= "Content-Length: " . strlen($content) . "\r\n\r\n";
+    $header.= 'Content-Length: ' . strlen($content) . "\r\n\r\n";
     $fp = fsockopen("ssl://$host", 443, $errno, $errstr, 30);
 
     if ($fp) {
@@ -111,7 +110,7 @@ function awpcp_paypal_verify_received_data_with_fsockopen($content, &$errors=arr
 
         while(!feof($fp)) {
             $line = fgets($fp, 1024);
-            if (strcasecmp($line, "VERIFIED") == 0 || strcasecmp($line, "INVALID") == 0) {
+            if ( strcasecmp( $line, 'VERIFIED' ) == 0 || strcasecmp( $line, 'INVALID' ) == 0 ) {
                 $response = $line;
                 break;
             }
@@ -124,7 +123,6 @@ function awpcp_paypal_verify_received_data_with_fsockopen($content, &$errors=arr
 
     return $response;
 }
-
 
 /**
  * Verify data received from PayPal IPN notifications and returns PayPal's
@@ -216,7 +214,7 @@ function awpcp_payfast_verify_received_data_with_curl( $content = '', $cainfo = 
     curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 2 );
     curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
 
-    curl_setopt( $ch, CURLOPT_URL, 'https://'. $host .'/eng/query/validate' );
+    curl_setopt( $ch, CURLOPT_URL, 'https://' . $host . '/eng/query/validate' );
     curl_setopt( $ch, CURLOPT_POST, true );
     curl_setopt( $ch, CURLOPT_POSTFIELDS, $content );
     curl_setopt( $ch, CURLOPT_TIMEOUT, 30 );
@@ -253,12 +251,12 @@ function awpcp_payfast_verify_received_data_with_fsockopen( $content ) {
     $response = '';
 
     $header = "POST /eng/query/validate HTTP/1.0\r\n";
-    $header .= "Host: ". $host ."\r\n";
+    $header .= 'Host: ' . $host . "\r\n";
     $header .= "User-Agent: Another WordPress Classifieds Plugin\r\n";
     $header .= "Content-Type: application/x-www-form-urlencoded\r\n";
-    $header .= "Content-Length: " . strlen( $content ) . "\r\n\r\n";
+    $header .= 'Content-Length: ' . strlen( $content ) . "\r\n\r\n";
 
-    $socket = fsockopen( 'ssl://'. $host, 443, $errno, $errstr, 30 );
+    $socket = fsockopen( 'ssl://' . $host, 443, $errno, $errstr, 30 );
 
     fputs( $socket, $header . $content );
 
@@ -306,7 +304,7 @@ function awpcp_payment_failed_email($transaction, $message='') {
 
     $mail = new AWPCP_Email;
     $mail->to[] = awpcp_admin_email_to();
-    $mail->subject = __("Customer attempt to pay has failed", 'another-wordpress-classifieds-plugin');
+    $mail->subject = __( 'Customer attempt to pay has failed', 'another-wordpress-classifieds-plugin');
 
     $template = AWPCP_DIR . '/frontend/templates/email-abort-payment-admin.tpl.php';
     $mail->prepare($template, compact('message', 'user', 'transaction'));

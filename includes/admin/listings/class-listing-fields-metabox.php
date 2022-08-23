@@ -211,7 +211,6 @@ class AWPCP_ListingFieldsMetabox {
         $this->save_or_store_errors( $post, $data, $errors );
     }
 
-
     /**
      * @param object $post      An instance of WP Post.
      * @param array  $data      An array of data.

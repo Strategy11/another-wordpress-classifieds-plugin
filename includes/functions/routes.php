@@ -369,7 +369,7 @@ function awpcp_get_view_categories_url() {
         $view_categories_page_name = get_awpcp_option( 'view-categories-page-name' );
         $view_categories_page_slug = sanitize_title( $view_categories_page_name );
 
-        $pagename = sprintf( "%s/%s", get_page_uri( $main_page_id ), $view_categories_page_slug );
+        $pagename = sprintf( '%s/%s', get_page_uri( $main_page_id ), $view_categories_page_slug );
         $url = str_replace( '%pagename%', $pagename, $base_url );
     } else {
         $url = add_query_arg( 'layout', 2, $base_url );
@@ -578,7 +578,7 @@ function awpcp_get_reply_to_ad_url($ad_id, $ad_title=null) {
     }
 
     if ( $use_seo_friendly_urls && get_option( 'permalink_structure' ) ) {
-        $pagename = sprintf( "%s/%d/%s", get_page_uri( $page_id ), $ad_id, $title );
+        $pagename = sprintf( '%s/%d/%s', get_page_uri( $page_id ), $ad_id, $title );
         $url = str_replace( '%pagename%', $pagename, $base_url );
     } else {
         $base_url = user_trailingslashit($base_url);
@@ -684,7 +684,6 @@ function awpcp_get_admin_form_fields_url() {
 function awpcp_get_user_panel_url( $params=array() ) {
     return add_query_arg( urlencode_deep( $params ), awpcp_get_admin_listings_url() );
 }
-
 
 function awpcp_current_url() {
     return ( is_ssl() ? 'https://' : 'http://' ) . wp_strip_all_tags( wp_unslash( $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ) );

@@ -45,7 +45,7 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
             'orderby' => $orderby,
             'order' => $params['order'],
             'offset' => $this->items_per_page * ( absint( $params['paged'] ) - 1),
-            'limit' => $this->items_per_page
+            'limit'   => $this->items_per_page,
         );
     }
 
@@ -56,7 +56,7 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
 
         $this->set_pagination_args(array(
             'total_items' => $this->total_items,
-            'per_page' => $this->items_per_page
+            'per_page'    => $this->items_per_page,
         ));
 
         $this->_column_headers = array($this->get_columns(), array(), $this->get_sortable_columns());

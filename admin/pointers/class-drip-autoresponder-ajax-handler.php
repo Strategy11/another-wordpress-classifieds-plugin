@@ -102,7 +102,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
                     'event' => 'awpcp-autoresponder-confirmation-dismissed',
                     'elementClass' => 'button',
                     'elementCSS' => array(
-                        'marginLeft' => '10px'
+                        'marginLeft' => '10px',
                     ),
                 ),
             ),

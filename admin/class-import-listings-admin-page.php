@@ -357,7 +357,7 @@ class AWPCP_ImportListingsAdminPage {
 
         $this->javascript->localize( 'csv-import-session', array(
             'progress-report' => __( '(<percentage>) <number-of-rows-processed> of <number-of-rows> rows processed. <number-of-rows-imported> rows imported and <number-of-rows-rejected> rows rejected.', 'another-wordpress-classifieds-plugin' ),
-            'message-description' => _x( '<message-type> in line <message-line>', 'description for messages used to show feedback for the Import Listings operation', 'another-wordpress-classifieds-plugin' )
+            'message-description' => _x( '<message-type> in line <message-line>', 'description for messages used to show feedback for the Import Listings operation', 'another-wordpress-classifieds-plugin' ),
         ) );
 
         $is_test_mode_enabled = $import_session->is_test_mode_enabled();

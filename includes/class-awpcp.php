@@ -184,8 +184,11 @@ class AWPCP {
         // some upgrade operations can't be done in background.
         // if one those is pending, we will disable all other features
         // until the user executes the upgrade operaton
-        $has_pending_blocking_manual_upgrades = $this->upgrade_tasks->has_pending_tasks( array(
-            'context' => 'plugin', 'blocking' => true )
+        $has_pending_blocking_manual_upgrades = $this->upgrade_tasks->has_pending_tasks(
+            array(
+                'context'  => 'plugin',
+                'blocking' => true,
+            )
         );
 
         if ( ! $has_pending_blocking_manual_upgrades ) {
@@ -375,7 +378,6 @@ class AWPCP {
         add_action( 'personal_options_update', array( $contact_information_controller, 'save_contact_information' ) );
 
         add_filter( 'awpcp-listing-actions', array( $this, 'register_listing_actions' ), 10, 2 );
-
 
         // load resources required both in front end and admin screens, but not during ajax calls.
         if ( ! wp_doing_ajax() ) {
@@ -867,7 +869,7 @@ class AWPCP {
                     'url' => 'https://awpcp.com/downloads/subscriptions-module/?ref=panel',
                     'installed' => defined( 'AWPCP_SUBSCRIPTIONS_MODULE' ),
                     'version' => 'AWPCP_SUBSCRIPTIONS_MODULE_DB_VERSION',
-                    'required' => '4.0.1'
+                    'required'  => '4.0.1',
                 ),
                 'videos' => array(
                     'name' => __( 'Videos', 'another-wordpress-classifieds-plugin' ),
@@ -1063,12 +1065,12 @@ class AWPCP {
             true
         );
 
-       /*
-        * If WooCommerce 3.2.0 or newer is active, we use their fork of select2
-        * to avoid conflicts.
-        *
-        * See https://github.com/woocommerce/woocommerce/pull/15792
-        */
+        /**
+         * If WooCommerce 3.2.0 or newer is active, we use their fork of select2
+         * to avoid conflicts.
+         *
+         * See https://github.com/woocommerce/woocommerce/pull/15792
+         */
         if ( awpcp_should_register_select2_script() ) {
             wp_register_style(
                 'select2',
@@ -1124,7 +1126,7 @@ class AWPCP {
                 'underscore',
                 'awpcp-knockout',
                 awpcp_get_select2_script_handle(),
-                'breakpoints.js'
+                'breakpoints.js',
             ],
             $awpcp_db_version,
             true
@@ -1200,9 +1202,7 @@ class AWPCP {
         wp_register_script(
             'awpcp-admin-export',
             "{$js}/admin-export.js",
-            array(
-                'awpcp'
-            ),
+            array( 'awpcp' ),
             $awpcp_db_version,
             true
         );
@@ -1230,7 +1230,7 @@ class AWPCP {
             array(
                 'awpcp',
                 'awpcp-knockout-progress',
-                'awpcp-moment-with-locales'
+                'awpcp-moment-with-locales',
             ),
             $awpcp_db_version,
             true
@@ -1458,7 +1458,7 @@ class AWPCP {
             // 'dateStatus' => _x( 'Select DD, M d', '[UI Datepicker] Status text for the date selection', 'another-wordpress-classifieds-plugin' ),
             'firstDay' => intval( _x( '0', '[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ...', 'another-wordpress-classifieds-plugin' ) ),
             // 'initStatus' => _x( 'Select a date', '[UI Datepicker] Initial Status text on opening', 'another-wordpress-classifieds-plugin' ),
-            'isRTL' => $wp_locale->text_direction == 'ltr' ? false : true // True if right-to-left language, false if left-to-right
+            'isRTL' => $wp_locale->text_direction == 'ltr' ? false : true, // True if right-to-left language, false if left-to-right
         ) );
 
         $this->js->localize( 'media-uploader-beforeunload', array(
@@ -1682,7 +1682,6 @@ class AWPCP {
 
         return apply_filters( 'awpcp_container_configurations', $configurations );
     }
-
 
     /**------------------------------------------------------------------------
      * Payment Transaction Integration

@@ -101,9 +101,9 @@ class AWPCP_PageTitleBuilder {
         $title = trim($title, " $sep");
 
         if ($seplocation == 'right') {
-            $title = sprintf( "%s %s %s%s%s", $page_title, $sep, $title, $name, $appendix );
+            $title = sprintf( '%s %s %s%s%s', $page_title, $sep, $title, $name, $appendix );
         } else {
-            $title = sprintf( "%s%s%s %s %s", $appendix, $name, $title, $sep, $page_title );
+            $title = sprintf( '%s%s%s %s %s', $appendix, $name, $title, $sep, $page_title );
         }
 
         return $title;
@@ -162,7 +162,7 @@ class AWPCP_PageTitleBuilder {
         return array(
             'page_title' => $page_title,
             'blog_name' => $blog_name,
-            'seplocation' => $result['name_position']
+            'seplocation' => $result['name_position'],
         );
     }
 

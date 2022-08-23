@@ -190,7 +190,7 @@ class AWPCP_RolesAndCapabilities {
         // If the current user is being setup before the "init" action has fired,
         // strange (and difficult to debug) role/capability issues will occur.
         if ( ! did_action( 'set_current_user' ) ) {
-            _doing_it_wrong( __FUNCTION__, "Trying to call current_user_is_*() before the current user has been set.", '3.3.1' );
+            _doing_it_wrong( __FUNCTION__, 'Trying to call current_user_is_*() before the current user has been set.', '3.3.1' );
         }
 
         return $this->user_can( wp_get_current_user(), $capabilities );

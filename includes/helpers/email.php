@@ -51,7 +51,7 @@ class AWPCP_Email {
         $sanitized_headers = array();
 
         foreach ($headers as $k => $v) {
-            $sanitized_headers[] = sprintf( "%s: %s", $k, str_replace( "\n", '', $v ) );
+            $sanitized_headers[] = sprintf( '%s: %s', $k, str_replace( "\n", '', $v ) );
         }
 
         return $sanitized_headers;

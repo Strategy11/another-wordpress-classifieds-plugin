@@ -177,7 +177,7 @@ class AWPCP_Payment_Terms_List {
 
     private function get_number_of_categories_allowed_feature_description( $payment_term ) {
         $attrs = $this->get_payment_term_attributes($payment_term);
-        $description = __( "Up to <categories-count> categories allowed.", 'another-wordpress-classifieds-plugin' );
+        $description = __( 'Up to <categories-count> categories allowed.', 'another-wordpress-classifieds-plugin' );
 
         return str_replace( '<categories-count>', '<strong>' . $attrs['data-number-of-categories-allowed'] . '</strong>', $description );
     }

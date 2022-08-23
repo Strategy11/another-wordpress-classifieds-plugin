@@ -3,7 +3,7 @@
  * @package AWPCP\Admin
  */
 
-require_once(AWPCP_DIR . '/admin/admin-panel-users.php');
+require_once AWPCP_DIR . '/admin/admin-panel-users.php';
 
 function awpcp_admin_panel() {
     return new AWPCP_AdminPanel(
@@ -295,7 +295,9 @@ class AWPCP_AdminPanel {
 		    'supported-csv-headers',
 		    'awpcp-view',
 		    'supported-csv-headers',
-		    function() { return awpcp()->container['SupportedCSVHeadersAdminPage']; }
+		    function() {
+                return awpcp()->container['SupportedCSVHeadersAdminPage'];
+            }
 	    );
 
 	    $router->add_admin_section(
@@ -303,7 +305,9 @@ class AWPCP_AdminPanel {
 		    'example-csv-file',
 		    'awpcp-view',
 		    'example-csv-file',
-		    function() { return awpcp()->container['ExampleCSVFileAdminPage']; }
+		    function() {
+                return awpcp()->container['ExampleCSVFileAdminPage'];
+            }
 	    );
 
         $router->add_admin_section(
@@ -311,7 +315,9 @@ class AWPCP_AdminPanel {
             'export-listings',
             'awpcp-view',
             'export-listings',
-            function() { return awpcp()->container['ExportListingsAdminPage']; }
+            function() {
+                return awpcp()->container['ExportListingsAdminPage'];
+            }
         );
 
         $router->add_admin_subpage(
@@ -495,7 +501,7 @@ class AWPCP_AdminPanel {
 	 * @param  Array  $links
 	 * @param  String $file
 	 */
-	public function add_settings_link(  $links, $file ){
+	public function add_settings_link( $links, $file ) {
         if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin', 'blocking' => true ) ) ) {
             return $links;
         }
@@ -648,7 +654,6 @@ class AWPCP_AdminPanel {
         die('Success!');
     }
 
-
 	public function maybe_highlight_menu() {
 		global $post;
 
@@ -760,13 +765,12 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 	$awpcpeditcategoryword = __("Edit Category",'another-wordpress-classifieds-plugin');
 	$awpcpdeletecategoryword = __("Delete Category",'another-wordpress-classifieds-plugin');
 
-
 	$row = '<tr>';
     $row .= '<td style="padding:5px;text-align:center;">';
     $row .= '<label class="screen-reader-text" for="awpcp-category-select-' . esc_attr( $category->term_id ) . '">';
     $row .= esc_html( str_replace( '{category_name}', $thecategory_name, __( 'Select {category_name}', 'another-wordpress-classifieds-plugin' ) ) );
     $row .= '</label>';
-    $row .= '<input id="awpcp-category-select-' . esc_attr( $category->term_id ) .'" type="checkbox" name="category_to_delete_or_move[]" value="' . esc_attr( $category->term_id ). '" />';
+    $row .= '<input id="awpcp-category-select-' . esc_attr( $category->term_id ) . '" type="checkbox" name="category_to_delete_or_move[]" value="' . esc_attr( $category->term_id ) . '" />';
     $row .= '</td>';
     $row .= '<td style="font-weight:normal; text-align: center;">' . $category->term_id . '</td>';
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_name ($totaladsincat)</td>";
@@ -788,8 +792,8 @@ function awpcp_pages() {
     $pages = array(
         'main-page-name' => array(
             __( 'Classifieds', 'another-wordpress-classifieds-plugin' ),
-            '[AWPCPCLASSIFIEDSUI]'
-        )
+            '[AWPCPCLASSIFIEDSUI]',
+        ),
     );
 
 	return $pages + awpcp_subpages();
@@ -871,7 +875,7 @@ function awpcp_create_page( $title, $content, $parent_id = 0 ) {
         'post_content_filtered' => $content,
         'post_parent'           => $parent_id,
         'post_type'             => 'page',
-        'menu_order'            => 0
+        'menu_order'            => 0,
     );
 
     $page_id = wp_insert_post( $page );

@@ -45,7 +45,6 @@ class AWPCP_SEOFrameworkIntegration {
 	 */
 	private $request;
 
-
 	public function __construct( $listing_post_type, $query, $attachments, $request, $attachment_properties ) {
 		$this->listing_post_type     = $listing_post_type;
 		$this->query                 = $query;
@@ -157,7 +156,6 @@ class AWPCP_SEOFrameworkIntegration {
 		return false;
 	}
 
-
 	/**
 	 * @since 4.1.0
 	 */
@@ -209,7 +207,6 @@ class AWPCP_SEOFrameworkIntegration {
 		return $override;
 	}
 
-
 	/**
 	 * @since 4.1.0
 	 */
@@ -221,7 +218,6 @@ class AWPCP_SEOFrameworkIntegration {
 
 		return $this->metadata['http://ogp.me/ns#type'];
 	}
-
 
 	/**
 	 * @since 4.1.0
@@ -245,7 +241,6 @@ class AWPCP_SEOFrameworkIntegration {
 
 		return $override;
 	}
-
 
 	/**
 	 * @since 4.1.0

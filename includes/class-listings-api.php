@@ -311,7 +311,7 @@ class AWPCP_ListingsAPI {
 
         $this->update_listing_terms( $listing, $listing_data['terms'] );
         $this->update_listing_metadata( $listing, $listing_data['metadata'] );
-        
+
         if ( ! empty( $listing_data['regions'] ) ) {
             foreach( (array) $listing_data['regions'] as $region ) {
                 if( ! empty( implode( $region ) ) ) {
@@ -679,7 +679,7 @@ class AWPCP_ListingsAPI {
             // If the listing's end date is in the future, use that date as
             // starting point for the new end date.
             if ( $timestamp > current_time( 'timestamp' ) ) {
-               $period_start_date = $current_end_date;
+                $period_start_date = $current_end_date;
             }
 
             $calculated_dates = $this->calculate_start_and_end_dates_using_payment_term(
@@ -727,7 +727,7 @@ class AWPCP_ListingsAPI {
         }
 
         if ( get_awpcp_option( 'imagesapprove' ) == 1 ) {
-            $alerts[] = __( "If you have uploaded images your images will not show up until an admin has approved them.", 'another-wordpress-classifieds-plugin' );
+            $alerts[] = __( 'If you have uploaded images your images will not show up until an admin has approved them.', 'another-wordpress-classifieds-plugin' );
         }
 
         return $alerts;

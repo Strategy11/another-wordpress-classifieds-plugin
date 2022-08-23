@@ -141,7 +141,7 @@ class AWPCP_CategoriesAdminPage {
                 'category_order' => $category ? intval( get_term_meta( $category->term_id, '_awpcp_order', true ) ) : null,
                 'action' => $category ? 'update-category' : 'create-category',
             ),
-            'form_submit' => $category ? __( 'Update category', 'another-wordpress-classifieds-plugin' ) : __( 'Add new category', 'another-wordpress-classifieds-plugin' ),
+            'form_submit' => $category ? __( 'Update', 'another-wordpress-classifieds-plugin' ) : __( 'Add New Category', 'another-wordpress-classifieds-plugin' ),
             'items' => $items,
             'offset' => $offset,
             'results' => $results,

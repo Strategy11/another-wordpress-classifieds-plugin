@@ -20,7 +20,7 @@ class AWPCP_Posts_Meta {
         $sql.= "WHERE p.post_type = '%s' ";
         $sql.= "AND p.post_status = 'publish' ";
         $sql.= "AND pm.meta_key = '%s' ";
-        $sql.= "ORDER BY pm.meta_value ASC";
+        $sql.= 'ORDER BY pm.meta_value ASC';
 
         $post_type = $this->configuration->get_post_type();
         $meta_key = $this->configuration->prepare_meta_key( $meta_key );

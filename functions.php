@@ -27,8 +27,6 @@ function exclude_awpcp_child_pages($excluded=array()) {
 	}
 }
 
-
-
 // PROGRAM FUNCTIONS
 
 /**
@@ -111,7 +109,7 @@ function awpcp_rel_canonical_url() {
  * Set canonical URL to the Ad URL when in viewing on of AWPCP Ads.
  *
  * @since unknown
- * @since 3.2.1	logic moved to awpcp_rel_canonical_url()
+ * @since 3.2.1 logic moved to awpcp_rel_canonical_url()
  */
 function awpcp_rel_canonical() {
 	$url = awpcp_rel_canonical_url();
@@ -122,7 +120,6 @@ function awpcp_rel_canonical() {
 		rel_canonical();
 	}
 }
-
 
 /**
  * Overwrittes WP canonicalisation to ensure our rewrite rules
@@ -147,9 +144,9 @@ function awpcp_redirect_canonical($redirect_url, $requested_url) {
 	// do not redirect requests to the front page, if any of the AWPCP pages
 	// with rewrite rules is the front page
 	} else if (is_page() && !is_feed() && isset($wp_query->queried_object) &&
-			  'page' == get_option('show_on_front') && in_array($wp_query->queried_object->ID, $ids) &&
-			   $wp_query->queried_object->ID == get_option('page_on_front'))
-	{
+        'page' == get_option( 'show_on_front' ) && in_array( $wp_query->queried_object->ID, $ids ) &&
+        $wp_query->queried_object->ID == get_option( 'page_on_front' )
+    ) {
         $awpcp_rewrite = true;
 	}
 
@@ -279,7 +276,7 @@ function awpcp_strptime_replacement( $date, $format ) {
 }
 
 /**
- * @since	3.0
+ * @since 3.0
  */
 function awpcp_date_formats() {
 	static $translations;
@@ -305,9 +302,8 @@ function awpcp_date_formats() {
 	return $translations;
 }
 
-
 /**
- * @since	3.0
+ * @since 3.0
  */
 function awpcp_time_formats() {
 	static $translations;
@@ -324,17 +320,16 @@ function awpcp_time_formats() {
 			's' => 'ss',
 			'T' => null,
 			'c' => null,
-			'r' => null
+			'r' => null,
 		);
 	}
 
 	return $translations;
 }
 
-
 /**
  * Translates PHP date format strings to jQuery Datepicker format.
- * @since  	3.0
+ * @since 3.0
  */
 function awpcp_datepicker_format($format) {
 	return _awpcp_replace_format($format, awpcp_date_formats());
@@ -342,15 +337,14 @@ function awpcp_datepicker_format($format) {
 
 /**
  * Translates PHP time format strings to jQuery TimePicker format.
- * @since	3.0
+ * @since 3.0
  */
 function awpcp_timepicker_format($format) {
 	return _awpcp_replace_format($format, awpcp_time_formats());
 }
 
-
 /**
- * @since	3.0
+ * @since 3.0
  */
 function _awpcp_replace_format($format, $translations) {
 	$pattern = join( '|', array_map( 'preg_quote', array_keys( $translations ) ) );
@@ -368,25 +362,22 @@ function _awpcp_replace_format($format, $translations) {
 	return $format;
 }
 
-
 /**
- * @since	3.0
+ * @since 3.0
  */
 function awpcp_get_date_format() {
 	return get_awpcp_option('date-format');
 }
 
-
 /**
- * @since	3.0
+ * @since 3.0
  */
 function awpcp_get_time_format() {
 	return get_awpcp_option('time-format');
 }
 
-
 /**
- * @since	3.0
+ * @since 3.0
  */
 function awpcp_get_datetime_format() {
 	$format = get_awpcp_option('date-time-format');
@@ -430,8 +421,8 @@ function awpcp_get_datetime_formats() {
  * generate formated dates.
  *
  * @since 3.0.2
- * @param $format 	'mysql', 'timestamp', 'awpcp', 'awpcp-date', 'awpcp-time'
- *					  or first arguemnt for date() function.
+ * @param $format 'mysql', 'timestamp', 'awpcp', 'awpcp-date', 'awpcp-time'
+ *                or first arguemnt for date() function.
  */
 function awpcp_datetime( $format='mysql', $date=null ) {
 	if ( is_null( $date ) || strlen( $date ) === 0 ) {
@@ -495,7 +486,6 @@ function awpcp_is_array_of_arrays( $array ) {
     return is_array( $array[ $array_keys[ 0 ] ] );
 }
 
-
 /**
  * Returns a WP capability required to be considered an AWPCP admin.
  *
@@ -508,7 +498,6 @@ function awpcp_admin_capability() {
 
     return array_shift( $capabilities );
 }
-
 
 /**
  * We are using read as an alias for edit_classifieds_listings. If a user can `read`,
@@ -542,11 +531,9 @@ function awpcp_current_user_is_moderator() {
     return awpcp_roles_and_capabilities()->current_user_is_moderator();
 }
 
-
 function awpcp_user_is_admin($id) {
     return awpcp_roles_and_capabilities()->user_is_administrator( $id );
 }
-
 
 function awpcp_get_grid_item_css_class($classes, $pos, $columns, $rows) {
 	if ($pos < $columns)
@@ -561,10 +548,10 @@ function awpcp_get_grid_item_css_class($classes, $pos, $columns, $rows) {
 }
 
 /**
- * @since 	3.0
- * @param  	array 	$params
- * @param  	string 	$url
- * @return 	String	HTML
+ * @since 3.0
+ * @param array  $params
+ * @param string $url
+ * @return string HTML
  */
 function awpcp_pagination($config, $url) {
     if ( ! is_admin() && function_exists( 'wp_pagenavi' ) && isset( $config['query'] ) ) {
@@ -578,27 +565,27 @@ function awpcp_pagination($config, $url) {
 
     $blacklist = array(
         'offset',
-					   'results',
-					   'PHPSESSID',
-					   'aeaction',
-					   'cat_ID',
-					   'action',
-					   'aeaction',
-					   'category_name',
-					   'category_parent_id',
-					   'createeditadcategory',
-					   'deletemultiplecategories',
-					   'movedeleteads',
-					   'moveadstocategory',
-					   'category_to_delete',
-					   'tpname',
-					   'category_icon',
-					   'sortby',
-					   'adid',
-					   'picid',
-					   'adkey',
-					   'editemail',
-					   'awpcp_ads_to_action',
+        'results',
+        'PHPSESSID',
+        'aeaction',
+        'cat_ID',
+        'action',
+        'aeaction',
+        'category_name',
+        'category_parent_id',
+        'createeditadcategory',
+        'deletemultiplecategories',
+        'movedeleteads',
+        'moveadstocategory',
+        'category_to_delete',
+        'tpname',
+        'category_icon',
+        'sortby',
+        'adid',
+        'picid',
+        'adkey',
+        'editemail',
+        'awpcp_ads_to_action',
         'post_type',
         'TCM_PostShown',
         'TCM_SnippetsWrittenIds',
@@ -1064,7 +1051,6 @@ function awpcp_country_list_options($value=false, $use_names=true) {
 	return join('', $options);
 }
 
-
 /**
  * AWPCP misc functions
  */
@@ -1117,11 +1103,10 @@ function awpcp_array_insert_first( $array, $item_key, $item ) {
  * This function should be used by plugins when handling
  * the awpcp_menu_items filter.
  *
- * @param $items 	array 	Existing items
- * @param $after 	string 	key of item we want to place the new
- * 							item after
- * @param $key 		string 	New item's key
- * @param $item 	array 	New item's description
+ * @param $items array  Existing items
+ * @param $after string key of item we want to place the new item after
+ * @param $key   string New item's key
+ * @param $item  array  New item's description
  */
 function awpcp_insert_menu_item($items, $after, $key, $item) {
 	return awpcp_array_insert_after($items, $after, $key, $item);
@@ -1134,8 +1119,8 @@ function awpcp_insert_menu_item($items, $after, $key, $item) {
  * Menu item should have already been added using add_submenu_page
  * or a similar function.
  *
- * @param $slug		string	Slug for the item to insert.
- * @param $after	string	Slug of the item to insert after.
+ * @param $slug  string Slug for the item to insert.
+ * @param $after string Slug of the item to insert after.
  */
 function awpcp_insert_submenu_item_after($menu, $slug, $after) {
     global $submenu;
@@ -1413,12 +1398,11 @@ function _awpcp_flatten_array($array, $path=array(), &$return=array()) {
 	}
 }
 
-
 /**
  * Parses 'yes', 'true', 'no', 'false', 0, 1 into bool values.
  *
  * @since  2.1.3
- * @param  mixed	$value	value to parse
+ * @param mixed $value value to parse
  * @return bool
  */
 function awpcp_parse_bool($value) {
@@ -1608,7 +1592,6 @@ function awpcp_parse_number( $value, $decimal_separator = false, $thousands_sepa
 function awpcp_parse_money($value, $decimal_separator=false, $thousands_separator=false) {
     return awpcp_parse_number( $value, $decimal_separator, $thousands_separator );
 }
-
 
 /**
  * @since 2.1.4
@@ -2186,14 +2169,14 @@ function awpcp_html_heading( $params ) {
 
 function awpcp_uploaded_file_error($file) {
 	$upload_errors = array(
-		UPLOAD_ERR_OK        	=> __("No errors.", 'another-wordpress-classifieds-plugin'),
-		UPLOAD_ERR_INI_SIZE    	=> __("The file is larger than upload_max_filesize.", 'another-wordpress-classifieds-plugin'),
+		UPLOAD_ERR_OK           => __("No errors.", 'another-wordpress-classifieds-plugin'),
+		UPLOAD_ERR_INI_SIZE     => __("The file is larger than upload_max_filesize.", 'another-wordpress-classifieds-plugin'),
 		UPLOAD_ERR_FORM_SIZE    => __("The file is larger than form MAX_FILE_SIZE.", 'another-wordpress-classifieds-plugin'),
-		UPLOAD_ERR_PARTIAL    	=> __("The file was only partially uploaded.", 'another-wordpress-classifieds-plugin'),
+		UPLOAD_ERR_PARTIAL      => __("The file was only partially uploaded.", 'another-wordpress-classifieds-plugin'),
 		UPLOAD_ERR_NO_FILE      => __("No file was uploaded.", 'another-wordpress-classifieds-plugin'),
 		UPLOAD_ERR_NO_TMP_DIR   => __("Missing temporary directory.", 'another-wordpress-classifieds-plugin'),
 		UPLOAD_ERR_CANT_WRITE   => __("Can't write file to disk.", 'another-wordpress-classifieds-plugin'),
-		UPLOAD_ERR_EXTENSION    => __("The file upload was stopped by extension.", 'another-wordpress-classifieds-plugin')
+		UPLOAD_ERR_EXTENSION    => __( 'The file upload was stopped by extension.', 'another-wordpress-classifieds-plugin' ),
 	);
 	$error = sanitize_text_field( wp_unslash( $file['error'] ) );
 	return array( $error, $upload_errors[ $error ] );
@@ -2224,14 +2207,12 @@ function awpcp_rmdir($dir) {
 	}
 }
 
-
 /**
  * @since 3.0.2
  */
 function awpcp_directory_permissions() {
 	return intval( get_awpcp_option( 'upload-directory-permissions', '0755' ), 8 );
 }
-
 
 /**
  * @since 2.0.7
@@ -2270,9 +2251,7 @@ function awpcp_check_if_column_exists( $table, $column ) {
     return $result !== false;
 }
 
-
-/** Email functions
- ---------------------------------------------------------------------------- */
+/** Email functions */
 
 /**
  * Extracted from class-phpmailer.php (PHPMailer::EncodeHeader).
@@ -2296,7 +2275,7 @@ function awpcp_phpmailer() {
     global $phpmailer;
 
     // (Re)create it, if it's gone missin.
-    // Add support for WP5.5 PHPMailer changes. 
+    // Add support for WP5.5 PHPMailer changes.
     if (  version_compare( get_bloginfo('version'), '5.5', '>=' ) ) {
         if ( ! ( $phpmailer instanceof PHPMailer\PHPMailer\PHPMailer ) ) {
             require_once ABSPATH . WPINC . '/PHPMailer/PHPMailer.php';
@@ -2339,8 +2318,8 @@ function awpcp_format_recipient_address( $email_address, $name = false ) {
  * Return the email address that should receive the notifications intented for
  * administrator users.
  *
- * @since	3.0
- * @return	string	email address
+ * @since 3.0
+ * @return string email address
  */
 function awpcp_admin_recipient_email_address() {
 	$email_address = get_awpcp_option( 'admin-recipient-email' );
@@ -2354,8 +2333,8 @@ function awpcp_admin_recipient_email_address() {
 /**
  * Return the email address used as the sender for email notifications.
  *
- * @since	3.0
- * @return	string	email address
+ * @since 3.0
+ * @return string email address
  */
 function awpcp_admin_sender_email_address($include_contact_name=false) {
     if ( awpcp_get_option( 'sent-emails-using-wordpress-email-address' ) ) {
@@ -2386,8 +2365,8 @@ function awpcp_admin_sender_name() {
  * Return the name and email address of the account that appears as the sender in
  * email notifications.
  *
- * @since	3.0
- * @return	string	name <email@address>
+ * @since 3.0
+ * @return string name <email@address>
  */
 function awpcp_admin_email_from() {
     $email_address = awpcp_admin_sender_email_address();
@@ -2400,8 +2379,8 @@ function awpcp_admin_email_from() {
  * Return the name and email address of the account that should receive notifications intented for
  * administrator users.
  *
- * @since	3.0
- * @return	string	name <email@address>
+ * @since 3.0
+ * @return string name <email@address>
  */
 function awpcp_admin_email_to() {
 	return awpcp_format_recipient_address( awpcp_admin_recipient_email_address(), awpcp_get_blog_name() );
@@ -2412,7 +2391,7 @@ function awpcp_moderators_email_to() {
 
     $users = awpcp_users_collection()->find( array(
         'fields' => array( 'public_name', 'user_email' ),
-        'role' => 'awpcp-moderator'
+        'role'   => 'awpcp-moderator',
     ) );
 
     foreach ( $users as $user ) {
@@ -2466,7 +2445,6 @@ function awpcp_ad_updated_user_email( $ad, $message ) {
 	return $mail;
 }
 
-
 function awpcp_ad_updated_email( $ad, $message ) {
 	// user email
 	$mail = awpcp_ad_updated_user_email( $ad, $message );
@@ -2511,8 +2489,7 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 	$mail->send();
 }
 
-/** Table Helper related functions
- ---------------------------------------------------------------------------- */
+/** Table Helper related functions */
 
 function awpcp_register_column_headers($screen, $columns, $sortable=array()) {
 	$wp_list_table = new AWPCP_List_Table($screen, $columns, $sortable);
@@ -2555,7 +2532,6 @@ function awpcp_maybe_include_lightbox_style() {
         wp_enqueue_style( 'awpcp-lightgallery' );
     }
 }
-
 
 /**
  * This function is a specific case of awpcp_load_text_domain_with_file_prefix().
@@ -2862,7 +2838,6 @@ function awpcp_are_images_allowed() {
     return count( $allowed_image_extensions ) > 0;
 }
 
-
 function add_slashes_recursive( $variable ) {
     if (is_string($variable)) {
         return addslashes($variable);
@@ -2969,8 +2944,7 @@ function create_ad_postedby_list($name) {
     return awpcp_html_options( array( 'current-value' => $name, 'options' => array_combine( $names, $names ) ) );
 }
 
-function awpcp_strip_html_tags( $text )
-{
+function awpcp_strip_html_tags( $text ) {
     // Remove invisible content
     $text = preg_replace(
 		array(
@@ -3050,7 +3024,7 @@ function awpcp_validip($ip) {
 			array( '172.16.0.0', '172.31.255.255' ),
 			array( '192.0.2.0', '192.0.2.255' ),
 			array( '192.168.0.0', '192.168.255.255' ),
-			array( '255.255.255.0', '255.255.255.255' )
+			array( '255.255.255.0', '255.255.255.255' ),
 		);
 
         foreach ($reserved_ips as $r) {

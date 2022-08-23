@@ -116,7 +116,6 @@ class AWPCP_ApproveImagesTableAction implements AWPCP_ListTableActionInterface {
         return 'error';
     }
 
-
     /**
      * @param array $result_codes An array of result codes from this action.
      *

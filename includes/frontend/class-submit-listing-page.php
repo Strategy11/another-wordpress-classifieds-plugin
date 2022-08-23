@@ -429,7 +429,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
 
         if ( $this->listing_renderer->is_pending_approval( $listing ) ) {
             $messages[] = sprintf(
-                '%s %s', 
+                '%s %s',
                 __( 'Your listing has been submitted.', 'another-wordpress-classifieds-plugin' ),
                 __( 'This is a preview of the content as seen by visitors of the website.', 'another-wordpress-classifieds-plugin' )
             );

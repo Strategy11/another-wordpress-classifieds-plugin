@@ -152,10 +152,12 @@ class AWPCP_Facebook {
         $response = $this->api_request( '/me', 'GET', array( 'fields' => 'id,name' ) );
 
         if ( $response ) {
-            $pages[] = array( 'id' => $response->id,
-                              'name' => $response->name,
+            $pages[] = array(
+                'id'           => $response->id,
+                'name'         => $response->name,
                 'access_token' => $user_access_token,
-                              'profile' => true );
+                'profile'      => true,
+            );
         }
 
         $after = null;
@@ -173,7 +175,7 @@ class AWPCP_Facebook {
                         $pages[] = array(
                             'id'           => $p->id,
                             'name'         => $p->name,
-                            'access_token' => $p->access_token
+                            'access_token' => $p->access_token,
                         );
                     }
                 }
@@ -210,7 +212,7 @@ class AWPCP_Facebook {
                 foreach ( $response->data as &$p ) {
                     $groups[] = array(
                         'id'   => $p->id,
-                        'name' => $p->name
+                        'name' => $p->name,
                     );
                 }
             }
@@ -228,11 +230,12 @@ class AWPCP_Facebook {
     public function get_login_url( $redirect_uri = '', $scope = '' ) {
         $app_id = $this->settings->get_option( 'facebook-app-id' );
 
-        return sprintf( 'https://www.facebook.com/' . self::GRAPH_API_VERSION . '/dialog/oauth?client_id=%s&redirect_uri=%s&scope=%s',
+        return sprintf(
+            'https://www.facebook.com/' . self::GRAPH_API_VERSION . '/dialog/oauth?client_id=%s&redirect_uri=%s&scope=%s',
             $app_id,
-                        urlencode( $redirect_uri ),
-                        urlencode( $scope )
-                      );
+            urlencode( $redirect_uri ),
+            urlencode( $scope )
+        );
     }
 
     public function token_from_code( $code, $redirect_uri='' ) {
@@ -244,10 +247,13 @@ class AWPCP_Facebook {
             $redirect_uri = remove_query_arg( array( 'client_id', 'code', 'error', 'error_reason', 'error_description', 'redirect_uri' ), awpcp_current_url() );
         }
 
-        $response = $this->api_request( '/oauth/access_token',
-                                        'GET',
-                                        array( 'redirect_uri' => $redirect_uri,
-                                               'code' => $code ),
+        $response = $this->api_request(
+            '/oauth/access_token',
+            'GET',
+            array(
+                'redirect_uri' => $redirect_uri,
+                'code'         => $code,
+            ),
             true
         );
 

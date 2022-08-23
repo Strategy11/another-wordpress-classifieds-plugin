@@ -130,7 +130,7 @@
 							<th scope="row"><?php _ex('PayPal Connection', 'debug page', 'another-wordpress-classifieds-plugin'); ?></th>
 							<?php $response = awpcp_paypal_verify_received_data(array(), $errors); ?>
 							<?php if ($response === 'INVALID'): ?>
-							<td><?php _ex('Working', 'debug page', 'another-wordpress-classifieds-plugin')	?></td>
+							<td><?php esc_html_e( 'Working', 'another-wordpress-classifieds-plugin' ); ?></td>
 							<?php else: ?>
 							<td>
 								<?php _ex( 'Not Working', 'debug page', 'another-wordpress-classifieds-plugin' ); ?><br/>

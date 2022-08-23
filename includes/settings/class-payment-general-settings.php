@@ -84,7 +84,7 @@ class AWPCP_PaymentSettings {
             'ASC',
             __( 'The direction used to sort Fees in the payment screens.', 'another-wordpress-classifieds-plugin' ),
             array( 'options' => $direction_options )
-       );
+        );
 
         $settings_manager->add_setting(
             $key,
@@ -184,7 +184,7 @@ class AWPCP_PaymentSettings {
             'description' => __( 'The currency in which you would like to receive your PayPal payments', 'another-wordpress-classifieds-plugin' ),
             'validation'  => [
                 'required' => [
-                    'depends' => 'activatepaypal'
+                    'depends' => 'activatepaypal',
                 ],
                 'oneof' => [
                     'param'   => $supported_currencies,

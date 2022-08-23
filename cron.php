@@ -191,7 +191,6 @@ function awpcp_calculate_end_of_renew_email_date_range_from_now() {
     return $target_date;
 }
 
-
 /**
  * Remove incomplete payment transactions
  */
@@ -263,7 +262,7 @@ function awpcp_clean_up_non_verified_ads( $listings_collection, /* AWPCP_Listing
                 'key' => '_awpcp_verification_emails_sent',
                 'value' => 1,
                 'compare' => '<=',
-                'type' => 'UNSIGNED'
+                'type'    => 'UNSIGNED',
             ),
         ),
     ) );

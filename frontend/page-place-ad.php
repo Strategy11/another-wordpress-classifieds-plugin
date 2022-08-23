@@ -4,7 +4,7 @@
  *
  */
 
-require_once(AWPCP_DIR . '/includes/helpers/page.php');
+require_once AWPCP_DIR . '/includes/helpers/page.php';
 
 function awpcp_place_listing_page() {
     return new AWPCP_Place_Ad_Page(
@@ -22,7 +22,6 @@ function awpcp_place_listing_page() {
         awpcp_request()
     );
 }
-
 
 /**
  * @since  2.1.4
@@ -396,7 +395,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $payment_term = null;
         }
 
-
         // are we done here? what next?
         if ( ! empty( $category ) && ! is_null( $payment_term ) ) {
             /** @phpstan-ignore-next-line */
@@ -411,7 +409,6 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                 }
             }
         }
-
 
         // display initial form and show errors, if any
         $messages = $this->messages;
@@ -434,7 +431,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
             'messages' => $messages,
             'form_errors' => $form_errors,
-            'transaction_errors' => $transaction_errors
+            'transaction_errors' => $transaction_errors,
         );
 
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-order-step.tpl.php';
@@ -503,10 +500,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-
         // proceess transaction to grab Payment Method information
         $payments->set_transaction_payment_method($transaction);
-
 
         // show checkout page.
 
@@ -519,7 +514,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'payments' => $payments,
             'transaction' => $transaction,
             'messages' => $this->messages,
-            'hidden' => array('step' => 'checkout')
+            'hidden'      => array( 'step' => 'checkout' ),
         );
 
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-checkout-step.tpl.php';
@@ -543,7 +538,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'transaction' => $transaction,
             'messages' => $this->messages,
             'url' => $this->url(),
-            'hidden' => array('step' => $pay_first ? 'details' : 'finish')
+            'hidden'      => array( 'step' => $pay_first ? 'details' : 'finish' ),
         );
 
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-payment-completed-step.tpl.php';
@@ -596,7 +591,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $user_id,
             array(
                 'ID', 'user_login', 'user_email', 'user_url', 'display_name',
-                'public_name', 'first_name', 'last_name', 'nickname', 'awpcp-profile'
+                'public_name', 'first_name', 'last_name', 'nickname', 'awpcp-profile',
             )
         );
 
@@ -1507,7 +1502,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             'ad' => $ad,
             'messages' => array_merge( $messages, $this->listings_logic->get_ad_alerts( $ad ) ),
             'transaction' => $transaction,
-            'transaction_id' => $transaction->id
+            'transaction_id' => $transaction->id,
         );
 
         $template = AWPCP_DIR . '/frontend/templates/page-place-ad-finish-step.tpl.php';

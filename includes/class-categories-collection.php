@@ -42,6 +42,7 @@ class AWPCP_Categories_Collection {
         $category    = $this->get_category_by_id( $category_id );
 
         if ( $category === false || is_null( $category ) ) {
+            /* translators: %d the category id */
             $message = __( 'No category was found with ID: %d', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $category_id ) );
         }
@@ -122,6 +123,7 @@ class AWPCP_Categories_Collection {
 
     public function get_category_by_name( $name ) {
         if ( empty( $name ) ) {
+            /* translators: %s the submitted value */
             $message = __( 'The category name must be a non empty string, %s was given.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $name ) );
         }
@@ -131,6 +133,7 @@ class AWPCP_Categories_Collection {
         $category = $this->wordpress->get_term_by( 'name', $sanitized_name, $this->taxonomy );
 
         if ( $category === false || is_null( $category ) ) {
+            /* translators: %s is the category name */
             $message = __( 'No category was found with name: %s.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( sprintf( $message, $name ) );
         }
@@ -220,11 +223,11 @@ class AWPCP_Categories_Collection {
         if ( 'meta_value_num' === $args['orderby'] && '_awpcp_order' === $args['meta_key'] ) {
             unset( $args['meta_key'] );
         }
-        
+
         $ordered_count = intval( $this->wordpress->get_terms(
             array_merge(
                 $args,
-                array( 'fields' => 'count' ) 
+                array( 'fields' => 'count' )
             )
         ) );
 
@@ -245,7 +248,6 @@ class AWPCP_Categories_Collection {
                 }
 
                 $this->wordpress->update_term_meta( $term->term_id, '_awpcp_order', 0 );
-                
             }
         }
     }

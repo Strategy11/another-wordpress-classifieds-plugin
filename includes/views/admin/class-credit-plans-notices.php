@@ -25,8 +25,12 @@ class AWPCP_CreditPlansNotices {
     }
 
     private function render_notice() {
-        $message = __( "You enabled the Credit System, but there are no credit plans defined. Please <credits-section-link>add credit plans or disable the Credit System</a>.", 'another-wordpress-classifieds-plugin' );
-        $message = str_replace( '<credits-section-link>' , sprintf( '<a href="%s">', awpcp_get_admin_credit_plans_url() ), $message );
+        $message = sprintf(
+            /* translators: %1$s open link html, %2$s close link html */
+            __( 'You enabled the Credit System, but there are no credit plans defined. Please %1$sadd credit plans or disable the Credit System%2$s.', 'another-wordpress-classifieds-plugin' ),
+            '<a href="' . esc_url( awpcp_get_admin_credit_plans_url() ) . '">',
+            '</a>'
+        );
         echo awpcp_print_error( $message );
     }
 }

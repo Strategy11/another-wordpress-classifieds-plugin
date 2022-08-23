@@ -41,14 +41,14 @@ class AWPCP_Delete_Credit_Plan_Action_Handler implements AWPCP_Table_Entry_Actio
             }
         } else {
             $params = array(
-                'columns' => count( $this->page->get_table()->get_columns() )
+                'columns' => count( $this->page->get_table()->get_columns() ),
             );
 
             $template = AWPCP_DIR . '/admin/templates/delete_form.tpl.php';
 
             return $ajax_handler->success(
                 array(
-                    'html' => $this->template_renderer->render_template( $template, $params )
+                    'html' => $this->template_renderer->render_template( $template, $params ),
                 )
             );
         }

@@ -229,7 +229,7 @@ class AWPCP_Pages {
         $options = array(
             'show_menu_items' => $show_menu,
             'show_pagination' => $show_pagination,
-            'featured_on_top' => $featured_on_top
+            'featured_on_top' => $featured_on_top,
         );
 
         return awpcp_display_listings( $query, 'latest-listings-shortcode', $options );

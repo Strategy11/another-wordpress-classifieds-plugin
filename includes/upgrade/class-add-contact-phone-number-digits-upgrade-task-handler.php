@@ -13,7 +13,6 @@ class AWPCP_AddMissingPhoneDigits implements AWPCP_Upgrade_Task_Runner {
      */
     private $wordpress;
 
-
     /**
      * @param AWPCP_WordPress $wordpress AWPCP_WordPress.
      *

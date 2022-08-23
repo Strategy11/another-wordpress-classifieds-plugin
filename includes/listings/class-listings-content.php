@@ -35,7 +35,6 @@ class AWPCP_ListingsContent {
         $this->wordpress        = $wordpress;
     }
 
-
     /**
      * Handle for the `the_content` filter.
      *

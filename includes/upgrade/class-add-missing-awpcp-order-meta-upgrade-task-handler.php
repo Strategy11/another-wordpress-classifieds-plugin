@@ -18,7 +18,6 @@ class AWPCP_AddMissingCategoriesOrder implements AWPCP_Upgrade_Task_Runner {
      */
     private $wordpress;
 
-
     /**
      * @param string          $taxonomy taxonomy name.
      * @param AWPCP_WordPress $wordpress AWPCP_WordPress.

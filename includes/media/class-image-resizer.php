@@ -59,7 +59,7 @@ class AWPCP_ImageResizer {
     }
 
     public function create_thumbnail_for_media( $media, $source_image ) {
-        $filename = sprintf( "%s-%d", awpcp_utf8_pathinfo( $media->name, PATHINFO_FILENAME ), $media->id );
+        $filename = sprintf( '%s-%d', awpcp_utf8_pathinfo( $media->name, PATHINFO_FILENAME ), $media->id );
         return $this->create_thumbnail( $source_image, $filename );
     }
 }

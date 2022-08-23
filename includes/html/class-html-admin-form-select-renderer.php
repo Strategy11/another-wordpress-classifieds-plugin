@@ -27,8 +27,8 @@ class AWPCP_HTML_Admin_Form_Select_Renderer implements AWPCP_HTML_Element_Render
                     ),
                     '#options' => $element_definition['#options'],
                     '#value' => $element_definition['#value'],
-                )
-            )
+                ),
+            ),
         );
 
         return $html_renderer->render_element( $form_field_definition );

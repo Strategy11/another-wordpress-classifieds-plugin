@@ -65,7 +65,7 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
     $before_pagination = awpcp_flatten_array( $before_pagination );
 
     $before_list = apply_filters( 'awpcp-content-before-listings-list', $options['before_list'], $context );
-    
+
     $top_pagination    = '';
     $bottom_pagination = '';
     $items = array();

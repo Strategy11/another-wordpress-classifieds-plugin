@@ -49,7 +49,6 @@ function get_awpcp_option_config_diz($option) {
     return get_awpcp_setting('config_diz', $option);
 }
 
-
 function checkifisadmin() {
     return awpcp_current_user_is_admin() ? 1 : 0;
 }
@@ -116,7 +115,6 @@ function countcategorieschildren() {
         return $childless_categories_count;
     }
 }
-
 
 function get_adposteremail($adid) {
     try {
@@ -239,8 +237,8 @@ function category_is_child($catid) {
 }
 
 /**
- * Originally developed by Dan Caragea.  
- * Permission is hereby granted to AWPCP to release this code 
+ * Originally developed by Dan Caragea.
+ * Permission is hereby granted to AWPCP to release this code
  * under the license terms of GPL2
  * @author Dan Caragea
  * http://datemill.com
@@ -253,7 +251,6 @@ function smart_table( $array, $table_cols, $opentable, $closetable ) {
     return smart_table2($array,$table_cols,$opentable,$closetable,$usingtable);
 }
 
-
 function smart_table2( $array, $table_cols, $opentable, $closetable, $usingtable ) {
     $myreturn="$opentable\n";
     $row=0;
@@ -262,9 +259,8 @@ function smart_table2( $array, $table_cols, $opentable, $closetable, $usingtable
     $awpcpdisplayaditemclass='';
 
     foreach ($array as $v) {
-            
-        if ($i % 2 == 0) { $awpcpdisplayaditemclass = "displayaditemsodd"; } else { $awpcpdisplayaditemclass = "displayaditemseven"; }
 
+        if ($i % 2 == 0) { $awpcpdisplayaditemclass = "displayaditemsodd"; } else { $awpcpdisplayaditemclass = "displayaditemseven"; }
 
         $v=str_replace("\$awpcpdisplayaditems",$awpcpdisplayaditemclass,$v);
 

@@ -37,7 +37,7 @@ class AWPCP_Add_Credit_Plan_Action_Handler implements AWPCP_Table_Entry_Action_H
         if ( $plan->save( $errors ) === false ) {
             return $ajax_handler->error( array(
                 'message' => __( 'The form has errors', 'another-wordpress-classifieds-plugin' ),
-                'errors' => $errors
+                'errors'  => $errors,
             ) );
         } else {
             return $ajax_handler->success( array( 'html' => $this->rendering_helper->render_entry_row( $plan ) ) );

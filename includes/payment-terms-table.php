@@ -116,13 +116,17 @@ class AWPCP_PaymentTermsTable {
 
             case 'price':
                 return $this->render_payment_option(
-                    $this->item_id($item, AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY),
-                                          awpcp_format_money($item->price), $this->selected);
+                    $this->item_id( $item, AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY ),
+                    awpcp_format_money( $item->price ),
+                    $this->selected
+                );
 
             case 'credits':
                 return $this->render_payment_option(
-                    $this->item_id($item, AWPCP_Payment_Transaction::PAYMENT_TYPE_CREDITS),
-                                          number_format($item->credits, 0), $this->selected);
+                    $this->item_id( $item, AWPCP_Payment_Transaction::PAYMENT_TYPE_CREDITS ),
+                    number_format( $item->credits, 0 ),
+                    $this->selected
+                );
         }
     }
 
@@ -168,7 +172,7 @@ class AWPCP_PaymentTermsTable {
             'id' => $value,
             'type' => 'radio',
             'name' => 'payment_term',
-            'value' => $value
+            'value' => $value,
         );
 
         if ($value == $selected)

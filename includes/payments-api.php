@@ -48,7 +48,7 @@ class AWPCP_PaymentsAPI {
                 'awpcpx' => true,
                 'module' => 'payments',
                 'action' => $action,
-                'awpcp-txn' => $transaction->id
+                'awpcp-txn' => $transaction->id,
             );
             return add_query_arg( urlencode_deep( $params ), home_url('index.php'));
         }
@@ -488,8 +488,11 @@ class AWPCP_PaymentsAPI {
         if (is_null($transaction)) {
             $messages[] = __( 'The specified payment transaction doesn\'t exists. We can\'t process your payment.', 'another-wordpress-classifieds-plugin');
             $messages[] = __( 'Please contact customer service if you are viewing this message after having made a payment. If you have not tried to make a payment and you are viewing this message, it means this message is being shown in error and can be disregarded.', 'another-wordpress-classifieds-plugin');
-            $messages[] = __( 'Return to <a href="%s">home page</a>.', 'another-wordpress-classifieds-plugin');
-            wp_die(sprintf('<p>' . join('</p><p>', $messages) . '</p>', home_url()));
+
+            /* translators: %s link HTML */
+            $messages[] = __( 'Return to %shome page', 'another-wordpress-classifieds-plugin');
+            $message = '<p>' . join( '</p><p>', $messages ) . '</p>';
+            wp_die( sprintf( $message . '</a>', '<a href="' . home_url() . '">' ) );
         }
 
         $payment_method = $this->get_transaction_payment_method($transaction);
@@ -497,8 +500,11 @@ class AWPCP_PaymentsAPI {
         if (is_null($payment_method)) {
             $messages[] = __("The payment method associated with this transaction is not available at this time. We can't process your payment.", 'another-wordpress-classifieds-plugin');
             $messages[] = __( 'Please contact customer service if you are viewing this message after having made a payment. If you have not tried to make a payment and you are viewing this message, it means this message is being shown in error and can be disregarded.', 'another-wordpress-classifieds-plugin');
-            $messages[] = __( 'Return to <a href="%s">home page</a>.', 'another-wordpress-classifieds-plugin');
-            wp_die(sprintf('<p>' . join('</p><p>', $messages) . '</p>', home_url()));
+
+            /* translators: %s link HTML */
+            $messages[] = __( 'Return to %shome page', 'another-wordpress-classifieds-plugin');
+            $message = '<p>' . join( '</p><p>', $messages ) . '</p>';
+            wp_die( sprintf( $message . '</a>', '<a href="' . home_url() . '">' ) );
         }
 
         switch ($action) {
@@ -692,6 +698,8 @@ class AWPCP_PaymentsAPI {
             return '';
 
         $balance = $this->format_account_balance();
+
+        /* translators: %s credit balance */
         $text = sprintf( __( 'You currently have %s credits in your account.', 'another-wordpress-classifieds-plugin' ), $balance );
 
         return awpcp_print_message( $text );
@@ -844,7 +852,7 @@ class AWPCP_PaymentsAPI {
         $hidden = array_merge(
             $transaction->get( 'redirect-data' ),
             array(
-                'payment_status' => $transaction->payment_status
+                'payment_status' => $transaction->payment_status,
             ),
             $hidden
         );
