@@ -770,7 +770,7 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
     $row .= '<label class="screen-reader-text" for="awpcp-category-select-' . esc_attr( $category->term_id ) . '">';
     $row .= esc_html( str_replace( '{category_name}', $thecategory_name, __( 'Select {category_name}', 'another-wordpress-classifieds-plugin' ) ) );
     $row .= '</label>';
-    $row .= '<input id="awpcp-category-select-' . esc_attr( $category->term_id ) . '" type="checkbox" name="category_to_delete_or_move[]" value="' . esc_attr( $category->term_id ). '" />';
+    $row .= '<input id="awpcp-category-select-' . esc_attr( $category->term_id ) . '" type="checkbox" name="category_to_delete_or_move[]" value="' . esc_attr( $category->term_id ) . '" />';
     $row .= '</td>';
     $row .= '<td style="font-weight:normal; text-align: center;">' . $category->term_id . '</td>';
 	$row.= "<td style=\"border-bottom:1px dotted #dddddd;font-weight:normal;\">$thecategory_name ($totaladsincat)</td>";
