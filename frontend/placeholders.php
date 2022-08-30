@@ -508,7 +508,7 @@ function awpcp_do_placeholder_price( $ad, $placeholder ) {
 
     if ( $show_price_field && $user_can_see_price_field && $price >= 0 ) {
         $escaped_label    = esc_html( __( 'Price', 'another-wordpress-classifieds-plugin' ) );
-        $escaped_currency = esc_html( awpcp_format_money( $price ) );
+        $escaped_currency = esc_html( awpcp_format_money( $price, 'free' ) );
 
         // Single ad.
         $content                     = '<div class="showawpcpadpage"><label>%s:</label> <strong>%s</strong></div>';
