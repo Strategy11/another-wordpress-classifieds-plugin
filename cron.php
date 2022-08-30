@@ -98,6 +98,7 @@ function doadcleanup() {
  */
 function awpcp_delete_listings_expired_more_than_days_ago( $number_of_days, $listings_logic, $listings ) {
     $date_query = new WP_Date_Query( [] );
+    $end_date   = $date_query->build_mysql_datetime( sprintf( '%d days ago', $number_of_days ) );
 
     $query_vars = [
         'post_status' => 'disabled',
@@ -107,13 +108,13 @@ function awpcp_delete_listings_expired_more_than_days_ago( $number_of_days, $lis
                 [
                     'key'     => '_awpcp_disabled_date',
                     'compare' => '<',
-                    'value'   => $date_query->build_mysql_datetime( sprintf( '%d days ago', $number_of_days ) ),
+                    'value'   => $end_date,
                     'type'    => 'DATE',
                 ],
                 [
                     'key'     => '_awpcp_end_date',
                     'compare' => '<',
-                    'value'   => $date_query->build_mysql_datetime( sprintf( '%d days ago', $number_of_days ) ),
+                    'value'   => $end_date,
                     'type'    => 'DATE',
                 ],
             ],
