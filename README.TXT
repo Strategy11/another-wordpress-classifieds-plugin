@@ -4,8 +4,8 @@ Contributors: awpcp
 Tags: listings, classified ads, classified, classifieds, directory plugin, classifieds script, classified theme, wp classified, ads
 Requires at least: 4.9
 Requires PHP: 5.6
-Tested up to: 5.9
-Stable tag: 4.2
+Tested up to: 6.0.2
+Stable tag: 4.2.1
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -168,6 +168,16 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+= 4.2.1 =
+* New: When viewing a free listing, show "Free" instead of "$0.00"
+* Fix: Permissions issues were preventing the admin menu from showing on some sites.
+* Fix: The button label, category description, and order weren't always showing in the category form.
+* Fix: The links to edit and delete a fee plan weren't working correctly.
+* Fix: Prevent trashed posts from coming back when viewing the trash.
+* Fix: When deleting expired adds, check by end date instead of only the disabled date. This will delete the expired ads sooner.
+* Fix: The custom upload folder setting was only used for temporary files.
+* Make a few extra strings translatable.
+
 = 4.2 =
 * Fix: Remove custom Yoast integration to resolve fatal error.
 * Fix: Remove Profile builder integration since it wasn't working.
@@ -205,10 +215,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Replace the renewal button icon with a label to make it more clear.
 * Fix: Show the classifieds menu to moderators.
 * Fix: Flush rewrite rules sooner. Hopefully this will fix the htaccess issue some sites are seeing.
-
-= 4.1.2 =
-* Decrease conflicts and load by only loading admin resources when needed.
-* Fix: The character limit on a fee plan was only saving if both title and content had a custom limit.
-* Fix: Get rid of php warning with Yoast SEO installed.
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>

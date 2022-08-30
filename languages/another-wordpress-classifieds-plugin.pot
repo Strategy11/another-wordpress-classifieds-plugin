@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv2 or any later version.
 msgid ""
 msgstr ""
-"Project-Id-Version: AWP Classifieds Plugin 4.2\n"
+"Project-Id-Version: AWP Classifieds Plugin 4.2.1\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2022-06-01 20:06:11+00:00\n"
+"POT-Creation-Date: 2022-08-30 20:15:57+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -41,8 +41,8 @@ msgstr ""
 #: admin/admin-panel-fees-table.php:114
 #: admin/fees/class-fee-details-form.php:222
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
-#: frontend/placeholders.php:516
-#: includes/settings/class-display-settings.php:484
+#: frontend/placeholders.php:510
+#: includes/settings/class-display-settings.php:483
 #: includes/settings/class-payment-general-settings.php:59
 msgid "Price"
 msgstr ""
@@ -51,11 +51,11 @@ msgstr ""
 msgid "Attributes"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:118 admin/admin-panel.php:155
+#: admin/admin-panel-fees-table.php:118 admin/admin-panel.php:154
 msgid "Categories"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:121 includes/class-awpcp.php:817
+#: admin/admin-panel-fees-table.php:121 includes/class-awpcp.php:819
 msgid "Featured Ads"
 msgstr ""
 
@@ -98,115 +98,115 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: admin/admin-panel-users.php:51
+#: admin/admin-panel-users.php:50
 #: admin/templates/admin-panel-users-balance-form.tpl.php:5
 #: admin/templates/page-account-balance-summary-step.tpl.php:9
 #: frontend/templates/page-buy-credits-final-step.tpl.php:11
 msgid "Add Credit"
 msgstr ""
 
-#: admin/admin-panel-users.php:54
+#: admin/admin-panel-users.php:53
 #: admin/templates/admin-panel-users-balance-form.tpl.php:5
 msgid "Remove Credit"
 msgstr ""
 
-#: admin/admin-panel-users.php:68
+#: admin/admin-panel-users.php:67
 msgid "The specified User doesn't exists."
 msgstr ""
 
-#: admin/admin-panel.php:74 admin/admin-panel.php:113 admin/admin-panel.php:123
+#: admin/admin-panel.php:73 admin/admin-panel.php:112 admin/admin-panel.php:122
 msgid "Manual Upgrade"
 msgstr ""
 
-#: admin/admin-panel.php:80 admin/admin-panel.php:138 admin/admin-panel.php:797
+#: admin/admin-panel.php:79 admin/admin-panel.php:137 admin/admin-panel.php:794
 #: includes/models/class-custom-post-types.php:90
 #: includes/models/class-custom-post-types.php:92
 #: includes/settings/class-listings-settings.php:30
 msgid "Classifieds"
 msgstr ""
 
-#: admin/admin-panel.php:85 includes/models/class-custom-post-types.php:101
+#: admin/admin-panel.php:84 includes/models/class-custom-post-types.php:101
 msgid "Classified Ads"
 msgstr ""
 
-#: admin/admin-panel.php:135
+#: admin/admin-panel.php:134
 msgid "Dashboard"
 msgstr ""
 
-#: admin/admin-panel.php:142 admin/admin-panel.php:143
-#: admin/admin-panel.php:504
+#: admin/admin-panel.php:141 admin/admin-panel.php:142
+#: admin/admin-panel.php:509
 msgid "Settings"
 msgstr ""
 
-#: admin/admin-panel.php:156
+#: admin/admin-panel.php:155
 #: templates/admin/main-classifieds-admin-page.tpl.php:86
 #: templates/admin/main-classifieds-admin-page.tpl.php:111
 msgid "Manage Categories"
 msgstr ""
 
-#: admin/admin-panel.php:205 admin/admin-panel.php:206
+#: admin/admin-panel.php:204 admin/admin-panel.php:205
 #: admin/form-fields/class-form-fields-admin-page.php:12
-#: includes/settings/class-display-settings.php:299
-#: includes/settings/class-display-settings.php:439
+#: includes/settings/class-display-settings.php:298
+#: includes/settings/class-display-settings.php:438
 msgid "Form Fields"
 msgstr ""
 
-#: admin/admin-panel.php:215
+#: admin/admin-panel.php:214
 msgid "Credit Plans"
 msgstr ""
 
-#: admin/admin-panel.php:216
+#: admin/admin-panel.php:215
 msgid "Manage Credit Plans"
 msgstr ""
 
-#: admin/admin-panel.php:225
+#: admin/admin-panel.php:224
 msgid "Manage Credit"
 msgstr ""
 
-#: admin/admin-panel.php:234 admin/fees/class-fees-admin-page.php:26
+#: admin/admin-panel.php:233 admin/fees/class-fees-admin-page.php:26
 #: templates/admin/main-classifieds-admin-page.tpl.php:56
 msgid "Fees"
 msgstr ""
 
-#: admin/admin-panel.php:235
+#: admin/admin-panel.php:234
 msgid "Manage Listings Fees"
 msgstr ""
 
-#: admin/admin-panel.php:260 admin/admin-panel.php:261
+#: admin/admin-panel.php:259 admin/admin-panel.php:260
 msgid "Import & Export"
 msgstr ""
 
-#: admin/admin-panel.php:320 admin/templates/admin-panel-debug.tpl.php:3
+#: admin/admin-panel.php:325 admin/templates/admin-panel-debug.tpl.php:3
 msgid "Debug"
 msgstr ""
 
-#: admin/admin-panel.php:321 admin/templates/admin-panel-debug.tpl.php:24
+#: admin/admin-panel.php:326 admin/templates/admin-panel-debug.tpl.php:24
 msgid "Debug Information"
 msgstr ""
 
-#: admin/admin-panel.php:330 admin/admin-panel.php:331
+#: admin/admin-panel.php:335 admin/admin-panel.php:336
 msgid "Uninstall"
 msgstr ""
 
-#: admin/admin-panel.php:349 admin/admin-panel.php:350
-#: admin/admin-panel.php:824 frontend/templates/page-renew-ad.tpl.php:3
+#: admin/admin-panel.php:354 admin/admin-panel.php:355
+#: admin/admin-panel.php:821 frontend/templates/page-renew-ad.tpl.php:3
 #: includes/admin/class-admin-container-configuration.php:177
 msgid "Renew Ad"
 msgstr ""
 
-#: admin/admin-panel.php:422
+#: admin/admin-panel.php:427
 msgid ""
 "Use the Account Balance column on the table below to manage credit balance "
 "for users."
 msgstr ""
 
-#: admin/admin-panel.php:441
+#: admin/admin-panel.php:446
 msgid ""
 "AWPCP features are currently disabled because the plugin needs you to "
 "perform a manual upgrade before continuing."
 msgstr ""
 
-#: admin/admin-panel.php:442
+#: admin/admin-panel.php:447
 msgid ""
 "The duration for this upgrade operation varies between several minutes and "
 "a few hours, depending on the size of your database, the current network "
@@ -215,7 +215,7 @@ msgid ""
 "until the upgrade is complete."
 msgstr ""
 
-#: admin/admin-panel.php:445
+#: admin/admin-panel.php:450
 #. translators: %1$s is the opening tag for the link to the page explaining how
 #. to downgrade to a previous version of the plugin, %2$s is the closing tag
 #. for the link.
@@ -225,7 +225,7 @@ msgid ""
 "tonight or later this week when you have more time."
 msgstr ""
 
-#: admin/admin-panel.php:451
+#: admin/admin-panel.php:456
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
 msgid ""
@@ -233,7 +233,7 @@ msgid ""
 "button below."
 msgstr ""
 
-#: admin/admin-panel.php:461
+#: admin/admin-panel.php:466
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
 msgid ""
@@ -242,7 +242,7 @@ msgid ""
 "Classifieds admin section to Upgrade%2$s or click the button below."
 msgstr ""
 
-#: admin/admin-panel.php:483
+#: admin/admin-panel.php:488
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
 msgid ""
@@ -252,7 +252,7 @@ msgid ""
 "admin section to Upgrade%2$s or click the button below."
 msgstr ""
 
-#: admin/admin-panel.php:557
+#: admin/admin-panel.php:562
 msgid ""
 "Page %1$s has the same URL as the %2$s from AWPCP. The WordPress page %1$s "
 "is going to be unreachable until this changes."
@@ -262,7 +262,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel.php:565
+#: admin/admin-panel.php:570
 msgid ""
 "The %1$s is dynamic; you don't need to create a real WordPress page to show "
 "the list of categories, the plugin will generate it for you. If the "
@@ -278,39 +278,39 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel.php:762 admin/class-categories-admin-page.php:63
+#: admin/admin-panel.php:760 admin/class-categories-admin-page.php:63
 #: admin/class-categories-admin-page.php:67
 msgid "Manage Category Icon"
 msgstr ""
 
-#: admin/admin-panel.php:767 admin/class-categories-admin-page.php:38
+#: admin/admin-panel.php:765 admin/class-categories-admin-page.php:38
 #: admin/class-categories-admin-page.php:42
 #: admin/class-categories-admin-page.php:135
 msgid "Edit Category"
 msgstr ""
 
-#: admin/admin-panel.php:768 admin/class-categories-admin-page.php:49
+#: admin/admin-panel.php:766 admin/class-categories-admin-page.php:49
 #: admin/class-categories-admin-page.php:53
 msgid "Delete Category"
 msgstr ""
 
-#: admin/admin-panel.php:774
+#: admin/admin-panel.php:771
 msgid "Select {category_name}"
 msgstr ""
 
-#: admin/admin-panel.php:812 frontend/page-reply-to-ad.php:11
+#: admin/admin-panel.php:809 frontend/page-reply-to-ad.php:11
 msgid "Reply to Ad"
 msgstr ""
 
-#: admin/admin-panel.php:820 admin/templates/admin-panel-listings.tpl.php:5
+#: admin/admin-panel.php:817 admin/templates/admin-panel-listings.tpl.php:5
 msgid "Place Ad"
 msgstr ""
 
-#: admin/admin-panel.php:828 frontend/page-browse-ads.php:9
+#: admin/admin-panel.php:825 frontend/page-browse-ads.php:9
 msgid "Browse Ads"
 msgstr ""
 
-#: admin/admin-panel.php:832 admin/templates/admin-panel-listings.tpl.php:11
+#: admin/admin-panel.php:829 admin/templates/admin-panel-listings.tpl.php:11
 #: frontend/page-search-ads.php:9
 msgid "Search Ads"
 msgstr ""
@@ -422,15 +422,13 @@ msgid "Select target category"
 msgstr ""
 
 #: admin/class-categories-admin-page.php:135
+#: admin/class-categories-admin-page.php:144
 msgid "Add New Category"
 msgstr ""
 
 #: admin/class-categories-admin-page.php:144
-msgid "Update category"
-msgstr ""
-
-#: admin/class-categories-admin-page.php:144
-msgid "Add new category"
+#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:30
+msgid "Update"
 msgstr ""
 
 #: admin/class-debug-admin-page.php:257
@@ -702,12 +700,8 @@ msgstr ""
 msgid "An unexpected error ocurred."
 msgstr ""
 
-#: admin/pointers/class-drip-autoresponder.php:69
+#: admin/pointers/class-drip-autoresponder.php:67
 msgid "Email Address"
-msgstr ""
-
-#: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:30
-msgid "Update"
 msgstr ""
 
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:30
@@ -781,6 +775,10 @@ msgstr ""
 #: admin/templates/admin-panel-debug.tpl.php:97
 #: templates/admin/debug/rewrite-rules-debug-section.tpl.php:10
 msgid "Replacement"
+msgstr ""
+
+#: admin/templates/admin-panel-debug.tpl.php:133
+msgid "Working"
 msgstr ""
 
 #: admin/templates/admin-panel-debug.tpl.php:148
@@ -1235,49 +1233,49 @@ msgid ""
 "{support_link}contact support{/support_link}."
 msgstr ""
 
-#: frontend/ad-functions.php:156
-#: includes/listings/class-listing-renewed-email-notifications.php:86
+#: frontend/ad-functions.php:155
+#: includes/listings/class-listing-renewed-email-notifications.php:85
 #. translators: %s is the title of the listing.
 msgid "The ad \"%s\" has been successfully renewed."
 msgstr ""
 
-#: frontend/ad-functions.php:191 frontend/page-renew-ad.php:159
+#: frontend/ad-functions.php:189 frontend/page-renew-ad.php:159
 msgid "The Ad has been successfully renewed. New expiration date is %s."
 msgstr ""
 
-#: frontend/ad-functions.php:196 frontend/page-renew-ad.php:151
+#: frontend/ad-functions.php:194 frontend/page-renew-ad.php:151
 #: templates/admin/listings/quick-view-listing-admin-page.tpl.php:18
 #: templates/admin/listings-media-center.tpl.php:6
 #: templates/admin/view-listing-admin-page.tpl.php:14
 msgid "Return to Listings"
 msgstr ""
 
-#: frontend/ad-functions.php:214 frontend/page-place-ad.php:150
+#: frontend/ad-functions.php:212 frontend/page-place-ad.php:149
 msgid ""
 "You do not have permission to perform the function you are trying to "
 "perform. Access to this page has been denied"
 msgstr ""
 
-#: frontend/ad-functions.php:229
+#: frontend/ad-functions.php:227
 msgid "The Ad has been deleted"
 msgstr ""
 
-#: frontend/ad-functions.php:232
+#: frontend/ad-functions.php:230
 msgid ""
 "Your Ad details and any photos you have uploaded have been deleted from the "
 "system"
 msgstr ""
 
-#: frontend/ad-functions.php:236
+#: frontend/ad-functions.php:234
 #: includes/frontend/class-edit-listing-page.php:171
 msgid "The specified Ad doesn't exists."
 msgstr ""
 
-#: frontend/ad-functions.php:238
+#: frontend/ad-functions.php:236
 msgid "There was an error trying to delete the Ad. The Ad was not deleted."
 msgstr ""
 
-#: frontend/ad-functions.php:241
+#: frontend/ad-functions.php:239
 msgid "Problem encountered. Cannot complete  request"
 msgstr ""
 
@@ -1295,26 +1293,26 @@ msgid ""
 "from all categories."
 msgstr ""
 
-#: frontend/page-place-ad.php:76
+#: frontend/page-place-ad.php:75
 #: includes/views/class-verify-transaction-exists-step-decorator.php:17
 msgid ""
 "There was an error processing your Payment Request. Please try again or "
 "contact an Administrator."
 msgstr ""
 
-#: frontend/page-place-ad.php:131
+#: frontend/page-place-ad.php:130
 msgid "Please select a category."
 msgstr ""
 
-#: frontend/page-place-ad.php:132
+#: frontend/page-place-ad.php:131
 msgid "Please select the Ad's owner."
 msgstr ""
 
-#: frontend/page-place-ad.php:133
+#: frontend/page-place-ad.php:132
 msgid "Please select a payment term."
 msgstr ""
 
-#: frontend/page-place-ad.php:164 frontend/page-renew-ad.php:86
+#: frontend/page-place-ad.php:163 frontend/page-renew-ad.php:86
 msgid ""
 "You are trying to post an Ad using a transaction created for a different "
 "purpose. Please go back to the <a href=\"%s\">%s</a> page.<br>If you think "
@@ -1322,85 +1320,86 @@ msgid ""
 "transaction ID: %s"
 msgstr ""
 
-#: frontend/page-place-ad.php:173
+#: frontend/page-place-ad.php:172
 #: includes/frontend/class-submit-listing-page.php:276
 msgid ""
 "You can't post an Ad at this time because the payment associated with this "
 "transaction failed (see reasons below)."
 msgstr ""
 
-#: frontend/page-place-ad.php:255
+#: frontend/page-place-ad.php:254
 #: includes/listings/class-payment-information-validator.php:88
 msgid "You should select an owner for this Ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:259 frontend/page-renew-ad.php:199
+#: frontend/page-place-ad.php:258 frontend/page-renew-ad.php:199
 #: includes/listings/class-payment-information-validator.php:64
 #: includes/listings/class-payment-information-validator.php:73
 msgid "You should choose one of the available Payment Terms."
 msgstr ""
 
-#: frontend/page-place-ad.php:263
+#: frontend/page-place-ad.php:262
 #: includes/listings/class-payment-information-validator.php:75
 msgid "The Payment Term you selected is not available for non-administrator users."
 msgstr ""
 
-#: frontend/page-place-ad.php:279
+#: frontend/page-place-ad.php:278
 #: includes/listings/class-payment-information-validator.php:108
 msgid "Ad Category field is required"
 msgstr ""
 
-#: frontend/page-place-ad.php:284
+#: frontend/page-place-ad.php:283
 #: includes/listings/class-payment-information-validator.php:119
 msgid "You cannot list your Ad in top level categories."
 msgstr ""
 
-#: frontend/page-place-ad.php:290
+#: frontend/page-place-ad.php:289
 #: includes/frontend/class-submit-listing-page.php:175
 msgid ""
 "Hi, You need to be a registered user to post Ads in this website. Please "
 "use the form below to login or click the link to register."
 msgstr ""
 
-#: frontend/page-place-ad.php:419 frontend/page-place-ad.php:828
+#: frontend/page-place-ad.php:416 frontend/page-place-ad.php:823
 #: frontend/page-renew-ad.php:299
 #: includes/frontend/class-order-submit-listing-section.php:119
 msgid "You are logged in as an administrator. Any payment steps will be skipped."
 msgstr ""
 
-#: frontend/page-place-ad.php:501 frontend/page-renew-ad.php:349
+#: frontend/page-place-ad.php:498 frontend/page-renew-ad.php:349
 #: includes/frontend/class-submit-listing-page.php:318
-#: includes/views/class-verify-payment-can-be-processed-step-decorator.php:17
+#: includes/views/class-verify-payment-can-be-processed-step-decorator.php:18
 #. translators: %s is an alphanumeric string that identifies a payment
 #. transaction.
+#. translators: %s the transaction id
 msgid ""
 "We can't process payments for this Payment Transaction at this time. Please "
 "contact the website administrator and provide the following transaction ID: "
 "%s"
 msgstr ""
 
-#: frontend/page-place-ad.php:826
+#: frontend/page-place-ad.php:821
 msgid ""
 "Your Ad details have been filled out in the form below. Make any changes "
 "needed and then resubmit the Ad to update it."
 msgstr ""
 
-#: frontend/page-place-ad.php:830
+#: frontend/page-place-ad.php:825
 msgid "Fill out the form below to post your classified ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:834
+#: frontend/page-place-ad.php:829
 msgid ""
 "We found errors in the details you submitted. A detailed error message is "
 "shown in front or below each invalid field. Please fix the errors and "
 "submit the form again."
 msgstr ""
 
-#: frontend/page-place-ad.php:853
+#: frontend/page-place-ad.php:848
 msgid "Start & End Date"
 msgstr ""
 
-#: frontend/page-place-ad.php:855
+#: frontend/page-place-ad.php:850
 #: includes/admin/import/class-csv-importer-columns.php:185
 #: includes/admin/listings/class-listings-table-nav-handler.php:158
 #: includes/form-fields/class-listing-form-fields.php:127
@@ -1408,7 +1407,7 @@ msgstr ""
 msgid "Start Date"
 msgstr ""
 
-#: frontend/page-place-ad.php:857
+#: frontend/page-place-ad.php:852
 #: includes/admin/import/class-csv-importer-columns.php:196
 #: includes/admin/listings/class-listings-table-nav-handler.php:159
 #: includes/form-fields/class-listing-form-fields.php:131
@@ -1416,126 +1415,126 @@ msgstr ""
 msgid "End Date"
 msgstr ""
 
-#: frontend/page-place-ad.php:959
+#: frontend/page-place-ad.php:954
 msgid ""
 "Hi, Payment is required for posting Ads in this website and we couldn't "
 "find a Payment Transaction assigned to you. You can't post Ads this time. "
 "If you think this is an error please contact the website Administrator."
 msgstr ""
 
-#: frontend/page-place-ad.php:986
+#: frontend/page-place-ad.php:981
 msgid "You did not select a Payment Term. Please select a Payment Term for this Ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:991
+#: frontend/page-place-ad.php:986
 msgid "Please enter a start date for the Ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:996
+#: frontend/page-place-ad.php:991
 msgid "Please enter an end date for the Ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:1000
+#: frontend/page-place-ad.php:995
 #: includes/form-fields/class-form-fields-validator.php:71
 msgid "The start date must occur before the end date."
 msgstr ""
 
-#: frontend/page-place-ad.php:1005
+#: frontend/page-place-ad.php:1000
 msgid "You did not enter a title for your Ad"
 msgstr ""
 
-#: frontend/page-place-ad.php:1010
+#: frontend/page-place-ad.php:1005
 msgid "You did not enter any text for your Ad. Please enter some text for your Ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:1023
+#: frontend/page-place-ad.php:1018
 msgid "You did not enter your website address. Your website address is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:1029
+#: frontend/page-place-ad.php:1024
 msgid ""
 "Your website address is not properly formatted. Please make sure you have "
 "included the http:// part of your website address"
 msgstr ""
 
-#: frontend/page-place-ad.php:1034
+#: frontend/page-place-ad.php:1029
 msgid "You did not enter your name. Your name is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:1039
+#: frontend/page-place-ad.php:1034
 msgid "You did not enter your email. Your email is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:1044 frontend/page-reply-to-ad.php:147
+#: frontend/page-place-ad.php:1039 frontend/page-reply-to-ad.php:147
 msgid ""
 "The email address you entered was not a valid email address. Please check "
 "for errors and try again."
 msgstr ""
 
-#: frontend/page-place-ad.php:1046
+#: frontend/page-place-ad.php:1041
 msgid ""
 "The email address you entered is not allowed in this website. Please use an "
 "email address from one of the following domains: %s."
 msgstr ""
 
-#: frontend/page-place-ad.php:1057
+#: frontend/page-place-ad.php:1052
 msgid "You did not enter your phone number. Your phone number is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:1075
+#: frontend/page-place-ad.php:1070
 #: includes/helpers/widgets/multiple-region-selector.php:172
 msgid "You did not enter your country. Your country is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:1084
+#: frontend/page-place-ad.php:1079
 #: includes/helpers/widgets/multiple-region-selector.php:173
 msgid "You did not enter your state. Your state is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:1093
+#: frontend/page-place-ad.php:1088
 #: includes/helpers/widgets/multiple-region-selector.php:175
 msgid "You did not enter your city. Your city is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:1102
+#: frontend/page-place-ad.php:1097
 #: includes/helpers/widgets/multiple-region-selector.php:174
 msgid "You did not enter your county/village. Your county/village is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:1109
+#: frontend/page-place-ad.php:1104
 msgid "You did not enter the price of your item. The item price is required."
 msgstr ""
 
-#: frontend/page-place-ad.php:1115
+#: frontend/page-place-ad.php:1110
 msgid ""
 "You have entered an invalid item price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
 msgstr ""
 
-#: frontend/page-place-ad.php:1133
+#: frontend/page-place-ad.php:1128
 msgid "You did not accept the terms of service"
 msgstr ""
 
-#: frontend/page-place-ad.php:1149
+#: frontend/page-place-ad.php:1144
 msgid "Your Ad was flagged as spam. Please contact the administrator of this site."
 msgstr ""
 
-#: frontend/page-place-ad.php:1340
+#: frontend/page-place-ad.php:1335
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation. No "
 "images can be added at this time."
 msgstr ""
 
-#: frontend/page-place-ad.php:1347
+#: frontend/page-place-ad.php:1342
 msgid "The specified Ad doesn't exists. No images can be added at this time."
 msgstr ""
 
-#: frontend/page-place-ad.php:1426 frontend/page-place-ad.php:1478
+#: frontend/page-place-ad.php:1421 frontend/page-place-ad.php:1473
 #: includes/frontend/class-submit-listing-page.php:378
 msgid "We were unable to find a Payment Transaction assigned to this operation."
 msgstr ""
 
-#: frontend/page-place-ad.php:1433 frontend/page-place-ad.php:1485
+#: frontend/page-place-ad.php:1428 frontend/page-place-ad.php:1480
 #: frontend/page-renew-ad.php:410
 #: includes/frontend/class-submit-listing-page.php:385
 msgid "The Ad associated with this transaction doesn't exists."
@@ -1613,14 +1612,14 @@ msgid ""
 "site."
 msgstr ""
 
-#: frontend/page-reply-to-ad.php:273
+#: frontend/page-reply-to-ad.php:272
 msgid ""
 "There was a problem encountered during the attempt to send your message. "
 "Please try again and if the problem persists, please contact the system "
 "administrator."
 msgstr ""
 
-#: frontend/page-reply-to-ad.php:279
+#: frontend/page-reply-to-ad.php:278
 msgid "Your message has been sent. Return to <view-listing-link>."
 msgstr ""
 
@@ -1658,43 +1657,43 @@ msgid ""
 "{browse_listings_link}browse all ads{/browse_listings_link}."
 msgstr ""
 
-#: frontend/placeholders.php:449
+#: frontend/placeholders.php:446
 msgid "Seller"
 msgstr ""
 
-#: frontend/placeholders.php:477
+#: frontend/placeholders.php:472
 msgid "Visit Website"
 msgstr ""
 
-#: frontend/placeholders.php:662 includes/functions/listings.php:378
+#: frontend/placeholders.php:651 includes/functions/listings.php:378
 msgid "Location"
 msgstr ""
 
-#: frontend/placeholders.php:700
+#: frontend/placeholders.php:688
 #. translators: %d is the number of views for this ad.
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] ""
 msgstr[1] ""
 
-#: frontend/placeholders.php:705
+#: frontend/placeholders.php:693
 #. translators: %d is the number of views for this ad.
 msgid "Total views: %d"
 msgstr ""
 
-#: frontend/placeholders.php:760
+#: frontend/placeholders.php:745
 msgid "Phone"
 msgstr ""
 
-#: frontend/placeholders.php:824
+#: frontend/placeholders.php:808
 msgid "Flag Ad"
 msgstr ""
 
-#: frontend/placeholders.php:839
+#: frontend/placeholders.php:822
 msgid "Tweet This"
 msgstr ""
 
-#: frontend/placeholders.php:875
+#: frontend/placeholders.php:856
 msgid "Share on Facebook"
 msgstr ""
 
@@ -1877,17 +1876,17 @@ msgid ""
 msgstr ""
 
 #: frontend/templates/email-send-ad-access-key.tpl.php:6
-#: frontend/templates/email-send-all-ad-access-keys.tpl.php:8
+#: frontend/templates/email-send-all-ad-access-keys.tpl.php:13
 #: templates/admin/view-listing-admin-page.tpl.php:11
 msgid "Access Key"
 msgstr ""
 
 #: frontend/templates/email-send-ad-access-key.tpl.php:7
-#: frontend/templates/email-send-all-ad-access-keys.tpl.php:9
+#: frontend/templates/email-send-all-ad-access-keys.tpl.php:14
 msgid "Edit Link:"
 msgstr ""
 
-#: frontend/templates/email-send-all-ad-access-keys.tpl.php:4
+#: frontend/templates/email-send-all-ad-access-keys.tpl.php:9
 msgid "Total ads found sharing your email address"
 msgstr ""
 
@@ -2067,7 +2066,7 @@ msgstr ""
 msgid "Pay With 2Checkout"
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:807
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:794
 #: includes/admin/class-listings-personal-data-provider.php:115
 #: includes/admin/class-listings-personal-data-provider.php:125
 #: includes/admin/import/class-csv-importer-columns.php:230
@@ -2113,7 +2112,7 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:827
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:814
 #: includes/admin/class-listings-personal-data-provider.php:117
 #: includes/admin/class-listings-personal-data-provider.php:127
 #: includes/admin/import/class-csv-importer-columns.php:260
@@ -2284,51 +2283,55 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: functions.php:451
+#: functions.php:442
 msgid "%s ago"
 msgstr ""
 
-#: functions.php:620
+#: functions.php:607
 msgid "Ads per page:"
 msgstr ""
 
-#: functions.php:637
+#: functions.php:624
 msgid "Page {current_page_number} of {number_of_pages}"
 msgstr ""
 
-#: functions.php:748
+#: functions.php:735
 msgid "None"
 msgstr ""
 
-#: functions.php:808
+#: functions.php:795
 msgid "separate countries by commas"
 msgstr ""
 
-#: functions.php:817
+#: functions.php:804
 msgid "State/Province"
 msgstr ""
 
-#: functions.php:818
+#: functions.php:805
 msgid "separate states by commas"
 msgstr ""
 
-#: functions.php:828
+#: functions.php:815
 msgid "separate cities by commas"
 msgstr ""
 
-#: functions.php:837
+#: functions.php:824
 msgid "County/Village/Other"
 msgstr ""
 
-#: functions.php:838
+#: functions.php:825
 msgid "separate counties by commas"
 msgstr ""
 
-#: functions.php:1052
+#: functions.php:1039
 msgid "-- Choose a Country --"
 msgstr ""
 
-#: functions.php:1810 templates/components/media-center.tpl.php:14
+#: functions.php:1456 templates/admin/main-classifieds-admin-page.tpl.php:58
+msgid "Free"
+msgstr ""
+
+#: functions.php:1796 templates/components/media-center.tpl.php:14
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -2336,72 +2339,72 @@ msgid ""
 "cannot be shown in the frontend."
 msgstr ""
 
-#: functions.php:1829
+#: functions.php:1815
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version "
 "%2$s. Please get AWPCP %1$s %3$s or newer!"
 msgstr ""
 
-#: functions.php:1831
+#: functions.php:1817
 msgid "Error"
 msgstr ""
 
-#: functions.php:2189
+#: functions.php:2175
 msgid "No errors."
 msgstr ""
 
-#: functions.php:2190
+#: functions.php:2176
 msgid "The file is larger than upload_max_filesize."
 msgstr ""
 
-#: functions.php:2191
+#: functions.php:2177
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr ""
 
-#: functions.php:2192
+#: functions.php:2178
 msgid "The file was only partially uploaded."
 msgstr ""
 
-#: functions.php:2193
+#: functions.php:2179
 msgid "No file was uploaded."
 msgstr ""
 
-#: functions.php:2194
+#: functions.php:2180
 msgid "Missing temporary directory."
 msgstr ""
 
-#: functions.php:2195
+#: functions.php:2181
 msgid "Can't write file to disk."
 msgstr ""
 
-#: functions.php:2196
+#: functions.php:2182
 msgid "The file upload was stopped by extension."
 msgstr ""
 
-#: functions.php:2438
+#: functions.php:2420
 msgid "Your Ad \"%s\" has been approved"
 msgstr ""
 
-#: functions.php:2461
+#: functions.php:2443
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr ""
 
-#: functions.php:2484
+#: functions.php:2465
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr ""
 
-#: functions.php:2486
+#: functions.php:2467
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
 "below each image. Click here to continue: %s."
 msgstr ""
 
-#: functions.php:2489
+#: functions.php:2470
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr ""
 
-#: functions.php:2492 includes/functions/notifications.php:157
+#: functions.php:2473 includes/functions/notifications.php:157
 #. translators: %1$s is the listing title. %2$s is the URL for managing
 #. listing.
 msgid ""
@@ -2410,7 +2413,7 @@ msgid ""
 "continue: %2$s."
 msgstr ""
 
-#: functions.php:2499 includes/functions/notifications.php:165
+#: functions.php:2480 includes/functions/notifications.php:165
 #. translators: %s is the URL for managing listing images.
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
@@ -2418,27 +2421,27 @@ msgid ""
 "to continue: %s."
 msgstr ""
 
-#: functions.php:3035
+#: functions.php:3012
 msgid "Email sent %s."
 msgstr ""
 
-#: functions.php:3166
+#: functions.php:3143
 msgid "Not Installed"
 msgstr ""
 
-#: functions.php:3170
+#: functions.php:3147
 msgid "Installed"
 msgstr ""
 
-#: functions.php:3178
+#: functions.php:3155
 msgid "SSL Support: Yes."
 msgstr ""
 
-#: functions.php:3180
+#: functions.php:3157
 msgid "SSL Support: No."
 msgstr ""
 
-#: functions.php:3183
+#: functions.php:3160
 msgid "OpenSSL version:"
 msgstr ""
 
@@ -2530,7 +2533,7 @@ msgid "Contact Address"
 msgstr ""
 
 #: includes/admin/class-user-personal-data-provider.php:55
-#: includes/settings/class-display-settings.php:477
+#: includes/settings/class-display-settings.php:476
 msgid "Contact Phone"
 msgstr ""
 
@@ -2648,14 +2651,14 @@ msgstr ""
 msgid "Test Import"
 msgstr ""
 
-#: includes/admin/listings/class-approve-images-table-action.php:145
+#: includes/admin/listings/class-approve-images-table-action.php:144
 #. translators: %d is the number of ads that were successfully enabled.
 msgid "Images from %d ad were successfully approved."
 msgid_plural "Images from %d ads were successfully approved."
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/admin/listings/class-approve-images-table-action.php:153
+#: includes/admin/listings/class-approve-images-table-action.php:152
 #. translators: %d is the number of ads that couldnt be approved.
 msgid "Images from %d ad couldn't be approved."
 msgid_plural "Images from %d ads couldn't be approved."
@@ -3032,86 +3035,86 @@ msgid ""
 "delete one of the associated listings: <error-message>"
 msgstr ""
 
-#: includes/class-awpcp.php:744
+#: includes/class-awpcp.php:746
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
 msgstr ""
 
-#: includes/class-awpcp.php:745
+#: includes/class-awpcp.php:747
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr ""
 
-#: includes/class-awpcp.php:761
+#: includes/class-awpcp.php:763
 msgid "Attachments"
 msgstr ""
 
-#: includes/class-awpcp.php:768
+#: includes/class-awpcp.php:770
 msgid "Authorize.Net"
 msgstr ""
 
-#: includes/class-awpcp.php:775
+#: includes/class-awpcp.php:777
 msgid "BuddyPress Listings"
 msgstr ""
 
-#: includes/class-awpcp.php:782
+#: includes/class-awpcp.php:784
 msgid "Campaign Manager"
 msgstr ""
 
-#: includes/class-awpcp.php:789
+#: includes/class-awpcp.php:791
 msgid "Category Icons"
 msgstr ""
 
-#: includes/class-awpcp.php:796
+#: includes/class-awpcp.php:798
 msgid "Comments & Ratings"
 msgstr ""
 
-#: includes/class-awpcp.php:803
+#: includes/class-awpcp.php:805
 msgid "Coupons/Discount"
 msgstr ""
 
-#: includes/class-awpcp.php:810
+#: includes/class-awpcp.php:812
 msgid "Extra Fields"
 msgstr ""
 
-#: includes/class-awpcp.php:824
+#: includes/class-awpcp.php:826
 msgid "Fee per Category"
 msgstr ""
 
-#: includes/class-awpcp.php:831
+#: includes/class-awpcp.php:833
 msgid "Mark as Sold"
 msgstr ""
 
-#: includes/class-awpcp.php:838
+#: includes/class-awpcp.php:840
 msgid "PayPal Pro"
 msgstr ""
 
-#: includes/class-awpcp.php:845
+#: includes/class-awpcp.php:847
 msgid "Regions Control"
 msgstr ""
 
-#: includes/class-awpcp.php:852
+#: includes/class-awpcp.php:854
 msgid "RSS"
 msgstr ""
 
-#: includes/class-awpcp.php:859
+#: includes/class-awpcp.php:861
 msgid "Stripe"
 msgstr ""
 
-#: includes/class-awpcp.php:866
+#: includes/class-awpcp.php:868
 msgid "Membership to Post"
 msgstr ""
 
-#: includes/class-awpcp.php:873 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:875 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr ""
 
-#: includes/class-awpcp.php:881
+#: includes/class-awpcp.php:883
 msgid "XML Sitemap"
 msgstr ""
 
-#: includes/class-awpcp.php:889
+#: includes/class-awpcp.php:891
 msgid "ZIP Code Search Module"
 msgstr ""
 
@@ -3159,29 +3162,32 @@ msgstr ""
 msgid "AWP Classifieds Plugin"
 msgstr ""
 
-#: includes/class-categories-collection.php:45
+#: includes/class-categories-collection.php:46
+#. translators: %d the category id
 msgid "No category was found with ID: %d"
 msgstr ""
 
-#: includes/class-categories-collection.php:57
+#: includes/class-categories-collection.php:58
 msgid "The category ID must be a positive integer, {category_id} was given."
 msgstr ""
 
-#: includes/class-categories-collection.php:104
+#: includes/class-categories-collection.php:105
 msgid "No category was found with old ID: {old_category_id}."
 msgstr ""
 
-#: includes/class-categories-collection.php:113
+#: includes/class-categories-collection.php:114
 msgid ""
 "No category was found with ID: {category_id}, the replacement for category "
 "with old ID: {old_category_id}."
 msgstr ""
 
-#: includes/class-categories-collection.php:125
+#: includes/class-categories-collection.php:127
+#. translators: %s the submitted value
 msgid "The category name must be a non empty string, %s was given."
 msgstr ""
 
-#: includes/class-categories-collection.php:134
+#: includes/class-categories-collection.php:137
+#. translators: %s is the category name
 msgid "No category was found with name: %s."
 msgstr ""
 
@@ -3236,7 +3242,7 @@ msgstr ""
 msgid "No Listing was found with old id: %d."
 msgstr ""
 
-#: includes/class-roles-and-capabilities.php:167
+#: includes/class-roles-and-capabilities.php:171
 msgid "Classifieds Moderator"
 msgstr ""
 
@@ -3604,55 +3610,69 @@ msgstr ""
 msgid "The specified transaction doesn't exist."
 msgstr ""
 
-#: includes/functions/file-upload.php:25
+#: includes/functions/file-upload.php:26
+#. translators: %s the file name
 msgid "The specified image file does not exists: %s."
 msgstr ""
 
-#: includes/functions/file-upload.php:35
+#: includes/functions/file-upload.php:36
 msgid "No file was selected."
 msgstr ""
 
-#: includes/functions/file-upload.php:39
+#: includes/functions/file-upload.php:40
 msgid "Unknown error encountered while uploading the image."
 msgstr ""
 
-#: includes/functions/file-upload.php:48
-msgid "The file %s has an invalid extension and was rejected."
+#: includes/functions/file-upload.php:45
+#. translators: %s the file name
+msgid "There was an error trying to find out the file size of the image %s."
 msgstr ""
 
 #: includes/functions/file-upload.php:51
+#. translators: %s the file name
+msgid "The file %s has an invalid extension and was rejected."
+msgstr ""
+
+#: includes/functions/file-upload.php:55
+#. translators: %1$s the file name, %2$d the size limit
 msgid ""
 "The size of %1$s was too small. The file was not uploaded. File size must "
 "be greater than %2$d bytes."
 msgstr ""
 
-#: includes/functions/file-upload.php:55
+#: includes/functions/file-upload.php:60
+#. translators: %1$s the file name, %2$s the size limit
 msgid ""
-"The file %s was larger than the maximum allowed file size of %s bytes. The "
-"file was not uploaded."
+"The file %1$s was larger than the maximum allowed file size of %2$s bytes. "
+"The file was not uploaded."
 msgstr ""
 
-#: includes/functions/file-upload.php:59
+#: includes/functions/file-upload.php:65
+#. translators: %s the file name
 msgid "The file %s does not appear to be a valid image file."
 msgstr ""
 
-#: includes/functions/file-upload.php:62
+#: includes/functions/file-upload.php:69
+#. translators: %1$s the file name, %2$s the size limit
 msgid ""
-"The image %s did not meet the minimum width of %s pixels. The file was not "
-"uploaded."
+"The image %1$s did not meet the minimum width of %2$s pixels. The file was "
+"not uploaded."
 msgstr ""
 
-#: includes/functions/file-upload.php:66
+#: includes/functions/file-upload.php:74
+#. translators: %1$s the file name, %2$s the size limit
 msgid ""
-"The image %s did not meet the minimum height of %s pixels. The file was not "
-"uploaded."
+"The image %1$s did not meet the minimum height of %2$s pixels. The file was "
+"not uploaded."
 msgstr ""
 
-#: includes/functions/file-upload.php:71 includes/functions/file-upload.php:75
+#: includes/functions/file-upload.php:80 includes/functions/file-upload.php:85
+#. translators: %s the file name
 msgid "The file %s could not be moved to the destination directory."
 msgstr ""
 
-#: includes/functions/file-upload.php:80
+#: includes/functions/file-upload.php:91
+#. translators: %s the file name
 msgid "Could not create resized versions of image %s."
 msgstr ""
 
@@ -3709,7 +3729,7 @@ msgstr ""
 msgid "Please type in the details of your ad."
 msgstr ""
 
-#: includes/functions/legacy.php:192
+#: includes/functions/legacy.php:190
 msgid "Top Level Category"
 msgstr ""
 
@@ -3795,7 +3815,7 @@ msgstr ""
 msgid "Listing <listing-title> was flagged"
 msgstr ""
 
-#: includes/functions/payments.php:309
+#: includes/functions/payments.php:307
 msgid "Customer attempt to pay has failed"
 msgstr ""
 
@@ -3973,21 +3993,23 @@ msgid "The ad was already sent to a Facebook Page."
 msgstr ""
 
 #: includes/helpers/class-send-to-facebook-helper.php:80
-#: includes/helpers/class-send-to-facebook-helper.php:266
+#: includes/helpers/class-send-to-facebook-helper.php:268
 msgid ""
 "The ad is currently disabled. If you share it, Facebook servers and users "
 "won't be able to access it."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:134
+#: includes/helpers/class-send-to-facebook-helper.php:135
+#. translators: %s the error message
 msgid "There was an error trying to contact Facebook servers: %s."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:140
+#: includes/helpers/class-send-to-facebook-helper.php:142
+#. translators: %s the error message
 msgid "Facebook API returned the following errors: %s."
 msgstr ""
 
-#: includes/helpers/class-send-to-facebook-helper.php:262
+#: includes/helpers/class-send-to-facebook-helper.php:264
 msgid "The ad was already sent to a Facebook Group."
 msgstr ""
 
@@ -4019,7 +4041,7 @@ msgid ""
 "Administrator."
 msgstr ""
 
-#: includes/helpers/widgets/class-user-field.php:37
+#: includes/helpers/widgets/class-user-field.php:32
 msgid "Select an User"
 msgstr ""
 
@@ -4117,34 +4139,34 @@ msgstr ""
 msgid "File extension not allowed."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:100
+#: includes/media/class-file-uploader.php:120
 msgid "Temporary directory doesn't exists and couldn't be created."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:113
+#: includes/media/class-file-uploader.php:133
 msgid "There was an error trying to move the uploaded file to a temporary location."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:119
+#: includes/media/class-file-uploader.php:139
 msgid "There was an error trying to open PHP's input stream."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:137
+#: includes/media/class-file-uploader.php:157
 msgid ""
 "There was an error trying to write to the following file: <file-path>. "
 "Please make sure the webserver is allowed to write to the "
 "<parent-directory> directory."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:141
+#: includes/media/class-file-uploader.php:161
 msgid "There was an error trying to create the uploaded file on the server."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:156
+#: includes/media/class-file-uploader.php:176
 msgid "Missing chunk."
 msgstr ""
 
-#: includes/media/class-file-uploader.php:160
+#: includes/media/class-file-uploader.php:180
 msgid "There was an error trying to open the input stream."
 msgstr ""
 
@@ -4513,11 +4535,11 @@ msgstr ""
 msgid "The price must be equal or greater than zero."
 msgstr ""
 
-#: includes/payment-terms-table.php:152 includes/payments-api.php:441
+#: includes/payment-terms-table.php:156 includes/payments-api.php:441
 msgid "The selected payment type can't be used in this kind of transaction."
 msgstr ""
 
-#: includes/payment-terms-table.php:157 includes/payments-api.php:446
+#: includes/payment-terms-table.php:161 includes/payments-api.php:446
 msgid "The selected payment term can't be used in this kind of transaction."
 msgstr ""
 
@@ -4531,7 +4553,7 @@ msgid ""
 "payment."
 msgstr ""
 
-#: includes/payments-api.php:490 includes/payments-api.php:499
+#: includes/payments-api.php:490 includes/payments-api.php:502
 msgid ""
 "Please contact customer service if you are viewing this message after "
 "having made a payment. If you have not tried to make a payment and you are "
@@ -4539,88 +4561,96 @@ msgid ""
 "be disregarded."
 msgstr ""
 
-#: includes/payments-api.php:491 includes/payments-api.php:500
-msgid "Return to <a href=\"%s\">home page</a>."
+#: includes/payments-api.php:493 includes/payments-api.php:505
+#. translators: %s link HTML
+msgid "Return to %shome page"
 msgstr ""
 
-#: includes/payments-api.php:498
+#: includes/payments-api.php:501
 msgid ""
 "The payment method associated with this transaction is not available at "
 "this time. We can't process your payment."
 msgstr ""
 
-#: includes/payments-api.php:698
+#: includes/payments-api.php:688
+msgid ""
+"You currently have %1$s credits in your account. The balance after this "
+"transaction is completed successfully will be %2$s."
+msgstr ""
+
+#: includes/payments-api.php:703
+#. translators: %s credit balance
 msgid "You currently have %s credits in your account."
 msgstr ""
 
-#: includes/payments-api.php:814 includes/payments-api.php:865
+#: includes/payments-api.php:819 includes/payments-api.php:870
 msgid "Payment Completed"
 msgstr ""
 
-#: includes/payments-api.php:817
+#: includes/payments-api.php:822
 msgid ""
 "Your Payment has been processed successfully. Please press the button below "
 "to continue with the process."
 msgstr ""
 
-#: includes/payments-api.php:819
+#: includes/payments-api.php:824
 msgid ""
 "Your Payment has been processed successfully. However is still pending "
 "approvation from the payment gateway. Please press the button below to "
 "continue with the process."
 msgstr ""
 
-#: includes/payments-api.php:824
+#: includes/payments-api.php:829
 msgid "Payment Not Required"
 msgstr ""
 
-#: includes/payments-api.php:825
+#: includes/payments-api.php:830
 msgid ""
 "No Payment is required for this transaction. Please press the button below "
 "to continue with the process."
 msgstr ""
 
-#: includes/payments-api.php:830 includes/payments-api.php:871
+#: includes/payments-api.php:835 includes/payments-api.php:876
 msgid "Payment Failed"
 msgstr ""
 
-#: includes/payments-api.php:831
+#: includes/payments-api.php:836
 msgid ""
 "Your Payment has been processed successfully. However, the payment gateway "
 "didn't return a payment status that allows us to continue with the process. "
 "Please contact the website administrator to solve this issue."
 msgstr ""
 
-#: includes/payments-api.php:834 includes/payments-api.php:867
+#: includes/payments-api.php:839 includes/payments-api.php:872
 msgid "Payment Canceled"
 msgstr ""
 
-#: includes/payments-api.php:835
+#: includes/payments-api.php:840
 msgid "The Payment transaction was canceled. You can't post an Ad this time."
 msgstr ""
 
-#: includes/payments-api.php:838
+#: includes/payments-api.php:843
 msgid "Waiting on Confirmation"
 msgstr ""
 
-#: includes/payments-api.php:839
+#: includes/payments-api.php:844
 msgid ""
 "The payment gateway is taking a bit longer than expected to confirm your "
 "payment. Please wait a few seconds while we verify the transaction. The "
 "page will reload automatically."
 msgstr ""
 
-#: includes/payments-api.php:842
+#: includes/payments-api.php:847
 msgid "Payment Error"
 msgstr ""
 
-#: includes/payments-api.php:843
+#: includes/payments-api.php:848
 msgid ""
 "There was an error processing your payment. The payment status couldn't be "
 "found. Please contact the website admin to solve this issue."
 msgstr ""
 
-#: includes/payments-api.php:869
+#: includes/payments-api.php:874
 msgid "Payment Not Verified"
 msgstr ""
 
@@ -4633,20 +4663,20 @@ msgstr ""
 msgid "Go to the %s to change the Single Ad layout."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:24
+#: includes/settings/class-display-settings.php:23
 msgid "Display"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:62
-#: includes/settings/class-display-settings.php:72
+#: includes/settings/class-display-settings.php:61
+#: includes/settings/class-display-settings.php:71
 msgid "Layout and Presentation"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:77
+#: includes/settings/class-display-settings.php:76
 msgid "Show Ad preview before payment."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:77
+#: includes/settings/class-display-settings.php:76
 msgid ""
 "If enabled, a preview of the Ad being posted will be shown after the images "
 "have been uploaded and before the user is asked to pay. The user is allowed "
@@ -4654,289 +4684,289 @@ msgid ""
 "posting process."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:78
+#: includes/settings/class-display-settings.php:77
 msgid "Allow HTML in Ad text"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:78
+#: includes/settings/class-display-settings.php:77
 msgid "Allow HTML in ad text (Not recommended)."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:79
+#: includes/settings/class-display-settings.php:78
 msgid "Display this text above ad detail text input box on ad post page"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:79
+#: includes/settings/class-display-settings.php:78
 msgid "No HTML Allowed"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:80
+#: includes/settings/class-display-settings.php:79
 msgid "Maximum Ad title length"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:80
+#: includes/settings/class-display-settings.php:79
 msgid ""
 "Number of characters allowed in Ad title. Please note this is the default "
 "value and can be overwritten in Fees and Subscription Plans."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:81
+#: includes/settings/class-display-settings.php:80
 msgid "Maximum Ad details length"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:81
+#: includes/settings/class-display-settings.php:80
 msgid ""
 "Number of characters allowed in Ad details. Please note this is the default "
 "value and can be overwritten in Fees and Subscription Plans."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:82
+#: includes/settings/class-display-settings.php:81
 msgid "Number of words in Ad excerpt"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:82
+#: includes/settings/class-display-settings.php:81
 msgid "Number of words shown by the Ad excerpt placeholder."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:83
+#: includes/settings/class-display-settings.php:82
 msgid "Hide contact name to anonymous users?"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:83
+#: includes/settings/class-display-settings.php:82
 msgid "Hide listing contact name to anonymous (non logged in) users."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:88
+#: includes/settings/class-display-settings.php:87
 msgid "Ad Listings page layout"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:109
+#: includes/settings/class-display-settings.php:108
 msgid ""
 "Modify as needed to control layout of ad listings page. Maintain code "
 "formatted as \\$somecodetitle. Changing the code keys will prevent the "
 "elements they represent from displaying."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:111
-#: includes/settings/class-display-settings.php:148
+#: includes/settings/class-display-settings.php:110
+#: includes/settings/class-display-settings.php:147
 msgid "Reset Default"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:112
+#: includes/settings/class-display-settings.php:111
 msgid "Single Ad page layout"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:119
+#: includes/settings/class-display-settings.php:118
 msgid "Contact Information"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:120
+#: includes/settings/class-display-settings.php:119
 msgid "Contact"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:130
+#: includes/settings/class-display-settings.php:129
 msgid "More Information"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:146
+#: includes/settings/class-display-settings.php:145
 msgid ""
 "Modify as needed to control layout of single ad view page. Maintain code "
 "formatted as \\$somecodetitle. Changing the code keys will prevent the "
 "elements they represent from displaying."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:152
+#: includes/settings/class-display-settings.php:151
 msgid "Allow WordPress Shortcodes in Single Ad page layout"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:155
+#: includes/settings/class-display-settings.php:154
 msgid ""
 "Shortcodes executed this way will be executed as if they were entered in "
 "the content of the WordPress page showing the listing (normally the Show Ad "
 "page, but in general any page that has the AWPCPSHOWAD shortcode)."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:159
+#: includes/settings/class-display-settings.php:158
 msgid "Date (newest first)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:160
+#: includes/settings/class-display-settings.php:159
 msgid "Date (oldest first)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:161
+#: includes/settings/class-display-settings.php:160
 msgid "Title (ascending)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:162
+#: includes/settings/class-display-settings.php:161
 msgid "Title (descending)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:163
+#: includes/settings/class-display-settings.php:162
 msgid "Paid status and date (paid first, then most recent)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:164
+#: includes/settings/class-display-settings.php:163
 msgid "Paid status and title (paid first, then by title)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:165
+#: includes/settings/class-display-settings.php:164
 msgid "Views (most viewed first, then by title)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:166
+#: includes/settings/class-display-settings.php:165
 msgid "Views (most viewed first, then by date)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:167
+#: includes/settings/class-display-settings.php:166
 msgid "Views (least viewed first, then by title)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:168
+#: includes/settings/class-display-settings.php:167
 msgid "Views (least viewed first, then by date)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:169
+#: includes/settings/class-display-settings.php:168
 msgid "Price (high to low, then by date)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:170
+#: includes/settings/class-display-settings.php:169
 msgid "Price (low to high, then by date)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:173
+#: includes/settings/class-display-settings.php:172
 msgid "Order Ad Listings by"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:174
+#: includes/settings/class-display-settings.php:173
 msgid "Order Ad Listings in Search results by"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:179
+#: includes/settings/class-display-settings.php:178
 msgid "Search form display"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:183
+#: includes/settings/class-display-settings.php:182
 msgid "Above results"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:184
+#: includes/settings/class-display-settings.php:183
 msgid "Below results"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:185
+#: includes/settings/class-display-settings.php:184
 msgid "Don't show with results"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:190
+#: includes/settings/class-display-settings.php:189
 msgid "Default number of Ads per page"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:193
+#: includes/settings/class-display-settings.php:192
 msgid "Pagination Options"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:195
+#: includes/settings/class-display-settings.php:194
 msgid "Show Ad count in categories"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:195
+#: includes/settings/class-display-settings.php:194
 msgid "Show how many ads a category contains."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:196
+#: includes/settings/class-display-settings.php:195
 msgid "Hide empty categories?"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:196
+#: includes/settings/class-display-settings.php:195
 msgid "If checked, categories with 0 listings in it won't be shown."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:201
+#: includes/settings/class-display-settings.php:200
 msgid "Show Ad views"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:204
+#: includes/settings/class-display-settings.php:203
 msgid ""
 "Show the number of times the ad has been viewed (simple count made by AWPCP "
 "&endash; warning, may not be accurate!)"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:207
+#: includes/settings/class-display-settings.php:206
 msgid "Make URLs in ad text clickable"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:208
+#: includes/settings/class-display-settings.php:207
 msgid "Add no follow to links in Ads"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:221
-#: includes/settings/class-display-settings.php:226
+#: includes/settings/class-display-settings.php:220
+#: includes/settings/class-display-settings.php:225
 msgid "Classifieds Bar"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:231
+#: includes/settings/class-display-settings.php:230
 msgid "Show Classifieds Bar"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:234
+#: includes/settings/class-display-settings.php:233
 msgid ""
 "The Classifieds Bar is a section shown at the top of the plugin pages, "
 "displaying a Search Bar and multiple menu items. Each element of the bar "
 "can be enabled or disabled using the settings below."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:239
+#: includes/settings/class-display-settings.php:238
 msgid "Show Search Bar"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:250
+#: includes/settings/class-display-settings.php:249
 msgid "Show Place Ad menu item"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:261
+#: includes/settings/class-display-settings.php:260
 msgid "Show Edit Ad menu item"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:272
+#: includes/settings/class-display-settings.php:271
 msgid "Show Browse Ads menu item"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:283
+#: includes/settings/class-display-settings.php:282
 msgid "Show Search Ads menu item"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:309
+#: includes/settings/class-display-settings.php:308
 msgid "Form Steps"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:318
+#: includes/settings/class-display-settings.php:317
 msgid "Show Form Steps"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:321
+#: includes/settings/class-display-settings.php:320
 msgid ""
 "If checked, when a user is creating a new listing, a list of steps will be "
 "shown at the top of the forms."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:329
+#: includes/settings/class-display-settings.php:328
 msgid "User Field"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:331
+#: includes/settings/class-display-settings.php:330
 msgid "Dropdown"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:331
+#: includes/settings/class-display-settings.php:330
 msgid "Autocomplete"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:333
+#: includes/settings/class-display-settings.php:332
 msgid "HTML Widget for User field"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:333
+#: includes/settings/class-display-settings.php:332
 msgid ""
 "The user field can be represented with an HTML dropdown or a text field "
 "with autocomplete capabilities. Using the dropdown is faster if you have a "
@@ -4945,21 +4975,21 @@ msgid ""
 "autocomplete version may be a better idea."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:334
+#: includes/settings/class-display-settings.php:333
 msgid "Show User Field on Search"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:334
+#: includes/settings/class-display-settings.php:333
 msgid "Show as \"Posted By\" in search form?"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:339
+#: includes/settings/class-display-settings.php:338
 msgid ""
 "Overwrite information in contact fields when a different listing owner is "
 "selected"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:342
+#: includes/settings/class-display-settings.php:341
 msgid ""
 "If this setting is enabled, when an administrator is editing a listing and "
 "he changes the selected value in the User/Owner field, the information in "
@@ -4969,25 +4999,25 @@ msgid ""
 "will not be persisted until you click the Continue button."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:348
+#: includes/settings/class-display-settings.php:347
 msgid "User's name format"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:351
+#: includes/settings/class-display-settings.php:350
 msgid ""
 "The selected format will be used to show a user's name in dropdown fields, "
 "text fields and templates."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:366
+#: includes/settings/class-display-settings.php:365
 msgid "Contact Fields"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:371
+#: includes/settings/class-display-settings.php:370
 msgid "Allow logged in users to overwrite Contact Name and Contact Email"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:374
+#: includes/settings/class-display-settings.php:373
 msgid ""
 "Normally registered users who are not administrators are not allowed to "
 "change the email address or contact name. The fields are rendered as "
@@ -4996,121 +5026,121 @@ msgid ""
 "fields."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:381
+#: includes/settings/class-display-settings.php:380
 msgid "Show Phone field"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:381
+#: includes/settings/class-display-settings.php:380
 msgid "Show phone field?"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:383
+#: includes/settings/class-display-settings.php:382
 msgid "Require Phone"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:383
+#: includes/settings/class-display-settings.php:382
 msgid "Require phone on Place Ad and Edit Ad forms?"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:388
+#: includes/settings/class-display-settings.php:387
 msgid "Show Phone Field only to registered users"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:391
-#: includes/settings/class-display-settings.php:406
-#: includes/settings/class-display-settings.php:431
+#: includes/settings/class-display-settings.php:390
+#: includes/settings/class-display-settings.php:405
+#: includes/settings/class-display-settings.php:430
 msgid ""
 "This setting restricts viewing of this field so that only registered users "
 "that are logged in can see it."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:396
+#: includes/settings/class-display-settings.php:395
 msgid "Show Website field"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:396
+#: includes/settings/class-display-settings.php:395
 msgid "Show website field?"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:398
+#: includes/settings/class-display-settings.php:397
 msgid "Require Website"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:398
+#: includes/settings/class-display-settings.php:397
 msgid "Require website on Place Ad and Edit Ad forms?"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:403
+#: includes/settings/class-display-settings.php:402
 msgid "Show Website Field only to registered users"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:411
+#: includes/settings/class-display-settings.php:410
 msgid "Show Price field"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:411
+#: includes/settings/class-display-settings.php:410
 msgid "Show price field?"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:416
+#: includes/settings/class-display-settings.php:415
 msgid "Show price field on search form"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:423
+#: includes/settings/class-display-settings.php:422
 msgid "Require Price"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:423
+#: includes/settings/class-display-settings.php:422
 msgid "Require price on Place Ad and Edit Ad forms?"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:428
+#: includes/settings/class-display-settings.php:427
 msgid "Show Price Field only to registered users"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:434
+#: includes/settings/class-display-settings.php:433
 msgid "Hide Price field if empty or zero"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:434
+#: includes/settings/class-display-settings.php:433
 msgid ""
 "If checked all price placeholders will be replaced with an empty string "
 "when the price of the Ad is zero or was not set."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:441
+#: includes/settings/class-display-settings.php:440
 msgid ""
 "Go to the <form-fields-section> admin section to change the order in which "
 "the fields mentioned below are shown to users in the Ad Details form."
 msgstr ""
 
-#: includes/settings/class-display-settings.php:453
+#: includes/settings/class-display-settings.php:452
 msgid "Form Fields Behavior"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:462
+#: includes/settings/class-display-settings.php:461
 #: templates/admin/import/supported-csv-headers.tpl.php:18
 msgid "Field"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:463
+#: includes/settings/class-display-settings.php:462
 msgid "Show field on form"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:464
+#: includes/settings/class-display-settings.php:463
 msgid "Show field on search form"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:465
+#: includes/settings/class-display-settings.php:464
 #: templates/admin/import/supported-csv-headers.tpl.php:19
 msgid "Required"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:466
+#: includes/settings/class-display-settings.php:465
 msgid "Show value to registered users only"
 msgstr ""
 
-#: includes/settings/class-display-settings.php:470
+#: includes/settings/class-display-settings.php:469
 msgid "Website"
 msgstr ""
 
@@ -6508,41 +6538,41 @@ msgstr ""
 msgid "None (Do not sent ads to a Facebook Group)"
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1063
+#: includes/settings/class-general-settings.php:1062
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet plugin is not "
 "installed or activated."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1067
+#: includes/settings/class-general-settings.php:1066
 msgid ""
 "Akismet SPAM control cannot be enabled because Akismet is not properly "
 "configured."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1093
+#: includes/settings/class-general-settings.php:1092
 msgid ""
 "reCAPTCHA can't be used because the public key and private key settings are "
 "required for reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1095
+#: includes/settings/class-general-settings.php:1094
 msgid ""
 "reCAPTCHA can't be used because the public key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1097
+#: includes/settings/class-general-settings.php:1096
 msgid ""
 "reCAPTCHA can't be used because the private key setting is required for "
 "reCAPTCHA to work properly."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1144
+#: includes/settings/class-general-settings.php:1143
 msgid "Thousands separator and decimal separator cant be the same."
 msgstr ""
 
-#: includes/settings/class-general-settings.php:1158
+#: includes/settings/class-general-settings.php:1157
 msgid ""
 "Credit System was automatically disabled because you disabled Require "
 "Registration setting."
@@ -7564,11 +7594,11 @@ msgid ""
 "remove credits to their accounts."
 msgstr ""
 
-#: includes/views/admin/class-credit-plans-notices.php:28
+#: includes/views/admin/class-credit-plans-notices.php:30
+#. translators: %1$s open link html, %2$s close link html
 msgid ""
 "You enabled the Credit System, but there are no credit plans defined. "
-"Please <credits-section-link>add credit plans or disable the Credit "
-"System</a>."
+"Please %1$sadd credit plans or disable the Credit System%2$s."
 msgstr ""
 
 #: includes/views/admin/class-fee-payment-terms-notices.php:29
@@ -7579,6 +7609,7 @@ msgid ""
 msgstr ""
 
 #: includes/views/class-base-page.php:80
+#. translators: %s the step name
 msgid "Unkown step \"%s\". Please contact the administrator about this error."
 msgstr ""
 
@@ -7588,16 +7619,17 @@ msgid ""
 "the administrator about the incident."
 msgstr ""
 
-#: includes/views/class-payment-step-decorator.php:40
-#: includes/views/frontend/buy-credits/class-buy-credits-page.php:73
+#: includes/views/class-payment-step-decorator.php:41
+#: includes/views/frontend/buy-credits/class-buy-credits-page.php:74
+#. translators: %1$s back link, %2$s transaction id
 msgid ""
 "You are trying to buy credits using a transaction created for a different "
-"purpose. Please go back to the <a href=\"%s\">%s</a> page.<br>If you think "
-"this is an error please contact the administrator and provide the following "
-"transaction ID: %s"
+"purpose. Please go back to the %1$s page.<br>If you think this is an error "
+"please contact the administrator and provide the following transaction ID: "
+"%2$s"
 msgstr ""
 
-#: includes/views/class-payment-step-decorator.php:55
+#: includes/views/class-payment-step-decorator.php:56
 msgid ""
 "The payment associated with the current transaction failed (see reasons "
 "below)."
@@ -7615,11 +7647,11 @@ msgstr ""
 msgid "Buy Credits"
 msgstr ""
 
-#: includes/views/frontend/buy-credits/class-buy-credits-page.php:86
+#: includes/views/frontend/buy-credits/class-buy-credits-page.php:87
 msgid "The payment associated with this transaction failed (see reasons below)."
 msgstr ""
 
-#: includes/views/frontend/buy-credits/class-buy-credits-page.php:117
+#: includes/views/frontend/buy-credits/class-buy-credits-page.php:118
 msgid "You are not allowed to buy credits."
 msgstr ""
 
@@ -7633,7 +7665,7 @@ msgstr ""
 msgid "The instance of WP_Scripts is not ready!"
 msgstr ""
 
-#: installer.php:155
+#: installer.php:154
 msgid "30 Day Listing"
 msgstr ""
 
@@ -8010,10 +8042,6 @@ msgid ""
 "fees. Once completed, the options will appear on the new ads form."
 msgstr ""
 
-#: templates/admin/main-classifieds-admin-page.tpl.php:58
-msgid "Free"
-msgstr ""
-
 #: templates/admin/main-classifieds-admin-page.tpl.php:72
 #. translators: %s is the link to the Payment Options settigns page.
 msgid "To collect paid ads, go to %s and check the 'Charge Listing Fee?' box."
@@ -8366,7 +8394,7 @@ msgctxt "all categories"
 msgid "All"
 msgstr ""
 
-#: admin/admin-panel-users.php:39
+#: admin/admin-panel-users.php:38
 msgctxt "credit system on users table"
 msgid "Account Balance"
 msgstr ""
@@ -8376,12 +8404,12 @@ msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr ""
 
-#: admin/admin-panel.php:808 includes/settings/class-listings-settings.php:469
+#: admin/admin-panel.php:805 includes/settings/class-listings-settings.php:469
 msgctxt "page name"
 msgid "Show Ad"
 msgstr ""
 
-#: admin/admin-panel.php:816
+#: admin/admin-panel.php:813
 msgctxt "page name"
 msgid "Edit Ad"
 msgstr ""
@@ -8452,7 +8480,6 @@ msgid "PayPal Connection"
 msgstr ""
 
 #: admin/class-debug-admin-page.php:361
-#: admin/templates/admin-panel-debug.tpl.php:133
 msgctxt "debug page"
 msgid "Working"
 msgstr ""
@@ -8782,22 +8809,22 @@ msgid ""
 "subscription."
 msgstr ""
 
-#: admin/pointers/class-drip-autoresponder.php:24
+#: admin/pointers/class-drip-autoresponder.php:22
 msgctxt "drip-autoresponder"
 msgid "Yes, I'd like my course, please"
 msgstr ""
 
-#: admin/pointers/class-drip-autoresponder.php:33
+#: admin/pointers/class-drip-autoresponder.php:31
 msgctxt "drip-autoresponder"
 msgid "No, thanks"
 msgstr ""
 
-#: admin/pointers/class-drip-autoresponder.php:64
+#: admin/pointers/class-drip-autoresponder.php:62
 msgctxt "drip-autoresponder"
 msgid "Want to know the Secrets of Building an Awesome Classifieds Website?"
 msgstr ""
 
-#: admin/pointers/class-drip-autoresponder.php:65
+#: admin/pointers/class-drip-autoresponder.php:63
 msgctxt "drip-autoresponder"
 msgid ""
 "Find out how to create a compelling, thriving classifieds site from scratch "
@@ -8890,22 +8917,22 @@ msgctxt "404 HTTP status description"
 msgid "Listing not found"
 msgstr ""
 
-#: frontend/page-place-ad.php:1403
+#: frontend/page-place-ad.php:1398
 msgctxt "upload listing images form"
 msgid "Preview Ad"
 msgstr ""
 
-#: frontend/page-place-ad.php:1405
+#: frontend/page-place-ad.php:1400
 msgctxt "upload listing images form"
 msgid "Place Ad"
 msgstr ""
 
-#: frontend/page-place-ad.php:1407
+#: frontend/page-place-ad.php:1402
 msgctxt "upload listing images form"
 msgid "Checkout"
 msgstr ""
 
-#: frontend/placeholders.php:906
+#: frontend/placeholders.php:886
 #: includes/admin/listings/trait-renew-listing-table-action.php:34
 msgctxt "listing row action"
 msgid "Renew"
@@ -8982,7 +9009,7 @@ msgid "Unflag"
 msgstr ""
 
 #: frontend/templates/email-send-ad-access-key.tpl.php:9
-#: frontend/templates/email-send-all-ad-access-keys.tpl.php:13
+#: frontend/templates/email-send-all-ad-access-keys.tpl.php:18
 #: templates/email/listing-edit-link-with-access-token.tpl.php:9
 msgctxt "edit link email"
 msgid ""
@@ -9230,7 +9257,7 @@ msgctxt "checkout-payment page"
 msgid "Payment Terms"
 msgstr ""
 
-#: includes/payments-api.php:798
+#: includes/payments-api.php:803
 msgctxt "checkout-payment page"
 msgid "Please use the button below to complete your payment."
 msgstr ""
@@ -9248,22 +9275,22 @@ msgctxt "credit plans table"
 msgid "clear selection"
 msgstr ""
 
-#: includes/payments-api.php:718
+#: includes/payments-api.php:723
 msgctxt "credit plans table"
 msgid "Plan"
 msgstr ""
 
-#: includes/payments-api.php:719
+#: includes/payments-api.php:724
 msgctxt "credit plans table"
 msgid "Description"
 msgstr ""
 
-#: includes/payments-api.php:720
+#: includes/payments-api.php:725
 msgctxt "credit plans table"
 msgid "Credits"
 msgstr ""
 
-#: includes/payments-api.php:721
+#: includes/payments-api.php:726
 msgctxt "credit plans table"
 msgid "Price"
 msgstr ""
@@ -9300,12 +9327,12 @@ msgctxt "transaction items"
 msgid "Total Amount"
 msgstr ""
 
-#: functions.php:759
+#: functions.php:746
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr ""
 
-#: functions.php:1218
+#: functions.php:1203
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr ""
@@ -9619,9 +9646,10 @@ msgctxt "task status"
 msgid "Complete"
 msgstr ""
 
-#: includes/exceptions.php:75
+#: includes/exceptions.php:76
+#. translators: %1$s the message, %2$s the error
 msgctxt "DBException message template"
-msgid "%s The error was: %s."
+msgid "%1$s The error was: %2$s."
 msgstr ""
 
 #: includes/form-fields/class-listing-regions-form-field.php:36
@@ -10172,9 +10200,10 @@ msgctxt "page settings"
 msgid "Select existing page {dropdown} -or- {create_page_button}"
 msgstr ""
 
-#: includes/views/admin/listings/class-listing-action-admin-page.php:24
+#: includes/views/admin/listings/class-listing-action-admin-page.php:25
+#. translators: %1$s the success message, %2$s the error message
 msgctxt "Listing bulk operations: <message-ok> and <message-error>."
-msgid "%s and %s."
+msgid "%1$s and %2$s."
 msgstr ""
 
 #: templates/admin/export-listings-admin-page.tpl.php:13
