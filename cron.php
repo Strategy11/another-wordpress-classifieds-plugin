@@ -27,29 +27,6 @@ function awpcp_schedule_activation() {
     add_action('awpcp-clean-up-payment-transactions', 'awpcp_clean_up_payment_transactions');
     add_action( 'awpcp-clean-up-payment-transactions', 'awpcp_clean_up_non_verified_ads_handler' );
     add_action( 'awpcp-check-license-status', 'awpcp_check_license_status' );
-
-    // if ( awpcp_current_user_is_admin() ) {
-    //     wp_clear_scheduled_hook( 'doadexpirations_hook' );
-    //     wp_clear_scheduled_hook( 'doadcleanup_hook' );
-    //     wp_clear_scheduled_hook( 'awpcp_ad_renewal_email_hook' );
-    //     wp_clear_scheduled_hook( 'awpcp-clean-up-payment-transactions' );
-    //     wp_clear_scheduled_hook( 'awpcp-clean-up-non-verified-ads' );
-
-    //     wp_schedule_event( time() + 10, 'hourly', 'doadexpirations_hook' );
-    //     wp_schedule_event( time() + 10, 'daily', 'doadcleanup_hook' );
-    //     wp_schedule_event( time() + 10, 'daily', 'awpcp_ad_renewal_email_hook' );
-    //     wp_schedule_event( time() + 10, 'daily', 'awpcp-clean-up-payment-transactions' );
-    //     wp_schedule_event( time() + 10, 'daily', 'awpcp-clean-up-non-verified-ads' );
-
-    //     debugp(
-    //         'System date is: ' . date('d-m-Y H:i:s'),
-    //         'Ad Expiration: ' . date('d-m-Y H:i:s', wp_next_scheduled('doadexpirations_hook')),
-    //         'Ad Cleanup: ' . date('d-m-Y H:i:s', wp_next_scheduled('doadcleanup_hook')),
-    //         'Ad Renewal Email: ' . date('d-m-Y H:i:s', wp_next_scheduled('awpcp_ad_renewal_email_hook')),
-    //         'Payment transactions: ' . date('d-m-Y H:i:s', wp_next_scheduled('awpcp-clean-up-payment-transactions')),
-    //         'Unverified Ads: ' . date('d-m-Y H:i:s', wp_next_scheduled('awpcp-clean-up-non-verified-ads'))
-    //     );
-    // }
 }
 
 /**
@@ -121,15 +98,25 @@ function doadcleanup() {
  */
 function awpcp_delete_listings_expired_more_than_days_ago( $number_of_days, $listings_logic, $listings ) {
     $date_query = new WP_Date_Query( [] );
+    $end_date   = $date_query->build_mysql_datetime( sprintf( '%d days ago', $number_of_days ) );
 
     $query_vars = [
         'post_status' => 'disabled',
         'meta_query'  => [
             [
-                'key'     => '_awpcp_disabled_date',
-                'compare' => '<',
-                'value'   => $date_query->build_mysql_datetime( sprintf( '%d days ago', $number_of_days ) ),
-                'type'    => 'DATE',
+                'relation' => 'OR',
+                [
+                    'key'     => '_awpcp_disabled_date',
+                    'compare' => '<',
+                    'value'   => $end_date,
+                    'type'    => 'DATE',
+                ],
+                [
+                    'key'     => '_awpcp_end_date',
+                    'compare' => '<',
+                    'value'   => $end_date,
+                    'type'    => 'DATE',
+                ],
             ],
             [
                 'key'     => '_awpcp_expired',
