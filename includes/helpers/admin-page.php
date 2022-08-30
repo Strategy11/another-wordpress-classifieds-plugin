@@ -46,7 +46,7 @@ class AWPCP_AdminPageWithTable extends AWPCP_AdminPage {
         }
 
         if (!isset($this->params) || empty($this->params)) {
-            wp_parse_str( esc_html( wp_unslash( $_SERVER['QUERY_STRING'] ) ), $_params);
+            wp_parse_str( sanitize_text_field( wp_unslash( $_SERVER['QUERY_STRING'] ) ), $_params);
             $this->params = array_diff_key($_params, array_combine($blacklist, $blacklist));
         }
 
