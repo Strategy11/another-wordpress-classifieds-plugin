@@ -52,6 +52,7 @@ class AWPCP_FileUploader {
         if ( ! $this->is_filename_extension_allowed( $posted_data['filename'] ) ) {
             throw new AWPCP_Exception( __( 'File extension not allowed.', 'another-wordpress-classifieds-plugin' ) );
         }
+        add_filter( 'upload_dir', array( &$this, 'upload_dir' ) );
 
         if ( $posted_data['chunks'] > 0 ) {
             $uploaded_file = $this->write_uploaded_chunk( $posted_data );
@@ -60,6 +61,25 @@ class AWPCP_FileUploader {
         }
 
         return $uploaded_file;
+    }
+
+    /**
+     * Set the upload directory properly.
+     *
+     * @since x.x
+     */
+    public function upload_dir( $uploads ) {
+        $default       = 'uploads';
+        $relative_path = $this->settings->get_option( 'uploadfoldername', $default );
+        $relative_path = str_replace( $default . '/', '', $relative_path );
+
+        if ( $relative_path && $relative_path !== $default ) {
+            $uploads['path']   = $uploads['basedir'] . '/' . $relative_path;
+            $uploads['url']    = $uploads['baseurl'] . '/' . $relative_path;
+            $uploads['subdir'] = '/' . $relative_path;
+        }
+
+        return $uploads;
     }
 
     private function is_filename_extension_allowed( $filename ) {
