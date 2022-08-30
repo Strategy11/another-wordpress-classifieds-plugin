@@ -66,7 +66,7 @@ class AWPCP_FileUploader {
     /**
      * Set the upload directory properly.
      *
-     * @since x.x
+     * @since 4.2.1
      */
     public function upload_dir( $uploads ) {
         $default       = 'uploads';
