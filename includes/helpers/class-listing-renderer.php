@@ -293,6 +293,10 @@ class AWPCP_ListingRenderer {
     }
 
     public function is_disabled( $listing ) {
+        if ( $listing->post_status === 'trash' ) {
+            return true;
+        }
+
         if ( $this->disabled_status !== $listing->post_status ) {
             return false;
         }
@@ -352,10 +356,10 @@ class AWPCP_ListingRenderer {
      */
     public function is_expired( $listing ) {
 		$expired     = $this->has_expired( $listing );
-		$is_disabled = $this->disabled_status === $listing->post_status;
+		$is_disabled = in_array( $listing->post_status, array( $this->disabled_status, 'trash' ), true );
 
 		if ( $expired && ! $is_disabled ) {
-			// This listing has expired, but isn't marked as expired.
+            // This listing has expired, but isn't marked as expired.
 			awpcp_listings_api()->expire_listing_with_notice( $listing );
 		}
 
