@@ -59,7 +59,6 @@ class AWPCP_FileUploader {
         } else {
             $uploaded_file = $this->write_uploaded_file( $posted_data );
         }
-        remove_filter( 'upload_dir', array( &$this, 'upload_dir' ) );
 
         return $uploaded_file;
     }
@@ -70,9 +69,11 @@ class AWPCP_FileUploader {
      * @since x.x
      */
     public function upload_dir( $uploads ) {
-        $relative_path = $this->settings->get_option( 'uploadfoldername', 'uploads' );
+        $default       = 'uploads';
+        $relative_path = $this->settings->get_option( 'uploadfoldername', $default );
+        $relative_path = str_replace( $default . '/', '', $relative_path );
 
-        if ( $relative_path && $relative_path !== 'uploads' ) {
+        if ( $relative_path && $relative_path !== $default ) {
             $uploads['path']   = $uploads['basedir'] . '/' . $relative_path;
             $uploads['url']    = $uploads['baseurl'] . '/' . $relative_path;
             $uploads['subdir'] = '/' . $relative_path;
