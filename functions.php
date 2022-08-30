@@ -1451,7 +1451,10 @@ function awpcp_currency_symbols() {
 /**
  * @since 3.0
  */
-function awpcp_format_money($value) {
+function awpcp_format_money( $value, $show_free = false ) {
+    if ( ! $value && $show_free ) {
+        return __( 'Free', 'another_wordpress_classifieds_plugin' );
+    }
     return awpcp_get_formmatted_amount(
         $value,
         awpcp_get_default_formatted_amount_template()
