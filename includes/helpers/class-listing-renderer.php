@@ -293,10 +293,6 @@ class AWPCP_ListingRenderer {
     }
 
     public function is_disabled( $listing ) {
-        if ( $listing->post_status === 'trash' ) {
-            return true;
-        }
-
         if ( $this->disabled_status !== $listing->post_status ) {
             return false;
         }
