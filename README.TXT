@@ -28,25 +28,25 @@ Looking for other types of directories? Check out [Business Directory Plugin](ht
 * Limit the text size of ad postings
 * Standard form fields can be enabled or disabled, depending on your needs (title, website, name, country, etc)
 * Allow or disallow image posting with listing ads
-* Automatic expiration of classified ads (free or paid)
-* Classified ads can have a "Tweet This" button in their layout
-* Classified ads can have a "Share on Facebook" button in their layout
-* Classified ads can be flagged by community for bad/offensive content
-* Classified ads can imported via CSV files
-* Classified ad listings support embedded videos
-* Classified ads can have character limits, supported by plans (different plans can have different limits)
-* Classified ads can be displayed on any page for a single category using shortcodes
+* Automatic expiration of ads (free or paid)
+* Ads can have a "Tweet This" button in their layout
+* Ads can have a "Share on Facebook" button in their layout
+* Ads can be flagged by community for bad/offensive content
+* Ads can imported via CSV files
+* Ad listings support embedded videos
+* Ads can have character limits, supported by plans (different plans can have different limits)
+* Ads can be displayed on any page for a single category using shortcodes
 * Auto-verify ads with email links to post immediately upon click
-* Classified ads can be 'Sent to Facebook' inside of ad management
+* Ads can be 'Sent to Facebook' inside of ad management
 * Support for displaying ad events in BuddyPress activity stream with [BuddyPress module](https://awpcp.com/downloads/buddypress-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
-* Classified ads can be edited via front end, back end with or without registration (depending on settings)
+* Ads can be edited via front end, back end with or without registration (depending on settings)
 * Multiple levels of directory categories supported
 
 == WordPress Classified Plugin Notification Features ==
 
 * Allow posters to be notified of expiring ads, renewals, and approvals of ads
 * Allow admin to be notified when new ads are posted, ads are edited and much more
-* Classified ad users can contact the ad poster without exposing the poster's email (blind email system, similar to Craigslist)
+* Ad users can contact the ad poster without exposing the poster's email (blind email system, similar to Craigslist)
 * Admin can (optionally) be notified of expiring ads
 
 == Ad Listing Payment Features ==
@@ -65,7 +65,7 @@ Looking for other types of directories? Check out [Business Directory Plugin](ht
 * Allow admin to approve images prior to posting
 * Users can edit or delete their own ads
 * Admin can edit or delete all ads in the system
-* Secure system gives users a unique editing key to administer their own classified ads
+* Secure system gives users a unique editing key to administer their own ads
 * Allows for limiting image posting (by image size, height, width and total count if desired)
 * Anti-spam checks for all ads posted via Akismet.
 * Flagged ads can be viewed separately to determine violations, and then deleted or unflagged.
@@ -78,12 +78,12 @@ Looking for other types of directories? Check out [Business Directory Plugin](ht
 
 * Allow image posting or shut it off completely
 * Control the number, filesize, height and width of images posted
-* Allow for different numbers of images to be posted with paid ads vs. free classified ads
+* Allow for different numbers of images to be posted with paid ads vs. free ads
 * Allow for image approval prior to posting
 * Allow users to add a primary image to their ad listing (Great for car listings and real-estate listings)
 * Now supports multi-image asynchronous loading
 
-== Classified Modules (Add-on modules, not included in our free classified website builder) ==
+== Add-on modules, not included in our free classified website builder ==
 
 * [Extra Fields](https://awpcp.com/downloads/extra-fields-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows you to add any custom fields for display. For example, if you have a pet-related board, you might have "Sex", "Breed", and "Dam/Sire" as additional fields you require for display. Supports search and custom ordering of fields.
 * [Region Control](https://awpcp.com/downloads/regions-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows you to restrict viewing of ads based on locale, so users don't see items they aren't physically near them, also allows customization of the region types, such as village, borough, etc.
@@ -100,7 +100,7 @@ Looking for other types of directories? Check out [Business Directory Plugin](ht
 * [Ad Campaign Manager](https://awpcp.com/downloads/campaign-manager-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - add your own advertisements in 5 different positions
 * [ZIP Search](https://awpcp.com/downloads/zip-code-search-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - search for ads that have address fields within a radius of a postal code
 
-== Premium Payment Gateways for Paid Classified Listings ==
+== Premium Payment Gateways for Paid Listings ==
 
 Want to accept credit cards on your site for paid listings in your classifieds directory? Choose from any of our extra payment processors. 
 
@@ -125,8 +125,6 @@ You need to check your database to make sure old data does not exist. Delete all
 3. Click on the "Click here to setup your site options" link and fill out all your various options to configure how you want your classifieds to run.
 4. Create some categories and sub categories for your ads.
 5. Set up your payment fees if you are going to be running in pay mode.
-
-Your classified directory should now be ready and working.
 
 == Screenshots ==
 
@@ -153,10 +151,10 @@ Our classifieds website builder software combined with our add-on modules is the
 * Fashion listings to buy and sell clothing
 * Announcements for events like yard sales, reunions, auctions, and school events
 
-= Can AWP Classifieds support paid and free listings? =
+= Can this plugin support paid and free listings? =
 Yes it can. You can do this by creating fee plans for 0.00 and some other paid amount at the same time. For more details, read [this article](https://awpcp.com/knowledge-base/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#qs-freepaid).
 
-= Will AWP Classifieds work with my theme? =
+= Will it work with my theme? =
 Our WordPress classifieds plugin will work with any well-written, WP compliant theme. Generally speaking, paid themes tend to be higher quality than free ones.
 
 In general, we like WooThemes as a solid company with great products and support. You can check them out [here](http://woothemes.com) Or [StudioPress](http://studiopress.com​​)
@@ -164,7 +162,7 @@ In general, we like WooThemes as a solid company with great products and support
 = Can this plugin be translated into my language? =
 Yes it can. Our Classifieds directory plugin comes with many user-provided translations under the /languages folder. For details on how to do it, our [translation guide](https://awpcp.com/knowledge-base/quick-start-guide/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion#qs-translate) will help get you started.
 
-= Is AWP Classifieds compatible with WordPress Multisite (WPMU)? =
+= Is this compatible with WordPress Multisite (WPMU)? =
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
@@ -213,7 +211,7 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 = 4.1.3 =
 * Show list of user's listings on renewal page if no listing was selected.
 * Replace the renewal button icon with a label to make it more clear.
-* Fix: Show the classifieds menu to moderators.
+* Fix: Show the admin menu to moderators.
 * Fix: Flush rewrite rules sooner. Hopefully this will fix the htaccess issue some sites are seeing.
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>
