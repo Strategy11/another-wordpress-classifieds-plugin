@@ -1601,7 +1601,8 @@ function awpcp_parse_money($value, $decimal_separator=false, $thousands_separato
  */
 function awpcp_get_flash_messages() {
 	if ( ! is_user_logged_in() ) {
-        return array();
+        global $awp_messages;
+        return $awp_messages ? $awp_messages : array();
     }
 
     if ( $messages = get_user_option( 'awpcp-messages', get_current_user_id() ) ) {
@@ -1618,6 +1619,8 @@ function awpcp_update_flash_messages($messages) {
 	if (is_user_logged_in()) {
 		return update_user_option(get_current_user_id(), 'awpcp-messages', $messages);
 	} else {
+        global $awp_messages;
+        $awp_messages = $messages;
         return true;
 	}
 }
@@ -1627,6 +1630,8 @@ function awpcp_update_flash_messages($messages) {
  */
 function awpcp_clear_flash_messages() {
     if ( ! is_user_logged_in() ) {
+        global $awp_messages;
+        $awp_messages = array();
         return true;
     }
 
