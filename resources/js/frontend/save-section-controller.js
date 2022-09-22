@@ -186,7 +186,7 @@ AWPCP.define( 'awpcp/frontend/save-section-controller', [
                 data: data,
                 dataType: 'json',
                 method: 'POST',
-                type:     'POST',
+                type: 'POST'
             };
 
             return $.ajax( options );

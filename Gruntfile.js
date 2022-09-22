@@ -4,7 +4,6 @@
 var path = require('path');
 var fs = require('fs');
 var _ = require('underscore');
-var glob = require('glob');
 
 module.exports = function( grunt ) {
 	grunt.awpcp = {
@@ -35,7 +34,7 @@ module.exports = function( grunt ) {
 			// Compress config.
 			grunt.config.set( 'compress.' + config.name, {
 				options: {
-					archive: './../' + path.basename(config.folder) + '<%= compress.version %>.zip',
+					archive: './../' + path.basename(config.folder) + '-<%= compress.version %>.zip',
 					mode: 'zip'
 				},
 				expand: true,
@@ -49,6 +48,7 @@ module.exports = function( grunt ) {
 					'!node_modules/**', '!package.json', '!package-lock.json',
 					'!phpunit.xml', '!Pipfile*', '!tasks.py',
 					'!Vagrantfile', '!tests/**', '!bin/**', '!vendor/**',
+					'vendor/authorize*/**',
 					'vendor/autoload.php', 'vendor/composer/**'
 				]
 			} );
@@ -77,6 +77,22 @@ module.exports = function( grunt ) {
 					{
 						from: /(\b)*\$this\-\>version(\s)*= \'(\d+\.)(\d+\.)?(\*|\d+)?([\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?\'/g,
 						to: '$this->version = \'<%= compress.version %>\''
+					},
+					{
+						from: /\"version\"\:(\s)* \"(\d+\.)(\d+\.)?(\*|\d+)?([\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?\"/g,
+						to: '"version": "<%= compress.version %>"'
+					},
+					{
+						from: /\$version(\s)*\= \'(\d+\.)(\d+\.)?(\*|\d+)?([\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?\'/g,
+						to: '$version = \'<%= compress.version %>\''
+					},
+					{
+						from: /define\( \'AWPCP_VERSION\', \'(\d+\.)(\d+\.)?(\*|\d+)?([\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?\'/g,
+						to: 'define( \'AWPCP_VERSION\', \'<%= compress.version %>\''
+					},
+					{
+						from: /define\( \'AWPCP_AUTHORIZE_NET_MODULE_DB_VERSION\', \'(\d+\.)(\d+\.)?(\*|\d+)?([\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?\'/g,
+						to: 'define( \'AWPCP_AUTHORIZE_NET_MODULE_DB_VERSION\', \'<%= compress.version %>\''
 					}
 				]
 			});
@@ -120,7 +136,7 @@ module.exports = function( grunt ) {
 		},
 
 		registerMakePot: function( config ) {
-			var textDomain = config.i18n.textDomain || 'awpcp-' + id,
+			var textDomain = config.i18n.textDomain || 'awpcp-' + config.name,
 				basedir = config.pluginPath,
 				domainPath = path.join( basedir, config.i18n.domainPath || 'translations/' ),
 				makepot_config = {},
@@ -142,7 +158,7 @@ module.exports = function( grunt ) {
 				};
 				potomo_config = {
 					options: {
-						poDel: false,
+						poDel: false
 					},
 					files: [{
 						expand: true,
@@ -245,6 +261,7 @@ module.exports = function( grunt ) {
 				white: false,
 				// environments
 				browser: true,
+				force: true,
 				jquery: true
 			},
 			project: [ 'Gruntfile.js' ]
@@ -302,11 +319,11 @@ module.exports = function( grunt ) {
 	});
 
 	grunt.registerTask( 'minify', '', function(t) {
-		if ( 'undefined' != typeof grunt.config.get( 'less.' + t ) ) {
+		if ( 'undefined' !== typeof grunt.config.get( 'less.' + t ) ) {
 			grunt.task.run('less:' + t);
 		}
 
-		if ( 'undefined' != typeof grunt.config.get( 'uglify.' + t ) ) {
+		if ( 'undefined' !== typeof grunt.config.get( 'uglify.' + t ) ) {
 			grunt.task.run('uglify:' + t);
 		}
 	});
@@ -327,18 +344,21 @@ module.exports = function( grunt ) {
 		if ( t === 'core' ) {
 			t = 'awpcp';
 		}
-
-		if ( 'undefined' === typeof grunt.config.get( 'compress.' + t ) ) {
+		var name = t.replace( '.', '-' );
+		if ( 'undefined' === typeof grunt.config.get( 'compress.' + name ) ) {
 			return;
 		}
 
 		grunt.config.set('compress.version', v);
 
-		grunt.task.run('setversion:' + t + ':' + v );
-		grunt.task.run('concat:' + t);
-		grunt.task.run('minify:' + t);
-		grunt.task.run('i18n:' + t);
+		grunt.task.run('setversion:' + name + ':' + v );
+		if ( 'undefined' !== typeof grunt.config.get( 'concat.' + name ) ) {
+			grunt.task.run('concat:' + name);
+		}
+		grunt.task.run('minify:' + name);
+		grunt.task.run('i18n:' + name);
 
-		grunt.task.run('compress:' + t );
+		grunt.task.run('compress:' + name );
 	});
+
 };
