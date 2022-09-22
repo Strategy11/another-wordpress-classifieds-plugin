@@ -90,4 +90,14 @@ module.exports = function(grunt) {
 			textDomain: pluginName
 		}
 	} );
+
+	pluginName = 'awpcp-authorize.net';
+	grunt.awpcp.registerPluginTasks( {
+		name: 'authorize-net',
+		slug: 'authorize.net',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
 };

@@ -104,7 +104,7 @@ function( $ ) {
                 category       = self.getCategory( self.parents[ nextCategoryId ] );
                 nextCategoryId = category.id;
 
-                names.push( category.name )
+                names.push( category.name );
             }
 
             return names.reverse().join( ': ' );

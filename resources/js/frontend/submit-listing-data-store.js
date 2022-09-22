@@ -252,7 +252,7 @@ AWPCP.define( 'awpcp/frontend/submit-listing-data-store', [
         setOrderModifiedDate: function( date ) {
             var self = this;
 
-            self.data.order = { modifiedDate: date }
+            self.data.order = { modifiedDate: date };
         },
 
         getOrderModifiedDate: function() {

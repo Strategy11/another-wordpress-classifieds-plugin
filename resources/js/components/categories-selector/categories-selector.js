@@ -133,7 +133,7 @@ function( $, CategoriesSelectorHelper ) {
         function( Utils, ResultsAdapter ) {
             var CategoriesResultsAdapter = function( $element, options, dataAdapter ) {
                 CategoriesResultsAdapter.__super__.constructor.call( this, $element, options, dataAdapter );
-            }
+            };
 
             Utils.Extend( CategoriesResultsAdapter, ResultsAdapter );
 

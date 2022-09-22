@@ -6,7 +6,7 @@ AWPCP.run( 'awpcp/edit-post', [
     'awpcp/media-center',
     'awpcp/settings',
     'awpcp/user-selector',
-    'awpcp/jquery-validate-methods',
+    'awpcp/jquery-validate-methods'
 ], function(
     $,
     DatepickerField,
@@ -93,7 +93,7 @@ AWPCP.run( 'awpcp/edit-post', [
                     payment_term: paymentTermId,
                     listing: mediaUploaderOptions.listing_id,
                     context: 'admin-place-ad'
-                }, function( response ) {
+                }, function() {
                 } );
 
             }
