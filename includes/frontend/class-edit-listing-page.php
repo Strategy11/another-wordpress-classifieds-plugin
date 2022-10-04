@@ -462,7 +462,7 @@ class AWPCP_EditListingPage extends AWPCP_Page {
      * @since 4.0.0
      */
     public function do_verify_access_token_step() {
-        $access_token = awpcp_request_param( 'access_token' );
+        $access_token = awpcp_get_var( array( 'param' => 'access_token' ) );
         $token_parts  = explode( '-', $access_token );
 
         if ( 2 !== count( $token_parts ) ) {

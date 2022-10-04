@@ -60,7 +60,7 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
             } else {
                 /* translators: %s status %d variables count. */
                 $message  = __( 'PayPal returned the following status from your payment: %1$s. %2$d payment variables were posted.', 'another-wordpress-classifieds-plugin' );
-                $errors[] = sprintf( $message, $response, count( $_POST ) );
+                $errors[] = sprintf( $message, $response, $variables );
                 $errors[] = __( 'If this status is not COMPLETED or VERIFIED, then you may need to wait a bit before your payment is approved, or contact PayPal directly as to the reason the payment is having a problem.', 'another-wordpress-classifieds-plugin' );
             }
 
@@ -77,7 +77,8 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
             unset( $transaction->errors['verification-post'] );
         }
 
-        $transaction->set( 'txn-id', awpcp_post_param( 'txn_id' ) );
+        $txn_id = awpcp_get_var( array( 'param' => 'txn_id' ), 'post' );
+        $transaction->set( 'txn-id', $txn_id );
         $transaction->set( 'verified', $verified );
 
         return $response;
@@ -97,30 +98,30 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         $mc_gross      = floatval( awpcp_post_param( 'mc_gross' ) );
         $payment_gross = floatval( awpcp_post_param( 'payment_gross' ) );
         $tax           = floatval( awpcp_post_param( 'tax' ) );
-        $txn_id        = awpcp_post_param( 'txn_id' );
-        $txn_type      = awpcp_post_param( 'txn_type' );
-        $custom        = awpcp_post_param( 'custom' );
-        $payer_email   = awpcp_post_param( 'payer_email' );
+        $txn_id        = awpcp_get_var( array( 'param' => 'txn_id' ), 'post' );
+        $txn_type      = awpcp_get_var( array( 'param' => 'txn_type' ), 'post' );
+        $custom        = awpcp_get_var( array( 'param' => 'custom' ), 'post' );
+        $payer_email   = awpcp_get_var( array( 'param' => 'payer_email' ), 'post' );
 
         // this variables are not used for verification purposes.
-        $item_name            = awpcp_post_param( 'item_name' );
-        $item_number          = awpcp_post_param( 'item_number' );
-        $quantity             = awpcp_post_param( 'quantity' );
-        $mc_fee               = awpcp_post_param( 'mc_fee' );
-        $payment_currency     = awpcp_post_param( 'mc_currency' );
-        $exchange_rate        = awpcp_post_param( 'exchange_rate' );
-        $payment_status       = awpcp_post_param( 'payment_status' );
-        $payment_type         = awpcp_post_param( 'payment_type' );
-        $payment_date         = awpcp_post_param( 'payment_date' );
-        $first_name           = awpcp_post_param( 'first_name' );
-        $last_name            = awpcp_post_param( 'last_name' );
-        $address_street       = awpcp_post_param( 'address_street' );
-        $address_zip          = awpcp_post_param( 'address_zip' );
-        $address_city         = awpcp_post_param( 'address_city' );
-        $address_state        = awpcp_post_param( 'address_state' );
-        $address_country      = awpcp_post_param( 'address_country' );
-        $address_country_code = awpcp_post_param( 'address_country_code' );
-        $residence_country    = awpcp_post_param( 'residence_country' );
+        $item_name            = awpcp_get_var( array( 'param' => 'item_name' ), 'post' );
+        $item_number          = awpcp_get_var( array( 'param' => 'item_number' ), 'post' );
+        $quantity             = awpcp_get_var( array( 'param' => 'quantity' ), 'post' );
+        $mc_fee               = awpcp_get_var( array( 'param' => 'mc_fee' ), 'post' );
+        $payment_currency     = awpcp_get_var( array( 'param' => 'mc_currency' ), 'post' );
+        $exchange_rate        = awpcp_get_var( array( 'param' => 'exchange_rate' ), 'post' );
+        $payment_status       = awpcp_get_var( array( 'param' => 'payment_status' ), 'post' );
+        $payment_type         = awpcp_get_var( array( 'param' => 'payment_type' ), 'post' );
+        $payment_date         = awpcp_get_var( array( 'param' => 'payment_date' ), 'post' );
+        $first_name           = awpcp_get_var( array( 'param' => 'first_name' ), 'post' );
+        $last_name            = awpcp_get_var( array( 'param' => 'last_name' ), 'post' );
+        $address_street       = awpcp_get_var( array( 'param' => 'address_street' ), 'post' );
+        $address_zip          = awpcp_get_var( array( 'param' => 'address_zip' ), 'post' );
+        $address_city         = awpcp_get_var( array( 'param' => 'address_city' ), 'post' );
+        $address_state        = awpcp_get_var( array( 'param' => 'address_state' ), 'post' );
+        $address_country      = awpcp_get_var( array( 'param' => 'address_country' ), 'post' );
+        $address_country_code = awpcp_get_var( array( 'param' => 'address_country_code' ), 'post' );
+        $residence_country    = awpcp_get_var( array( 'param' => 'residence_country' ), 'post' );
 
         // TODO: Add support for recurring payments and subscriptions?
         if ( ! in_array( $txn_type, array( 'web_accept', 'cart' ), true ) ) {
@@ -198,7 +199,10 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
     }
 
     public function funds_were_sent_to_correct_receiver() {
-        $email_addresses = array( awpcp_post_param( 'receiver_email' ), awpcp_post_param( 'business' ) );
+        $receiver = awpcp_get_var( array( 'param' => 'receiver_email' ), 'post' );
+        $business = awpcp_get_var( array( 'param' => 'business' ), 'post' );
+
+        $email_addresses = array( $receiver, $business );
         $email_addresses = array_filter( $email_addresses, 'awpcp_is_valid_email_address' );
 
         $paypal_email = get_awpcp_option( 'paypalemail' );
@@ -209,7 +213,8 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
             }
         }
 
-        $merchant_ids = array( awpcp_post_param( 'received_id' ), awpcp_post_param( 'business' ) );
+        $received_id  = awpcp_get_var( array( 'param' => 'received_id' ), 'post' );
+        $merchant_ids = array( $received_id, $business );
         $merchant_ids = array_filter( $merchant_ids, 'strlen' );
 
         $paypal_merchant_id = get_awpcp_option( 'paypal_merchant_id' );

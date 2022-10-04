@@ -41,14 +41,14 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
     /**
      * @since 3.8.6
      */
-    public function __construct( $listings, $listing_renderer, $listings_logic, $attachments, $regions, $data_formatter, $db ) {
+    public function __construct( $listings, $listing_renderer, $listings_logic, $attachments, $null, $data_formatter ) {
         $this->listings         = $listings;
         $this->listing_renderer = $listing_renderer;
         $this->listings_logic   = $listings_logic;
         $this->attachments      = $attachments;
-        $this->regions          = $regions;
+        $this->regions          = awpcp_basic_regions_api();
         $this->data_formatter   = $data_formatter;
-        $this->db               = $db;
+        $this->db               = $GLOBALS['wpdb'];
     }
 
     /**

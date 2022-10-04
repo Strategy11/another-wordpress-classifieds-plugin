@@ -28,7 +28,7 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
         $right = wp_rand( 1, $this->max_number );
 
         $hash   = $this->hash( $left + $right );
-        $answer = awpcp_post_param( 'captcha' );
+        $answer = awpcp_get_var( array( 'param' => 'captcha' ), 'post' );
 
         /* translators: the numbers that need to be added up for the math challenge. */
         $label = _x( 'Enter the value of the following sum: %1$d + %2$d', 'CAPTCHA', 'another-wordpress-classifieds-plugin' ) . '<span class="required">*</span>';
@@ -52,8 +52,8 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
      * @throws AWPCP_Exception  If the answer to the challenge is not valid.
      */
     public function validate() {
-        $answer   = awpcp_post_param( 'captcha' );
-        $expected = awpcp_post_param( 'captcha-hash' );
+        $answer   = awpcp_get_var( array( 'param' => 'captcha' ), 'post' );
+        $expected = awpcp_get_var( array( 'param' => 'captcha-hash' ), 'post' );
 
         if ( empty( $answer ) ) {
             $error = __( 'You did not solve the math problem. Please solve the math problem to proceed.', 'another-wordpress-classifieds-plugin' );

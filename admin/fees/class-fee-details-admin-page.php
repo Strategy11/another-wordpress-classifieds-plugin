@@ -73,7 +73,7 @@ class AWPCP_Fee_Details_Admin_Page {
     private function get_posted_data() {
         $fee_data = array(
             'name' => $this->request->post( 'name' ),
-            'description' => $this->request->post( 'description' ),
+            'description' => $this->request->post( 'description', '', 'sanitize_textarea_field' ),
             'price' => awpcp_parse_money( $this->request->post( 'price_in_currency' ) ),
             'credits' => max( 0, intval( $this->request->post( 'price_in_credits' ) ) ),
             'duration_amount' => $this->request->post( 'duration_amount' ),

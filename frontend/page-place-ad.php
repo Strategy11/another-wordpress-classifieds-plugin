@@ -87,7 +87,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $this->transaction->set('context', $this->context);
             $this->transaction->set('redirect', $this->url());
             $this->transaction->set('redirect-data', array('step' => 'payment-completed'));
-            $this->transaction->set( 'user-just-logged-in', awpcp_request_param( 'loggedin', false ) );
+
+            $logged_in = awpcp_get_var( array( 'param' => 'loggedin', 'default' => false ) );
+            $this->transaction->set( 'user-just-logged-in', $logged_in );
         }
 
         return $this->transaction;
@@ -98,7 +100,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     }
 
     protected function verify_preview_hash($ad) {
-        return wp_verify_nonce( awpcp_post_param( 'preview-hash' ), "preview-ad-{$ad->ID}" );
+        $hash = awpcp_get_var( array( 'param' => 'preview-hash' ), 'post' );
+        return wp_verify_nonce( $hash, "preview-ad-{$ad->ID}" );
     }
 
     protected function is_user_allowed_to_edit($ad) {
@@ -318,11 +321,22 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
             $skip_payment_term_selection = $transaction->get( 'skip-payment-term-selection' );
 
-            $user = awpcp_post_param( 'user', intval( $transaction->user_id ) );
-            $category = $this->get_posted_categories(
-                awpcp_post_param( 'category', null ),
-                $transaction
+            $user = awpcp_get_var(
+                array(
+                    'param'   => 'user',
+                    'default' => intval( $transaction->user_id ),
+                ),
+                'post'
             );
+
+            $category = awpcp_get_var(
+                array(
+                    'param'   => 'category',
+                    'default' => null,
+                ),
+                'post'
+            );
+            $category = $this->get_posted_categories( $category, $transaction );
 
             if ( $skip_payment_term_selection ) {
                 $payment_terms_list = null;
@@ -872,7 +886,13 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         // propagate preview parameter sent when this step is accesed from the
         // Preview Ad screen
-        $hidden['preview-hash'] = awpcp_post_param( 'preview-hash', false );
+        $hidden['preview-hash'] = awpcp_get_var(
+            array(
+                'param'   => 'preview-hash',
+                'default' => false,
+            ),
+            'post'
+        );
         $preview = strlen( $hidden['preview-hash'] ) > 0;
 
         if ( isset( $form['transaction_id'] ) ) {
@@ -1188,7 +1208,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     public function save_details_step($transaction, $errors=array()) {
         global $wpdb, $hasextrafieldsmodule;
 
-        $data = $this->get_posted_details( $this->request->all_post_params(), $transaction );
+        $data = $this->get_posted_details( $_POST, $transaction );
         $characters = $this->get_characters_allowed( $data['ad_id'], $transaction );
         $errors = array();
 

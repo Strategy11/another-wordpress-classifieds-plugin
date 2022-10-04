@@ -1211,7 +1211,59 @@ function awpcp_get_blog_name($decode_html=true) {
 }
 
 /**
+ * @since x.x
+ *
+ * @param array $args - Includes 'param' and 'sanitize'.
+ *
+ * @return array|string|int|float|mixed
+ */
+function awpcp_get_var( $args, $type = 'request' ) {
+    $defaults = array(
+        'sanitize' => 'sanitize_text_field',
+        'default'  => '',
+    );
+    $args     = wp_parse_args( $args, $defaults );
+    $value    = $args['default'];
+    if ( $type === 'get' ) {
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $value = isset( $_GET[ $args['param'] ] ) ? wp_unslash( $_GET[ $args['param'] ] ) : $value;
+    } elseif ( $type === 'post' ) {
+        // phpcs:ignore Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $value = isset( $_POST[ $args['param'] ] ) ? wp_unslash( $_POST[ $args['param'] ] ) : $value;
+    } else {
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $value = isset( $_REQUEST[ $args['param'] ] ) ? wp_unslash( $_REQUEST[ $args['param'] ] ) : $value;
+    }
+
+    awpcp_sanitize_value( $args['sanitize'], $value );
+
+    return $value;
+}
+
+/**
+ * @since x.x
+ *
+ * @param string $sanitize
+ * @param array|string $value
+ */
+function awpcp_sanitize_value( $sanitize, &$value ) {
+    if ( empty( $sanitize ) ) {
+        return;
+    }
+    if ( is_array( $value ) ) {
+        $temp_values = $value;
+        foreach ( $temp_values as $k => $v ) {
+            awpcp_sanitize_value( $sanitize, $value[ $k ] );
+        }
+    } else {
+        $value = call_user_func( $sanitize, $value );
+    }
+}
+
+/**
  * Use AWPCP_Request::post_param when possible.
+ *
+ * @deprecated x.x
  */
 function awpcp_post_param($name, $default='') {
 	return awpcp_array_data($name, $default, $_POST);
@@ -1219,6 +1271,8 @@ function awpcp_post_param($name, $default='') {
 
 /**
  * Use AWPCP_Request::param when possible.
+ *
+ * @deprecated x.x
  */
 function awpcp_request_param($name, $default='', $from=null) {
 	return awpcp_array_data($name, $default, is_null($from) ? $_REQUEST : $from);

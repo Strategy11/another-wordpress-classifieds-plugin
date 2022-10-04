@@ -49,10 +49,11 @@ class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
      * TODO: validate md5 hash
      */
     public function verify_transaction($transaction) {
-        $x_response_code = awpcp_request_param('x_response_code');
-        $x_twocorec = awpcp_request_param('x_twocorec');
+        $x_response_code = awpcp_get_var( array( 'param' => 'x_response_code' ) );
+        $x_twocorec      = awpcp_get_var( array( 'param' => 'x_twocorec' ) );
 
-        $transaction->set('txn-id', awpcp_request_param('x_trans_id'));
+        $txn_id = awpcp_get_var( array( 'param' => 'x_trans_id' ) );
+        $transaction->set( 'txn-id', $txn_id );
 
         if ($x_response_code == 1 || $x_twocorec == 1) {
             $transaction->errors['verification'] = array();
@@ -66,29 +67,33 @@ class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
     }
 
     private function validate_transaction($transaction) {
-        $x_amount = number_format(awpcp_request_param('x_amount'), 2);
-        $x_Login = awpcp_request_param('x_login');
-        $payer_email = awpcp_request_param( 'email', awpcp_request_param( 'x_Email' ) );
+        $x_amount    = awpcp_get_var( array( 'param' => 'x_amount' ) );
+        $x_amount    = number_format( $x_amount, 2 );
+        $x_Login     = awpcp_get_var( array( 'param' => 'x_login' ) );
+        $payer_email = awpcp_get_var( array( 'param' => 'x_Email' ) );
+        $payer_email = awpcp_get_var( array( 'param' => 'email', 'default' => $payer_email ) );
 
-        $x_2checked = awpcp_request_param('x_2checked');
-        $x_MD5_Hash = awpcp_request_param('x_MD5_Hash');
-        $x_trans_id = awpcp_request_param('x_trans_id');
-        $card_holder_name = awpcp_request_param('card_holder_name');
-        $x_Country = awpcp_request_param('x_Country');
-        $x_City = awpcp_request_param('x_City');
-        $x_State = awpcp_request_param('x_State');
-        $x_Zip = awpcp_request_param('x_Zip');
-        $x_Address = awpcp_request_param('x_Address');
-        $x_Phone = awpcp_request_param('x_Phone');
-        $demo = awpcp_request_param('demo');
-        $x_response_code= awpcp_request_param('x_response_code');
-        $x_response_reason_code = awpcp_request_param('x_response_reason_code');
-        $x_response_reason_text = awpcp_request_param('x_response_reason_text');
-        $x_item_number = awpcp_request_param('x_item_number');
-        $x_custom = awpcp_request_param('x_custom');
-        $x_twocorec = awpcp_request_param('x_twocorec');
-        $x_order_number = awpcp_request_param('order_number');
-        $x_sid = awpcp_request_param('sid');
+        $x_2checked       = awpcp_get_var( array( 'param' => 'x_2checked' ) );
+        $x_MD5_Hash       = awpcp_get_var( array( 'param' => 'x_MD5_Hash' ) );
+        $x_trans_id       = awpcp_get_var( array( 'param' => 'x_trans_id' ) );
+        $card_holder_name = awpcp_get_var( array( 'param' => 'card_holder_name' ) );
+        $x_Country        = awpcp_get_var( array( 'param' => 'x_Country' ) );
+        $x_City           = awpcp_get_var( array( 'param' => 'x_City' ) );
+        $x_State          = awpcp_get_var( array( 'param' => 'x_State' ) );
+        $x_Zip            = awpcp_get_var( array( 'param' => 'x_Zip' ) );
+        $x_Address        = awpcp_get_var( array( 'param' => 'x_Address', 'sanitize' => 'sanitize_textarea_field' ) );
+        $x_Phone          = awpcp_get_var( array( 'param' => 'x_Phone' ) );
+        $demo             = awpcp_get_var( array( 'param' => 'demo' ) );
+        $x_response_code  = awpcp_get_var( array( 'param' => 'x_response_code' ) );
+
+        $x_response_reason_code = awpcp_get_var( array( 'param' => 'x_response_reason_code' ) );
+        $x_response_reason_text = awpcp_get_var( array( 'param' => 'x_response_reason_text' ) );
+
+        $x_item_number  = awpcp_get_var( array( 'param' => 'x_item_number' ) );
+        $x_custom       = awpcp_get_var( array( 'param' => 'x_custom' ) );
+        $x_twocorec     = awpcp_get_var( array( 'param' => 'x_twocorec' ) );
+        $x_order_number = awpcp_get_var( array( 'param' => 'order_number' ) );
+        $x_sid          = awpcp_get_var( array( 'param' => 'sid' ) );
 
         $totals = $transaction->get_totals();
         $amount = number_format($totals['money'], 2);

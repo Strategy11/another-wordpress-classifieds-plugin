@@ -125,15 +125,19 @@ class AWPCP_Request {
 
     /**
      * @since 3.3
+     * @deprecated x.x
      */
     public function all_request_params() {
+        _deprecated_function( __METHOD__, '4.3' );
         return $_REQUEST;
     }
 
     /**
      * @since 3.5.4
+     * @deprecated x.x
      */
     public function all_post_params() {
+        _deprecated_function( __METHOD__, '4.3' );
         return $_POST;
     }
 
@@ -141,9 +145,8 @@ class AWPCP_Request {
      * @tested
      * @since 3.0.2
      */
-    public function post( $name, $default='' ) {
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-        return isset( $_POST[ $name ] ) ? $_POST[ $name ] : $default;
+    public function post( $param, $default = '', $sanitize = 'sanitize_text_field' ) {
+        return awpcp_get_var( compact( 'param', 'default', 'sanitize' ), 'post' );
     }
 
     /**

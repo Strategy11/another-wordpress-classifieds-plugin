@@ -15,7 +15,13 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
     private function parse_query() {
         $user = wp_get_current_user();
         $ipp = (int) get_user_meta($user->ID, 'credit-plans-items-per-page', true);
-        $this->items_per_page = awpcp_request_param('items-per-page', $ipp === 0 ? 10 : $ipp);
+
+        $this->items_per_page = awpcp_get_var(
+            array(
+                'param' => 'items-per-page',
+                'default' => $ipp === 0 ? 10 : $ipp,
+            )
+        );
         update_user_meta($user->ID, 'credit-plans-items-per-page', $this->items_per_page);
 
         $params = shortcode_atts(array(

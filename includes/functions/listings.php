@@ -123,7 +123,8 @@ function awpcp_get_results_per_page( $query_vars = [] ) {
     $pagination_options = get_awpcp_option('pagination-options', 10);
     $pagination_options = (array)$pagination_options;
     $max_results = max($pagination_options) ? max($pagination_options) : 10;
-    $results_per_page = intval( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) );
+    $per_page    = awpcp_get_var( array( 'param' => 'adresultsperpage', 'default' => 10 ) );
+    $results_per_page = intval( awpcp_request_param( 'results', $per_page ) );
     if ($results_per_page > $max_results) {
         $results_per_page = $max_results;
     }

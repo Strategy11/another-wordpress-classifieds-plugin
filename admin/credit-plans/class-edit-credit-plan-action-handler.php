@@ -40,7 +40,7 @@ class AWPCP_Edit_Credit_Plan_Action_Handler implements AWPCP_Table_Entry_Action_
         $errors = array();
 
         $plan->name = $this->request->post( 'name' );
-        $plan->description = $this->request->post( 'description' );
+        $plan->description = $this->request->post( 'description', '', 'sanitize_textarea_field' );
         $plan->credits = $this->request->post( 'credits' );
         $plan->price = $this->request->post( 'price' );
 

@@ -28,13 +28,13 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     public function get_current_action($default='searchads') {
-        $action = awpcp_request_param( 'awpcp-step', null );
+        $action = awpcp_get_var( array( 'param' => 'awpcp-step' ) );
 
         if ( $action ) {
             return $action;
         }
 
-        return awpcp_request_param('a', $default);
+        return awpcp_get_var( array( 'param' => 'a', 'default' => $default ) );
     }
 
     public function url($params=array()) {

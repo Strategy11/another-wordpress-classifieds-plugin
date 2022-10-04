@@ -70,7 +70,7 @@ class AWPCP_AdminUsers {
 
         if (isset($_POST['save'])) {
             $payments = awpcp_payments_api();
-            $amount = (int) awpcp_post_param('amount', 0);
+            $amount = (int) awpcp_get_var( array( 'param' => 'amount', 'default' => 0 ), 'post' );
 
             if ($action == 'debit')
                 $payments->remove_credit($user->ID, $amount);
@@ -101,8 +101,9 @@ class AWPCP_AdminUsers {
             return false;
         }
 
-        $user_id = awpcp_post_param('user', 0);
-        $action = str_replace('awpcp-users-', '', awpcp_post_param('action'));
+        $user_id = awpcp_get_var( array( 'param' => 'user', 'default' => 0 ), 'post' );
+        $action  = awpcp_get_var( array( 'param' => 'action' ), 'post' );
+        $action  = str_replace( 'awpcp-users-', '', $action );
 
         switch ($action) {
             case 'debit':

@@ -28,25 +28,25 @@ abstract class AWPCP_PaymentGateway {
     }
 
     protected function get_posted_billing_information() {
-        $data['country']            = awpcp_post_param( 'country' );
-        $data['credit_card_number'] = awpcp_post_param( 'credit_card_number' );
-        $data['credit_card_type']   = awpcp_post_param( 'credit_card_type' );
-        $data['exp_month']          = awpcp_post_param( 'exp_month' );
-        $data['exp_year']           = awpcp_post_param( 'exp_year' );
-        $data['csc']                = awpcp_post_param( 'csc' );
+        $data['country']            = awpcp_get_var( array( 'param' => 'country' ), 'post' );
+        $data['credit_card_number'] = awpcp_get_var( array( 'param' => 'credit_card_number' ), 'post' );
+        $data['credit_card_type']   = awpcp_get_var( array( 'param' => 'credit_card_type' ), 'post' );
+        $data['exp_month']          = awpcp_get_var( array( 'param' => 'exp_month' ), 'post' );
+        $data['exp_year']           = awpcp_get_var( array( 'param' => 'exp_year' ), 'post' );
+        $data['csc']                = awpcp_get_var( array( 'param' => 'csc' ), 'post' );
 
-        $data['first_name']  = awpcp_post_param( 'first_name' );
-        $data['last_name']   = awpcp_post_param( 'last_name' );
-        $data['address_1']   = awpcp_post_param( 'address_1' );
-        $data['address_2']   = awpcp_post_param( 'address_2' );
-        $data['city']        = awpcp_post_param( 'city' );
-        $data['state']       = awpcp_post_param( 'state' );
-        $data['postal_code'] = awpcp_post_param( 'postal_code' );
-        $data['email']       = awpcp_post_param( 'email' );
+        $data['first_name']  = awpcp_get_var( array( 'param' => 'first_name' ), 'post' );
+        $data['last_name']   = awpcp_get_var( array( 'param' => 'last_name' ), 'post' );
+        $data['address_1']   = awpcp_get_var( array( 'param' => 'address_1' ), 'post' );
+        $data['address_2']   = awpcp_get_var( array( 'param' => 'address_2' ), 'post' );
+        $data['city']        = awpcp_get_var( array( 'param' => 'city' ), 'post' );
+        $data['state']       = awpcp_get_var( array( 'param' => 'state' ), 'post' );
+        $data['postal_code'] = awpcp_get_var( array( 'param' => 'postal_code' ), 'post' );
+        $data['email']       = awpcp_get_var( array( 'param' => 'email' ), 'post' );
 
-        $data['direct-payment-step'] = awpcp_post_param( 'direct-payment-step' );
-        $data['transaction_id']      = awpcp_post_param( 'transaction_id' );
-        $data['step']                = awpcp_post_param( 'step' );
+        $data['direct-payment-step'] = awpcp_get_var( array( 'param' => 'direct-payment-step' ), 'post' );
+        $data['transaction_id']      = awpcp_get_var( array( 'param' => 'transaction_id' ), 'post' );
+        $data['step']                = awpcp_get_var( array( 'param' => 'step' ), 'post' );
 
         return $this->sanitize_billing_information( $data );
     }
