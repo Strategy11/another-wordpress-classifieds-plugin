@@ -17,8 +17,7 @@ function awpcp_renew_listing_page() {
         awpcp_listings_collection(),
         awpcp_payments_api(),
         awpcp_template_renderer(),
-        awpcp_wordpress(),
-        awpcp_request()
+        awpcp_wordpress()
     );
 }
 

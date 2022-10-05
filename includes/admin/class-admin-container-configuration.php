@@ -181,8 +181,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['ListingsCollection'],
                 $container['Payments'],
                 $container['TemplateRenderer'],
-                $container['WordPress'],
-                $container['Request']
+                $container['WordPress']
             );
         } );
 
