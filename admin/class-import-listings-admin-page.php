@@ -12,15 +12,13 @@ class AWPCP_ImportListingsAdminPage {
     private $form_steps;
     private $javascript;
     private $settings;
-    private $request;
 
-    public function __construct( $import_sessions_manager, $csv_importer_factory, $form_steps, $javascript, $settings, $request ) {
+    public function __construct( $import_sessions_manager, $csv_importer_factory, $form_steps, $javascript, $settings ) {
         $this->import_sessions_manager = $import_sessions_manager;
         $this->csv_importer_factory = $csv_importer_factory;
         $this->form_steps              = $form_steps;
         $this->javascript = $javascript;
         $this->settings = $settings;
-        $this->request = $request;
     }
 
 	public function enqueue_scripts() {
@@ -34,7 +32,7 @@ class AWPCP_ImportListingsAdminPage {
     }
 
     private function handle_request() {
-        if ( $this->request->post( 'cancel' ) || $this->request->post( 'finish' ) ) {
+        if ( awpcp_get_var( array( 'param' => 'cancel' ), 'post' ) || awpcp_get_var( array( 'param' => 'finish' ), 'post' ) ) {
             return $this->delete_current_import_session();
         }
 
@@ -45,7 +43,7 @@ class AWPCP_ImportListingsAdminPage {
         } else if ( ! is_null( $import_session ) ) {
             $step = 'configure';
         } else {
-            $step = $this->request->get( 'step', 'upload-files' );
+            $step = awpcp_get_var( array( 'param' => 'step', 'default' => 'upload-files' ), 'get' );
         }
 
         if ( $step == 'upload-files' ) {
@@ -74,7 +72,7 @@ class AWPCP_ImportListingsAdminPage {
     }
 
     private function do_upload_files_step() {
-        if ( $this->request->post( 'upload_files' ) ) {
+        if ( awpcp_get_var( array( 'param' => 'upload_files' ), 'post' ) ) {
             return $this->upload_files();
         }
 
@@ -88,8 +86,8 @@ class AWPCP_ImportListingsAdminPage {
         $images_directory = null;
 
         $form_data = array(
-            'images_source' => $this->request->post( 'images_source' ),
-            'local_path' => $this->request->post( 'local_path' ),
+            'images_source' => awpcp_get_var( array( 'param' => 'images_source' ), 'post' ),
+            'local_path'    => awpcp_get_var( array( 'param' => 'local_path' ), 'post' ),
         );
 
         if ( $_FILES['csv_file']['error'] != UPLOAD_ERR_OK ) {
@@ -249,7 +247,7 @@ class AWPCP_ImportListingsAdminPage {
     }
 
     private function do_configuration_step() {
-        if ( $this->request->post( 'configure' ) ) {
+        if ( awpcp_get_var( array( 'param' => 'configure' ), 'post' ) ) {
             return $this->save_configuration();
         }
 
@@ -263,29 +261,29 @@ class AWPCP_ImportListingsAdminPage {
             return $this->show_upload_files_form();
         }
 
-        if ( $this->request->post( 'test_import' ) ) {
+        if ( awpcp_get_var( array( 'param' => 'test_import' ), 'post' ) ) {
             $import_session->set_mode( 'test' );
         } else {
             $import_session->set_mode( 'live' );
         }
 
-        if ( $this->request->post( 'define_default_user' ) ) {
-            $default_user = $this->request->post( 'default_user' );
+        if ( awpcp_get_var( array( 'param' => 'define_default_user' ), 'post' ) ) {
+            $default_user = awpcp_get_var( array( 'param' => 'default_user' ), 'post' );
         } else {
             $default_user = null;
         }
 
         $import_session->set_params( array(
-            'date_format' => $this->request->post( 'date_format' ),
-            'category_separator' => $this->request->post( 'category_separator' ),
-            'time_separator' => $this->request->post( 'time_separator' ),
-            'images_separator' => $this->request->post( 'images_separator' ),
-            'listing_status' => $this->request->post( 'listing_status' ),
-            'create_missing_categories' => $this->request->post( 'create_missing_categories' ),
-            'assign_listings_to_user' => $this->request->post( 'assign_listings_to_user' ),
-            'default_user' => $default_user,
-            'default_start_date' => $this->request->post( 'default_start_date' ),
-            'default_end_date' => $this->request->post( 'default_end_date' ),
+            'date_format'        => awpcp_get_var( array( 'param' => 'date_format' ), 'post' ),
+            'category_separator' => awpcp_get_var( array( 'param' => 'category_separator' ), 'post' ),
+            'time_separator'     => awpcp_get_var( array( 'param' => 'time_separator' ), 'post' ),
+            'images_separator'   => awpcp_get_var( array( 'param' => 'images_separator' ), 'post' ),
+            'listing_status'     => awpcp_get_var( array( 'param' => 'listing_status' ), 'post' ),
+            'create_missing_categories' => awpcp_get_var( array( 'param' => 'create_missing_categories' ), 'post' ),
+            'assign_listings_to_user' => awpcp_get_var( array( 'param' => 'assign_listings_to_user' ), 'post' ),
+            'default_user'       => $default_user,
+            'default_start_date' => awpcp_get_var( array( 'param' => 'default_start_date' ), 'post' ),
+            'default_end_date'   => awpcp_get_var( array( 'param' => 'default_end_date' ), 'post' ),
         ) );
 
         $import_session->set_status( 'ready' );
@@ -331,7 +329,7 @@ class AWPCP_ImportListingsAdminPage {
     private function do_execute_step() {
         $import_session = $this->get_import_session();
 
-        if ( $this->request->post( 'change_configuration' ) ) {
+        if ( awpcp_get_var( array( 'param' => 'change_configuration' ), 'post' ) ) {
             $import_session->set_status( 'configuration' );
             $import_session->set_data( 'number_of_rows_imported', 0 );
             $import_session->set_data( 'number_of_rows_rejected', 0 );

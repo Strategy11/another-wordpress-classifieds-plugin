@@ -67,8 +67,7 @@ class AWPCP_FormFieldsDataTest extends AWPCP_UnitTestCase {
     private function get_test_subject() {
         return new AWPCP_FormFieldsData(
             $this->authorization,
-            $this->listing_renderer,
-            $this->request
+            $this->listing_renderer
         );
     }
 

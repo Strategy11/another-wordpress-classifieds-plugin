@@ -247,7 +247,7 @@ class AWPCP_Payment_Terms_List {
         }
     }
 
-    public function handle_request( $request ) {
-        $this->submitted_data = $request->post( 'payment_term' );
+    public function handle_request() {
+        $this->submitted_data = awpcp_get_var( array( 'param' => 'payment_term' ), 'post' );
     }
 }

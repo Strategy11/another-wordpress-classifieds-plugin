@@ -7,8 +7,7 @@ require_once AWPCP_DIR . '/admin/admin-panel-users.php';
 
 function awpcp_admin_panel() {
     return new AWPCP_AdminPanel(
-        awpcp_upgrade_tasks_manager(),
-        awpcp()->container['Request']
+        awpcp_upgrade_tasks_manager()
     );
 }
 
@@ -16,14 +15,8 @@ class AWPCP_AdminPanel {
 
     private $upgrade_tasks;
 
-    /**
-     * @var Request
-     */
-    private $request;
-
-    public function __construct( $upgrade_tasks, $request ) {
+    public function __construct( $upgrade_tasks ) {
         $this->upgrade_tasks = $upgrade_tasks;
-        $this->request       = $request;
 
 		$this->title = awpcp_admin_page_title();
 		$this->menu = _x('Classifieds', 'awpcp admin menu', 'another-wordpress-classifieds-plugin');
@@ -342,13 +335,14 @@ class AWPCP_AdminPanel {
 
         $quick_view_admin_page_slug = 'awpcp-admin-quick-view-listing';
 
-        if ( $this->request->param( 'page' ) === $quick_view_admin_page_slug ) {
+        $page = awpcp_get_var( array( 'param' => 'page' ) );
+        if ( $page === $quick_view_admin_page_slug ) {
 			$this->maybe_redirect_quick_page();
         }
 
         $renew_listing_subscriber_admin_page_slug = 'awpcp-admin-renew-listing';
 
-        if ( $this->request->param( 'page' ) === $renew_listing_subscriber_admin_page_slug ) {
+        if ( $page === $renew_listing_subscriber_admin_page_slug ) {
             $router->add_admin_subpage(
                 'edit.php?post_type=awpcp_listing',
                 __( 'Renew Ad', 'another-wordpress-classifieds-plugin' ),
@@ -390,7 +384,7 @@ class AWPCP_AdminPanel {
 			return;
 		}
 
-		if ( awpcp_request_param( 'page', false ) == 'awpcp-admin-upgrade' ) {
+		if ( awpcp_get_var( array( 'param' => 'page' ) ) == 'awpcp-admin-upgrade' ) {
 			return;
 		}
 
@@ -423,7 +417,7 @@ class AWPCP_AdminPanel {
 			echo $html;
 		}
 
-        if ( awpcp_request_param( 'action' ) === 'awpcp-manage-credits' ) {
+        if ( awpcp_get_var( array( 'param' => 'action' ) ) === 'awpcp-manage-credits' ) {
             $message = __( 'Use the Account Balance column on the table below to manage credit balance for users.', 'another-wordpress-classifieds-plugin' );
 
             echo awpcp_render_info_message( $message );
@@ -611,7 +605,7 @@ class AWPCP_AdminPanel {
 	public function parent_file($parent_file) {
 		global $current_screen, $submenu_file, $typenow;
 
-		if ( $current_screen->base == 'users' && awpcp_request_param( 'action' ) == 'awpcp-manage-credits' ) {
+		if ( $current_screen->base == 'users' && awpcp_get_var( array( 'param' => 'action' ) ) == 'awpcp-manage-credits' ) {
 			// make Classifieds menu the current menu
 			$parent_file = 'awpcp.php';
 			// highlight Manage Credits submenu in Classifieds menu
@@ -631,7 +625,7 @@ class AWPCP_AdminPanel {
     public function filter_admin_body_classes( $admin_body_classes ) {
         global $current_screen;
 
-        if ( $current_screen && $current_screen->base === 'users' && awpcp_request_param( 'action' ) === 'awpcp-manage-credits' ) {
+        if ( $current_screen && $current_screen->base === 'users' && awpcp_get_var( array( 'param' => 'action' ) ) === 'awpcp-manage-credits' ) {
             $admin_body_classes = $admin_body_classes ? "$admin_body_classes awpcp-manage-credits-admin-page" : 'awpcp-manage-credits-admin-page';
         }
 
@@ -658,7 +652,8 @@ class AWPCP_AdminPanel {
 		global $post;
 
 		$post_type = awpcp()->container['listing_post_type'];
-		$is_single_listing = $post_type === $this->request->param( 'post_type' ) || ( is_object( $post ) && $post_type === $post->post_type );
+        $selected_post = awpcp_get_var( array( 'param' => 'post_type' ) );
+		$is_single_listing = $post_type === $selected_post || ( is_object( $post ) && $post_type === $post->post_type );
 
 		if ( ! $is_single_listing ) {
 			return;

@@ -8,12 +8,6 @@
  */
 class AWPCP_ExportListingsAdminPage {
 
-	private $request;
-
-	public function __construct( $request ) {
-		$this->request = $request;
-	}
-
 	public function enqueue_scripts() {
 		wp_enqueue_style( 'awpcp-admin-export-style' );
 		wp_enqueue_script( 'awpcp-admin-export' );
@@ -34,17 +28,20 @@ class AWPCP_ExportListingsAdminPage {
 
 	    try {
 		    if ( ! isset( $_REQUEST['state'] ) ) {
-			    $export = new AWPCP_CSVExporter( array_merge( $this->request->post( 'settings' ), array() ), awpcp_settings_api() );
+				$settings = (array) awpcp_get_var( array( 'param' => 'settings', 'default' => array() ), 'post' );
+			    $export = new AWPCP_CSVExporter( array_merge( $settings, array() ), awpcp_settings_api() );
 		    } else {
+				$state = awpcp_get_var( array( 'param' => 'state' ), 'post' );
 			    // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
-			    $state = json_decode( base64_decode( $this->request->post( 'state' ) ), true );
+			    $state = json_decode( base64_decode( $state ), true );
 			    if ( ! $state || ! is_array( $state ) || empty( $state['workingdir'] ) ) {
 				    $error = _x( 'Could not decode export state information.', 'admin csv-export', 'another-wordpress-classifieds-plugin' );
 			    }
 
 			    $export = AWPCP_CSVExporter::from_state( $state );
+				$cleanup = awpcp_get_var( array( 'param' => 'cleanup' ) );
 
-			    if ( isset( $_REQUEST['cleanup'] ) && $_REQUEST['cleanup'] === '1' ) {
+			    if ( $cleanup === '1' ) {
 				    $export->cleanup();
 			    } else {
 				    $export->advance();

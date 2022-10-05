@@ -6,8 +6,7 @@ function awpcp_relaxed_modules_manager() {
         awpcp_upgrade_tasks_manager(),
         awpcp_licenses_manager(),
         awpcp_modules_updater(),
-        awpcp()->settings,
-        awpcp_request()
+        awpcp()->settings
     );
 }
 

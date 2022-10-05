@@ -18,8 +18,7 @@ function awpcp_place_listing_page() {
         awpcp_listings_collection(),
         awpcp_payments_api(),
         awpcp_template_renderer(),
-        awpcp_wordpress(),
-        awpcp_request()
+        awpcp_wordpress()
     );
 }
 
@@ -42,7 +41,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     protected $wordpress;
     protected $request;
 
-    public function __construct( $page, $title, $attachments, $listing_upload_limits, $authorization, $listing_renderer, $listings_logic, $listings, $payments, $template_renderer, $wordpress, $request ) {
+    public function __construct( $page, $title, $attachments, $listing_upload_limits, $authorization, $listing_renderer, $listings_logic, $listings, $payments, $template_renderer, $wordpress ) {
         parent::__construct( $page, $title, $template_renderer );
 
         $this->show_menu_items = false;
@@ -55,11 +54,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $this->listings = $listings;
         $this->payments = $payments;
         $this->wordpress = $wordpress;
-        $this->request = $request;
     }
 
     public function get_current_action($default=null) {
-        return $this->request->post( 'step', $this->request->param( 'step', $default ) );
+        $step = awpcp_get_var( array( 'param' => 'step', 'default' => $default ) );
+        return awpcp_get_var( array( 'param' => 'step', 'default' => $step ), 'post' );
     }
 
     public function url($params=array()) {
@@ -347,7 +346,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                 $payment_type = $transaction->get( 'payment-term-payment-type' );
             } else {
                 $payment_terms_list = awpcp_payment_terms_list();
-                $payment_terms_list->handle_request( $this->request );
+                $payment_terms_list->handle_request();
 
                 $payment_options = $payment_terms_list->get_data();
 
@@ -1367,7 +1366,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         // see if we can move to the next step
         $skip = ! $this->should_show_upload_files_step( $ad );
-        $skip = $skip || $this->request->post( 'submit-no-images', false );
+        $skip = $skip || awpcp_get_var( array( 'param' => 'submit-no-images' ), 'post' );
         $skip = $skip || $images_allowed == 0;
 
         $show_preview = (bool) get_awpcp_option('show-ad-preview-before-payment');

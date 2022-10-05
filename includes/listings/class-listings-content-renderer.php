@@ -102,7 +102,7 @@ class AWPCP_ListingsContentRenderer {
 
         $is_listing_verified = $this->listing_renderer->is_verified( $post );
 
-        if ( $is_listing_verified && awpcp_request_param( 'verified' ) ) {
+        if ( $is_listing_verified && awpcp_get_var( array( 'param' => 'verified' ) ) ) {
             $messages[] = awpcp_print_message( __( 'Your email address was successfully verified.', 'another-wordpress-classifieds-plugin' ) );
         }
 

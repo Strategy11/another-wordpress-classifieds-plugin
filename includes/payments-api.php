@@ -321,7 +321,7 @@ class AWPCP_PaymentsAPI {
         }
 
         if ( is_null( $this->current_transaction ) ) {
-            $transaction_id = $this->request->param( 'transaction_id' );
+            $transaction_id = awpcp_get_var( array( 'param' => 'transaction_id' ) );
             $this->current_transaction = call_user_func( array( 'AWPCP_Payment_Transaction', $method_name ), $transaction_id );
         }
 

@@ -7,8 +7,7 @@ function awpcp_update_attachment_allowed_status_ajax_handler() {
     $attachment_action = new AWPCP_Update_Attachment_Allowed_Status_Ajax_Action(
         awpcp_attachments_logic(),
         awpcp_attachments_collection(),
-        awpcp_listings_api(),
-        awpcp_request()
+        awpcp_listings_api()
     );
 
     return awpcp_attachment_action_ajax_handler( $attachment_action );
@@ -17,13 +16,11 @@ function awpcp_update_attachment_allowed_status_ajax_handler() {
 class AWPCP_Update_Attachment_Allowed_Status_Ajax_Action implements AWPCP_Attachment_Ajax_Action {
 
     private $attachments_logic;
-    private $request;
 
-    public function __construct( $attachments_logic, $attachments, $listings_logic, $request ) {
+    public function __construct( $attachments_logic, $attachments, $listings_logic ) {
         $this->attachments_logic = $attachments_logic;
         $this->attachments       = $attachments;
         $this->listings_logic    = $listings_logic;
-        $this->request           = $request;
     }
 
     /**
@@ -31,7 +28,7 @@ class AWPCP_Update_Attachment_Allowed_Status_Ajax_Action implements AWPCP_Attach
      *                  there are no other attachments awaiting approval.
      */
     public function do_action( $ajax_handler, $attachment, $listing ) {
-        $current_action = $this->request->param( 'action' );
+        $current_action = awpcp_get_var( array( 'param' => 'action' ) );
         $status_updated = false;
 
         if ( 'awpcp-approve-file' === $current_action ) {

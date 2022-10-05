@@ -3,17 +3,14 @@
 class AWPCP_ListingActionAdminPage {
 
     protected $listings;
-    protected $request;
 
-    public function __construct( $listings, $request ) {
+    public function __construct( $listings ) {
         $this->listings = $listings;
-        $this->request = $request;
     }
 
     protected function get_selected_listings() {
-        $listing_id = $this->request->param( 'id' );
-
-        $listings_ids = $this->request->param( 'selected', array( $listing_id ) );
+        $listing_id   = awpcp_get_var( array( 'param' => 'id' ) );
+        $listings_ids = (array) awpcp_get_var( array( 'param' => 'selected', 'default' => $listing_id ) );
         $listings_ids = array_filter( array_map( 'intval', $listings_ids ) );
 
         return $this->listings->find_all_by_id( $listings_ids );

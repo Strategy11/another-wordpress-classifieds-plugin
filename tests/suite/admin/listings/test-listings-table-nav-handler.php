@@ -47,8 +47,7 @@ class AWPCP_ListingsTableNavHandlerTest extends AWPCP_UnitTestCase {
      */
     private function get_test_subject() {
         return new AWPCP_ListingsTableNavHandler(
-            $this->html_renderer,
-            $this->request
+            $this->html_renderer
         );
     }
 

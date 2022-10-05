@@ -8,8 +8,7 @@ function awpcp_manual_upgrade_admin_page() {
 
     return new AWPCP_ManualUpgradeAdminPage(
         awpcp_upgrade_tasks_manager(),
-        $container['UpgradeSessions'],
-        $container['Request']
+        $container['UpgradeSessions']
     );
 }
 
@@ -17,12 +16,10 @@ class AWPCP_ManualUpgradeAdminPage {
 
     private $upgrade_tasks;
     private $upgrade_sessions;
-    private $request;
 
-    public function __construct( $upgrade_tasks, $upgrade_sessions, $request ) {
+    public function __construct( $upgrade_tasks, $upgrade_sessions ) {
         $this->upgrade_tasks = $upgrade_tasks;
         $this->upgrade_sessions = $upgrade_sessions;
-        $this->request = $request;
     }
 
     public function enqueue_scripts() {
@@ -30,7 +27,7 @@ class AWPCP_ManualUpgradeAdminPage {
     }
 
     public function dispatch() {
-        $context = $this->request->param( 'context', 'plugin' );
+        $context = awpcp_get_var( array( 'param' => 'context', 'default' => 'plugin' ) );
 
         $upgrade_session = $this->upgrade_sessions->get_or_create_session( $context );
 

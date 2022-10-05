@@ -46,34 +46,6 @@ class AWPCP_Search_Widget extends WP_Widget {
         );
     }
 
-    /**
-     * @since 3.0.2
-     * @deprecated 4.0.13    No longer used.
-     */
-    private function render_region_fields( $instance ) {
-        if ( isset( $_REQUEST['regions'][0] ) ) {
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-            $regions = array( stripslashes_deep( $_REQUEST['regions'][0] ) );
-        } else {
-            $regions = array();
-        }
-
-        $options = array(
-            'showTextField' => false,
-            'showExistingRegionsOnly' => true,
-            'maxRegions' => 1,
-            'enabled_fields' => array(
-                'country' => $instance['show_country'],
-                'state' => $instance['show_state'],
-                'county'  => $instance['show_county'],
-                'city' => $instance['show_city'],
-            ),
-        );
-
-        $selector = awpcp_multiple_region_selector( $regions, $options );
-        echo $selector->render( 'search', array(), array() );
-    }
-
 	/**
 	 * @since 3.0
 	 */

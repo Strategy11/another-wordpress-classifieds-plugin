@@ -19,20 +19,13 @@ class AWPCP_ListTableSearchHandler {
     private $html_renderer;
 
     /**
-     * @var object
-     */
-    private $request;
-
-    /**
      * @param array  $search_modes      An array of available search modes.
      * @param object $html_renderer     An instance of HTML Renderer.
-     * @param object $request           An instance of Request.
      * @since 4.0.0
      */
-    public function __construct( $search_modes, $html_renderer, $request ) {
+    public function __construct( $search_modes, $html_renderer ) {
         $this->search_modes  = $search_modes;
         $this->html_renderer = $html_renderer;
-        $this->request       = $request;
     }
 
     /**
@@ -62,14 +55,14 @@ class AWPCP_ListTableSearchHandler {
      * @since 4.0.0
      */
     public function get_selected_search_mode_id() {
-        return $this->request->param( 'awpcp_search_by' );
+        return awpcp_get_var( array( 'param' => 'awpcp_search_by' ) );
     }
 
     /**
      * @since 4.0.0
      */
     public function get_search_query() {
-        return $this->request->param( 's' );
+        return awpcp_get_var( array( 'param' => 's' ) );
     }
 
     /**

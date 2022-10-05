@@ -118,7 +118,8 @@ class AWPCP_EditListingPage extends AWPCP_Page {
      * @since 4.0.0
      */
     private function get_current_step() {
-        return $this->request->post( 'step', $this->request->param( 'step' ) );
+        $step = awpcp_get_var( array( 'param' => 'step' ) );
+        return $this->request->post( 'step', $step );
     }
 
     /**
@@ -136,7 +137,8 @@ class AWPCP_EditListingPage extends AWPCP_Page {
      * @since 4.0.0
      */
     private function request_includes_valid_edit_nonce( $listing ) {
-        $nonce  = $this->request->post( 'edit_nonce', $this->request->param( 'edit_nonce' ) );
+        $nonce  = awpcp_get_var( array( 'param' => 'edit_nonce' ) );
+        $nonce  = $this->request->post( 'edit_nonce', $nonce );
         $action = "awpcp-edit-listing-{$listing->ID}";
 
         return wp_verify_nonce( $nonce, $action );

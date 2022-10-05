@@ -7,18 +7,10 @@
  * @return AWPCP_Delete_Browse_Categories_Page_Notice
  */
 function awpcp_delete_browse_categories_page_notice() {
-    return new AWPCP_Delete_Browse_Categories_Page_Notice(
-        awpcp_request()
-    );
+    return new AWPCP_Delete_Browse_Categories_Page_Notice();
 }
 
 class AWPCP_Delete_Browse_Categories_Page_Notice {
-
-    private $request;
-
-    public function __construct( $request ) {
-        $this->request = $request;
-    }
 
     public function maybe_show_notice() {
         if ( ! get_option( 'awpcp-show-delete-browse-categories-page-notice' ) ) {
@@ -31,9 +23,9 @@ class AWPCP_Delete_Browse_Categories_Page_Notice {
             return;
         }
 
-        $page = $this->request->get( 'page' );
+        $page = awpcp_get_var( array( 'param' => 'page' ), 'get' );
 
-        if ( substr( $this->request->get( 'page' ), 0, 5 ) !== 'awpcp' ) {
+        if ( substr( $page, 0, 5 ) !== 'awpcp' ) {
             return;
         }
 

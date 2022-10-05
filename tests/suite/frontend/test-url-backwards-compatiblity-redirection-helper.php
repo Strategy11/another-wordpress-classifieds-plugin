@@ -48,7 +48,7 @@ class AWPCP_URLBackwardsCompatiblityRedirectionHelperTest extends AWPCP_UnitTest
             ->with( $listing )
             ->andReturn( $listing_permalink );
 
-        $helper = new AWPCP_URL_Backwards_Compatibility_Redirection_Helper( null, null, null, $listings, null, $settings, null );
+        $helper = new AWPCP_URL_Backwards_Compatibility_Redirection_Helper( null, null, null, $listings, null, $settings );
 
         Functions\expect( 'wp_redirect' )
             ->once()

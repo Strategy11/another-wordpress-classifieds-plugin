@@ -69,7 +69,7 @@ class AWPCP_QuickViewListingAdminPage {
      * @since 4.0.0
      */
     public function dispatch() {
-        $post_id = $this->request->param( 'post' );
+        $post_id = awpcp_get_var( array( 'param' => 'post' ) );
 
         try {
             $post = $this->listings_collection->get( $post_id );
@@ -111,10 +111,9 @@ class AWPCP_QuickViewListingAdminPage {
      * @since 4.0.8
      */
     public function handle_quick_actions() {
-        $result       = $this->request->param( 'awpcp-result' );
-        $awpcp_action = $this->request->param( 'action' );
-        $post_id      = $this->request->param( 'post' );
-        $page         = $this->request->param( 'page' );
+        $awpcp_action = awpcp_get_var( array( 'param' => 'action' ) );
+        $post_id      = awpcp_get_var( array( 'param' => 'post' ) );
+        $page         = awpcp_get_var( array( 'param' => 'page' ) );
         $post         = get_post( $post_id );
 
         if ( ! empty( $awpcp_action ) && ! empty( $post ) && $page === 'awpcp-admin-quick-view-listing' && $post->post_type === AWPCP_LISTING_POST_TYPE ) {

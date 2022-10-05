@@ -11,9 +11,7 @@ function awpcp_debug_admin_page() {
         awpcp(),
         awpcp()->settings,
         awpcp()->container['SettingsManager'],
-        awpcp()->container['TemplateRenderer'],
-        awpcp()->container['Request'],
-        $GLOBALS['wpdb']
+        awpcp()->container['TemplateRenderer']
     );
 }
 
@@ -38,11 +36,6 @@ class AWPCP_DebugAdminPage {
     private $settings_manager;
 
     /**
-     * @var Request
-     */
-    private $request;
-
-    /**
      * @var wpdb
      */
     private $db;
@@ -50,20 +43,19 @@ class AWPCP_DebugAdminPage {
     /**
      * Constructor.
      */
-	public function __construct( $plugin, $settings, $settings_manager, $template_renderer, $request, $db ) {
+	public function __construct( $plugin, $settings, $settings_manager, $template_renderer ) {
         $this->plugin            = $plugin;
         $this->settings          = $settings;
         $this->settings_manager  = $settings_manager;
         $this->template_renderer = $template_renderer;
-        $this->request           = $request;
-        $this->db                = $db;
+        $this->db                = $GLOBALS['wpdb'];
 	}
 
     /**
      * @since 4.0.0
      */
     public function on_load() {
-        if ( 'debug page' !== $this->request->param( 'download' ) ) {
+        if ( 'debug page' !== awpcp_get_var( array( 'param' => 'download' ) ) ) {
             return;
         }
 
@@ -154,9 +146,10 @@ class AWPCP_DebugAdminPage {
 
     /**
      * @since 4.0.0
+     * @return string
      */
     private function get_current_section() {
-        return $this->request->param( 'awpcp-section', 'plugin-info' );
+        return awpcp_get_var( array( 'param' => 'awpcp-section', 'default' => 'plugin-info' ) );
     }
 
     /**

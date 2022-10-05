@@ -10,18 +10,16 @@ class AWPCP_ModulesManager {
     private $licenses_manager;
     private $modules_updater;
     private $licenses_settings;
-    private $request;
 
     private $modules = array();
     private $notices = array();
 
-    public function __construct( $plugin, $upgrade_tasks, $licenses_manager, $modules_updater, $licenses_settings, $request ) {
+    public function __construct( $plugin, $upgrade_tasks, $licenses_manager, $modules_updater, $licenses_settings ) {
         $this->plugin = $plugin;
         $this->upgrade_tasks = $upgrade_tasks;
         $this->licenses_manager = $licenses_manager;
         $this->modules_updater = $modules_updater;
         $this->licenses_settings = $licenses_settings;
-        $this->request = $request;
     }
 
     public function load_modules( $container ) {
@@ -273,7 +271,8 @@ class AWPCP_ModulesManager {
     }
 
     private function show_module_requires_manual_upgrade_notice( $modules ) {
-        if ( $this->request->param('page') == 'awpcp-admin-upgrade' ) {
+        $page = awpcp_get_var( array( 'param' => 'page' ) );
+        if ( $page == 'awpcp-admin-upgrade' ) {
             return;
         }
 

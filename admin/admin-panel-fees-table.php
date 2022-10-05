@@ -25,11 +25,11 @@ class AWPCP_FeesTable extends WP_List_Table {
         );
         update_user_meta($user->ID, 'fees-items-per-page', $this->items_per_page);
 
-        $params = shortcode_atts(array(
-            'orderby' => '',
-            'order' => 'desc',
-            'paged' => 1,
-        ), $_REQUEST);
+        $params = array(
+            'orderby' => awpcp_get_var( array( 'param' => 'orderby' ) ),
+            'order'   => awpcp_get_var( array( 'param' => 'order', 'default' => 'desc' ) ),
+            'paged'   => awpcp_get_var( array( 'param' => 'paged', 'default' => 1 ) ),
+        );
 
         $params['order'] = strcasecmp($params['order'], 'DESC') === 0 ? 'DESC' : 'ASC';
         $params['pages'] = (int) $params['paged'];

@@ -39,8 +39,7 @@ class AWPCP_Test_Media_Uploaded_Notification extends AWPCP_UnitTestCase {
             null,
             null,
             $this->settings,
-            $this->wordpress,
-            $this->request
+            $this->wordpress
         );
 
         $notification->maybe_schedule_notification( $this->attachment, $this->listing );
@@ -66,8 +65,7 @@ class AWPCP_Test_Media_Uploaded_Notification extends AWPCP_UnitTestCase {
             null,
             null,
             $this->settings,
-            $this->wordpress,
-            $this->request
+            $this->wordpress
         );
 
         $notification->maybe_schedule_notification( $this->attachment, $this->listing );
@@ -89,8 +87,7 @@ class AWPCP_Test_Media_Uploaded_Notification extends AWPCP_UnitTestCase {
             null,
             null,
             $this->settings,
-            $this->wordpress,
-            $this->request
+            $this->wordpress
         );
 
         $notification->maybe_schedule_notification( $this->attachment, $this->listing );
@@ -108,8 +105,7 @@ class AWPCP_Test_Media_Uploaded_Notification extends AWPCP_UnitTestCase {
             null,
             null,
             $this->settings,
-            $this->wordpress,
-            $this->request
+            $this->wordpress
         );
 
         $notification->maybe_schedule_notification( $this->attachment, $this->listing );
@@ -129,8 +125,7 @@ class AWPCP_Test_Media_Uploaded_Notification extends AWPCP_UnitTestCase {
             null,
             null,
             $this->settings,
-            $this->wordpress,
-            $this->request
+            $this->wordpress
         );
 
         $notification->maybe_schedule_notification( $this->attachment, $this->listing );
@@ -149,8 +144,7 @@ class AWPCP_Test_Media_Uploaded_Notification extends AWPCP_UnitTestCase {
             null,
             null,
             $this->settings,
-            $this->wordpress,
-            $this->request
+            $this->wordpress
         );
 
         $notification->maybe_schedule_notification( $this->attachment, $this->listing );
@@ -190,7 +184,6 @@ class AWPCP_Test_Media_Uploaded_Notification extends AWPCP_UnitTestCase {
             $this->attachments,
             $this->listing_renderer,
             $this->listings,
-            null,
             null,
             null
         );

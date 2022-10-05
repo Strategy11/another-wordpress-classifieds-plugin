@@ -287,7 +287,11 @@ class AWPCP_Pages {
 
         if ( check_ajax_referer( 'flag_ad', 'nonce' ) ) {
             try {
-                $ad       = awpcp_listings_collection()->get( intval( awpcp_request_param( 'ad', 0 ) ) );
+                $ad       = awpcp_listings_collection()->get(
+                    awpcp_get_var(
+                        array( 'param' => 'ad', 'default' => 0, 'sanitize' => 'intval' )
+                    )
+                );
                 $response = awpcp_listings_api()->flag_listing( $ad );
             } catch ( AWPCP_Exception $e ) {
                 $response = 0;
@@ -352,8 +356,20 @@ function awpcp_load_classifieds( $awpcppagename ) {
 	if ( get_awpcp_option( 'main_page_display' ) ) {
         $query = array(
             'context' => 'public-listings',
-            'limit'   => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
-            'offset'  => absint( awpcp_request_param( 'offset', 0 ) ),
+            'limit'   => awpcp_get_var(
+                array(
+                    'param'    => 'results',
+                    'default'  => get_awpcp_option( 'adresultsperpage', 10 ),
+                    'sanitize' => 'absint',
+                )
+            ),
+            'offset'  => awpcp_get_var(
+                array(
+                    'param'    => 'offset',
+                    'default'  => 0,
+                    'sanitize' => 'absint',
+                )
+            ),
             'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
         );
 

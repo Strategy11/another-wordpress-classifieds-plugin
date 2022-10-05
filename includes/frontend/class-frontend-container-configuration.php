@@ -51,8 +51,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingsCollection'],
                 $container['ListingAuthorization'],
                 $container['Payments'],
-                $container['Settings'],
-                $container['Request']
+                $container['Settings']
             );
         } );
 
@@ -156,8 +155,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingsCollection'],
                 $container['ListingsPaymentTransactions'],
                 $container['ListingOrderPostedData'],
-                awpcp_ajax_response(),
-                $container['Request']
+                awpcp_ajax_response()
             );
         } );
 
@@ -166,8 +164,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['SubmitListingSectionsGenerator'],
                 $container['ListingsCollection'],
                 $container['Payments'],
-                awpcp_ajax_response(),
-                $container['Request']
+                awpcp_ajax_response()
             );
         } );
 
@@ -183,8 +180,7 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingPostedData'],
                 $container['RolesAndCapabilities'],
                 $container['Settings'],
-                awpcp_ajax_response(),
-                $container['Request']
+                awpcp_ajax_response()
             );
         } );
 

@@ -1,6 +1,6 @@
-<?php if ( awpcp_request_param( 'register', false ) ): ?>
+<?php if ( awpcp_get_var( array( 'param' => 'register' ) ) ): ?>
 	<?php echo awpcp_print_message( __( 'Please check your email for the password and then return to log in.', 'another-wordpress-classifieds-plugin' ) ); ?>
-<?php elseif ( awpcp_request_param( 'reset', false ) ): ?>
+<?php elseif ( awpcp_get_var( array( 'param' => 'reset' ) ) ): ?>
 	<?php echo awpcp_print_message( __( 'Please check your email to reset your password.', 'another-wordpress-classifieds-plugin' ) ); ?>
 <?php elseif ( $message ): ?>
 	<?php echo awpcp_print_message( $message ); ?>

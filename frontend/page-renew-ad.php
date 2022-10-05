@@ -47,7 +47,8 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         }
 
         try {
-            $this->ad = $this->listings->get( $this->request->param( is_admin() ? 'id' : 'ad_id' ) );
+            $ad_id    = awpcp_get_var( array( 'param' => is_admin() ? 'id' : 'ad_id' ) );
+            $this->ad = $this->listings->get( $ad_id );
         } catch ( AWPCP_Exception $e ) {
             $this->ad = null;
         }
@@ -56,7 +57,8 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
     }
 
     public function verify_renew_ad_hash($ad) {
-        return awpcp_verify_renew_ad_hash( $ad->ID, $this->request->param( 'awpcprah' ) );
+        $hash = awpcp_get_var( array( 'param' => 'awpcprah' ) );
+        return awpcp_verify_renew_ad_hash( $ad->ID, $hash );
     }
 
     protected function _dispatch($default=null) {
@@ -172,8 +174,7 @@ function awpcp_renew_listing_page_implementation( $page ) {
         $page,
         awpcp_listings_api(),
         awpcp_listing_renderer(),
-        awpcp_payments_api(),
-        awpcp_request()
+        awpcp_payments_api()
     );
 }
 
@@ -184,14 +185,12 @@ class AWPCP_RenewAdPageImplementation {
     private $page;
     private $listing_renderer;
     private $payments;
-    private $request;
 
-    public function __construct( $page, $listings_logic, $listing_renderer, $payments, $request ) {
+    public function __construct( $page, $listings_logic, $listing_renderer, $payments ) {
         $this->page = $page;
         $this->listings_logic = $listings_logic;
         $this->listing_renderer = $listing_renderer;
         $this->payments = $payments;
-        $this->request = $request;
     }
 
     protected function validate_order($data, &$errors=array()) {
@@ -247,7 +246,7 @@ class AWPCP_RenewAdPageImplementation {
             $payment_term = $this->payments->get_transaction_payment_term( $transaction );
 
             if (!empty($_POST)) {
-                $payment_terms_list->handle_request( $this->request );
+                $payment_terms_list->handle_request();
 
                 $payment_options = $payment_terms_list->get_data();
 

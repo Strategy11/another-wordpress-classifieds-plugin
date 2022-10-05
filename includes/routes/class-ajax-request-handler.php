@@ -1,14 +1,13 @@
 <?php
 
 function awpcp_ajax_request_handler( $routes ) {
-    return new AWPCP_Ajax_Request_Handler( $routes, awpcp_request() );
+    return new AWPCP_Ajax_Request_Handler( $routes );
 }
 
 class AWPCP_Ajax_Request_Handler {
 
-    public function __construct( $routes, $request ) {
+    public function __construct( $routes ) {
         $this->routes = $routes;
-        $this->request = $request;
     }
 
     public function handle_anonymous_ajax_request() {
@@ -16,7 +15,8 @@ class AWPCP_Ajax_Request_Handler {
     }
 
     private function handle_ajax_request( $ajax_actions ) {
-        $action_name = str_replace( 'awpcp-', '', $this->request->param( 'action' ) );
+        $action_name = awpcp_get_var( array( 'param' => 'action' ) );
+        $action_name = str_replace( 'awpcp-', '', $action_name );
 
         if ( ! isset( $ajax_actions[ $action_name ] ) ) {
             return;

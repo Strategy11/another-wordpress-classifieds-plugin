@@ -9,8 +9,7 @@
 function awpcp_settings_admin_page() {
     return new AWPCP_SettingsAdminPage(
         awpcp()->container['SettingsManager'],
-        awpcp()->container['Settings'],
-        awpcp()->container['Request']
+        awpcp()->container['Settings']
     );
 }
 
@@ -25,21 +24,14 @@ class AWPCP_SettingsAdminPage {
 	private $settings;
 
     /**
-     * @var object
-     */
-	private $request;
-
-    /**
      * Constructor.
      *
      * @param object $settings_manager  An instance of SettingsManager.
      * @param object $settings          An instance of SettingsAPI.
-     * @param object $request           An instance of Request.
      */
-	public function __construct( $settings_manager, $settings, $request ) {
+	public function __construct( $settings_manager, $settings ) {
         $this->settings_manager = $settings_manager;
         $this->settings         = $settings;
-        $this->request          = $request;
 
 		$this->instantiate_auxiliar_pages();
 	}
@@ -80,7 +72,7 @@ class AWPCP_SettingsAdminPage {
      * @since 4.0.0
      */
     private function get_current_groups( $groups, $subgroups ) {
-        $subgroup_id = $this->request->param( 'sg' );
+        $subgroup_id = awpcp_get_var( array( 'param' => 'sg' ) );
 
         if ( isset( $subgroups[ $subgroup_id ] ) ) {
             $subgroup = $subgroups[ $subgroup_id ];
@@ -89,7 +81,7 @@ class AWPCP_SettingsAdminPage {
             return compact( 'group', 'subgroup' );
         }
 
-        $group_id = $this->request->param( 'g' );
+        $group_id = awpcp_get_var( array( 'param' => 'g' ) );
 
         if ( empty( $groups[ $group_id ]['subgroups'] ) ) {
             $group_id = 'general-settings';

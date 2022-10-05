@@ -59,7 +59,7 @@ class AWPCP_UpgradeContainerConfiguration implements AWPCP_ContainerConfiguratio
             function( $container ) {
                 return new AWPCP_Upgrade_Task_Ajax_Handler(
                     $container['UpgradeTaskController'],
-                    awpcp_request(),
+                    null,
                     awpcp_ajax_response()
                 );
             }

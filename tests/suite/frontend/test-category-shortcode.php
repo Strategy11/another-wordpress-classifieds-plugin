@@ -9,8 +9,6 @@ class AWPCP_Test_Category_Shortcode extends AWPCP_UnitTestCase {
         $categories_list_renderer = Phake::mock( 'AWPCP_CategoriesRenderer' );
         $categories = Phake::mock( 'AWPCP_Categories_Collection' );
         $category = (object) array( 'term_id' => rand() + 1 );
-        $db = Phake::mock( 'wpdb' );
-        $request = Phake::mock( 'AWPCP_Request' );
 
         Phake::when( $categories_renderer_factory )->create_list_renderer->thenReturn( $categories_list_renderer );
         Phake::when( $categories )->get->thenReturn( $category );
@@ -23,9 +21,7 @@ class AWPCP_Test_Category_Shortcode extends AWPCP_UnitTestCase {
 
         $shortcode_handler = new AWPCP_CategoryShortcode(
             $categories_renderer_factory,
-            $categories,
-            $db,
-            $request
+            $categories
         );
         $shortcode_handler->render( $shortcode_params );
 

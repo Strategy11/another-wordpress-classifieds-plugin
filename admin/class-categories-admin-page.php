@@ -7,8 +7,7 @@ function awpcp_categories_admin_page() {
     return new AWPCP_CategoriesAdminPage(
         awpcp()->container['listing_category_taxonomy'],
         awpcp_categories_collection(),
-        awpcp_template_renderer(),
-        awpcp_request()
+        awpcp_template_renderer()
     );
 }
 
@@ -21,13 +20,11 @@ class AWPCP_CategoriesAdminPage {
 
     private $categories;
     private $template_renderer;
-    private $request;
 
-    public function __construct( $listing_category_taxonomy, $categories, $template_renderer, $request ) {
+    public function __construct( $listing_category_taxonomy, $categories, $template_renderer ) {
         $this->listing_category_taxonomy = $listing_category_taxonomy;
         $this->categories = $categories;
         $this->template_renderer = $template_renderer;
-        $this->request = $request;
     }
 
     public function dispatch() {
@@ -75,11 +72,12 @@ class AWPCP_CategoriesAdminPage {
         $children = $this->categories->get_hierarchy();
         $categories = $this->categories->get_all();
 
-        $offset = (int) $this->request->param( 'offset' );
-        $results = max( (int) $this->request->param( 'results', 10 ), 1 );
+        $offset = (int) awpcp_get_var( array( 'param' => 'offset' ) );
+        $results = awpcp_get_var( array( 'param' => 'results', 'default' => 10, 'sanitize' => 'absint' ) );
+        $results = max( $results, 1 );
         $count = 0;
 
-        $category_id = $this->request->param( 'cat_ID' );
+        $category_id = awpcp_get_var( array( 'param' => 'cat_ID' ) );
 
         try {
             $category = $this->categories->get( $category_id );

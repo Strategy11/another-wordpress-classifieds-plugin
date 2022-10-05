@@ -14,18 +14,11 @@ class AWPCP_ListingsTableNavHandler {
     private $html_renderer;
 
     /**
-     * @var object
-     */
-    private $request;
-
-    /**
      * @param HTMLRenderer $html_renderer  An instance of HTML Renderer.
-     * @param object       $request        An instance of Request.
      * @since 4.0.0
      */
-    public function __construct( $html_renderer, $request ) {
+    public function __construct( $html_renderer ) {
         $this->html_renderer = $html_renderer;
-        $this->request       = $request;
     }
 
     /**
@@ -55,14 +48,14 @@ class AWPCP_ListingsTableNavHandler {
      * @since 4.0.0
      */
     private function get_selected_category() {
-        return absint( $this->request->param( 'awpcp_category_id' ) );
+        return awpcp_get_var( array( 'param' => 'awpcp_category_id', 'sanitize' => 'absint' ) );
     }
 
     /**
      * @since 4.0.0
      */
     private function get_selected_date_filter() {
-        return sanitize_key( $this->request->param( 'awpcp_date_filter' ) );
+        return awpcp_get_var( array( 'param' => 'awpcp_date_filter', 'sanitize' => 'sanitize_key' ) );
     }
 
     /**
@@ -95,8 +88,8 @@ class AWPCP_ListingsTableNavHandler {
      */
     private function get_selected_date_range() {
         return [
-            'start' => trim( sanitize_key( $this->request->param( 'awpcp_date_range_start' ) ) ),
-            'end'   => trim( sanitize_key( $this->request->param( 'awpcp_date_range_end' ) ) ),
+            'start' => trim( awpcp_get_var( array( 'param' => 'awpcp_date_range_start', 'sanitize' => 'sanitize_key' ) ) ),
+            'end'   => trim( awpcp_get_var( array( 'param' => 'awpcp_date_range_end', 'sanitize' => 'sanitize_key' ) ) ),
         ];
     }
 

@@ -24,11 +24,11 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
         );
         update_user_meta($user->ID, 'credit-plans-items-per-page', $this->items_per_page);
 
-        $params = shortcode_atts(array(
-            'orderby' => '',
-            'order' => 'DESC',
-            'paged' => 1,
-        ), $_REQUEST);
+        $params = array(
+            'orderby' => awpcp_get_var( array( 'param' => 'orderby' ) ),
+            'order'   => awpcp_get_var( array( 'param' => 'order', 'default' => 'DESC' ) ),
+            'paged'   => awpcp_get_var( array( 'param' => 'paged', 'default' => 1 ) ),
+        );
 
         $params['order'] = strtoupper( $params['order'] ) == 'ASC' ? 'ASC' : 'DESC';
 
