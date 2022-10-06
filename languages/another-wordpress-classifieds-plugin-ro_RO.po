@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2022-08-30 20:15:57+00:00\n"
+"POT-Creation-Date: 2022-10-06 21:23:07+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/wp-translations/"
@@ -21,8 +21,8 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
 "2:1));\n"
 
-#: admin/admin-panel-credit-plans-table.php:73
-#: admin/admin-panel-fees-table.php:112
+#: admin/admin-panel-credit-plans-table.php:79
+#: admin/admin-panel-fees-table.php:118
 #: admin/fees/class-fee-details-form.php:39
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:9
 #: includes/settings/class-payment-general-settings.php:58
@@ -30,22 +30,22 @@ msgstr ""
 msgid "Name"
 msgstr "Nume"
 
-#: admin/admin-panel-credit-plans-table.php:74
+#: admin/admin-panel-credit-plans-table.php:80
 #: admin/fees/class-fee-details-form.php:45
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:25
 #: templates/admin/manage-categories-admin-page.tpl.php:33
 msgid "Description"
 msgstr "Descriere"
 
-#: admin/admin-panel-credit-plans-table.php:75
-#: admin/admin-panel-fees-table.php:115
+#: admin/admin-panel-credit-plans-table.php:81
+#: admin/admin-panel-fees-table.php:121
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:14
 #: includes/settings/class-payment-general-settings.php:268
 msgid "Credits"
 msgstr "Credite"
 
-#: admin/admin-panel-credit-plans-table.php:76
-#: admin/admin-panel-fees-table.php:114
+#: admin/admin-panel-credit-plans-table.php:82
+#: admin/admin-panel-fees-table.php:120
 #: admin/fees/class-fee-details-form.php:222
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: frontend/placeholders.php:510
@@ -54,53 +54,53 @@ msgstr "Credite"
 msgid "Price"
 msgstr "Preț"
 
-#: admin/admin-panel-fees-table.php:113
+#: admin/admin-panel-fees-table.php:119
 msgid "Attributes"
 msgstr "Atribute"
 
-#: admin/admin-panel-fees-table.php:118 admin/admin-panel.php:154
+#: admin/admin-panel-fees-table.php:124 admin/admin-panel.php:147
 msgid "Categories"
 msgstr "Categorii"
 
-#: admin/admin-panel-fees-table.php:121 includes/class-awpcp.php:819
+#: admin/admin-panel-fees-table.php:127 includes/class-awpcp.php:819
 msgid "Featured Ads"
 msgstr "Anunțuri speciale"
 
-#: admin/admin-panel-fees-table.php:123
+#: admin/admin-panel-fees-table.php:129
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:106
 msgid "Private"
 msgstr "Privat"
 
-#: admin/admin-panel-fees-table.php:186
+#: admin/admin-panel-fees-table.php:192
 msgid "<duration-amount> <duration-interval>"
 msgstr "<duration-amount><duration-interval>Durată"
 
-#: admin/admin-panel-fees-table.php:190
+#: admin/admin-panel-fees-table.php:196
 msgid "Duration: <payment-term-duration>"
 msgstr "Durată <payment-term-duration>"
 
-#: admin/admin-panel-fees-table.php:200
+#: admin/admin-panel-fees-table.php:206
 msgid "# of images: <number-of-images-allowed>"
 msgstr "Număr imagini: <number-of-images-allowed>"
 
-#: admin/admin-panel-fees-table.php:213 admin/admin-panel-fees-table.php:229
+#: admin/admin-panel-fees-table.php:219 admin/admin-panel-fees-table.php:235
 msgid "unlimited"
 msgstr "nelimitat"
 
-#: admin/admin-panel-fees-table.php:216
+#: admin/admin-panel-fees-table.php:222
 msgid "Chars in title: <characters-limit>"
 msgstr "Caractere în titlu: <characters-limit>"
 
-#: admin/admin-panel-fees-table.php:232
+#: admin/admin-panel-fees-table.php:238
 msgid "Chars in description: <characters-limit>"
 msgstr "Caractere în descriere: <characters-limit>"
 
-#: admin/admin-panel-fees-table.php:259 admin/admin-panel-fees-table.php:263
+#: admin/admin-panel-fees-table.php:265 admin/admin-panel-fees-table.php:269
 #: templates/admin/import/supported-csv-headers.tpl.php:31
 msgid "Yes"
 msgstr "Da"
 
-#: admin/admin-panel-fees-table.php:259 admin/admin-panel-fees-table.php:263
+#: admin/admin-panel-fees-table.php:265 admin/admin-panel-fees-table.php:269
 #: templates/admin/import/supported-csv-headers.tpl.php:31
 msgid "No"
 msgstr "Nu"
@@ -121,87 +121,87 @@ msgstr "Elimină credit"
 msgid "The specified User doesn't exists."
 msgstr "Utilizatorul specificat nu există."
 
-#: admin/admin-panel.php:73 admin/admin-panel.php:112 admin/admin-panel.php:122
+#: admin/admin-panel.php:66 admin/admin-panel.php:105 admin/admin-panel.php:115
 msgid "Manual Upgrade"
 msgstr "Actualizare Manuală"
 
-#: admin/admin-panel.php:79 admin/admin-panel.php:137 admin/admin-panel.php:794
+#: admin/admin-panel.php:72 admin/admin-panel.php:130 admin/admin-panel.php:789
 #: includes/models/class-custom-post-types.php:90
 #: includes/models/class-custom-post-types.php:92
 #: includes/settings/class-listings-settings.php:30
 msgid "Classifieds"
 msgstr "Anunțuri"
 
-#: admin/admin-panel.php:84 includes/models/class-custom-post-types.php:101
+#: admin/admin-panel.php:77 includes/models/class-custom-post-types.php:101
 msgid "Classified Ads"
 msgstr "Anunturi"
 
-#: admin/admin-panel.php:134
+#: admin/admin-panel.php:127
 msgid "Dashboard"
 msgstr "Panou control"
 
-#: admin/admin-panel.php:141 admin/admin-panel.php:142
-#: admin/admin-panel.php:509
+#: admin/admin-panel.php:134 admin/admin-panel.php:135
+#: admin/admin-panel.php:503
 msgid "Settings"
 msgstr "Setări"
 
-#: admin/admin-panel.php:155
+#: admin/admin-panel.php:148
 #: templates/admin/main-classifieds-admin-page.tpl.php:86
 #: templates/admin/main-classifieds-admin-page.tpl.php:111
 msgid "Manage Categories"
 msgstr "Administrează categorii"
 
-#: admin/admin-panel.php:204 admin/admin-panel.php:205
+#: admin/admin-panel.php:197 admin/admin-panel.php:198
 #: admin/form-fields/class-form-fields-admin-page.php:12
 #: includes/settings/class-display-settings.php:298
 #: includes/settings/class-display-settings.php:438
 msgid "Form Fields"
 msgstr "Câmpuri formular"
 
-#: admin/admin-panel.php:214
+#: admin/admin-panel.php:207
 msgid "Credit Plans"
 msgstr "Planuri de credit"
 
-#: admin/admin-panel.php:215
+#: admin/admin-panel.php:208
 msgid "Manage Credit Plans"
 msgstr "Administrează planurile de credit"
 
-#: admin/admin-panel.php:224
+#: admin/admin-panel.php:217
 msgid "Manage Credit"
 msgstr "Administrează Credit"
 
-#: admin/admin-panel.php:233 admin/fees/class-fees-admin-page.php:26
+#: admin/admin-panel.php:226 admin/fees/class-fees-admin-page.php:26
 #: templates/admin/main-classifieds-admin-page.tpl.php:56
 msgid "Fees"
 msgstr "Prețuri"
 
-#: admin/admin-panel.php:234
+#: admin/admin-panel.php:227
 msgid "Manage Listings Fees"
 msgstr "Administrează Prețurile Anunțurilor"
 
-#: admin/admin-panel.php:259 admin/admin-panel.php:260
+#: admin/admin-panel.php:252 admin/admin-panel.php:253
 msgid "Import & Export"
 msgstr "Import și export"
 
-#: admin/admin-panel.php:325 admin/templates/admin-panel-debug.tpl.php:3
+#: admin/admin-panel.php:318 admin/templates/admin-panel-debug.tpl.php:3
 msgid "Debug"
 msgstr "Depanare"
 
-#: admin/admin-panel.php:326 admin/templates/admin-panel-debug.tpl.php:24
+#: admin/admin-panel.php:319 admin/templates/admin-panel-debug.tpl.php:24
 msgid "Debug Information"
 msgstr "Detalii pentru depanare"
 
-#: admin/admin-panel.php:335 admin/admin-panel.php:336
+#: admin/admin-panel.php:328 admin/admin-panel.php:329
 msgid "Uninstall"
 msgstr "Dezinstalare"
 
-#: admin/admin-panel.php:354 admin/admin-panel.php:355
-#: admin/admin-panel.php:821 frontend/templates/page-renew-ad.tpl.php:3
-#: includes/admin/class-admin-container-configuration.php:177
+#: admin/admin-panel.php:348 admin/admin-panel.php:349
+#: admin/admin-panel.php:816 frontend/templates/page-renew-ad.tpl.php:3
+#: includes/admin/class-admin-container-configuration.php:175
 msgid "Renew Ad"
 msgstr "Reînnoieste anunț"
 
-#: admin/admin-panel.php:427
+#: admin/admin-panel.php:421
 msgid ""
 "Use the Account Balance column on the table below to manage credit balance "
 "for users."
@@ -209,7 +209,7 @@ msgstr ""
 "Folosește coloana Balanța Contului în tabela de mai jos pentru a administra "
 "balanța utilizatorilor."
 
-#: admin/admin-panel.php:446
+#: admin/admin-panel.php:440
 msgid ""
 "AWPCP features are currently disabled because the plugin needs you to "
 "perform a manual upgrade before continuing."
@@ -217,7 +217,7 @@ msgstr ""
 "Caracteristicile AWPCP sunt în prezent dezactivate, deoarece plugin-ul are "
 "nevoie de tine pentru a efectua un upgrade manual înainte de a continua."
 
-#: admin/admin-panel.php:447
+#: admin/admin-panel.php:441
 msgid ""
 "The duration for this upgrade operation varies between several minutes and a "
 "few hours, depending on the size of your database, the current network "
@@ -234,7 +234,7 @@ msgstr ""
 #. translators: %1$s is the opening tag for the link to the page explaining how
 #. to downgrade to a previous version of the plugin, %2$s is the closing tag
 #. for the link.
-#: admin/admin-panel.php:450
+#: admin/admin-panel.php:444
 msgid ""
 "If this is not a good time to go through the upgrade process, we recommend "
 "you to %1$sinstall the previous version again%2$s and plan to upgrade "
@@ -247,7 +247,7 @@ msgstr ""
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:456
+#: admin/admin-panel.php:450
 msgid ""
 "To upgrade, please %1$sgo to the Classifieds admin section%2$s or click the "
 "button below."
@@ -257,7 +257,7 @@ msgstr ""
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:466
+#: admin/admin-panel.php:460
 msgid ""
 "AWPCP features are currently disabled because the plugin needs you to "
 "perform a manual upgrade before continuing. Please %1$sgo to the Classifieds "
@@ -270,7 +270,7 @@ msgstr ""
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:488
+#: admin/admin-panel.php:482
 msgid ""
 "AWPCP needs you to perform a manual upgrade to update the database schema "
 "and the information stored there. All plugin features will continue to work "
@@ -283,7 +283,7 @@ msgstr ""
 "de upgrade sunt executate. Vă rugăm să%1$sGO la secțiunea Classifieds admin "
 "pentru a face upgrade%2$s sau faceți clic pe butonul de mai jos."
 
-#: admin/admin-panel.php:562
+#: admin/admin-panel.php:556
 msgid ""
 "Page %1$s has the same URL as the %2$s from AWPCP. The WordPress page %1$s "
 "is going to be unreachable until this changes."
@@ -300,7 +300,7 @@ msgstr[2] ""
 "Paginile %1$s au același URL ca și %2$sd in AWPCP. Paginile %1$s din "
 "WordPress vor fi inaccesibile până le veți schimba."
 
-#: admin/admin-panel.php:570
+#: admin/admin-panel.php:564
 msgid ""
 "The %1$s is dynamic; you don't need to create a real WordPress page to show "
 "the list of categories, the plugin will generate it for you. If the "
@@ -332,44 +332,44 @@ msgstr[2] ""
 "AWPCP, o puteți șterge și acest mesaj de eroare va dispărea. În caz contrar, "
 "asigurați-vă că nu aveți nume dublate de pagină."
 
-#: admin/admin-panel.php:760 admin/class-categories-admin-page.php:63
-#: admin/class-categories-admin-page.php:67
+#: admin/admin-panel.php:755 admin/class-categories-admin-page.php:60
+#: admin/class-categories-admin-page.php:64
 msgid "Manage Category Icon"
 msgstr "Administrează Icon-uri pentru categorii"
 
-#: admin/admin-panel.php:765 admin/class-categories-admin-page.php:38
-#: admin/class-categories-admin-page.php:42
-#: admin/class-categories-admin-page.php:135
+#: admin/admin-panel.php:760 admin/class-categories-admin-page.php:35
+#: admin/class-categories-admin-page.php:39
+#: admin/class-categories-admin-page.php:133
 msgid "Edit Category"
 msgstr "Editează categorie"
 
-#: admin/admin-panel.php:766 admin/class-categories-admin-page.php:49
-#: admin/class-categories-admin-page.php:53
+#: admin/admin-panel.php:761 admin/class-categories-admin-page.php:46
+#: admin/class-categories-admin-page.php:50
 msgid "Delete Category"
 msgstr "Șterge categorie"
 
-#: admin/admin-panel.php:771
+#: admin/admin-panel.php:766
 msgid "Select {category_name}"
 msgstr "Selectează {category_name}"
 
-#: admin/admin-panel.php:809 frontend/page-reply-to-ad.php:11
+#: admin/admin-panel.php:804 frontend/page-reply-to-ad.php:11
 msgid "Reply to Ad"
 msgstr "Răspunde la anunț"
 
-#: admin/admin-panel.php:817 admin/templates/admin-panel-listings.tpl.php:5
+#: admin/admin-panel.php:812 admin/templates/admin-panel-listings.tpl.php:5
 msgid "Place Ad"
 msgstr "Adauga anunț"
 
-#: admin/admin-panel.php:825 frontend/page-browse-ads.php:9
+#: admin/admin-panel.php:820 frontend/page-browse-ads.php:9
 msgid "Browse Ads"
 msgstr "Explorează anunțuri"
 
-#: admin/admin-panel.php:829 admin/templates/admin-panel-listings.tpl.php:11
+#: admin/admin-panel.php:824 admin/templates/admin-panel-listings.tpl.php:11
 #: frontend/page-search-ads.php:9
 msgid "Search Ads"
 msgstr "Caută anunțuri"
 
-#: admin/categories/class-create-category-admin-page.php:42
+#: admin/categories/class-create-category-admin-page.php:39
 msgid "The new category was successfully added."
 msgstr "Noua categorie a fost adăugată cu succes."
 
@@ -402,35 +402,35 @@ msgstr ""
 "<categories-not-deleted>Categorii.</categories-not-deleted> </categories-"
 "count></categories-deleted>."
 
-#: admin/categories/class-delete-category-admin-page.php:44
+#: admin/categories/class-delete-category-admin-page.php:41
 msgid "The category you are trying to delete doesn't exist."
 msgstr "Categoria pe care încercați să o ștergeți nu există."
 
-#: admin/categories/class-delete-category-admin-page.php:57
+#: admin/categories/class-delete-category-admin-page.php:54
 msgid "There was an error trying to delete the category. <error-message>"
 msgstr ""
 "Eroare la încercarea de ștergere a categoriei.<error-message></error-message>"
 
-#: admin/categories/class-delete-category-admin-page.php:74
+#: admin/categories/class-delete-category-admin-page.php:71
 msgid ""
 "There was an error trying to load the selected category. <error-message>"
 msgstr ""
 "Eroare la încercarea de încărcare a categoriei selectate.<error-message></"
 "error-message>"
 
-#: admin/categories/class-delete-category-admin-page.php:85
+#: admin/categories/class-delete-category-admin-page.php:82
 msgid "The category was deleted successfully"
 msgstr "Categoria a fost ștearsă cu succes"
 
-#: admin/categories/class-delete-category-admin-page.php:103
+#: admin/categories/class-delete-category-admin-page.php:100
 msgid "Are you sure you want to delete \"<category-name>\" category?"
 msgstr "Sigur ștergeți \"<category-name>\" Categorie?</category-name>?"
 
-#: admin/categories/class-delete-category-admin-page.php:115
+#: admin/categories/class-delete-category-admin-page.php:112
 msgid "Delete category"
 msgstr "Șterge categorie"
 
-#: admin/categories/class-delete-category-admin-page.php:116
+#: admin/categories/class-delete-category-admin-page.php:113
 #: admin/fees/class-fee-details-form.php:80
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:31
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:12
@@ -473,69 +473,69 @@ msgstr ""
 "not-moved>Categorii.</categories-not-moved> </categories-count></categories-"
 "moved>."
 
-#: admin/categories/class-update-category-admin-page.php:55
+#: admin/categories/class-update-category-admin-page.php:52
 msgid "The category you're trying to update doesn't exist."
 msgstr "Categoria pe care încercați să o actualizați nu există."
 
-#: admin/categories/class-update-category-admin-page.php:66
+#: admin/categories/class-update-category-admin-page.php:63
 msgid "The category was successfully updated."
 msgstr "Categoria a fost actualizată cu succes."
 
-#: admin/class-categories-admin-page.php:109
+#: admin/class-categories-admin-page.php:107
 msgid "Categories per page:"
 msgstr "Categorii pe pagină:"
 
-#: admin/class-categories-admin-page.php:121
+#: admin/class-categories-admin-page.php:119
 msgid "None (this is a top level category)"
 msgstr "Niciuna (aceasta este o categorie de prim nivel)"
 
-#: admin/class-categories-admin-page.php:131
+#: admin/class-categories-admin-page.php:129
 msgid "Select target category"
 msgstr "Selectează categoria țintă"
 
-#: admin/class-categories-admin-page.php:135
-#: admin/class-categories-admin-page.php:144
+#: admin/class-categories-admin-page.php:133
+#: admin/class-categories-admin-page.php:142
 msgid "Add New Category"
 msgstr "Adaugă o categorie nouă"
 
-#: admin/class-categories-admin-page.php:144
+#: admin/class-categories-admin-page.php:142
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:30
 msgid "Update"
 msgstr "Actualizează"
 
-#: admin/class-debug-admin-page.php:257
+#: admin/class-debug-admin-page.php:250
 msgid "WordPress version"
 msgstr "Versiune WordPress"
 
-#: admin/class-debug-admin-page.php:261
+#: admin/class-debug-admin-page.php:254
 msgid "OS"
 msgstr "Os"
 
-#: admin/class-debug-admin-page.php:265
+#: admin/class-debug-admin-page.php:258
 msgid "Apache Version"
 msgstr "Apache Version"
 
-#: admin/class-debug-admin-page.php:269
+#: admin/class-debug-admin-page.php:262
 msgid "PHP Version"
 msgstr "Versiune PHP"
 
-#: admin/class-debug-admin-page.php:273
+#: admin/class-debug-admin-page.php:266
 msgid "MySQL Version"
 msgstr "Versiune MySQL"
 
-#: admin/class-debug-admin-page.php:277
+#: admin/class-debug-admin-page.php:270
 msgid "cURL Version"
 msgstr "versiune cURL"
 
-#: admin/class-debug-admin-page.php:281
+#: admin/class-debug-admin-page.php:274
 msgid "cURL SSL Version"
 msgstr "cURL versiunea SSL"
 
-#: admin/class-debug-admin-page.php:334 admin/class-debug-admin-page.php:340
+#: admin/class-debug-admin-page.php:327 admin/class-debug-admin-page.php:333
 msgid "N/A"
 msgstr "Nedisponibil"
 
-#: admin/class-import-listings-admin-page.php:102
+#: admin/class-import-listings-admin-page.php:100
 msgid ""
 "The uploaded file doesn't look like a CSV file. Please upload a valid CSV "
 "file."
@@ -543,13 +543,13 @@ msgstr ""
 "Fișierul încărcat nu arată a fi un fișier CSV. Vă rugăm să încărcați un "
 "fișier CSV valid."
 
-#: admin/class-import-listings-admin-page.php:106
+#: admin/class-import-listings-admin-page.php:104
 msgid "There was an error moving the uploaded CSV file to a proper location."
 msgstr ""
 "A apărut o eroare la încercarea de a muta fișierul CSV încărcat într-o "
 "locație potrivită."
 
-#: admin/class-import-listings-admin-page.php:123
+#: admin/class-import-listings-admin-page.php:121
 msgid ""
 "The uploaded file doesn't look like a ZIP file. Please upload a valid ZIP "
 "file."
@@ -557,33 +557,33 @@ msgstr ""
 "Fișierul încărcat nu arată a fi un fișier ZIP Vă rugăm să încărcați un "
 "fișier ZIP valid."
 
-#: admin/class-import-listings-admin-page.php:127
+#: admin/class-import-listings-admin-page.php:125
 msgid "There was an error moving the uploaded ZIP file to a proper location."
 msgstr ""
 "A apărut o eroare la încercarea de a muta fișierul ZIP încărcat într-o "
 "locație potrivită."
 
-#: admin/class-import-listings-admin-page.php:139
+#: admin/class-import-listings-admin-page.php:137
 msgid "Incompatible ZIP Archive"
 msgstr "Arhiva ZIP necompatibilă"
 
-#: admin/class-import-listings-admin-page.php:141
+#: admin/class-import-listings-admin-page.php:139
 msgid "Empty ZIP Archive"
 msgstr "Golește arhiva ZIP"
 
-#: admin/class-import-listings-admin-page.php:167
+#: admin/class-import-listings-admin-page.php:165
 msgid "Could not write temporary file %s"
 msgstr "Nu se poate scrie fișierul temporar %s"
 
-#: admin/class-import-listings-admin-page.php:176
+#: admin/class-import-listings-admin-page.php:174
 msgid "The specified directory is not a valid path."
 msgstr "Directorul specificat nu are o adresă corectă."
 
-#: admin/class-import-listings-admin-page.php:178
+#: admin/class-import-listings-admin-page.php:176
 msgid "The specified directory does not exists."
 msgstr "Directorul specificat nu există."
 
-#: admin/class-import-listings-admin-page.php:359
+#: admin/class-import-listings-admin-page.php:357
 msgid ""
 "(<percentage>) <number-of-rows-processed> of <number-of-rows> rows "
 "processed. <number-of-rows-imported> rows imported and <number-of-rows-"
@@ -593,7 +593,7 @@ msgstr ""
 "procesate. <number-of-rows-imported> linii importate și <number-of-rows-"
 "rejected> linii respinse."
 
-#: admin/class-settings-admin-page.php:236
+#: admin/class-settings-admin-page.php:228
 msgid ""
 "We could not obtain a valid access token from Facebook. The API returned the "
 "following error: %s"
@@ -601,18 +601,18 @@ msgstr ""
 "Nu am putut obține un cod valid de acces pentru Facebook. API-ul a dat "
 "următaorea eroare: %s"
 
-#: admin/class-settings-admin-page.php:241
+#: admin/class-settings-admin-page.php:233
 msgid ""
 "We could not obtain a valid access token from Facebook. Please try again."
 msgstr ""
 "Nu am putut obține un cod valid de acces pentru Facebook. Vă rugăm să "
 "încercați din nou."
 
-#: admin/class-settings-admin-page.php:249
+#: admin/class-settings-admin-page.php:241
 msgid "Facebook Config Diagnostics"
 msgstr "Diagnostic configurare Facebook"
 
-#: admin/class-settings-admin-page.php:256
+#: admin/class-settings-admin-page.php:248
 msgid "Everything looks OK."
 msgstr "Totul arată OK."
 
@@ -620,14 +620,14 @@ msgstr "Totul arată OK."
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:23
 #: includes/frontend/class-create-empty-listing-ajax-handler.php:94
 #: includes/frontend/class-execute-listing-action-ajax-handler.php:58
-#: includes/frontend/class-save-listing-information-ajax-handler.php:104
-#: includes/frontend/class-update-listing-order-ajax-handler.php:75
+#: includes/frontend/class-save-listing-information-ajax-handler.php:97
+#: includes/frontend/class-update-listing-order-ajax-handler.php:69
 msgid "You are not authorized to perform this action."
 msgstr "Nu sunteți autorizat să efectuați această acțiune."
 
-#: admin/credit-plans/class-add-credit-plan-action-handler.php:39
+#: admin/credit-plans/class-add-credit-plan-action-handler.php:42
 #: admin/credit-plans/class-edit-credit-plan-action-handler.php:49
-#: admin/fees/class-fee-details-admin-page.php:62
+#: admin/fees/class-fee-details-admin-page.php:59
 msgid "The form has errors"
 msgstr "Formularul are erori"
 
@@ -644,24 +644,24 @@ msgid "Delete"
 msgstr "Șterge"
 
 #: admin/fees/class-delete-fee-action-handler.php:30
-#: admin/fees/class-fees-admin-page.php:112
-#: admin/fees/class-fees-admin-page.php:158
+#: admin/fees/class-fees-admin-page.php:113
+#: admin/fees/class-fees-admin-page.php:160
 msgid "The specified Fee doesn't exists."
 msgstr "Prețul specificat nu există."
 
-#: admin/fees/class-fee-details-admin-page.php:66
+#: admin/fees/class-fee-details-admin-page.php:63
 msgid "Fee successfully updated."
 msgstr "Taxă actualizată cu succes."
 
-#: admin/fees/class-fee-details-admin-page.php:103
+#: admin/fees/class-fee-details-admin-page.php:105
 msgid "Create Fee Plan"
 msgstr "Crearea planului de taxe"
 
-#: admin/fees/class-fee-details-admin-page.php:115
+#: admin/fees/class-fee-details-admin-page.php:117
 msgid "No Fee Plan id was specified."
 msgstr "Nu s-a specificat niciun ID plan taxă."
 
-#: admin/fees/class-fee-details-admin-page.php:122
+#: admin/fees/class-fee-details-admin-page.php:124
 msgid "The specified Fee Plan doesn't exist or couldn't be loaded."
 msgstr "Planul de taxe specificat nu există sau nu poate fi încărcat."
 
@@ -715,22 +715,22 @@ msgstr "Preț (credite)"
 msgid "Manage Listing Fees"
 msgstr "Administrează Prețurile Anunțurilor"
 
-#: admin/fees/class-fees-admin-page.php:118
+#: admin/fees/class-fees-admin-page.php:120
 msgid "The selected Fee doesn't exists."
 msgstr "Prețul selectat nu există."
 
 #. translators: %1$s is the name of the original Fee and %2$s is the name of
 #. the fee that is associated with the ads now.
-#: admin/fees/class-fees-admin-page.php:126
+#: admin/fees/class-fees-admin-page.php:128
 msgid "All Ads associated to Fee %1$s have been associated with Fee %2$s."
 msgstr ""
 "Toate anunțurile asociate cu prețul %1$s au fost asociate cu prețul %2$s."
 
-#: admin/fees/class-fees-admin-page.php:165
+#: admin/fees/class-fees-admin-page.php:167
 msgid "The Fee was successfully deleted."
 msgstr "Prețul a fost șters cu succes."
 
-#: admin/fees/class-fees-admin-page.php:184
+#: admin/fees/class-fees-admin-page.php:186
 msgid ""
 "The Fee couldn't be deleted because there are active Ads in the system that "
 "are associated with the Fee ID. You need to switch the Ads to a different "
@@ -740,7 +740,7 @@ msgstr ""
 "asociate cu acest Preț ID. Trebuie să schimbați anunturile cu un alt preț "
 "înainte de a putea șterge acest plan."
 
-#: admin/fees/class-fees-admin-page.php:200
+#: admin/fees/class-fees-admin-page.php:202
 msgid ""
 "The Fee couldn't be deleted because there are active Ads in the system that "
 "are associated with the Fee ID. Please create a new Fee and try the delete "
@@ -1371,7 +1371,7 @@ msgstr ""
 "Puteți adăuga mai mult credit când postați un anunț nou sau folosind butonul "
 "\"Adaugă Credit\" de mai jos."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:194
+#: admin/upgrade/class-manual-upgrade-admin-page.php:191
 msgid ""
 "All blocking upgrade tasks were completed successfully. All features are "
 "available again."
@@ -1379,7 +1379,7 @@ msgstr ""
 "Toate activitățile de upgrade de blocare s-au finalizat cu succes. Toate "
 "caracteristicile sunt disponibile din nou."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:195
+#: admin/upgrade/class-manual-upgrade-admin-page.php:192
 msgid ""
 "Please keep this tab open, but you can open up another browser tab and "
 "continue working on your site while this process runs in the background. "
@@ -1391,7 +1391,7 @@ msgstr ""
 "execută în fundal. <continue-link>Faceți clic aici pentru a deschide ecranul "
 "principal Classifieds admin într-o filă nouă.</continue-link>."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:201
+#: admin/upgrade/class-manual-upgrade-admin-page.php:198
 msgid ""
 "Congratulations. All blocking upgrade tasks were completed successfully. You "
 "can now access all features. <continue-link>Click here to Continue</a>."
@@ -1400,11 +1400,11 @@ msgstr ""
 "succes. Acum puteți accesa toate funcțiile. <continue-link>Click aici pentru "
 "a continua.</continue-link>."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:206
+#: admin/upgrade/class-manual-upgrade-admin-page.php:203
 msgid "Upgrade Tasks that must complete immediately"
 msgstr "Upgrade sarcini care trebuie să completeze imediat"
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:207
+#: admin/upgrade/class-manual-upgrade-admin-page.php:204
 msgid ""
 "The following tasks need to be completed before you can use the plugin and "
 "modules features again."
@@ -1412,8 +1412,8 @@ msgstr ""
 "Următoarele sarcini trebuie să fie completate înainte de a putea utiliza "
 "plugin-ul și modulele caracteristici din nou."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:215
-#: admin/upgrade/class-manual-upgrade-admin-page.php:220
+#: admin/upgrade/class-manual-upgrade-admin-page.php:212
+#: admin/upgrade/class-manual-upgrade-admin-page.php:217
 msgid ""
 "The following tasks need to be completed, but the plugin and modules "
 "features will continue to work while the routines are executed."
@@ -1421,7 +1421,7 @@ msgstr ""
 "Trebuie completate următoarele sarcini, dar caracteristicile modulului și "
 "modulelor vor continua să funcționeze în timp ce rutinele sunt executate."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:222
+#: admin/upgrade/class-manual-upgrade-admin-page.php:219
 msgid ""
 "Please keep this tab open, but you can open up another browser tab and "
 "continue working on your site while this process runs in the background."
@@ -1430,7 +1430,7 @@ msgstr ""
 "de browser și continuați să lucrați pe site în timp ce acest proces se "
 "execută în fundal."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:223
+#: admin/upgrade/class-manual-upgrade-admin-page.php:220
 msgid ""
 "Click the Upgrade button and then <continue-link>Click here to open the main "
 "Classifieds admin screen in a new tab</a>."
@@ -1439,7 +1439,7 @@ msgstr ""
 "pentru a deschide ecranul principal Classifieds admin într-o filă nouă.</"
 "continue-link>."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:234
+#: admin/upgrade/class-manual-upgrade-admin-page.php:231
 msgid "Upgrade tasks that will run while the plugin continues to work"
 msgstr ""
 "Upgrade sarcini care se va executa în timp ce plugin-ul continuă să "
@@ -1499,18 +1499,18 @@ msgstr ""
 msgid "The ad \"%s\" has been successfully renewed."
 msgstr "Anunțul \" %s\" a fost reînnoit cu succes."
 
-#: frontend/ad-functions.php:189 frontend/page-renew-ad.php:159
+#: frontend/ad-functions.php:189 frontend/page-renew-ad.php:160
 msgid "The Ad has been successfully renewed. New expiration date is %s."
 msgstr "Anunțul a fost reînnoit cu succes. Noua dată de expirare este %s."
 
-#: frontend/ad-functions.php:194 frontend/page-renew-ad.php:151
+#: frontend/ad-functions.php:194 frontend/page-renew-ad.php:152
 #: templates/admin/listings/quick-view-listing-admin-page.tpl.php:18
 #: templates/admin/listings-media-center.tpl.php:6
 #: templates/admin/view-listing-admin-page.tpl.php:14
 msgid "Return to Listings"
 msgstr "Înapoi la administrare anunțuri"
 
-#: frontend/ad-functions.php:212 frontend/page-place-ad.php:149
+#: frontend/ad-functions.php:212 frontend/page-place-ad.php:151
 msgid ""
 "You do not have permission to perform the function you are trying to "
 "perform. Access to this page has been denied"
@@ -1531,7 +1531,7 @@ msgstr ""
 "sistem"
 
 #: frontend/ad-functions.php:234
-#: includes/frontend/class-edit-listing-page.php:171
+#: includes/frontend/class-edit-listing-page.php:173
 msgid "The specified Ad doesn't exists."
 msgstr "Anunțul specificat nu există."
 
@@ -1559,7 +1559,7 @@ msgstr ""
 "Nu a fost specificată nici o categorie pentru explorare, de aceea vedeți "
 "anunțuri din toate categoriile."
 
-#: frontend/page-place-ad.php:75
+#: frontend/page-place-ad.php:74
 #: includes/views/class-verify-transaction-exists-step-decorator.php:17
 msgid ""
 "There was an error processing your Payment Request. Please try again or "
@@ -1568,19 +1568,19 @@ msgstr ""
 "A apărut o eroare la procesarea tranzacției de plată. Vă rugăm să încercați "
 "din nou sau să contactați administratorul."
 
-#: frontend/page-place-ad.php:130
+#: frontend/page-place-ad.php:132
 msgid "Please select a category."
 msgstr "Vă rugăm să selectați o categorie."
 
-#: frontend/page-place-ad.php:131
+#: frontend/page-place-ad.php:133
 msgid "Please select the Ad's owner."
 msgstr "Vă rugăm să selectați proprietarul anunțului."
 
-#: frontend/page-place-ad.php:132
+#: frontend/page-place-ad.php:134
 msgid "Please select a payment term."
 msgstr "Vă rugăm să selectați un term de plată."
 
-#: frontend/page-place-ad.php:163 frontend/page-renew-ad.php:86
+#: frontend/page-place-ad.php:165 frontend/page-renew-ad.php:87
 msgid ""
 "You are trying to post an Ad using a transaction created for a different "
 "purpose. Please go back to the <a href=\"%s\">%s</a> page.<br>If you think "
@@ -1592,7 +1592,7 @@ msgstr ""
 "considerați că aceasta este o eroare, vă rugăm să contactați administratorul "
 "și să trimiteți ID-ul tranzacției: %s"
 
-#: frontend/page-place-ad.php:172
+#: frontend/page-place-ad.php:174
 #: includes/frontend/class-submit-listing-page.php:276
 msgid ""
 "You can't post an Ad at this time because the payment associated with this "
@@ -1601,18 +1601,18 @@ msgstr ""
 "Nu puteți posta un anunț la acest moment pentru că plata asociată cu aceast "
 "tranzacție a eșuat (vedeți motivele mai jos)."
 
-#: frontend/page-place-ad.php:254
+#: frontend/page-place-ad.php:256
 #: includes/listings/class-payment-information-validator.php:88
 msgid "You should select an owner for this Ad."
 msgstr "Trebuie să selectați un proprietar pentru acest anunț."
 
-#: frontend/page-place-ad.php:258 frontend/page-renew-ad.php:199
+#: frontend/page-place-ad.php:260 frontend/page-renew-ad.php:197
 #: includes/listings/class-payment-information-validator.php:64
 #: includes/listings/class-payment-information-validator.php:73
 msgid "You should choose one of the available Payment Terms."
 msgstr "Trebuie să alegeți unul dintre Termenele de plată disponibile."
 
-#: frontend/page-place-ad.php:262
+#: frontend/page-place-ad.php:264
 #: includes/listings/class-payment-information-validator.php:75
 msgid ""
 "The Payment Term you selected is not available for non-administrator users."
@@ -1620,17 +1620,17 @@ msgstr ""
 "Termenul de plată selectat nu este disponibil pentru utilizatorii care nu "
 "sunt administratori."
 
-#: frontend/page-place-ad.php:278
+#: frontend/page-place-ad.php:280
 #: includes/listings/class-payment-information-validator.php:108
 msgid "Ad Category field is required"
 msgstr "Categoria anunțului este un câmp obligatoriu"
 
-#: frontend/page-place-ad.php:283
+#: frontend/page-place-ad.php:285
 #: includes/listings/class-payment-information-validator.php:119
 msgid "You cannot list your Ad in top level categories."
 msgstr "Nu poți să listați anunțul în categoriile de nivel superior."
 
-#: frontend/page-place-ad.php:289
+#: frontend/page-place-ad.php:291
 #: includes/frontend/class-submit-listing-page.php:175
 msgid ""
 "Hi, You need to be a registered user to post Ads in this website. Please use "
@@ -1640,8 +1640,8 @@ msgstr ""
 "website. Vă rugăm să folosiți formularul de mai jos sau să dați click pe "
 "link-ul de înregistrare."
 
-#: frontend/page-place-ad.php:416 frontend/page-place-ad.php:823
-#: frontend/page-renew-ad.php:299
+#: frontend/page-place-ad.php:429 frontend/page-place-ad.php:836
+#: frontend/page-renew-ad.php:297
 #: includes/frontend/class-order-submit-listing-section.php:119
 msgid ""
 "You are logged in as an administrator. Any payment steps will be skipped."
@@ -1651,7 +1651,7 @@ msgstr ""
 #. translators: %s is an alphanumeric string that identifies a payment
 #. transaction.
 #. translators: %s the transaction id
-#: frontend/page-place-ad.php:498 frontend/page-renew-ad.php:349
+#: frontend/page-place-ad.php:511 frontend/page-renew-ad.php:347
 #: includes/frontend/class-submit-listing-page.php:318
 #: includes/views/class-verify-payment-can-be-processed-step-decorator.php:18
 msgid ""
@@ -1662,7 +1662,7 @@ msgstr ""
 "Nu putem procesa plăți pentru acest tip de tranzacție. Vă rugăm să "
 "contactați administratorul și să indicați ID-ul tranzacției: %s"
 
-#: frontend/page-place-ad.php:821
+#: frontend/page-place-ad.php:834
 msgid ""
 "Your Ad details have been filled out in the form below. Make any changes "
 "needed and then resubmit the Ad to update it."
@@ -1670,12 +1670,12 @@ msgstr ""
 "Detaliile anunțului dvs. au fost completate în formularul de mai jos. Faceți "
 "modificările necesare și apoi retrimiteți anunțul pentru a fi actualizat."
 
-#: frontend/page-place-ad.php:825
+#: frontend/page-place-ad.php:838
 msgid "Fill out the form below to post your classified ad."
 msgstr ""
 "Completează formularul de mai jos pentru a posta reclama ta clasificată."
 
-#: frontend/page-place-ad.php:829
+#: frontend/page-place-ad.php:842
 msgid ""
 "We found errors in the details you submitted. A detailed error message is "
 "shown in front or below each invalid field. Please fix the errors and submit "
@@ -1685,27 +1685,27 @@ msgstr ""
 "detaliat este arătat în fața sau sub fiecare câmp invalid. Vă rugăm să "
 "rezolvați erorile și să trimiteți formularul din nou."
 
-#: frontend/page-place-ad.php:848
+#: frontend/page-place-ad.php:861
 msgid "Start & End Date"
 msgstr "Data de început și sfârșit"
 
-#: frontend/page-place-ad.php:850
+#: frontend/page-place-ad.php:863
 #: includes/admin/import/class-csv-importer-columns.php:185
-#: includes/admin/listings/class-listings-table-nav-handler.php:158
+#: includes/admin/listings/class-listings-table-nav-handler.php:151
 #: includes/form-fields/class-listing-form-fields.php:127
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:31
 msgid "Start Date"
 msgstr "Data de început"
 
-#: frontend/page-place-ad.php:852
+#: frontend/page-place-ad.php:865
 #: includes/admin/import/class-csv-importer-columns.php:196
-#: includes/admin/listings/class-listings-table-nav-handler.php:159
+#: includes/admin/listings/class-listings-table-nav-handler.php:152
 #: includes/form-fields/class-listing-form-fields.php:131
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:41
 msgid "End Date"
 msgstr "Data de sfârșit"
 
-#: frontend/page-place-ad.php:954
+#: frontend/page-place-ad.php:973
 msgid ""
 "Hi, Payment is required for posting Ads in this website and we couldn't find "
 "a Payment Transaction assigned to you. You can't post Ads this time. If you "
@@ -1716,44 +1716,44 @@ msgstr ""
 "la acest moment. Dacă credeți că aceasta este o eroare, vă rugăm să "
 "contactați administratorul."
 
-#: frontend/page-place-ad.php:981
+#: frontend/page-place-ad.php:1000
 msgid ""
 "You did not select a Payment Term. Please select a Payment Term for this Ad."
 msgstr ""
 "Nu ați selectat un termen de plată. Vă rugăm să selectați un termen de plată "
 "pentru acest anunț."
 
-#: frontend/page-place-ad.php:986
+#: frontend/page-place-ad.php:1005
 msgid "Please enter a start date for the Ad."
 msgstr "Vă rugăm să introduceți data de început pentru anunțul dvs."
 
-#: frontend/page-place-ad.php:991
+#: frontend/page-place-ad.php:1010
 msgid "Please enter an end date for the Ad."
 msgstr "Vă rugăm să introduceți data de sfârșit pentru anunțul dvs."
 
-#: frontend/page-place-ad.php:995
+#: frontend/page-place-ad.php:1014
 #: includes/form-fields/class-form-fields-validator.php:71
 msgid "The start date must occur before the end date."
 msgstr "Data de început trebuie să apară înaintea datei de sfârșit."
 
-#: frontend/page-place-ad.php:1000
+#: frontend/page-place-ad.php:1019
 msgid "You did not enter a title for your Ad"
 msgstr "Nu ați introdus un titlu pentru anunțul dvs"
 
-#: frontend/page-place-ad.php:1005
+#: frontend/page-place-ad.php:1024
 msgid ""
 "You did not enter any text for your Ad. Please enter some text for your Ad."
 msgstr ""
 "Nu ați introdus un text pentru anunțul dvs. Vă rugăm să introduceți un text "
 "pentru anunțul dvs."
 
-#: frontend/page-place-ad.php:1018
+#: frontend/page-place-ad.php:1037
 msgid ""
 "You did not enter your website address. Your website address is required."
 msgstr ""
 "Nu ați introdus adresa website-ului dvs. Adresa de website este obligatorie."
 
-#: frontend/page-place-ad.php:1024
+#: frontend/page-place-ad.php:1043
 msgid ""
 "Your website address is not properly formatted. Please make sure you have "
 "included the http:// part of your website address"
@@ -1761,15 +1761,15 @@ msgstr ""
 "Adresa dvs. de website nu este formatată corect. Asigurați-vă că ați inclus "
 "http:// la începutul adresei de website"
 
-#: frontend/page-place-ad.php:1029
+#: frontend/page-place-ad.php:1048
 msgid "You did not enter your name. Your name is required."
 msgstr "Nu ați introdus numele dvs. Numele dvs. este obligatoriu."
 
-#: frontend/page-place-ad.php:1034
+#: frontend/page-place-ad.php:1053
 msgid "You did not enter your email. Your email is required."
 msgstr "Nu ați introdus adresa dvs. de email.  Email-ul dvs. este obligatoriu."
 
-#: frontend/page-place-ad.php:1039 frontend/page-reply-to-ad.php:147
+#: frontend/page-place-ad.php:1058 frontend/page-reply-to-ad.php:160
 msgid ""
 "The email address you entered was not a valid email address. Please check "
 "for errors and try again."
@@ -1777,7 +1777,7 @@ msgstr ""
 "Adresa de email introdusă nu ete validă. Vă rugăm să verificați erorile și "
 "să încercați din nou."
 
-#: frontend/page-place-ad.php:1041
+#: frontend/page-place-ad.php:1060
 msgid ""
 "The email address you entered is not allowed in this website. Please use an "
 "email address from one of the following domains: %s."
@@ -1785,40 +1785,40 @@ msgstr ""
 "Adresa de email introdusă nu este permisă în acest website. Vă rugăm să "
 "folosiți o adresă de email din unul dintre următoarele domenii: %s."
 
-#: frontend/page-place-ad.php:1052
+#: frontend/page-place-ad.php:1071
 msgid "You did not enter your phone number. Your phone number is required."
 msgstr ""
 "Nu ați introdus numărul dvs. de telefon. Numărul dvs. de telefon este "
 "obligatoriu."
 
-#: frontend/page-place-ad.php:1070
-#: includes/helpers/widgets/multiple-region-selector.php:172
+#: frontend/page-place-ad.php:1089
+#: includes/helpers/widgets/multiple-region-selector.php:124
 msgid "You did not enter your country. Your country is required."
 msgstr "Nu ați introdus țara. Țara este un câmp obligatoriu."
 
-#: frontend/page-place-ad.php:1079
-#: includes/helpers/widgets/multiple-region-selector.php:173
+#: frontend/page-place-ad.php:1098
+#: includes/helpers/widgets/multiple-region-selector.php:125
 msgid "You did not enter your state. Your state is required."
 msgstr ""
 "Nu ați introdus statul/provincia/județul dvs.  Statul/provincia/județul sunt "
 "obligatorii."
 
-#: frontend/page-place-ad.php:1088
-#: includes/helpers/widgets/multiple-region-selector.php:175
+#: frontend/page-place-ad.php:1107
+#: includes/helpers/widgets/multiple-region-selector.php:127
 msgid "You did not enter your city. Your city is required."
 msgstr "Nu ați introdus orașul dvs. Orașul dvs. este obligatoriu."
 
-#: frontend/page-place-ad.php:1097
-#: includes/helpers/widgets/multiple-region-selector.php:174
+#: frontend/page-place-ad.php:1116
+#: includes/helpers/widgets/multiple-region-selector.php:126
 msgid "You did not enter your county/village. Your county/village is required."
 msgstr ""
 "Nu ați introdus suburbia/satul dvs. Suburbia/satul dvs. sunt obligatorii."
 
-#: frontend/page-place-ad.php:1104
+#: frontend/page-place-ad.php:1123
 msgid "You did not enter the price of your item. The item price is required."
 msgstr "Nu ați introdus prețul produsului dvs. Prețul este obligatoriu."
 
-#: frontend/page-place-ad.php:1110
+#: frontend/page-place-ad.php:1129
 msgid ""
 "You have entered an invalid item price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
@@ -1826,18 +1826,18 @@ msgstr ""
 "Ați introdus un preț incorect. Asigurați-vă că prețul dvs. conține doar "
 "numere. Vă rugăm să nu includeți simboluri valutare."
 
-#: frontend/page-place-ad.php:1128
+#: frontend/page-place-ad.php:1147
 msgid "You did not accept the terms of service"
 msgstr "Nu ați acceptat termenii de folosire"
 
-#: frontend/page-place-ad.php:1144
+#: frontend/page-place-ad.php:1163
 msgid ""
 "Your Ad was flagged as spam. Please contact the administrator of this site."
 msgstr ""
 "Anunțul dvs. a fost marcat ca SPAM. Vă rugăm să contactați administratorul "
 "acestui website."
 
-#: frontend/page-place-ad.php:1335
+#: frontend/page-place-ad.php:1354
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation. No "
 "images can be added at this time."
@@ -1845,28 +1845,28 @@ msgstr ""
 "Nu am putut găsi o tranzacție de plată asociată cu această operație. Nici o "
 "imagine nu poate fi adăugată la acest moment."
 
-#: frontend/page-place-ad.php:1342
+#: frontend/page-place-ad.php:1361
 msgid "The specified Ad doesn't exists. No images can be added at this time."
 msgstr "Anunțul specificat nu există. Nu a fost adăugată nici o imagine."
 
-#: frontend/page-place-ad.php:1421 frontend/page-place-ad.php:1473
+#: frontend/page-place-ad.php:1440 frontend/page-place-ad.php:1492
 #: includes/frontend/class-submit-listing-page.php:378
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation."
 msgstr "Nu am putut găsi o tranzacție de plată asociată cu această operație."
 
-#: frontend/page-place-ad.php:1428 frontend/page-place-ad.php:1480
-#: frontend/page-renew-ad.php:410
+#: frontend/page-place-ad.php:1447 frontend/page-place-ad.php:1499
+#: frontend/page-renew-ad.php:408
 #: includes/frontend/class-submit-listing-page.php:385
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr "Anunțul asociat cu această tranzacție nu există."
 
-#: frontend/page-renew-ad.php:72
+#: frontend/page-renew-ad.php:73
 #, fuzzy
 msgid "That Ad doesn't need to be renewed."
 msgstr "Anunțul specificat nu trebuie să fie reînnoit."
 
-#: frontend/page-renew-ad.php:77
+#: frontend/page-renew-ad.php:78
 msgid ""
 "There was an error trying to renew your Ad. The URL is not valid. Please "
 "contact the Administrator of this site for further assistance."
@@ -1874,7 +1874,7 @@ msgstr ""
 "A apărut o eroare la încercarea de a reînnoi anunțul dvs. URL-ul nu este "
 "valid. Vă rugăm să contactați administratorul pentru mai multă asistență."
 
-#: frontend/page-renew-ad.php:93
+#: frontend/page-renew-ad.php:94
 msgid ""
 "You can't renew your Ad at this time because the payment associated with "
 "this transaction failed (see reasons below)."
@@ -1882,7 +1882,7 @@ msgstr ""
 "Nu putem reînnoi anunțul dvs. la acest moment pentru că plata asociată cu "
 "acest tip de tranzacție a eșuat (vedeți motivele mai jos)."
 
-#: frontend/page-renew-ad.php:116
+#: frontend/page-renew-ad.php:117
 msgid ""
 "The Ad was posted under a Payment Term that no longer exists or is disabled. "
 "The Ad can't be renewed."
@@ -1890,11 +1890,11 @@ msgstr ""
 "Acest anunț a fost postat cu un termen de plată care nu mai există sau a "
 "fost dezactivat. Anunțul nu poate fi reînnoit."
 
-#: frontend/page-renew-ad.php:153
+#: frontend/page-renew-ad.php:154
 msgid "You can see your Ad here"
 msgstr "Puteți vedea anunțul dvs. aici"
 
-#: frontend/page-renew-ad.php:202
+#: frontend/page-renew-ad.php:200
 msgid ""
 "You are trying to renew your Ad using a different Payment Term. That's not "
 "allowed."
@@ -1902,23 +1902,23 @@ msgstr ""
 "Încercați să reînnoiți anunțul dvs. folosind un termen de plată diferit. "
 "Aceasta nu este permis."
 
-#: frontend/page-reply-to-ad.php:78 frontend/page-reply-to-ad.php:141
+#: frontend/page-reply-to-ad.php:83 frontend/page-reply-to-ad.php:154
 msgid "Please enter your name."
 msgstr "Vă rugăm să introduceți numele dvs."
 
-#: frontend/page-reply-to-ad.php:79
+#: frontend/page-reply-to-ad.php:84
 msgid "Please enter your email address."
 msgstr "Vă rugăm să introduceți adresa dvs. de email."
 
-#: frontend/page-reply-to-ad.php:80
+#: frontend/page-reply-to-ad.php:85
 msgid "The message cannot be empty."
 msgstr "Mesajul nu poate fi gol."
 
-#: frontend/page-reply-to-ad.php:81 includes/functions/l10n.php:28
+#: frontend/page-reply-to-ad.php:86 includes/functions/l10n.php:28
 msgid "Please type in the result of the operation."
 msgstr "Vă rugăm să introduceți rezultatul operației."
 
-#: frontend/page-reply-to-ad.php:91
+#: frontend/page-reply-to-ad.php:96
 msgid ""
 "Only registered users can reply to Ads. If you are already registered, "
 "please login below in order to reply to the Ad."
@@ -1926,19 +1926,19 @@ msgstr ""
 "Doar utilizatorii înregistrați pot să răspundă la anunțuri. Dacă sunteți "
 "deja înregistrat, vă rugăm să vă logați pentru a răspunde la acest anunț."
 
-#: frontend/page-reply-to-ad.php:98
+#: frontend/page-reply-to-ad.php:103
 msgid "The specified Ad does not exist."
 msgstr "Anunțul specificat nu există."
 
-#: frontend/page-reply-to-ad.php:145
+#: frontend/page-reply-to-ad.php:158
 msgid "Please enter your email."
 msgstr "Vă rugăm să introduceți adresa dvs. de email."
 
-#: frontend/page-reply-to-ad.php:151
+#: frontend/page-reply-to-ad.php:164
 msgid "There was no text in your message. Please enter a message."
 msgstr "Nu există text în mesajul dvs. Vă rugăm să introduceți un mesaj."
 
-#: frontend/page-reply-to-ad.php:158
+#: frontend/page-reply-to-ad.php:171
 msgid ""
 "Your message was flagged as spam. Please contact the administrator of this "
 "site."
@@ -1946,7 +1946,7 @@ msgstr ""
 "Mesajul dvs. a fost marcat ca SPAM. Vă rugăm să contactați administatorul "
 "site-ului."
 
-#: frontend/page-reply-to-ad.php:272
+#: frontend/page-reply-to-ad.php:285
 msgid ""
 "There was a problem encountered during the attempt to send your message. "
 "Please try again and if the problem persists, please contact the system "
@@ -1956,11 +1956,11 @@ msgstr ""
 "încercați din nou, și daca problema persistă, vă rugăm să contactați "
 "administratorul."
 
-#: frontend/page-reply-to-ad.php:278
+#: frontend/page-reply-to-ad.php:291
 msgid "Your message has been sent. Return to <view-listing-link>."
 msgstr "Mesajul dvs. a fost trimis. Întoarceți-vă la <view-listing-link>."
 
-#: frontend/page-search-ads.php:88
+#: frontend/page-search-ads.php:83
 msgid ""
 "You have entered a keyword that is too short to search on. Search keywords "
 "must be at least 3 letters in length. Please try another term."
@@ -1968,7 +1968,7 @@ msgstr ""
 "Ați introdus un cuvânt cheiei care este prea scurt. Cuvintele cheie trebuie "
 "să fie de cel puțin 3 litere. Vă rugăm să încercați un alt termen."
 
-#: frontend/page-search-ads.php:92
+#: frontend/page-search-ads.php:87
 msgid ""
 "You have entered an invalid minimum price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
@@ -1976,7 +1976,7 @@ msgstr ""
 "Ați introdus un preț minim incorect. Asigurați-vă că prețul dvs. conține "
 "doar numere. Vă rugăm să nu includeți simboluri valutare."
 
-#: frontend/page-search-ads.php:96
+#: frontend/page-search-ads.php:91
 msgid ""
 "You have entered an invalid maximum price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
@@ -1984,7 +1984,7 @@ msgstr ""
 "Ați introdus un preț maxim incorect. Asigurați-vă că prețul dvs. conține "
 "doar numere. Vă rugăm să nu includeți simboluri valutare."
 
-#: frontend/page-search-ads.php:221
+#: frontend/page-search-ads.php:225
 msgid "Return to Search"
 msgstr "Înapoi la căutare"
 
@@ -2012,7 +2012,7 @@ msgstr "Vânzător"
 msgid "Visit Website"
 msgstr "Vizitează website"
 
-#: frontend/placeholders.php:651 includes/functions/listings.php:378
+#: frontend/placeholders.php:651 includes/functions/listings.php:400
 msgid "Location"
 msgstr "Locație"
 
@@ -2049,15 +2049,15 @@ msgstr "Trimite la Facebook"
 msgid "this shortcode only works with registered users."
 msgstr "acest cod scurt funcționează doar pentru utilizatorii înregistrați."
 
-#: frontend/shortcode.php:332
+#: frontend/shortcode.php:336
 msgid "Hi admin, you need to select the page for your classifieds."
 msgstr ""
 
-#: frontend/shortcode.php:335
+#: frontend/shortcode.php:339
 msgid "Choose pages now"
 msgstr ""
 
-#: frontend/shortcode.php:339
+#: frontend/shortcode.php:343
 msgid "You currently have no classifieds"
 msgstr "Nu aveți nici un anunț deocamdată"
 
@@ -2371,7 +2371,7 @@ msgid "Manage Images"
 msgstr "Administrează imagini"
 
 #: frontend/templates/page-place-ad-preview-step.tpl.php:17
-#: includes/frontend/class-submit-listing-form-steps.php:66
+#: includes/frontend/class-submit-listing-form-steps.php:60
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:38
 msgid "Finish"
 msgstr "Termină"
@@ -2443,7 +2443,7 @@ msgstr "Preț maxim"
 msgid "Pay With 2Checkout"
 msgstr "Plătiți cu 2Checkout"
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:794
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:779
 #: includes/admin/class-listings-personal-data-provider.php:115
 #: includes/admin/class-listings-personal-data-provider.php:125
 #: includes/admin/import/class-csv-importer-columns.php:230
@@ -2489,7 +2489,7 @@ msgstr "Adresă linia 2"
 msgid "State"
 msgstr "Stat/Provincie/Județ"
 
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:814
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:799
 #: includes/admin/class-listings-personal-data-provider.php:117
 #: includes/admin/class-listings-personal-data-provider.php:127
 #: includes/admin/import/class-csv-importer-columns.php:260
@@ -2646,71 +2646,71 @@ msgstr "Caută anunțuri după nume persoană de contact"
 msgid "All Contact Names"
 msgstr "Toate numele de contact"
 
-#: frontend/widget-search.php:84
+#: frontend/widget-search.php:56
 msgid "Select Option"
 msgstr "Selectează opțiune"
 
-#: frontend/widget-search.php:133
+#: frontend/widget-search.php:105
 msgid "Search by keyword"
 msgstr "Caută după cuvânt cheie"
 
-#: frontend/widget-search.php:147
+#: frontend/widget-search.php:119
 msgid "Search by Category"
 msgstr "Caută după categorie"
 
-#: frontend/widget-search.php:165
+#: frontend/widget-search.php:137
 msgid "Search"
 msgstr "Caută"
 
-#: functions.php:442
+#: functions.php:427
 msgid "%s ago"
 msgstr "Acum %s"
 
-#: functions.php:607
+#: functions.php:592
 msgid "Ads per page:"
 msgstr "Anunțuri pe pagină:"
 
-#: functions.php:624
+#: functions.php:609
 msgid "Page {current_page_number} of {number_of_pages}"
 msgstr "Pagina {current_page_number} din {number_of_pages}"
 
-#: functions.php:735
+#: functions.php:720
 msgid "None"
 msgstr "Nici unul"
 
-#: functions.php:795
+#: functions.php:780
 msgid "separate countries by commas"
 msgstr "separă țările cu virgulă"
 
-#: functions.php:804
+#: functions.php:789
 msgid "State/Province"
 msgstr "Stat/Provincie/Județ"
 
-#: functions.php:805
+#: functions.php:790
 msgid "separate states by commas"
 msgstr "separă statele/provinciile/județele cu virgulă"
 
-#: functions.php:815
+#: functions.php:800
 msgid "separate cities by commas"
 msgstr "separă orașele cu virgulă"
 
-#: functions.php:824
+#: functions.php:809
 msgid "County/Village/Other"
 msgstr "Suburbie/Sat/Comună"
 
-#: functions.php:825
+#: functions.php:810
 msgid "separate counties by commas"
 msgstr "separă suburbiile/satele/comunele cu virgulă"
 
-#: functions.php:1039
+#: functions.php:1024
 msgid "-- Choose a Country --"
 msgstr "-- Alege o țară --"
 
-#: functions.php:1456 templates/admin/main-classifieds-admin-page.tpl.php:58
+#: functions.php:1495 templates/admin/main-classifieds-admin-page.tpl.php:58
 msgid "Free"
 msgstr "Gratuit"
 
-#: functions.php:1796 templates/components/media-center.tpl.php:14
+#: functions.php:1840 templates/components/media-center.tpl.php:14
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -2720,7 +2720,7 @@ msgstr ""
 "Vă rugăm să încărcați imagini care au legătură cu anunțul dvs. si respectă "
 "termenii de serviciu ai acestui website."
 
-#: functions.php:1815
+#: functions.php:1859
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -2728,55 +2728,55 @@ msgstr ""
 "Această versiune a modulului AWPCP %1$s nu este compatibil cu versiunea "
 "AWPCP %2$s. Vă rugăm să obțineți %1$s %3$s sau mai nou!"
 
-#: functions.php:1817
+#: functions.php:1861
 msgid "Error"
 msgstr "Eroare"
 
-#: functions.php:2175
+#: functions.php:2219
 msgid "No errors."
 msgstr "Nici o eroare."
 
-#: functions.php:2176
+#: functions.php:2220
 msgid "The file is larger than upload_max_filesize."
 msgstr "Mărimea fișierului este mai mare decât upload_max_filesize."
 
-#: functions.php:2177
+#: functions.php:2221
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "Acest fișier este mai mare decât MAX_FILE_SIZE."
 
-#: functions.php:2178
+#: functions.php:2222
 msgid "The file was only partially uploaded."
 msgstr "Fișierul a fost încărcat doar parțial."
 
-#: functions.php:2179
+#: functions.php:2223
 msgid "No file was uploaded."
 msgstr "Nu a fost încărcat nici un fișier."
 
-#: functions.php:2180
+#: functions.php:2224
 msgid "Missing temporary directory."
 msgstr "Directorul temporar lipsește."
 
-#: functions.php:2181
+#: functions.php:2225
 msgid "Can't write file to disk."
 msgstr "Nu se poate scrie fișierul pe disc."
 
-#: functions.php:2182
+#: functions.php:2226
 msgid "The file upload was stopped by extension."
 msgstr "Încărcarea fișierului a fost oprită de către extensia acestuia."
 
-#: functions.php:2420
+#: functions.php:2464
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Anunțul dvs. \"%s\" a fost aprobat"
 
-#: functions.php:2443
+#: functions.php:2487
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Anunțul dvs. \"%s\" a fost actualizat cu succes"
 
-#: functions.php:2465
+#: functions.php:2509
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Imaginile anunțului \"%s\" așteaptă aprobarea"
 
-#: functions.php:2467
+#: functions.php:2511
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
@@ -2787,13 +2787,13 @@ msgstr ""
 "pe butonul \"Activează\" de sub fiecare imagine. Click aici pentru a "
 "continua: %s."
 
-#: functions.php:2470
+#: functions.php:2514
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "Anunțul \"%s\" așteaptă aprobarea"
 
 #. translators: %1$s is the listing title. %2$s is the URL for managing
 #. listing.
-#: functions.php:2473 includes/functions/notifications.php:157
+#: functions.php:2517 includes/functions/notifications.php:157
 msgid ""
 "The Ad \"%1$s\" is awaiting approval. You can approve the Ad going to the "
 "Classified edit section and clicking the \"Publish\" button. Click here to "
@@ -2801,7 +2801,7 @@ msgid ""
 msgstr ""
 
 #. translators: %s is the URL for managing listing images.
-#: functions.php:2480 includes/functions/notifications.php:165
+#: functions.php:2524 includes/functions/notifications.php:165
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -2811,27 +2811,27 @@ msgstr ""
 "Imagini pentru acest anunț și dând click pe butonul \"Activează\" de sub "
 "fiecare imagine. Click aici pentru a continua: %s."
 
-#: functions.php:3012
+#: functions.php:3056
 msgid "Email sent %s."
 msgstr "Email trimis %s."
 
-#: functions.php:3143
+#: functions.php:3187
 msgid "Not Installed"
 msgstr "Neinstalate"
 
-#: functions.php:3147
+#: functions.php:3191
 msgid "Installed"
 msgstr "Instalate"
 
-#: functions.php:3155
+#: functions.php:3199
 msgid "SSL Support: Yes."
 msgstr "Suport SSL: Da."
 
-#: functions.php:3157
+#: functions.php:3201
 msgid "SSL Support: No."
 msgstr "Suport SSL: Nu."
 
-#: functions.php:3160
+#: functions.php:3204
 msgid "OpenSSL version:"
 msgstr "Versiune OpenSSL:"
 
@@ -2847,7 +2847,7 @@ msgstr "Proprietar clasificat"
 msgid "Classified Fields"
 msgstr "Domenii clasificate"
 
-#: includes/admin/class-list-table-search-handler.php:104
+#: includes/admin/class-list-table-search-handler.php:97
 msgid "Search for listings matching"
 msgstr "Căutare de potrivire a listelor"
 
@@ -3122,23 +3122,23 @@ msgstr "Data reînnoirii:"
 msgid "Published:"
 msgstr "Publicat:"
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:148
+#: includes/admin/listings/class-listings-table-nav-handler.php:141
 msgid "Select date field"
 msgstr "Selectare câmp dată"
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:157
+#: includes/admin/listings/class-listings-table-nav-handler.php:150
 msgid "All dates"
 msgstr "Toate datele"
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:160
+#: includes/admin/listings/class-listings-table-nav-handler.php:153
 msgid "Renewed Date"
 msgstr "Data reînnoirii"
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:161
+#: includes/admin/listings/class-listings-table-nav-handler.php:154
 msgid "Published Date"
 msgstr "Data publicării"
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:173
+#: includes/admin/listings/class-listings-table-nav-handler.php:166
 msgid "Select date range"
 msgstr "Selectați intervalul de date"
 
@@ -3665,8 +3665,8 @@ msgstr "Acest câmp este obligatoriu."
 
 #: includes/class-awpcp.php:1427
 #: includes/form-fields/class-form-fields-validator.php:101
-#: includes/frontend/class-edit-listing-page.php:256
-#: includes/frontend/class-edit-listing-page.php:333
+#: includes/frontend/class-edit-listing-page.php:258
+#: includes/frontend/class-edit-listing-page.php:335
 #: includes/settings/class-payment-general-settings.php:156
 msgid "Please enter a valid email address."
 msgstr "Vă rugăm să introduceți o adresă de email validă."
@@ -3975,7 +3975,7 @@ msgid "There specified ad doesn't exist."
 msgstr "Nu există reclamă specificată."
 
 #: includes/frontend/class-edit-listing-page.php:95
-#: includes/frontend/class-submit-listing-page.php:91
+#: includes/frontend/class-submit-listing-page.php:90
 msgid "You are not allowed to edit the specified ad."
 msgstr "Nu aveți permisiunea de a edita anunțul specificat."
 
@@ -3984,7 +3984,7 @@ msgid "The selected ad cannot be edited right now."
 msgstr "Anunțul selectat nu poate fi editat chiar acum."
 
 #. translators: %s is the URL to the listing's individual page.
-#: includes/frontend/class-edit-listing-page.php:179
+#: includes/frontend/class-edit-listing-page.php:181
 msgid ""
 "The Ad has been edited successfully. <a href=\"%s\">Go back to view "
 "listings</a>."
@@ -3992,7 +3992,7 @@ msgstr ""
 "Acest anunț a fost editat cu succes. <a href=\"%s\">Mergeți înapoi la lista "
 "de anunțuri</a>."
 
-#: includes/frontend/class-edit-listing-page.php:211
+#: includes/frontend/class-edit-listing-page.php:213
 msgid ""
 "Your changes have been published. This is the content that will be seen by "
 "visitors of the website."
@@ -4000,7 +4000,7 @@ msgstr ""
 "Modificările au fost publicate. Acesta este conținutul care va fi văzut de "
 "către vizitatorii site-ului."
 
-#: includes/frontend/class-edit-listing-page.php:215
+#: includes/frontend/class-edit-listing-page.php:217
 msgid ""
 "Your changes have been saved. This is a preview of the content as seen by "
 "visitors of the website."
@@ -4008,7 +4008,7 @@ msgstr ""
 "Modificările au fost salvate. Aceasta este o previzualizare a conținutului "
 "așa este văzut de către vizitatorii site-ului."
 
-#: includes/frontend/class-edit-listing-page.php:254
+#: includes/frontend/class-edit-listing-page.php:256
 msgid ""
 "Please enter the email address you used when you created your Ad in addition "
 "to the Ad access key that was emailed to you after your Ad was submitted."
@@ -4017,11 +4017,11 @@ msgstr ""
 "lângă cheia de acces a anunțului care v-a fost trimisă când ați creat "
 "anunțul."
 
-#: includes/frontend/class-edit-listing-page.php:260
+#: includes/frontend/class-edit-listing-page.php:262
 msgid "Please enter your Ad access key."
 msgstr "Vă rugăm să introduceți cheia de acces pentru anunțul dvs."
 
-#: includes/frontend/class-edit-listing-page.php:287
+#: includes/frontend/class-edit-listing-page.php:289
 msgid ""
 "The email address and access key you entered does not match any of the Ads "
 "in our system."
@@ -4029,18 +4029,18 @@ msgstr ""
 "Adresa de email și cheia de acces pe care le-ați introdus nu se potrivesc cu "
 "nici un anunț din sistemul nostru."
 
-#: includes/frontend/class-edit-listing-page.php:331
+#: includes/frontend/class-edit-listing-page.php:333
 msgid "Please enter the email address you used when you created your Ad."
 msgstr "Vă rugăm să introduceți adresa de email folosită la crearea anunțului."
 
-#: includes/frontend/class-edit-listing-page.php:351
+#: includes/frontend/class-edit-listing-page.php:353
 msgid ""
 "The email address you entered does not match any of the Ads in our system."
 msgstr ""
 "Adresa de email pe care ați introdus-o nu se potrivește cu nici un anunț din "
 "sistemul nostru."
 
-#: includes/frontend/class-edit-listing-page.php:389
+#: includes/frontend/class-edit-listing-page.php:391
 msgid ""
 "The email address you entered does not match any of the listing in our "
 "system."
@@ -4049,33 +4049,33 @@ msgstr ""
 "sistemul nostru."
 
 #. translators: %s is the email address that user provided.
-#: includes/frontend/class-edit-listing-page.php:428
+#: includes/frontend/class-edit-listing-page.php:430
 msgid "There was an error trying to send the email to %s."
 msgstr "A apărut o eroare când s-a încercat trimiterea email-ului către %s."
 
 #. translators: %s is the email address that user provided.
-#: includes/frontend/class-edit-listing-page.php:433
+#: includes/frontend/class-edit-listing-page.php:435
 msgid "The access keys were sent to %s."
 msgstr "Cheia de acces a fost trimisă către %s."
 
-#: includes/frontend/class-edit-listing-page.php:469
+#: includes/frontend/class-edit-listing-page.php:471
 msgid "Invalid access token."
 msgstr "Cod de acces invalid."
 
-#: includes/frontend/class-edit-listing-page.php:481
+#: includes/frontend/class-edit-listing-page.php:483
 msgid "The specified listing doesn't exists."
 msgstr "Anunțul specificat nu există."
 
-#: includes/frontend/class-edit-listing-page.php:488
+#: includes/frontend/class-edit-listing-page.php:490
 msgid "The sepecified listing cannot be edited using this access code."
 msgstr "Anunțul specificat nu poate fi editat folosind acest cod de acces."
 
 #. translators: %s is the title of the listing.
-#: includes/frontend/class-edit-listing-page.php:518
+#: includes/frontend/class-edit-listing-page.php:520
 msgid "Edit link for listing: %s"
 msgstr "Editeaza link-ul pentru anunțul: %s"
 
-#: includes/frontend/class-edit-listing-page.php:534
+#: includes/frontend/class-edit-listing-page.php:536
 msgid ""
 "The link you used already expired. Please check your email to receive a link "
 "with a new access token."
@@ -4135,42 +4135,42 @@ msgstr ""
 "A apărut o eroare la încercarea de a verifica răspunsul reCAPTCHA. "
 "<reCAPTCHA-error>"
 
-#: includes/frontend/class-save-listing-information-ajax-handler.php:122
+#: includes/frontend/class-save-listing-information-ajax-handler.php:115
 msgid "There is no payment transaction associated with this request. Aborting."
 msgstr ""
 "Nu există nicio tranzacție de plată asociată cu această solicitare. "
 "Abandonare."
 
-#: includes/frontend/class-submit-listing-form-steps.php:47
+#: includes/frontend/class-submit-listing-form-steps.php:41
 msgid "Login/Registration"
 msgstr "Logare/Înregistrare"
 
-#: includes/frontend/class-submit-listing-form-steps.php:54
+#: includes/frontend/class-submit-listing-form-steps.php:48
 #: includes/ui/class-category-selector.php:125
 #: templates/components/category-selector.tpl.php:16
 msgid "Select a Category"
 msgstr "Selectați o categorie"
 
-#: includes/frontend/class-submit-listing-form-steps.php:55
-#: includes/frontend/class-submit-listing-form-steps.php:62
+#: includes/frontend/class-submit-listing-form-steps.php:49
+#: includes/frontend/class-submit-listing-form-steps.php:56
 msgid "Checkout"
 msgstr "Plată"
 
-#: includes/frontend/class-submit-listing-form-steps.php:56
-#: includes/frontend/class-submit-listing-form-steps.php:63
+#: includes/frontend/class-submit-listing-form-steps.php:50
+#: includes/frontend/class-submit-listing-form-steps.php:57
 #: includes/settings/class-payment-general-settings.php:25
 msgid "Payment"
 msgstr "Plată"
 
-#: includes/frontend/class-submit-listing-form-steps.php:59
+#: includes/frontend/class-submit-listing-form-steps.php:53
 msgid "Enter Ad Information"
 msgstr "Introduceți informații despre anunțuri"
 
-#: includes/frontend/class-submit-listing-page.php:79
+#: includes/frontend/class-submit-listing-page.php:78
 msgid "Users are not allowed to publish ads at this time."
 msgstr "Utilizatorilor nu li se permite să publice anunțuri în acest moment."
 
-#: includes/frontend/class-submit-listing-page.php:99
+#: includes/frontend/class-submit-listing-page.php:98
 msgid "The information for the selected ad was already saved."
 msgstr "Informațiile pentru anunțul selectat au fost deja salvate."
 
@@ -4212,14 +4212,14 @@ msgid ""
 "the email address used to post the listing."
 msgstr ""
 
-#: includes/frontend/class-update-listing-order-ajax-handler.php:81
+#: includes/frontend/class-update-listing-order-ajax-handler.php:76
 msgid ""
 "The payment information for the specified ad cannot be modified at this time."
 msgstr ""
 "Informațiile de plată pentru anunțul specificat nu se pot modifica în acest "
 "moment."
 
-#: includes/frontend/class-update-listing-order-ajax-handler.php:87
+#: includes/frontend/class-update-listing-order-ajax-handler.php:82
 msgid "The specified transaction doesn't exist."
 msgstr "Tranzacția specificată nu există."
 
@@ -4358,23 +4358,23 @@ msgstr "Introduceți detaliile anunțului."
 msgid "Top Level Category"
 msgstr "Categorie de prim nivel"
 
-#: includes/functions/listings.php:260
+#: includes/functions/listings.php:273
 #: includes/listings/class-listings-content-renderer.php:169
 msgid "Are you sure you want to flag this ad?"
 msgstr "Sunteți sigur că vreți să reclamați acest anunț ca nepotrivit?"
 
-#: includes/functions/listings.php:261
+#: includes/functions/listings.php:274
 #: includes/listings/class-listings-content-renderer.php:170
 msgid "This Ad has been flagged."
 msgstr "Acest anunț a fost marcat nepotrivit."
 
-#: includes/functions/listings.php:262
+#: includes/functions/listings.php:275
 #: includes/listings/class-listings-content-renderer.php:171
 msgid "An error occurred while trying to flag the Ad."
 msgstr ""
 "A apărut o eroare în timp ce s-a încercat marcarea anunțului ca nepotrivit."
 
-#: includes/functions/listings.php:299
+#: includes/functions/listings.php:312
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
@@ -4382,7 +4382,7 @@ msgstr ""
 "Ne pare rău, acest anunț nu este disponibil. Vă rugăm să încercați să "
 "explorați sau să căutați între anunțurile existente."
 
-#: includes/functions/listings.php:316
+#: includes/functions/listings.php:329
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
@@ -4390,12 +4390,12 @@ msgstr ""
 "Anunțul pe care încercați să îl vedeți se află în așteptare pentru aprobare. "
 "De îndată ce administatorul îl aproba, va deveni activ și vizibil."
 
-#: includes/functions/listings.php:321
+#: includes/functions/listings.php:335
 #: includes/listings/class-listings-content-renderer.php:106
 msgid "Your email address was successfully verified."
 msgstr "Adresa dvs. de email a fost verificată cu succes."
 
-#: includes/functions/listings.php:325
+#: includes/functions/listings.php:339
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
@@ -4403,7 +4403,7 @@ msgstr ""
 "Acest anunț este dezactivat până când administratorul îl va aproba. Doar "
 "dvs. (Administatorul) și autorul îl pot vedea."
 
-#: includes/functions/listings.php:328
+#: includes/functions/listings.php:342
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
@@ -4411,7 +4411,7 @@ msgstr ""
 "Acest anunț este dezactivat până când veți verifica adresa dvs. de email "
 "folosită pentru detaliile de contact. Doar dvs. (autorul) îl puteți vedea."
 
-#: includes/functions/listings.php:331
+#: includes/functions/listings.php:345
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."
@@ -4556,7 +4556,7 @@ msgstr ""
 "Vă rugăm să contactați provider-ul dvs. de hosting și să solicitați să "
 "actualizeze sistemul dvs. Includeți acest mesaj dacă este necesar."
 
-#: includes/helpers/class-modules-manager.php:187
+#: includes/helpers/class-modules-manager.php:185
 msgid ""
 "Yikes, there has been a mistake. It looks like you have an outdated version "
 "of AWPCP <module-name>, or you need a newer version of AWPCP to use that "
@@ -4586,7 +4586,7 @@ msgstr[2] ""
 "solicitați o actualizare. De asemenea, vă rugăm să includeți o referință la "
 "această eroare în mesajul dvs."
 
-#: includes/helpers/class-modules-manager.php:219
+#: includes/helpers/class-modules-manager.php:217
 msgid ""
 "The version of AWPCP {modules_names} is not compatible with version "
 "{awpcp_version}."
@@ -4603,11 +4603,11 @@ msgstr[2] ""
 "Versiunile de AWPCP {modules_names} nu sunt compatibile cu versiunea "
 "{awpcp_version}."
 
-#: includes/helpers/class-modules-manager.php:221
+#: includes/helpers/class-modules-manager.php:219
 msgid "Please get AWPCP {required_modules_versions} or newer!"
 msgstr "Vă rugăm să obțineți AWPCP {required_modules_versions} sau mai nou!"
 
-#: includes/helpers/class-modules-manager.php:252
+#: includes/helpers/class-modules-manager.php:250
 msgid ""
 "The license for AWPCP <module-name> is inactive. All features will remain "
 "disabled until you activate the license. Please go to the <licenses-settings-"
@@ -4632,7 +4632,7 @@ msgstr[2] ""
 "mergeți la secțiunea <licenses-settings-link>Setări licențe</a> pentru a "
 "activa licențele dvs."
 
-#: includes/helpers/class-modules-manager.php:266
+#: includes/helpers/class-modules-manager.php:264
 msgid ""
 "The AWPCP <module-name> requires a license to be used. All features will "
 "remain disabled until a valid license is entered. Please go to the <licenses-"
@@ -4658,7 +4658,7 @@ msgstr[2] ""
 "corecte. Vă rugăm să mergeți la secțiunea <licenses-settings-link>Setări "
 "licențe</a> pentru a introduce sau actualiza licențele dvs."
 
-#: includes/helpers/class-modules-manager.php:271
+#: includes/helpers/class-modules-manager.php:269
 msgid ""
 "The license for AWPCP <module-name> expired. The module will continue to "
 "work but you will not receive automatic updates when a new version is "
@@ -4680,7 +4680,7 @@ msgstr[2] ""
 "funcționeze, însă nu veți mai primi actualizări automate când apar versiuni "
 "noi."
 
-#: includes/helpers/class-modules-manager.php:282
+#: includes/helpers/class-modules-manager.php:281
 msgid ""
 "The AWPCP <module-name> is currently disabled because it requires you to "
 "perform a manual upgrade before continuing. Please <upgrade-link>go to the "
@@ -4702,7 +4702,7 @@ msgstr[2] ""
 "efectuarea unui upgrade manual înainte de a continua. Vă rugăm să <upgrade-"
 "link>Mergeți la secțiunea Classifieds admin pentru a face upgrade</a>."
 
-#: includes/helpers/class-modules-manager.php:295
+#: includes/helpers/class-modules-manager.php:294
 msgid "The specified module does not exists!."
 msgstr "Modulul specificat nu există!."
 
@@ -4786,7 +4786,7 @@ msgstr ""
 msgid "Select an User"
 msgstr "Selectați un utilizator"
 
-#: includes/helpers/widgets/multiple-region-selector.php:171
+#: includes/helpers/widgets/multiple-region-selector.php:123
 msgid ""
 "This particular region is already selected in another field. Please choose "
 "one or more sub-regions, to make the selection more specific, or change the "
@@ -4796,19 +4796,19 @@ msgstr ""
 "alegeți una sau mai multe sub-regiuni, pentru a face selectarea mai "
 "specifică, sau penetru a schimba regiunea selectată."
 
-#: includes/helpers/widgets/multiple-region-selector.php:176
+#: includes/helpers/widgets/multiple-region-selector.php:128
 msgid "Add Search Region"
 msgstr "Adaugă căutare pe regiuni"
 
-#: includes/helpers/widgets/multiple-region-selector.php:176
+#: includes/helpers/widgets/multiple-region-selector.php:128
 msgid "Add Region"
 msgstr "Adaugă regiune"
 
-#: includes/helpers/widgets/multiple-region-selector.php:177
+#: includes/helpers/widgets/multiple-region-selector.php:129
 msgid "Delete Search Region"
 msgstr "Șterge căutare pe regiuni"
 
-#: includes/helpers/widgets/multiple-region-selector.php:177
+#: includes/helpers/widgets/multiple-region-selector.php:129
 msgid "Remove Region"
 msgstr "Șterge regiune"
 
@@ -5050,11 +5050,11 @@ msgstr ""
 "Puteți încărca <videos-left> video-uri de până la <videos-max-file-size> "
 "fiecare."
 
-#: includes/media/class-media-uploaded-notification.php:125
+#: includes/media/class-media-uploaded-notification.php:122
 msgid "New media was uploaded to listing: <listing-title>"
 msgstr "Un nou fișier media a fost adăugat la anunțul: <listing-title>"
 
-#: includes/media/class-media-uploaded-notification.php:127
+#: includes/media/class-media-uploaded-notification.php:124
 msgid "New media is awaiting approval in listing: <listing-title>"
 msgstr "Un nou fișier media așteaptă aprobarea pentru anunțul: <listing-title>"
 
@@ -5182,7 +5182,7 @@ msgstr "Trebuie să selectați o metodă de plată."
 msgid "The payment status for this transaction hasn't been defined."
 msgstr "Starea acestei tranzacții nu a fost încă stabilită."
 
-#: includes/payment-gateway-2checkout.php:62
+#: includes/payment-gateway-2checkout.php:63
 msgid ""
 "There appears to be a problem with your payment. Please contact the "
 "administrator if you are viewing this message after having made a payment "
@@ -5195,8 +5195,8 @@ msgstr ""
 "2Checkout. Dacă nu ați efectuat o plată și vedeți acest mesaj, înseamnă că "
 "mesajul apare din greșeală și îl puteți ignora."
 
-#: includes/payment-gateway-2checkout.php:96
-#: includes/payment-gateway-paypal-standard.php:139
+#: includes/payment-gateway-2checkout.php:101
+#: includes/payment-gateway-paypal-standard.php:140
 msgid ""
 "The amount you have paid does not match the required amount for this "
 "transaction. Please contact us to clarify the problem."
@@ -5204,8 +5204,8 @@ msgstr ""
 "Totalul pe care l-ați plătit nu corespunde cu totalul necesar pentru această "
 "tranzacție. Vă rugăm să ne contactați pentru a clarifica problema."
 
-#: includes/payment-gateway-2checkout.php:104
-#: includes/payment-gateway-paypal-standard.php:147
+#: includes/payment-gateway-2checkout.php:109
+#: includes/payment-gateway-paypal-standard.php:148
 msgid ""
 "There was an error processing your transaction. If funds have been deducted "
 "from your account, they have not been processed to our account. You will "
@@ -5215,8 +5215,8 @@ msgstr ""
 "contul dvs., acestea nu au fost procesate în contul nostru. Trebuie să "
 "contactați PayPal legat de această problemă."
 
-#: includes/payment-gateway-2checkout.php:114
-#: includes/payment-gateway-paypal-standard.php:157
+#: includes/payment-gateway-2checkout.php:119
+#: includes/payment-gateway-paypal-standard.php:158
 msgid ""
 "It appears this transaction has already been processed. If you do not see "
 "your ad in the system please contact the site adminstrator for assistance."
@@ -5262,7 +5262,7 @@ msgid ""
 msgstr ""
 "Dacă aveți mai multe întrebări, vă rugăm să contactați administratorul."
 
-#: includes/payment-gateway-paypal-standard.php:182
+#: includes/payment-gateway-paypal-standard.php:183
 msgid ""
 "We couldn't determine the payment status for your transaction. Please "
 "contact customer service if you are viewing this message after having made a "
@@ -5275,7 +5275,7 @@ msgstr ""
 "plata. Dacă nu ați efectuat o plată și vedeți acest mesaj, înseamnă că "
 "mesajul apare din greșeală și îl puteți ignora."
 
-#: includes/payment-gateway-paypal-standard.php:284
+#: includes/payment-gateway-paypal-standard.php:289
 msgid "The payment transaction was canceled by the user."
 msgstr "Tranzacția de plată a fost anulată de către utilizator."
 
@@ -5375,12 +5375,12 @@ msgstr ""
 msgid "The price must be equal or greater than zero."
 msgstr "Prețul trebuie să fie mai mare sau egal cu zero."
 
-#: includes/payment-terms-table.php:156 includes/payments-api.php:441
+#: includes/payment-terms-table.php:156 includes/payments-api.php:443
 msgid "The selected payment type can't be used in this kind of transaction."
 msgstr ""
 "Tipul de plată selectat nu poate fi utilizat în acest tip de tranzacție."
 
-#: includes/payment-terms-table.php:161 includes/payments-api.php:446
+#: includes/payment-terms-table.php:161 includes/payments-api.php:448
 msgid "The selected payment term can't be used in this kind of transaction."
 msgstr ""
 "Terrmenul de plată selectat nu poate fi utilizat în acest tip de tranzacție."
@@ -5391,14 +5391,14 @@ msgid ""
 msgstr ""
 "{credit-plan-Name} ({credit-plan-credite} credite pentru {credit-plan-Price})"
 
-#: includes/payments-api.php:489
+#: includes/payments-api.php:491
 msgid ""
 "The specified payment transaction doesn't exists. We can't process your "
 "payment."
 msgstr ""
 "Tranzacția de plată specificată nu există. Nu putem să procesăm plata dvs."
 
-#: includes/payments-api.php:490 includes/payments-api.php:502
+#: includes/payments-api.php:492 includes/payments-api.php:504
 msgid ""
 "Please contact customer service if you are viewing this message after having "
 "made a payment. If you have not tried to make a payment and you are viewing "
@@ -5410,12 +5410,12 @@ msgstr ""
 "înseamnă că mesajul apare din greșeală și îl puteți ignora."
 
 #. translators: %s link HTML
-#: includes/payments-api.php:493 includes/payments-api.php:505
+#: includes/payments-api.php:495 includes/payments-api.php:507
 #, fuzzy
 msgid "Return to %shome page"
 msgstr "Înapoi la %s"
 
-#: includes/payments-api.php:501
+#: includes/payments-api.php:503
 msgid ""
 "The payment method associated with this transaction is not available at this "
 "time. We can't process your payment."
@@ -5423,22 +5423,22 @@ msgstr ""
 "Metoda de plată asociată cu această tranzacție nu este disponibilă la acest "
 "moment. Nu putem procesa plata dvs."
 
-#: includes/payments-api.php:688
+#: includes/payments-api.php:689
 msgid ""
 "You currently have %1$s credits in your account. The balance after this "
 "transaction is completed successfully will be %2$s."
 msgstr ""
 
 #. translators: %s credit balance
-#: includes/payments-api.php:703
+#: includes/payments-api.php:704
 msgid "You currently have %s credits in your account."
 msgstr "Aveți %s credite în contul dvs."
 
-#: includes/payments-api.php:819 includes/payments-api.php:870
+#: includes/payments-api.php:820 includes/payments-api.php:871
 msgid "Payment Completed"
 msgstr "Plată completă"
 
-#: includes/payments-api.php:822
+#: includes/payments-api.php:823
 msgid ""
 "Your Payment has been processed successfully. Please press the button below "
 "to continue with the process."
@@ -5446,7 +5446,7 @@ msgstr ""
 "Plata dvs. a fost procesată cu succes. Vă rugăm să folosiți butonul de mai "
 "jos pentru a continua procesul."
 
-#: includes/payments-api.php:824
+#: includes/payments-api.php:825
 msgid ""
 "Your Payment has been processed successfully. However is still pending "
 "approvation from the payment gateway. Please press the button below to "
@@ -5456,11 +5456,11 @@ msgstr ""
 "de la procesorul de plată. Vă rugăm să folosiți butonul de mai jos pentru a "
 "continua procesul."
 
-#: includes/payments-api.php:829
+#: includes/payments-api.php:830
 msgid "Payment Not Required"
 msgstr "Plata nu este necesară"
 
-#: includes/payments-api.php:830
+#: includes/payments-api.php:831
 msgid ""
 "No Payment is required for this transaction. Please press the button below "
 "to continue with the process."
@@ -5468,11 +5468,11 @@ msgstr ""
 "Nu este necesară nici o plată pentru această tranzacție. Vă rugăm să "
 "folosiți butonul de mai jos pentru a continua procesul."
 
-#: includes/payments-api.php:835 includes/payments-api.php:876
+#: includes/payments-api.php:836 includes/payments-api.php:877
 msgid "Payment Failed"
 msgstr "Plata a eșuat"
 
-#: includes/payments-api.php:836
+#: includes/payments-api.php:837
 msgid ""
 "Your Payment has been processed successfully. However, the payment gateway "
 "didn't return a payment status that allows us to continue with the process. "
@@ -5482,20 +5482,20 @@ msgstr ""
 "trimis încă starea plății pentru a continua procesul. Vă rugăm să contactați "
 "administratorul pentru a rezolva această problemă."
 
-#: includes/payments-api.php:839 includes/payments-api.php:872
+#: includes/payments-api.php:840 includes/payments-api.php:873
 msgid "Payment Canceled"
 msgstr "Plată anulată"
 
-#: includes/payments-api.php:840
+#: includes/payments-api.php:841
 msgid "The Payment transaction was canceled. You can't post an Ad this time."
 msgstr ""
 "Tranzacția de plată a fost anulată. Nu puteți posta anunțul la acest moment."
 
-#: includes/payments-api.php:843
+#: includes/payments-api.php:844
 msgid "Waiting on Confirmation"
 msgstr "Așteptăm confirmarea"
 
-#: includes/payments-api.php:844
+#: includes/payments-api.php:845
 msgid ""
 "The payment gateway is taking a bit longer than expected to confirm your "
 "payment. Please wait a few seconds while we verify the transaction. The page "
@@ -5505,11 +5505,11 @@ msgstr ""
 "anticipat. Vă rugăm să așteptați câteva secunde în timp ce verificăm "
 "tranzacția."
 
-#: includes/payments-api.php:847
+#: includes/payments-api.php:848
 msgid "Payment Error"
 msgstr "Eroare la plată"
 
-#: includes/payments-api.php:848
+#: includes/payments-api.php:849
 msgid ""
 "There was an error processing your payment. The payment status couldn't be "
 "found. Please contact the website admin to solve this issue."
@@ -5518,7 +5518,7 @@ msgstr ""
 "găsită. Vă rugăm să contactați administratorul pentru a rezolva această "
 "problemă."
 
-#: includes/payments-api.php:874
+#: includes/payments-api.php:875
 msgid "Payment Not Verified"
 msgstr "Plata nu este verificată"
 
@@ -8966,13 +8966,13 @@ msgstr ""
 "website-ul pentru anunțuri gratuite</a>."
 
 #. translators: %s the step name
-#: includes/views/class-base-page.php:80
+#: includes/views/class-base-page.php:81
 msgid "Unkown step \"%s\". Please contact the administrator about this error."
 msgstr ""
 "Pas necunoscut %s. Vă rugăm să contacați administorul cu referire la această "
 "eroare."
 
-#: includes/views/class-base-page.php:133
+#: includes/views/class-base-page.php:134
 msgid ""
 "Your request cannot be processed at this time. Please try again or contact "
 "the administrator about the incident."
@@ -9025,7 +9025,7 @@ msgstr "Plata asociată cu această tranzacție a eșuat (vedeți mai jos cauzel
 msgid "You are not allowed to buy credits."
 msgstr "Nu vă este permis să cumpărați credite."
 
-#: includes/views/frontend/class-category-shortcode.php:79
+#: includes/views/frontend/class-category-shortcode.php:75
 msgid ""
 "No category was found with the IDs provided. Please provide at least one "
 "valid category ID."
@@ -9848,10 +9848,11 @@ msgid "Run a free or paid classified ads service on your WordPress site."
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "AWPCP"
-msgstr "AWPCP"
+#, fuzzy
+msgid "AWP Classifieds Team"
+msgstr "Un alt WordPress Classifieds plugin"
 
-#: admin/admin-panel-fees-table.php:248
+#: admin/admin-panel-fees-table.php:254
 msgctxt "all categories"
 msgid "All"
 msgstr "Toate"
@@ -9861,17 +9862,17 @@ msgctxt "credit system on users table"
 msgid "Account Balance"
 msgstr "Balanță Cont"
 
-#: admin/admin-panel.php:29
+#: admin/admin-panel.php:22
 msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Anunțuri"
 
-#: admin/admin-panel.php:805 includes/settings/class-listings-settings.php:469
+#: admin/admin-panel.php:800 includes/settings/class-listings-settings.php:469
 msgctxt "page name"
 msgid "Show Ad"
 msgstr "Arată anunț"
 
-#: admin/admin-panel.php:813
+#: admin/admin-panel.php:808
 msgctxt "page name"
 msgid "Edit Ad"
 msgstr "Editează anunț"
@@ -9893,61 +9894,61 @@ msgctxt "admin csv-export"
 msgid "Error while creating a temporary directory for CSV export: %s"
 msgstr "Eroare la crearea unui director temporar pentru exportul CSV: %s"
 
-#: admin/class-export-listings-admin-page.php:42
+#: admin/class-export-listings-admin-page.php:38
 msgctxt "admin csv-export"
 msgid "Could not decode export state information."
 msgstr "Nu pot decoda informatii despre starea de export."
 
-#: admin/class-debug-admin-page.php:139
+#: admin/class-debug-admin-page.php:131
 msgctxt "debug page"
 msgid "Plugin Info"
 msgstr "Informații plugin"
 
-#: admin/class-debug-admin-page.php:140
+#: admin/class-debug-admin-page.php:132
 #: templates/admin/debug/plugin-pages-debug-section.tpl.php:33
 msgctxt "debug page"
 msgid "Plugin Pages"
 msgstr "Pagini plugin"
 
-#: admin/class-debug-admin-page.php:141
+#: admin/class-debug-admin-page.php:133
 msgctxt "debug page"
 msgid "Plugin Settings"
 msgstr "Setări Plugin"
 
-#: admin/class-debug-admin-page.php:142
+#: admin/class-debug-admin-page.php:134
 msgctxt "debug page"
 msgid "Environment"
 msgstr "Mediu"
 
-#: admin/class-debug-admin-page.php:143
+#: admin/class-debug-admin-page.php:135
 #: admin/templates/admin-panel-debug.tpl.php:32
 msgctxt "debug page"
 msgid "Rewrite Rules"
 msgstr "Reguli de rescriere"
 
-#: admin/class-debug-admin-page.php:179
+#: admin/class-debug-admin-page.php:172
 msgctxt "debug page"
 msgid "Plugin Version"
 msgstr "Versiune Plugin"
 
-#: admin/class-debug-admin-page.php:285
+#: admin/class-debug-admin-page.php:278
 #: admin/templates/admin-panel-debug.tpl.php:126
 msgctxt "debug page"
 msgid "cURL's alternate CA info (cacert.pem)"
 msgstr "informație alternativă CA pentru cURL (cacert.pem)"
 
-#: admin/class-debug-admin-page.php:289
+#: admin/class-debug-admin-page.php:282
 #: admin/templates/admin-panel-debug.tpl.php:130
 msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr "Conexiune PayPal"
 
-#: admin/class-debug-admin-page.php:361
+#: admin/class-debug-admin-page.php:354
 msgctxt "debug page"
 msgid "Working"
 msgstr "Funcționează"
 
-#: admin/class-debug-admin-page.php:364
+#: admin/class-debug-admin-page.php:357
 #: admin/templates/admin-panel-debug.tpl.php:136
 msgctxt "debug page"
 msgid "Not Working"
@@ -10044,31 +10045,31 @@ msgctxt "debug page"
 msgid "Setting Value"
 msgstr "Valoare setare"
 
-#: admin/class-debug-admin-page.php:286
+#: admin/class-debug-admin-page.php:279
 #: admin/templates/admin-panel-debug.tpl.php:127
 msgctxt "alternate CA info for cURL"
 msgid "Exists"
 msgstr "Există"
 
-#: admin/class-debug-admin-page.php:286
+#: admin/class-debug-admin-page.php:279
 #: admin/templates/admin-panel-debug.tpl.php:127
 msgctxt "alternate CA info for cURL"
 msgid "Missing"
 msgstr "Lipsește"
 
-#: admin/class-import-listings-admin-page.php:360
+#: admin/class-import-listings-admin-page.php:358
 msgctxt ""
 "description for messages used to show feedback for the Import Listings "
 "operation"
 msgid "<message-type> in line <message-line>"
 msgstr "<message-type> în linia <message-line>"
 
-#: admin/class-import-listings-admin-page.php:371
+#: admin/class-import-listings-admin-page.php:369
 msgctxt "text for page subtitle and submit button"
 msgid "Test Import"
 msgstr "Test import"
 
-#: admin/class-import-listings-admin-page.php:373
+#: admin/class-import-listings-admin-page.php:371
 msgctxt "text for page subtitle and submit button"
 msgid "Import"
 msgstr "Import"
@@ -10409,7 +10410,7 @@ msgctxt "widget modification notice"
 msgid "Close this, I'll check my Widget configuration."
 msgstr "Închide aceasta, voi verifica configurarea widget-urilor."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:180
+#: admin/upgrade/class-manual-upgrade-admin-page.php:177
 #, fuzzy
 msgctxt "awpcp upgrade"
 msgid ""
@@ -10422,7 +10423,7 @@ msgstr ""
 "stocate. Vă rugăm să apăsați butonul upgrade de mai jos pentru a începe "
 "procesul."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:183
+#: admin/upgrade/class-manual-upgrade-admin-page.php:180
 msgctxt "awpcp upgrade"
 msgid ""
 "AWPCP's premium modules need to upgrade the information stored in the "
@@ -10435,7 +10436,7 @@ msgstr ""
 "informații stocate. Vă rugăm să apăsați butonul upgrade de mai jos pentru a "
 "începe procesul."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:230
+#: admin/upgrade/class-manual-upgrade-admin-page.php:227
 msgctxt "awpcp upgrade"
 msgid ""
 "Congratulations. All non blocking tasks were completed successfully. "
@@ -10444,12 +10445,12 @@ msgstr ""
 "Felicitări. Toate activitățile non-blocare s-au finalizat cu succes. "
 "<continue-link>Click aici pentru a continua.</continue-link>."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:245
+#: admin/upgrade/class-manual-upgrade-admin-page.php:242
 msgctxt "button text in manual upgrade admin page"
 msgid "Resume Upgrade"
 msgstr "Reluare upgrade"
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:259
+#: admin/upgrade/class-manual-upgrade-admin-page.php:256
 msgctxt "button text in manual upgrade admin page"
 msgid "Upgrade"
 msgstr "Actualizează"
@@ -10464,17 +10465,17 @@ msgctxt "404 HTTP status description"
 msgid "Listing not found"
 msgstr "Anunț negăsit"
 
-#: frontend/page-place-ad.php:1398
+#: frontend/page-place-ad.php:1417
 msgctxt "upload listing images form"
 msgid "Preview Ad"
 msgstr "Previzualizare anunțuri"
 
-#: frontend/page-place-ad.php:1400
+#: frontend/page-place-ad.php:1419
 msgctxt "upload listing images form"
 msgid "Place Ad"
 msgstr "Adauga anunț"
 
-#: frontend/page-place-ad.php:1402
+#: frontend/page-place-ad.php:1421
 msgctxt "upload listing images form"
 msgid "Checkout"
 msgstr "Plătește"
@@ -10818,7 +10819,7 @@ msgctxt "checkout-payment page"
 msgid "Payment Terms"
 msgstr "Termeni de plată"
 
-#: includes/payments-api.php:803
+#: includes/payments-api.php:804
 msgctxt "checkout-payment page"
 msgid "Please use the button below to complete your payment."
 msgstr "Vă rugăm să folosiți butonul de mai jos pentru a completa plata dvs."
@@ -10840,22 +10841,22 @@ msgctxt "credit plans table"
 msgid "clear selection"
 msgstr "șterge selecție"
 
-#: includes/payments-api.php:723
+#: includes/payments-api.php:724
 msgctxt "credit plans table"
 msgid "Plan"
 msgstr "Plan"
 
-#: includes/payments-api.php:724
+#: includes/payments-api.php:725
 msgctxt "credit plans table"
 msgid "Description"
 msgstr "Descriere"
 
-#: includes/payments-api.php:725
+#: includes/payments-api.php:726
 msgctxt "credit plans table"
 msgid "Credits"
 msgstr "Credite"
 
-#: includes/payments-api.php:726
+#: includes/payments-api.php:727
 msgctxt "credit plans table"
 msgid "Price"
 msgstr "Preț"
@@ -10892,12 +10893,12 @@ msgctxt "transaction items"
 msgid "Total Amount"
 msgstr "Total cost"
 
-#: functions.php:746
+#: functions.php:731
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr "%s și %d mai multe."
 
-#: functions.php:1203
+#: functions.php:1188
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr "Website de anunțuri"
@@ -11154,7 +11155,7 @@ msgctxt "listing status"
 msgid "Pending Verification"
 msgstr "Verificare în așteptare"
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:216
+#: includes/admin/listings/class-listings-table-nav-handler.php:209
 msgctxt "category filter placeholder"
 msgid "All categories"
 msgstr "Toate categoriile"
@@ -11471,7 +11472,7 @@ msgid "remaining"
 msgstr "rămase"
 
 #. translators: %s is the type of region.
-#: includes/helpers/widgets/multiple-region-selector.php:170
+#: includes/helpers/widgets/multiple-region-selector.php:122
 msgctxt "Select <Region Type> in Multiple Region Selector"
 msgid "Select %s"
 msgstr "Selectați %s"
@@ -11857,7 +11858,7 @@ msgid "Select existing page {dropdown} -or- {create_page_button}"
 msgstr "Selectați pagina existentă {dropdown}-sau-{create_page_button}"
 
 #. translators: %1$s the success message, %2$s the error message
-#: includes/views/admin/listings/class-listing-action-admin-page.php:25
+#: includes/views/admin/listings/class-listing-action-admin-page.php:22
 #, fuzzy
 msgctxt "Listing bulk operations: <message-ok> and <message-error>."
 msgid "%1$s and %2$s."
@@ -12317,6 +12318,9 @@ msgstr ""
 "Când sunteți de acord să vedeți listări sau să publicați o listare pe o "
 "categorie restrânsă, un cookie va fi stocat în browser pentru a vă aminti "
 "decizia. Modulul cookie va fi stocat în browserul tău pentru restul sesiunii."
+
+#~ msgid "AWPCP"
+#~ msgstr "AWPCP"
 
 #~ msgid "Update category"
 #~ msgstr "Actualizează categoria"

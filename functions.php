@@ -1196,7 +1196,7 @@ function awpcp_get_blog_name($decode_html=true) {
 }
 
 /**
- * @since x.x
+ * @since 4.3
  *
  * @param array $args - Includes 'param' and 'sanitize'.
  *
@@ -1226,7 +1226,7 @@ function awpcp_get_var( $args, $type = 'request' ) {
 }
 
 /**
- * @since x.x
+ * @since 4.3
  *
  * @param string $sanitize
  * @param array|string $value
@@ -1248,7 +1248,7 @@ function awpcp_sanitize_value( $sanitize, &$value ) {
 /**
  * Use awpcp_get_var().
  *
- * @deprecated x.x
+ * @deprecated 4.3
  */
 function awpcp_post_param($name, $default='') {
 	return awpcp_array_data($name, $default, $_POST);
@@ -1257,7 +1257,7 @@ function awpcp_post_param($name, $default='') {
 /**
  * Use awpcp_get_var().
  *
- * @deprecated x.x
+ * @deprecated 4.3
  */
 function awpcp_request_param($name, $default='', $from=null) {
 	return awpcp_array_data($name, $default, is_null($from) ? $_REQUEST : $from);
