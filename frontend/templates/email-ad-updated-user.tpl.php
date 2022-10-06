@@ -18,4 +18,5 @@
 <?php printf( __( 'If you have questions about your listing contact %s. Thank you for your business.', 'another-wordpress-classifieds-plugin' ), $admin_email ); ?>
 
 <?php echo awpcp_get_blog_name() ?>
+
 <?php echo home_url(); ?>
