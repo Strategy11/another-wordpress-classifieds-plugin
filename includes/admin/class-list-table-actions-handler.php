@@ -19,28 +19,21 @@ class AWPCP_ListTableActionsHandler {
     private $posts_finder;
 
     /**
-     * @var object
-     */
-    private $request;
-
-    /**
      * @param array  $actions       A list of actions handlers.
      * @param object $posts_finder  An instance of Listings Collection.
-     * @param object $request       An instane of Request.
      * @since 4.0.0
      */
-    public function __construct( $actions, $posts_finder, $request ) {
+    public function __construct( $actions, $posts_finder ) {
         $this->actions      = $actions;
         $this->posts_finder = $posts_finder;
-        $this->request      = $request;
     }
 
     /**
      * @since 4.0.0
      */
     public function admin_head() {
-        $action = $this->request->param( 'awpcp-action' );
-        $result = $this->request->param( 'awpcp-result' );
+        $action = awpcp_get_var( array( 'param' => 'awpcp-action' ) );
+        $result = awpcp_get_var( array( 'param' => 'awpcp-result' ) );
 
         /*
         Adds Add new ad button in admin user panel for normal users but redirects to the front end place ad page,
@@ -167,7 +160,7 @@ script;
      * @since 4.0.0
      */
     public function handle_action( $sendback, $action, $posts_ids ) {
-        $redirect_to = $this->request->param( 'redirect_to' );
+        $redirect_to = awpcp_get_var( array( 'param' => 'redirect_to' ) );
 
         if ( $redirect_to ) {
             $sendback = $redirect_to;

@@ -9,7 +9,7 @@
 function awpcp_listing_renderer() {
     return new AWPCP_ListingRenderer(
         awpcp_categories_collection(),
-        awpcp_basic_regions_api(),
+        '',
         awpcp_payments_api(),
         awpcp_wordpress()
     );
@@ -26,9 +26,9 @@ class AWPCP_ListingRenderer {
     private $payments;
     private $wordpress;
 
-    public function __construct( $categories, $regions, $payments, $wordpress ) {
+    public function __construct( $categories, $null, $payments, $wordpress ) {
         $this->categories = $categories;
-        $this->regions = $regions;
+        $this->regions    = awpcp_basic_regions_api();
         $this->payments = $payments;
         $this->wordpress = $wordpress;
     }

@@ -21,7 +21,10 @@ class AWPCP_Add_Credit_Plan_Action_Handler implements AWPCP_Table_Entry_Action_H
     }
 
     public function process_entry_action( $ajax_handler ) {
-        $plan = new AWPCP_CreditPlan( $_POST );
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+        $posted = $_POST;
+        awpcp_sanitize_value( 'sanitize_textarea_field', $posted );
+        $plan   = new AWPCP_CreditPlan( $posted );
 
         if ( $this->request->post( 'save' ) ) {
             $this->save_new_credit_plan( $plan, $ajax_handler );

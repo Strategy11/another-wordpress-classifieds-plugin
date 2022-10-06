@@ -38,8 +38,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['ListingsTableActionsHandler'] = $container->service( function( $container ) {
             return new AWPCP_ListTableActionsHandler(
                 $container['ListingsTableActions'],
-                awpcp_listings_collection(),
-                awpcp_request()
+                awpcp_listings_collection()
             );
         } );
 
@@ -49,8 +48,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['ListingsTableViewsHandler'] = $container->service( function( $container ) {
             return new AWPCP_ListTableViewsHandler(
-                $container['ListingsTableViews'],
-                awpcp_request()
+                $container['ListingsTableViews']
             );
         } );
 
@@ -183,8 +181,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 $container['ListingsCollection'],
                 $container['Payments'],
                 $container['TemplateRenderer'],
-                $container['WordPress'],
-                $container['Request']
+                $container['WordPress']
             );
         } );
 
@@ -254,16 +251,14 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['ListingsTableNavHandler'] = $container->service( function( $container ) {
             return new AWPCP_ListingsTableNavHandler(
-                $container['HTMLRenderer'],
-                $container['Request']
+                $container['HTMLRenderer']
             );
         } );
 
         $container['ListingsTableSearchHandler'] = $container->service( function( $container ) {
             return new AWPCP_ListTableSearchHandler(
                 $container['ListingsTableSearchModes'],
-                $container['HTMLRenderer'],
-                $container['Request']
+                $container['HTMLRenderer']
             );
         } );
 
@@ -366,9 +361,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $this->register_importer_objects( $container );
 	    $container['ExportListingsAdminPage'] = $container->service( function( $container ) {
-		    return new AWPCP_ExportListingsAdminPage(
-			    awpcp_request()
-		    );
+		    return new AWPCP_ExportListingsAdminPage();
 	    } );
         $this->register_tools_objects( $container );
     }
@@ -395,8 +388,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
                 awpcp_csv_importer_factory(),
                 $container['ImporterFormStepsComponent'],
                 awpcp()->js,
-                $container['Settings'],
-                $container['Request']
+                $container['Settings']
             );
         } );
 

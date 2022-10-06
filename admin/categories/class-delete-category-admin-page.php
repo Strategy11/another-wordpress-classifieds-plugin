@@ -13,8 +13,7 @@ function awpcp_delete_category_admin_page() {
         awpcp_categories_logic(),
         awpcp_categories_collection(),
         awpcp_template_renderer(),
-        awpcp_router(),
-        awpcp_request()
+        awpcp_router()
     );
 }
 
@@ -24,19 +23,17 @@ class AWPCP_Delete_Category_Admin_Page {
     private $categories;
     private $template_renderer;
     private $router;
-    private $request;
 
-    public function __construct( $categories_logic, $categories, $template_renderer, $router, $request ) {
+    public function __construct( $categories_logic, $categories, $template_renderer, $router ) {
         $this->categories_logic  = $categories_logic;
         $this->categories        = $categories;
         $this->template_renderer = $template_renderer;
         $this->router            = $router;
-        $this->request           = $request;
     }
 
     public function dispatch() {
-        $category_id         = $this->request->param( 'cat_ID' );
-        $operation_confirmed = $this->request->post( 'awpcp-confirm-delete-category' );
+        $category_id         = awpcp_get_var( array( 'param' => 'cat_ID' ) );
+        $operation_confirmed = awpcp_get_var( array( 'param' => 'awpcp-confirm-delete-category' ), 'post' );
 
         try {
             $category = $this->categories->get( $category_id );
@@ -64,7 +61,7 @@ class AWPCP_Delete_Category_Admin_Page {
     }
 
     private function try_to_delete_category( $category ) {
-        $target_category_id   = $this->request->post( 'target_category_id' );
+        $target_category_id   = awpcp_get_var( array( 'param' => 'target_category_id' ), 'post' );
         $should_move_listings = ads_exist_cat( $category->term_id );
 
         try {
@@ -114,8 +111,8 @@ class AWPCP_Delete_Category_Admin_Page {
             ),
             'form_submit'           => __( 'Delete category', 'another-wordpress-classifieds-plugin' ),
             'form_cancel'           => __( 'Cancel', 'another-wordpress-classifieds-plugin' ),
-            'offset'                => (int) $this->request->param( 'offset' ),
-            'results'               => max( (int) $this->request->param( 'results', 10 ), 1 ),
+            'offset'                => (int) awpcp_get_var( array( 'param' => 'offset' ) ),
+            'results'               => max( (int) awpcp_get_var( array( 'param' => 'results', 'default' => 10 ) ), 1 ),
         );
 
         return $this->template_renderer->render_template( $template, $params );

@@ -8,7 +8,7 @@ class AWPCP_TestPaymentTransactionHelper extends AWPCP_UnitTestCase {
         $request = Phake::mock( 'AWPCP_Request' );
         Phake::when( $request )->param( 'transaction_id' )->thenReturn( false );
 
-        $helper = new AWPCP_PaymentTransactionHelper( array(), $request );
+        $helper = new AWPCP_PaymentTransactionHelper( array() );
         $transaction = $helper->get_or_create_transaction();
 
         $this->assertGreaterThan( 0, $transaction->user_id );

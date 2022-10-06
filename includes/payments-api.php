@@ -321,7 +321,7 @@ class AWPCP_PaymentsAPI {
         }
 
         if ( is_null( $this->current_transaction ) ) {
-            $transaction_id = $this->request->param( 'transaction_id' );
+            $transaction_id = awpcp_get_var( array( 'param' => 'transaction_id' ) );
             $this->current_transaction = call_user_func( array( 'AWPCP_Payment_Transaction', $method_name ), $transaction_id );
         }
 
@@ -409,7 +409,8 @@ class AWPCP_PaymentsAPI {
             return;
 
         // grab Credit Plan information
-        $plan = $this->get_credit_plan(awpcp_post_param('credit_plan', 0));
+        $plan = awpcp_get_var( array( 'param' => 'credit_plan', 'default' => 0 ), 'post' );
+        $plan = $this->get_credit_plan( $plan );
 
         if (!is_null($plan)) {
             $transaction->set('credit-plan', $plan->id);
@@ -425,7 +426,8 @@ class AWPCP_PaymentsAPI {
     }
 
     public function set_transaction_payment_method($transaction) {
-        $payment_method = $this->get_payment_method(awpcp_post_param('payment_method', ''));
+        $payment_method = awpcp_get_var( array( 'param' => 'payment_method' ), 'post' );
+        $payment_method = $this->get_payment_method( $payment_method );
 
         if ( !is_null( $payment_method ) ) {
             $transaction->set('payment-method', $payment_method->slug);
@@ -561,8 +563,7 @@ class AWPCP_PaymentsAPI {
     }
 
     public function process_payment() {
-        $transaction_id = awpcp_request_param( 'transaction_id', false );
-
+        $transaction_id = awpcp_get_var( array( 'param' => 'transaction_id' ) );
         if ( empty( $transaction_id ) ) {
             return;
         }
@@ -784,7 +785,7 @@ class AWPCP_PaymentsAPI {
 
     public function render_checkout_page($transaction, $hidden=array()) {
         $payment_method = $this->get_transaction_payment_method($transaction);
-        $attempts = awpcp_post_param('attempts', 0);
+        $attempts = awpcp_get_var( array( 'param' => 'attempts', 'default' => 0 ), 'post' );
 
         $result = awpcp_array_data($transaction->id, array(), $this->cache);
         $html   = '';

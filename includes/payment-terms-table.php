@@ -12,7 +12,7 @@ class AWPCP_PaymentTermsTable {
             $this->items = array_merge($this->items, $terms);
         }
 
-        $selected = awpcp_post_param('payment_term', $default);
+        $selected = awpcp_get_var( array( 'param' => 'payment_term', 'default' => $default ), 'post' );
 
         if ($selected) {
             $this->selected = $selected;

@@ -19,20 +19,13 @@ class AWPCP_FormFieldsData {
     private $listing_renderer;
 
     /**
-     * @var object
-     */
-    private $request;
-
-    /**
      * @param object $authorization     An instance of Listing Authorization.
      * @param object $listing_renderer  An instance of Listing Renderer.
-     * @param object $request           An instance of Request.
      * @since 4.0.0
      */
-    public function __construct( $authorization, $listing_renderer, $request ) {
+    public function __construct( $authorization, $listing_renderer ) {
         $this->authorization    = $authorization;
         $this->listing_renderer = $listing_renderer;
-        $this->request          = $request;
     }
 
     /**
@@ -94,36 +87,39 @@ class AWPCP_FormFieldsData {
      */
     public function get_posted_data( $post ) {
         $data = [
-            'ID'               => $this->request->param( 'ad_id' ),
+            'ID'               => awpcp_get_var( array( 'param' => 'ad_id' ) ),
             'post_fields'      => [
-                'post_title'   => str_replace(
-                    [ "\r", "\n" ],
-                    '',
-                    awpcp_strip_all_tags_deep( $this->request->param( 'ad_title' ) )
-                ),
+                'post_title'   => awpcp_strip_all_tags_deep( awpcp_get_var( array( 'param' => 'ad_title' ) ) ),
                 'post_content' => str_replace(
                     "\r",
                     '',
-                    $this->request->param( 'ad_details' )
+                    awpcp_get_var(
+                        array( 'param' => 'ad_details', 'sanitize' => 'sanitize_textarea_field' )
+                    )
                 ),
             ],
             'metadata'         => [
-                '_awpcp_start_date'    => $this->request->param( 'start_date', null ),
-                '_awpcp_end_date'      => $this->request->param( 'end_date', null ),
-                '_awpcp_contact_name'  => $this->request->param( 'ad_contact_name' ),
-                '_awpcp_contact_phone' => $this->request->param( 'ad_contact_phone' ),
-                '_awpcp_contact_email' => $this->request->param( 'ad_contact_email' ),
+                '_awpcp_start_date'    => awpcp_get_var( array( 'param' => 'start_date', 'default' => null ) ),
+                '_awpcp_end_date'      => awpcp_get_var( array( 'param' => 'end_date', 'default' => null ) ),
+                '_awpcp_contact_name'  => awpcp_get_var( array( 'param' => 'ad_contact_name' ) ),
+                '_awpcp_contact_phone' => awpcp_get_var( array( 'param' => 'ad_contact_phone' ) ),
+                '_awpcp_contact_email' => awpcp_get_var( array( 'param' => 'ad_contact_email' ) ),
                 '_awpcp_website_url'   => awpcp_maybe_add_http_to_url(
-                    $this->request->param( 'websiteurl' )
+                    awpcp_get_var( array( 'param' => 'websiteurl' ) )
                 ),
                 // Parse the value provided by the user and convert it to a float value.
                 '_awpcp_price'         => 100 * awpcp_parse_money(
-                    $this->request->param( 'ad_item_price' )
+                    awpcp_get_var( array( 'param' => 'ad_item_price' ) )
                 ),
             ],
             'categories'       => [],
-            'regions'          => $this->request->param( 'regions', [] ),
-            'terms_of_service' => $this->request->param( 'terms_of_service' ),
+            'regions'          => awpcp_get_var( array( 'param' => 'regions', 'default' => array() ) ),
+            'terms_of_service' => awpcp_get_var(
+                array(
+                    'param'    => 'terms_of_service',
+                    'sanitize' => 'sanitize_textarea_field',
+                )
+            ),
         ];
 
         if ( ! empty( $data['metadata']['_awpcp_contact_phone'] ) ) {

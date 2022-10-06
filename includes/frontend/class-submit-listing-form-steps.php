@@ -19,17 +19,11 @@ class AWPCP_SubmitListingFormSteps implements AWPCP_FormSteps {
     private $settings;
 
     /**
-     * @var Request
-     */
-    private $request;
-
-    /**
      * @since 4.0.0
      */
-    public function __construct( $payments, $settings, $request ) {
+    public function __construct( $payments, $settings ) {
         $this->payments = $payments;
         $this->settings = $settings;
-        $this->request  = $request;
     }
 
     /**
@@ -81,6 +75,6 @@ class AWPCP_SubmitListingFormSteps implements AWPCP_FormSteps {
             return $transaction->get( 'user-just-logged-in', false );
         }
 
-        return $this->request->param( 'loggedin', false );
+        return awpcp_get_var( array( 'param' => 'loggedin', 'default' => false ) );
     }
 }

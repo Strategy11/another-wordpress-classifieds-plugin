@@ -1599,9 +1599,8 @@ class AWPCP {
                 $this->container['ListingRenderer'],
                 $this->container['ListingsLogic'],
                 $this->container['AttachmentsCollection'],
-                awpcp_basic_regions_api(),
-                $this->get_data_formatter(),
-                $GLOBALS['wpdb']
+                '',
+                $this->get_data_formatter()
             );
         }
 
@@ -1764,28 +1763,12 @@ class AWPCP {
      * @since 3.0.2
      */
     public function get_regions_options() {
-        $type = awpcp_request_param( 'type', '', $_GET );
-        $parent_type = awpcp_request_param( 'parent_type', '', $_GET );
-        $parent = stripslashes( awpcp_request_param( 'parent', '', $_GET ) );
-        $context = awpcp_request_param( 'context', '', $_GET );
+        $type        = awpcp_get_var( array( 'param' => 'type' ),'get' );
+        $parent_type = awpcp_get_var( array( 'param' => 'parent_type' ),'get' );
+        $parent      = awpcp_get_var( array( 'param' => 'parent' ),'get' );
+        $context     = awpcp_get_var( array( 'param' => 'context' ),'get' );
 
         $options = apply_filters( 'awpcp-get-regions-options', false, $type, $parent_type, $parent, $context );
-
-        if ( $options === false ) {
-            $options = array();
-
-            if ( $context === 'search' && get_awpcp_option( 'buildsearchdropdownlists' ) ) {
-                $regions = awpcp_basic_regions_api()->find_by_parent_name( $parent, $parent_type, $type );
-            } else {
-                $regions = array();
-            }
-
-            $regions = array_filter( $regions, 'strlen' );
-
-            foreach ( $regions as $key => $option ) {
-                $options[] = array( 'id' => $option, 'name' => $option );
-            }
-        }
 
         $response = array( 'status' => 'ok', 'options' => $options );
 

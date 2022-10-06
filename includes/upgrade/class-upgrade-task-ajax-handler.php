@@ -10,18 +10,15 @@ class AWPCP_Upgrade_Task_Ajax_Handler extends AWPCP_AjaxHandler {
      */
     private $task_controller;
 
-    private $request;
-
-    public function __construct( $task_controller, $request, $response ) {
+    public function __construct( $task_controller, $null, $response ) {
         parent::__construct( $response );
 
         $this->task_controller = $task_controller;
-        $this->request         = $request;
     }
 
     public function ajax() {
-        $task_slug = $this->request->param( 'action' );
-        $context   = $this->request->param( 'context' );
+        $task_slug = awpcp_get_var( array( 'param' => 'action' ) );
+        $context   = awpcp_get_var( array( 'param' => 'context' ) );
 
         try {
             list( $records_count, $records_left ) = $this->task_controller->run_task( $task_slug, $context );

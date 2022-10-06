@@ -14,18 +14,11 @@ class AWPCP_ListTableViewsHandler {
     private $views;
 
     /**
-     * @var object
-     */
-    private $request;
-
-    /**
      * @param array $views      A list of views handlers.
-     * @param array $request    An instance of Request.
      * @since 4.0.0
      */
-    public function __construct( $views, $request ) {
+    public function __construct( $views ) {
         $this->views   = $views;
-        $this->request = $request;
     }
 
     /**
@@ -50,7 +43,7 @@ class AWPCP_ListTableViewsHandler {
      * @since 4.0.0
      */
     private function get_current_view() {
-        return $this->request->param( 'awpcp_filter', false );
+        return awpcp_get_var( array( 'param' => 'awpcp_filter', 'default' => false ) );
     }
 
     /**
@@ -66,7 +59,8 @@ class AWPCP_ListTableViewsHandler {
         do_action( 'awpcp_before_admin_listings_views' );
 
         $current_view = $this->get_current_view();
-        $current_url  = add_query_arg( 'post_type', $this->request->param( 'post_type' ), admin_url( 'edit.php' ) );
+        $post_type    = awpcp_get_var( array( 'param' => 'post_type' ) );
+        $current_url  = add_query_arg( 'post_type', $post_type, admin_url( 'edit.php' ) );
 
         foreach ( $this->views as $name => $view ) {
             $count = $view->get_count();

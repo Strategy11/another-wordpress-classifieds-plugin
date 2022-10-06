@@ -97,55 +97,7 @@ class AWPCP_MultipleRegionSelector {
 
     private function get_region_field_options( $context, $type, $selected, $hierarchy ) {
         $options = apply_filters( 'awpcp-region-field-options', false, $context, $type, $selected, $hierarchy );
-
-        if ( false !== $options ) {
-            return $options;
-        }
-
-        if ( $context === 'search' && $this->options['showExistingRegionsOnly'] ) {
-            $options = $this->get_existing_regions_of_type( $type, $hierarchy );
-        } else {
-            $options = array();
-        }
-
-        $filtered_options = array();
-
-        foreach ( $options as $key => $option ) {
-            if ( strlen( $option ) > 0 ) {
-                $filtered_options[] = array(
-                    'id'   => $option,
-                    'name' => $option,
-                );
-            }
-        }
-
-        return $filtered_options;
-    }
-
-    private function get_existing_regions_of_type( $type, $hierarchy ) {
-        $parent_type = $this->get_parent_region_type( $type );
-        $parent      = awpcp_array_data( $parent_type, null, $hierarchy );
-
-        $api = awpcp_basic_regions_api();
-
-        if ( ! is_null( $parent ) ) {
-            $regions = $api->find_by_parent_name( $parent, $parent_type, $type );
-        } else {
-            $regions = $api->find_by_type( $type );
-        }
-
-        return $regions;
-    }
-
-    private function get_parent_region_type( $type ) {
-        $parent_types = array(
-            'country' => null,
-            'state'   => 'country',
-            'city'    => 'state',
-            'county'  => 'city',
-        );
-
-        return awpcp_array_data( $type, null, $parent_types );
+        return $options;
     }
 
     /**

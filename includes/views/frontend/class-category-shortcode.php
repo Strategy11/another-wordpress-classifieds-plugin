@@ -9,9 +9,7 @@
 function awpcp_category_shortcode() {
     return new AWPCP_CategoryShortcode(
         awpcp_categories_renderer_factory(),
-        awpcp_categories_collection(),
-        $GLOBALS['wpdb'],
-        awpcp_request()
+        awpcp_categories_collection()
     );
 }
 
@@ -20,13 +18,11 @@ class AWPCP_CategoryShortcode {
     private $categories_renderer_factory;
     private $categories;
     private $db;
-    private $request;
 
-    public function __construct( $categories_renderer_factory, $categories, $db, $request ) {
+    public function __construct( $categories_renderer_factory, $categories ) {
         $this->categories_renderer_factory = $categories_renderer_factory;
         $this->categories                  = $categories;
-        $this->db                          = $db;
-        $this->request                     = $request;
+        $this->db                          = $GLOBALS['wpdb'];
     }
 
     public function render( $attrs ) {
@@ -102,7 +98,7 @@ class AWPCP_CategoryShortcode {
             'orderby'           => get_awpcp_option( 'groupbrowseadsby' ),
         ];
 
-        $posts_per_page = $this->request->param( 'results' );
+        $posts_per_page = awpcp_get_var( array( 'param' => 'results' ) );
 
         if ( $posts_per_page ) {
             $query['posts_per_page'] = $posts_per_page;

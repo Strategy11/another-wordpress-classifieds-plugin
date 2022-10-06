@@ -16,14 +16,20 @@ class AWPCP_FeesTable extends WP_List_Table {
     private function parse_query() {
         $user = wp_get_current_user();
         $ipp = (int) get_user_meta($user->ID, 'fees-items-per-page', true);
-        $this->items_per_page = awpcp_request_param('items-per-page', $ipp === 0 ? 10 : $ipp);
+
+        $this->items_per_page = awpcp_get_var(
+            array(
+                'param' => 'items-per-page',
+                'default' => $ipp === 0 ? 10 : $ipp,
+            )
+        );
         update_user_meta($user->ID, 'fees-items-per-page', $this->items_per_page);
 
-        $params = shortcode_atts(array(
-            'orderby' => '',
-            'order' => 'desc',
-            'paged' => 1,
-        ), $_REQUEST);
+        $params = array(
+            'orderby' => awpcp_get_var( array( 'param' => 'orderby' ) ),
+            'order'   => awpcp_get_var( array( 'param' => 'order', 'default' => 'desc' ) ),
+            'paged'   => awpcp_get_var( array( 'param' => 'paged', 'default' => 1 ) ),
+        );
 
         $params['order'] = strcasecmp($params['order'], 'DESC') === 0 ? 'DESC' : 'ASC';
         $params['pages'] = (int) $params['paged'];

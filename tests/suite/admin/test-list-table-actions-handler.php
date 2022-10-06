@@ -50,7 +50,7 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
 
         $_SERVER['REQUEST_URI'] = $return_uri;
 
-        $actions_handler = new AWPCP_ListTableActionsHandler( $actions, null, $request );
+        $actions_handler = new AWPCP_ListTableActionsHandler( $actions, null );
 
         // Execution.
         ob_start();
@@ -89,7 +89,7 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
             'custom-action' => $action_handler,
         );
 
-        $table_actions = new AWPCP_ListTableActionsHandler( $actions, null, null );
+        $table_actions = new AWPCP_ListTableActionsHandler( $actions, null );
 
         $actions = $table_actions->row_actions_links( array(), $post );
 
@@ -139,8 +139,7 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
 
         $actions_handler = new AWPCP_ListTableActionsHandler(
             $actions,
-            $listings_collection,
-            $request
+            $listings_collection
         );
 
         // Execution.

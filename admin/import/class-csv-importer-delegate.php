@@ -397,7 +397,7 @@ class AWPCP_CSV_Importer_Delegate {
             $this->import_session->get_param( 'time_separator' )
         );
 
-        if ( empty( $parsed_value ) && ! empty( $default_date ) ) {
+        if ( empty( $parsed_value ) ) {
             $message = $error_messages['invalid-default-date'];
             throw new AWPCP_CSV_Importer_Exception( $message );
         }

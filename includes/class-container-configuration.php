@@ -38,8 +38,7 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
                 awpcp_upgrade_tasks_manager(),
                 awpcp_licenses_manager(),
                 awpcp_modules_updater(),
-                $container['LicensesSettings'],
-                $container['Request']
+                $container['LicensesSettings']
             );
         } );
 
@@ -106,8 +105,7 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
         $container['FormFieldsData'] = $container->service( function( $container ) {
             return new AWPCP_FormFieldsData(
                 $container['ListingAuthorization'],
-                $container['ListingRenderer'],
-                $container['Request']
+                $container['ListingRenderer']
             );
         } );
 

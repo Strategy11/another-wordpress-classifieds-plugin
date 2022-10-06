@@ -48,7 +48,12 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
     }
 
     public function get_current_action($default='contact') {
-        return awpcp_request_param('a', $default);
+        return awpcp_get_var(
+            array(
+                'param'   => 'a',
+                'default' => $default,
+            )
+        );
     }
 
     public function get_ad() {
@@ -109,10 +114,18 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
     }
 
     protected function get_posted_data() {
+        $name    = awpcp_get_var( array( 'param' => 'awpcp_sender_name' ) );
+        $email   = awpcp_get_var( array( 'param' => 'awpcp_sender_email' ) );
+        $message = awpcp_get_var(
+            array(
+                'param'    => 'awpcp_contact_message',
+                'sanitize' => 'sanitize_textarea_field',
+            )
+        );
         $posted_data = array(
-            'awpcp_sender_name' => awpcp_request_param('awpcp_sender_name'),
-            'awpcp_sender_email' => awpcp_request_param('awpcp_sender_email'),
-            'awpcp_contact_message' => awpcp_request_param('awpcp_contact_message'),
+            'awpcp_sender_name'     => $name,
+            'awpcp_sender_email'    => $email,
+            'awpcp_contact_message' => $message,
         );
 
         if ( is_user_logged_in() ) {

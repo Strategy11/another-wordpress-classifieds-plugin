@@ -14,7 +14,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
 
     public function get_transaction( $create = true ) {
         if ( ! isset( $this->transaction ) ) {
-            $id = $this->request->param( 'transaction_id' );
+            $id = awpcp_get_var( array( 'param' => 'transaction_id' ) );
 
             if ( $create === true  ) {
                 $this->transaction = AWPCP_Payment_Transaction::find_or_create( $id );

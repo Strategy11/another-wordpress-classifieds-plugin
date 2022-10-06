@@ -46,7 +46,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     /**
      * @since 4.0.0
      */
-    public function __construct( $sections_generator, $listing_renderer, $listings_logic, $listings, $authorization, $payments, $settings, $request ) {
+    public function __construct( $sections_generator, $listing_renderer, $listings_logic, $listings, $authorization, $payments, $settings ) {
         parent::__construct( null, null, awpcp()->container['TemplateRenderer'] );
 
         $this->sections_generator = $sections_generator;
@@ -56,7 +56,6 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         $this->authorization      = $authorization;
         $this->payments           = $payments;
         $this->settings           = $settings;
-        $this->request            = $request;
     }
 
     /**
@@ -128,7 +127,8 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
      * @since 4.0.0
      */
     private function get_current_step() {
-        return $this->request->post( 'step', $this->request->param( 'step' ) );
+        $step = awpcp_get_var( array( 'param' => 'step' ) );
+        return awpcp_get_var( array( 'param' => 'step', 'default' => $step ), 'post' );
     }
 
     /**
@@ -150,7 +150,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     private function get_listing() {
         if ( false === $this->listing ) {
             $transaction = $this->get_transaction();
-            $listing_id  = $this->request->param( 'listing_id' );
+            $listing_id  = awpcp_get_var( array( 'param' => 'listing_id' ) );
 
             if ( ! $listing_id && $transaction ) {
                 $listing_id = $transaction->get( 'ad-id' );
@@ -210,7 +210,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
 
         $this->verify_payment_transaction_was_successful( $transaction );
 
-        $listing_id = $this->request->param( 'listing_id' );
+        $listing_id = awpcp_get_var( array( 'param' => 'listing_id' ) );
         $listing    = null;
 
         if ( ! $listing_id && $transaction ) {

@@ -122,8 +122,15 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
 function awpcp_get_results_per_page( $query_vars = [] ) {
     $pagination_options = get_awpcp_option('pagination-options', 10);
     $pagination_options = (array)$pagination_options;
-    $max_results = max($pagination_options) ? max($pagination_options) : 10;
-    $results_per_page = intval( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) );
+    $max_results        = max($pagination_options) ? max($pagination_options) : 10;
+    $per_page           = awpcp_get_var( array( 'param' => 'adresultsperpage', 'default' => 10 ) );
+    $results_per_page   = awpcp_get_var(
+        array(
+            'param'    => 'results',
+            'default'  => $per_page,
+            'sanitize' => 'intval',
+        )
+    );
     if ($results_per_page > $max_results) {
         $results_per_page = $max_results;
     }
@@ -176,7 +183,13 @@ function awpcp_get_results_offset( $results_per_page, $query_vars = [] ) {
         $results_offset = ( $paged - 1 ) * $results_per_page;
     }
 
-    $results_offset = intval( awpcp_request_param( 'offset', $results_offset ) );
+    $results_offset = awpcp_get_var(
+        array(
+            'param'    => 'offset',
+            'default'  => $results_offset,
+            'sanitize' => 'intval',
+        )
+    );
     $paged          = isset( $query_vars['paged'] ) ? intval( $query_vars['paged'] ) : 0;
 
     if ( $paged > 0 ) {
@@ -269,9 +282,9 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 	$permastruc = get_option('permalink_structure');
 	if (!isset($adid) || empty($adid)) {
 		if (isset($_REQUEST['adid']) && !empty($_REQUEST['adid'])) {
-			$adid = $_REQUEST['adid'];
+			$adid = awpcp_get_var( array( 'param' => 'adid' ) );
 		} elseif (isset($_REQUEST['id']) && !empty($_REQUEST['id'])) {
-			$adid = $_REQUEST['id'];
+			$adid = awpcp_get_var( array( 'param' => 'id' ) );
 		} else if (isset($permastruc) && !empty($permastruc)) {
 			$adid = get_query_var( 'id' );
 		} else {
@@ -317,7 +330,8 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 				return str_replace( '<!--awpcp-single-ad-layout-->', awpcp_print_error( $message ), $output );
 			}
 
-			if ( awpcp_request_param('verified') && $listing_renderer->is_verified( $ad ) ) {
+            $verified = awpcp_get_var( array( 'param' => 'verified' ) );
+			if ( $verified && $listing_renderer->is_verified( $ad ) ) {
 				$messages[] = awpcp_print_message( __( 'Your email address was successfully verified.', 'another-wordpress-classifieds-plugin' ) );
 			}
 
@@ -344,8 +358,16 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 		}
 	} else {
 		$query = array(
-            'posts_per_page' => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
-            'offset' => absint( awpcp_request_param( 'offset', 0 ) ),
+            'posts_per_page' => awpcp_get_var(
+                array(
+                    'param'    => 'results',
+                    'default'  => get_awpcp_option( 'adresultsperpage', 10 ),
+                    'sanitize' => 'absint',
+                )
+            ),
+            'offset'         => awpcp_get_var(
+                array( 'param' => 'offset', 'default' => 0, 'sanitize' => 'absint' )
+            ),
 			'orderby' => get_awpcp_option( 'groupbrowseadsby' ),
 		);
 

@@ -41,37 +41,9 @@ class AWPCP_Search_Widget extends WP_Widget {
             $options,
             __( 'Find ads by Contact Name', 'another-wordpress-classifieds-plugin'),
             'searchname',
-            stripslashes_deep( awpcp_request_param( 'searchname', null ) ),
+            awpcp_get_var( array( 'param' => 'searchname', 'default' => null ) ),
             __( 'All Contact Names', 'another-wordpress-classifieds-plugin' )
         );
-    }
-
-    /**
-     * @since 3.0.2
-     * @deprecated 4.0.13    No longer used.
-     */
-    private function render_region_fields( $instance ) {
-        if ( isset( $_REQUEST['regions'][0] ) ) {
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-            $regions = array( stripslashes_deep( $_REQUEST['regions'][0] ) );
-        } else {
-            $regions = array();
-        }
-
-        $options = array(
-            'showTextField' => false,
-            'showExistingRegionsOnly' => true,
-            'maxRegions' => 1,
-            'enabled_fields' => array(
-                'country' => $instance['show_country'],
-                'state' => $instance['show_state'],
-                'county'  => $instance['show_county'],
-                'city' => $instance['show_city'],
-            ),
-        );
-
-        $selector = awpcp_multiple_region_selector( $regions, $options );
-        echo $selector->render( 'search', array(), array() );
     }
 
 	/**
@@ -126,7 +98,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 
         echo '<input type="hidden" name="awpcp-step" value="dosearch"/>';
 
-		$keywordphrase = stripslashes_deep( awpcp_request_param( 'keywordphrase' ) );
+		$keywordphrase = awpcp_get_var( array( 'param' => 'keywordphrase' ) );
 
 		if ($instance['show_keyword'] == 1) {
             echo '<div class="awpcp-form-field">';
@@ -146,7 +118,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 
 			$label = __( 'Search by Category', 'another-wordpress-classifieds-plugin');
 			$name = 'searchcategory';
-			$selected = stripslashes_deep( awpcp_request_param( $name, null ) );
+			$selected = awpcp_get_var( array( 'param' => $name, 'default' => null ) );
 
             echo '<div class="awpcp-form-field">';
 			echo awpcp_categories_selector()->render( array(

@@ -44,8 +44,7 @@ class AWPCP_Test_Post_Listing_Page extends AWPCP_UnitTestCase {
             $this->listings,
             $this->payments,
             $this->template_renderer,
-            null,
-            $this->request
+            null
         );
         $content = $page->dispatch();
 
@@ -107,8 +106,7 @@ class AWPCP_Test_Post_Listing_Page extends AWPCP_UnitTestCase {
             $this->listings,
             $this->payments,
             $this->template_renderer,
-            $this->wordpress,
-            $this->request
+            $this->wordpress
         );
 
         $content = $page->dispatch();
@@ -154,8 +152,7 @@ class AWPCP_Test_Post_Listing_Page extends AWPCP_UnitTestCase {
             $this->listings,
             $this->payments,
             $this->template_renderer,
-            $this->wordpress,
-            $this->request
+            $this->wordpress
         );
 
         Phake::when( $page )->get_images_config->thenReturn( array( 'images_allowed' => 3 ) );
@@ -192,8 +189,7 @@ class AWPCP_Test_Post_Listing_Page extends AWPCP_UnitTestCase {
             $this->listings,
             $this->payments,
             $this->template_renderer,
-            $this->wordpress,
-            $this->request
+            $this->wordpress
         );
 
         $page->finish_step();
@@ -273,8 +269,7 @@ class AWPCP_Test_Post_Listing_Page extends AWPCP_UnitTestCase {
             null,
             $this->payments,
             $this->template_renderer,
-            null,
-            $this->request
+            null
         );
 
         $transaction->id = rand() + 1;

@@ -116,8 +116,7 @@ function awpcp_listing_form_steps_componponent() {
     return new AWPCP_FormStepsComponent(
         new AWPCP_SubmitListingFormSteps(
             awpcp_payments_api(),
-            awpcp()->settings,
-            awpcp_request()
+            awpcp()->settings
         )
     );
 }

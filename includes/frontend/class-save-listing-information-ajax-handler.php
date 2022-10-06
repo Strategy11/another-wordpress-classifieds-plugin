@@ -39,11 +39,6 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     private $posted_data;
 
     /**
-     * @var Request
-     */
-    private $request;
-
-    /**
      * @since 4.0.0
      */
     public function __construct(
@@ -57,8 +52,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $posted_data,
         $roles,
         $settings,
-        $response,
-        $request
+        $response
     ) {
         parent::__construct( $response );
 
@@ -72,7 +66,6 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $this->posted_data                   = $posted_data;
         $this->roles                         = $roles;
         $this->settings                      = $settings;
-        $this->request                       = $request;
     }
 
     /**
@@ -97,8 +90,8 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
      *                          listing's information.
      */
     private function try_to_save_listing_information() {
-        $listing = $this->listings->get( $this->request->param( 'ad_id' ) );
-        $nonce   = $this->request->post( 'nonce' );
+        $listing = $this->listings->get( awpcp_get_var( array( 'param' => 'ad_id' ) ) );
+        $nonce   = awpcp_get_var( array( 'param' => 'nonce' ), 'post' );
 
         if ( ! wp_verify_nonce( $nonce, "awpcp-save-listing-information-{$listing->ID}" ) ) {
             throw new AWPCP_Exception( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );

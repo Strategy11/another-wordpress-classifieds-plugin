@@ -93,7 +93,7 @@ function awpcp_rel_canonical_url() {
 		return false;
 	}
 
-	$ad_id = intval( awpcp_request_param( 'id', '' ) );
+	$ad_id = intval( awpcp_get_var( array( 'param' => 'id' ) ) );
 	$ad_id = empty( $ad_id ) ? intval( get_query_var( 'id' ) ) : $ad_id;
 
 	if ( empty( $ad_id ) ) {
@@ -138,7 +138,7 @@ function awpcp_redirect_canonical($redirect_url, $requested_url) {
 	$ids = awpcp_get_page_ids_by_ref(awpcp_pages_with_rewrite_rules());
 
 	// do not redirect requests to AWPCP pages with rewrite rules
-	if (is_page() && in_array(awpcp_request_param('page_id', 0), $ids)) {
+	if ( is_page() && in_array( awpcp_get_var( array( 'param' => 'page_id', 'default' => 0 ) ), $ids ) ) {
         $awpcp_rewrite = true;
 
 	// do not redirect requests to the front page, if any of the AWPCP pages
@@ -165,21 +165,6 @@ function awpcp_redirect_canonical($redirect_url, $requested_url) {
 
         return $requested_url;
     }
-
-	// $id = awpcp_get_page_id_by_ref('main-page-name');
-
-	// // do not redirect direct requests to AWPCP main page
-	// if (is_page() && !empty($_GET['page_id']) && $id == $_GET['page_id']) {
-	// 	$redirect_url = $requested_url;
-
-	// // do not redirect request to the front page, if AWPCP main page is
-	// // the front page
-	// } else if (is_page() && !is_feed() && isset($wp_query->queried_object) &&
-	// 		  'page' == get_option('show_on_front') && $id == $wp_query->queried_object->ID &&
-	// 		   $wp_query->queried_object->ID == get_option('page_on_front'))
-	// {
-	// 	$redirect_url = $requested_url;
-	// }
 
 	return $redirect_url;
 }
@@ -1211,14 +1196,68 @@ function awpcp_get_blog_name($decode_html=true) {
 }
 
 /**
- * Use AWPCP_Request::post_param when possible.
+ * @since x.x
+ *
+ * @param array $args - Includes 'param' and 'sanitize'.
+ *
+ * @return array|string|int|float|mixed
+ */
+function awpcp_get_var( $args, $type = 'request' ) {
+    $defaults = array(
+        'sanitize' => 'sanitize_text_field',
+        'default'  => '',
+    );
+    $args     = wp_parse_args( $args, $defaults );
+    $value    = $args['default'];
+    if ( $type === 'get' ) {
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $value = isset( $_GET[ $args['param'] ] ) ? wp_unslash( $_GET[ $args['param'] ] ) : $value;
+    } elseif ( $type === 'post' ) {
+        // phpcs:ignore Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $value = isset( $_POST[ $args['param'] ] ) ? wp_unslash( $_POST[ $args['param'] ] ) : $value;
+    } else {
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        $value = isset( $_REQUEST[ $args['param'] ] ) ? wp_unslash( $_REQUEST[ $args['param'] ] ) : $value;
+    }
+
+    awpcp_sanitize_value( $args['sanitize'], $value );
+
+    return $value;
+}
+
+/**
+ * @since x.x
+ *
+ * @param string $sanitize
+ * @param array|string $value
+ */
+function awpcp_sanitize_value( $sanitize, &$value ) {
+    if ( empty( $sanitize ) ) {
+        return;
+    }
+    if ( is_array( $value ) ) {
+        $temp_values = $value;
+        foreach ( $temp_values as $k => $v ) {
+            awpcp_sanitize_value( $sanitize, $value[ $k ] );
+        }
+    } else {
+        $value = call_user_func( $sanitize, $value );
+    }
+}
+
+/**
+ * Use awpcp_get_var().
+ *
+ * @deprecated x.x
  */
 function awpcp_post_param($name, $default='') {
 	return awpcp_array_data($name, $default, $_POST);
 }
 
 /**
- * Use AWPCP_Request::param when possible.
+ * Use awpcp_get_var().
+ *
+ * @deprecated x.x
  */
 function awpcp_request_param($name, $default='', $from=null) {
 	return awpcp_array_data($name, $default, is_null($from) ? $_REQUEST : $from);

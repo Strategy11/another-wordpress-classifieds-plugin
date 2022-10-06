@@ -107,13 +107,15 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
      * to make sure it works with recent modifications.
      */
     public function transfer() {
-        $fee = AWPCP_Fee::find_by_id( awpcp_request_param( 'id', 0 ) );
+        $id  = awpcp_get_var( array( 'param' => 'id', 'default' => 0 ) );
+        $fee = AWPCP_Fee::find_by_id( $id );
         if ( is_null( $fee ) ) {
             awpcp_flash( __( "The specified Fee doesn't exists.", 'another-wordpress-classifieds-plugin' ), 'error' );
             return $this->index();
         }
 
-        $recipient = AWPCP_Fee::find_by_id( awpcp_request_param( 'payment_term', 0 ) );
+        $recipient = awpcp_get_var( array( 'param' => 'payment_term', 'default' => 0 ) );
+        $recipient = AWPCP_Fee::find_by_id( $recipient );
         if ( is_null( $recipient ) ) {
             awpcp_flash( __( "The selected Fee doesn't exists.", 'another-wordpress-classifieds-plugin' ), 'error' );
             return $this->index();
@@ -151,7 +153,7 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
     }
 
     public function delete() {
-        $id  = awpcp_request_param( 'id', 0 );
+        $id  = awpcp_get_var( array( 'param' => 'id', 'default' => 0 ) );
         $fee = AWPCP_Fee::find_by_id( $id );
 
         if ( is_null( $fee ) ) {

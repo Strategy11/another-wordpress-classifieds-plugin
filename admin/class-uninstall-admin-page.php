@@ -9,8 +9,7 @@
 function awpcp_uninstall_admin_page() {
     return new AWPCP_UninstallAdminPage(
         awpcp()->container['Uninstaller'],
-        awpcp()->container['Settings'],
-        awpcp_request()
+        awpcp()->container['Settings']
     );
 }
 
@@ -25,11 +24,6 @@ class AWPCP_UninstallAdminPage {
     private $uninstaller;
 
     /**
-     * @var object
-     */
-    private $request;
-
-    /**
      * @var Settings
      */
     private $settings;
@@ -37,19 +31,17 @@ class AWPCP_UninstallAdminPage {
     /**
      * @param object $uninstaller   An installer of Uninstaller.
      * @param object $settings      An instance of Settings.
-     * @param object $request       An instance of Request.
      */
-    public function __construct( $uninstaller, $settings, $request ) {
+    public function __construct( $uninstaller, $settings ) {
         $this->uninstaller = $uninstaller;
         $this->settings    = $settings;
-        $this->request     = $request;
     }
 
     /**
      * Renders the page.
      */
     public function dispatch() {
-        $action  = $this->request->param( 'action', 'confirm' );
+        $action  = awpcp_get_var( array( 'param' => 'action', 'default' => 'confirm' ) );
         $url     = awpcp_current_url();
         $dirname = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
 

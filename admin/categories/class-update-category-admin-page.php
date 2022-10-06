@@ -10,8 +10,7 @@ function awpcp_update_category_admin_page() {
     return new AWPCP_Update_Category_Admin_Page(
         awpcp_categories_logic(),
         awpcp_categories_collection(),
-        awpcp_router(),
-        awpcp_request()
+        awpcp_router()
     );
 }
 
@@ -20,13 +19,11 @@ class AWPCP_Update_Category_Admin_Page {
     private $categories_logic;
     private $categories;
     private $router;
-    private $request;
 
-    public function __construct( $categories_logic, $categories, $router, $request ) {
+    public function __construct( $categories_logic, $categories, $router ) {
         $this->categories_logic = $categories_logic;
         $this->categories       = $categories;
         $this->router           = $router;
-        $this->request          = $request;
     }
 
     public function dispatch() {
@@ -47,7 +44,7 @@ class AWPCP_Update_Category_Admin_Page {
     }
 
     private function try_to_update_category() {
-        $category_id = $this->request->param( 'category_id' );
+        $category_id = awpcp_get_var( array( 'param' => 'category_id' ) );
 
         try {
             $category = $this->categories->get( $category_id );
@@ -56,10 +53,10 @@ class AWPCP_Update_Category_Admin_Page {
             throw new AWPCP_Exception( $message );
         }
 
-        $category->name        = wp_unslash( $this->request->param( 'category_name' ) );
-        $category->description = wp_unslash( $this->request->param( 'category_description' ) );
-        $category->parent      = absint( $this->request->param( 'category_parent_id' ) );
-        $category_order        = absint( $this->request->param( 'category_order' ) );
+        $category->name        = awpcp_get_var( array( 'param' => 'category_name' ) );
+        $category->description = awpcp_get_var( array( 'param' => 'category_description', 'sanitize' => 'sanitize_textarea_field' ) );
+        $category->parent      = awpcp_get_var( array( 'param' => 'category_parent_id', 'sanitize' => 'absint' ) );
+        $category_order        = awpcp_get_var( array( 'param' => 'category_order', 'sanitize' => 'absint' ) );
 
         $this->categories_logic->update_category( $category, $category_order );
 

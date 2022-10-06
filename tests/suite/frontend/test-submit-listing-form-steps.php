@@ -36,8 +36,7 @@ class AWPCP_SubmitListingFormStepsTest extends AWPCP_UnitTestCase {
     private function get_test_subject() {
         return new AWPCP_SubmitListingFormSteps(
             $this->payments,
-            $this->settings,
-            $this->request
+            $this->settings
         );
     }
 

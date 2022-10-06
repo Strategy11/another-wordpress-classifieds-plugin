@@ -7,8 +7,7 @@ function awpcp_search_listings_page() {
     return new AWPCP_SearchAdsPage(
         'awpcp-search-ads',
         __( 'Search Ads', 'another-wordpress-classifieds-plugin'),
-        awpcp_template_renderer(),
-        awpcp_request()
+        awpcp_template_renderer()
     );
 }
 
@@ -17,24 +16,20 @@ function awpcp_search_listings_page() {
  */
 class AWPCP_SearchAdsPage extends AWPCP_Page {
 
-    private $request;
-
-    public function __construct( $slug, $title, $template_renderer, $request ) {
+    public function __construct( $slug, $title, $template_renderer ) {
         parent::__construct( $slug, $title, $template_renderer );
 
         $this->classifieds_bar_components = array( 'search_bar' => false );
-
-        $this->request = $request;
     }
 
     public function get_current_action($default='searchads') {
-        $action = awpcp_request_param( 'awpcp-step', null );
+        $action = awpcp_get_var( array( 'param' => 'awpcp-step' ) );
 
         if ( $action ) {
             return $action;
         }
 
-        return awpcp_request_param('a', $default);
+        return awpcp_get_var( array( 'param' => 'a', 'default' => $default ) );
     }
 
     public function url($params=array()) {
@@ -63,21 +58,21 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
 
     protected function get_posted_data() {
         $data = [
-            'query' => $this->request->param('keywordphrase'),
-            'category' => null,
-            'name' => $this->request->param('searchname'),
-            'min_price' => awpcp_parse_money( $this->request->param( 'searchpricemin' ) ),
-            'max_price' => awpcp_parse_money( $this->request->param( 'searchpricemax' ) ),
-            'regions' => $this->request->param('regions'),
+            'query'     => awpcp_get_var( array( 'param' => 'keywordphrase' ) ),
+            'category'  => null,
+            'name'      => awpcp_get_var( array( 'param' => 'searchname' ) ),
+            'min_price' => awpcp_parse_money( awpcp_get_var( array( 'param' => 'searchpricemin' ) ) ),
+            'max_price' => awpcp_parse_money( awpcp_get_var( array( 'param' => 'searchpricemax' ) ) ),
+            'regions'   => awpcp_get_var( array( 'param' => 'regions' ) ),
         ];
 
-        $category = array_filter( array_map( 'intval', (array) $this->request->param( 'searchcategory' ) ) );
+        $category = awpcp_get_var( array( 'param' => 'searchcategory' ) );
+        $category = array_filter( array_map( 'intval', (array) $category ) );
 
         if ( $category ) {
             $data['category'] = $category;
         }
 
-        $data = stripslashes_deep( $data );
         $data = apply_filters( 'awpcp-get-posted-data', $data, 'search', array() );
 
         return $data;
@@ -174,8 +169,14 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
                 'max_price'    => $posted_data['max_price'],
                 'regions'      => $posted_data['regions'],
             ),
-            'posts_per_page'    => absint( awpcp_request_param( 'results', get_awpcp_option( 'adresultsperpage', 10 ) ) ),
-            'offset'            => absint( awpcp_request_param( 'offset', 0 ) ),
+            'posts_per_page'    => awpcp_get_var(
+                array(
+                    'param'    => 'results',
+                    'default'  => get_awpcp_option( 'adresultsperpage', 10 ),
+                    'sanitize' => 'absint',
+                )
+            ),
+            'offset'            => awpcp_get_var( array( 'param' => 'offset', 'default' => 0, 'sanitize' => 'absint' ) ),
             'orderby'           => get_awpcp_option( 'search-results-order' ),
         );
 
@@ -213,7 +214,10 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
     }
 
     public function build_return_link() {
-        $params = array_merge( stripslashes_deep( $_REQUEST ), array( 'awpcp-step' => 'searchads' ) );
+        $params = $_REQUEST; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+        awpcp_sanitize_value( 'sanitize_text_field', $params );
+
+        $params = array_merge( $params, array( 'awpcp-step' => 'searchads' ) );
         $href = add_query_arg(urlencode_deep($params), awpcp_current_url());
 
         $return_link = '<div class="awpcp-return-to-search-link awpcp-clearboth"><a href="<link-url>"><link-text></a></div>';

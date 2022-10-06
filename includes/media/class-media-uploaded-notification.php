@@ -7,8 +7,7 @@ function awpcp_media_uploaded_notification() {
         awpcp_listing_renderer(),
         awpcp_listings_collection(),
         awpcp()->settings,
-        awpcp_wordpress(),
-        awpcp_request()
+        awpcp_wordpress()
     );
 }
 
@@ -20,20 +19,18 @@ class AWPCP_Media_Uploaded_Notification {
     private $listings;
     private $settings;
     private $wordpress;
-    private $request;
 
-    public function __construct( $attachments_properties, $attachments, $listing_renderer, $listings, $settings, $wordpress, $request ) {
+    public function __construct( $attachments_properties, $attachments, $listing_renderer, $listings, $settings, $wordpress ) {
         $this->attachments_properties = $attachments_properties;
         $this->attachments = $attachments;
         $this->listing_renderer = $listing_renderer;
         $this->listings = $listings;
         $this->settings = $settings;
         $this->wordpress = $wordpress;
-        $this->request = $request;
     }
 
     public function maybe_schedule_notification( $file, $listing ) {
-        $context = $this->request->param( 'context' );
+        $context = awpcp_get_var( array( 'param' => 'context' ) );
 
         if ( $context === 'post-listing' && $this->is_listing_posted_notification_enabled() ) {
             return;

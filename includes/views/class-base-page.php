@@ -57,7 +57,8 @@ class AWPCP_BasePage extends AWPCP_Page {
 
     protected function get_current_step_name() {
         if ( ! isset( $this->current_step_name ) ) {
-            $this->current_step_name = $this->request->param( 'step', $this->get_default_step_name() );
+            $step = $this->get_default_step_name();
+            $this->current_step_name = awpcp_get_var( array( 'param' => 'step', 'default' => $step ) );
         }
 
         return $this->current_step_name;

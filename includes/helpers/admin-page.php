@@ -42,7 +42,7 @@ class AWPCP_AdminPageWithTable extends AWPCP_AdminPage {
             $this->action = $this->get_table()->current_action();
 
         if (!$this->action) {
-            $this->action = awpcp_request_param('action', 'index');
+            $this->action = awpcp_get_var( array( 'param' => 'action', 'default' => 'index' ) );
         }
 
         if (!isset($this->params) || empty($this->params)) {

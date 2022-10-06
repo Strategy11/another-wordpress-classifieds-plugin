@@ -90,6 +90,7 @@ class AWPCP_Request {
      * @param string $name      The name of the GET/POST parameter to get.
      * @param mixed  $default   Value return if the parameter was not sent.
      * @since 3.0.2
+     * @deprecated x.x
      */
     public function param( $name, $default = '' ) {
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
@@ -99,6 +100,7 @@ class AWPCP_Request {
     /**
      * @tested
      * @since 3.0.2
+     * @deprecated 3.2.3
      */
     public function get_param( $name, $default='' ) {
         _deprecated_function( __FUNCTION__, '3.2.3', 'get( $name, $default )' );
@@ -108,6 +110,7 @@ class AWPCP_Request {
     /**
      * @tested
      * @since 3.0.2
+     * @deprecated x.x
      */
     public function get( $name, $default='' ) {
 		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
@@ -117,6 +120,7 @@ class AWPCP_Request {
     /**
      * @tested
      * @since 3.0.2
+     * @deprecated 3.2.3
      */
     public function post_param( $name, $default='' ) {
         _deprecated_function( __FUNCTION__, '3.2.3', 'post( $name, $default )' );
@@ -125,25 +129,29 @@ class AWPCP_Request {
 
     /**
      * @since 3.3
+     * @deprecated x.x
      */
     public function all_request_params() {
+        _deprecated_function( __METHOD__, '4.3' );
         return $_REQUEST;
     }
 
     /**
      * @since 3.5.4
+     * @deprecated x.x
      */
     public function all_post_params() {
+        _deprecated_function( __METHOD__, '4.3' );
         return $_POST;
     }
 
     /**
      * @tested
      * @since 3.0.2
+     * @deprecated x.x
      */
-    public function post( $name, $default='' ) {
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-        return isset( $_POST[ $name ] ) ? $_POST[ $name ] : $default;
+    public function post( $param, $default = '', $sanitize = 'sanitize_text_field' ) {
+        return awpcp_get_var( compact( 'param', 'default', 'sanitize' ), 'post' );
     }
 
     /**

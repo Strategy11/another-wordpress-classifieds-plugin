@@ -18,25 +18,11 @@ class AWPCP_BasicRegionsAPI {
         $this->db = $db;
     }
 
-    // public function find_by_id( $region_id ) {
-    //     $sql = 'SELECT * FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE region_id = %d';
-    //     $row = $this->db->get_row( $this->db->prepare( $sql, $region_id ) );
-
-    //     return false !== $row ? $row : null;
-    // }
-
-    // public function find_by_name( $region_name ) {
-    //     $sql = 'SELECT * FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE region_name = %s';
-    //     $row = $this->db->get_row( $this->db->prepare( $sql, $region_name ) );
-
-    //     return false !== $row ? $row : null;
-    // }
-
     /**
      * TODO: trigger an exception on SQL errors
      */
     public function find_by_type($type) {
-
+        _deprecated_function( __METHOD__, '4.2' );
         // column are named after the type of the reigon
         $sql = 'SELECT DISTINCT `%s` FROM ' . AWPCP_TABLE_AD_REGIONS;
 
@@ -45,33 +31,8 @@ class AWPCP_BasicRegionsAPI {
         return false !== $rows ? $rows : array();
     }
 
-    // public function find_by_parent_type($parent_type, $type) {
-    //     $sql = 'SELECT ' . $type . ' FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id IN ( ';
-    //     $sql.= '    SELECT ad_id FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE region_type = %s';
-    //     $sql.= ')';
-
-    //     $rows = $this->db->get_results( $this->db->prepare( $sql, $type, $parent_type ) );
-
-    //     return false !== $rows ? $rows : array();
-    // }
-
-    // public function find_by_parent($parent_id, $type) {
-    //     if ( is_numeric( $parent_id ) ) {
-    //         return $this->find_by_parent_id( $parent_id, $type );
-    //     } else {
-    //         return $this->find_by_parent_name( $parent_id, $type );
-    //     }
-    // }
-
-    // public function find_by_parent_id($parent_id, $type) {
-    //     $sql = 'SELECT ' . $type . ' FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id IN ( ';
-    //     $sql.= '    SELECT ad_id FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE region_id = %d';
-    //     $sql.= ')';
-
-    //     return $this->db->get_results( $this->db->prepare( $sql, $type, $parent_id ) );
-    // }
-
     public function find_by_parent_name($parent_name, $parent_type, $type) {
+        _deprecated_function( __METHOD__, '4.2' );
         $sql = 'SELECT DISTINCT `%s` FROM ' . AWPCP_TABLE_AD_REGIONS . ' AS r1 INNER JOIN ( ';
         $sql.= '    SELECT id FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE `%s` = %%s';
         $sql.= ') AS r2 ON ( r1.id = r2.id )';

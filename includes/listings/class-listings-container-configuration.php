@@ -72,7 +72,7 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
             function( $container ) {
                 return new AWPCP_ListingRenderer(
                     awpcp_categories_collection(),
-                    awpcp_basic_regions_api(),
+                    '',
                     awpcp_payments_api(),
                     $container['WordPress']
                 );

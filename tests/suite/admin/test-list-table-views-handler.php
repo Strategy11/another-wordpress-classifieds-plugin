@@ -27,8 +27,7 @@ class AWPCP_ListTableViewsHandlerTest extends AWPCP_UnitTestCase {
      */
     private function get_test_subject() {
         return new AWPCP_ListTableViewsHandler(
-            $this->views,
-            $this->request
+            $this->views
         );
     }
 

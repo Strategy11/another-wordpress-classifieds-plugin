@@ -34,14 +34,9 @@ class AWPCP_UpdateListingOrderAjaxHandler extends AWPCP_AjaxHandler {
     private $posted_data;
 
     /**
-     * @var Request
-     */
-    private $request;
-
-    /**
      * @since 4.0.0
      */
-    public function __construct( $listings_logic, $payment_information_validator, $listings, $listings_transactions, $posted_data, $response, $request ) {
+    public function __construct( $listings_logic, $payment_information_validator, $listings, $listings_transactions, $posted_data, $response ) {
         parent::__construct( $response );
 
         $this->listings_logic                = $listings_logic;
@@ -49,7 +44,6 @@ class AWPCP_UpdateListingOrderAjaxHandler extends AWPCP_AjaxHandler {
         $this->listings                      = $listings;
         $this->listings_transactions         = $listings_transactions;
         $this->posted_data                   = $posted_data;
-        $this->request                       = $request;
     }
 
     /**
@@ -69,13 +63,14 @@ class AWPCP_UpdateListingOrderAjaxHandler extends AWPCP_AjaxHandler {
      *                         data or the information submitted is invalid.
      */
     private function process_request() {
-        $nonce = $this->request->post( 'nonce' );
+        $nonce = awpcp_get_var( array( 'param' => 'nonce' ), 'post' );
 
         if ( ! wp_verify_nonce( $nonce, 'awpcp-update-listing-order' ) ) {
             throw new AWPCP_Exception( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        $listing = $this->listings->get( $this->request->param( 'listing_id' ) );
+        $listing_id = awpcp_get_var( array( 'param' => 'listing_id' ) );
+        $listing    = $this->listings->get( $listing_id );
 
         if ( ! $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
             throw new AWPCP_Exception( __( 'The payment information for the specified ad cannot be modified at this time.', 'another-wordpress-classifieds-plugin' ) );
