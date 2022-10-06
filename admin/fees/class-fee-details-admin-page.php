@@ -133,7 +133,7 @@ class AWPCP_Fee_Details_Admin_Page {
     }
 
     /**
-     * @since x.x
+     * @since 4.3
      * @return bool
      */
     private function is_saving() {

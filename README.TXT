@@ -1,11 +1,11 @@
 === WordPress Classifieds Plugin - Ad Directory & Listings by AWP Classifieds ===
 Plugin Name: WordPress Classifieds Plugin - Ad Directory & Listings by AWP Classifieds
-Contributors: awpcp
+Contributors: awpcp, sswells, srwells
 Tags: listings, classified ads, classified, classifieds, directory plugin, classifieds script, classified theme, wp classified, ads
 Requires at least: 4.9
 Requires PHP: 5.6
 Tested up to: 6.0.2
-Stable tag: 4.2.1
+Stable tag: 4.3
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -102,7 +102,7 @@ Looking for other types of directories? Check out [Business Directory Plugin](ht
 
 == Premium Payment Gateways for Paid Listings ==
 
-Want to accept credit cards on your site for paid listings in your classifieds directory? Choose from any of our extra payment processors. 
+Want to accept credit cards on your site for paid listings in your classifieds directory? Choose from any of our extra payment processors.
 
 * [Stripe](https://awpcp.com/downloads/stripe-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - accept payments via Stripe for ads
 * [PayPal Pro]( https://awpcp.com/downloads/paypal-pro-module/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) - allows you to have an embedded payment form on your site for use with PayPal Pro accounts
@@ -166,6 +166,11 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+= 4.3 =
+* Important security update. Sanitizing incoming values.
+* Fix: Show payment error messages weren't showing for logged out users.
+* Fix: A couple email notifications didn't include a space between the site name and url.
+
 = 4.2.1 =
 * New: When viewing a free listing, show "Free" instead of "$0.00"
 * Fix: Permissions issues were preventing the admin menu from showing on some sites.

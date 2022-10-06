@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2022-08-30 20:15:57+00:00\n"
+"POT-Creation-Date: 2022-10-06 21:23:07+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/wp-translations/"
@@ -20,8 +20,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: admin/admin-panel-credit-plans-table.php:73
-#: admin/admin-panel-fees-table.php:112
+#: admin/admin-panel-credit-plans-table.php:79
+#: admin/admin-panel-fees-table.php:118
 #: admin/fees/class-fee-details-form.php:39
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:9
 #: includes/settings/class-payment-general-settings.php:58
@@ -29,22 +29,22 @@ msgstr ""
 msgid "Name"
 msgstr "Név"
 
-#: admin/admin-panel-credit-plans-table.php:74
+#: admin/admin-panel-credit-plans-table.php:80
 #: admin/fees/class-fee-details-form.php:45
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:25
 #: templates/admin/manage-categories-admin-page.tpl.php:33
 msgid "Description"
 msgstr "Leírás"
 
-#: admin/admin-panel-credit-plans-table.php:75
-#: admin/admin-panel-fees-table.php:115
+#: admin/admin-panel-credit-plans-table.php:81
+#: admin/admin-panel-fees-table.php:121
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:14
 #: includes/settings/class-payment-general-settings.php:268
 msgid "Credits"
 msgstr "Kreditek"
 
-#: admin/admin-panel-credit-plans-table.php:76
-#: admin/admin-panel-fees-table.php:114
+#: admin/admin-panel-credit-plans-table.php:82
+#: admin/admin-panel-fees-table.php:120
 #: admin/fees/class-fee-details-form.php:222
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:19
 #: frontend/placeholders.php:510
@@ -53,53 +53,53 @@ msgstr "Kreditek"
 msgid "Price"
 msgstr "Ár"
 
-#: admin/admin-panel-fees-table.php:113
+#: admin/admin-panel-fees-table.php:119
 msgid "Attributes"
 msgstr "Tulajdonságok"
 
-#: admin/admin-panel-fees-table.php:118 admin/admin-panel.php:154
+#: admin/admin-panel-fees-table.php:124 admin/admin-panel.php:147
 msgid "Categories"
 msgstr "Kategóriák"
 
-#: admin/admin-panel-fees-table.php:121 includes/class-awpcp.php:819
+#: admin/admin-panel-fees-table.php:127 includes/class-awpcp.php:819
 msgid "Featured Ads"
 msgstr "Kiemelt Hirdetések"
 
-#: admin/admin-panel-fees-table.php:123
+#: admin/admin-panel-fees-table.php:129
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:106
 msgid "Private"
 msgstr "Privát"
 
-#: admin/admin-panel-fees-table.php:186
+#: admin/admin-panel-fees-table.php:192
 msgid "<duration-amount> <duration-interval>"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:190
+#: admin/admin-panel-fees-table.php:196
 msgid "Duration: <payment-term-duration>"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:200
+#: admin/admin-panel-fees-table.php:206
 msgid "# of images: <number-of-images-allowed>"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:213 admin/admin-panel-fees-table.php:229
+#: admin/admin-panel-fees-table.php:219 admin/admin-panel-fees-table.php:235
 msgid "unlimited"
 msgstr "korlátlan"
 
-#: admin/admin-panel-fees-table.php:216
+#: admin/admin-panel-fees-table.php:222
 msgid "Chars in title: <characters-limit>"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:232
+#: admin/admin-panel-fees-table.php:238
 msgid "Chars in description: <characters-limit>"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:259 admin/admin-panel-fees-table.php:263
+#: admin/admin-panel-fees-table.php:265 admin/admin-panel-fees-table.php:269
 #: templates/admin/import/supported-csv-headers.tpl.php:31
 msgid "Yes"
 msgstr "Igen"
 
-#: admin/admin-panel-fees-table.php:259 admin/admin-panel-fees-table.php:263
+#: admin/admin-panel-fees-table.php:265 admin/admin-panel-fees-table.php:269
 #: templates/admin/import/supported-csv-headers.tpl.php:31
 msgid "No"
 msgstr "Nem"
@@ -120,99 +120,99 @@ msgstr "Kredit eltávolítása"
 msgid "The specified User doesn't exists."
 msgstr "A meghatározott felhasználó nem létezik."
 
-#: admin/admin-panel.php:73 admin/admin-panel.php:112 admin/admin-panel.php:122
+#: admin/admin-panel.php:66 admin/admin-panel.php:105 admin/admin-panel.php:115
 msgid "Manual Upgrade"
 msgstr "Manuális frissítés"
 
-#: admin/admin-panel.php:79 admin/admin-panel.php:137 admin/admin-panel.php:794
+#: admin/admin-panel.php:72 admin/admin-panel.php:130 admin/admin-panel.php:789
 #: includes/models/class-custom-post-types.php:90
 #: includes/models/class-custom-post-types.php:92
 #: includes/settings/class-listings-settings.php:30
 msgid "Classifieds"
 msgstr "Apróhirdetések"
 
-#: admin/admin-panel.php:84 includes/models/class-custom-post-types.php:101
+#: admin/admin-panel.php:77 includes/models/class-custom-post-types.php:101
 msgid "Classified Ads"
 msgstr ""
 
-#: admin/admin-panel.php:134
+#: admin/admin-panel.php:127
 msgid "Dashboard"
 msgstr "Vezérlőpult"
 
-#: admin/admin-panel.php:141 admin/admin-panel.php:142
-#: admin/admin-panel.php:509
+#: admin/admin-panel.php:134 admin/admin-panel.php:135
+#: admin/admin-panel.php:503
 msgid "Settings"
 msgstr "Beállítások"
 
-#: admin/admin-panel.php:155
+#: admin/admin-panel.php:148
 #: templates/admin/main-classifieds-admin-page.tpl.php:86
 #: templates/admin/main-classifieds-admin-page.tpl.php:111
 msgid "Manage Categories"
 msgstr "Kategóriák kezelése"
 
-#: admin/admin-panel.php:204 admin/admin-panel.php:205
+#: admin/admin-panel.php:197 admin/admin-panel.php:198
 #: admin/form-fields/class-form-fields-admin-page.php:12
 #: includes/settings/class-display-settings.php:298
 #: includes/settings/class-display-settings.php:438
 msgid "Form Fields"
 msgstr "Űrlapmezők"
 
-#: admin/admin-panel.php:214
+#: admin/admin-panel.php:207
 msgid "Credit Plans"
 msgstr "Kredit Csomagok"
 
-#: admin/admin-panel.php:215
+#: admin/admin-panel.php:208
 msgid "Manage Credit Plans"
 msgstr "Kredit Csomagok Kezelése"
 
-#: admin/admin-panel.php:224
+#: admin/admin-panel.php:217
 msgid "Manage Credit"
 msgstr "Kreditek kezelése"
 
-#: admin/admin-panel.php:233 admin/fees/class-fees-admin-page.php:26
+#: admin/admin-panel.php:226 admin/fees/class-fees-admin-page.php:26
 #: templates/admin/main-classifieds-admin-page.tpl.php:56
 msgid "Fees"
 msgstr "Díjak"
 
-#: admin/admin-panel.php:234
+#: admin/admin-panel.php:227
 msgid "Manage Listings Fees"
 msgstr ""
 
-#: admin/admin-panel.php:259 admin/admin-panel.php:260
+#: admin/admin-panel.php:252 admin/admin-panel.php:253
 msgid "Import & Export"
 msgstr ""
 
-#: admin/admin-panel.php:325 admin/templates/admin-panel-debug.tpl.php:3
+#: admin/admin-panel.php:318 admin/templates/admin-panel-debug.tpl.php:3
 msgid "Debug"
 msgstr "Hibakeresés"
 
-#: admin/admin-panel.php:326 admin/templates/admin-panel-debug.tpl.php:24
+#: admin/admin-panel.php:319 admin/templates/admin-panel-debug.tpl.php:24
 msgid "Debug Information"
 msgstr "Debug Információ"
 
-#: admin/admin-panel.php:335 admin/admin-panel.php:336
+#: admin/admin-panel.php:328 admin/admin-panel.php:329
 msgid "Uninstall"
 msgstr "Eltávolítás"
 
-#: admin/admin-panel.php:354 admin/admin-panel.php:355
-#: admin/admin-panel.php:821 frontend/templates/page-renew-ad.tpl.php:3
-#: includes/admin/class-admin-container-configuration.php:177
+#: admin/admin-panel.php:348 admin/admin-panel.php:349
+#: admin/admin-panel.php:816 frontend/templates/page-renew-ad.tpl.php:3
+#: includes/admin/class-admin-container-configuration.php:175
 msgid "Renew Ad"
 msgstr "Hirdetés meghosszabbítása"
 
-#: admin/admin-panel.php:427
+#: admin/admin-panel.php:421
 msgid ""
 "Use the Account Balance column on the table below to manage credit balance "
 "for users."
 msgstr ""
 
-#: admin/admin-panel.php:446
+#: admin/admin-panel.php:440
 msgid ""
 "AWPCP features are currently disabled because the plugin needs you to "
 "perform a manual upgrade before continuing."
 msgstr ""
 
-#: admin/admin-panel.php:447
+#: admin/admin-panel.php:441
 msgid ""
 "The duration for this upgrade operation varies between several minutes and a "
 "few hours, depending on the size of your database, the current network "
@@ -224,7 +224,7 @@ msgstr ""
 #. translators: %1$s is the opening tag for the link to the page explaining how
 #. to downgrade to a previous version of the plugin, %2$s is the closing tag
 #. for the link.
-#: admin/admin-panel.php:450
+#: admin/admin-panel.php:444
 msgid ""
 "If this is not a good time to go through the upgrade process, we recommend "
 "you to %1$sinstall the previous version again%2$s and plan to upgrade "
@@ -233,7 +233,7 @@ msgstr ""
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:456
+#: admin/admin-panel.php:450
 msgid ""
 "To upgrade, please %1$sgo to the Classifieds admin section%2$s or click the "
 "button below."
@@ -241,7 +241,7 @@ msgstr ""
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:466
+#: admin/admin-panel.php:460
 msgid ""
 "AWPCP features are currently disabled because the plugin needs you to "
 "perform a manual upgrade before continuing. Please %1$sgo to the Classifieds "
@@ -250,7 +250,7 @@ msgstr ""
 
 #. translators: %1$s is the opening tag for the link to the upgrade page, %2$s
 #. is the closing tag for the link.
-#: admin/admin-panel.php:488
+#: admin/admin-panel.php:482
 msgid ""
 "AWPCP needs you to perform a manual upgrade to update the database schema "
 "and the information stored there. All plugin features will continue to work "
@@ -258,7 +258,7 @@ msgid ""
 "admin section to Upgrade%2$s or click the button below."
 msgstr ""
 
-#: admin/admin-panel.php:562
+#: admin/admin-panel.php:556
 msgid ""
 "Page %1$s has the same URL as the %2$s from AWPCP. The WordPress page %1$s "
 "is going to be unreachable until this changes."
@@ -268,7 +268,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel.php:570
+#: admin/admin-panel.php:564
 msgid ""
 "The %1$s is dynamic; you don't need to create a real WordPress page to show "
 "the list of categories, the plugin will generate it for you. If the "
@@ -284,44 +284,44 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/admin-panel.php:760 admin/class-categories-admin-page.php:63
-#: admin/class-categories-admin-page.php:67
+#: admin/admin-panel.php:755 admin/class-categories-admin-page.php:60
+#: admin/class-categories-admin-page.php:64
 msgid "Manage Category Icon"
 msgstr "Kategória ikon kezelése"
 
-#: admin/admin-panel.php:765 admin/class-categories-admin-page.php:38
-#: admin/class-categories-admin-page.php:42
-#: admin/class-categories-admin-page.php:135
+#: admin/admin-panel.php:760 admin/class-categories-admin-page.php:35
+#: admin/class-categories-admin-page.php:39
+#: admin/class-categories-admin-page.php:133
 msgid "Edit Category"
 msgstr "Kategória szerkesztése"
 
-#: admin/admin-panel.php:766 admin/class-categories-admin-page.php:49
-#: admin/class-categories-admin-page.php:53
+#: admin/admin-panel.php:761 admin/class-categories-admin-page.php:46
+#: admin/class-categories-admin-page.php:50
 msgid "Delete Category"
 msgstr "Kategória Törlése"
 
-#: admin/admin-panel.php:771
+#: admin/admin-panel.php:766
 msgid "Select {category_name}"
 msgstr ""
 
-#: admin/admin-panel.php:809 frontend/page-reply-to-ad.php:11
+#: admin/admin-panel.php:804 frontend/page-reply-to-ad.php:11
 msgid "Reply to Ad"
 msgstr "Válasz a hirdetésre"
 
-#: admin/admin-panel.php:817 admin/templates/admin-panel-listings.tpl.php:5
+#: admin/admin-panel.php:812 admin/templates/admin-panel-listings.tpl.php:5
 msgid "Place Ad"
 msgstr "Hirdetés feladása"
 
-#: admin/admin-panel.php:825 frontend/page-browse-ads.php:9
+#: admin/admin-panel.php:820 frontend/page-browse-ads.php:9
 msgid "Browse Ads"
 msgstr "Hirdetések böngészése"
 
-#: admin/admin-panel.php:829 admin/templates/admin-panel-listings.tpl.php:11
+#: admin/admin-panel.php:824 admin/templates/admin-panel-listings.tpl.php:11
 #: frontend/page-search-ads.php:9
 msgid "Search Ads"
 msgstr "Hirdetések keresése"
 
-#: admin/categories/class-create-category-admin-page.php:42
+#: admin/categories/class-create-category-admin-page.php:39
 msgid "The new category was successfully added."
 msgstr "Az új kategória sikeresen hozzáadva."
 
@@ -347,32 +347,32 @@ msgid ""
 "deleted> categories."
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:44
+#: admin/categories/class-delete-category-admin-page.php:41
 msgid "The category you are trying to delete doesn't exist."
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:57
+#: admin/categories/class-delete-category-admin-page.php:54
 msgid "There was an error trying to delete the category. <error-message>"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:74
+#: admin/categories/class-delete-category-admin-page.php:71
 msgid ""
 "There was an error trying to load the selected category. <error-message>"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:85
+#: admin/categories/class-delete-category-admin-page.php:82
 msgid "The category was deleted successfully"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:103
+#: admin/categories/class-delete-category-admin-page.php:100
 msgid "Are you sure you want to delete \"<category-name>\" category?"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:115
+#: admin/categories/class-delete-category-admin-page.php:112
 msgid "Delete category"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:116
+#: admin/categories/class-delete-category-admin-page.php:113
 #: admin/fees/class-fee-details-form.php:80
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:31
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:12
@@ -408,116 +408,116 @@ msgid ""
 "categories."
 msgstr ""
 
-#: admin/categories/class-update-category-admin-page.php:55
+#: admin/categories/class-update-category-admin-page.php:52
 msgid "The category you're trying to update doesn't exist."
 msgstr ""
 
-#: admin/categories/class-update-category-admin-page.php:66
+#: admin/categories/class-update-category-admin-page.php:63
 msgid "The category was successfully updated."
 msgstr ""
 
-#: admin/class-categories-admin-page.php:109
+#: admin/class-categories-admin-page.php:107
 msgid "Categories per page:"
 msgstr ""
 
-#: admin/class-categories-admin-page.php:121
+#: admin/class-categories-admin-page.php:119
 msgid "None (this is a top level category)"
 msgstr ""
 
-#: admin/class-categories-admin-page.php:131
+#: admin/class-categories-admin-page.php:129
 msgid "Select target category"
 msgstr ""
 
-#: admin/class-categories-admin-page.php:135
-#: admin/class-categories-admin-page.php:144
+#: admin/class-categories-admin-page.php:133
+#: admin/class-categories-admin-page.php:142
 msgid "Add New Category"
 msgstr "Új kategória létrehozása"
 
-#: admin/class-categories-admin-page.php:144
+#: admin/class-categories-admin-page.php:142
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:30
 msgid "Update"
 msgstr "Frissítés"
 
-#: admin/class-debug-admin-page.php:257
+#: admin/class-debug-admin-page.php:250
 msgid "WordPress version"
 msgstr ""
 
-#: admin/class-debug-admin-page.php:261
+#: admin/class-debug-admin-page.php:254
 msgid "OS"
 msgstr ""
 
-#: admin/class-debug-admin-page.php:265
+#: admin/class-debug-admin-page.php:258
 msgid "Apache Version"
 msgstr ""
 
-#: admin/class-debug-admin-page.php:269
+#: admin/class-debug-admin-page.php:262
 msgid "PHP Version"
 msgstr "PHP verzió"
 
-#: admin/class-debug-admin-page.php:273
+#: admin/class-debug-admin-page.php:266
 msgid "MySQL Version"
 msgstr "MySQL verziója"
 
-#: admin/class-debug-admin-page.php:277
+#: admin/class-debug-admin-page.php:270
 msgid "cURL Version"
 msgstr ""
 
-#: admin/class-debug-admin-page.php:281
+#: admin/class-debug-admin-page.php:274
 msgid "cURL SSL Version"
 msgstr ""
 
-#: admin/class-debug-admin-page.php:334 admin/class-debug-admin-page.php:340
+#: admin/class-debug-admin-page.php:327 admin/class-debug-admin-page.php:333
 msgid "N/A"
 msgstr "N/A"
 
-#: admin/class-import-listings-admin-page.php:102
+#: admin/class-import-listings-admin-page.php:100
 msgid ""
 "The uploaded file doesn't look like a CSV file. Please upload a valid CSV "
 "file."
 msgstr ""
 
-#: admin/class-import-listings-admin-page.php:106
+#: admin/class-import-listings-admin-page.php:104
 msgid "There was an error moving the uploaded CSV file to a proper location."
 msgstr ""
 
-#: admin/class-import-listings-admin-page.php:123
+#: admin/class-import-listings-admin-page.php:121
 msgid ""
 "The uploaded file doesn't look like a ZIP file. Please upload a valid ZIP "
 "file."
 msgstr ""
 
-#: admin/class-import-listings-admin-page.php:127
+#: admin/class-import-listings-admin-page.php:125
 msgid "There was an error moving the uploaded ZIP file to a proper location."
 msgstr ""
 
-#: admin/class-import-listings-admin-page.php:139
+#: admin/class-import-listings-admin-page.php:137
 msgid "Incompatible ZIP Archive"
 msgstr "Inkompatibilis ZIP Archívum"
 
-#: admin/class-import-listings-admin-page.php:141
+#: admin/class-import-listings-admin-page.php:139
 msgid "Empty ZIP Archive"
 msgstr "Üres ZIP Archívum"
 
-#: admin/class-import-listings-admin-page.php:167
+#: admin/class-import-listings-admin-page.php:165
 msgid "Could not write temporary file %s"
 msgstr "Nem írható átmeneti fájl %s"
 
-#: admin/class-import-listings-admin-page.php:176
+#: admin/class-import-listings-admin-page.php:174
 msgid "The specified directory is not a valid path."
 msgstr ""
 
-#: admin/class-import-listings-admin-page.php:178
+#: admin/class-import-listings-admin-page.php:176
 msgid "The specified directory does not exists."
 msgstr ""
 
-#: admin/class-import-listings-admin-page.php:359
+#: admin/class-import-listings-admin-page.php:357
 msgid ""
 "(<percentage>) <number-of-rows-processed> of <number-of-rows> rows "
 "processed. <number-of-rows-imported> rows imported and <number-of-rows-"
 "rejected> rows rejected."
 msgstr ""
 
-#: admin/class-settings-admin-page.php:236
+#: admin/class-settings-admin-page.php:228
 msgid ""
 "We could not obtain a valid access token from Facebook. The API returned the "
 "following error: %s"
@@ -525,18 +525,18 @@ msgstr ""
 "Nem tudtunk érvényes hozzáférési tokent lekérdezni a Facebook szervertől. Az "
 "API a következő hibát adta: %s"
 
-#: admin/class-settings-admin-page.php:241
+#: admin/class-settings-admin-page.php:233
 msgid ""
 "We could not obtain a valid access token from Facebook. Please try again."
 msgstr ""
 "Nem tudtunk érvényes hozzáférési tokent lekérdezni a Facebook szervertől. "
 "Kérjük próbálja meg újra."
 
-#: admin/class-settings-admin-page.php:249
+#: admin/class-settings-admin-page.php:241
 msgid "Facebook Config Diagnostics"
 msgstr "Facebook Konfigurációs Diagnosztika"
 
-#: admin/class-settings-admin-page.php:256
+#: admin/class-settings-admin-page.php:248
 msgid "Everything looks OK."
 msgstr "Minden jónak tűnik."
 
@@ -544,14 +544,14 @@ msgstr "Minden jónak tűnik."
 #: admin/pointers/class-drip-autoresponder-ajax-handler.php:23
 #: includes/frontend/class-create-empty-listing-ajax-handler.php:94
 #: includes/frontend/class-execute-listing-action-ajax-handler.php:58
-#: includes/frontend/class-save-listing-information-ajax-handler.php:104
-#: includes/frontend/class-update-listing-order-ajax-handler.php:75
+#: includes/frontend/class-save-listing-information-ajax-handler.php:97
+#: includes/frontend/class-update-listing-order-ajax-handler.php:69
 msgid "You are not authorized to perform this action."
 msgstr ""
 
-#: admin/credit-plans/class-add-credit-plan-action-handler.php:39
+#: admin/credit-plans/class-add-credit-plan-action-handler.php:42
 #: admin/credit-plans/class-edit-credit-plan-action-handler.php:49
-#: admin/fees/class-fee-details-admin-page.php:62
+#: admin/fees/class-fee-details-admin-page.php:59
 msgid "The form has errors"
 msgstr "Az űrlap hibákat tartalmaz"
 
@@ -568,24 +568,24 @@ msgid "Delete"
 msgstr "Törlés"
 
 #: admin/fees/class-delete-fee-action-handler.php:30
-#: admin/fees/class-fees-admin-page.php:112
-#: admin/fees/class-fees-admin-page.php:158
+#: admin/fees/class-fees-admin-page.php:113
+#: admin/fees/class-fees-admin-page.php:160
 msgid "The specified Fee doesn't exists."
 msgstr "A meghatározott díj nem létezik."
 
-#: admin/fees/class-fee-details-admin-page.php:66
+#: admin/fees/class-fee-details-admin-page.php:63
 msgid "Fee successfully updated."
 msgstr ""
 
-#: admin/fees/class-fee-details-admin-page.php:103
+#: admin/fees/class-fee-details-admin-page.php:105
 msgid "Create Fee Plan"
 msgstr ""
 
-#: admin/fees/class-fee-details-admin-page.php:115
+#: admin/fees/class-fee-details-admin-page.php:117
 msgid "No Fee Plan id was specified."
 msgstr ""
 
-#: admin/fees/class-fee-details-admin-page.php:122
+#: admin/fees/class-fee-details-admin-page.php:124
 msgid "The specified Fee Plan doesn't exist or couldn't be loaded."
 msgstr ""
 
@@ -636,21 +636,21 @@ msgstr "Ár (kredit)"
 msgid "Manage Listing Fees"
 msgstr "Listázási Díjak Kezelése"
 
-#: admin/fees/class-fees-admin-page.php:118
+#: admin/fees/class-fees-admin-page.php:120
 msgid "The selected Fee doesn't exists."
 msgstr "A kiválasztott díj nem létezik."
 
 #. translators: %1$s is the name of the original Fee and %2$s is the name of
 #. the fee that is associated with the ads now.
-#: admin/fees/class-fees-admin-page.php:126
+#: admin/fees/class-fees-admin-page.php:128
 msgid "All Ads associated to Fee %1$s have been associated with Fee %2$s."
 msgstr ""
 
-#: admin/fees/class-fees-admin-page.php:165
+#: admin/fees/class-fees-admin-page.php:167
 msgid "The Fee was successfully deleted."
 msgstr "A díj sikeresen törölve"
 
-#: admin/fees/class-fees-admin-page.php:184
+#: admin/fees/class-fees-admin-page.php:186
 msgid ""
 "The Fee couldn't be deleted because there are active Ads in the system that "
 "are associated with the Fee ID. You need to switch the Ads to a different "
@@ -660,7 +660,7 @@ msgstr ""
 "amik ezt a díjazást használják. A hirdetésekhez más díjazást kell rendelni, "
 "mielőtt töröli a díjazási csomagot."
 
-#: admin/fees/class-fees-admin-page.php:200
+#: admin/fees/class-fees-admin-page.php:202
 msgid ""
 "The Fee couldn't be deleted because there are active Ads in the system that "
 "are associated with the Fee ID. Please create a new Fee and try the delete "
@@ -1197,13 +1197,13 @@ msgstr ""
 "kirakásakor. Krediteket hozzáadhat új hirdetés kirakásakor, vagy az alábbi "
 "\"Kredit hozzáadása\" gombbal."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:194
+#: admin/upgrade/class-manual-upgrade-admin-page.php:191
 msgid ""
 "All blocking upgrade tasks were completed successfully. All features are "
 "available again."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:195
+#: admin/upgrade/class-manual-upgrade-admin-page.php:192
 msgid ""
 "Please keep this tab open, but you can open up another browser tab and "
 "continue working on your site while this process runs in the background. "
@@ -1211,42 +1211,42 @@ msgid ""
 "tab</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:201
+#: admin/upgrade/class-manual-upgrade-admin-page.php:198
 msgid ""
 "Congratulations. All blocking upgrade tasks were completed successfully. You "
 "can now access all features. <continue-link>Click here to Continue</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:206
+#: admin/upgrade/class-manual-upgrade-admin-page.php:203
 msgid "Upgrade Tasks that must complete immediately"
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:207
+#: admin/upgrade/class-manual-upgrade-admin-page.php:204
 msgid ""
 "The following tasks need to be completed before you can use the plugin and "
 "modules features again."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:215
-#: admin/upgrade/class-manual-upgrade-admin-page.php:220
+#: admin/upgrade/class-manual-upgrade-admin-page.php:212
+#: admin/upgrade/class-manual-upgrade-admin-page.php:217
 msgid ""
 "The following tasks need to be completed, but the plugin and modules "
 "features will continue to work while the routines are executed."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:222
+#: admin/upgrade/class-manual-upgrade-admin-page.php:219
 msgid ""
 "Please keep this tab open, but you can open up another browser tab and "
 "continue working on your site while this process runs in the background."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:223
+#: admin/upgrade/class-manual-upgrade-admin-page.php:220
 msgid ""
 "Click the Upgrade button and then <continue-link>Click here to open the main "
 "Classifieds admin screen in a new tab</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:234
+#: admin/upgrade/class-manual-upgrade-admin-page.php:231
 msgid "Upgrade tasks that will run while the plugin continues to work"
 msgstr ""
 
@@ -1291,18 +1291,18 @@ msgstr ""
 msgid "The ad \"%s\" has been successfully renewed."
 msgstr ""
 
-#: frontend/ad-functions.php:189 frontend/page-renew-ad.php:159
+#: frontend/ad-functions.php:189 frontend/page-renew-ad.php:160
 msgid "The Ad has been successfully renewed. New expiration date is %s."
 msgstr ""
 
-#: frontend/ad-functions.php:194 frontend/page-renew-ad.php:151
+#: frontend/ad-functions.php:194 frontend/page-renew-ad.php:152
 #: templates/admin/listings/quick-view-listing-admin-page.tpl.php:18
 #: templates/admin/listings-media-center.tpl.php:6
 #: templates/admin/view-listing-admin-page.tpl.php:14
 msgid "Return to Listings"
 msgstr "Visszatérés a Listázásokhoz"
 
-#: frontend/ad-functions.php:212 frontend/page-place-ad.php:149
+#: frontend/ad-functions.php:212 frontend/page-place-ad.php:151
 msgid ""
 "You do not have permission to perform the function you are trying to "
 "perform. Access to this page has been denied"
@@ -1323,7 +1323,7 @@ msgstr ""
 "kerültek a rendszerből."
 
 #: frontend/ad-functions.php:234
-#: includes/frontend/class-edit-listing-page.php:171
+#: includes/frontend/class-edit-listing-page.php:173
 msgid "The specified Ad doesn't exists."
 msgstr "A hirdetés nem létezik."
 
@@ -1352,7 +1352,7 @@ msgid ""
 msgstr ""
 "Mivel nem választott böngészési kategóriát, minden kategóriájú listázást lát."
 
-#: frontend/page-place-ad.php:75
+#: frontend/page-place-ad.php:74
 #: includes/views/class-verify-transaction-exists-step-decorator.php:17
 msgid ""
 "There was an error processing your Payment Request. Please try again or "
@@ -1361,19 +1361,19 @@ msgstr ""
 "Hiba történt a Befizetési Kérése során. Kérjük próbálja újra, vagy lépjen "
 "kapcsolatba az adminnal."
 
-#: frontend/page-place-ad.php:130
+#: frontend/page-place-ad.php:132
 msgid "Please select a category."
 msgstr "Válasszon kategóriát"
 
-#: frontend/page-place-ad.php:131
+#: frontend/page-place-ad.php:133
 msgid "Please select the Ad's owner."
 msgstr "Válassza ki a hirdetés tulajdonosát"
 
-#: frontend/page-place-ad.php:132
+#: frontend/page-place-ad.php:134
 msgid "Please select a payment term."
 msgstr "Válasszon befizetést"
 
-#: frontend/page-place-ad.php:163 frontend/page-renew-ad.php:86
+#: frontend/page-place-ad.php:165 frontend/page-renew-ad.php:87
 msgid ""
 "You are trying to post an Ad using a transaction created for a different "
 "purpose. Please go back to the <a href=\"%s\">%s</a> page.<br>If you think "
@@ -1381,7 +1381,7 @@ msgid ""
 "transaction ID: %s"
 msgstr ""
 
-#: frontend/page-place-ad.php:172
+#: frontend/page-place-ad.php:174
 #: includes/frontend/class-submit-listing-page.php:276
 msgid ""
 "You can't post an Ad at this time because the payment associated with this "
@@ -1390,35 +1390,35 @@ msgstr ""
 "Nem tehet közzé hirdetést, mivel a tranzakcióhoz kapcsolódó befizetés "
 "sikertelen (az okokat tekintse meg lentebb)."
 
-#: frontend/page-place-ad.php:254
+#: frontend/page-place-ad.php:256
 #: includes/listings/class-payment-information-validator.php:88
 msgid "You should select an owner for this Ad."
 msgstr "Válasszon hirdetéstulajdonost"
 
-#: frontend/page-place-ad.php:258 frontend/page-renew-ad.php:199
+#: frontend/page-place-ad.php:260 frontend/page-renew-ad.php:197
 #: includes/listings/class-payment-information-validator.php:64
 #: includes/listings/class-payment-information-validator.php:73
 msgid "You should choose one of the available Payment Terms."
 msgstr "Válasszon egyet az elérhető fizetési módok közül"
 
-#: frontend/page-place-ad.php:262
+#: frontend/page-place-ad.php:264
 #: includes/listings/class-payment-information-validator.php:75
 msgid ""
 "The Payment Term you selected is not available for non-administrator users."
 msgstr ""
 "Az ön által kiválasztott fizetési mód csak adminisztrátoroknak elérhető."
 
-#: frontend/page-place-ad.php:278
+#: frontend/page-place-ad.php:280
 #: includes/listings/class-payment-information-validator.php:108
 msgid "Ad Category field is required"
 msgstr "Kategória mező kitöltése szükséges"
 
-#: frontend/page-place-ad.php:283
+#: frontend/page-place-ad.php:285
 #: includes/listings/class-payment-information-validator.php:119
 msgid "You cannot list your Ad in top level categories."
 msgstr ""
 
-#: frontend/page-place-ad.php:289
+#: frontend/page-place-ad.php:291
 #: includes/frontend/class-submit-listing-page.php:175
 msgid ""
 "Hi, You need to be a registered user to post Ads in this website. Please use "
@@ -1428,8 +1428,8 @@ msgstr ""
 "weblapon. Kérjük töltse ki az alábbi űrlapot hogy bejelentkezzen, vagy "
 "kattintson a regisztráció linkre"
 
-#: frontend/page-place-ad.php:416 frontend/page-place-ad.php:823
-#: frontend/page-renew-ad.php:299
+#: frontend/page-place-ad.php:429 frontend/page-place-ad.php:836
+#: frontend/page-renew-ad.php:297
 #: includes/frontend/class-order-submit-listing-section.php:119
 msgid ""
 "You are logged in as an administrator. Any payment steps will be skipped."
@@ -1438,7 +1438,7 @@ msgstr "Adminisztrátorként van bejelentkezve. A fizetési lépéseket átugorj
 #. translators: %s is an alphanumeric string that identifies a payment
 #. transaction.
 #. translators: %s the transaction id
-#: frontend/page-place-ad.php:498 frontend/page-renew-ad.php:349
+#: frontend/page-place-ad.php:511 frontend/page-renew-ad.php:347
 #: includes/frontend/class-submit-listing-page.php:318
 #: includes/views/class-verify-payment-can-be-processed-step-decorator.php:18
 msgid ""
@@ -1450,7 +1450,7 @@ msgstr ""
 "kapcsolatba az adminisztrátorral, és közölje vele a következő tranzakció ID-"
 "t: %s"
 
-#: frontend/page-place-ad.php:821
+#: frontend/page-place-ad.php:834
 msgid ""
 "Your Ad details have been filled out in the form below. Make any changes "
 "needed and then resubmit the Ad to update it."
@@ -1458,11 +1458,11 @@ msgstr ""
 "A hirdetésének részletei az alábbi űrlapon találhatók. Amennyiben szükséges, "
 "változtassa meg, és frissítse a hirdetést."
 
-#: frontend/page-place-ad.php:825
+#: frontend/page-place-ad.php:838
 msgid "Fill out the form below to post your classified ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:829
+#: frontend/page-place-ad.php:842
 msgid ""
 "We found errors in the details you submitted. A detailed error message is "
 "shown in front or below each invalid field. Please fix the errors and submit "
@@ -1472,27 +1472,27 @@ msgstr ""
 "minden hibás mezőnél. Kérjük javítsa ki a hibákat, és adja be az űrlapot "
 "ismét."
 
-#: frontend/page-place-ad.php:848
+#: frontend/page-place-ad.php:861
 msgid "Start & End Date"
 msgstr "Kezdeti és záródátum"
 
-#: frontend/page-place-ad.php:850
+#: frontend/page-place-ad.php:863
 #: includes/admin/import/class-csv-importer-columns.php:185
-#: includes/admin/listings/class-listings-table-nav-handler.php:158
+#: includes/admin/listings/class-listings-table-nav-handler.php:151
 #: includes/form-fields/class-listing-form-fields.php:127
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:31
 msgid "Start Date"
 msgstr "Kezdeti dátum"
 
-#: frontend/page-place-ad.php:852
+#: frontend/page-place-ad.php:865
 #: includes/admin/import/class-csv-importer-columns.php:196
-#: includes/admin/listings/class-listings-table-nav-handler.php:159
+#: includes/admin/listings/class-listings-table-nav-handler.php:152
 #: includes/form-fields/class-listing-form-fields.php:131
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:41
 msgid "End Date"
 msgstr "Befejezési dátum"
 
-#: frontend/page-place-ad.php:954
+#: frontend/page-place-ad.php:973
 msgid ""
 "Hi, Payment is required for posting Ads in this website and we couldn't find "
 "a Payment Transaction assigned to you. You can't post Ads this time. If you "
@@ -1503,39 +1503,39 @@ msgstr ""
 "Ha úgy gondolja hiba történt, kérem elérhetőségeink valamelyikén lépjen "
 "kapcsolatba velünk. "
 
-#: frontend/page-place-ad.php:981
+#: frontend/page-place-ad.php:1000
 msgid ""
 "You did not select a Payment Term. Please select a Payment Term for this Ad."
 msgstr "Nem választott fizetési módot, kérjük tegye meg!"
 
-#: frontend/page-place-ad.php:986
+#: frontend/page-place-ad.php:1005
 msgid "Please enter a start date for the Ad."
 msgstr "Kérjük adjon meg egy indulási dátumot ehhez a hirdetéshez"
 
-#: frontend/page-place-ad.php:991
+#: frontend/page-place-ad.php:1010
 msgid "Please enter an end date for the Ad."
 msgstr "érjük adjon meg egy záródátumot ehhez a hirdetéshez"
 
-#: frontend/page-place-ad.php:995
+#: frontend/page-place-ad.php:1014
 #: includes/form-fields/class-form-fields-validator.php:71
 msgid "The start date must occur before the end date."
 msgstr "Az indulási dátumnak a záródátum előtt kell lennie"
 
-#: frontend/page-place-ad.php:1000
+#: frontend/page-place-ad.php:1019
 msgid "You did not enter a title for your Ad"
 msgstr "Nem adott címet a hirdetésnek"
 
-#: frontend/page-place-ad.php:1005
+#: frontend/page-place-ad.php:1024
 msgid ""
 "You did not enter any text for your Ad. Please enter some text for your Ad."
 msgstr "Nem írt szöveget a hirdetéséhez, kérjük tegye meg!"
 
-#: frontend/page-place-ad.php:1018
+#: frontend/page-place-ad.php:1037
 msgid ""
 "You did not enter your website address. Your website address is required."
 msgstr "Nem adta meg az ön weboldalának címét. A webcím szükséges adat."
 
-#: frontend/page-place-ad.php:1024
+#: frontend/page-place-ad.php:1043
 msgid ""
 "Your website address is not properly formatted. Please make sure you have "
 "included the http:// part of your website address"
@@ -1543,22 +1543,22 @@ msgstr ""
 "Az ön weboldalának címe nincs megfelelően megformázva. Ellenőrizze, hogy "
 "megadta-e weboldalának http:// részét."
 
-#: frontend/page-place-ad.php:1029
+#: frontend/page-place-ad.php:1048
 msgid "You did not enter your name. Your name is required."
 msgstr "Nem adta meg a nevét. A név megadása kötelező."
 
-#: frontend/page-place-ad.php:1034
+#: frontend/page-place-ad.php:1053
 msgid "You did not enter your email. Your email is required."
 msgstr "Nem adta meg az email címét. Email cím megadása kötelező."
 
-#: frontend/page-place-ad.php:1039 frontend/page-reply-to-ad.php:147
+#: frontend/page-place-ad.php:1058 frontend/page-reply-to-ad.php:160
 msgid ""
 "The email address you entered was not a valid email address. Please check "
 "for errors and try again."
 msgstr ""
 "Az ön által megadott email cím nem valós. Ellenőrizze, majd próbálja újra."
 
-#: frontend/page-place-ad.php:1041
+#: frontend/page-place-ad.php:1060
 msgid ""
 "The email address you entered is not allowed in this website. Please use an "
 "email address from one of the following domains: %s."
@@ -1566,35 +1566,35 @@ msgstr ""
 "Az ön által megadott email cím nem engedélyezett ezen a weboldalon. Kérjük "
 "használjon egy email címet az alábbi domainok közül: %s"
 
-#: frontend/page-place-ad.php:1052
+#: frontend/page-place-ad.php:1071
 msgid "You did not enter your phone number. Your phone number is required."
 msgstr "Nem adta meg a telefonszámát. Telefonszám megadása kötelező."
 
-#: frontend/page-place-ad.php:1070
-#: includes/helpers/widgets/multiple-region-selector.php:172
+#: frontend/page-place-ad.php:1089
+#: includes/helpers/widgets/multiple-region-selector.php:124
 msgid "You did not enter your country. Your country is required."
 msgstr "Nem adta meg országát. Ország megadása kötelező."
 
-#: frontend/page-place-ad.php:1079
-#: includes/helpers/widgets/multiple-region-selector.php:173
+#: frontend/page-place-ad.php:1098
+#: includes/helpers/widgets/multiple-region-selector.php:125
 msgid "You did not enter your state. Your state is required."
 msgstr "Nem adta meg államát. Állam megadása kötelező."
 
-#: frontend/page-place-ad.php:1088
-#: includes/helpers/widgets/multiple-region-selector.php:175
+#: frontend/page-place-ad.php:1107
+#: includes/helpers/widgets/multiple-region-selector.php:127
 msgid "You did not enter your city. Your city is required."
 msgstr "Nem adta meg városát. Város megadása kötelező."
 
-#: frontend/page-place-ad.php:1097
-#: includes/helpers/widgets/multiple-region-selector.php:174
+#: frontend/page-place-ad.php:1116
+#: includes/helpers/widgets/multiple-region-selector.php:126
 msgid "You did not enter your county/village. Your county/village is required."
 msgstr "Nem adott meg megyét/települést. Megye/település megadása kötelező."
 
-#: frontend/page-place-ad.php:1104
+#: frontend/page-place-ad.php:1123
 msgid "You did not enter the price of your item. The item price is required."
 msgstr "Nem adta meg a termék árát. Ár megadása kötelező."
 
-#: frontend/page-place-ad.php:1110
+#: frontend/page-place-ad.php:1129
 msgid ""
 "You have entered an invalid item price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
@@ -1602,18 +1602,18 @@ msgstr ""
 "Valótlan termékárat adott meg. Kérjük csak számokkal, pénznem nélkül adja "
 "meg az árat."
 
-#: frontend/page-place-ad.php:1128
+#: frontend/page-place-ad.php:1147
 msgid "You did not accept the terms of service"
 msgstr "Nem fogadta el a felhasználási feltételeket"
 
-#: frontend/page-place-ad.php:1144
+#: frontend/page-place-ad.php:1163
 msgid ""
 "Your Ad was flagged as spam. Please contact the administrator of this site."
 msgstr ""
 "Hirdetése spamként lett megjelölve. Lépjen kapcsolatba a weboldal "
 "adminisztrátorával."
 
-#: frontend/page-place-ad.php:1335
+#: frontend/page-place-ad.php:1354
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation. No "
 "images can be added at this time."
@@ -1621,28 +1621,28 @@ msgstr ""
 "Nem találtunk fizetési tranzakciót hozzárendelve a folyamathoz. Jelenleg nem "
 "lehet képeket hozzáadni."
 
-#: frontend/page-place-ad.php:1342
+#: frontend/page-place-ad.php:1361
 msgid "The specified Ad doesn't exists. No images can be added at this time."
 msgstr "A megadott hirdetés nem létezik. Jelenleg nem adhatók hozzá képek."
 
-#: frontend/page-place-ad.php:1421 frontend/page-place-ad.php:1473
+#: frontend/page-place-ad.php:1440 frontend/page-place-ad.php:1492
 #: includes/frontend/class-submit-listing-page.php:378
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation."
 msgstr "Nem találtunk fizetési tranzakciót hozzárendelve a folyamathoz. "
 
-#: frontend/page-place-ad.php:1428 frontend/page-place-ad.php:1480
-#: frontend/page-renew-ad.php:410
+#: frontend/page-place-ad.php:1447 frontend/page-place-ad.php:1499
+#: frontend/page-renew-ad.php:408
 #: includes/frontend/class-submit-listing-page.php:385
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr "A tranzakcióhoz kapcsolódó hirdetés nem létezik."
 
-#: frontend/page-renew-ad.php:72
+#: frontend/page-renew-ad.php:73
 #, fuzzy
 msgid "That Ad doesn't need to be renewed."
 msgstr "A megadott hirdetést nem szükséges megújítani"
 
-#: frontend/page-renew-ad.php:77
+#: frontend/page-renew-ad.php:78
 msgid ""
 "There was an error trying to renew your Ad. The URL is not valid. Please "
 "contact the Administrator of this site for further assistance."
@@ -1650,7 +1650,7 @@ msgstr ""
 "Hiba történt a hirdetés megújítása során: az URL nem valós. További "
 "segítségért lépjen kapcsolatba az adminisztrátorral."
 
-#: frontend/page-renew-ad.php:93
+#: frontend/page-renew-ad.php:94
 msgid ""
 "You can't renew your Ad at this time because the payment associated with "
 "this transaction failed (see reasons below)."
@@ -1658,7 +1658,7 @@ msgstr ""
 "Nem tudjuk megújítani a hirdetést, mivel a tranzakcióhoz kapcsolódó "
 "befizetés sikertelen (az okokat tekintse meg lentebb)."
 
-#: frontend/page-renew-ad.php:116
+#: frontend/page-renew-ad.php:117
 msgid ""
 "The Ad was posted under a Payment Term that no longer exists or is disabled. "
 "The Ad can't be renewed."
@@ -1666,11 +1666,11 @@ msgstr ""
 "A hirdetés nem létező vagy kikapcsolt fizetési móddal rendelkezik, ezért nem "
 "lehet megújítani"
 
-#: frontend/page-renew-ad.php:153
+#: frontend/page-renew-ad.php:154
 msgid "You can see your Ad here"
 msgstr "Itt láthatja a hirdetését"
 
-#: frontend/page-renew-ad.php:202
+#: frontend/page-renew-ad.php:200
 msgid ""
 "You are trying to renew your Ad using a different Payment Term. That's not "
 "allowed."
@@ -1678,23 +1678,23 @@ msgstr ""
 "Eltérő fizetési tervvel próbálja megújítani a hirdetését. Ez nem "
 "engedélyezett. "
 
-#: frontend/page-reply-to-ad.php:78 frontend/page-reply-to-ad.php:141
+#: frontend/page-reply-to-ad.php:83 frontend/page-reply-to-ad.php:154
 msgid "Please enter your name."
 msgstr "Adja meg a nevét"
 
-#: frontend/page-reply-to-ad.php:79
+#: frontend/page-reply-to-ad.php:84
 msgid "Please enter your email address."
 msgstr "Adja meg az email címét"
 
-#: frontend/page-reply-to-ad.php:80
+#: frontend/page-reply-to-ad.php:85
 msgid "The message cannot be empty."
 msgstr "Ez a mező nem maradhat üresen"
 
-#: frontend/page-reply-to-ad.php:81 includes/functions/l10n.php:28
+#: frontend/page-reply-to-ad.php:86 includes/functions/l10n.php:28
 msgid "Please type in the result of the operation."
 msgstr "Kérjük írja be művelet eredményét"
 
-#: frontend/page-reply-to-ad.php:91
+#: frontend/page-reply-to-ad.php:96
 msgid ""
 "Only registered users can reply to Ads. If you are already registered, "
 "please login below in order to reply to the Ad."
@@ -1702,19 +1702,19 @@ msgstr ""
 "Csak regisztrált felhasználók válaszolhatnak hirdetésre. Amennyiben ön "
 "regisztrált felhasználó, kérjük jelentkezzen be lentebb."
 
-#: frontend/page-reply-to-ad.php:98
+#: frontend/page-reply-to-ad.php:103
 msgid "The specified Ad does not exist."
 msgstr "A hirdetés nem létezik."
 
-#: frontend/page-reply-to-ad.php:145
+#: frontend/page-reply-to-ad.php:158
 msgid "Please enter your email."
 msgstr "Adja meg az email címét"
 
-#: frontend/page-reply-to-ad.php:151
+#: frontend/page-reply-to-ad.php:164
 msgid "There was no text in your message. Please enter a message."
 msgstr "Nincs szöveg az üzenetben. Kérjük írjon be egy üzenetet."
 
-#: frontend/page-reply-to-ad.php:158
+#: frontend/page-reply-to-ad.php:171
 msgid ""
 "Your message was flagged as spam. Please contact the administrator of this "
 "site."
@@ -1722,7 +1722,7 @@ msgstr ""
 "Üzenete spamként lett megjelölve. Lépjen kapcsolatba a weboldal "
 "adminisztrátorával."
 
-#: frontend/page-reply-to-ad.php:272
+#: frontend/page-reply-to-ad.php:285
 msgid ""
 "There was a problem encountered during the attempt to send your message. "
 "Please try again and if the problem persists, please contact the system "
@@ -1731,11 +1731,11 @@ msgstr ""
 "Az üzenet elküldése során probléma merült fel. Próbálja újra, és amennyiben "
 "továbra is fennáll, lépjen kapcsolatba az adminisztrátorral."
 
-#: frontend/page-reply-to-ad.php:278
+#: frontend/page-reply-to-ad.php:291
 msgid "Your message has been sent. Return to <view-listing-link>."
 msgstr "Üzenet elküldve. Visszatérés a  <view-listing-link>."
 
-#: frontend/page-search-ads.php:88
+#: frontend/page-search-ads.php:83
 msgid ""
 "You have entered a keyword that is too short to search on. Search keywords "
 "must be at least 3 letters in length. Please try another term."
@@ -1743,7 +1743,7 @@ msgstr ""
 "Az ön által beírt kulcsszó nem elég a kereséshez. A kulcsszónak legalább 3 "
 "betűnek kell lennie. "
 
-#: frontend/page-search-ads.php:92
+#: frontend/page-search-ads.php:87
 msgid ""
 "You have entered an invalid minimum price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
@@ -1751,7 +1751,7 @@ msgstr ""
 "Érvénytelen az ön által megadott minimum ár. Kérjük csak számokkal, pénznem "
 "nélkül adja meg az árat."
 
-#: frontend/page-search-ads.php:96
+#: frontend/page-search-ads.php:91
 msgid ""
 "You have entered an invalid maximum price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
@@ -1759,7 +1759,7 @@ msgstr ""
 "Érvénytelen az ön által megadott maximum ár. Kérjük csak számokkal, pénznem "
 "nélkül adja meg az árat."
 
-#: frontend/page-search-ads.php:221
+#: frontend/page-search-ads.php:225
 msgid "Return to Search"
 msgstr "Visszatérés a kereséshez."
 
@@ -1783,7 +1783,7 @@ msgstr "Eladó"
 msgid "Visit Website"
 msgstr "Weboldal meglátogatása"
 
-#: frontend/placeholders.php:651 includes/functions/listings.php:378
+#: frontend/placeholders.php:651 includes/functions/listings.php:400
 msgid "Location"
 msgstr "Helyszín"
 
@@ -1819,15 +1819,15 @@ msgstr "Megosztás facebookon"
 msgid "this shortcode only works with registered users."
 msgstr ""
 
-#: frontend/shortcode.php:332
+#: frontend/shortcode.php:336
 msgid "Hi admin, you need to select the page for your classifieds."
 msgstr ""
 
-#: frontend/shortcode.php:335
+#: frontend/shortcode.php:339
 msgid "Choose pages now"
 msgstr ""
 
-#: frontend/shortcode.php:339
+#: frontend/shortcode.php:343
 msgid "You currently have no classifieds"
 msgstr "Jelenleg nincsenek apróhirdetései."
 
@@ -2132,7 +2132,7 @@ msgid "Manage Images"
 msgstr "Képek kezelése"
 
 #: frontend/templates/page-place-ad-preview-step.tpl.php:17
-#: includes/frontend/class-submit-listing-form-steps.php:66
+#: includes/frontend/class-submit-listing-form-steps.php:60
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:38
 msgid "Finish"
 msgstr "Befejezés"
@@ -2202,7 +2202,7 @@ msgstr ""
 msgid "Pay With 2Checkout"
 msgstr "Fizetés 2Checkouttal"
 
-#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:794
+#: frontend/templates/payments-billing-form.tpl.php:6 functions.php:779
 #: includes/admin/class-listings-personal-data-provider.php:115
 #: includes/admin/class-listings-personal-data-provider.php:125
 #: includes/admin/import/class-csv-importer-columns.php:230
@@ -2248,7 +2248,7 @@ msgstr "Cím 2"
 msgid "State"
 msgstr "Állam/megye"
 
-#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:814
+#: frontend/templates/payments-billing-form.tpl.php:101 functions.php:799
 #: includes/admin/class-listings-personal-data-provider.php:117
 #: includes/admin/class-listings-personal-data-provider.php:127
 #: includes/admin/import/class-csv-importer-columns.php:260
@@ -2403,71 +2403,71 @@ msgstr "Hirdetések keresése kapcsolat-név alapján"
 msgid "All Contact Names"
 msgstr "Minden kapcsolat-név"
 
-#: frontend/widget-search.php:84
+#: frontend/widget-search.php:56
 msgid "Select Option"
 msgstr "Lehetőség választása"
 
-#: frontend/widget-search.php:133
+#: frontend/widget-search.php:105
 msgid "Search by keyword"
 msgstr "Kulcsszó szerinti keresés"
 
-#: frontend/widget-search.php:147
+#: frontend/widget-search.php:119
 msgid "Search by Category"
 msgstr "Kategória szerinti keresés"
 
-#: frontend/widget-search.php:165
+#: frontend/widget-search.php:137
 msgid "Search"
 msgstr "Keresés"
 
-#: functions.php:442
+#: functions.php:427
 msgid "%s ago"
 msgstr "%s telt el"
 
-#: functions.php:607
+#: functions.php:592
 msgid "Ads per page:"
 msgstr ""
 
-#: functions.php:624
+#: functions.php:609
 msgid "Page {current_page_number} of {number_of_pages}"
 msgstr ""
 
-#: functions.php:735
+#: functions.php:720
 msgid "None"
 msgstr "Egyik sem"
 
-#: functions.php:795
+#: functions.php:780
 msgid "separate countries by commas"
 msgstr "Országok elválasztása vesszővel"
 
-#: functions.php:804
+#: functions.php:789
 msgid "State/Province"
 msgstr "Állam/Tartomány"
 
-#: functions.php:805
+#: functions.php:790
 msgid "separate states by commas"
 msgstr "államok elválasztása vesszővel"
 
-#: functions.php:815
+#: functions.php:800
 msgid "separate cities by commas"
 msgstr "városok elválasztása vesszővel"
 
-#: functions.php:824
+#: functions.php:809
 msgid "County/Village/Other"
 msgstr "Megye/Település/Egyéb"
 
-#: functions.php:825
+#: functions.php:810
 msgid "separate counties by commas"
 msgstr "megyék elválasztása vesszővel"
 
-#: functions.php:1039
+#: functions.php:1024
 msgid "-- Choose a Country --"
 msgstr "-- Válasszon egy Országot"
 
-#: functions.php:1456 templates/admin/main-classifieds-admin-page.tpl.php:58
+#: functions.php:1495 templates/admin/main-classifieds-admin-page.tpl.php:58
 msgid "Free"
 msgstr "Ingyenes"
 
-#: functions.php:1796 templates/components/media-center.tpl.php:14
+#: functions.php:1840 templates/components/media-center.tpl.php:14
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -2479,7 +2479,7 @@ msgstr ""
 "elfogadásra várnak vagy elutasításra kerültek, nem jelenhetnek meg a "
 "hirdetésben."
 
-#: functions.php:1815
+#: functions.php:1859
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -2487,55 +2487,55 @@ msgstr ""
 "Az AWPCP %1$s modul ez a verziója nem kompatibilis az AWPCP verzió %2$s-sel. "
 "Kérjük szerezze be az AWPCP %1$s %3$s vagy újabbat."
 
-#: functions.php:1817
+#: functions.php:1861
 msgid "Error"
 msgstr "Hiba"
 
-#: functions.php:2175
+#: functions.php:2219
 msgid "No errors."
 msgstr "Nincsenek hibák."
 
-#: functions.php:2176
+#: functions.php:2220
 msgid "The file is larger than upload_max_filesize."
 msgstr "A fájl nagyobb mint az upload_max_filesize."
 
-#: functions.php:2177
+#: functions.php:2221
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr " fájl nagyom mint a MAX_FILE_SIZE."
 
-#: functions.php:2178
+#: functions.php:2222
 msgid "The file was only partially uploaded."
 msgstr "A fájlnak csak egy részét sikerült feltölteni."
 
-#: functions.php:2179
+#: functions.php:2223
 msgid "No file was uploaded."
 msgstr "Nincs feltöltött fájl."
 
-#: functions.php:2180
+#: functions.php:2224
 msgid "Missing temporary directory."
 msgstr "Hiányzó átmeneti könyvtár."
 
-#: functions.php:2181
+#: functions.php:2225
 msgid "Can't write file to disk."
 msgstr "Nem írható a fájl a lemezre."
 
-#: functions.php:2182
+#: functions.php:2226
 msgid "The file upload was stopped by extension."
 msgstr "Egy bővítmény megszakította a fájl feltöltést."
 
-#: functions.php:2420
+#: functions.php:2464
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Az  \"%s\"  hirdetése elfogadva "
 
-#: functions.php:2443
+#: functions.php:2487
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Az Ön hirdetése \"%s\" sikeresen frissítve"
 
-#: functions.php:2465
+#: functions.php:2509
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Képek az ön \"%s\" hirdetésében elbírálásra várnak"
 
-#: functions.php:2467
+#: functions.php:2511
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
@@ -2545,13 +2545,13 @@ msgstr ""
 "Kezelése szekcióban, minden képen az \"Bekapcsolás\" gombra kattintva. "
 "Kattintson ide a folytatáshoz: %s."
 
-#: functions.php:2470
+#: functions.php:2514
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "\"%s\" hirdetés elbírálásra vár."
 
 #. translators: %1$s is the listing title. %2$s is the URL for managing
 #. listing.
-#: functions.php:2473 includes/functions/notifications.php:157
+#: functions.php:2517 includes/functions/notifications.php:157
 msgid ""
 "The Ad \"%1$s\" is awaiting approval. You can approve the Ad going to the "
 "Classified edit section and clicking the \"Publish\" button. Click here to "
@@ -2559,7 +2559,7 @@ msgid ""
 msgstr ""
 
 #. translators: %s is the URL for managing listing images.
-#: functions.php:2480 includes/functions/notifications.php:165
+#: functions.php:2524 includes/functions/notifications.php:165
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -2568,27 +2568,27 @@ msgstr ""
 "Elfogadhatja a képeket a Képek Kezelése szekcióban, minden kép alatt a "
 "\"Bekapcsolás\" gombra kattintva. Kattintson ide a folytatáshoz: %s."
 
-#: functions.php:3012
+#: functions.php:3056
 msgid "Email sent %s."
 msgstr "Email elküldve %s."
 
-#: functions.php:3143
+#: functions.php:3187
 msgid "Not Installed"
 msgstr "Nem telepített"
 
-#: functions.php:3147
+#: functions.php:3191
 msgid "Installed"
 msgstr "Telepítve"
 
-#: functions.php:3155
+#: functions.php:3199
 msgid "SSL Support: Yes."
 msgstr ""
 
-#: functions.php:3157
+#: functions.php:3201
 msgid "SSL Support: No."
 msgstr ""
 
-#: functions.php:3160
+#: functions.php:3204
 msgid "OpenSSL version:"
 msgstr ""
 
@@ -2604,7 +2604,7 @@ msgstr ""
 msgid "Classified Fields"
 msgstr ""
 
-#: includes/admin/class-list-table-search-handler.php:104
+#: includes/admin/class-list-table-search-handler.php:97
 msgid "Search for listings matching"
 msgstr ""
 
@@ -2860,23 +2860,23 @@ msgstr ""
 msgid "Published:"
 msgstr ""
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:148
+#: includes/admin/listings/class-listings-table-nav-handler.php:141
 msgid "Select date field"
 msgstr ""
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:157
+#: includes/admin/listings/class-listings-table-nav-handler.php:150
 msgid "All dates"
 msgstr "Összes dátum"
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:160
+#: includes/admin/listings/class-listings-table-nav-handler.php:153
 msgid "Renewed Date"
 msgstr "Hosszabbítási dátum"
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:161
+#: includes/admin/listings/class-listings-table-nav-handler.php:154
 msgid "Published Date"
 msgstr ""
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:173
+#: includes/admin/listings/class-listings-table-nav-handler.php:166
 msgid "Select date range"
 msgstr ""
 
@@ -3279,8 +3279,8 @@ msgstr "A mező kitöltése szükséges"
 
 #: includes/class-awpcp.php:1427
 #: includes/form-fields/class-form-fields-validator.php:101
-#: includes/frontend/class-edit-listing-page.php:256
-#: includes/frontend/class-edit-listing-page.php:333
+#: includes/frontend/class-edit-listing-page.php:258
+#: includes/frontend/class-edit-listing-page.php:335
 #: includes/settings/class-payment-general-settings.php:156
 msgid "Please enter a valid email address."
 msgstr "Adjunk meg egy valós email címet."
@@ -3561,7 +3561,7 @@ msgid "There specified ad doesn't exist."
 msgstr ""
 
 #: includes/frontend/class-edit-listing-page.php:95
-#: includes/frontend/class-submit-listing-page.php:91
+#: includes/frontend/class-submit-listing-page.php:90
 msgid "You are not allowed to edit the specified ad."
 msgstr ""
 
@@ -3570,7 +3570,7 @@ msgid "The selected ad cannot be edited right now."
 msgstr ""
 
 #. translators: %s is the URL to the listing's individual page.
-#: includes/frontend/class-edit-listing-page.php:179
+#: includes/frontend/class-edit-listing-page.php:181
 msgid ""
 "The Ad has been edited successfully. <a href=\"%s\">Go back to view "
 "listings</a>."
@@ -3578,19 +3578,19 @@ msgstr ""
 "A hirdetést sikeresen szerkesztette. <a href=\"%s\">Vissza a listázások "
 "megtekintéséhez</a>."
 
-#: includes/frontend/class-edit-listing-page.php:211
+#: includes/frontend/class-edit-listing-page.php:213
 msgid ""
 "Your changes have been published. This is the content that will be seen by "
 "visitors of the website."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:215
+#: includes/frontend/class-edit-listing-page.php:217
 msgid ""
 "Your changes have been saved. This is a preview of the content as seen by "
 "visitors of the website."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:254
+#: includes/frontend/class-edit-listing-page.php:256
 msgid ""
 "Please enter the email address you used when you created your Ad in addition "
 "to the Ad access key that was emailed to you after your Ad was submitted."
@@ -3599,11 +3599,11 @@ msgstr ""
 "használt, valamint a hozzáférési kulcsot, amelyet a hirdetés létrehozása "
 "után emailben küldtünk el önnek."
 
-#: includes/frontend/class-edit-listing-page.php:260
+#: includes/frontend/class-edit-listing-page.php:262
 msgid "Please enter your Ad access key."
 msgstr "Kérjük adja meg a hirdetés hozzáférési kulcsát."
 
-#: includes/frontend/class-edit-listing-page.php:287
+#: includes/frontend/class-edit-listing-page.php:289
 msgid ""
 "The email address and access key you entered does not match any of the Ads "
 "in our system."
@@ -3611,53 +3611,53 @@ msgstr ""
 "Az ön által megadott emailcím és hozzáférési kulcs nem egyezik a "
 "rendszerünkben található hirdetésekkel."
 
-#: includes/frontend/class-edit-listing-page.php:331
+#: includes/frontend/class-edit-listing-page.php:333
 msgid "Please enter the email address you used when you created your Ad."
 msgstr ""
 "Kérjük adja meg azt az email címet, melyet a hirdetés létrehozásakor "
 "használt."
 
-#: includes/frontend/class-edit-listing-page.php:351
+#: includes/frontend/class-edit-listing-page.php:353
 msgid ""
 "The email address you entered does not match any of the Ads in our system."
 msgstr ""
 "Az ön által megadott emailcím nem egyezik a rendszerünkben található "
 "hirdetésekkel."
 
-#: includes/frontend/class-edit-listing-page.php:389
+#: includes/frontend/class-edit-listing-page.php:391
 msgid ""
 "The email address you entered does not match any of the listing in our "
 "system."
 msgstr ""
 
 #. translators: %s is the email address that user provided.
-#: includes/frontend/class-edit-listing-page.php:428
+#: includes/frontend/class-edit-listing-page.php:430
 msgid "There was an error trying to send the email to %s."
 msgstr "Hiba történt email küldése során %s részére."
 
 #. translators: %s is the email address that user provided.
-#: includes/frontend/class-edit-listing-page.php:433
+#: includes/frontend/class-edit-listing-page.php:435
 msgid "The access keys were sent to %s."
 msgstr "A hozzáférési kulcsokat elküldtük %s"
 
-#: includes/frontend/class-edit-listing-page.php:469
+#: includes/frontend/class-edit-listing-page.php:471
 msgid "Invalid access token."
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:481
+#: includes/frontend/class-edit-listing-page.php:483
 msgid "The specified listing doesn't exists."
 msgstr "A meghatározott listázás nem létezik."
 
-#: includes/frontend/class-edit-listing-page.php:488
+#: includes/frontend/class-edit-listing-page.php:490
 msgid "The sepecified listing cannot be edited using this access code."
 msgstr ""
 
 #. translators: %s is the title of the listing.
-#: includes/frontend/class-edit-listing-page.php:518
+#: includes/frontend/class-edit-listing-page.php:520
 msgid "Edit link for listing: %s"
 msgstr ""
 
-#: includes/frontend/class-edit-listing-page.php:534
+#: includes/frontend/class-edit-listing-page.php:536
 msgid ""
 "The link you used already expired. Please check your email to receive a link "
 "with a new access token."
@@ -3706,40 +3706,40 @@ msgid ""
 "There was an error trying to verify the reCAPTCHA answer. <reCAPTCHA-error>"
 msgstr "Hiba történt a reCAPTCHA válasz ellenőrzésekor. <reCAPTCHA-error>"
 
-#: includes/frontend/class-save-listing-information-ajax-handler.php:122
+#: includes/frontend/class-save-listing-information-ajax-handler.php:115
 msgid "There is no payment transaction associated with this request. Aborting."
 msgstr ""
 
-#: includes/frontend/class-submit-listing-form-steps.php:47
+#: includes/frontend/class-submit-listing-form-steps.php:41
 msgid "Login/Registration"
 msgstr "Belépés/Regisztráció"
 
-#: includes/frontend/class-submit-listing-form-steps.php:54
+#: includes/frontend/class-submit-listing-form-steps.php:48
 #: includes/ui/class-category-selector.php:125
 #: templates/components/category-selector.tpl.php:16
 msgid "Select a Category"
 msgstr "Kategória kiválasztása"
 
-#: includes/frontend/class-submit-listing-form-steps.php:55
-#: includes/frontend/class-submit-listing-form-steps.php:62
+#: includes/frontend/class-submit-listing-form-steps.php:49
+#: includes/frontend/class-submit-listing-form-steps.php:56
 msgid "Checkout"
 msgstr "Megrendelés"
 
-#: includes/frontend/class-submit-listing-form-steps.php:56
-#: includes/frontend/class-submit-listing-form-steps.php:63
+#: includes/frontend/class-submit-listing-form-steps.php:50
+#: includes/frontend/class-submit-listing-form-steps.php:57
 #: includes/settings/class-payment-general-settings.php:25
 msgid "Payment"
 msgstr "Fizetés"
 
-#: includes/frontend/class-submit-listing-form-steps.php:59
+#: includes/frontend/class-submit-listing-form-steps.php:53
 msgid "Enter Ad Information"
 msgstr ""
 
-#: includes/frontend/class-submit-listing-page.php:79
+#: includes/frontend/class-submit-listing-page.php:78
 msgid "Users are not allowed to publish ads at this time."
 msgstr ""
 
-#: includes/frontend/class-submit-listing-page.php:99
+#: includes/frontend/class-submit-listing-page.php:98
 msgid "The information for the selected ad was already saved."
 msgstr ""
 
@@ -3775,12 +3775,12 @@ msgid ""
 "the email address used to post the listing."
 msgstr ""
 
-#: includes/frontend/class-update-listing-order-ajax-handler.php:81
+#: includes/frontend/class-update-listing-order-ajax-handler.php:76
 msgid ""
 "The payment information for the specified ad cannot be modified at this time."
 msgstr ""
 
-#: includes/frontend/class-update-listing-order-ajax-handler.php:87
+#: includes/frontend/class-update-listing-order-ajax-handler.php:82
 msgid "The specified transaction doesn't exist."
 msgstr ""
 
@@ -3919,22 +3919,22 @@ msgstr ""
 msgid "Top Level Category"
 msgstr "Fő Kategória"
 
-#: includes/functions/listings.php:260
+#: includes/functions/listings.php:273
 #: includes/listings/class-listings-content-renderer.php:169
 msgid "Are you sure you want to flag this ad?"
 msgstr "Biztos megjelöli ezt a hirdetést?"
 
-#: includes/functions/listings.php:261
+#: includes/functions/listings.php:274
 #: includes/listings/class-listings-content-renderer.php:170
 msgid "This Ad has been flagged."
 msgstr "a HIRDETÉST MEGJELÖLTÜK."
 
-#: includes/functions/listings.php:262
+#: includes/functions/listings.php:275
 #: includes/listings/class-listings-content-renderer.php:171
 msgid "An error occurred while trying to flag the Ad."
 msgstr "A hirdetés megjelölése során hiba történt."
 
-#: includes/functions/listings.php:299
+#: includes/functions/listings.php:312
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
@@ -3942,7 +3942,7 @@ msgstr ""
 "Ez a listázás sajnos nem elérhető. Próbálkozzon létező listázásokat keresni "
 "vagy böngészni."
 
-#: includes/functions/listings.php:316
+#: includes/functions/listings.php:329
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
@@ -3950,12 +3950,12 @@ msgstr ""
 "Az ön által megtekinteni kívánt hirdetés jóváhagyása folyamatban van. Miután "
 "az adminisztrátor jóváhagyja, látható és aktív lesz."
 
-#: includes/functions/listings.php:321
+#: includes/functions/listings.php:335
 #: includes/listings/class-listings-content-renderer.php:106
 msgid "Your email address was successfully verified."
 msgstr "Email címét megerősítettük."
 
-#: includes/functions/listings.php:325
+#: includes/functions/listings.php:339
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
@@ -3963,7 +3963,7 @@ msgstr ""
 "Ez a hirdetés nem aktív, amíg az adminisztrátor jóvá nem hagyja. Csak ön (az "
 "adminisztrátor) és a hirdetés létrehozója láthatja."
 
-#: includes/functions/listings.php:328
+#: includes/functions/listings.php:342
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
@@ -3971,7 +3971,7 @@ msgstr ""
 "Ez a hirdetés nem aktív, amíg meg nem erősíti az email címét. Csak ön (a "
 "hirdetés létrehozója) láthatja."
 
-#: includes/functions/listings.php:331
+#: includes/functions/listings.php:345
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."
@@ -4092,7 +4092,7 @@ msgid ""
 "Include this message if necesary."
 msgstr ""
 
-#: includes/helpers/class-modules-manager.php:187
+#: includes/helpers/class-modules-manager.php:185
 msgid ""
 "Yikes, there has been a mistake. It looks like you have an outdated version "
 "of AWPCP <module-name>, or you need a newer version of AWPCP to use that "
@@ -4113,7 +4113,7 @@ msgstr[1] ""
 "verzió. vagy egy újabb AWPCP verzióra van szükség a használatához. Lépjen "
 "kapcsolatba ügyfélszolgálatunkkal és kérjen frissítést."
 
-#: includes/helpers/class-modules-manager.php:219
+#: includes/helpers/class-modules-manager.php:217
 msgid ""
 "The version of AWPCP {modules_names} is not compatible with version "
 "{awpcp_version}."
@@ -4123,11 +4123,11 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/helpers/class-modules-manager.php:221
+#: includes/helpers/class-modules-manager.php:219
 msgid "Please get AWPCP {required_modules_versions} or newer!"
 msgstr ""
 
-#: includes/helpers/class-modules-manager.php:252
+#: includes/helpers/class-modules-manager.php:250
 msgid ""
 "The license for AWPCP <module-name> is inactive. All features will remain "
 "disabled until you activate the license. Please go to the <licenses-settings-"
@@ -4147,7 +4147,7 @@ msgstr[1] ""
 "a  <licenses-settings-link>Licenses Settings</a> szekcióba vagy frissítse a "
 "licencét."
 
-#: includes/helpers/class-modules-manager.php:266
+#: includes/helpers/class-modules-manager.php:264
 msgid ""
 "The AWPCP <module-name> requires a license to be used. All features will "
 "remain disabled until a valid license is entered. Please go to the <licenses-"
@@ -4167,7 +4167,7 @@ msgstr[1] ""
 "beütésre. Kérjük lépjen a  <licenses-settings-link>Licenses Settings</a> "
 "szekcióba vagy frissítse a licencét."
 
-#: includes/helpers/class-modules-manager.php:271
+#: includes/helpers/class-modules-manager.php:269
 msgid ""
 "The license for AWPCP <module-name> expired. The module will continue to "
 "work but you will not receive automatic updates when a new version is "
@@ -4183,7 +4183,7 @@ msgstr[1] ""
 "Az AWPCP <modules-names> licenced lejárt. Továbbra is működni fognak, de új "
 "verziónál nem kapnak automatikus frissítést."
 
-#: includes/helpers/class-modules-manager.php:282
+#: includes/helpers/class-modules-manager.php:281
 msgid ""
 "The AWPCP <module-name> is currently disabled because it requires you to "
 "perform a manual upgrade before continuing. Please <upgrade-link>go to the "
@@ -4195,7 +4195,7 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: includes/helpers/class-modules-manager.php:295
+#: includes/helpers/class-modules-manager.php:294
 msgid "The specified module does not exists!."
 msgstr "A meghatározott modul nem létezik!"
 
@@ -4270,7 +4270,7 @@ msgstr ""
 msgid "Select an User"
 msgstr "Felhasználó kiválasztása"
 
-#: includes/helpers/widgets/multiple-region-selector.php:171
+#: includes/helpers/widgets/multiple-region-selector.php:123
 msgid ""
 "This particular region is already selected in another field. Please choose "
 "one or more sub-regions, to make the selection more specific, or change the "
@@ -4280,19 +4280,19 @@ msgstr ""
 "vagy több al-régiót, hogy pontosabb legyen a helyszín, vagy változtasson a "
 "kiválasztott régión."
 
-#: includes/helpers/widgets/multiple-region-selector.php:176
+#: includes/helpers/widgets/multiple-region-selector.php:128
 msgid "Add Search Region"
 msgstr "Régió keresés hozzáadása"
 
-#: includes/helpers/widgets/multiple-region-selector.php:176
+#: includes/helpers/widgets/multiple-region-selector.php:128
 msgid "Add Region"
 msgstr "Régió hozzáadása"
 
-#: includes/helpers/widgets/multiple-region-selector.php:177
+#: includes/helpers/widgets/multiple-region-selector.php:129
 msgid "Delete Search Region"
 msgstr "Keresési Régió törlése"
 
-#: includes/helpers/widgets/multiple-region-selector.php:177
+#: includes/helpers/widgets/multiple-region-selector.php:129
 msgid "Remove Region"
 msgstr "Régió eltávolítása"
 
@@ -4502,11 +4502,11 @@ msgid ""
 "You can upload <videos-left> videos of up to <videos-max-file-size> each."
 msgstr "Feltöltheti <videos-left> videóit <videos-max-file-size>méretig."
 
-#: includes/media/class-media-uploaded-notification.php:125
+#: includes/media/class-media-uploaded-notification.php:122
 msgid "New media was uploaded to listing: <listing-title>"
 msgstr ""
 
-#: includes/media/class-media-uploaded-notification.php:127
+#: includes/media/class-media-uploaded-notification.php:124
 msgid "New media is awaiting approval in listing: <listing-title>"
 msgstr ""
 
@@ -4628,7 +4628,7 @@ msgstr "Fizetési mód választása kötelező"
 msgid "The payment status for this transaction hasn't been defined."
 msgstr "Ehhez a tranzakcióhoz kapcsolódó befizetés állapota nincs meghatározva"
 
-#: includes/payment-gateway-2checkout.php:62
+#: includes/payment-gateway-2checkout.php:63
 msgid ""
 "There appears to be a problem with your payment. Please contact the "
 "administrator if you are viewing this message after having made a payment "
@@ -4640,8 +4640,8 @@ msgstr ""
 "adminisztrátorral, ha 2Checkouttal való fizetés után látja ezt az üzenetet. "
 "Amennyiben nem próbált fizetni, hagyja figyelmen kívül ezt az üzenetet"
 
-#: includes/payment-gateway-2checkout.php:96
-#: includes/payment-gateway-paypal-standard.php:139
+#: includes/payment-gateway-2checkout.php:101
+#: includes/payment-gateway-paypal-standard.php:140
 msgid ""
 "The amount you have paid does not match the required amount for this "
 "transaction. Please contact us to clarify the problem."
@@ -4650,8 +4650,8 @@ msgstr ""
 "nem egyezik . Kérjük lépjen kapcsolatba velünk a probléma tisztázása "
 "érdekében."
 
-#: includes/payment-gateway-2checkout.php:104
-#: includes/payment-gateway-paypal-standard.php:147
+#: includes/payment-gateway-2checkout.php:109
+#: includes/payment-gateway-paypal-standard.php:148
 msgid ""
 "There was an error processing your transaction. If funds have been deducted "
 "from your account, they have not been processed to our account. You will "
@@ -4661,8 +4661,8 @@ msgstr ""
 "számlájáról, nem került számunkra elküldésre. A PayPallal kell kapcsolatba "
 "lépnie a probléma megoldásához."
 
-#: includes/payment-gateway-2checkout.php:114
-#: includes/payment-gateway-paypal-standard.php:157
+#: includes/payment-gateway-2checkout.php:119
+#: includes/payment-gateway-paypal-standard.php:158
 msgid ""
 "It appears this transaction has already been processed. If you do not see "
 "your ad in the system please contact the site adminstrator for assistance."
@@ -4703,7 +4703,7 @@ msgstr ""
 "Ha további kérdései vannak, kérjük lépjen kapcsolatba a weboldal "
 "adminsztrátorával."
 
-#: includes/payment-gateway-paypal-standard.php:182
+#: includes/payment-gateway-paypal-standard.php:183
 msgid ""
 "We couldn't determine the payment status for your transaction. Please "
 "contact customer service if you are viewing this message after having made a "
@@ -4716,7 +4716,7 @@ msgstr ""
 "látja. Ha nem próbált meg pénzt befizetni, és ezt az üzenetet látja, hiba "
 "történt, de kérjük hagyja figyelmen kívül."
 
-#: includes/payment-gateway-paypal-standard.php:284
+#: includes/payment-gateway-paypal-standard.php:289
 msgid "The payment transaction was canceled by the user."
 msgstr "A befizetési tranzakciót a felhasználó megszakítótta."
 
@@ -4820,12 +4820,12 @@ msgstr ""
 msgid "The price must be equal or greater than zero."
 msgstr "Az árnak egyenlőnek, vagy nagyobbnak kell lennie nullánál."
 
-#: includes/payment-terms-table.php:156 includes/payments-api.php:441
+#: includes/payment-terms-table.php:156 includes/payments-api.php:443
 msgid "The selected payment type can't be used in this kind of transaction."
 msgstr ""
 "A kiválasztott fizetési mód nem használható ennél a típúsú tranzakciónál."
 
-#: includes/payment-terms-table.php:161 includes/payments-api.php:446
+#: includes/payment-terms-table.php:161 includes/payments-api.php:448
 msgid "The selected payment term can't be used in this kind of transaction."
 msgstr ""
 "A kiválasztott fizetési feltétel nem használható ennél a típusú "
@@ -4836,7 +4836,7 @@ msgid ""
 "{credit-plan-name} ({credit-plan-credits} credits for {credit-plan-price})"
 msgstr ""
 
-#: includes/payments-api.php:489
+#: includes/payments-api.php:491
 msgid ""
 "The specified payment transaction doesn't exists. We can't process your "
 "payment."
@@ -4844,7 +4844,7 @@ msgstr ""
 "A meghatározott fizetési tranzakció nem létezik. Nem tudjuk feldolgozni a "
 "befizetését."
 
-#: includes/payments-api.php:490 includes/payments-api.php:502
+#: includes/payments-api.php:492 includes/payments-api.php:504
 msgid ""
 "Please contact customer service if you are viewing this message after having "
 "made a payment. If you have not tried to make a payment and you are viewing "
@@ -4856,12 +4856,12 @@ msgstr ""
 "hiba történt, de kérjük hagyja figyelmen kívül."
 
 #. translators: %s link HTML
-#: includes/payments-api.php:493 includes/payments-api.php:505
+#: includes/payments-api.php:495 includes/payments-api.php:507
 #, fuzzy
 msgid "Return to %shome page"
 msgstr "Vissza: %s"
 
-#: includes/payments-api.php:501
+#: includes/payments-api.php:503
 msgid ""
 "The payment method associated with this transaction is not available at this "
 "time. We can't process your payment."
@@ -4869,22 +4869,22 @@ msgstr ""
 "Ez a fizetési mód ezzel a tranzakcióval kapcsolatban jelenleg nem érhető el. "
 "Nem tudjuk feldolgozni a befizetését."
 
-#: includes/payments-api.php:688
+#: includes/payments-api.php:689
 msgid ""
 "You currently have %1$s credits in your account. The balance after this "
 "transaction is completed successfully will be %2$s."
 msgstr ""
 
 #. translators: %s credit balance
-#: includes/payments-api.php:703
+#: includes/payments-api.php:704
 msgid "You currently have %s credits in your account."
 msgstr "Jelenleg %s kredit áll rendelkezésre a fiókjában."
 
-#: includes/payments-api.php:819 includes/payments-api.php:870
+#: includes/payments-api.php:820 includes/payments-api.php:871
 msgid "Payment Completed"
 msgstr "Befizetés Befejezve"
 
-#: includes/payments-api.php:822
+#: includes/payments-api.php:823
 msgid ""
 "Your Payment has been processed successfully. Please press the button below "
 "to continue with the process."
@@ -4892,7 +4892,7 @@ msgstr ""
 "A befizetése sikeresen feldolgozva. Kérjük nyomja meg a gombot a "
 "folytatáshoz."
 
-#: includes/payments-api.php:824
+#: includes/payments-api.php:825
 msgid ""
 "Your Payment has been processed successfully. However is still pending "
 "approvation from the payment gateway. Please press the button below to "
@@ -4901,11 +4901,11 @@ msgstr ""
 "A befizetése sikeresen feldolgozva. Viszont még mindig elfogadásra vár a "
 "befizetési átjárótól. Kérjük nyomja meg a gombot a folytatáshoz."
 
-#: includes/payments-api.php:829
+#: includes/payments-api.php:830
 msgid "Payment Not Required"
 msgstr "Fizetés nem szükséges"
 
-#: includes/payments-api.php:830
+#: includes/payments-api.php:831
 msgid ""
 "No Payment is required for this transaction. Please press the button below "
 "to continue with the process."
@@ -4913,11 +4913,11 @@ msgstr ""
 "Nem szükséges Befizetés ehhez a tranzakcióhoz. Kérjük nyomja meg a gombot a "
 "folytatáshoz."
 
-#: includes/payments-api.php:835 includes/payments-api.php:876
+#: includes/payments-api.php:836 includes/payments-api.php:877
 msgid "Payment Failed"
 msgstr "Befizetés Sikertelen"
 
-#: includes/payments-api.php:836
+#: includes/payments-api.php:837
 msgid ""
 "Your Payment has been processed successfully. However, the payment gateway "
 "didn't return a payment status that allows us to continue with the process. "
@@ -4928,30 +4928,30 @@ msgstr ""
 "Kérjük lépjen kapcsolatba a weboldal adminisztrátorával a probléma "
 "megoldásához."
 
-#: includes/payments-api.php:839 includes/payments-api.php:872
+#: includes/payments-api.php:840 includes/payments-api.php:873
 msgid "Payment Canceled"
 msgstr "Befizetés törölve"
 
-#: includes/payments-api.php:840
+#: includes/payments-api.php:841
 msgid "The Payment transaction was canceled. You can't post an Ad this time."
 msgstr "A Befizetési tranzakció sikertelen. Nem adhat fel hirdetés jelenleg."
 
-#: includes/payments-api.php:843
+#: includes/payments-api.php:844
 msgid "Waiting on Confirmation"
 msgstr ""
 
-#: includes/payments-api.php:844
+#: includes/payments-api.php:845
 msgid ""
 "The payment gateway is taking a bit longer than expected to confirm your "
 "payment. Please wait a few seconds while we verify the transaction. The page "
 "will reload automatically."
 msgstr ""
 
-#: includes/payments-api.php:847
+#: includes/payments-api.php:848
 msgid "Payment Error"
 msgstr "Fizetési hiba"
 
-#: includes/payments-api.php:848
+#: includes/payments-api.php:849
 msgid ""
 "There was an error processing your payment. The payment status couldn't be "
 "found. Please contact the website admin to solve this issue."
@@ -4960,7 +4960,7 @@ msgstr ""
 "található. Kérjük lépjen kapcsolatba a weboldal adminisztrátorával a "
 "probléma megoldásához."
 
-#: includes/payments-api.php:874
+#: includes/payments-api.php:875
 msgid "Payment Not Verified"
 msgstr ""
 
@@ -8219,13 +8219,13 @@ msgstr ""
 "<payments-settings-link>állítsa át a weboldalt ingyenes módba</a>."
 
 #. translators: %s the step name
-#: includes/views/class-base-page.php:80
+#: includes/views/class-base-page.php:81
 msgid "Unkown step \"%s\". Please contact the administrator about this error."
 msgstr ""
 "Ismeretlen lépés \"%s\". Kérjük lépjen kapcsolatba az adminisztrátorral a "
 "hibával kapcsolatban."
 
-#: includes/views/class-base-page.php:133
+#: includes/views/class-base-page.php:134
 msgid ""
 "Your request cannot be processed at this time. Please try again or contact "
 "the administrator about the incident."
@@ -8282,7 +8282,7 @@ msgstr ""
 msgid "You are not allowed to buy credits."
 msgstr "Nincs jogosultsága kreditek vásárlásához."
 
-#: includes/views/frontend/class-category-shortcode.php:79
+#: includes/views/frontend/class-category-shortcode.php:75
 msgid ""
 "No category was found with the IDs provided. Please provide at least one "
 "valid category ID."
@@ -9029,10 +9029,11 @@ msgid "Run a free or paid classified ads service on your WordPress site."
 msgstr ""
 
 #. Author of the plugin/theme
-msgid "AWPCP"
-msgstr "AWPCP"
+#, fuzzy
+msgid "AWP Classifieds Team"
+msgstr "Hirdetési Oldalak"
 
-#: admin/admin-panel-fees-table.php:248
+#: admin/admin-panel-fees-table.php:254
 msgctxt "all categories"
 msgid "All"
 msgstr "Mind"
@@ -9042,17 +9043,17 @@ msgctxt "credit system on users table"
 msgid "Account Balance"
 msgstr "Fizetési-számla Egyenleg"
 
-#: admin/admin-panel.php:29
+#: admin/admin-panel.php:22
 msgctxt "awpcp admin menu"
 msgid "Classifieds"
 msgstr "Apróhirdetések"
 
-#: admin/admin-panel.php:805 includes/settings/class-listings-settings.php:469
+#: admin/admin-panel.php:800 includes/settings/class-listings-settings.php:469
 msgctxt "page name"
 msgid "Show Ad"
 msgstr ""
 
-#: admin/admin-panel.php:813
+#: admin/admin-panel.php:808
 msgctxt "page name"
 msgid "Edit Ad"
 msgstr "Hirdetés Szerkesztése"
@@ -9073,61 +9074,61 @@ msgctxt "admin csv-export"
 msgid "Error while creating a temporary directory for CSV export: %s"
 msgstr ""
 
-#: admin/class-export-listings-admin-page.php:42
+#: admin/class-export-listings-admin-page.php:38
 msgctxt "admin csv-export"
 msgid "Could not decode export state information."
 msgstr ""
 
-#: admin/class-debug-admin-page.php:139
+#: admin/class-debug-admin-page.php:131
 msgctxt "debug page"
 msgid "Plugin Info"
 msgstr ""
 
-#: admin/class-debug-admin-page.php:140
+#: admin/class-debug-admin-page.php:132
 #: templates/admin/debug/plugin-pages-debug-section.tpl.php:33
 msgctxt "debug page"
 msgid "Plugin Pages"
 msgstr ""
 
-#: admin/class-debug-admin-page.php:141
+#: admin/class-debug-admin-page.php:133
 msgctxt "debug page"
 msgid "Plugin Settings"
 msgstr ""
 
-#: admin/class-debug-admin-page.php:142
+#: admin/class-debug-admin-page.php:134
 msgctxt "debug page"
 msgid "Environment"
 msgstr ""
 
-#: admin/class-debug-admin-page.php:143
+#: admin/class-debug-admin-page.php:135
 #: admin/templates/admin-panel-debug.tpl.php:32
 msgctxt "debug page"
 msgid "Rewrite Rules"
 msgstr "ReWrite szabályok"
 
-#: admin/class-debug-admin-page.php:179
+#: admin/class-debug-admin-page.php:172
 msgctxt "debug page"
 msgid "Plugin Version"
 msgstr ""
 
-#: admin/class-debug-admin-page.php:285
+#: admin/class-debug-admin-page.php:278
 #: admin/templates/admin-panel-debug.tpl.php:126
 msgctxt "debug page"
 msgid "cURL's alternate CA info (cacert.pem)"
 msgstr "cURL CA info (cacert.pem) alternatíva"
 
-#: admin/class-debug-admin-page.php:289
+#: admin/class-debug-admin-page.php:282
 #: admin/templates/admin-panel-debug.tpl.php:130
 msgctxt "debug page"
 msgid "PayPal Connection"
 msgstr "PayPal kapcsolat"
 
-#: admin/class-debug-admin-page.php:361
+#: admin/class-debug-admin-page.php:354
 msgctxt "debug page"
 msgid "Working"
 msgstr "Működik"
 
-#: admin/class-debug-admin-page.php:364
+#: admin/class-debug-admin-page.php:357
 #: admin/templates/admin-panel-debug.tpl.php:136
 msgctxt "debug page"
 msgid "Not Working"
@@ -9219,31 +9220,31 @@ msgctxt "debug page"
 msgid "Setting Value"
 msgstr ""
 
-#: admin/class-debug-admin-page.php:286
+#: admin/class-debug-admin-page.php:279
 #: admin/templates/admin-panel-debug.tpl.php:127
 msgctxt "alternate CA info for cURL"
 msgid "Exists"
 msgstr "Létezik"
 
-#: admin/class-debug-admin-page.php:286
+#: admin/class-debug-admin-page.php:279
 #: admin/templates/admin-panel-debug.tpl.php:127
 msgctxt "alternate CA info for cURL"
 msgid "Missing"
 msgstr "Hiányzik"
 
-#: admin/class-import-listings-admin-page.php:360
+#: admin/class-import-listings-admin-page.php:358
 msgctxt ""
 "description for messages used to show feedback for the Import Listings "
 "operation"
 msgid "<message-type> in line <message-line>"
 msgstr ""
 
-#: admin/class-import-listings-admin-page.php:371
+#: admin/class-import-listings-admin-page.php:369
 msgctxt "text for page subtitle and submit button"
 msgid "Test Import"
 msgstr "Importálás tesztelése"
 
-#: admin/class-import-listings-admin-page.php:373
+#: admin/class-import-listings-admin-page.php:371
 msgctxt "text for page subtitle and submit button"
 msgid "Import"
 msgstr "Importálás"
@@ -9523,7 +9524,7 @@ msgctxt "widget modification notice"
 msgid "Close this, I'll check my Widget configuration."
 msgstr "Bezárás, ellenőrzöm a widget-beállításaim."
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:180
+#: admin/upgrade/class-manual-upgrade-admin-page.php:177
 msgctxt "awpcp upgrade"
 msgid ""
 "AWP Classifieds Plugin needs to upgrade your database.  The operation may "
@@ -9531,7 +9532,7 @@ msgid ""
 "press the Upgrade button shown below to start the process."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:183
+#: admin/upgrade/class-manual-upgrade-admin-page.php:180
 msgctxt "awpcp upgrade"
 msgid ""
 "AWPCP's premium modules need to upgrade the information stored in the "
@@ -9540,19 +9541,19 @@ msgid ""
 "the process."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:230
+#: admin/upgrade/class-manual-upgrade-admin-page.php:227
 msgctxt "awpcp upgrade"
 msgid ""
 "Congratulations. All non blocking tasks were completed successfully. "
 "<continue-link>Click here to Continue</a>."
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:245
+#: admin/upgrade/class-manual-upgrade-admin-page.php:242
 msgctxt "button text in manual upgrade admin page"
 msgid "Resume Upgrade"
 msgstr ""
 
-#: admin/upgrade/class-manual-upgrade-admin-page.php:259
+#: admin/upgrade/class-manual-upgrade-admin-page.php:256
 msgctxt "button text in manual upgrade admin page"
 msgid "Upgrade"
 msgstr "Frissítés"
@@ -9567,17 +9568,17 @@ msgctxt "404 HTTP status description"
 msgid "Listing not found"
 msgstr ""
 
-#: frontend/page-place-ad.php:1398
+#: frontend/page-place-ad.php:1417
 msgctxt "upload listing images form"
 msgid "Preview Ad"
 msgstr "Előnézet"
 
-#: frontend/page-place-ad.php:1400
+#: frontend/page-place-ad.php:1419
 msgctxt "upload listing images form"
 msgid "Place Ad"
 msgstr "Hirdetés feladása"
 
-#: frontend/page-place-ad.php:1402
+#: frontend/page-place-ad.php:1421
 msgctxt "upload listing images form"
 msgid "Checkout"
 msgstr "Fizetés"
@@ -9909,7 +9910,7 @@ msgctxt "checkout-payment page"
 msgid "Payment Terms"
 msgstr "Fizetési feltételek"
 
-#: includes/payments-api.php:803
+#: includes/payments-api.php:804
 msgctxt "checkout-payment page"
 msgid "Please use the button below to complete your payment."
 msgstr "Kérjük nyomja meg az alábbi gombot a fizetés befejezéséhez."
@@ -9929,22 +9930,22 @@ msgctxt "credit plans table"
 msgid "clear selection"
 msgstr "kiválasztás törlése"
 
-#: includes/payments-api.php:723
+#: includes/payments-api.php:724
 msgctxt "credit plans table"
 msgid "Plan"
 msgstr "Terv"
 
-#: includes/payments-api.php:724
+#: includes/payments-api.php:725
 msgctxt "credit plans table"
 msgid "Description"
 msgstr "Leírás"
 
-#: includes/payments-api.php:725
+#: includes/payments-api.php:726
 msgctxt "credit plans table"
 msgid "Credits"
 msgstr "Kredit"
 
-#: includes/payments-api.php:726
+#: includes/payments-api.php:727
 msgctxt "credit plans table"
 msgid "Price"
 msgstr "Ár"
@@ -9981,12 +9982,12 @@ msgctxt "transaction items"
 msgid "Total Amount"
 msgstr "Teljes összeg"
 
-#: functions.php:746
+#: functions.php:731
 msgctxt "comma separated list of things"
 msgid "%s and %d more."
 msgstr "%s és %d több."
 
-#: functions.php:1203
+#: functions.php:1188
 msgctxt "default blog title"
 msgid "Classifieds Website"
 msgstr "Hirdetési Weboldal"
@@ -10240,7 +10241,7 @@ msgctxt "listing status"
 msgid "Pending Verification"
 msgstr ""
 
-#: includes/admin/listings/class-listings-table-nav-handler.php:216
+#: includes/admin/listings/class-listings-table-nav-handler.php:209
 msgctxt "category filter placeholder"
 msgid "All categories"
 msgstr ""
@@ -10550,7 +10551,7 @@ msgid "remaining"
 msgstr "hátralévő"
 
 #. translators: %s is the type of region.
-#: includes/helpers/widgets/multiple-region-selector.php:170
+#: includes/helpers/widgets/multiple-region-selector.php:122
 msgctxt "Select <Region Type> in Multiple Region Selector"
 msgid "Select %s"
 msgstr "%s kiválasztása"
@@ -10882,7 +10883,7 @@ msgid "Select existing page {dropdown} -or- {create_page_button}"
 msgstr ""
 
 #. translators: %1$s the success message, %2$s the error message
-#: includes/views/admin/listings/class-listing-action-admin-page.php:25
+#: includes/views/admin/listings/class-listing-action-admin-page.php:22
 #, fuzzy
 msgctxt "Listing bulk operations: <message-ok> and <message-error>."
 msgid "%1$s and %2$s."
@@ -11285,6 +11286,9 @@ msgid ""
 "category, a cookie will be stored in your browser to remember your decision. "
 "The cookie will be stored on your browser for the remainder of that session."
 msgstr ""
+
+#~ msgid "AWPCP"
+#~ msgstr "AWPCP"
 
 #~ msgid "Add new category"
 #~ msgstr "Egy új kategória hozzáadása"

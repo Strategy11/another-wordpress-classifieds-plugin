@@ -130,6 +130,10 @@ module.exports = function( grunt ) {
 					{
 						from: 'since x.x',
 						to: 'since <%= compress.version %>'
+					},
+					{
+						from: 'deprecated x.x',
+						to: 'deprecated <%= compress.version %>'
 					}
 				]
 			});
