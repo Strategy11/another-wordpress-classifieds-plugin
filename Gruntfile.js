@@ -93,7 +93,12 @@ module.exports = function( grunt ) {
 					{
 						from: /define\( \'AWPCP_AUTHORIZE_NET_MODULE_DB_VERSION\', \'(\d+\.)(\d+\.)?(\*|\d+)?([\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?\'/g,
 						to: 'define( \'AWPCP_AUTHORIZE_NET_MODULE_DB_VERSION\', \'<%= compress.version %>\''
+					},
+					{
+						from: /define\( \'AWPCP_STRIPE_MODULE_DB_VERSION\', \'(\d+\.)(\d+\.)?(\*|\d+)?([\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?\'/g,
+						to: 'define( \'AWPCP_STRIPE_MODULE_DB_VERSION\', \'<%= compress.version %>\''
 					}
+
 				]
 			});
 		},
@@ -302,6 +307,7 @@ module.exports = function( grunt ) {
 	grunt.initConfig( config );
 
 	grunt.loadTasks( 'grunt' );
+
 	/*
 	grunt.loadTasks( '../awpcp-buddypress-listings/grunt' );
 	grunt.loadTasks( '../awpcp-mark-as-sold/grunt' );

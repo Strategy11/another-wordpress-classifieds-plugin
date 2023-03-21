@@ -100,4 +100,14 @@ module.exports = function(grunt) {
 			textDomain: pluginName
 		}
 	} );
+
+	pluginName = 'awpcp-stripe';
+	grunt.awpcp.registerPluginTasks( {
+		name: 'stripe',
+		slug: 'stripe',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
 };
