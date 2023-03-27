@@ -559,7 +559,7 @@ class AWPCP {
         add_filter( 'wp_privacy_personal_data_erasers', array( $this, 'register_personal_data_erasers' ) );
 
         if ( get_option( 'awpcp-flush-rewrite-rules' ) ) {
-			add_action( 'plugins_loaded', 'flush_rewrite_rules' );
+            flush_rewrite_rules();
 
             update_option( 'awpcp-flush-rewrite-rules', false );
 		}
