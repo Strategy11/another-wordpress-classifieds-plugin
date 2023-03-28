@@ -177,7 +177,7 @@ class AWPCP {
 
         if ( get_option( 'awpcp-activated' ) && $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) ) ) {
             delete_option( 'awpcp-activated' );
-            wp_redirect( awpcp_get_admin_upgrade_url() );
+            wp_safe_redirect( awpcp_get_admin_upgrade_url() );
             exit;
         }
 
@@ -394,9 +394,9 @@ class AWPCP {
             $task_queue = awpcp_task_queue();
             add_action( 'awpcp-task-queue-event', array( $task_queue, 'task_queue_event' ) );
             add_action( 'awpcp-task-queue-cron', array( $task_queue, 'task_queue_event' ) );
-        } else if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+        } elseif ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             $this->ajax_setup();
-        } else if ( is_admin() ) {
+        } elseif ( is_admin() ) {
             $this->admin_setup();
 
             // load resources required in admin screens only
@@ -513,7 +513,7 @@ class AWPCP {
         $post    = get_post( $post_id );
         $expired = get_post_meta($post_id, '_awpcp_expired', true);
         // get our post instead and return it as the result...
-        if ( ! empty( $post ) && $post_type === AWPCP_LISTING_POST_TYPE && $expired && $post->post_author == $author_id && $post->post_status === 'disabled') {
+        if ( ! empty( $post ) && $post_type === AWPCP_LISTING_POST_TYPE && $expired && $post->post_author === $author_id && $post->post_status === 'disabled') {
             $query->posts = array($post);
             $query->post = $post;
             $query->post_count = 1;
@@ -559,7 +559,7 @@ class AWPCP {
         add_filter( 'wp_privacy_personal_data_erasers', array( $this, 'register_personal_data_erasers' ) );
 
         if ( get_option( 'awpcp-flush-rewrite-rules' ) ) {
-			add_action( 'plugins_loaded', 'flush_rewrite_rules' );
+            flush_rewrite_rules();
 
             update_option( 'awpcp-flush-rewrite-rules', false );
 		}
@@ -737,7 +737,7 @@ class AWPCP {
         $this->router->configure_routes();
         $this->setup_javascript_data();
 
-        if ( $this->settings->get_option( 'awpcppagefilterswitch' ) == 1 ) {
+        if ( (int) $this->settings->get_option( 'awpcppagefilterswitch' ) === 1 ) {
             add_filter( 'wp_list_pages_excludes', 'exclude_awpcp_child_pages' );
         }
     }
@@ -927,14 +927,14 @@ class AWPCP {
 
         $page_id = awpcp_get_page_id_by_ref( 'browse-categories-page-name' );
 
-        if ( 0 == $page_id ) {
+        if ( 0 === (int) $page_id ) {
             delete_option( 'awpcp-store-browse-categories-page-information' );
             return;
         }
 
         $page = get_post( $page_id );
 
-        if ( $page && $page->post_status == 'trash' ) {
+        if ( $page && $page->post_status === 'trash' ) {
             $desired_post_slug = get_post_meta( $page_id, '_wp_desired_post_slug', true );
             $page_uri = get_page_uri( $page_id );
 
@@ -973,7 +973,7 @@ class AWPCP {
 
         $page = get_post( $page_info['page_id'] );
 
-        if ( $page && $page->post_status == 'trash' ) {
+        if ( $page && $page->post_status === 'trash' ) {
             $desired_post_slug = get_post_meta( $page->ID, '_wp_desired_post_slug', true );
         } else {
             $desired_post_slug = '';
@@ -1400,7 +1400,7 @@ class AWPCP {
             // TODO: migrate the code below to use set_js_data to pass information to AWPCP scripts.
             $options = array('ajaxurl' => awpcp_ajaxurl());
             wp_localize_script('awpcp-admin-general', 'AWPCPAjaxOptions', $options);
-        } else if ( ! is_admin() ) {
+        } elseif ( ! is_admin() ) {
             $query = awpcp_query();
 
             if ( $query->is_post_listings_page() || $query->is_edit_listing_page() || $query->is_single_listing_page() ) {
@@ -1421,7 +1421,7 @@ class AWPCP {
     public function localize_scripts() {
         $scripts = awpcp_wordpress_scripts();
 
-        // localize jQuery Validate messages
+        /*localize jQuery Validate messages.*/
         $this->js->set( 'default-validation-messages', array(
             'required' => __( 'This field is required.', 'another-wordpress-classifieds-plugin' ),
             'email' => __( 'Please enter a valid email address.', 'another-wordpress-classifieds-plugin' ),
@@ -1435,30 +1435,16 @@ class AWPCP {
         global $wp_locale;
 
         $this->js->localize( 'datepicker', array(
-            // 'clearText' => _x( 'Clear', '[UI Datepicker] Display text for clear link', 'another-wordpress-classifieds-plugin' ),
-            // 'clearStatus' => _x( 'Erase the current date', '[UI Datepicker] Status text for clear link', 'another-wordpress-classifieds-plugin' ),
-            // 'closeText' => _x( 'Close', '[UI Datepicker] Display text for close link', 'another-wordpress-classifieds-plugin' ),
-            // 'closeStatus' => _x( 'Close without change', '[UI Datepicker] Status text for close link', 'another-wordpress-classifieds-plugin' ),
+
             'prevText' => _x( '&#x3c;Prev', '[UI Datepicker] Display text for previous month link', 'another-wordpress-classifieds-plugin' ),
-            // 'prevStatus' => _x( 'Show the previous month', '[UI Datepicker] Status text for previous month link', 'another-wordpress-classifieds-plugin' ),
             'nextText' => _x( 'Next&#x3e;', '[UI Datepicker] Display text for next month link', 'another-wordpress-classifieds-plugin' ),
-            // 'nextStatus' => _x( 'Show the next month', '[UI Datepicker] Status text for next month link', 'another-wordpress-classifieds-plugin' ),
-            // 'currentText' => _x( 'Today', '[UI Datepicker] Display text for current month link', 'another-wordpress-classifieds-plugin' ),
-            // 'currentStatus' => _x( 'Show the current month', '[UI Datepicker] Status text for current month link', 'another-wordpress-classifieds-plugin' ),
             'monthNames' => array_values( $wp_locale->month ), // Names of months for drop-down and formatting
             'monthNamesShort' => array_values( $wp_locale->month_abbrev ), // For formatting
-            // 'monthStatus' => _x( 'Show a different month', '[UI Datepicker] Status text for selecting a month', 'another-wordpress-classifieds-plugin' ),
-            // 'yearStatus' => _x( 'Show a different year', '[UI Datepicker] Status text for selecting a year', 'another-wordpress-classifieds-plugin' ),
-            // 'weekHeader' => _x( 'Wk', '[UI Datepicker] Header for the week of the year column', 'another-wordpress-classifieds-plugin' ),
-            // 'weekStatus' => _x( 'Week of the year', '[UI Datepicker] Status text for the week of the year column', 'another-wordpress-classifieds-plugin' ),
             'dayNames' => array_values( $wp_locale->weekday ),
             'dayNamesShort' => array_values( $wp_locale->weekday_abbrev ), // For formatting
             'dayNamesMin' => array_values( $wp_locale->weekday_initial ), // Column headings for days starting at Sunday
-            // 'dayStatus' => _x( 'Set DD as first week day', '[UI Datepicker] Status text for the day of the week selection', 'another-wordpress-classifieds-plugin' ),
-            // 'dateStatus' => _x( 'Select DD, M d', '[UI Datepicker] Status text for the date selection', 'another-wordpress-classifieds-plugin' ),
             'firstDay' => intval( _x( '0', '[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ...', 'another-wordpress-classifieds-plugin' ) ),
-            // 'initStatus' => _x( 'Select a date', '[UI Datepicker] Initial Status text on opening', 'another-wordpress-classifieds-plugin' ),
-            'isRTL' => $wp_locale->text_direction == 'ltr' ? false : true, // True if right-to-left language, false if left-to-right
+            'isRTL' => $wp_locale->text_direction === 'ltr' ? false : true, // True if right-to-left language, false if left-to-right
         ) );
 
         $this->js->localize( 'media-uploader-beforeunload', array(
@@ -1695,7 +1681,7 @@ class AWPCP {
     public function process_transaction_update_payment_status($transaction) {
         switch ($transaction->get_status()) {
             case AWPCP_Payment_Transaction::STATUS_OPEN:
-                if (awpcp_current_user_is_admin()/* || get_awpcp_option('freepay') == 0*/)
+                if (awpcp_current_user_is_admin())
                     $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED;
                 break;
         }
@@ -1725,7 +1711,7 @@ class AWPCP {
         $allowed_context = array( 'add-credit', 'place-ad', 'renew-ad', 'buy-subscription' );
         $context = $transaction->get('context');
 
-        if ( ! in_array( $context, $allowed_context ) ) {
+        if ( ! in_array( $context, $allowed_context , true) ) {
             return;
         }
 
@@ -1741,7 +1727,7 @@ class AWPCP {
 
         if ( $transaction->get( 'ad_id' ) ) {
             $email = awpcp_wordpress()->get_post_meta( $transaction->get( 'ad_id' ), '_awpcp_contact_email', true );
-        } else if ( $transaction->user_id ) {
+        } elseif ( $transaction->user_id ) {
             $user = get_userdata( $transaction->user_id );
             $email = $user->user_email;
         }
@@ -1773,7 +1759,7 @@ class AWPCP {
         $response = array( 'status' => 'ok', 'options' => $options );
 
         header( "Content-Type: application/json" );
-        echo json_encode($response);
+        echo wp_json_encode($response);
         die();
     }
 
