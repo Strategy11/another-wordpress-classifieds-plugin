@@ -752,6 +752,6 @@ class AWPCP_QueryIntegrationTest extends AWPCP_UnitTestCase {
         $where = $this->get_test_subject()->posts_where( $where, $query );
 
         // Verification.
-        $this->assertContains( $escaped_sql, $where );
+        $this->assertStringContainsStringIgnoringCase( $escaped_sql, $where );
     }
 }

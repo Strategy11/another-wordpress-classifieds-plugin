@@ -6,6 +6,7 @@
 /**
  * Test helper for Listing Table View.
  */
+use Brain\Monkey\Functions;
 class AWPCP_ListingTableViewTestHelper {
 
     /**

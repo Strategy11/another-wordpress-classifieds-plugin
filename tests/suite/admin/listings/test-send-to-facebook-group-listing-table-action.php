@@ -14,6 +14,7 @@ class AWPCP_SendToFacebookGroupListingTableActionTest extends AWPCP_UnitTestCase
      * @since 4.0.0
      */
     public function setUp(): void {
+        parent::setUp();
         $this->facebook_helper        = null;
         $this->roles_and_capabilities = Mockery::mock( 'AWPCP_RolesAndCapabilities' );
         $this->wordpress              = null;

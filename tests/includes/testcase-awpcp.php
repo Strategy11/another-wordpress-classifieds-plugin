@@ -12,7 +12,9 @@ use function Patchwork\redefine;
  * Base class for all plugin tests.
  */
 abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
+    //use MockeryPHPUnitIntegration;
 
+    protected static $mockCommonWpFunctionsInSetUp = false;
     /**
      * @var array [Patchwork\CallRouting\Handle]
      */
@@ -40,7 +42,9 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
         parent::setUp();
 
         Monkey\setup();
-
+        //if ( static::$mockCommonWpFunctionsInSetUp ) {
+            $this->mockCommonWpFunctions();
+        //}
         // $this->save_current_user();
     }
 
@@ -217,5 +221,46 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
                 return true;
             }
         );
+    }
+    protected function mockCommonWpFunctions() {
+        Functions\stubs(
+            [
+                '__',
+                'esc_attr__',
+                'esc_html__',
+                '_x',
+                'esc_attr_x',
+                'esc_html_x',
+                '_n',
+                '_nx',
+                'esc_attr',
+                'esc_html',
+                'esc_textarea',
+                'esc_url',
+                'sanitize_text_field',
+                'wp_parse_args'        => static function ( $settings, $defaults ) {
+                    return \array_merge( $defaults, $settings );
+                },
+                'wp_slash'             => null,
+                'wp_unslash'           => static function( $value ) {
+                    return \is_string( $value ) ? \stripslashes( $value ) : $value;
+                },
+                'wp_rand'           => static function() {
+                    return  rand();
+                },
+            ]
+        );
+
+        $functions = [
+            '_e',
+            'esc_attr_e',
+            'esc_html_e',
+            '_ex',
+            'esc_url_raw',
+        ];
+
+        foreach ( $functions as $function ) {
+            Functions\when( $function )->echoArg();
+        }
     }
 }
