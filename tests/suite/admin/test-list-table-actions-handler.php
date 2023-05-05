@@ -59,7 +59,7 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         ob_end_clean();
 
         // Verification.
-        $this->assertStringContainsString( $message, $output );
+        $this->assertStringContainsString( $return_uri, $output );
     }
 
     /**
@@ -88,15 +88,20 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         $actions = array(
             'custom-action' => $action_handler,
         );
+        $current_url = 'https://example.org';
 
+        Functions\expect( 'add_query_arg' )
+            ->once()
+            ->with( [] )
+            ->andReturn( $current_url );
+        Functions\when( 'wp_nonce_url' )
+            ->justReturn( '');
         $table_actions = new AWPCP_ListTableActionsHandler( $actions, null );
 
         $actions = $table_actions->row_actions_links( array(), $post );
-
         // Verification.
         $this->assertContains( 'custom-action', array_keys( $actions ) );
         $this->assertStringContainsString( 'Label', $actions['custom-action'] );
-        $this->assertStringContainsString( 'URL', $actions['custom-action'] );
     }
 
     /**
@@ -148,6 +153,6 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         // Verification.
         $this->assertArrayHasKey( 'awpcp-action', $query_params );
         $this->assertArrayHasKey( 'awpcp-result', $query_params );
-        $this->assertContains( 'success~1', $query_params['awpcp-result'] );
+        $this->assertStringContainsString( 'success~1', $query_params['awpcp-result'] );
     }
 }

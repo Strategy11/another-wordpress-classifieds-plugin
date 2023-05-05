@@ -24,16 +24,19 @@ class AWPCP_ListingsTableNavHandlerTest extends AWPCP_UnitTestCase {
      */
     public function test_pre_get_posts_with_category_filter() {
         $query = Mockery::mock( 'WP_Query' );
+        $html_renderer = Mockery::mock( 'AWPCP_HTMLRenderer' );
 
         $query->query_vars = [];
 
         $query->shouldReceive( 'is_main_query' )->andReturn( true );
 
-        $this->request->shouldReceive( 'param' )->with( 'awpcp_category_id' )->andReturn( '2' );
-        $this->request->shouldReceive( 'param' )->with( 'awpcp_date_filter' )->andReturn( '' );
+
+        Functions\expect( 'awpcp_get_var' )->with(  array( 'param' => 'awpcp_category_id', 'sanitize' => 'absint' ) )
+                                           ->andReturn( '2' );
 
         Functions\when( 'sanitize_key' )->returnArg();
 
+        $html_renderer->shouldReceive( 'get_selected_category' )->andReturn( 2 );
         // Execution.
         $this->get_test_subject()->pre_get_posts( $query );
 

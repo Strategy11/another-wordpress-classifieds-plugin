@@ -46,6 +46,8 @@ class AWPCP_SendToFacebookHelperTest extends AWPCP_UnitTestCase {
 
         $helper = $this->get_test_subject();
 
+        $this->expectException(AWPCP_NoFacebookObjectSelectedException::class);
+
         // Execution.
         $helper->send_listing_to_facebook_group( $listing );
     }
@@ -85,6 +87,8 @@ class AWPCP_SendToFacebookHelperTest extends AWPCP_UnitTestCase {
 
         $helper = $this->get_test_subject();
 
+        $this->expectException(AWPCP_ListingAlreadySharedException::class);
+
         // Execution.
         $helper->send_listing_to_facebook_group( $listing );
     }
@@ -114,6 +118,7 @@ class AWPCP_SendToFacebookHelperTest extends AWPCP_UnitTestCase {
 
         $helper = $this->get_test_subject();
 
+        $this->expectException(AWPCP_ListingDisabledException::class);
         // Execution.
         $helper->send_listing_to_facebook_group( $listing );
     }

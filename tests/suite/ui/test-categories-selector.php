@@ -35,7 +35,7 @@ class AWPCP_CategoriesSelectorTest extends AWPCP_UnitTestCase {
             'multiple'               => null,
             'auto'                   => null,
             'hash'                   => null,
-            'categories_hierarchy'   => null,
+            'categories_hierarchy'   => ['root'=>''],
             'javascript'             => null,
             'use_multiple_dropdowns' => null,
         ];
@@ -50,7 +50,7 @@ class AWPCP_CategoriesSelectorTest extends AWPCP_UnitTestCase {
             $template_params
         );
 
-        $this->assertContains( $placeholder, $output );
+        $this->assertStringContainsString( $placeholder, $output );
     }
 
     /**

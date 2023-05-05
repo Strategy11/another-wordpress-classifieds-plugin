@@ -40,14 +40,19 @@ class AWPCP_FormFieldsDataTest extends AWPCP_UnitTestCase {
         $this->listing_renderer->shouldReceive( 'get_plain_end_date' )
             ->andReturn( null );
 
-        $this->request->shouldReceive( 'param' )
+        /*$this->request->shouldReceive( 'param' )
             ->once()
             ->with( 'ad_title' )
-            ->andReturn( 'Test Title' );
-
-        $this->request->shouldReceive( 'param' );
-
+            ->andReturn( 'Test Title' );*/
+        Functions\expect( 'awpcp_get_var' )->with(  array( 'param' => 'ad_id' ) )
+                                           ->andReturn( '1' );
+        Functions\expect( 'awpcp_get_var' )->with(  array( 'param' => 'ad_title' ) )
+                                           ->andReturn( 'Test Title' );
+        //$this->request->shouldReceive( 'param' );
+        Functions\when( 'awpcp_parse_money' )->justReturn('1');
         Functions\when( 'awpcp_strip_all_tags_deep' )->returnArg();
+        Functions\when( 'awpcp_get_digits_from_string' )->returnArg();
+        Functions\when( 'current_time' )->justReturn(time());
 
         $form_fields_data = $this->get_test_subject();
 
