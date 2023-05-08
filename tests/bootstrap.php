@@ -21,11 +21,10 @@ $patchwork = AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
 if ( getenv( 'RUNNER_COMPOSER_PATH' ) ) {
     $patchwork = getenv( 'RUNNER_COMPOSER_PATH' ).'vendor/antecedent/patchwork/Patchwork.php';
 }
-echo $patchwork .PHP_EOL . PHP_EOL;
 if ( file_exists( $patchwork ) ) {
-    echo '$patchwork included' .PHP_EOL . PHP_EOL;
 	require_once $patchwork;
 }
+
 require AWPCP_DIR . '/vendor/autoload.php';
 
 Phake::setClient( Phake::CLIENT_PHPUNIT6 );
