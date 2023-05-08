@@ -12,23 +12,11 @@ use function Patchwork\redefine;
  * Base class for all plugin tests.
  */
 abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
-    //use MockeryPHPUnitIntegration;
-
     protected static $mockCommonWpFunctionsInSetUp = false;
     /**
      * @var array [Patchwork\CallRouting\Handle]
      */
     private $redefined_functions = [];
-
-    // /**
-    //  * @var string Placeholder for the save the SQL mode at the start of the test.
-    //  */
-    // private $sql_mode;
-
-    // /**
-    //  * @var int ID of the current test user.
-    //  */
-    // private $current_user_id;
 
     /**
      * @var array List of filters that have been turned off.
@@ -40,76 +28,18 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
      */
     public function setUp(): void {
         parent::setUp();
-
         Monkey\setup();
-        //if ( static::$mockCommonWpFunctionsInSetUp ) {
-            $this->mockCommonWpFunctions();
-        //}
-        // $this->save_current_user();
+        $this->mockCommonWpFunctions();
     }
-
-    // /**
-    //  * TODO: We probably won't need this if we stop using WordPress testing framework.
-    //  */
-    // private function save_current_user() {
-    //     $current_user = wp_get_current_user();
-
-    //     if ( ! is_null( $current_user ) ) {
-    //         $this->current_user_id = $current_user->ID;
-    //     } else {
-    //         $this->current_user_id = 0;
-    //     }
-    // }
-
-    // /**
-    //  * TODO: We probably won't need this if we stop using WordPress testing framework.
-    //  */
-    // private function restore_current_user() {
-    //     if ( $this->current_user_id > 0 ) {
-    //         wp_set_current_user( $this->current_user_id );
-    //     } else {
-    //         global $current_user;
-    //         $current_user = null;
-    //     }
-    // }
-
-    /**
-     * TODO: We probably won't need this if we stop using WordPress testing framework.
-     */
-    // public function start_transaction() {
-    //     $this->activate_mysql_strict_mode();
-    //     parent::start_transaction();
-    // }
-
-    // /**
-    //  * TODO: We probably won't need this if we stop using WordPress testing framework.
-    //  */
-    // private function activate_mysql_strict_mode() {
-    //     global $wpdb;
-    //     $this->sql_mode = $wpdb->get_var( 'SELECT @@SESSION.sql_mode' );
-    //     $wpdb->query( "SET @@SESSION.sql_mode = 'TRADITIONAL';" );
-    // }
 
     /**
      * Code executed at the end of every test.
      */
     public function tearDown(): void {
         array_map( 'Patchwork\restore', $this->redefined_functions );
-        // $this->restore_mysql_mode();
-        // $this->restore_current_user();
-        // $this->resume_all_filters();
         Monkey\teardown();
-
         parent::tearDown();
     }
-
-    // /**
-    //  * TODO: We probably won't need this if we stop using WordPress testing framework.
-    //  */
-    // private function restore_mysql_mode() {
-    //     global $wpdb;
-    //     $wpdb->query( $wpdb->prepare( 'SET @@SESSION.sql_mode = %s', $this->sql_mode ) );
-    // }
 
     /**
      * @since 4.0.0

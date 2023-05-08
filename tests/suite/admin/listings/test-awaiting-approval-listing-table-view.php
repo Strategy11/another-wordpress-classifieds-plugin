@@ -24,9 +24,6 @@ class AWPCP_AwaitingApprovalListingTableViewTest extends AWPCP_UnitTestCase {
      * @since 4.0.0
      */
     public function test_common_features() {
-        /*Functions\expect( 'add_query_arg' )->andReturnUsing( function ( $key, $val, $url ) {
-            return $url . '?' . $key . '=' . $val;
-        } );*/
         Functions\expect( 'add_query_arg' )->andReturnUsing( function ( $arg ) {
 
             return 'https://example.org' . '?' . key($arg) . '=' . $arg[key($arg)];
