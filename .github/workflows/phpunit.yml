@@ -9,7 +9,7 @@ on:
 jobs:
   build-test:
     if: contains(github.event.pull_request.labels.*.name, 'ready to merge')
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-18.04
     strategy:
       matrix:
         include:
@@ -26,7 +26,11 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          tools: antecedent/patchwork, phpunit-polyfills, phake/phake, brain/monkey, dms/phpunit-arraysubset-asserts
+          tools: antecedent/patchwork, phpunit-polyfills, phake/phake, brain/monkey
+      - name: where is tools
+        run: |
+          cd "./tools/"
+          ll
       - name: Installing WordPress
         run: |
           export WP_DEVELOP_DIR=/tmp/wordpress/
