@@ -18,7 +18,7 @@ define( 'AWPCP_DIR', dirname( __DIR__ ) );
 define( 'AWPCP_URL', 'https://example.org/wp-content/plugins/another-wordpress-classifieds-plugin' );
 
 $patchwork = AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
-if ( false !== getenv( 'WP_DEVELOP_DIR' ) ) {
+if ( getenv( 'IS_GITHB_ACTION' ) ) {
     $patchwork = './.composer/vendor/antecedent/patchwork/Patchwork.php';
 }
 echo $patchwork .PHP_EOL . PHP_EOL;
