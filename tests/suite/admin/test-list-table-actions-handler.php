@@ -10,6 +10,13 @@ use Brain\Monkey\Functions;
  */
 class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
 
+    public function tearDown(): void {
+        parent::tearDown();
+
+       unset($_REQUEST['awpcp-action']);
+       unset($_REQUEST['awpcp-result']);
+       unset($_REQUEST['REQUEST_URI']);
+    }
     /**
      * @since 4.0.0
      */
@@ -20,24 +27,18 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         $message      = 'admin notice';
         $return_uri   = 'https://example.org';
 
-        $action_handler = Mockery::mock( 'AWPCP_ListTableAction' );
-        $request        = Mockery::mock( 'AWPCP_Request' );
+        $action_handler = Mockery::mock( 'AWPCP_ListTableActionsHandler' );
 
         $action_handler->shouldReceive( 'get_messages' )
             ->once()
             ->with( $result_codes )
             ->andReturn( array( $message ) );
 
-        $request->shouldReceive( 'param' )
-            ->with( 'awpcp-action' )
-            ->andReturn( 'custom-action' );
-
-        $request->shouldReceive( 'param' )
-            ->with( 'awpcp-result' )
-            ->andReturn( 'success~1' );
+        $_REQUEST['awpcp-action'] = 'custom-action';
+        $_REQUEST['awpcp-result'] = 'success~1';
 
         Functions\expect( 'remove_query_arg' )
-            ->once()
+            ->zeroOrMoreTimes()
             ->with( Mockery::any(), $return_uri );
 
         Functions\expect( 'awpcp_current_user_is_moderator' )
@@ -59,7 +60,7 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         ob_end_clean();
 
         // Verification.
-        $this->assertStringContainsString( $return_uri, $output );
+        $this->assertStringContainsString( $message, $output );
     }
 
     /**

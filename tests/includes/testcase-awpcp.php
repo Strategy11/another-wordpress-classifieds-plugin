@@ -248,6 +248,7 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
                 'wp_rand'           => static function() {
                     return  rand();
                 },
+                'esc_url_raw',
             ]
         );
 
@@ -256,7 +257,6 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
             'esc_attr_e',
             'esc_html_e',
             '_ex',
-            'esc_url_raw',
         ];
 
         foreach ( $functions as $function ) {

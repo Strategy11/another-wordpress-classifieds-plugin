@@ -95,8 +95,8 @@ class AWPCP_ListTableSearchHandlerTest extends AWPCP_UnitTestCase {
 
         $this->search[ $search_mode_id ]->shouldReceive( 'get_name' )->andReturn( $search_mode_name );
 
-        $this->request->shouldReceive( 'param' )->with( 'awpcp_search_by' )->andReturn( $selected_search_mode_id );
-
+        Functions\expect( 'awpcp_get_var' )->with( array( 'param' => 'awpcp_search_by') )
+                                           ->andReturn( $selected_search_mode_id );
         // Verification.
         $this->html_renderer->shouldReceive( 'render' )->once()->with(
             Mockery::on(
