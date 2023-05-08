@@ -27,9 +27,6 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           tools: antecedent/patchwork, phpunit-polyfills, phake/phake, brain/monkey
-      - name: where is tools
-        run: |
-          find / -iname "patchwork*"
       - name: Installing WordPress
         run: |
           export WP_DEVELOP_DIR=/tmp/wordpress/
