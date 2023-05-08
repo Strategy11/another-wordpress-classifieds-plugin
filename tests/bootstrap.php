@@ -17,6 +17,8 @@ define( 'WP_TESTS_DATA_DIR', dirname( __FILE__ ) . '/data' );
 define( 'AWPCP_DIR', dirname( __DIR__ ) );
 define( 'AWPCP_URL', 'https://example.org/wp-content/plugins/another-wordpress-classifieds-plugin' );
 
+echo AWPCP_DIR;
+
 $patchwork = AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
 if ( file_exists( $patchwork ) ) {
 	require_once $patchwork;
