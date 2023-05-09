@@ -28,7 +28,6 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          #tools: antecedent/patchwork, phpunit-polyfills, phake/phake, brain/monkey, dms/phpunit-arraysubset-asserts
       - name: Installing WordPress
         run: |
           export WP_DEVELOP_DIR=/tmp/wordpress/

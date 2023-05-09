@@ -18,9 +18,7 @@ define( 'AWPCP_DIR', dirname( __DIR__ ) );
 define( 'AWPCP_URL', 'https://example.org/wp-content/plugins/another-wordpress-classifieds-plugin' );
 
 $patchwork = AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
-/*if ( getenv( 'RUNNER_COMPOSER_PATH' ) ) {
-    $patchwork = getenv( 'RUNNER_COMPOSER_PATH' ).'vendor/antecedent/patchwork/Patchwork.php';
-}*/
+
 if ( file_exists( $patchwork ) ) {
 	require_once $patchwork;
 }
