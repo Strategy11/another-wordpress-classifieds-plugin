@@ -51,4 +51,4 @@ jobs:
           pwd
           composer install
           composer dump-autoload --dev
-          vendor/phpunit/phpunit/phpunit --configuration /home/mostafa/projects/wp-cobra/wp-content/plugins/another-wordpress-classifieds-plugin/phpunit.xml
+          vendor/phpunit/phpunit/phpunit --configuration phpunit.xml
