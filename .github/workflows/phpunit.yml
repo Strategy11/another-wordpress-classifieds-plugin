@@ -19,8 +19,6 @@ jobs:
             wordpress: master
 
     name: PHP ${{ matrix.php }} tests in WP ${{ matrix.wordpress }}
-    env:
-      RUNNER_COMPOSER_PATH: "/home/runner/.composer/"
     steps:
       - uses: actions/checkout@v2
 
