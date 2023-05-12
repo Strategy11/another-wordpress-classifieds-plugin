@@ -193,4 +193,15 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
             Functions\when( $function )->echoArg();
         }
     }
+
+    protected function expectAddQueryArg( $key = null, $val = null, $url = null ) {
+        Functions\expect( 'add_query_arg' )->andReturnUsing(
+            function () use ( $key, $val, $url ) {
+                if ( is_array( $key ) ) {
+                    return 'https://example.org' . '?' . key( $key ) . '=' . $key[ key( $key ) ];
+                } else {
+                    return $url . '?' . $key . '=' . $val;
+                }
+            } );
+    }
 }
