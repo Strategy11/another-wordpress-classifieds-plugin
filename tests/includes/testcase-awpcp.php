@@ -12,21 +12,11 @@ use function Patchwork\redefine;
  * Base class for all plugin tests.
  */
 abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
-
+    protected static $mockCommonWpFunctionsInSetUp = false;
     /**
      * @var array [Patchwork\CallRouting\Handle]
      */
     private $redefined_functions = [];
-
-    // /**
-    //  * @var string Placeholder for the save the SQL mode at the start of the test.
-    //  */
-    // private $sql_mode;
-
-    // /**
-    //  * @var int ID of the current test user.
-    //  */
-    // private $current_user_id;
 
     /**
      * @var array List of filters that have been turned off.
@@ -38,74 +28,18 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
      */
     public function setUp(): void {
         parent::setUp();
-
         Monkey\setup();
-
-        // $this->save_current_user();
+        $this->mockCommonWpFunctions();
     }
-
-    // /**
-    //  * TODO: We probably won't need this if we stop using WordPress testing framework.
-    //  */
-    // private function save_current_user() {
-    //     $current_user = wp_get_current_user();
-
-    //     if ( ! is_null( $current_user ) ) {
-    //         $this->current_user_id = $current_user->ID;
-    //     } else {
-    //         $this->current_user_id = 0;
-    //     }
-    // }
-
-    // /**
-    //  * TODO: We probably won't need this if we stop using WordPress testing framework.
-    //  */
-    // private function restore_current_user() {
-    //     if ( $this->current_user_id > 0 ) {
-    //         wp_set_current_user( $this->current_user_id );
-    //     } else {
-    //         global $current_user;
-    //         $current_user = null;
-    //     }
-    // }
-
-    /**
-     * TODO: We probably won't need this if we stop using WordPress testing framework.
-     */
-    // public function start_transaction() {
-    //     $this->activate_mysql_strict_mode();
-    //     parent::start_transaction();
-    // }
-
-    // /**
-    //  * TODO: We probably won't need this if we stop using WordPress testing framework.
-    //  */
-    // private function activate_mysql_strict_mode() {
-    //     global $wpdb;
-    //     $this->sql_mode = $wpdb->get_var( 'SELECT @@SESSION.sql_mode' );
-    //     $wpdb->query( "SET @@SESSION.sql_mode = 'TRADITIONAL';" );
-    // }
 
     /**
      * Code executed at the end of every test.
      */
     public function tearDown(): void {
         array_map( 'Patchwork\restore', $this->redefined_functions );
-        // $this->restore_mysql_mode();
-        // $this->restore_current_user();
-        // $this->resume_all_filters();
         Monkey\teardown();
-
         parent::tearDown();
     }
-
-    // /**
-    //  * TODO: We probably won't need this if we stop using WordPress testing framework.
-    //  */
-    // private function restore_mysql_mode() {
-    //     global $wpdb;
-    //     $wpdb->query( $wpdb->prepare( 'SET @@SESSION.sql_mode = %s', $this->sql_mode ) );
-    // }
 
     /**
      * @since 4.0.0
@@ -217,5 +151,57 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
                 return true;
             }
         );
+    }
+    protected function mockCommonWpFunctions() {
+        Functions\stubs(
+            [
+                '__',
+                'esc_attr__',
+                'esc_html__',
+                '_x',
+                'esc_attr_x',
+                'esc_html_x',
+                '_n',
+                '_nx',
+                'esc_attr',
+                'esc_html',
+                'esc_textarea',
+                'esc_url',
+                'sanitize_text_field',
+                'wp_parse_args'        => static function ( $settings, $defaults ) {
+                    return \array_merge( $defaults, $settings );
+                },
+                'wp_slash'             => null,
+                'wp_unslash'           => static function( $value ) {
+                    return \is_string( $value ) ? \stripslashes( $value ) : $value;
+                },
+                'wp_rand'           => static function() {
+                    return  rand();
+                },
+                'esc_url_raw',
+            ]
+        );
+
+        $functions = [
+            '_e',
+            'esc_attr_e',
+            'esc_html_e',
+            '_ex',
+        ];
+
+        foreach ( $functions as $function ) {
+            Functions\when( $function )->echoArg();
+        }
+    }
+
+    protected function expectAddQueryArg( $key = null, $val = null, $url = null ) {
+        Functions\expect( 'add_query_arg' )->andReturnUsing(
+            function () use ( $key, $val, $url ) {
+                if ( is_array( $key ) ) {
+                    return 'https://example.org' . '?' . key( $key ) . '=' . $key[ key( $key ) ];
+                } else {
+                    return $url . '?' . $key . '=' . $val;
+                }
+            } );
     }
 }

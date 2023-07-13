@@ -14,6 +14,7 @@ class AWPCP_MakeStandardListingTableActionTest extends AWPCP_UnitTestCase {
      * @since 4.0.0
      */
     public function setUp(): void {
+        parent::setUp();
         $this->listing_renderer = null;
         $this->wordpress        = null;
     }

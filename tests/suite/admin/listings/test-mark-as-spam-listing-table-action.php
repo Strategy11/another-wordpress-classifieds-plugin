@@ -14,6 +14,7 @@ class AWPCP_MarkAsSPAMListingTableActionTest extends AWPCP_UnitTestCase {
      * @since 4.0.0
      */
     public function setUp(): void {
+        parent::setUp();
         $this->spam_submitter = null;
         $this->listings_logic = null;
         $this->wordpress      = null;

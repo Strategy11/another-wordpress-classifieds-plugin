@@ -6,12 +6,15 @@
 /**
  * Unit tests for Expired Listings table view.
  */
+use Brain\Monkey\Functions;
+
 class AWPCP_ExpiredListingTableViewTest extends AWPCP_UnitTestCase {
 
     /**
      * @since 4.0.0
      */
     public function setUp(): void {
+        parent::setUp();
         $this->table_view_test_helper = new AWPCP_ListingTableViewTestHelper( $this );
 
         $this->listings_collection = Mockery::mock( 'AWPCP_ListingsCollection' );
@@ -21,6 +24,7 @@ class AWPCP_ExpiredListingTableViewTest extends AWPCP_UnitTestCase {
      * @since 4.0.0
      */
     public function test_common_features() {
+        $this->expectAddQueryArg();
         $this->table_view_test_helper->check_common_table_view_methods( $this->get_test_subject() );
     }
 

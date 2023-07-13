@@ -12,6 +12,7 @@ class AWPCP_ListTableRestrictionsTest extends AWPCP_UnitTestCase {
      * @since 4.0.0
      */
     public function setUp(): void {
+        parent::setUp();
         $this->roles_and_capabilities = Mockery::mock( 'AWPCP_RolesAndCapabilities' );
         $this->request                = Mockery::mock( 'AWPCP_Request' );
     }

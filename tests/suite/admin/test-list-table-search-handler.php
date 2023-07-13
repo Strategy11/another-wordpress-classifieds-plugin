@@ -6,6 +6,8 @@
 /**
  * Unit tests for List Table Search Handler.
  */
+use Brain\Monkey\Functions;
+
 class AWPCP_ListTableSearchHandlerTest extends AWPCP_UnitTestCase {
 
     /**
@@ -31,7 +33,8 @@ class AWPCP_ListTableSearchHandlerTest extends AWPCP_UnitTestCase {
 
         $this->search['title']->shouldReceive( 'pre_get_posts' )->once()->with( $query );
 
-        $this->request->shouldReceive( 'param' )->with( 'awpcp_search_by' )->andReturn( 'title' );
+        Functions\expect( 'awpcp_get_var' )->with(  array( 'param' => 'awpcp_search_by' ) )
+                                           ->andReturn( 'title' );
 
         // Execution.
         $this->get_test_subject()->pre_get_posts( $query );
@@ -71,8 +74,8 @@ class AWPCP_ListTableSearchHandlerTest extends AWPCP_UnitTestCase {
     public function test_get_search_query() {
         $search_term = 'Something';
 
-        $this->request->shouldReceive( 'param' )->with( 's' )->andReturn( $search_term );
-
+        Functions\expect( 'awpcp_get_var' )->with(  array( 'param' => 's' )  )
+                                           ->andReturn( $search_term );
         // Execution and Verification.
         $this->assertEquals( $search_term, $this->get_test_subject()->get_search_query( null ) );
     }
@@ -92,8 +95,8 @@ class AWPCP_ListTableSearchHandlerTest extends AWPCP_UnitTestCase {
 
         $this->search[ $search_mode_id ]->shouldReceive( 'get_name' )->andReturn( $search_mode_name );
 
-        $this->request->shouldReceive( 'param' )->with( 'awpcp_search_by' )->andReturn( $selected_search_mode_id );
-
+        Functions\expect( 'awpcp_get_var' )->with( array( 'param' => 'awpcp_search_by') )
+                                           ->andReturn( $selected_search_mode_id );
         // Verification.
         $this->html_renderer->shouldReceive( 'render' )->once()->with(
             Mockery::on(

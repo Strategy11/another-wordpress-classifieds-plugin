@@ -19,3 +19,4 @@ bin/vvv-nginx.conf
 !/vendor/autoload.php
 !/vendor/composer
 *.css.map
+.phpunit.result.cache

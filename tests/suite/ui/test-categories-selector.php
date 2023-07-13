@@ -14,6 +14,7 @@ class AWPCP_CategoriesSelectorTest extends AWPCP_UnitTestCase {
      * @since 4.0.0
      */
     public function setUp(): void {
+        parent::setUp();
         $this->categories_selector_helper = Mockery::mock( 'AWPCP_Categories_Selector_Helper' );
         $this->categories_collection      = Mockery::mock( 'AWPCP_Categories_Collection' );
         $this->template_renderer          = Mockery::mock( 'AWPCP_Template_Renderer' );
@@ -34,7 +35,7 @@ class AWPCP_CategoriesSelectorTest extends AWPCP_UnitTestCase {
             'multiple'               => null,
             'auto'                   => null,
             'hash'                   => null,
-            'categories_hierarchy'   => null,
+            'categories_hierarchy'   => ['root'=>''],
             'javascript'             => null,
             'use_multiple_dropdowns' => null,
         ];
@@ -49,7 +50,7 @@ class AWPCP_CategoriesSelectorTest extends AWPCP_UnitTestCase {
             $template_params
         );
 
-        $this->assertContains( $placeholder, $output );
+        $this->assertStringContainsString( $placeholder, $output );
     }
 
     /**

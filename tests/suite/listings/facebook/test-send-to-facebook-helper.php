@@ -12,6 +12,7 @@ class AWPCP_SendToFacebookHelperTest extends AWPCP_UnitTestCase {
      * @since 4.0.0
      */
     public function setUp(): void {
+        parent::setUp();
         $this->facebook         = Mockery::mock( 'AWPCP_SendToFacebookHelper' );
         $this->listing_renderer = Mockery::mock( 'AWPCP_ListingRenderer' );
         $this->settings         = Mockery::mock( 'AWPCP_Settings' );
@@ -44,6 +45,8 @@ class AWPCP_SendToFacebookHelperTest extends AWPCP_UnitTestCase {
             ->andReturn( false );
 
         $helper = $this->get_test_subject();
+
+        $this->expectException(AWPCP_NoFacebookObjectSelectedException::class);
 
         // Execution.
         $helper->send_listing_to_facebook_group( $listing );
@@ -84,6 +87,8 @@ class AWPCP_SendToFacebookHelperTest extends AWPCP_UnitTestCase {
 
         $helper = $this->get_test_subject();
 
+        $this->expectException(AWPCP_ListingAlreadySharedException::class);
+
         // Execution.
         $helper->send_listing_to_facebook_group( $listing );
     }
@@ -113,6 +118,7 @@ class AWPCP_SendToFacebookHelperTest extends AWPCP_UnitTestCase {
 
         $helper = $this->get_test_subject();
 
+        $this->expectException(AWPCP_ListingDisabledException::class);
         // Execution.
         $helper->send_listing_to_facebook_group( $listing );
     }

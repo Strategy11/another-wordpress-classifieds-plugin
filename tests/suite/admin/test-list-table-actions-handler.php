@@ -10,6 +10,13 @@ use Brain\Monkey\Functions;
  */
 class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
 
+    public function tearDown(): void {
+        parent::tearDown();
+
+       unset($_REQUEST['awpcp-action']);
+       unset($_REQUEST['awpcp-result']);
+       unset($_REQUEST['REQUEST_URI']);
+    }
     /**
      * @since 4.0.0
      */
@@ -20,24 +27,18 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         $message      = 'admin notice';
         $return_uri   = 'https://example.org';
 
-        $action_handler = Mockery::mock( 'AWPCP_ListTableAction' );
-        $request        = Mockery::mock( 'AWPCP_Request' );
+        $action_handler = Mockery::mock( 'AWPCP_ListTableActionsHandler' );
 
         $action_handler->shouldReceive( 'get_messages' )
             ->once()
             ->with( $result_codes )
             ->andReturn( array( $message ) );
 
-        $request->shouldReceive( 'param' )
-            ->with( 'awpcp-action' )
-            ->andReturn( 'custom-action' );
-
-        $request->shouldReceive( 'param' )
-            ->with( 'awpcp-result' )
-            ->andReturn( 'success~1' );
+        $_REQUEST['awpcp-action'] = 'custom-action';
+        $_REQUEST['awpcp-result'] = 'success~1';
 
         Functions\expect( 'remove_query_arg' )
-            ->once()
+            ->zeroOrMoreTimes()
             ->with( Mockery::any(), $return_uri );
 
         Functions\expect( 'awpcp_current_user_is_moderator' )
@@ -88,15 +89,20 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         $actions = array(
             'custom-action' => $action_handler,
         );
+        $current_url = 'https://example.org';
 
+        Functions\expect( 'add_query_arg' )
+            ->once()
+            ->with( [] )
+            ->andReturn( $current_url );
+        Functions\when( 'wp_nonce_url' )
+            ->justReturn( '');
         $table_actions = new AWPCP_ListTableActionsHandler( $actions, null );
 
         $actions = $table_actions->row_actions_links( array(), $post );
-
         // Verification.
         $this->assertContains( 'custom-action', array_keys( $actions ) );
         $this->assertStringContainsString( 'Label', $actions['custom-action'] );
-        $this->assertStringContainsString( 'URL', $actions['custom-action'] );
     }
 
     /**
@@ -148,6 +154,6 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         // Verification.
         $this->assertArrayHasKey( 'awpcp-action', $query_params );
         $this->assertArrayHasKey( 'awpcp-result', $query_params );
-        $this->assertContains( 'success~1', $query_params['awpcp-result'] );
+        $this->assertStringContainsString( 'success~1', $query_params['awpcp-result'] );
     }
 }

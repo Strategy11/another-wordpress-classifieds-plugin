@@ -6,6 +6,8 @@
 /**
  * Unit tests for Complete Listing Table View.
  */
+use Brain\Monkey\Functions;
+
 class AWPCP_CompleteListingTableViewTest extends AWPCP_UnitTestCase {
 
     /**
@@ -23,6 +25,7 @@ class AWPCP_CompleteListingTableViewTest extends AWPCP_UnitTestCase {
      * @since 4.0.0
      */
     public function test_common_features() {
+        $this->expectAddQueryArg();
         $this->test_helper->check_common_table_view_methods( $this->get_test_subject() );
     }
 

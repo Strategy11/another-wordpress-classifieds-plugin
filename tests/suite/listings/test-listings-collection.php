@@ -4,16 +4,19 @@
  */
 
 use Brain\Monkey\Functions;
+use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 
 /**
  * Unit tests for implementation of Listings Collection for AWPCP 4.0
  */
 class AWPCP_ListingsCollectionTest extends AWPCP_UnitTestCase {
 
+    use ArraySubsetAsserts;
     /**
      * @since 4.0.0
      */
     public function setUp(): void {
+        parent::setUp();
         $this->query = (object) array(
             'posts'       => array(),
             'found_posts' => 0,
@@ -42,6 +45,7 @@ class AWPCP_ListingsCollectionTest extends AWPCP_UnitTestCase {
         $collection = $this->get_collection_for_query( $query_vars );
 
         // Execution.
+        $this->expectException(AWPCP_Exception::class);
         $collection->get_listing_with_old_id( $previous_id );
     }
 
@@ -136,8 +140,8 @@ class AWPCP_ListingsCollectionTest extends AWPCP_UnitTestCase {
      * @since 4.0.0
      */
     public function find_methods_provider() {
-        $user_id     = wp_rand() + 1;
-        $category_id = wp_rand() + 1;
+        $user_id     = rand() + 1;
+        $category_id = rand() + 1;
 
         return [
             'valid listings'                 => [
