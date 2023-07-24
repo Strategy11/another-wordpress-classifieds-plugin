@@ -33,6 +33,7 @@ class AWPCP_Delete_Category_Admin_Page {
 
     public function dispatch() {
         $category_id         = awpcp_get_var( array( 'param' => 'cat_ID' ) );
+        $nonce        = awpcp_get_var( array( 'param' => 'awpcp-del-cat-nonce' ), 'post' );
         $operation_confirmed = awpcp_get_var( array( 'param' => 'awpcp-confirm-delete-category' ), 'post' );
 
         try {
@@ -48,6 +49,9 @@ class AWPCP_Delete_Category_Admin_Page {
             return $this->show_delete_category_form( $category );
         }
 
+        if ( ! wp_verify_nonce( $nonce, 'delete-category' ) ) {
+            throw new AWPCP_Exception( __( 'invalid nonce' ) );
+        }
         try {
             $this->try_to_delete_category( $category );
         } catch ( AWPCP_Exception $e ) {
@@ -108,6 +112,7 @@ class AWPCP_Delete_Category_Admin_Page {
                 'category_id'        => $category->term_id,
                 'target_category_id' => 0,
                 'action'             => 'delete-category',
+                'nonce'              => wp_create_nonce( 'delete-category' ),
             ),
             'form_submit'           => __( 'Delete category', 'another-wordpress-classifieds-plugin' ),
             'form_cancel'           => __( 'Cancel', 'another-wordpress-classifieds-plugin' ),

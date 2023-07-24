@@ -36,8 +36,8 @@ class AWPCP_CategoriesAdminPage {
                 'class' => 'fa fa-pen fa-pencil',
                 'image' => array(
                     'attributes' => array(
-                        'alt' => __( 'Edit Category', 'another-wordpress-classifieds-plugin' ),
-                        'src' => AWPCP_URL . "/resources/images/edit_ico.png",
+                        'alt'    => __( 'Edit Category', 'another-wordpress-classifieds-plugin' ),
+                        'src'    => AWPCP_URL . '/resources/images/edit_ico.png',
                         'border' => 0,
                     ),
                 ),
@@ -47,8 +47,8 @@ class AWPCP_CategoriesAdminPage {
                 'class' => 'fa fa-trash-alt fa-trash',
                 'image' => array(
                     'attributes' => array(
-                        'alt' => __( 'Delete Category', 'another-wordpress-classifieds-plugin' ),
-                        'src' => AWPCP_URL . "/resources/images/delete_ico.png",
+                        'alt'    => __( 'Delete Category', 'another-wordpress-classifieds-plugin' ),
+                        'src'    => AWPCP_URL . '/resources/images/delete_ico.png',
                         'border' => 0,
                     ),
                 ),
@@ -61,8 +61,8 @@ class AWPCP_CategoriesAdminPage {
                 'class' => 'fa fa-wrench',
                 'image' => array(
                     'attributes' => array(
-                        'alt' => __( 'Manage Category Icon', 'another-wordpress-classifieds-plugin' ),
-                        'src' => AWPCP_URL . "/resources/images/icon_manage_ico.png",
+                        'alt'    => __( 'Manage Category Icon', 'another-wordpress-classifieds-plugin' ),
+                        'src'    => AWPCP_URL . '/resources/images/icon_manage_ico.png',
                         'border' => 0,
                     ),
                 ),
@@ -89,8 +89,8 @@ class AWPCP_CategoriesAdminPage {
 
         $template = AWPCP_DIR . '/templates/admin/manage-categories-admin-page.tpl.php';
         $params = array(
-            'icons' => $icons,
-            'pager1' => awpcp_pagination(
+            'icons'                         => $icons,
+            'pager1'                        => awpcp_pagination(
                 [
                     'total'         => count( $categories ),
                     'offset'        => $offset,
@@ -99,7 +99,7 @@ class AWPCP_CategoriesAdminPage {
                 ],
                 ''
             ),
-            'pager2' => awpcp_pagination(
+            'pager2'                        => awpcp_pagination(
                 [
                     'total'          => count( $categories ),
                     'offset'         => $offset,
@@ -130,19 +130,20 @@ class AWPCP_CategoriesAdminPage {
                 'option_none_value' => 0,
                 'class'             => '',
             ],
-            'form_title' => $category ? __( 'Edit Category', 'another-wordpress-classifieds-plugin' ) : __( 'Add New Category', 'another-wordpress-classifieds-plugin' ),
-            'form_values' => array(
-                'category_id' => $category_id,
-                'category_name' => $category ? $category->name : null,
+            'form_title'                    => $category ? __( 'Edit Category', 'another-wordpress-classifieds-plugin' ) : __( 'Add New Category', 'another-wordpress-classifieds-plugin' ),
+            'form_values'                   => array(
+                'category_id'          => $category_id,
+                'category_name'        => $category ? $category->name : null,
                 'category_description' => $category ? $category->description : null,
-                'category_parent_id' => $category ? $category->parent : null,
-                'category_order' => $category ? intval( get_term_meta( $category->term_id, '_awpcp_order', true ) ) : null,
-                'action' => $category ? 'update-category' : 'create-category',
+                'category_parent_id'   => $category ? $category->parent : null,
+                'category_order'       => $category ? intval( get_term_meta( $category->term_id, '_awpcp_order', true ) ) : null,
+                'action'               => $category ? 'update-category' : 'create-category',
+                'nonce'                => wp_create_nonce( 'category-form' ),
             ),
-            'form_submit' => $category ? __( 'Update', 'another-wordpress-classifieds-plugin' ) : __( 'Add New Category', 'another-wordpress-classifieds-plugin' ),
-            'items' => $items,
-            'offset' => $offset,
-            'results' => $results,
+            'form_submit'                   => $category ? __( 'Update', 'another-wordpress-classifieds-plugin' ) : __( 'Add New Category', 'another-wordpress-classifieds-plugin' ),
+            'items'                         => $items,
+            'offset'                        => $offset,
+            'results'                       => $results,
         );
 
         return $this->template_renderer->render_template( $template, $params );

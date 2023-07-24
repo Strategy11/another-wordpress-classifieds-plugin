@@ -8,8 +8,9 @@
         <div class="metabox-sortables">
             <div class="postbox">
                 <?php
-                    echo awpcp_html_admin_third_level_heading(array(
-                        'content' => $form_title,
+                    echo awpcp_html_admin_third_level_heading(
+                        array(
+                        'content'    => $form_title,
                         'attributes' => array( 'class' => 'hndle' ),
                     ));
                 ?>
@@ -19,6 +20,7 @@
                         <input type="hidden" name="awpcp-action" value="<?php echo $form_values['action']; ?>" />
                         <input type="hidden" name="category_id" value="<?php echo $form_values['category_id']; ?>" />
                         <input type="hidden" name="aeaction" value="<?php echo $form_values['action']; ?>" />
+                        <input type="hidden" name="awpcp-cat-form-nonce" value="<?php echo $form_values['nonce']; ?>" />
                         <input type="hidden" name="offset" value="<?php echo $offset; ?>" />
                         <input type="hidden" name="results" value="<?php echo $results; ?>" />
 
@@ -71,7 +73,7 @@
         <li class="awpcp-manage-categories-icons-meaning-header">
             <span><?php echo __( 'Icon Meanings:', 'another-wordpress-classifieds-plugin' ); ?></span>
         </li>
-    <?php foreach ( $icons as $icon ): ?>
+    <?php foreach ( $icons as $icon ) : ?>
         <li class="awpcp-manage-categories-icons-meaning-icon"><i class="<?php echo esc_attr( $icon['class'] ); ?>"></i><span><?php echo $icon['label']; ?></span></li>
     <?php endforeach; ?>
     </ul>
@@ -94,6 +96,7 @@
     <?php echo $pager1; ?>
 
     <p>
+        <input type="hidden" name="awpcp-multiple-form-nonce" value="<?php echo wp_create_nonce( 'cat-multiple-form' ) ?>">
         <input type="submit" name="awpcp-move-multiple-categories" class="button" value="<?php esc_attr_e( 'Move Selected Categories', 'another-wordpress-classifieds-plugin' ); ?>"/>
         <input type="submit" name="awpcp-delete-multiple-categories" class="button" value="<?php esc_attr_e( 'Delete Selected Categories', 'another-wordpress-classifieds-plugin' ); ?>"/>
     </p>
@@ -131,8 +134,8 @@
             <td style="width:10%; text-align: center;"><?php echo __( 'Category ID', 'another-wordpress-classifieds-plugin' ); ?></td>
             <td style="padding:5px;"><?php echo __( 'Category Name (Total Ads)', 'another-wordpress-classifieds-plugin' ); ?></td>
             <td style="padding:5px;"><?php echo __( 'Parent', 'another-wordpress-classifieds-plugin' ); ?></td>
-            <td style="padding:5px;"><?php echo __("Order",'another-wordpress-classifieds-plugin'); ?></td>
-            <td style="padding:5px;"><?php echo __("Action",'another-wordpress-classifieds-plugin'); ?></td>
+            <td style="padding:5px;"><?php echo __( 'Order', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="padding:5px;"><?php echo __( 'Action', 'another-wordpress-classifieds-plugin' ); ?></td>
         </tr>
     </table>
 </form>

@@ -28,12 +28,15 @@ class AWPCP_Create_Category_Admin_Page {
 
     public function dispatch() {
         $category_order = awpcp_get_var( array( 'param' => 'category_order', 'sanitize' => 'absint' ) );
+        $nonce        = awpcp_get_var( array( 'param' => 'awpcp-cat-form-nonce' ), 'post' );
         $category_data  = array(
             'name'        => awpcp_get_var( array( 'param' => 'category_name' ) ),
             'description' => awpcp_get_var( array( 'param' => 'category_description', 'sanitize' => 'sanitize_textarea_field' ) ),
             'parent'      => awpcp_get_var( array( 'param' => 'category_parent_id', 'sanitize' => 'intval' ) ),
         );
-
+        if ( ! wp_verify_nonce( $nonce, 'category-form' ) ) {
+            throw new AWPCP_Exception( __( 'invalid nonce' ) );
+        }
         try {
             $this->categories_data_mapper->create_category( $category_data, $category_order );
             awpcp_flash( __( 'The new category was successfully added.', 'another-wordpress-classifieds-plugin' ) );
