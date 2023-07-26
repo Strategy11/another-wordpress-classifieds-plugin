@@ -1,15 +1,15 @@
-# Copyright (C) 2022 AWP Classifieds Team
+# Copyright (C) 2023 AWP Classifieds Team
 # This file is distributed under the GPLv2 or any later version.
 msgid ""
 msgstr ""
-"Project-Id-Version: AWP Classifieds Plugin 4.3\n"
+"Project-Id-Version: AWP Classifieds Plugin 4.3.1\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2022-10-06 21:25:10+00:00\n"
+"POT-Creation-Date: 2023-07-26 14:11:20+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2022-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
@@ -1665,7 +1665,7 @@ msgstr ""
 msgid "Visit Website"
 msgstr ""
 
-#: frontend/placeholders.php:651 includes/functions/listings.php:400
+#: frontend/placeholders.php:651 includes/functions/listings.php:405
 msgid "Location"
 msgstr ""
 
@@ -3146,15 +3146,15 @@ msgstr ""
 msgid "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1465
+#: includes/class-awpcp.php:1451
 msgid "There are files currently being uploaded."
 msgstr ""
 
-#: includes/class-awpcp.php:1466
+#: includes/class-awpcp.php:1452
 msgid "There are files pending to be uploaded."
 msgstr ""
 
-#: includes/class-awpcp.php:1467
+#: includes/class-awpcp.php:1453
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
@@ -3733,51 +3733,51 @@ msgstr ""
 msgid "Top Level Category"
 msgstr ""
 
-#: includes/functions/listings.php:273
+#: includes/functions/listings.php:278
 #: includes/listings/class-listings-content-renderer.php:169
 msgid "Are you sure you want to flag this ad?"
 msgstr ""
 
-#: includes/functions/listings.php:274
+#: includes/functions/listings.php:279
 #: includes/listings/class-listings-content-renderer.php:170
 msgid "This Ad has been flagged."
 msgstr ""
 
-#: includes/functions/listings.php:275
+#: includes/functions/listings.php:280
 #: includes/listings/class-listings-content-renderer.php:171
 msgid "An error occurred while trying to flag the Ad."
 msgstr ""
 
-#: includes/functions/listings.php:312
+#: includes/functions/listings.php:317
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
 msgstr ""
 
-#: includes/functions/listings.php:329
+#: includes/functions/listings.php:334
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
 msgstr ""
 
-#: includes/functions/listings.php:335
+#: includes/functions/listings.php:340
 #: includes/listings/class-listings-content-renderer.php:106
 msgid "Your email address was successfully verified."
 msgstr ""
 
-#: includes/functions/listings.php:339
+#: includes/functions/listings.php:344
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
 msgstr ""
 
-#: includes/functions/listings.php:342
+#: includes/functions/listings.php:347
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
 msgstr ""
 
-#: includes/functions/listings.php:345
+#: includes/functions/listings.php:350
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."
@@ -9596,17 +9596,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr ""
 
-#: includes/class-awpcp.php:1442
+#: includes/class-awpcp.php:1439
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: includes/class-awpcp.php:1444
+#: includes/class-awpcp.php:1440
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: includes/class-awpcp.php:1459
+#: includes/class-awpcp.php:1446
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr ""

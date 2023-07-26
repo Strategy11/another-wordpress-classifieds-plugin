@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2022-10-06 21:23:07+00:00\n"
+"POT-Creation-Date: 2023-07-26 14:11:20+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/wp-translations/"
@@ -1128,8 +1128,8 @@ msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:108
 msgid ""
-"If you are having additional problems with Facebook API, click \"Diagnostics"
-"\" to check your settings."
+"If you are having additional problems with Facebook API, click "
+"\"Diagnostics\" to check your settings."
 msgstr ""
 "Dacă aveți probleme suplimentare cu API-ul Facebook, faceți clic pe "
 "\"diagnosticare\" pentru a verifica setările."
@@ -2012,7 +2012,7 @@ msgstr "Vânzător"
 msgid "Visit Website"
 msgstr "Vizitează website"
 
-#: frontend/placeholders.php:651 includes/functions/listings.php:400
+#: frontend/placeholders.php:651 includes/functions/listings.php:405
 msgid "Location"
 msgstr "Locație"
 
@@ -3010,8 +3010,8 @@ msgstr ""
 msgid ""
 "The type of the payment term. Either 'fee' or 'subscription'. Default: 'fee'."
 msgstr ""
-"Tipul termenului de plată. Fie \"taxă\" sau \"abonament\". Implicit: \"taxă"
-"\"."
+"Tipul termenului de plată. Fie \"taxă\" sau \"abonament\". Implicit: "
+"\"taxă\"."
 
 #: includes/admin/import/class-csv-importer-columns.php:231
 #: includes/admin/import/class-csv-importer-columns.php:239
@@ -3688,15 +3688,15 @@ msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr "Ați atins categoriile maxime permise pentru planul de taxe selectat."
 
-#: includes/class-awpcp.php:1465
+#: includes/class-awpcp.php:1451
 msgid "There are files currently being uploaded."
 msgstr "Fișierele se încarcă în acest moment."
 
-#: includes/class-awpcp.php:1466
+#: includes/class-awpcp.php:1452
 msgid "There are files pending to be uploaded."
 msgstr "Fișierele așteaptă să fie încărcate."
 
-#: includes/class-awpcp.php:1467
+#: includes/class-awpcp.php:1453
 msgid "You haven't uploaded any images or files."
 msgstr "Nu ați încărcat nici o imagine sau fișier."
 
@@ -4358,23 +4358,23 @@ msgstr "Introduceți detaliile anunțului."
 msgid "Top Level Category"
 msgstr "Categorie de prim nivel"
 
-#: includes/functions/listings.php:273
+#: includes/functions/listings.php:278
 #: includes/listings/class-listings-content-renderer.php:169
 msgid "Are you sure you want to flag this ad?"
 msgstr "Sunteți sigur că vreți să reclamați acest anunț ca nepotrivit?"
 
-#: includes/functions/listings.php:274
+#: includes/functions/listings.php:279
 #: includes/listings/class-listings-content-renderer.php:170
 msgid "This Ad has been flagged."
 msgstr "Acest anunț a fost marcat nepotrivit."
 
-#: includes/functions/listings.php:275
+#: includes/functions/listings.php:280
 #: includes/listings/class-listings-content-renderer.php:171
 msgid "An error occurred while trying to flag the Ad."
 msgstr ""
 "A apărut o eroare în timp ce s-a încercat marcarea anunțului ca nepotrivit."
 
-#: includes/functions/listings.php:312
+#: includes/functions/listings.php:317
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
@@ -4382,7 +4382,7 @@ msgstr ""
 "Ne pare rău, acest anunț nu este disponibil. Vă rugăm să încercați să "
 "explorați sau să căutați între anunțurile existente."
 
-#: includes/functions/listings.php:329
+#: includes/functions/listings.php:334
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
@@ -4390,12 +4390,12 @@ msgstr ""
 "Anunțul pe care încercați să îl vedeți se află în așteptare pentru aprobare. "
 "De îndată ce administatorul îl aproba, va deveni activ și vizibil."
 
-#: includes/functions/listings.php:335
+#: includes/functions/listings.php:340
 #: includes/listings/class-listings-content-renderer.php:106
 msgid "Your email address was successfully verified."
 msgstr "Adresa dvs. de email a fost verificată cu succes."
 
-#: includes/functions/listings.php:339
+#: includes/functions/listings.php:344
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
@@ -4403,7 +4403,7 @@ msgstr ""
 "Acest anunț este dezactivat până când administratorul îl va aproba. Doar "
 "dvs. (Administatorul) și autorul îl pot vedea."
 
-#: includes/functions/listings.php:342
+#: includes/functions/listings.php:347
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
@@ -4411,7 +4411,7 @@ msgstr ""
 "Acest anunț este dezactivat până când veți verifica adresa dvs. de email "
 "folosită pentru detaliile de contact. Doar dvs. (autorul) îl puteți vedea."
 
-#: includes/functions/listings.php:345
+#: includes/functions/listings.php:350
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."
@@ -5229,8 +5229,8 @@ msgstr ""
 #: includes/payment-gateway-paypal-standard.php:58
 msgid ""
 "We haven't received your payment information from PayPal yet and we are "
-"unable to verify your transaction. Please reload this page or visit <a href="
-"\"%1$s\">%2$s</a> in 30 seconds to continue placing your Ad."
+"unable to verify your transaction. Please reload this page or visit <a "
+"href=\"%1$s\">%2$s</a> in 30 seconds to continue placing your Ad."
 msgstr ""
 "Nu am primit încă detaliile dvs. de plată de la PayPal și nu putem verifica "
 "tranzacția dvs. Vă rugăm să reîncărcați această pagină sau să vizitați <a "
@@ -7482,10 +7482,10 @@ msgstr "Metoda de integrare Facebook"
 msgid ""
 "Please note that sending ads to Facebook Groups is currently not available "
 "using Webhooks, after Facebook significantly reduced access to their APIs "
-"across all apps. You can read more about these changes here: <a href="
-"\"https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-"
-"product-changes/\">https://developers.facebook.com/blog/post/2018/04/04/"
-"facebook-api-platform-product-changes/</a>"
+"across all apps. You can read more about these changes here: <a "
+"href=\"https://developers.facebook.com/blog/post/2018/04/04/facebook-api-"
+"platform-product-changes/\">https://developers.facebook.com/blog/"
+"post/2018/04/04/facebook-api-platform-product-changes/</a>"
 msgstr ""
 "Rețineți că trimiterea anunțurilor către grupurile Facebook nu este momentan "
 "disponibilă folosind webhooks, după ce Facebook a redus semnificativ accesul "
@@ -7691,27 +7691,28 @@ msgid ""
 "As of April 4, 2018, all applications need to go through <a href=\"https://"
 "developers.facebook.com/docs/apps/review\" rel=\"nofollow\">App Review</a> "
 "in order to get access to the <a href=\"https://developers.facebook.com/docs/"
-"graph-api/reference/page/\" rel=\"nofollow\">Page API</a> and <a href="
-"\"https://developers.facebook.com/docs/graph-api/reference/user/groups/\" "
-"rel=\"nofollow\">Groups API</a>. That means that you may need to <a href="
-"\"https://developers.facebook.com/docs/facebook-login/review\" rel=\"nofollow"
-"\">submit your app for review</a> (ask for the <code>manage_pages</code>, "
-"<code>publish_pages</code>, <code>publish_to_groups</code> permissions), "
-"before AWPCP can display the list of pages and groups you manage and be able "
-"to post classifieds ads to those groups and pages."
-msgstr ""
-"De la 4 aprilie, 2018, toate aplicațiile trebuie să treacă prin <a href="
-"\"https://developers.facebook.com/docs/apps/review\" rel=\"nofollow\">App "
-"Review</a> pentru a obține acces la <a href=\"https://developers.facebook."
-"com/docs/graph-api/reference/page/\" rel=\"nofollow\">pagina API</a> și <a "
+"graph-api/reference/page/\" rel=\"nofollow\">Page API</a> and <a "
 "href=\"https://developers.facebook.com/docs/graph-api/reference/user/groups/"
-"\" rel=\"nofollow\">grupuri API</a>. Aceasta înseamnă că poate fi necesar să "
-"<a href=\"https://developers.facebook.com/docs/facebook-login/review\" rel="
-"\"nofollow\">remiteți aplicația pentru revizuire</a> (cereți "
-"<code>manage_pages</code> , <code>publish_pages</code> , "
-"<code>publish_to_groups</code> permisiuni), înainte ca AWPCP să afișeze "
-"lista de pagini și grupuri pe care le gestionați și să reușiți să publicați "
-"anunțuri în acele grupuri și pagini."
+"\" rel=\"nofollow\">Groups API</a>. That means that you may need to <a "
+"href=\"https://developers.facebook.com/docs/facebook-login/review\" "
+"rel=\"nofollow\">submit your app for review</a> (ask for the "
+"<code>manage_pages</code>, <code>publish_pages</code>, "
+"<code>publish_to_groups</code> permissions), before AWPCP can display the "
+"list of pages and groups you manage and be able to post classifieds ads to "
+"those groups and pages."
+msgstr ""
+"De la 4 aprilie, 2018, toate aplicațiile trebuie să treacă prin <a "
+"href=\"https://developers.facebook.com/docs/apps/review\" "
+"rel=\"nofollow\">App Review</a> pentru a obține acces la <a href=\"https://"
+"developers.facebook.com/docs/graph-api/reference/page/\" "
+"rel=\"nofollow\">pagina API</a> și <a href=\"https://developers.facebook.com/"
+"docs/graph-api/reference/user/groups/\" rel=\"nofollow\">grupuri API</a>. "
+"Aceasta înseamnă că poate fi necesar să <a href=\"https://developers."
+"facebook.com/docs/facebook-login/review\" rel=\"nofollow\">remiteți "
+"aplicația pentru revizuire</a> (cereți <code>manage_pages</code> , "
+"<code>publish_pages</code> , <code>publish_to_groups</code> permisiuni), "
+"înainte ca AWPCP să afișeze lista de pagini și grupuri pe care le gestionați "
+"și să reușiți să publicați anunțuri în acele grupuri și pagini."
 
 #: includes/settings/class-general-settings.php:975
 msgid "None (Do not sent ads to a Facebook Page)"
@@ -8536,9 +8537,9 @@ msgid ""
 "your Merchant ID."
 msgstr ""
 "ID-ul comerciantului asociat contului PayPal care va primi plățile. Accesați "
-"<a href=\"https://www.paypal.com/myaccount/settings/\" target=\"_blank"
-"\">https://www.paypal.com/myaccount/settings/</a> pentru a obține ID-ul "
-"comerciantului."
+"<a href=\"https://www.paypal.com/myaccount/settings/\" "
+"target=\"_blank\">https://www.paypal.com/myaccount/settings/</a> pentru a "
+"obține ID-ul comerciantului."
 
 #: includes/settings/class-payment-general-settings.php:176
 msgid "The PayPal Currency Code must be one of <currency-codes>."
@@ -9966,13 +9967,13 @@ msgid ""
 "This information can help AWPCP Developers to debug possible problems. If "
 "you are submitting a bug report please <strong><a href=\"%s\">Download the "
 "Debug Information</a></strong> and attach it to your bug report or take a "
-"minute to copy the information below to <a href=\"http://fpaste.org\" target="
-"\"_blank\">http://fpaste.org</a> and provide the resulting URL in your "
-"report."
+"minute to copy the information below to <a href=\"http://fpaste.org\" "
+"target=\"_blank\">http://fpaste.org</a> and provide the resulting URL in "
+"your report."
 msgstr ""
 "Această informație poate ajuta programatorii AWPCP să remedieze diferite "
-"probleme. Dacă trimiteți un raport de eroare, vă rugăm <strong><a href=\"%s"
-"\">Descărcați informația pentru depanare</a></strong> și atașați-o "
+"probleme. Dacă trimiteți un raport de eroare, vă rugăm <strong><a "
+"href=\"%s\">Descărcați informația pentru depanare</a></strong> și atașați-o "
 "raportului dvs. sau luați-vă un minut să copiați informația de mai jos în <a "
 "href=\"http://fpaste.org\" target=\"_blank\">http://fpaste.org</a> și "
 "includeți URL-ul obținut în raport."
@@ -10011,9 +10012,9 @@ msgid ""
 "Debug Information</a></strong> and attach it to your bug report."
 msgstr ""
 "Aceste informații pot ajuta dezvoltatorii AWPCP pentru a depana probleme "
-"posibile. Dacă trimiteți un raport de erori, vă rugăm să <strong><a href=\"%s"
-"\">Descărcați informațiile de depanare</a></strong> și să le atașați la "
-"raportul de erori."
+"posibile. Dacă trimiteți un raport de erori, vă rugăm să <strong><a "
+"href=\"%s\">Descărcați informațiile de depanare</a></strong> și să le "
+"atașați la raportul de erori."
 
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:29
 msgctxt "debug page"
@@ -11165,17 +11166,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr "Vedere rapidă"
 
-#: includes/class-awpcp.php:1442
+#: includes/class-awpcp.php:1439
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Înapoi"
 
-#: includes/class-awpcp.php:1444
+#: includes/class-awpcp.php:1440
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Înainte&#x3e;"
 
-#: includes/class-awpcp.php:1459
+#: includes/class-awpcp.php:1446
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
@@ -11316,8 +11317,8 @@ msgstr "Parametrul secret este incorect sau într-un format greșit."
 msgctxt "recaptcha-error"
 msgid "The response parameter is missing."
 msgstr ""
-"Parametrul de răspuns lipsește. Trebuie să bifați casuța \"I'm not a robot"
-"\" (Nu sunt un robot)."
+"Parametrul de răspuns lipsește. Trebuie să bifați casuța \"I'm not a "
+"robot\" (Nu sunt un robot)."
 
 #: includes/frontend/class-recaptcha-v2.php:76
 msgctxt "recaptcha-error"
@@ -12113,8 +12114,8 @@ msgstr "Bună,"
 #: templates/email/listing-media-upload-notification.plain.tpl.php:5
 msgctxt "listing media uploaded notification"
 msgid ""
-"The following media files were recently uploaded to listing \"<listing-title>"
-"\":"
+"The following media files were recently uploaded to listing \"<listing-"
+"title>\":"
 msgstr ""
 "Următoarele fișiere media au fost recent încărcate la anunțul  \"<listing-"
 "title>\":"
@@ -12122,8 +12123,8 @@ msgstr ""
 #: templates/email/listing-media-upload-notification.plain.tpl.php:16
 msgctxt "listing media uploaded notification"
 msgid ""
-"The following media files were recently uploaded to listing \"<listing-title>"
-"\" and are awaiting approval:"
+"The following media files were recently uploaded to listing \"<listing-"
+"title>\" and are awaiting approval:"
 msgstr ""
 "Următoarele fișiere media au fost recent încărcate la anunțul  \"<listing-"
 "title>\" și așteaptă aprobarea:"
@@ -12228,19 +12229,19 @@ msgid ""
 "secure connection with the following payment gateways to process the payment:"
 msgstr ""
 "În cazul în care plătiți pentru a posta o listă clasificată care introduce "
-"informațiile cardului de credit și de facturare direct pe <a href="
-"\"{home_url}\">{home_url}</a>, informațiile cardului de credit nu vor fi "
-"stocate, dar vor fi partajate printr-o conexiune securizată cu următoarele "
-"gateway-uri de plată pentru a procesa plata:"
+"informațiile cardului de credit și de facturare direct pe <a "
+"href=\"{home_url}\">{home_url}</a>, informațiile cardului de credit nu vor "
+"fi stocate, dar vor fi partajate printr-o conexiune securizată cu "
+"următoarele gateway-uri de plată pentru a procesa plata:"
 
 #: templates/privacy-policy.tpl.php:21
 msgctxt "privacy policy"
 msgid ""
-"PayPal &mdash; <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-full"
-"\">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>"
+"PayPal &mdash; <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-"
+"full\">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>"
 msgstr ""
-"PayPal- <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-full"
-"\">https://www.PayPal.com/webapps/MPP/UA/Privacy-Full</a>"
+"PayPal- <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-"
+"full\">https://www.PayPal.com/webapps/MPP/UA/Privacy-Full</a>"
 
 #: templates/privacy-policy.tpl.php:22
 msgctxt "privacy policy"
@@ -12353,9 +12354,9 @@ msgstr ""
 #~ msgstr "Yoast SEO (recomandat)"
 
 #~ msgid ""
-#~ "Any of those plugins should work to generate the XML sitemap the \"normal"
-#~ "\" way now since AWPCP is using Custom Post Types and will look like a "
-#~ "post to WordPress now."
+#~ "Any of those plugins should work to generate the XML sitemap the "
+#~ "\"normal\" way now since AWPCP is using Custom Post Types and will look "
+#~ "like a post to WordPress now."
 #~ msgstr ""
 #~ "Oricare dintre aceste plugin-uri ar trebui să funcționeze pentru a genera "
 #~ "sitemap XML \"normale\" mod acum, deoarece AWPCP este folosind Custom "
