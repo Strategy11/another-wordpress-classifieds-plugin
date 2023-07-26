@@ -50,7 +50,10 @@ class AWPCP_Delete_Categories_Admin_Page {
         $target_category_id   = $this->request->post( 'moveadstocategory', 1 );
         $should_move_listings = $this->request->post( 'movedeleteads', 1 ) === 1;
         $target_category      = null;
-
+        $nonce        = awpcp_get_var( array( 'param' => 'awpcp-multiple-form-nonce' ), 'post' );
+        if ( ! wp_verify_nonce( $nonce, 'cat-multiple-form' ) ) {
+            throw new AWPCP_Exception( __( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
+        }
         if ( $should_move_listings ) {
             try {
                 $target_category = $this->categories->get( $target_category_id );
