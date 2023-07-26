@@ -144,6 +144,7 @@ class AWPCP_CategoriesAdminPage {
             'items'                         => $items,
             'offset'                        => $offset,
             'results'                       => $results,
+            'multi_form_nonce'              => wp_create_nonce( 'cat-multiple-form' ),
         );
 
         return $this->template_renderer->render_template( $template, $params );

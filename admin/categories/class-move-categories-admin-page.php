@@ -51,7 +51,7 @@ class AWPCP_Move_Categories_Admin_Page {
         $target_category_id  = $this->request->post( 'moveadstocategory' );
         $nonce        = awpcp_get_var( array( 'param' => 'awpcp-multiple-form-nonce' ), 'post' );
         if ( ! wp_verify_nonce( $nonce, 'cat-multiple-form' ) ) {
-            throw new AWPCP_Exception( 'invalid nonce' );
+            throw new AWPCP_Exception( __( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
         }
         try {
             $target_category = $this->categories->get( $target_category_id );

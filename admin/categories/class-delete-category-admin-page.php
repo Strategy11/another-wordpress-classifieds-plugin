@@ -33,7 +33,6 @@ class AWPCP_Delete_Category_Admin_Page {
 
     public function dispatch() {
         $category_id         = awpcp_get_var( array( 'param' => 'cat_ID' ) );
-        $nonce        = awpcp_get_var( array( 'param' => 'awpcp-del-cat-nonce' ), 'post' );
         $operation_confirmed = awpcp_get_var( array( 'param' => 'awpcp-confirm-delete-category' ), 'post' );
 
         try {
@@ -47,10 +46,6 @@ class AWPCP_Delete_Category_Admin_Page {
 
         if ( ! $operation_confirmed ) {
             return $this->show_delete_category_form( $category );
-        }
-
-        if ( ! wp_verify_nonce( $nonce, 'delete-category' ) ) {
-            throw new AWPCP_Exception( __( 'invalid nonce' ) );
         }
         try {
             $this->try_to_delete_category( $category );
@@ -67,7 +62,11 @@ class AWPCP_Delete_Category_Admin_Page {
     private function try_to_delete_category( $category ) {
         $target_category_id   = awpcp_get_var( array( 'param' => 'target_category_id' ), 'post' );
         $should_move_listings = ads_exist_cat( $category->term_id );
+        $nonce                = awpcp_get_var( array( 'param' => 'awpcp-del-cat-nonce' ), 'post' );
 
+        if ( ! wp_verify_nonce( $nonce, 'delete-category' ) ) {
+            throw new AWPCP_Exception( __( 'invalid nonce' ) );
+        }
         try {
             $target_category = $this->categories->get( $target_category_id );
         } catch ( AWPCP_Exception $e ) {

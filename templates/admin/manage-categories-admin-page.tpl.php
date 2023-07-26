@@ -10,9 +10,10 @@
                 <?php
                     echo awpcp_html_admin_third_level_heading(
                         array(
-                        'content'    => $form_title,
-                        'attributes' => array( 'class' => 'hndle' ),
-                    ));
+                            'content'    => $form_title,
+                            'attributes' => array( 'class' => 'hndle' ),
+                            )
+                    );
                 ?>
                 <div class="inside">
                     <div class="form-wrap">
@@ -20,7 +21,7 @@
                         <input type="hidden" name="awpcp-action" value="<?php echo $form_values['action']; ?>" />
                         <input type="hidden" name="category_id" value="<?php echo $form_values['category_id']; ?>" />
                         <input type="hidden" name="aeaction" value="<?php echo $form_values['action']; ?>" />
-                        <input type="hidden" name="awpcp-cat-form-nonce" value="<?php echo $form_values['nonce']; ?>" />
+                        <input type="hidden" name="awpcp-cat-form-nonce" value="<?php echo esc_attr( $form_values['nonce'] ); ?>" />
                         <input type="hidden" name="offset" value="<?php echo $offset; ?>" />
                         <input type="hidden" name="results" value="<?php echo $results; ?>" />
 
@@ -96,7 +97,7 @@
     <?php echo $pager1; ?>
 
     <p>
-        <input type="hidden" name="awpcp-multiple-form-nonce" value="<?php echo wp_create_nonce( 'cat-multiple-form' ) ?>">
+        <input type="hidden" name="awpcp-multiple-form-nonce" value="<?php echo esc_attr( $multi_form_nonce ); ?>">
         <input type="submit" name="awpcp-move-multiple-categories" class="button" value="<?php esc_attr_e( 'Move Selected Categories', 'another-wordpress-classifieds-plugin' ); ?>"/>
         <input type="submit" name="awpcp-delete-multiple-categories" class="button" value="<?php esc_attr_e( 'Delete Selected Categories', 'another-wordpress-classifieds-plugin' ); ?>"/>
     </p>
