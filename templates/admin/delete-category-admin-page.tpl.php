@@ -43,6 +43,7 @@
                         <input type="hidden" name="category_id" value="<?php esc_attr( $form_values['category_id'] ); ?>" />
                         <input type="hidden" name="offset" value="<?php echo esc_attr( $offset ); ?>" />
                         <input type="hidden" name="results" value="<?php echo esc_attr( $results ); ?>" />
+                        <input type="hidden" name="awpcp-del-cat-nonce" value="<?php echo esc_attr( $form_values['nonce'] ); ?>" />
 
                         <?php if ( $category_has_children || $category_has_listings ) : ?>
                         <div class="awpcp-clearfix clearfix">
