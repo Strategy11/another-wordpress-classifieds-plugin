@@ -65,7 +65,7 @@ class AWPCP_Delete_Category_Admin_Page {
         $nonce                = awpcp_get_var( array( 'param' => 'awpcp-del-cat-nonce' ), 'post' );
 
         if ( ! wp_verify_nonce( $nonce, 'delete-category' ) ) {
-            throw new AWPCP_Exception( __( 'invalid nonce' ) );
+            throw new AWPCP_Exception( __( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
         }
         try {
             $target_category = $this->categories->get( $target_category_id );

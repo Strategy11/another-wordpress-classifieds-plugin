@@ -35,7 +35,7 @@ class AWPCP_Create_Category_Admin_Page {
             'parent'      => awpcp_get_var( array( 'param' => 'category_parent_id', 'sanitize' => 'intval' ) ),
         );
         if ( ! wp_verify_nonce( $nonce, 'category-form' ) ) {
-            throw new AWPCP_Exception( __( 'invalid nonce' ) );
+            throw new AWPCP_Exception( __( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
         }
         try {
             $this->categories_data_mapper->create_category( $category_data, $category_order );

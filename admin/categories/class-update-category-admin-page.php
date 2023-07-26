@@ -47,7 +47,7 @@ class AWPCP_Update_Category_Admin_Page {
         $category_id = awpcp_get_var( array( 'param' => 'category_id' ) );
         $nonce        = awpcp_get_var( array( 'param' => 'awpcp-cat-form-nonce' ), 'post' );
         if ( ! wp_verify_nonce( $nonce, 'category-form' ) ) {
-            throw new AWPCP_Exception( __( 'invalid nonce' ) );
+            throw new AWPCP_Exception( __( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
         }
         try {
             $category = $this->categories->get( $category_id );
