@@ -167,10 +167,9 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 
 == Changelog ==
 = 4.3.1 =
-* Security update. add CSRF tokens.
-* Fix: Number of ads per page settings.
-* Fix: Pagination option settings.
-* Fix: 404 pages after fresh installation.
+* Security update against CSRF attacks in some admin pages. add CSRF tokens "nonce".
+* Fix: Pagination show the correct number of ads per page based on "number ads per page plugin" settings instead of 10 ads per page.
+* Fix: Reset permalink on installation to avoid page not found errors (404).
 
 = 4.3 =
 * Important security update. Sanitizing incoming values.
