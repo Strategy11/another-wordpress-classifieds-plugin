@@ -167,6 +167,7 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 
 == Changelog ==
 = 4.3.1 =
+* Security update. add CSRF tokens.
 * Fix: Number of ads per page settings.
 * Fix: Pagination option settings.
 * Fix: 404 pages after fresh installation.
