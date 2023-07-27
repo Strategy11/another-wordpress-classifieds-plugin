@@ -1,15 +1,15 @@
-# Copyright (C) 2022 AWP Classifieds Team
+# Copyright (C) 2023 AWP Classifieds Team
 # This file is distributed under the GPLv2 or any later version.
 msgid ""
 msgstr ""
-"Project-Id-Version: AWP Classifieds Plugin 4.3\n"
+"Project-Id-Version: AWP Classifieds Plugin 4.3.1\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2022-10-06 21:25:10+00:00\n"
+"POT-Creation-Date: 2023-07-26 21:54:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2022-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
@@ -19,14 +19,14 @@ msgstr ""
 #: admin/fees/class-fee-details-form.php:39
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:9
 #: includes/settings/class-payment-general-settings.php:58
-#: templates/admin/manage-categories-admin-page.tpl.php:28
+#: templates/admin/manage-categories-admin-page.tpl.php:31
 msgid "Name"
 msgstr ""
 
 #: admin/admin-panel-credit-plans-table.php:80
 #: admin/fees/class-fee-details-form.php:45
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:25
-#: templates/admin/manage-categories-admin-page.tpl.php:33
+#: templates/admin/manage-categories-admin-page.tpl.php:36
 msgid "Description"
 msgstr ""
 
@@ -315,26 +315,34 @@ msgstr ""
 msgid "Search Ads"
 msgstr ""
 
-#: admin/categories/class-create-category-admin-page.php:39
+#: admin/categories/class-create-category-admin-page.php:38
+#: admin/categories/class-delete-categories-admin-page.php:55
+#: admin/categories/class-delete-category-admin-page.php:68
+#: admin/categories/class-move-categories-admin-page.php:54
+#: admin/categories/class-update-category-admin-page.php:50
+msgid "invalid nonce"
+msgstr ""
+
+#: admin/categories/class-create-category-admin-page.php:42
 msgid "The new category was successfully added."
 msgstr ""
 
-#: admin/categories/class-delete-categories-admin-page.php:58
+#: admin/categories/class-delete-categories-admin-page.php:61
 msgid ""
 "The categories couldn't be deleted because there was an error trying to "
 "load the categoery that you selecetd to become the new category associated "
 "to affected ads. <error-message>"
 msgstr ""
 
-#: admin/categories/class-delete-categories-admin-page.php:68
+#: admin/categories/class-delete-categories-admin-page.php:71
 msgid "The selected categories have been deleted."
 msgstr ""
 
-#: admin/categories/class-delete-categories-admin-page.php:73
+#: admin/categories/class-delete-categories-admin-page.php:76
 msgid "There was an error trying to delete the selected categories."
 msgstr ""
 
-#: admin/categories/class-delete-categories-admin-page.php:77
+#: admin/categories/class-delete-categories-admin-page.php:80
 msgid ""
 "<categories-deleted> (out of <categories-count>) categories were deleted. "
 "However, there was an error trying to delete the other "
@@ -345,27 +353,27 @@ msgstr ""
 msgid "The category you are trying to delete doesn't exist."
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:54
+#: admin/categories/class-delete-category-admin-page.php:53
 msgid "There was an error trying to delete the category. <error-message>"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:71
+#: admin/categories/class-delete-category-admin-page.php:74
 msgid "There was an error trying to load the selected category. <error-message>"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:82
+#: admin/categories/class-delete-category-admin-page.php:85
 msgid "The category was deleted successfully"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:100
+#: admin/categories/class-delete-category-admin-page.php:103
 msgid "Are you sure you want to delete \"<category-name>\" category?"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:112
+#: admin/categories/class-delete-category-admin-page.php:116
 msgid "Delete category"
 msgstr ""
 
-#: admin/categories/class-delete-category-admin-page.php:113
+#: admin/categories/class-delete-category-admin-page.php:117
 #: admin/fees/class-fee-details-form.php:80
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:31
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:12
@@ -380,32 +388,32 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: admin/categories/class-move-categories-admin-page.php:56
+#: admin/categories/class-move-categories-admin-page.php:59
 msgid ""
 "The categories couldn't be moved because there was an error trying to load "
 "the target category. <specific-error-message>"
 msgstr ""
 
-#: admin/categories/class-move-categories-admin-page.php:65
+#: admin/categories/class-move-categories-admin-page.php:68
 msgid "The selected categories have been moved."
 msgstr ""
 
-#: admin/categories/class-move-categories-admin-page.php:70
+#: admin/categories/class-move-categories-admin-page.php:73
 msgid "There was an error trying to move the selected categories."
 msgstr ""
 
-#: admin/categories/class-move-categories-admin-page.php:74
+#: admin/categories/class-move-categories-admin-page.php:77
 msgid ""
 "<categories-moved> (out of <categories-count>) categories were moved. "
 "However, there was an error trying to move the other <categories-not-moved> "
 "categories."
 msgstr ""
 
-#: admin/categories/class-update-category-admin-page.php:52
+#: admin/categories/class-update-category-admin-page.php:55
 msgid "The category you're trying to update doesn't exist."
 msgstr ""
 
-#: admin/categories/class-update-category-admin-page.php:63
+#: admin/categories/class-update-category-admin-page.php:66
 msgid "The category was successfully updated."
 msgstr ""
 
@@ -422,11 +430,11 @@ msgid "Select target category"
 msgstr ""
 
 #: admin/class-categories-admin-page.php:133
-#: admin/class-categories-admin-page.php:142
+#: admin/class-categories-admin-page.php:143
 msgid "Add New Category"
 msgstr ""
 
-#: admin/class-categories-admin-page.php:142
+#: admin/class-categories-admin-page.php:143
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:30
 msgid "Update"
 msgstr ""
@@ -1665,7 +1673,7 @@ msgstr ""
 msgid "Visit Website"
 msgstr ""
 
-#: frontend/placeholders.php:651 includes/functions/listings.php:400
+#: frontend/placeholders.php:651 includes/functions/listings.php:405
 msgid "Location"
 msgstr ""
 
@@ -3146,15 +3154,15 @@ msgstr ""
 msgid "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1465
+#: includes/class-awpcp.php:1451
 msgid "There are files currently being uploaded."
 msgstr ""
 
-#: includes/class-awpcp.php:1466
+#: includes/class-awpcp.php:1452
 msgid "There are files pending to be uploaded."
 msgstr ""
 
-#: includes/class-awpcp.php:1467
+#: includes/class-awpcp.php:1453
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
@@ -3733,51 +3741,51 @@ msgstr ""
 msgid "Top Level Category"
 msgstr ""
 
-#: includes/functions/listings.php:273
+#: includes/functions/listings.php:278
 #: includes/listings/class-listings-content-renderer.php:169
 msgid "Are you sure you want to flag this ad?"
 msgstr ""
 
-#: includes/functions/listings.php:274
+#: includes/functions/listings.php:279
 #: includes/listings/class-listings-content-renderer.php:170
 msgid "This Ad has been flagged."
 msgstr ""
 
-#: includes/functions/listings.php:275
+#: includes/functions/listings.php:280
 #: includes/listings/class-listings-content-renderer.php:171
 msgid "An error occurred while trying to flag the Ad."
 msgstr ""
 
-#: includes/functions/listings.php:312
+#: includes/functions/listings.php:317
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
 msgstr ""
 
-#: includes/functions/listings.php:329
+#: includes/functions/listings.php:334
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
 msgstr ""
 
-#: includes/functions/listings.php:335
+#: includes/functions/listings.php:340
 #: includes/listings/class-listings-content-renderer.php:106
 msgid "Your email address was successfully verified."
 msgstr ""
 
-#: includes/functions/listings.php:339
+#: includes/functions/listings.php:344
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
 msgstr ""
 
-#: includes/functions/listings.php:342
+#: includes/functions/listings.php:347
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
 msgstr ""
 
-#: includes/functions/listings.php:345
+#: includes/functions/listings.php:350
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."
@@ -7753,7 +7761,7 @@ msgid ""
 "<submit-button-label> to proceed."
 msgstr ""
 
-#: templates/admin/delete-category-admin-page.tpl.php:50
+#: templates/admin/delete-category-admin-page.tpl.php:51
 msgid "Selected Category"
 msgstr ""
 
@@ -8077,68 +8085,68 @@ msgid ""
 "categories."
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:40
+#: templates/admin/manage-categories-admin-page.tpl.php:43
 msgid "Parent Category"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:49
+#: templates/admin/manage-categories-admin-page.tpl.php:52
 msgid "Category list order"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:72
+#: templates/admin/manage-categories-admin-page.tpl.php:75
 msgid "Icon Meanings:"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:82
+#: templates/admin/manage-categories-admin-page.tpl.php:85
 msgid "Move categories or ads under:"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:89
+#: templates/admin/manage-categories-admin-page.tpl.php:92
 msgid "Delete categories should do this with existing ads:"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:90
+#: templates/admin/manage-categories-admin-page.tpl.php:93
 msgid "Move ads to new category"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:91
+#: templates/admin/manage-categories-admin-page.tpl.php:94
 msgid "Delete ads too"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:97
+#: templates/admin/manage-categories-admin-page.tpl.php:101
 msgid "Move Selected Categories"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:98
+#: templates/admin/manage-categories-admin-page.tpl.php:102
 msgid "Delete Selected Categories"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:115
+#: templates/admin/manage-categories-admin-page.tpl.php:119
 msgid "Select all categories"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:118
-#: templates/admin/manage-categories-admin-page.tpl.php:131
+#: templates/admin/manage-categories-admin-page.tpl.php:122
+#: templates/admin/manage-categories-admin-page.tpl.php:135
 msgid "Category ID"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:120
-#: templates/admin/manage-categories-admin-page.tpl.php:132
+#: templates/admin/manage-categories-admin-page.tpl.php:124
+#: templates/admin/manage-categories-admin-page.tpl.php:136
 msgid "Category Name (Total Ads)"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:122
-#: templates/admin/manage-categories-admin-page.tpl.php:133
+#: templates/admin/manage-categories-admin-page.tpl.php:126
+#: templates/admin/manage-categories-admin-page.tpl.php:137
 msgid "Parent"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:123
-#: templates/admin/manage-categories-admin-page.tpl.php:134
+#: templates/admin/manage-categories-admin-page.tpl.php:127
+#: templates/admin/manage-categories-admin-page.tpl.php:138
 msgid "Order"
 msgstr ""
 
-#: templates/admin/manage-categories-admin-page.tpl.php:124
-#: templates/admin/manage-categories-admin-page.tpl.php:135
+#: templates/admin/manage-categories-admin-page.tpl.php:128
+#: templates/admin/manage-categories-admin-page.tpl.php:139
 msgid "Action"
 msgstr ""
 
@@ -9596,17 +9604,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr ""
 
-#: includes/class-awpcp.php:1442
+#: includes/class-awpcp.php:1439
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: includes/class-awpcp.php:1444
+#: includes/class-awpcp.php:1440
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: includes/class-awpcp.php:1459
+#: includes/class-awpcp.php:1446
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr ""

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2022-10-06 21:23:07+00:00\n"
+"POT-Creation-Date: 2023-07-26 21:54:07+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/wp-translations/"
@@ -27,14 +27,14 @@ msgstr ""
 #: admin/fees/class-fee-details-form.php:39
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:9
 #: includes/settings/class-payment-general-settings.php:58
-#: templates/admin/manage-categories-admin-page.tpl.php:28
+#: templates/admin/manage-categories-admin-page.tpl.php:31
 msgid "Name"
 msgstr "Name"
 
 #: admin/admin-panel-credit-plans-table.php:80
 #: admin/fees/class-fee-details-form.php:45
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:25
-#: templates/admin/manage-categories-admin-page.tpl.php:33
+#: templates/admin/manage-categories-admin-page.tpl.php:36
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -361,11 +361,19 @@ msgstr "In Anzeigen stöbern."
 msgid "Search Ads"
 msgstr "Suche in Anzeigen"
 
-#: admin/categories/class-create-category-admin-page.php:39
+#: admin/categories/class-create-category-admin-page.php:38
+#: admin/categories/class-delete-categories-admin-page.php:55
+#: admin/categories/class-delete-category-admin-page.php:68
+#: admin/categories/class-move-categories-admin-page.php:54
+#: admin/categories/class-update-category-admin-page.php:50
+msgid "invalid nonce"
+msgstr ""
+
+#: admin/categories/class-create-category-admin-page.php:42
 msgid "The new category was successfully added."
 msgstr "Die neue Kategorie wurde erfolgreich hinzugefügt."
 
-#: admin/categories/class-delete-categories-admin-page.php:58
+#: admin/categories/class-delete-categories-admin-page.php:61
 msgid ""
 "The categories couldn't be deleted because there was an error trying to load "
 "the categoery that you selecetd to become the new category associated to "
@@ -375,15 +383,15 @@ msgstr ""
 "ausgewählten Kategorie, die den betroffenen Anzeigen zugeordnet ist, ein "
 "Fehler aufgetreten ist.<error-message>"
 
-#: admin/categories/class-delete-categories-admin-page.php:68
+#: admin/categories/class-delete-categories-admin-page.php:71
 msgid "The selected categories have been deleted."
 msgstr "Die ausgewählten Kategorien wurden gelöscht."
 
-#: admin/categories/class-delete-categories-admin-page.php:73
+#: admin/categories/class-delete-categories-admin-page.php:76
 msgid "There was an error trying to delete the selected categories."
 msgstr "Es gab einen Fehler beim Löschversuch der ausgewählten Kategorien."
 
-#: admin/categories/class-delete-categories-admin-page.php:77
+#: admin/categories/class-delete-categories-admin-page.php:80
 msgid ""
 "<categories-deleted> (out of <categories-count>) categories were deleted. "
 "However, there was an error trying to delete the other <categories-not-"
@@ -397,29 +405,29 @@ msgstr ""
 msgid "The category you are trying to delete doesn't exist."
 msgstr "Die Kategorie, die Du löschen möchtest, existiert nicht."
 
-#: admin/categories/class-delete-category-admin-page.php:54
+#: admin/categories/class-delete-category-admin-page.php:53
 msgid "There was an error trying to delete the category. <error-message>"
 msgstr "Es gab einen Fehler beim Löschen der Kategorie. <error-message>"
 
-#: admin/categories/class-delete-category-admin-page.php:71
+#: admin/categories/class-delete-category-admin-page.php:74
 msgid ""
 "There was an error trying to load the selected category. <error-message>"
 msgstr ""
 "Es gab einen Fehler beim Laden der ausgewählten Kategorie. <error-message>"
 
-#: admin/categories/class-delete-category-admin-page.php:82
+#: admin/categories/class-delete-category-admin-page.php:85
 msgid "The category was deleted successfully"
 msgstr "Die Kategorie wurde erfolgreich gelöscht."
 
-#: admin/categories/class-delete-category-admin-page.php:100
+#: admin/categories/class-delete-category-admin-page.php:103
 msgid "Are you sure you want to delete \"<category-name>\" category?"
 msgstr "Bist Du sicher die Kategorie \"<category-name>\" zu löschen?"
 
-#: admin/categories/class-delete-category-admin-page.php:112
+#: admin/categories/class-delete-category-admin-page.php:116
 msgid "Delete category"
 msgstr "Kategorie löschen"
 
-#: admin/categories/class-delete-category-admin-page.php:113
+#: admin/categories/class-delete-category-admin-page.php:117
 #: admin/fees/class-fee-details-form.php:80
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:31
 #: admin/templates/admin-panel-fees-delete-form.tpl.php:12
@@ -434,7 +442,7 @@ msgstr "Kategorie löschen"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: admin/categories/class-move-categories-admin-page.php:56
+#: admin/categories/class-move-categories-admin-page.php:59
 msgid ""
 "The categories couldn't be moved because there was an error trying to load "
 "the target category. <specific-error-message>"
@@ -442,15 +450,15 @@ msgstr ""
 "Die Kategorie konnte nicht verschoben werden, weil es einen Fehler beim "
 "Laden der Zielkategorie gab. <specific-error-message> "
 
-#: admin/categories/class-move-categories-admin-page.php:65
+#: admin/categories/class-move-categories-admin-page.php:68
 msgid "The selected categories have been moved."
 msgstr "Die ausgewählten Kategorien wurden verschoben."
 
-#: admin/categories/class-move-categories-admin-page.php:70
+#: admin/categories/class-move-categories-admin-page.php:73
 msgid "There was an error trying to move the selected categories."
 msgstr "Beim Verschieben der gewählten Kategorien ist ein Fehler aufgetreten."
 
-#: admin/categories/class-move-categories-admin-page.php:74
+#: admin/categories/class-move-categories-admin-page.php:77
 msgid ""
 "<categories-moved> (out of <categories-count>) categories were moved. "
 "However, there was an error trying to move the other <categories-not-moved> "
@@ -460,11 +468,11 @@ msgstr ""
 "Aber es gab einen Fehler beim Verschieben der anderen <categories-not-moved> "
 "Kategorien."
 
-#: admin/categories/class-update-category-admin-page.php:52
+#: admin/categories/class-update-category-admin-page.php:55
 msgid "The category you're trying to update doesn't exist."
 msgstr "Die Kategorie, die Du aktualisieren möchtest, existiert nicht."
 
-#: admin/categories/class-update-category-admin-page.php:63
+#: admin/categories/class-update-category-admin-page.php:66
 msgid "The category was successfully updated."
 msgstr "Die Kategorie wurde erfolgreich aktualisiert."
 
@@ -481,11 +489,11 @@ msgid "Select target category"
 msgstr "Zielkategorie auswählen"
 
 #: admin/class-categories-admin-page.php:133
-#: admin/class-categories-admin-page.php:142
+#: admin/class-categories-admin-page.php:143
 msgid "Add New Category"
 msgstr "Neue Kategorie erstellen"
 
-#: admin/class-categories-admin-page.php:142
+#: admin/class-categories-admin-page.php:143
 #: admin/templates/admin-panel-credit-plans-entry-form.tpl.php:30
 msgid "Update"
 msgstr "Aktualisieren"
@@ -1113,8 +1121,8 @@ msgstr ""
 
 #: admin/templates/admin-panel-settings-facebook-settings.tpl.php:108
 msgid ""
-"If you are having additional problems with Facebook API, click \"Diagnostics"
-"\" to check your settings."
+"If you are having additional problems with Facebook API, click "
+"\"Diagnostics\" to check your settings."
 msgstr ""
 "Wenn Du weitere Probleme mit der Facebook-API hast, klicke auf \"Diagnose\", "
 "um Deine Einstellungen zu überprüfen."
@@ -1987,7 +1995,7 @@ msgstr "Verkäufer"
 msgid "Visit Website"
 msgstr "Webseite"
 
-#: frontend/placeholders.php:651 includes/functions/listings.php:400
+#: frontend/placeholders.php:651 includes/functions/listings.php:405
 msgid "Location"
 msgstr "Ort"
 
@@ -3593,15 +3601,15 @@ msgstr ""
 "Du hast die maximal zulässigen Kategorien für den ausgewählten Gebührenplan "
 "erreicht."
 
-#: includes/class-awpcp.php:1465
+#: includes/class-awpcp.php:1451
 msgid "There are files currently being uploaded."
 msgstr "Es werden gerade Dateien hochgeladen."
 
-#: includes/class-awpcp.php:1466
+#: includes/class-awpcp.php:1452
 msgid "There are files pending to be uploaded."
 msgstr "Dateien sind in der Warteschlange zum Upload."
 
-#: includes/class-awpcp.php:1467
+#: includes/class-awpcp.php:1453
 msgid "You haven't uploaded any images or files."
 msgstr "Du hast noch keine Bilder oder Dateien hochgeladen."
 
@@ -4265,23 +4273,23 @@ msgstr "Bitte gib die Details Deiner Anzeige ein."
 msgid "Top Level Category"
 msgstr "Hauptkategorie"
 
-#: includes/functions/listings.php:273
+#: includes/functions/listings.php:278
 #: includes/listings/class-listings-content-renderer.php:169
 msgid "Are you sure you want to flag this ad?"
 msgstr "Bist Du sicher diese Anzeige zu melden?"
 
-#: includes/functions/listings.php:274
+#: includes/functions/listings.php:279
 #: includes/listings/class-listings-content-renderer.php:170
 msgid "This Ad has been flagged."
 msgstr "Diese Anzeige wurde markiert"
 
-#: includes/functions/listings.php:275
+#: includes/functions/listings.php:280
 #: includes/listings/class-listings-content-renderer.php:171
 msgid "An error occurred while trying to flag the Ad."
 msgstr ""
 "Es ist ein Fehler aufgetreten als Du versucht hast die Anzeige zu melden."
 
-#: includes/functions/listings.php:312
+#: includes/functions/listings.php:317
 msgid ""
 "Sorry, that listing is not available. Please try browsing or searching "
 "existing listings."
@@ -4289,7 +4297,7 @@ msgstr ""
 "Entschuldigung, diese Anzeige ist nicht vorhanden. Bitte schaue in den "
 "aktuellen Anzeigen."
 
-#: includes/functions/listings.php:329
+#: includes/functions/listings.php:334
 msgid ""
 "The Ad you are trying to view is pending approval. Once the Administrator "
 "approves it, it will be active and visible."
@@ -4297,12 +4305,12 @@ msgstr ""
 "Diese Anzeige ist noch nicht freigeschaltet. Sobald der Administrator die "
 "Anzeige freigeschalten hat wird die Anzeige hier sichtbar."
 
-#: includes/functions/listings.php:335
+#: includes/functions/listings.php:340
 #: includes/listings/class-listings-content-renderer.php:106
 msgid "Your email address was successfully verified."
 msgstr "Deine E-Mail-Adresse wurde erfolgreich bestätigt!"
 
-#: includes/functions/listings.php:339
+#: includes/functions/listings.php:344
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the Administrator) and the author can see it."
@@ -4311,7 +4319,7 @@ msgstr ""
 "genehmigt werden muss. Nur Du (der Administrator) und der Besitzer können "
 "die Anzeige sehen. "
 
-#: includes/functions/listings.php:342
+#: includes/functions/listings.php:347
 msgid ""
 "This Ad is currently disabled until you verify the email address used for "
 "the contact information. Only you (the author) can see it."
@@ -4319,7 +4327,7 @@ msgstr ""
 "Diese Anzeige ist im Moment deaktiviert da Deine E-Mail-Adresse noch von Dir "
 "bestätigt werden muss. Nur Du (der Ersteller) kannst diese Anzeige sehen. "
 
-#: includes/functions/listings.php:345
+#: includes/functions/listings.php:350
 msgid ""
 "This Ad is currently disabled until the Administrator approves it. Only you "
 "(the author) can see it."
@@ -5100,8 +5108,8 @@ msgstr ""
 #: includes/payment-gateway-paypal-standard.php:58
 msgid ""
 "We haven't received your payment information from PayPal yet and we are "
-"unable to verify your transaction. Please reload this page or visit <a href="
-"\"%1$s\">%2$s</a> in 30 seconds to continue placing your Ad."
+"unable to verify your transaction. Please reload this page or visit <a "
+"href=\"%1$s\">%2$s</a> in 30 seconds to continue placing your Ad."
 msgstr ""
 "Wir haben Deine Zahlungsinformationen noch nicht von PayPal erhalten und "
 "können Deine Transaktion nicht verifizieren. Bitte lade diese Seite neu oder "
@@ -7292,10 +7300,10 @@ msgstr "Facebook-Integrationsmethode"
 msgid ""
 "Please note that sending ads to Facebook Groups is currently not available "
 "using Webhooks, after Facebook significantly reduced access to their APIs "
-"across all apps. You can read more about these changes here: <a href="
-"\"https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-"
-"product-changes/\">https://developers.facebook.com/blog/post/2018/04/04/"
-"facebook-api-platform-product-changes/</a>"
+"across all apps. You can read more about these changes here: <a "
+"href=\"https://developers.facebook.com/blog/post/2018/04/04/facebook-api-"
+"platform-product-changes/\">https://developers.facebook.com/blog/"
+"post/2018/04/04/facebook-api-platform-product-changes/</a>"
 msgstr ""
 "Bitte beachte, dass das Senden von Anzeigen an Facebook-Gruppen derzeit "
 "nicht über Webhooks möglich ist, nachdem Facebook den Zugriff auf ihre APIs "
@@ -7500,25 +7508,26 @@ msgid ""
 "As of April 4, 2018, all applications need to go through <a href=\"https://"
 "developers.facebook.com/docs/apps/review\" rel=\"nofollow\">App Review</a> "
 "in order to get access to the <a href=\"https://developers.facebook.com/docs/"
-"graph-api/reference/page/\" rel=\"nofollow\">Page API</a> and <a href="
-"\"https://developers.facebook.com/docs/graph-api/reference/user/groups/\" "
-"rel=\"nofollow\">Groups API</a>. That means that you may need to <a href="
-"\"https://developers.facebook.com/docs/facebook-login/review\" rel=\"nofollow"
-"\">submit your app for review</a> (ask for the <code>manage_pages</code>, "
-"<code>publish_pages</code>, <code>publish_to_groups</code> permissions), "
-"before AWPCP can display the list of pages and groups you manage and be able "
-"to post classifieds ads to those groups and pages."
+"graph-api/reference/page/\" rel=\"nofollow\">Page API</a> and <a "
+"href=\"https://developers.facebook.com/docs/graph-api/reference/user/groups/"
+"\" rel=\"nofollow\">Groups API</a>. That means that you may need to <a "
+"href=\"https://developers.facebook.com/docs/facebook-login/review\" "
+"rel=\"nofollow\">submit your app for review</a> (ask for the "
+"<code>manage_pages</code>, <code>publish_pages</code>, "
+"<code>publish_to_groups</code> permissions), before AWPCP can display the "
+"list of pages and groups you manage and be able to post classifieds ads to "
+"those groups and pages."
 msgstr ""
 "Ab dem 4. April 2018 müssen alle Anwendungen  <a href=\"https://developers."
 "facebook.com/docs/apps/review\" rel=\"nofollow\">App Review</a> "
 "durchlaufen , um Zugriff auf die  <a href=\"https://developers.facebook.com/"
-"docs/graph-api/reference/page/\" rel=\"nofollow\">Page API</a> und <a href="
-"\"https://developers.facebook.com/docs/graph-api/reference/user/groups/\" "
-"rel=\"nofollow\">Groups API</a> zu erhalten. Das bedeutet, dass Du Deine  <a "
-"href=\"https://developers.facebook.com/docs/facebook-login/review\" rel="
-"\"nofollow\">App zur Überprüfung einsenden</a>  musst und (frage nach den "
-"Berechtigungen für <code>manage_pages</code>, <code>publish_pages</code>, "
-"<code>publish_to_groups</code> ), bevor AWPCP die Liste der von Dir "
+"docs/graph-api/reference/page/\" rel=\"nofollow\">Page API</a> und <a "
+"href=\"https://developers.facebook.com/docs/graph-api/reference/user/groups/"
+"\" rel=\"nofollow\">Groups API</a> zu erhalten. Das bedeutet, dass Du Deine  "
+"<a href=\"https://developers.facebook.com/docs/facebook-login/review\" "
+"rel=\"nofollow\">App zur Überprüfung einsenden</a>  musst und (frage nach "
+"den Berechtigungen für <code>manage_pages</code>, <code>publish_pages</"
+"code>, <code>publish_to_groups</code> ), bevor AWPCP die Liste der von Dir "
 "verwalteten Seiten und Gruppen anzeigen und Kleinanzeigen in diese Gruppen "
 "und Seiten posten kann."
 
@@ -8314,9 +8323,9 @@ msgid ""
 "your Merchant ID."
 msgstr ""
 "Händler-ID, die dem PayPal-Konto zugeordnet ist, auf dem die Zahlungen "
-"eingehen. Rufe <a href=\"https://www.paypal.com/myaccount/settings/\" target="
-"\"_blank\">https: //www.paypal.com/myaccount/settings/</a> auf, um Deine "
-"Händler-ID zu erhalten."
+"eingehen. Rufe <a href=\"https://www.paypal.com/myaccount/settings/\" "
+"target=\"_blank\">https: //www.paypal.com/myaccount/settings/</a> auf, um "
+"Deine Händler-ID zu erhalten."
 
 #: includes/settings/class-payment-general-settings.php:176
 msgid "The PayPal Currency Code must be one of <currency-codes>."
@@ -8918,7 +8927,7 @@ msgstr ""
 "Klicke <cancel-button-label> um zur Liste der Kategorien zurückzukommen oder "
 "klicke <submit-button-label> um fortzufahren."
 
-#: templates/admin/delete-category-admin-page.tpl.php:50
+#: templates/admin/delete-category-admin-page.tpl.php:51
 msgid "Selected Category"
 msgstr "Ausgewählte Kategorie"
 
@@ -9284,68 +9293,68 @@ msgstr ""
 "Du hast noch keine Kategorien angelegt. Benutze %s um neue Kategorien "
 "einzurichten."
 
-#: templates/admin/manage-categories-admin-page.tpl.php:40
+#: templates/admin/manage-categories-admin-page.tpl.php:43
 msgid "Parent Category"
 msgstr "Überberzeichnis"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:49
+#: templates/admin/manage-categories-admin-page.tpl.php:52
 msgid "Category list order"
 msgstr "Kategorie Reihenfolge"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:72
+#: templates/admin/manage-categories-admin-page.tpl.php:75
 msgid "Icon Meanings:"
 msgstr "Icon Bedeutung:"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:82
+#: templates/admin/manage-categories-admin-page.tpl.php:85
 msgid "Move categories or ads under:"
 msgstr "Verschiebe Kategorien oder Anzeigen unter:"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:89
+#: templates/admin/manage-categories-admin-page.tpl.php:92
 msgid "Delete categories should do this with existing ads:"
 msgstr "Kategorien löschen mit vorhandenen Anzeigen :"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:90
+#: templates/admin/manage-categories-admin-page.tpl.php:93
 msgid "Move ads to new category"
 msgstr "Anzeigen zu neuer Kategorie verschieben"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:91
+#: templates/admin/manage-categories-admin-page.tpl.php:94
 msgid "Delete ads too"
 msgstr "Anzeigen auch löschen"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:97
+#: templates/admin/manage-categories-admin-page.tpl.php:101
 msgid "Move Selected Categories"
 msgstr "Ausgewählte Kategorien verschieben"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:98
+#: templates/admin/manage-categories-admin-page.tpl.php:102
 msgid "Delete Selected Categories"
 msgstr "Ausgewählte Kategorien löschen"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:115
+#: templates/admin/manage-categories-admin-page.tpl.php:119
 msgid "Select all categories"
 msgstr "Alle Kategorien auswählen"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:118
-#: templates/admin/manage-categories-admin-page.tpl.php:131
+#: templates/admin/manage-categories-admin-page.tpl.php:122
+#: templates/admin/manage-categories-admin-page.tpl.php:135
 msgid "Category ID"
 msgstr "Kategorie-ID"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:120
-#: templates/admin/manage-categories-admin-page.tpl.php:132
+#: templates/admin/manage-categories-admin-page.tpl.php:124
+#: templates/admin/manage-categories-admin-page.tpl.php:136
 msgid "Category Name (Total Ads)"
 msgstr "Name der Kategorie (Anzahl der Anzeigen)"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:122
-#: templates/admin/manage-categories-admin-page.tpl.php:133
+#: templates/admin/manage-categories-admin-page.tpl.php:126
+#: templates/admin/manage-categories-admin-page.tpl.php:137
 msgid "Parent"
 msgstr "Übergeordnete"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:123
-#: templates/admin/manage-categories-admin-page.tpl.php:134
+#: templates/admin/manage-categories-admin-page.tpl.php:127
+#: templates/admin/manage-categories-admin-page.tpl.php:138
 msgid "Order"
 msgstr "Reihenfolge"
 
-#: templates/admin/manage-categories-admin-page.tpl.php:124
-#: templates/admin/manage-categories-admin-page.tpl.php:135
+#: templates/admin/manage-categories-admin-page.tpl.php:128
+#: templates/admin/manage-categories-admin-page.tpl.php:139
 msgid "Action"
 msgstr "Aktion"
 
@@ -9735,15 +9744,15 @@ msgid ""
 "This information can help AWPCP Developers to debug possible problems. If "
 "you are submitting a bug report please <strong><a href=\"%s\">Download the "
 "Debug Information</a></strong> and attach it to your bug report or take a "
-"minute to copy the information below to <a href=\"http://fpaste.org\" target="
-"\"_blank\">http://fpaste.org</a> and provide the resulting URL in your "
-"report."
+"minute to copy the information below to <a href=\"http://fpaste.org\" "
+"target=\"_blank\">http://fpaste.org</a> and provide the resulting URL in "
+"your report."
 msgstr ""
 "Diese Information kann AWPCP Entwickler helfen das Problem zu debuggen. Wenn "
-"Du einen Fehler meldest dann  schicke bitte diese Daten: <strong><a href=\"%s"
-"\">Download Debug Information</a></strong> zu <a href=\"http://fpaste.org\" "
-"target=\"_blank\">http://fpaste.org</a> und teilen uns Deine URL mit! Vielen "
-"Dank!"
+"Du einen Fehler meldest dann  schicke bitte diese Daten: <strong><a "
+"href=\"%s\">Download Debug Information</a></strong> zu <a href=\"http://"
+"fpaste.org\" target=\"_blank\">http://fpaste.org</a> und teilen uns Deine "
+"URL mit! Vielen Dank!"
 
 #: admin/templates/admin-panel-debug.tpl.php:29
 msgctxt "debug page"
@@ -9779,8 +9788,8 @@ msgid ""
 "Debug Information</a></strong> and attach it to your bug report."
 msgstr ""
 "Diese Informationen können AWPCP-Entwicklern helfen, mögliche Probleme zu "
-"beheben. Wenn Du einen Fehlerbericht einreichst, lade die <strong><a href="
-"\"%s\">Debug-Informationen</a></strong> herunter und fügen sie Deinem "
+"beheben. Wenn Du einen Fehlerbericht einreichst, lade die <strong><a "
+"href=\"%s\">Debug-Informationen</a></strong> herunter und fügen sie Deinem "
 "Fehlerbericht bei."
 
 #: templates/admin/debug/plugin-info-debug-section.tpl.php:29
@@ -10923,17 +10932,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr "Schnellansicht"
 
-#: includes/class-awpcp.php:1442
+#: includes/class-awpcp.php:1439
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c;Prev"
 
-#: includes/class-awpcp.php:1444
+#: includes/class-awpcp.php:1440
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "Next&#x3e;"
 
-#: includes/class-awpcp.php:1459
+#: includes/class-awpcp.php:1446
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
@@ -11863,8 +11872,8 @@ msgstr "Hallo, "
 #: templates/email/listing-media-upload-notification.plain.tpl.php:5
 msgctxt "listing media uploaded notification"
 msgid ""
-"The following media files were recently uploaded to listing \"<listing-title>"
-"\":"
+"The following media files were recently uploaded to listing \"<listing-"
+"title>\":"
 msgstr ""
 "Die folgenden Dateien wurden zu der Anzeige \"<listing-title>\": "
 "hochgeladen: "
@@ -11872,8 +11881,8 @@ msgstr ""
 #: templates/email/listing-media-upload-notification.plain.tpl.php:16
 msgctxt "listing media uploaded notification"
 msgid ""
-"The following media files were recently uploaded to listing \"<listing-title>"
-"\" and are awaiting approval:"
+"The following media files were recently uploaded to listing \"<listing-"
+"title>\" and are awaiting approval:"
 msgstr ""
 "Die folgenden Dateien wurden zu der Anzeige \"<listing-title>\": hochgeladen "
 "und warten auf eine Bestätigung: "
@@ -11987,11 +11996,11 @@ msgstr ""
 #: templates/privacy-policy.tpl.php:21
 msgctxt "privacy policy"
 msgid ""
-"PayPal &mdash; <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-full"
-"\">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>"
+"PayPal &mdash; <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-"
+"full\">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>"
 msgstr ""
-"PayPal &mdash; <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-full"
-"\">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>"
+"PayPal &mdash; <a href=\"https://www.paypal.com/webapps/mpp/ua/privacy-"
+"full\">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>"
 
 #: templates/privacy-policy.tpl.php:22
 msgctxt "privacy policy"
@@ -12105,9 +12114,9 @@ msgstr ""
 #~ msgstr "Yoast SEO (empfohlen)"
 
 #~ msgid ""
-#~ "Any of those plugins should work to generate the XML sitemap the \"normal"
-#~ "\" way now since AWPCP is using Custom Post Types and will look like a "
-#~ "post to WordPress now."
+#~ "Any of those plugins should work to generate the XML sitemap the "
+#~ "\"normal\" way now since AWPCP is using Custom Post Types and will look "
+#~ "like a post to WordPress now."
 #~ msgstr ""
 #~ "Jedes dieser Plugins sollte funktionieren, um die XML-Sitemap auf die "
 #~ "\"normale\" Weise zu generieren, da AWPCP benutzerdefinierte "
