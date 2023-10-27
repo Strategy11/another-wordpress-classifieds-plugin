@@ -38,7 +38,9 @@ function( $ ) {
                 }
             } );
 
-            self.$select.selectWoo( options );
+            if ( typeof $.fn.selectWoo !== 'undefined' ) {
+                self.$select.selectWoo( options );
+            }
 
             if ( self.options.selected.id ) {
                 var option = new Option( self.options.selected.text, self.options.selected.id, true, true );
@@ -59,7 +61,9 @@ function( $ ) {
         configureInlineBehavior: function() {
             var self = this;
 
-            self.$select.selectWoo( self.options.select2 );
+            if ( typeof $.fn.selectWoo !== 'undefined' ) {
+                self.$select.selectWoo( self.options.select2 );
+            }
 
             self.setupEventHandlers();
         },
@@ -74,6 +78,18 @@ function( $ ) {
 
         getSelectedUser: function() {
             var self  = this;
+
+            if ( typeof $.fn.selectWoo === 'undefined' ) {
+                // Get selected option in a dropdown without Select2.
+                var option = self.$select.find( 'option:selected' );
+                if ( option.length ) {
+                    return { id: option.val(), name: option.text() };
+                }
+
+                return { id: 0, name: '' };
+            }
+
+
             var users = self.$select.selectWoo( 'data' );
 
             if ( users && users.length ) {

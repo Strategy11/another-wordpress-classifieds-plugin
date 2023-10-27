@@ -161,6 +161,10 @@ function( $, CategoriesSelectorHelper ) {
     var CategoriesSelector = function( select, options ) {
         this.$select = $( select );
 
+        if ( typeof $.fn.selectWoo === 'undefined' ) {
+            return;
+        }
+
         this.options = $.extend(
             {},
             window[ 'categories_' + this.$select.attr( 'data-hash' ) ],
@@ -196,6 +200,22 @@ function( $, CategoriesSelectorHelper ) {
         getSelectedCategories: function() {
             var self = this;
 
+            if ( typeof $.fn.selectWoo === 'undefined' ) {
+                // Get a list of selected options in a dropdown without Select2.
+                return $.map( self.$select.find( 'option:selected' ), function( option ) {
+                    if ( option.value === '' ) {
+                        return null;
+                    }
+
+                    var id = parseInt( option.value, 10 );
+
+                    return {
+                        id: id,
+                        name: option.text
+                    };
+                } );
+            }
+
             return $.map( self.$select.selectWoo( 'data' ), function ( option ) {
                 if ( option.id === '' ) {
                     return null;
@@ -218,6 +238,12 @@ function( $, CategoriesSelectorHelper ) {
 
         getSelectedCategoriesIds: function() {
             var self = this;
+
+            if ( typeof $.fn.selectWoo === 'undefined' ) {
+                return $.map( self.$select.find( 'option:selected' ), function( option ) {
+                    return parseInt( option.value, 10 );
+                } );
+            }
 
             return $.map( self.$select.selectWoo( 'data' ), function ( option ) {
                 return parseInt( option.id, 10 );
@@ -261,7 +287,10 @@ function( $, CategoriesSelectorHelper ) {
                 $select.empty();
             }
 
-            $select.selectWoo( options );
+            // Check if selectWoo is defined.
+            if ( typeof $.fn.selectWoo !== 'undefined' ) {
+                $select.selectWoo( options );
+            }
         }
     } );
 
