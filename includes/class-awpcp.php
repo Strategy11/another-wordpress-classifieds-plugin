@@ -1074,14 +1074,14 @@ class AWPCP {
         if ( awpcp_should_register_select2_script() ) {
             wp_register_style(
                 'select2',
-                "{$vendors}/selectWoo-woo-1.0.0-beta/css/select2.min.css",
+                "{$vendors}/selectWoo/css/select2.min.css",
                 array(),
                 '4.0.5'
             );
 
             wp_register_script(
                 'select2',
-                "{$vendors}/selectWoo-woo-1.0.0-beta/js/select2.full.min.js",
+                "{$vendors}/selectWoo/js/select2.full.min.js",
                 array('jquery'),
                 '4.0.5',
                 true
