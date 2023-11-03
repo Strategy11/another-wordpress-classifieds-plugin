@@ -258,9 +258,13 @@ function( $, CategoriesSelectorHelper ) {
             var $select = this.$select;
             var $placeholderOption = $select.find( '.awpcp-dropdown-placeholder' );
 
-            options.dataAdapter    = $.fn.select2.amd.require( 'awpcp/select2/data/array' );
-            options.resultsAdapter = $.fn.select2.amd.require( 'awpcp/select2/results' );
-            options.helper         = this.options.helper;
+            try {
+                options.dataAdapter    = $.fn.select2.amd.require( 'awpcp/select2/data/array' );
+                options.resultsAdapter = $.fn.select2.amd.require( 'awpcp/select2/results' );
+            } catch ( e ) {
+                // Select2 is not loaded.
+            }
+            options.helper = this.options.helper;
 
             options.data = $.map( this.options.helper.getAllCategories(), function( category ) {
                 if ( $.inArray( category.id, self.options.selectedCategoriesIds ) >= 0 ) {
