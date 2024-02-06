@@ -13,7 +13,7 @@ AWPCP.define( 'awpcp/settings-validator', [
             form.find( '[awpcp-setting]' ).each( function() {
                 var field = $(this),
                     fieldName = field.attr( 'name' ),
-                    setting = $.parseJSON( field.attr( 'awpcp-setting' ) );
+                    setting = JSON.parse( field.attr( 'awpcp-setting' ) );
 
                 if ( setting && setting.validation && setting.validation.messages ) {
                     options.messages[ fieldName ] = setting.validation.messages;

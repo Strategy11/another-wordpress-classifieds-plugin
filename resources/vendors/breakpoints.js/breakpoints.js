@@ -169,7 +169,7 @@ Reusables.Breakpoints = (function ($) {
   Breakpoints.register = function($element) {
     var builder = Reusables.Breakpoints.on($element);
     var prefix = $element.attr('data-breakpoints-class-prefix') || 'breakpoint';
-    var breakpoints = $.parseJSON($element.attr('data-breakpoints'));
+    var breakpoints = JSON.parse($element.attr('data-breakpoints'));
 
     if (!$.isPlainObject(breakpoints)) {
         return;

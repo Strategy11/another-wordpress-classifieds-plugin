@@ -163,7 +163,7 @@ if (typeof jQuery !== 'undefined') {
                 var $notice = $button.closest( '.awpcp-notice' );
 
                 $.post( ajaxurl, $.extend(
-                    $.parseJSON( $button.attr( 'data-action-params' ) ),
+                    JSON.parse( $button.attr( 'data-action-params' ) ),
                     { action: $button.attr( 'data-action' ) }
                 ) );
 

@@ -85,7 +85,7 @@ AWPCP.run('awpcp/page-place-ads', [
                 if ( self.categories === null && settings.get( 'hide-all-payment-terms-if-no-category-is-selected' ) ) {
                     return true;
                 } else if ( self.categories ) {
-                    categories = $.parseJSON(term.attr('data-categories'));
+                    categories = JSON.parse(term.attr('data-categories'));
 
                     if ($.isArray(categories)) {
                         categories = $.map(categories, function(category) {
@@ -106,7 +106,7 @@ AWPCP.run('awpcp/page-place-ads', [
 
         _broadcastCategoriesMatrix: function _broadcastCategoriesMatrix() {
             var termsCategories = this.terms.map(function() {
-                return { categories: $.parseJSON( $(this).attr( 'data-categories' ) ) };
+                return { categories: JSON.parse( $(this).attr( 'data-categories' ) ) };
             });
 
             var matrix = {}, newEntries, previousEntries;

@@ -122,7 +122,7 @@ function( $, settings) {
         },
 
         onFileUploaded: function( uploader, file, data ) {
-            var response = $.parseJSON( data.response );
+            var response = JSON.parse( data.response );
 
             if ( response.status === 'ok' && response.file ) {
                 $.publish( '/file/uploaded', [ file, response.file ] );
