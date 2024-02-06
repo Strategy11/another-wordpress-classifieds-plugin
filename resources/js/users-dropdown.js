@@ -33,8 +33,8 @@ AWPCP.define( 'awpcp/users-dropdown', [ 'jquery' ], function( $ ) {
         getSelectedUser: function() {
             var user_information = this.field.find(':selected').attr('data-user-information');
 
-            if (user_information && $.parseJSON) {
-                return $.parseJSON(user_information);
+            if (user_information && JSON.parse) {
+                return JSON.parse(user_information);
             } else if (user_information) {
                 return eval('(' + user_information + ')');
             } else {

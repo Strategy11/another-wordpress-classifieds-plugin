@@ -164,7 +164,7 @@ function( $, settings ) {
         },
 
         _isPaymentTermAvailableForCategories: function( paymentTerm ) {
-            var paymentTermCategories = $.parseJSON( paymentTerm.attr( 'data-categories' ) );
+            var paymentTermCategories = JSON.parse( paymentTerm.attr( 'data-categories' ) );
             var numberOfCategoriesAllowed = parseInt( paymentTerm.attr( 'data-number-of-categories-allowed' ), 10 );
 
             if ( this.state.selectedCategories.length > numberOfCategoriesAllowed ) {
