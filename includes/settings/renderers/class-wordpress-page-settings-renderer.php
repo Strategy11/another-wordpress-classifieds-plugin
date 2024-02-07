@@ -8,6 +8,8 @@
  */
 class AWPCP_WordPressPageSettingsRenderer {
 
+    public $settings;
+
     /**
      * @since 4.0.0
      */

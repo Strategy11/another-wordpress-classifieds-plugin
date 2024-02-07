@@ -31,6 +31,7 @@ class AWPCP_PaymentTerm {
     public $images;
     public $regions;
     public $ads;
+    public $buys;
 
     public $recurring;
 

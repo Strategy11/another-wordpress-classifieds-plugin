@@ -12,6 +12,10 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
 
     public $type = AWPCP_FeeType::TYPE;
 
+    public $regions;
+
+    public $defaults = array();
+
     public static function create_from_db( $object ) {
         switch ( $object->rec_increment ) {
             case 'D':
