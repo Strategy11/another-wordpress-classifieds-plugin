@@ -1528,9 +1528,9 @@ function awpcp_get_formatted_amount_template( $show_currency_symbol ) {
     }
 
     if ( $show_currency_symbol && $symbol_position == 'show-currency-symbol-on-left' ) {
-        $formatted = "${currency_symbol}${separator}<amount>";
-    } else if ( $show_currency_symbol && $symbol_position == 'show-currency-symbol-on-right' ) {
-        $formatted = "<amount>${separator}${currency_symbol}";
+        $formatted = "{$currency_symbol}{$separator}<amount>";
+    } elseif ( $show_currency_symbol && $symbol_position == 'show-currency-symbol-on-right' ) {
+        $formatted = "<amount>{$separator}{$currency_symbol}";
     } else {
         $formatted = '<amount>';
     }
@@ -3106,7 +3106,7 @@ function awpcp_getip() {
 
     foreach ( $alternatives as $variable ) {
         if ( ! empty( $_SERVER[ $variable ] ) ) {
-            $variables[ $variable ] = filter_var( wp_unslash( $_SERVER[ $variable ] ), FILTER_SANITIZE_STRING );
+            $variables[ $variable ] = sanitize_text_field( wp_unslash( $_SERVER[ $variable ] ) );
         }
     }
 

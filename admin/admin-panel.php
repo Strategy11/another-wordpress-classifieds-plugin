@@ -15,6 +15,12 @@ class AWPCP_AdminPanel {
 
     private $upgrade_tasks;
 
+    public $title;
+
+    public $menu;
+
+    public $users;
+
     public function __construct( $upgrade_tasks ) {
         $this->upgrade_tasks = $upgrade_tasks;
 

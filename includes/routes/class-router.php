@@ -31,6 +31,8 @@ class AWPCP_Router {
     private $current_page = null;
     private $request_handler = null;
 
+    public $routes;
+
     public function __construct( $routes, $template_renderer, $request ) {
         $this->routes = $routes;
         $this->template_renderer = $template_renderer;

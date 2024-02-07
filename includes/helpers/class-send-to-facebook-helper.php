@@ -31,10 +31,14 @@ class AWPCP_SendToFacebookHelper {
      */
     private $listings;
 
+    public $listing_renderer;
+
     /**
      * @var Settings
      */
     private $settings;
+
+    public $wordpress;
 
     public function __construct( $facebook, $facebook_integration, $listing_renderer, $listings, $settings, $wordpress ) {
         $this->facebook             = $facebook;

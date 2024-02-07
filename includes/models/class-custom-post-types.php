@@ -31,6 +31,13 @@ class AWPCP_Custom_Post_Types {
     private $settings;
 
     /**
+     * @var string
+     */
+    public $listings_post_type;
+
+    public $listings_category_taxonomy;
+
+    /**
      * @param string $listings_post_type            The identifier for the Listings post type.
      * @param string $listings_category_taxonomy    The identifier for the Listings taxonomy.
      * @param object $roles_and_capabilities        An instance of Roles And Capabilities.

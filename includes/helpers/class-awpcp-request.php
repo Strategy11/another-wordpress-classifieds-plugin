@@ -49,7 +49,7 @@ class AWPCP_Request {
      * @since 3.3
      */
     function domain( $include_www = true, $www_prefix_replacement = '' ) {
-        $domain = $this->filter_input( 'HTTP_HOST', FILTER_SANITIZE_STRING );
+        $domain = $this->filter_input( 'HTTP_HOST' );
 
         // If the server runs on a port other than 80 then HTTP_HOST contains
         // the port. See https://stackoverflow.com/a/12046836.
@@ -80,10 +80,12 @@ class AWPCP_Request {
      *
      * @since 4.0.0
      */
-    private function filter_input( $var_name, $filter ) {
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-        $var_name = isset( $_SERVER[$var_name] ) ? $_SERVER[$var_name] : null;
-        return filter_var( $var_name, $filter );
+    private function filter_input( $var_name ) {
+        if ( ! isset( $_SERVER[ $var_name ] ) ) {
+            return '';
+        }
+
+        return sanitize_text_field( wp_unslash( $_SERVER[ $var_name ] ) );
     }
 
     /**

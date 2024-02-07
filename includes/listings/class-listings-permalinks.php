@@ -22,6 +22,10 @@ class AWPCP_ListingsPermalinks {
      */
     private $rewrite_rules_helper;
 
+    public $settings;
+
+    public $listing_renderer;
+
     /**
      * Constructor.
      *

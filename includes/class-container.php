@@ -33,8 +33,9 @@ class AWPCP_Container implements ArrayAccess {
      *
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists( $key ) {
-        return array_key_exists( $key, $this->values );
+        return (bool) array_key_exists( $key, $this->values );
     }
 
     /**
@@ -43,7 +44,9 @@ class AWPCP_Container implements ArrayAccess {
      * @param mixed $key    The identifier of a value in the container.
      * @throws Exception    If the container doesn't have a value assocaited with
      *                      the given $key.
+     * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet( $key ) {
         if ( ! array_key_exists( $key, $this->values ) ) {
             throw new Exception( sprintf( "Container doesn't have a value stored for key: %s", $key ) );
@@ -61,7 +64,9 @@ class AWPCP_Container implements ArrayAccess {
      *
      * @param mixed $key    The identifier for the new value.
      * @param mixed $value  The value to store in the container.
+     * @return void
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet( $key, $value ) {
         $this->values[ $key ] = $value;
     }
@@ -70,7 +75,9 @@ class AWPCP_Container implements ArrayAccess {
      * Unsets the value in the container for the given key.
      *
      * @param mixed $key    The identifier of a value in the container.
+     * @return void
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset( $key ) {
         unset( $this->values[ $key ] );
     }

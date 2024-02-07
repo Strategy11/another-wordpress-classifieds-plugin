@@ -9,6 +9,8 @@ class AWPCP_AccountBalancePage extends AWPCP_BuyCreditsPage {
 
     public $menu;
 
+    public $page;
+
     public function __construct( $steps, $request ) {
         parent::__construct( $steps, $request );
 

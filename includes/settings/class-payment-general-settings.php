@@ -8,6 +8,8 @@
  */
 class AWPCP_PaymentSettings {
 
+    public $settings;
+
     /**
      * @since 4.0.0
      */

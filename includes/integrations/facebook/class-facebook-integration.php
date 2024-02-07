@@ -18,6 +18,8 @@ class AWPCP_FacebookIntegration {
      */
     private $settings;
 
+    public $wordpress;
+
     /**
      * @since 3.8.6
      */
