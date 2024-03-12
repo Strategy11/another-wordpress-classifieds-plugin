@@ -1113,7 +1113,7 @@ class AWPCP {
             'awpcp-moment-with-locales',
             $vendors . '/moment-2.22.2/moment-with-locales' . $min . '.js',
             [],
-            '2.18.1',
+            '2.22.2',
             true
         );
 
