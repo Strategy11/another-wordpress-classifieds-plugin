@@ -9,8 +9,10 @@
 class AWPCP_Meta {
 
     public $ad          = null;
+    public $ad_id;
     public $properties  = array();
     public $metadata    = array();
+    public $category;
     public $category_id = null;
 
     private $listings_collection;

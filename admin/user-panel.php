@@ -36,6 +36,8 @@ class AWPCP_User_Panel {
      */
     private $settings;
 
+    public $account;
+
     /**
      * Constructor.
      */

@@ -6,6 +6,8 @@ function awpcp_html_renderer() {
 
 class AWPCP_HTML_Renderer {
 
+    public $element_renderers = array();
+
     public function render( $element ) {
         return $this->render_element( $element );
     }

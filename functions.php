@@ -1528,9 +1528,9 @@ function awpcp_get_formatted_amount_template( $show_currency_symbol ) {
     }
 
     if ( $show_currency_symbol && $symbol_position == 'show-currency-symbol-on-left' ) {
-        $formatted = "${currency_symbol}${separator}<amount>";
-    } else if ( $show_currency_symbol && $symbol_position == 'show-currency-symbol-on-right' ) {
-        $formatted = "<amount>${separator}${currency_symbol}";
+        $formatted = "{$currency_symbol}{$separator}<amount>";
+    } elseif ( $show_currency_symbol && $symbol_position == 'show-currency-symbol-on-right' ) {
+        $formatted = "<amount>{$separator}{$currency_symbol}";
     } else {
         $formatted = '<amount>';
     }
@@ -2853,12 +2853,12 @@ function awpcp_is_filename_already_used( $filename, $directories ) {
  * @since 3.3
  */
 function awpcp_register_activation_hook( $__FILE__, $callback ) {
-    $file = WP_CONTENT_DIR . '/plugins/' . basename( dirname( $__FILE__ ) ) . '/' . basename( $__FILE__ );
+    $file = plugin_basename( $__FILE__ );
     register_activation_hook( $file, $callback );
 }
 
 function awpcp_register_deactivation_hook( $__FILE__, $callback ) {
-    $file = WP_CONTENT_DIR . '/plugins/' . basename( dirname( $__FILE__ ) ) . '/' . basename( $__FILE__ );
+    $file = plugin_basename( $__FILE__ );
     register_deactivation_hook( $file, $callback );
 }
 
@@ -3106,7 +3106,7 @@ function awpcp_getip() {
 
     foreach ( $alternatives as $variable ) {
         if ( ! empty( $_SERVER[ $variable ] ) ) {
-            $variables[ $variable ] = filter_var( wp_unslash( $_SERVER[ $variable ] ), FILTER_SANITIZE_STRING );
+            $variables[ $variable ] = sanitize_text_field( wp_unslash( $_SERVER[ $variable ] ) );
         }
     }
 

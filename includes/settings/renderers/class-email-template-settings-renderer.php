@@ -8,6 +8,10 @@
  */
 class AWPCP_EmailTemplateSettingsRenderer {
 
+    public $settings;
+
+    public $template_renderer;
+
     /**
      * @since 4.0.0
      */

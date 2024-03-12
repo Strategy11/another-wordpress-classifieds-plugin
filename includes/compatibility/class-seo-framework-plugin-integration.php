@@ -40,6 +40,8 @@ class AWPCP_SEOFrameworkIntegration {
 	 */
 	private $attachments;
 
+	public $attachment_properties;
+
 	/**
 	 * @var Request
 	 */

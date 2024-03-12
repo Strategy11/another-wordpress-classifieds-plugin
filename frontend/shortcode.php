@@ -21,6 +21,14 @@ require_once AWPCP_DIR . '/frontend/page-browse-ads.php';
 class AWPCP_Pages {
     private $output = array();
 
+    public $container;
+
+    public $meta;
+
+    public $show_ad;
+
+    public $browse_ads;
+
 	public function __construct( $container ) {
         $this->container = $container;
 

@@ -8,6 +8,8 @@
  */
 class AWPCP_ListingsModerationSettings {
 
+    public $settings;
+
     /**
      * @since 4.0.0
      */

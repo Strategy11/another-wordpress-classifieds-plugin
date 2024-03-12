@@ -3,7 +3,7 @@
 
 module.exports = function(grunt) {
 	var pluginName = 'another-wordpress-classifieds-plugin';
-	grunt.awpcp.registerPluginTasks( {
+	grunt.wpbdp.registerModule( {
 		name: 'awpcp',
 		slug: 'awpcp',
 		folder: pluginName,
@@ -92,7 +92,7 @@ module.exports = function(grunt) {
 	} );
 
 	pluginName = 'awpcp-authorize.net';
-	grunt.awpcp.registerPluginTasks( {
+	grunt.wpbdp.registerModule( {
 		name: 'authorize-net',
 		slug: 'authorize.net',
 		folder: '../' + pluginName,
@@ -102,7 +102,7 @@ module.exports = function(grunt) {
 	} );
 
 	pluginName = 'awpcp-stripe';
-	grunt.awpcp.registerPluginTasks( {
+	grunt.wpbdp.registerModule( {
 		name: 'stripe',
 		slug: 'stripe',
 		folder: '../' + pluginName,

@@ -23,6 +23,8 @@ class AWPCP_GeneralSettings {
      */
     private $roles;
 
+    public $settings;
+
     /**
      * Constructor.
      */

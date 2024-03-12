@@ -40,7 +40,9 @@ class AWPCP_FilteredArray implements ArrayAccess, IteratorAggregate {
     /**
      * @param mixed $offset     Offset to check.
      * @since 4.0.0
+     * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists( $offset ) {
         $items = $this->get_items();
         return isset( $items[ $offset ] );
@@ -49,7 +51,9 @@ class AWPCP_FilteredArray implements ArrayAccess, IteratorAggregate {
     /**
      * @param mixed $offset     Offset to get.
      * @since 4.0.0
+     * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet( $offset ) {
         $items = $this->get_items();
         return $items[ $offset ];
@@ -59,20 +63,25 @@ class AWPCP_FilteredArray implements ArrayAccess, IteratorAggregate {
      * @param mixed $offset     Offset to set.
      * @param mixed $value      Value to store.
      * @since 4.0.0
+     * @return void
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet( $offset, $value ) {
     }
 
     /**
      * @param mied $offset  Offset to unset.
      * @since 4.0.0
+     * @return void
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset( $offset ) {
     }
 
     /**
      * @since 4.0.0
      */
+    #[\ReturnTypeWillChange]
     public function getIterator() {
         return new ArrayIterator( $this->get_items() );
     }

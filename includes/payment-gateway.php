@@ -12,6 +12,17 @@ abstract class AWPCP_PaymentGateway {
     const INTEGRATION_CUSTOM_FORM = 'custom-form';
     const INTEGRATION_REDIRECT    = 'redirect';
 
+    /**
+     * @var string
+     */
+    public $slug;
+
+    public $name;
+
+    public $description;
+
+    public $icon;
+
     public function __construct( $slug, $name, $description, $icon ) {
         $this->slug        = $slug;
         $this->name        = $name;

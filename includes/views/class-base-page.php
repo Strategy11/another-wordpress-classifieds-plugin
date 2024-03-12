@@ -10,6 +10,7 @@ class AWPCP_BasePage extends AWPCP_Page {
     private $do_next_step = true;
     private $next_step = null;
 
+    public $steps;
     protected $request = null;
 
     public $messages = array();

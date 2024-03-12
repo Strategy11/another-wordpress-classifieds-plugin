@@ -13,11 +13,26 @@ class AWPCP {
 
     public $modules_manager;
     public $modules_updater;
+    public $plugin_integrations;
     public $settings = null;
+    public $settings_manager;
     public $payments = null;
+    public $listings;
     public $js = null;
 
     public $container;
+
+    public $version;
+
+    public $rewrite_rules;
+
+    public $router;
+
+    public $upgrade_tasks;
+
+    public $manual_upgrades;
+
+    public $compatibility;
 
     public function __construct( $container ) {
         global $awpcp_db_version;

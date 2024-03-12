@@ -18,6 +18,8 @@ function awpcp_settings_admin_page() {
  */
 class AWPCP_SettingsAdminPage {
 
+	public $settings_manager;
+
     /**
      * @var object
      */
