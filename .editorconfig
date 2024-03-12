@@ -18,6 +18,6 @@ indent_size = 4
 indent_style = space
 indent_size = 4
 
-[{grunt.js,package.json}]
+[{package.json}]
 indent_style = space
 indent_size = 2
