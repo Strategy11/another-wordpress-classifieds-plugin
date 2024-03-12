@@ -39,7 +39,8 @@ if (jQuery !== undefined) {
                         inline.find('div.error').remove();
                         inline.find('form').ajaxSubmit({
                             data: {
-                                'save': true
+                                save: true,
+                                nonce: AWPCPAjaxOptions.nonce
                             },
                             dataType: 'json',
                             success: function(response) {

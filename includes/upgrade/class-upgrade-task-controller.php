@@ -17,6 +17,11 @@ class AWPCP_UpgradeTaskController {
     private $tasks_manager;
 
     /**
+     * @var object
+     */
+    private $task_handler_factory;
+
+    /**
      * @since 4.0.0
      */
     public function __construct( $tasks_manager, $task_handler_factory ) {

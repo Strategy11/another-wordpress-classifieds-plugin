@@ -21,6 +21,9 @@ class AWPCP_CSV_Import_Sessions_Manager {
     private $csv_importer_factory;
     private $csv_importer_delegate_factory;
     private $csv_reader_factory;
+
+    public $settings;
+
     private $wordpress;
 
     public function __construct( $csv_importer_factory, $csv_importer_delegate_factory, $csv_reader_factory, $settings, $wordpress ) {

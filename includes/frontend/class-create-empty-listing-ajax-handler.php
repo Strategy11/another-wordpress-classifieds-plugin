@@ -45,6 +45,16 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
     private $request;
 
     /**
+     * @var AWPCP_RolesAndCapabilities
+     */
+    protected $roles;
+
+    /**
+     * @var AWPCP_Settings
+     */
+    public $settings;
+
+    /**
      * @since 4.0.0
      */
     public function __construct(

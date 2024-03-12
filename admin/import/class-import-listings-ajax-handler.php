@@ -12,6 +12,8 @@ class AWPCP_Import_Listings_Ajax_Handler extends AWPCP_AjaxHandler {
 
     private $import_sessions_manager;
 
+    protected $csv_importer_factory;
+
     public function __construct( $import_sessions_manager, $csv_importer_factory, $response ) {
         parent::__construct( $response );
 

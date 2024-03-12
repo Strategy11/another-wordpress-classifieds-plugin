@@ -19,6 +19,11 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     private $listings_logic;
 
     /**
+     * @var AWPCP_ListingRenderer
+     */
+    public $listing_renderer;
+
+    /**
      * @var ListingsCollection
      */
     private $listings;
@@ -34,9 +39,24 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     private $form_fields_validator;
 
     /**
+     * @var AWPCP_PaymentInformationValidator
+     */
+    protected $payment_information_validator;
+
+    /**
      * @var ListingPostedData
      */
     private $posted_data;
+
+    /**
+     * @var AWPCP_RolesAndCapabilities
+     */
+    protected $roles;
+
+    /**
+     * @var AWPCP_Settings
+     */
+    public $settings;
 
     /**
      * @since 4.0.0

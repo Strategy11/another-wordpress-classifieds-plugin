@@ -9,6 +9,11 @@
 class AWPCP_CSV_Importer_Delegate_Factory {
 
     /**
+     * @var object
+     */
+    public $container;
+
+    /**
      * Constructor.
      */
     public function __construct( $container ) {

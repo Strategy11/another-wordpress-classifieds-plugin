@@ -1,7 +1,7 @@
 /*global ajaxurl:true */
 
 if (jQuery !== undefined) {
-    (function($, undefined) {
+    (function($) {
 
         /* handlers for Credit Plans page */
 
