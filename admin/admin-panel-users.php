@@ -31,7 +31,11 @@ class AWPCP_AdminUsers {
     }
 
     public function scripts() {
-        wp_enqueue_script('awpcp-admin-users');
+        $options = array(
+            'nonce' => wp_create_nonce( 'awpcp_ajax' ),
+        );
+        wp_localize_script( 'awpcp-admin-users', 'AWPCPAjaxOptions', $options );
+        wp_enqueue_script( 'awpcp-admin-users' );
     }
 
     public function get_columns($columns) {
@@ -97,9 +101,7 @@ class AWPCP_AdminUsers {
     }
 
     public function ajax() {
-        if (!awpcp_current_user_is_admin()) {
-            return false;
-        }
+        awpcp_check_admin_ajax();
 
         $user_id = awpcp_get_var( array( 'param' => 'user', 'default' => 0 ), 'post' );
         $action  = awpcp_get_var( array( 'param' => 'action' ), 'post' );

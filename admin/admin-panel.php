@@ -390,7 +390,7 @@ class AWPCP_AdminPanel {
 			return;
 		}
 
-		if ( awpcp_get_var( array( 'param' => 'page' ) ) == 'awpcp-admin-upgrade' ) {
+		if ( awpcp_get_var( array( 'param' => 'page' ) ) === 'awpcp-admin-upgrade' ) {
 			return;
 		}
 
@@ -643,12 +643,16 @@ class AWPCP_AdminPanel {
 	}
 
     public function disable_quick_start_guide_notice() {
+        awpcp_check_admin_ajax();
+
         global $awpcp;
         $awpcp->settings->update_option('show-quick-start-guide-notice', false);
         die('Success!');
     }
 
     public function disable_widget_modification_notice() {
+        awpcp_check_admin_ajax();
+
         global $awpcp;
         $awpcp->settings->update_option('show-widget-modification-notice', false);
         die('Success!');

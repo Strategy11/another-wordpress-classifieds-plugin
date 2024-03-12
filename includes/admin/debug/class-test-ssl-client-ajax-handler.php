@@ -12,9 +12,7 @@ class AWPCP_TestSSLClientAjaxHandler {
      * @since 4.0.0
      */
     public function ajax() {
-        if ( ! awpcp_current_user_is_admin() ) {
-            die();
-        }
+        awpcp_check_admin_ajax();
 
         if ( ! function_exists( 'curl_init' ) ) {
             die( 'cURL not available.' );

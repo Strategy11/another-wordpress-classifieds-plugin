@@ -1412,8 +1412,10 @@ class AWPCP {
             wp_enqueue_script('awpcp-admin-general');
             wp_enqueue_script('awpcp-toggle-checkboxes');
 
-            // TODO: migrate the code below to use set_js_data to pass information to AWPCP scripts.
-            $options = array('ajaxurl' => awpcp_ajaxurl());
+            $options = array(
+                'ajaxurl' => awpcp_ajaxurl(),
+                'nonce'   => wp_create_nonce( 'awpcp_ajax' ),
+            );
             wp_localize_script('awpcp-admin-general', 'AWPCPAjaxOptions', $options);
         } elseif ( ! is_admin() ) {
             $query = awpcp_query();

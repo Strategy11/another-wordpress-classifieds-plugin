@@ -11,6 +11,7 @@ class AWPCP_TableEntryActionAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     public function ajax() {
+        check_ajax_referer( 'awpcp_ajax', 'nonce' );
         if ( ! awpcp_current_user_is_admin() ) {
             return $this->error_response( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }

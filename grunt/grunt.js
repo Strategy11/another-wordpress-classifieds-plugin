@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 	grunt.wpbdp.registerModule( {
 		name: 'awpcp',
 		slug: 'awpcp',
-		folder: pluginName,
+		folder: '../' + pluginName,
 		path: pluginName + '/resources',
 		concat: {
 			files: {
