@@ -2853,12 +2853,12 @@ function awpcp_is_filename_already_used( $filename, $directories ) {
  * @since 3.3
  */
 function awpcp_register_activation_hook( $__FILE__, $callback ) {
-    $file = WP_CONTENT_DIR . '/plugins/' . basename( dirname( $__FILE__ ) ) . '/' . basename( $__FILE__ );
+    $file = plugin_basename( $__FILE__ );
     register_activation_hook( $file, $callback );
 }
 
 function awpcp_register_deactivation_hook( $__FILE__, $callback ) {
-    $file = WP_CONTENT_DIR . '/plugins/' . basename( dirname( $__FILE__ ) ) . '/' . basename( $__FILE__ );
+    $file = plugin_basename( $__FILE__ );
     register_deactivation_hook( $file, $callback );
 }
 
