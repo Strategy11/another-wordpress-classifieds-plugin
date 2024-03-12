@@ -14,6 +14,11 @@ class AWPCP_ToolsAdminPage {
     private $template = '/admin/tools/tools-admin-page.tpl.php';
 
     /**
+     * @var object
+     */
+    protected $template_renderer;
+
+    /**
      * @var array
      */
     private $views;

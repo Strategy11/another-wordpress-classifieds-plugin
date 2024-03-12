@@ -1019,6 +1019,8 @@ class AWPCP {
         $css = AWPCP_URL . '/resources/css';
         $vendors = AWPCP_URL . '/resources/vendors';
 
+        $min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
         /* vendors */
 
         if (isset($wp_scripts->registered['jquery-ui-core'])) {
@@ -1058,7 +1060,7 @@ class AWPCP {
 
         $this->maybe_register_script(
             'breakpoints.js',
-            "{$vendors}/breakpoints.js/breakpoints.min.js",
+            $vendors . '/breakpoints.js/breakpoints' . $min . '.js',
             array( 'jquery' ),
             '0.0.10',
             true
@@ -1066,7 +1068,7 @@ class AWPCP {
 
         wp_register_script(
             'awpcp-jquery-usableform',
-            "{$js}/jquery-usableform/jquery-usableform.min.js",
+            $js . '/jquery-usableform/jquery-usableform' . $min . '.js',
             array( 'jquery' ),
             $awpcp_db_version,
             true
@@ -1074,7 +1076,7 @@ class AWPCP {
 
         wp_register_script(
             'awpcp-knockout-progress',
-            "{$js}/knockout-progress/knockout-progress.min.js",
+            $js . '/knockout-progress/knockout-progress' . $min . '.js',
             array( 'awpcp' ),
             $awpcp_db_version,
             true
@@ -1109,7 +1111,7 @@ class AWPCP {
         // https://plugins.svn.wordpress.org/buddypress/tags/3.1.0/bp-core/bp-core-cssjs.php
         wp_register_script(
             'awpcp-moment-with-locales',
-            "{$vendors}/moment-2.22.2/moment-with-locales.min.js",
+            $vendors . '/moment-2.22.2/moment-with-locales' . $min . '.js',
             [],
             '2.18.1',
             true
@@ -1131,10 +1133,10 @@ class AWPCP {
         );
 
         /* helpers */
-
+        $src = ! $min && file_exists( AWPCP_DIR . '/resources/js/awpcp.src.js' ) ? '.src' : '';
         wp_register_script(
             'awpcp',
-            "{$js}/awpcp.min.js",
+            $js . '/awpcp' . $src . '.js',
             [
                 'jquery',
                 'backbone',
@@ -1151,7 +1153,7 @@ class AWPCP {
 
         wp_register_script(
             'awpcp-admin-edit-post',
-            "{$js}/admin/edit-post.min.js",
+            $js . '/admin/edit-post' . $min . '.js',
             array(
                 'awpcp',
                 'awpcp-jquery-validate',
@@ -1188,7 +1190,7 @@ class AWPCP {
 
         wp_register_script(
             'awpcp-admin-fee-details',
-            "{$js}/admin-fee-details.min.js",
+            $js . '/admin-fee-details' . $min . '.js',
             array( 'awpcp', 'awpcp-jquery-usableform' ),
             $awpcp_db_version,
             true
@@ -1231,7 +1233,7 @@ class AWPCP {
 
         wp_register_script(
             'awpcp-admin-listings-table',
-            "{$js}/admin/listings-table.min.js",
+            $js . '/admin/listings-table' . $min . '.js',
             [ 'awpcp', 'daterangepicker' ],
             $awpcp_db_version,
             true
@@ -1253,7 +1255,7 @@ class AWPCP {
 
         wp_register_script(
             'awpcp-admin-pointers',
-            "{$js}/admin-pointers.min.js",
+            $js . '/admin-pointers.min.js',
             array( 'awpcp', 'wp-pointer' ),
             $awpcp_db_version,
             true
@@ -1261,7 +1263,7 @@ class AWPCP {
 
         wp_register_script(
             'awpcp-admin-debug',
-            "{$js}/admin/debug-admin-page.min.js",
+            $js . '/admin/debug-admin-page' . $min . '.js',
             array(),
             $awpcp_db_version,
             true
@@ -1306,7 +1308,7 @@ class AWPCP {
 
         wp_register_script(
             'awpcp-submit-listing-page',
-            "{$js}/frontend/submit-listing-page.min.js",
+            $js . '/frontend/submit-listing-page.min.js',
             apply_filters( 'awpcp_submit_listing_page_script_dependencies', $dependencies ),
             $awpcp_db_version,
             true

@@ -18,13 +18,13 @@ class AWPCP_PaymentTerm {
     public $type;
 
     public $id;
-    public $name;
-    public $description;
-    public $duration_amount;
-    public $duration_interval;
-    public $price;
-    public $credits;
-    public $categories;
+    public $name = '';
+    public $description = '';
+    public $duration_amount = 0;
+    public $duration_interval = self::INTERVAL_YEAR;
+    public $price = 0;
+    public $credits = 0;
+    public $categories = array();
 
     public $title_characters;
     public $characters;
@@ -51,6 +51,7 @@ class AWPCP_PaymentTerm {
     }
 
     public static function get_duration_interval_label($interval, $amount=2) {
+        $label = $interval;
         switch ($interval) {
             case self::INTERVAL_DAY:
                 $label = _nx('Day', 'Days', $amount, 'payment terms', 'another-wordpress-classifieds-plugin');
@@ -62,6 +63,7 @@ class AWPCP_PaymentTerm {
                 $label = _nx('Month', 'Months', $amount, 'payment terms', 'another-wordpress-classifieds-plugin');
                 break;
             case self::INTERVAL_YEAR:
+            default:
                 $label = _nx('Year', 'Years', $amount, 'payment terms', 'another-wordpress-classifieds-plugin');
                 break;
         }
@@ -70,7 +72,7 @@ class AWPCP_PaymentTerm {
     }
 
     protected function prepare_default_properties() {
-        if (!is_array($this->defaults)) {
+        if ( empty( $this->defaults ) ) {
             $this->defaults = array(
                 'id' => null,
                 'name' => null,

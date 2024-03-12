@@ -91,7 +91,7 @@ function( $, CategoriesSelectorHelper ) {
             var self = this,
                 fullName;
 
-            if ( params.term.trim() === '' ) {
+            if ( ! params.term || params.term.trim() === '' ) {
                 return item;
             }
 

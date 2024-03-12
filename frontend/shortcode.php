@@ -29,6 +29,12 @@ class AWPCP_Pages {
 
     public $browse_ads;
 
+    public $place_ad_page = null;
+
+    public $edit_ad_page = null;
+
+    public $renew_ad_page = null;
+
 	public function __construct( $container ) {
         $this->container = $container;
 
@@ -83,7 +89,7 @@ class AWPCP_Pages {
         if ( ! isset( $this->output['place-ad'] ) ) {
             do_action( 'awpcp-shortcode', 'place-ad' );
 
-            if ( ! isset( $this->place_ad_page ) ) {
+            if ( is_null( $this->place_ad_page ) ) {
                 $this->place_ad_page = $this->container['SubmitListingPage'];
             }
 
@@ -97,7 +103,7 @@ class AWPCP_Pages {
         if ( ! isset( $this->output['edit-ad'] ) ) {
             do_action( 'awpcp-shortcode', 'edit-ad' );
 
-            if ( ! isset( $this->edit_ad_page ) ) {
+            if ( is_null( $this->edit_ad_page ) ) {
                 $this->edit_ad_page = $this->container['EditListingPage'];
             }
 
@@ -108,7 +114,7 @@ class AWPCP_Pages {
 	}
 
 	public function renew_ad() {
-		if ( ! isset( $this->renew_ad_page ) ) {
+		if ( is_null( $this->renew_ad_page ) ) {
 			$this->renew_ad_page = awpcp_renew_listing_page();
         }
 

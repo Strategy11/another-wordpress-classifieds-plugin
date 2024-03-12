@@ -19,8 +19,8 @@ class AWPCP_ExportListingsAdminPage {
     }
 
     public function ajax() {
-	    $verify_nonce = check_ajax_referer( 'awpcp-export-csv' );
-	    if ( ! current_user_can( 'administrator' ) || ! $verify_nonce ) {
+	    check_ajax_referer( 'awpcp-export-csv' );
+	    if ( ! current_user_can( 'administrator' ) ) {
 		    wp_send_json_error();
 	    }
 

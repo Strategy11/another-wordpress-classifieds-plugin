@@ -35,7 +35,15 @@ AWPCP.run( 'awpcp/admin-export', [
         }
 
         if ( res && res.state ) {
-          $.ajax( ajaxurl, { data: { 'action': 'awpcp-csv-export', 'state': state, 'cleanup': 1 }, type: 'POST' } );
+          $.ajax( ajaxurl, {
+            data: {
+              action: 'awpcp-csv-export',
+              state: state,
+              cleanup: 1,
+              _wpnonce: nonce
+            },
+            type: 'POST'
+          } );
         }
 
         cancelExport = true;
@@ -64,7 +72,10 @@ AWPCP.run( 'awpcp/admin-export', [
           } );
 
           $.ajax( ajaxurl, {
-            data: { 'action': 'awpcp-csv-export', 'state': state, 'cleanup': 1, '_wpnonce': nonce },
+            data: {
+              'action': 'awpcp-csv-export', 'state': state,
+              'cleanup': 1, '_wpnonce': nonce
+            },
             type: 'POST',
             dataType: 'json',
             success: function( res ) {
