@@ -24,8 +24,9 @@
 </ol>
 
 <p>
-    <?php $href = add_query_arg( array( 'action' => 'uninstall' ), $url ); ?>
-    <a class="button button-primary" href="<?php echo esc_url( $href ); ?>"><?php esc_html_e( 'Proceed with Uninstalling AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ); ?></a>
+    <a class="button button-primary" href="<?php echo wp_nonce_url( add_query_arg( array( 'action' => 'uninstall' ), $url ) ); ?>">
+        <?php esc_html_e( 'Proceed with Uninstalling AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ); ?>
+    </a>
 </p>
 
 <?php elseif ( 'uninstall' === $action ) : ?>
@@ -33,7 +34,9 @@
 <h3><?php esc_html_e( 'Almost done... one more step!', 'another-wordpress-classifieds-plugin' ); ?></h3>
 
 <p>
-    <a class="button button-primary" href="<?php echo esc_attr( admin_url( 'plugins.php?deactivate=true' ) ); ?>"><?php esc_html_e( 'Please click here to complete the uninstallation process', 'another-wordpress-classifieds-plugin' ); ?></a>
+    <a class="button button-primary" href="<?php echo esc_attr( admin_url( 'plugins.php' ) ); ?>">
+        <?php esc_html_e( 'Please click here to deactivate plugins.', 'another-wordpress-classifieds-plugin' ); ?>
+    </a>
 </p>
 
 <?php endif ?>

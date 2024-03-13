@@ -46,6 +46,12 @@ class AWPCP_UninstallAdminPage {
         $dirname = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
 
         if ( 0 === strcmp( $action, 'uninstall' ) ) {
+            // Check the wp_nonce_url.
+            $nonce = awpcp_get_var( array( 'param' => '_wpnonce' ), 'get' );
+            if ( ! wp_verify_nonce( $nonce ) || ! awpcp_current_user_is_admin() ) {
+                wp_die( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+            }
+
             $this->uninstaller->uninstall();
         }
 
