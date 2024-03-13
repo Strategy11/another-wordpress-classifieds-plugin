@@ -19,7 +19,7 @@ class AWPCP_UpgradeTaskController {
     /**
      * @var object
      */
-    private $task_handler_factory;
+    protected $task_handler_factory;
 
     /**
      * @since 4.0.0
