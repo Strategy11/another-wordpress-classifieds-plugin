@@ -48,7 +48,7 @@ class AWPCP_UninstallAdminPage {
         if ( 0 === strcmp( $action, 'uninstall' ) ) {
             // Check the wp_nonce_url.
             $nonce = awpcp_get_var( array( 'param' => '_wpnonce' ), 'get' );
-            if ( ! wp_verify_nonce( $nonce ) || ! awpcp_current_user_is_admin() ) {
+            if ( ! wp_verify_nonce( $nonce, 'awpcp-uninstall' ) || ! awpcp_current_user_is_admin() ) {
                 wp_die( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
             }
 
