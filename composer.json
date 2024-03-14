@@ -29,7 +29,8 @@
         "wp-coding-standards/wpcs": "*",
         "php-stubs/wordpress-stubs": "^6.0",
         "phpstan/phpstan": "^1.8",
-        "dms/phpunit-arraysubset-asserts": "^0.4.0"
+        "dms/phpunit-arraysubset-asserts": "^0.4.0",
+        "10up/wp_mock": "^1.0"
     },
     "config": {
         "allow-plugins": {

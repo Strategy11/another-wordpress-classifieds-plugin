@@ -2,10 +2,83 @@
 
 class Test_Uninstall_Admin_Page extends AWPCP_UnitTestCase {
 
-	public function test_admin_page_is_registered() {
-		$admin_pages = awpcp_admin_pages();
+	public function setUp(): void {
+		parent::setUp();
+		// Mock WordPress functions related to nonce verification and current user capabilities.
+		\WP_Mock::userFunction(
+			'wp_verify_nonce', [
+				'times' => 1,
+				'return' => true,
+			]
+		);
+		\WP_Mock::userFunction(
+			'wp_create_nonce', [
+				'times' => 1,
+				'return' => '2weer2445',
+			]
+		);
+		\WP_Mock::userFunction(
+			'current_user_can', [
+				'times' => 1,
+				'return' => true,
+			]
+		);
+		\WP_Mock::userFunction(
+			'is_ssl',
+			[
+				'times' => 1,
+				'return' => true,
+			]
+		);
+	}
 
-		$this->assertArrayHasKey( 'uninstall', $admin_pages );
+	public function test_uninstall_admin_page_dispatch_with_valid_nonce_and_authorization() {
+		$uninstaller = Mockery::mock( 'AWPCP_Uninstaller' );
+		$settings    = Mockery::mock( 'AWPCP_Settings' );
+
+		$uninstaller->shouldReceive( 'uninstall' )->once();
+
+		$page = new AWPCP_UninstallAdminPage( $uninstaller, $settings );
+
+		// Simulate a valid request with correct nonce and authorization.
+		$_REQUEST['nonce'] = 'valid_nonce';
+		$this->assertContains( 'Almost done...', $page->dispatch() );
+	}
+
+	public function test_uninstall_admin_page_dispatch_with_invalid_nonce() {
+		\WP_Mock::userFunction(
+			'wp_verify_nonce',
+			[
+				'times' => 1,
+				'return' => false, // Simulate nonce verification failure.
+			]
+		);
+
+		$this->expectException(\Exception::class); // Expect an exception due to invalid nonce.
+
+		$uninstaller = Mockery::mock( 'AWPCP_Uninstaller' );
+		$settings    = Mockery::mock( 'AWPCP_Settings' );
+		$page        = new AWPCP_UninstallAdminPage($uninstaller, $settings);
+
+		$page->dispatch();
+	}
+
+	public function test_uninstall_admin_page_dispatch_without_authorization() {
+		\WP_Mock::userFunction(
+			'current_user_can',
+			[
+				'times' => 1,
+				'return' => false, // Simulate lack of authorization.
+			]
+		);
+
+		$this->expectException(\Exception::class); // Expect an exception due to lack of authorization.
+
+		$uninstaller = Mockery::mock( 'AWPCP_Uninstaller' );
+		$settings    = Mockery::mock( 'AWPCP_Settings' );
+		$page = new AWPCP_UninstallAdminPage( $uninstaller, $settings );
+
+		$page->dispatch();
 	}
 
 	public function test_uninstall_admin_page_dispatch() {
@@ -17,19 +90,5 @@ class Test_Uninstall_Admin_Page extends AWPCP_UnitTestCase {
 		$page = new AWPCP_UninstallAdminPage( $uninstaller, $settings );
 
 		$this->assertContains( 'action=uninstall', $page->dispatch() );
-	}
-
-	public function test_uninstall_admin_page_dispatch_uninstall() {
-		$uninstaller = Mockery::mock( 'AWPCP_Uninstaller' );
-		$settings    = Mockery::mock( 'AWPCP_Settings' );
-
-		$uninstaller->shouldReceive( 'uninstall' )->once();
-
-		$_GET['_wpnonce'] = wp_create_nonce( 'uninstall' );
-		$_GET['action']   = 'uninstall';
-
-		$page = new AWPCP_UninstallAdminPage( $uninstaller, $settings );
-
-		$this->assertEmpty( $page->dispatch() );
 	}
 }

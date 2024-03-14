@@ -24,6 +24,9 @@ if ( file_exists( $patchwork ) ) {
 }
 require AWPCP_DIR . '/vendor/autoload.php';
 
+// Bootstrap WP_Mock to initialize built-in features
+WP_Mock::bootstrap();
+
 Phake::setClient( Phake::CLIENT_PHPUNIT6 );
 
 require_once AWPCP_DIR . '/functions.php';
