@@ -16,3 +16,15 @@ if ( ! function_exists( 'is_post_type_viewable' ) ) {
         return $post_type_object->publicly_queryable || ( $post_type_object->_builtin && $post_type_object->public );
     }
 }
+
+if ( ! function_exists( 'wp_strip_all_tags' ) ) {
+    /**
+     * Strips all of the HTML in the content.
+     *
+     * @param string $data Content to strip all HTML from.
+     * @return string Content without any HTML.
+     */
+    function wp_strip_all_tags( $data ) {
+        return strip_tags( $data );
+    }
+}
