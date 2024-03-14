@@ -60,4 +60,3 @@ require_once dirname( __FILE__ ) . '/includes/testcase-awpcp.php';
 require_once dirname( __FILE__ ) . '/includes/testcase-step-decorator.php';
 require_once dirname( __FILE__ ) . '/includes/class-listings-table-search-mode-test-case.php';
 require_once dirname( __FILE__ ) . '/includes/class-container-configuration-test-case.php';
-

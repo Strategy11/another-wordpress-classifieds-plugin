@@ -30,6 +30,9 @@ class Test_Uninstall_Admin_Page extends AWPCP_UnitTestCase {
 				'return' => true,
 			]
 		);
+
+		$_SERVER['HTTP_HOST'] = 'example.com';
+		$_SERVER['REQUEST_URI'] = '/wp-admin/admin.php';
 	}
 
 	public function test_uninstall_admin_page_dispatch_with_valid_nonce_and_authorization() {
