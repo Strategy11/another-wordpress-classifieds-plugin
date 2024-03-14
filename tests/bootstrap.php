@@ -54,6 +54,10 @@ if ( ! defined( 'OBJECT' ) ) {
     define( 'OBJECT', 'OBJECT' );
 }
 
+if ( ! function_exists( 'wp_strip_all_tags' ) ) {
+    require_once ABSPATH . 'wp-includes/formatting.php';
+}
+
 require_once dirname( __FILE__ ) . '/includes/shims.php';
 require_once dirname( __FILE__ ) . '/includes/functions.php';
 require_once dirname( __FILE__ ) . '/includes/testcase-awpcp.php';
