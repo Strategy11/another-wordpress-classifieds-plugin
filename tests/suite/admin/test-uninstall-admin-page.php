@@ -37,7 +37,7 @@ class Test_Uninstall_Admin_Page extends AWPCP_UnitTestCase {
 
 	public function test_uninstall_admin_page_dispatch_with_valid_nonce_and_authorization() {
 		$uninstaller = Mockery::mock( 'AWPCP_Uninstaller' );
-		$settings    = Mockery::mock( 'AWPCP_Settings' );
+		$settings    = $this->get_settings_class();
 
 		$uninstaller->shouldReceive( 'uninstall' )->once();
 
@@ -60,10 +60,18 @@ class Test_Uninstall_Admin_Page extends AWPCP_UnitTestCase {
 		$this->expectException(\Exception::class); // Expect an exception due to invalid nonce.
 
 		$uninstaller = Mockery::mock( 'AWPCP_Uninstaller' );
-		$settings    = Mockery::mock( 'AWPCP_Settings' );
+		$settings    = $this->get_settings_class();
 		$page        = new AWPCP_UninstallAdminPage($uninstaller, $settings);
 
 		$page->dispatch();
+	}
+
+	private function get_settings_class() {
+		$settings = Mockery::mock( 'AWPCP_Settings' );
+
+		// 'Uploads' is not the right value, but it will do the job for this test.
+		$settings->shouldReceive( 'get_runtime_option' )->with( 'awpcp-uploads-dir' )->andReturn( 'uploads' );
+		return $settings;
 	}
 
 	public function test_uninstall_admin_page_dispatch_without_authorization() {
