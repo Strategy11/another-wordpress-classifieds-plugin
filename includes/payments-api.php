@@ -448,7 +448,7 @@ class AWPCP_PaymentsAPI {
         }
 
         return $transaction->add_item(
-            "{$payment_term->type}-{$payment_term->id}-${payment_type}",
+            "{$payment_term->type}-{$payment_term->id}-{$payment_type}",
             $payment_term->get_name(),
             $payment_term->description,
             $payment_type,

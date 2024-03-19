@@ -26,6 +26,11 @@ class AWPCP_MediaCenterComponent {
     /**
      * @var object
      */
+    private $template_renderer;
+
+    /**
+     * @var object
+     */
     private $settings;
 
     /**
