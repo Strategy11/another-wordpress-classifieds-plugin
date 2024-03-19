@@ -41,6 +41,7 @@ class Test_Uninstall_Admin_Page extends AWPCP_UnitTestCase {
 
 		$uninstaller->shouldReceive( 'uninstall' )->once();
 
+		$this->expectAddQueryArg();
 		$page = new AWPCP_UninstallAdminPage( $uninstaller, $settings );
 
 		// Simulate a valid request with correct nonce and authorization.
@@ -61,8 +62,9 @@ class Test_Uninstall_Admin_Page extends AWPCP_UnitTestCase {
 
 		$uninstaller = Mockery::mock( 'AWPCP_Uninstaller' );
 		$settings    = $this->get_settings_class();
-		$page        = new AWPCP_UninstallAdminPage($uninstaller, $settings);
 
+		$this->expectAddQueryArg();
+		$page = new AWPCP_UninstallAdminPage( $uninstaller, $settings );
 		$page->dispatch();
 	}
 
@@ -86,7 +88,7 @@ class Test_Uninstall_Admin_Page extends AWPCP_UnitTestCase {
 		$this->expectException(\Exception::class); // Expect an exception due to lack of authorization.
 
 		$uninstaller = Mockery::mock( 'AWPCP_Uninstaller' );
-		$settings    = Mockery::mock( 'AWPCP_Settings' );
+		$settings    = $this->get_settings_class();
 		$page = new AWPCP_UninstallAdminPage( $uninstaller, $settings );
 
 		$page->dispatch();
@@ -94,7 +96,7 @@ class Test_Uninstall_Admin_Page extends AWPCP_UnitTestCase {
 
 	public function test_uninstall_admin_page_dispatch() {
 		$uninstaller = Mockery::mock( 'AWPCP_Uninstaller' );
-		$settings    = Mockery::mock( 'AWPCP_Settings' );
+		$settings    = $this->get_settings_class();
 
 		$uninstaller->shouldReceive( 'uninstall' )->once();
 
