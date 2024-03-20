@@ -20,10 +20,10 @@ jobs:
 
     name: PHP ${{ matrix.php }} tests in WP ${{ matrix.wordpress }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.5.3
 
       # get the PHP version
-      - uses: shivammathur/setup-php@v2
+      - uses: shivammathur/setup-php@2.25.5
         with:
           php-version: ${{ matrix.php }}
       - name: Installing WordPress
