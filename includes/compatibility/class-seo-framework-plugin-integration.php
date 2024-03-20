@@ -47,6 +47,14 @@ class AWPCP_SEOFrameworkIntegration {
 	 */
 	private $request;
 
+	public $title_builder;
+
+	public $metadata;
+
+	public $is_singular;
+
+	public $attachment;
+
 	public function __construct( $listing_post_type, $query, $attachments, $request, $attachment_properties ) {
 		$this->listing_post_type     = $listing_post_type;
 		$this->query                 = $query;
@@ -69,11 +77,11 @@ class AWPCP_SEOFrameworkIntegration {
 	 */
 	private function are_required_classes_loaded() {
 		if ( ! defined( 'THE_SEO_FRAMEWORK_VERSION' ) ) {
-			// Yoast SEO doesn't seem to be loaded. Bail.
+			// SEO plugin doesn't seem to be loaded. Bail.
 			return false;
 		}
 
-		return class_exists( 'The_SEO_Framework\Post_Data' );
+		return function_exists( 'tsf' );
 	}
 
 	/**
@@ -84,7 +92,6 @@ class AWPCP_SEOFrameworkIntegration {
 		$this->title_builder   = $meta->title_builder;
 		$this->is_singular     = is_singular( $this->listing_post_type );
 		$this->metadata        = [];
-		$this->seo             = the_seo_framework();
 
 		if ( $this->current_listing ) {
 			$this->metadata = $meta->get_listing_metadata();
@@ -162,8 +169,7 @@ class AWPCP_SEOFrameworkIntegration {
 	 * @since 4.1.0
 	 */
 	public function filter_document_title( $title ) {
-		$override = $this->seo->get_custom_field( '_genesis_title', $this->current_listing->ID );
-
+		$override = get_post_meta( $this->current_listing->ID, '_genesis_title', true );
 		if ( empty( $override ) ) {
 			return $this->build_title( $title );
 		}
@@ -189,7 +195,7 @@ class AWPCP_SEOFrameworkIntegration {
 	 * @since 4.1.0
 	 */
 	public function filter_listing_description( $description ) {
-		$override = $this->seo->get_custom_field( '_genesis_description', $this->current_listing->ID );
+		$override = get_post_meta( $this->current_listing->ID, '_genesis_description', true );
 
 		return $this->get_social_description( $description, $override );
 	}
@@ -225,7 +231,7 @@ class AWPCP_SEOFrameworkIntegration {
 	 * @since 4.1.0
 	 */
 	public function add_opengraph_images() {
-		$override = $this->seo->get_custom_field( '_social_image_url', $this->current_listing->ID );
+		$override = get_post_meta( $this->current_listing->ID, '_social_image_url', true );
 
 		if ( empty( $override ) ) {
 			$featured_image = $this->attachments->get_featured_attachment_of_type(
@@ -248,7 +254,7 @@ class AWPCP_SEOFrameworkIntegration {
 	 * @since 4.1.0
 	 */
 	public function filter_opengraph_title( $title ) {
-		$override = $this->seo->get_custom_field( '_open_graph_title', $this->current_listing->ID );
+		$override = get_post_meta( $this->current_listing->ID,  '_open_graph_title' );
 
 		return $this->get_social_title( $title, $override );
 	}
@@ -279,7 +285,7 @@ class AWPCP_SEOFrameworkIntegration {
 	 * @since 4.1.0
 	 */
 	public function filter_opengraph_description( $description ) {
-		$override = $this->seo->get_custom_field( '_open_graph_description', $this->current_listing->ID );
+		$override = get_post_meta( $this->current_listing->ID, '_open_graph_description' );
 
 		return $this->get_social_description( $description, $override );
 	}
@@ -288,7 +294,7 @@ class AWPCP_SEOFrameworkIntegration {
 	 * @since 4.1.0
 	 */
 	public function filter_twitter_title( $title ) {
-		$override = $this->seo->get_custom_field( '_twitter_title', $this->current_listing->ID );
+		$override = get_post_meta( $this->current_listing->ID,  '_twitter_title' );
 
 		return $this->get_social_title( $title, $override );
 	}
@@ -297,7 +303,7 @@ class AWPCP_SEOFrameworkIntegration {
 	 * @since 4.1.0
 	 */
 	public function filter_twitter_description( $description ) {
-		$override = $this->seo->get_custom_field( '_twitter_description', $this->current_listing->ID );
+		$override = get_post_meta( $this->current_listing->ID,  '_twitter_description' );
 
 		return $this->get_social_description( $description, $override );
 	}

@@ -171,6 +171,7 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Security: Add more nonce and user role protection for uninstalling and other ajax functions.
 * Update SelectWoo script version.
 * Fix: Fallback to native dropdowns if there is a conflict with Select2.
+* Fix: SEO Framework updatesfor outdated code.
 
 = 4.3.1 =
 * Security update against CSRF attacks in some admin pages. add CSRF tokens "nonce".
