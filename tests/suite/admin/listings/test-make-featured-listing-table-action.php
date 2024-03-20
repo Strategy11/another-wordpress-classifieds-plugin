@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Admin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Tests for Make Listing Featured table action.
  */
@@ -78,10 +76,11 @@ class AWPCP_MakeFeaturedListingTableActionTest extends AWPCP_UnitTestCase {
             'ids'    => $post->ID,
         );
 
-        Functions\expect( 'add_query_arg' )
-            ->once()
-            ->with( $params, $current_url )
-            ->andReturn( $current_url );
+        WP_Mock::userFunction( 'add_query_arg', [
+            'times'  => 1,
+            'args'   => [ $params, $current_url ],
+            'return' => $current_url,
+        ] );
 
         $action = $this->get_test_subject();
 

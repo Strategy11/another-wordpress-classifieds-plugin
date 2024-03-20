@@ -3,7 +3,6 @@
  * @package AWPCP\Tests\Listings
  */
 
-use Brain\Monkey\Functions;
 use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 
 /**
@@ -12,6 +11,11 @@ use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 class AWPCP_ListingsCollectionTest extends AWPCP_UnitTestCase {
 
     use ArraySubsetAsserts;
+
+    private $wordpress;
+    private $roles;
+    private $query;
+
     /**
      * @since 4.0.0
      */
@@ -25,8 +29,14 @@ class AWPCP_ListingsCollectionTest extends AWPCP_UnitTestCase {
         $this->wordpress = Mockery::mock( 'AWPCP_WordPress' );
         $this->roles     = Mockery::mock( 'AWPCP_RolesAndCapabilities' );
 
-        Functions\when( 'apply_filters' )->returnArg( 2 );
-        Functions\when( 'is_admin' )->justReturn( false );
+        WP_Mock::userFunction( 'apply_filters', [
+            'return' => function( $hook, $value ) {
+                return $value;
+            },
+        ] );
+        WP_Mock::userFunction( 'is_admin', [
+            'return' => false,
+        ] );
     }
 
     /**
@@ -286,7 +296,11 @@ class AWPCP_ListingsCollectionTest extends AWPCP_UnitTestCase {
 
         $this->roles->shouldReceive( 'current_user_is_moderator' )->andReturn( true );
 
-        Functions\when( 'apply_filters' )->returnArg( 2 );
+        WP_Mock::userFunction( 'apply_filters', [
+            'return' => function( $hook, $value ) {
+                return $value;
+            },
+        ] );
 
         $collection = $this->get_test_subject();
 

@@ -1,7 +1,5 @@
 <?php
 
-use Brain\Monkey\Functions;
-
 class AWPCP_TestRouteFunctions extends AWPCP_UnitTestCase {
 
     public function test_get_email_verification_url() {
@@ -60,7 +58,10 @@ class AWPCP_TestRouteFunctions extends AWPCP_UnitTestCase {
 
         awpcp()->settings->set_or_update_option( 'requireuserregistration', true );
 
-        Functions::expect( 'awpcp_get_edit_listing_direct_url' )->once()->with( $listing );
+        WP_Mock::userFunction( 'awpcp_get_edit_listing_direct_url', [
+            'times' => 1,
+            'args' => [ $listing ],
+        ] );
 
         /* Execution */
         awpcp_get_edit_listing_url( $listing );
@@ -74,7 +75,9 @@ class AWPCP_TestRouteFunctions extends AWPCP_UnitTestCase {
 
         awpcp()->settings->set_or_update_option( 'requireuserregistration', false );
 
-        Functions::expect( 'awpcp_get_edit_listing_generic_url' )->once()->withNoArgs();
+        WP_Mock::userFunction( 'awpcp_get_edit_listing_generic_url', [
+            'times' => 1,
+        ] );
 
         /* Execution */
         awpcp_get_edit_listing_url( $listing );
@@ -86,7 +89,10 @@ class AWPCP_TestRouteFunctions extends AWPCP_UnitTestCase {
     public function test_get_edit_listing_direct_url_when_user_panel_is_off() {
         $listing = awpcp_tests_create_listing();
 
-        Functions::expect( 'awpcp_get_edit_listing_page_url_with_listing_id' )->once()->with( $listing );
+        WP_Mock::userFunction( 'awpcp_get_edit_listing_page_url_with_listing_id', [
+            'times' => 1,
+            'args' => [ $listing ],
+        ] );
 
         /* Execution */
         $url = awpcp_get_edit_listing_direct_url( $listing );
@@ -98,12 +104,26 @@ class AWPCP_TestRouteFunctions extends AWPCP_UnitTestCase {
     public function test_get_edit_listing_page_url_with_listing_id_when_firendly_urls_are_enabled() {
         $listing = awpcp_tests_create_listing();
 
-        Functions::when( 'awpcp_get_page_id_by_ref' )->justReturn( rand() + 1 );
-        Functions::when( 'get_permalink' )->justReturn( 'http://example.org/%pagename%/' );
-        Functions::when( 'get_page_uri' )->justReturn( 'plugin-page' );
+        WP_Mock::userFunction( 'awpcp_get_page_id_by_ref', [
+            'return' => rand() + 1,
+        ] );
+        WP_Mock::userFunction( 'get_permalink', [
+            'return' => 'http://example.org/%pagename%/',
+        ] );
+        WP_Mock::userFunction( 'get_page_uri', [
+            'return' => 'plugin-page',
+        ] );
 
-        Functions::expect( 'get_awpcp_option' )->once()->with( 'seofriendlyurls' )->andReturn( true );
-        Functions::expect( 'get_option' )->once()->with( 'permalink_structure' )->andReturn( '/%postname%/' );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'times'  => 1,
+            'args'   => [ 'seofriendlyurls' ],
+            'return' => true,
+        ] );
+        WP_Mock::userFunction( 'get_option', [
+            'times'  => 1,
+            'args'   => [ 'permalink_structure' ],
+            'return' => '/%postname%/',
+        ] );
 
         /* Execution */
         $url = awpcp_get_edit_listing_page_url_with_listing_id( $listing );
@@ -115,9 +135,15 @@ class AWPCP_TestRouteFunctions extends AWPCP_UnitTestCase {
     public function test_get_edit_listing_page_url_with_listing_id_when_firendly_urls_are_disabled() {
         $listing = awpcp_tests_create_listing();
 
-        Functions::when( 'awpcp_get_page_url' )->justReturn( 'http://example.org/plugin-page/' );
+        WP_Mock::userFunction( 'awpcp_get_page_url', [
+            'return' => 'http://example.org/plugin-page/',
+        ] );
 
-        Functions::expect( 'get_awpcp_option' )->once()->with( 'seofriendlyurls' )->andReturn( false );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'times'  => 1,
+            'args'   => [ 'seofriendlyurls' ],
+            'return' => false,
+        ] );
 
         /* Execution */
         $url = awpcp_get_edit_listing_page_url_with_listing_id( $listing );

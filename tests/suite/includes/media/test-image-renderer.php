@@ -3,9 +3,6 @@
  * @package AWPCP\Tests\Media
  */
 
-use Brain\Monkey\Functions;
-
-
 /**
  * @since 4.0.0
  */
@@ -37,16 +34,17 @@ class AWPCP_ImageRendererTest extends AWPCP_UnitTestCase {
             ->with( 'display-thumbnails-in-columns' )
             ->andReturn( $thumbnails_per_row );
 
-        Functions\when( 'wp_get_additional_image_sizes' )->justReturn( $image_sizes );
+        WP_Mock::userFunction( 'wp_get_additional_image_sizes', [
+            'return' => $image_sizes,
+        ] );
 
-        Functions\expect( 'wp_get_attachment_image' )
-            ->once()
-            ->andReturnUsing(
-                function( $attachment_id, $size, $icon, $attributes ) use ( $sizes, $default_size ) {
-                    $this->assertContains( $sizes, $attributes['sizes'] );
-                    $this->assertContains( $default_size, $attributes['sizes'] );
-                }
-            );
+        WP_Mock::userFunction( 'wp_get_attachment_image', [
+            'times' => 1,
+            'return' => function( $attachment_id, $size, $icon, $attributes ) use ( $sizes, $default_size ) {
+                $this->assertContains( $sizes, $attributes['sizes'] );
+                $this->assertContains( $default_size, $attributes['sizes'] );
+            }
+        ] );
 
         // Execution.
         $this->get_test_subject()->render_attachment_thumbnail( wp_rand() );

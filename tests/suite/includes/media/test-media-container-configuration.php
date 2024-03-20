@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Media
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Test for Media Container Configuration.
  */
@@ -18,10 +16,18 @@ class AWPCP_MediaContainerConfigurationTest extends AWPCP_ContainerConfiguration
 
         // Constructors functions still required by the constructors of the
         // classes registered in this container.
-        Functions\when( 'awpcp_file_types' )->justReturn( null );
-        Functions\when( 'awpcp_image_file_validator' )->justReturn( null );
-        Functions\when( 'awpcp_image_file_processor' )->justReturn( null );
-        Functions\when( 'awpcp_image_attachment_creator' )->justReturn( null );
+        WP_Mock::userFunction( 'awpcp_file_types', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'awpcp_image_file_validator', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'awpcp_image_file_processor', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'awpcp_image_attachment_creator', [
+            'return' => null,
+        ] );
     }
 
     /**

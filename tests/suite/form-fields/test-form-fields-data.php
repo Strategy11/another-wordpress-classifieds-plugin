@@ -3,26 +3,30 @@
  * @package AWPCP\Tests\Suite\FormFields
  */
 
-use Brain\Monkey\Filters;
-use Brain\Monkey\Functions;
-
 /**
  * Test for Form Fields Data class.
  */
 class AWPCP_FormFieldsDataTest extends AWPCP_UnitTestCase {
 
+    private $authorization;
+    private $listing_renderer;
+
     /**
      * @since 4.0.0
      */
     protected $request;
+
     public function setUp(): void {
         parent::setUp();
         $this->authorization    = Mockery::mock( 'AWPCP_ListingAuthorization' );
         $this->listing_renderer = Mockery::mock( 'AWPCP_ListingRenderer' );
         $this->request          = Mockery::mock( 'AWPCP_Request' );
 
-        Functions\when( 'awpcp_maybe_add_http_to_url' )->returnArg();
-        Functions\when( 'sanitize_textarea_field' )->returnArg();
+        WP_Mock::userFunction( 'awpcp_maybe_add_http_to_url', [
+            'return' => function( $arg ) {
+                return $arg;
+            },
+        ] );
     }
 
     /**
@@ -40,13 +44,26 @@ class AWPCP_FormFieldsDataTest extends AWPCP_UnitTestCase {
         $this->listing_renderer->shouldReceive( 'get_plain_end_date' )
             ->andReturn( null );
 
-        Functions\expect( 'awpcp_get_var' )->with(  array( 'param' => 'ad_id' ) )->andReturn( '1' );
-        Functions\expect( 'awpcp_get_var' )->with(  array( 'param' => 'ad_title' ) )
-                                           ->andReturn( 'Test Title' );
-        Functions\when( 'awpcp_parse_money' )->justReturn('1');
-        Functions\when( 'awpcp_strip_all_tags_deep' )->returnArg();
-        Functions\when( 'awpcp_get_digits_from_string' )->returnArg();
-        Functions\when( 'current_time' )->justReturn(time());
+        WP_Mock::userFunction( 'awpcp_get_var', [
+            'args'   => [ [ 'param' => 'ad_details', 'sanitize' => 'sanitize_textarea_field' ] ],
+            'return' => '1',
+        ] );
+        WP_Mock::userFunction( 'awpcp_get_var', [
+            'args'   => [ [ 'param' => 'ad_title' ] ],
+            'return' => 'Test Title',
+        ] );
+        WP_Mock::userFunction( 'awpcp_parse_money', [
+            'return' => '1',
+        ] );
+
+        WP_Mock::userFunction( 'awpcp_get_digits_from_string', [
+            'return' => function( $arg ) {
+                return strip_tags( $arg );
+            },
+        ] );
+        WP_Mock::userFunction( 'current_time', [
+            'return' => time(),
+        ] );
 
         $form_fields_data = $this->get_test_subject();
 
@@ -58,7 +75,7 @@ class AWPCP_FormFieldsDataTest extends AWPCP_UnitTestCase {
         $this->assertNotEmpty( $data['post_fields']['post_title'] );
 
 		$this->markTestSkipped( 'Failing. Needs work' );
-        $this->assertTrue( Filters\applied( 'awpcp-get-posted-data' ) > 0 );
+        //$this->assertTrue( Brain\Monkey\Filters\applied( 'awpcp-get-posted-data' ) > 0 );
     }
 
     /**
@@ -81,8 +98,6 @@ class AWPCP_FormFieldsDataTest extends AWPCP_UnitTestCase {
         $end_date   = '2019-01-23';
 
         $this->request->shouldReceive( 'param' )->andReturn( null );
-
-        Functions\when( 'awpcp_strip_all_tags_deep' )->returnArg();
 
         $this->authorization
             ->shouldReceive( 'is_current_user_allowed_to_edit_listing_start_date' )
@@ -121,23 +136,36 @@ class AWPCP_FormFieldsDataTest extends AWPCP_UnitTestCase {
             ->shouldReceive( 'is_current_user_allowed_to_edit_listing_end_date' )
             ->andReturn( true );
 
-        Functions\expect( 'awpcp_get_var' )->with( array( 'param' => 'ad_details', 'sanitize' => 'sanitize_textarea_field' ) )
-                                           ->andReturn( $html_content );
-        Functions\expect( 'awpcp_get_var' )->with( array( 'param' => 'ad_title') )
-                                           ->andReturn( 'ad_title' );
+        WP_Mock::userFunction( 'awpcp_get_var', [
+            'args' => [ array( 'param' => 'ad_details', 'sanitize' => 'sanitize_textarea_field' ) ],
+            'return' => $html_content,
+        ] );
+        WP_Mock::userFunction( 'awpcp_get_var', [
+            'args' => [ array( 'param' => 'ad_title') ],
+            'return' => 'ad_title',
+        ] );
 
-        Functions\expect( 'awpcp_strip_all_tags_deep' )
-            ->once()
-            ->with( $html_content )
-            ->andReturn( strip_tags( $html_content ) );// phpcs:ignore WordPress.WP.AlternativeFunctions.strip_tags_strip_tags
+        WP_Mock::userFunction( 'awpcp_strip_all_tags_deep', [
+            'times'  => 1,
+            'args'   => [ $html_content ],
+            'return' => function( $arg ) {
+                return strip_tags( $arg );
+            },
+        ] );
 
+        WP_Mock::userFunction( 'awpcp_get_var', [
+            'args' => [ [ 'param' => 'ad_item_price' ] ],
+            'return' => 150,
+        ] );
 
-        Functions\expect( 'awpcp_get_var' )->with( array( 'param' => 'ad_item_price') )
-                                           ->andReturn( 150 );
-        Functions\expect( 'awpcp_parse_money' )->with(150)->once()->andReturn( 150 );
+        WP_Mock::userFunction( 'awpcp_parse_money', [
+            'times'  => 1,
+            'args'   => [ 150 ],
+            'return' => '150',
+        ] );
 
-        Functions\expect( 'awpcp_get_digits_from_string' );
-        Functions\expect( 'current_time' );
+        WP_Mock::userFunction( 'awpcp_get_digits_from_string' );
+        WP_Mock::userFunction( 'current_time' );
         $this->listing_renderer->shouldReceive( 'get_plain_start_date' )
                                ->andReturn( '' );
         $this->listing_renderer->shouldReceive( 'get_plain_end_date' )

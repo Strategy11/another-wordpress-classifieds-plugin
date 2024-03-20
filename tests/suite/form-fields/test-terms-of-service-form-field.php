@@ -8,6 +8,10 @@
  */
 class AWPCP_TermsOfServiceFormFieldTest extends AWPCP_UnitTestCase {
 
+    private $roles;
+    private $settings;
+    private $template_renderer;
+
     /**
      * @since 4.0.2
      */

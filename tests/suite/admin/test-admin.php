@@ -10,6 +10,16 @@
  */
 class AWPCP_AdminTest extends AWPCP_UnitTestCase {
 
+    private $post_type;
+    private $container;
+    private $views;
+    private $actions;
+    private $tablenav;
+    private $search;
+    private $columns;
+    private $restrictions;
+    private $post;
+
     /**
      * @since 4.0.0
      */

@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Frontend
  */
 
-use Brain\Monkey\Functions;
-
 class AWPCP_Test_Query extends AWPCP_UnitTestCase {
 
     /**
@@ -110,9 +108,10 @@ class AWPCP_Test_Query extends AWPCP_UnitTestCase {
         $wp_the_query->shouldReceive( 'is_page' )->andReturn( true );
         $wp_the_query->shouldReceive( 'get_queried_object' )->andReturn( $page );
 
-        Functions\expect( 'has_shortcode' )
-            ->with( $page->post_content, 'AWPCPSEARCHADS' )
-            ->andReturn( true );
+        WP_Mock::userFunction( 'has_shortcode', [
+            'args' => [ $page->post_content, 'AWPCPSEARCHADS' ],
+            'return' => true,
+        ] );
 
         // Verification.
         $this->assertTrue( $this->get_test_subject()->is_search_listings_page() );

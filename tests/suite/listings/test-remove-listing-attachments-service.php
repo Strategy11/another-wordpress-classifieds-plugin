@@ -8,6 +8,10 @@
  */
 class AWPCP_RemoveListingAttachmentsServiceTest extends AWPCP_UnitTestCase {
 
+    private $listing_post_type;
+    private $attachments;
+    private $wordpress;
+
     public function setUp(): void {
         parent::setUp();
 

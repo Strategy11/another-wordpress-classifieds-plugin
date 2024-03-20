@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Admin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for Listings Table Nav Handler.
  */
@@ -31,10 +29,16 @@ class AWPCP_ListingsTableNavHandlerTest extends AWPCP_UnitTestCase {
         $query->shouldReceive( 'is_main_query' )->andReturn( true );
 
 
-        Functions\expect( 'awpcp_get_var' )->with(  array( 'param' => 'awpcp_category_id', 'sanitize' => 'absint' ) )
-                                           ->andReturn( '2' );
+        WP_Mock::userFunction( 'awpcp_get_var', [
+            'args'   => [ [ 'param' => 'awpcp_category_id', 'sanitize' => 'absint' ] ],
+            'return' => '2',
+        ] );
 
-        Functions\when( 'sanitize_key' )->returnArg();
+        WP_Mock::userFunction( 'sanitize_key', [
+            'return' => function( $arg ) {
+                return $arg;
+            },
+        ] );
 
         $html_renderer->shouldReceive( 'get_selected_category' )->andReturn( 2 );
         // Execution.

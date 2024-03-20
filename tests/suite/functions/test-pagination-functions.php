@@ -3,8 +3,6 @@
  * @package AWPCP\Test\Functions
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for functions involved in generating pagination controls.
  */
@@ -13,9 +11,15 @@ class AWPCP_Test_Pagination_Functions extends AWPCP_UnitTestCase {
     public function test_pagination_forms_keep_page_id_url_parameter() {
         $_GET['page_id'] = wp_rand();
 
-        Functions\when( 'is_admin' )->justReturn( false );
-        Functions\when( 'get_awpcp_option' )->justReturn( 0 );
-        Functions\when( 'awpcp_pagination_options' )->justReturn( [ 10, 20 ] );
+        WP_Mock::userFunction( 'is_admin', [
+            'return' => false,
+        ] );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'return' => 0,
+        ] );
+        WP_Mock::userFunction( 'awpcp_pagination_options', [
+            'return' => [ 10, 20 ],
+        ] );
 
         $pagination_form = awpcp_pagination( array(), '' );
 
@@ -32,8 +36,12 @@ class AWPCP_Test_Pagination_Functions extends AWPCP_UnitTestCase {
             'results'        => 3,
         ];
 
-        Functions\when( 'awpcp_request_param' )->justReturn( 4 );
-        Functions\when( 'get_awpcp_option' )->justReturn( 5 );
+        WP_Mock::userFunction( 'awpcp_request_param', [
+            'return' => 4,
+        ] );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'return' => 5,
+        ] );
 
         $this->assertEquals( 1, awpcp_get_results_per_page( $query_vars ) );
 
@@ -49,11 +57,19 @@ class AWPCP_Test_Pagination_Functions extends AWPCP_UnitTestCase {
 
         $this->assertEquals( 4, awpcp_get_results_per_page( $query_vars ) );
 
-        Functions\when( 'awpcp_request_param' )->returnArg( 2 );
+        WP_Mock::userFunction( 'awpcp_request_param', [
+            'return' => function( $param, $default ) {
+                return $default;
+            },
+        ] );
 
         $this->assertEquals( 5, awpcp_get_results_per_page( $query_vars ) );
 
-        Functions\when( 'get_awpcp_option' )->returnArg( 2 );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'return' => function( $param, $default ) {
+                return $default;
+            },
+        ] );
 
         $this->assertEquals( 10, awpcp_get_results_per_page( $query_vars ) );
     }
@@ -69,25 +85,30 @@ class AWPCP_Test_Pagination_Functions extends AWPCP_UnitTestCase {
             'offset' => 1,
         ];
 
-        Functions\expect( 'awpcp_request_param' )
-            ->with( 'offset', 15 )
-            ->andReturn( 15 );
+        WP_Mock::userFunction( 'awpcp_request_param', [
+            'args'   => [ 'offset', 15 ],
+            'return' => 15,
+        ] );
 
-        Functions\expect( 'awpcp_request_param' )
-            ->with( 'offset', 20 )
-            ->andReturn( 20 );
+        WP_Mock::userFunction( 'awpcp_request_param', [
+            'args'   => [ 'offset', 20 ],
+            'return' => 20,
+        ] );
 
-        Functions\expect( 'awpcp_request_param' )
-            ->with( 'offset', Mockery::any() )
-            ->andReturn( 3 );
+        WP_Mock::userFunction( 'awpcp_request_param', [
+            'args'   => [ 'offset', Mockery::any() ],
+            'return' => 3,
+        ] );
 
-        Functions\expect( 'get_query_var' )
-            ->with( 'page' )
-            ->andReturn( 5 );
+        WP_Mock::userFunction( 'get_query_var', [
+            'args'   => [ 'page' ],
+            'return' => 5,
+        ] );
 
-        Functions\expect( 'get_query_var' )
-            ->with( 'paged' )
-            ->andReturnValues( [ wp_rand(), wp_rand(), wp_rand(), 4, 0 ] );
+        WP_Mock::userFunction( 'get_query_var', [
+            'args'   => [ 'paged' ],
+            'return' => [ wp_rand(), wp_rand(), wp_rand(), 4, 0 ]
+        ] );
 
         $this->assertEquals( 1, awpcp_get_results_offset( $results_per_page, $query_vars ) );
 

@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Admin
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Tests for Admin Container Configuration.
  */
@@ -53,7 +51,9 @@ class AWPCP_AdminContainerConfigurationTest extends AWPCP_ContainerConfiguration
      * @since 4.0.0
      */
     public function test_container_defines_listings_table_views_handler() {
-        Functions\when( 'awpcp_request' )->justReturn( (object) [] );
+        WP_Mock::userFunction( 'awpcp_request', [
+            'return' => (object) [],
+        ] );
 
         $this->test_class_definition(
             'ListingsTableViewsHandler',

@@ -3,8 +3,6 @@
  * @package AWPCP\Test\Plugin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Tests for URL Backwards Compatiblity Redirection Helper class.
  *
@@ -41,19 +39,23 @@ class AWPCP_URLBackwardsCompatiblityRedirectionHelperTest extends AWPCP_UnitTest
             ->with( 'show-listing-page' )
             ->andReturn( rand() + 1 );
 
-        Functions\when( 'get_page_uri' )->justReturn( $single_listing_page_uri );
+        WP_Mock::userFunction( 'get_page_uri', [
+            'return' => $single_listing_page_uri,
+        ] );
 
-        Functions\expect( 'get_permalink' )
-            ->once()
-            ->with( $listing )
-            ->andReturn( $listing_permalink );
+        WP_Mock::userFunction( 'get_permalink', [
+            'times' => 1,
+            'args' => [ $listing ],
+            'return' => $listing_permalink,
+        ] );
 
         $helper = new AWPCP_URL_Backwards_Compatibility_Redirection_Helper( null, null, null, $listings, null, $settings );
 
-        Functions\expect( 'wp_redirect' )
-            ->once()
-            ->with( $listing_permalink, 301 )
-            ->andReturn( false ); // To prevent exit() from being called.
+        WP_Mock::userFunction( 'wp_redirect', [
+            'times' => 1,
+            'args' => [ $listing_permalink, 301 ],
+            'return' => false, // To prevent exit() from being called.
+        ] );
 
         // Execution.
         $helper->maybe_redirect_from_old_listing_url( $query );

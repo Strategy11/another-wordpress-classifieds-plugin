@@ -3,9 +3,6 @@
  * @package AWPCP\Tests\Listings
  */
 
-use Brain\Monkey\Functions;
-use Brain\Monkey\Filters;
-
 /**
  * @since 4.0.0
  */
@@ -36,22 +33,35 @@ class AWPCP_ListingsContentRendererTest extends AWPCP_UnitTestCase {
 
         $content_with_percentage_character = 'Content including % character.';
 
-        Functions\when( 'awpcp' )->justReturn( $awpcp );
-        Functions\when( 'awpcp_maybe_add_thickbox' )->justReturn( null );
-        Functions\when( 'awpcp_maybe_enqueue_font_awesome_style' )->justReturn( null );
-        Functions\when( 'wp_create_nonce' )->justReturn( '' );
-        Functions\when( 'wp_enqueue_script' )->justReturn( null );
-        Functions\when( 'awpcp_get_listing_single_view_layout' )->justReturn( '' );
-        Functions\when( 'awpcp_do_placeholders' )->justReturn( '' );
+        WP_Mock::userFunction( 'awpcp', [
+            'return' => $awpcp,
+        ] );
+        WP_Mock::userFunction( 'awpcp_maybe_add_thickbox', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'awpcp_maybe_enqueue_font_awesome_style', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'wp_create_nonce', [
+            'return' => '',
+        ] );
+        WP_Mock::userFunction( 'wp_enqueue_script', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'awpcp_get_listing_single_view_layout', [
+            'return' => '',
+        ] );
+        WP_Mock::userFunction( 'awpcp_do_placeholders', [
+            'return' => '',
+        ] );
 
-        Filters\expectApplied( 'awpcp-content-before-listing-page' )
-            ->once()
-            ->andReturn( $content_with_percentage_character );
+        $this->markTestSkipped( 'Failing. Needs work' );
+
+        \WP_Mock::onFilter( 'awpcp-content-before-listing-page' )
+            ->reply( $content_with_percentage_character );
 
         $awpcp->js->shouldReceive( 'set' );
         $awpcp->js->shouldReceive( 'localize' );
-
-		$this->markTestSkipped( 'Failing. Needs work' );
 
         $output = $this->get_test_subject()->render_content_without_notices( $listing->post_content, $listing );
 

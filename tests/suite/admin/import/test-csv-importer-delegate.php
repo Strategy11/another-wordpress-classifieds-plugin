@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Admin\Import
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for CSV Importer Delegate.
  */
@@ -122,17 +120,25 @@ class AWPCP_Test_CSV_Importer_Delegate extends AWPCP_UnitTestCase {
             'ID' => wp_rand() + 1,
         ];
 
-        Functions\expect( 'get_user_by' )
-            ->with( 'login', $this->row_data['username'] )
-            ->andReturn( null );
+        WP_Mock::userFunction( 'get_user_by', [
+            'args'   => [ 'login', $this->row_data['username'] ],
+            'return' => null
+        ] );
 
-        Functions\expect( 'get_user_by' )
-            ->with( 'id', $user->ID )
-            ->andReturn( $user );
+        WP_Mock::userFunction( 'get_user_by', [
+            'args'   => [ 'id', $user->ID ],
+            'return' => $user
+        ] );
 
-        Functions\when( 'wp_generate_password' )->justReturn( 'a secure password' );
-        Functions\when( 'wp_create_user' )->justReturn( $user->ID );
-        Functions\when( 'is_wp_error' )->justReturn( false );
+        WP_Mock::userFunction( 'wp_generate_password', [
+            'return' => 'a secure password'
+        ] );
+        WP_Mock::userFunction( 'wp_create_user', [
+            'return' => $user->ID
+        ] );
+        WP_Mock::userFunction( 'is_wp_error', [
+            'return' => false
+        ] );
 
         return $this->get_test_subject()->import_row( $this->row_data );
     }

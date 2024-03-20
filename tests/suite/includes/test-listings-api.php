@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * @group core
  */
@@ -428,9 +426,10 @@ class AWPCP_TestListingsAPI extends AWPCP_UnitTestCase {
             ->with( $post->ID, '_awpcp_flagged', true )
             ->andReturn( wp_rand() + 1 );
 
-        Functions\expect( 'awpcp_send_listing_was_flagged_notification' )
-            ->once()
-            ->with( $post );
+        WP_Mock::userFunction( 'awpcp_send_listing_was_flagged_notification', [
+            'times' => 1,
+            'args'  => [ $post ],
+        ] );
 
         $listings_logic = $this->get_test_subject();
 
@@ -501,14 +500,23 @@ class AWPCP_TestListingsAPI extends AWPCP_UnitTestCase {
         $contact_name  = 'John Doe';
         $contact_email = 'john.doe@example.org';
 
-        Functions\when( 'awpcp_get_blog_name' )->justReturn( 'Test Blog' );
-        Functions\when( 'home_url' )->justReturn( 'https://example.org' );
-        Functions\when( 'awpcp' )->justReturn( $awpcp );
-        Functions\when( 'awpcp_get_email_verification_url' )->justReturn( 'https://example.org' );
+        WP_Mock::userFunction( 'awpcp_get_blog_name', [
+            'return' => 'Test Blog',
+        ] );
+        WP_Mock::userFunction( 'home_url', [
+            'return' => 'https://example.org',
+        ] );
+        WP_Mock::userFunction( 'awpcp', [
+            'return' => $awpcp,
+        ] );
+        WP_Mock::userFunction( 'awpcp_get_email_verification_url', [
+            'return' => 'https://example.org',
+        ] );
 
-        Functions\expect( 'awpcp_format_recipient_address' )
-            ->once()
-            ->with( $contact_email, $contact_name );
+        WP_Mock::userFunction( 'awpcp_format_recipient_address', [
+            'times'  => 1,
+            'args'   => [ $contact_email, $contact_name ],
+        ] );
 
         $this->listing_renderer->shouldReceive(
             [
@@ -549,13 +557,15 @@ class AWPCP_TestListingsAPI extends AWPCP_UnitTestCase {
                 ->andReturn( $expected_end_date );
         }
 
-        Functions\expect( 'current_time' )
-            ->with( 'mysql' )
-            ->andReturn( $now_date );
+        WP_Mock::userFunction( 'current_time', [
+            'with'   => [ 'mysql' ],
+            'return' => $now_date,
+        ] );
 
-        Functions\expect( 'current_time' )
-            ->with( 'timestamp' )
-            ->andReturn( $now_timestamp );
+        WP_Mock::userFunction( 'current_time', [
+            'with'   => [ 'timestamp' ],
+            'return' => $now_timestamp,
+        ] );
 
         $metadata = $this->get_test_subject()->calculate_start_and_end_dates_using_payment_term(
             $payment_term,
@@ -608,16 +618,24 @@ class AWPCP_TestListingsAPI extends AWPCP_UnitTestCase {
             'ID' => wp_rand(),
         ];
 
-        Functions\when( 'get_post_meta' )->justReturn( $stored );
-        Functions\when( 'current_time' )->justReturn( $expected['_awpcp_most_recent_start_date'] );
-        Functions\when( 'awpcp_getip' )->justReturn( $expected['_awpcp_poster_ip'] );
-        Functions\when( 'awpcp_current_user_is_moderator' )->justReturn( false );
+        WP_Mock::userFunction( 'get_post_meta', [
+            'return' => $stored,
+        ] );
+        WP_Mock::userFunction( 'current_time', [
+            'return' => $expected['_awpcp_most_recent_start_date'],
+        ] );
+        WP_Mock::userFunction( 'awpcp_getip', [
+            'return' => $expected['_awpcp_poster_ip'],
+        ] );
+        WP_Mock::userFunction( 'awpcp_current_user_is_moderator', [
+            'return' => false,
+        ] );
 
-        Functions\when( 'wp_parse_args' )->alias(
-            function( $a, $b ) {
+        WP_Mock::userFunction( 'wp_parse_args', [
+            'return' => function( $a, $b ) {
                 return array_merge( $b, $a );
-            }
-        );
+            },
+        ] );
 
         $this->redefine(
             'AWPCP_ListingsAPI::generate_access_key',
@@ -701,25 +719,30 @@ class AWPCP_TestListingsAPI extends AWPCP_UnitTestCase {
             ->with( $listing )
             ->andReturn( true );
 
-        Functions\expect( 'awpcp_send_listing_posted_notification_to_user' )
-            ->once()
-            ->with( $listing, $transaction, Mockery::any() );
+        WP_Mock::userFunction( 'awpcp_send_listing_posted_notification_to_user', [
+            'times' => 1,
+            'args'  => [ $listing, $transaction, Mockery::any() ],
+        ] );
 
-        Functions\expect( 'awpcp_send_listing_posted_notification_to_moderators' )
-            ->once()
-            ->with( $listing, $transaction, Mockery::any() );
+        WP_Mock::userFunction( 'awpcp_send_listing_posted_notification_to_moderators', [
+            'times' => 1,
+            'args'  => [ $listing, $transaction, Mockery::any() ],
+        ] );
 
-        Functions\expect( 'get_awpcp_option' )
-            ->with( 'adapprove' )
-            ->andReturn( $moderate_listings );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'args'   => [ 'adapprove' ],
+            'return' => $moderate_listings,
+        ] );
 
-        Functions\expect( 'get_awpcp_option' )
-            ->with( 'imagesapprove' )
-            ->andReturn( $moderate_images );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'args'   => [ 'imagesapprove' ],
+            'return' => $moderate_images,
+        ] );
 
-        Functions\expect( 'awpcp_send_listing_awaiting_approval_notification_to_moderators' )
-            ->once()
-            ->with( $listing, $moderate_listings, $moderate_images );
+        WP_Mock::userFunction( 'awpcp_send_listing_awaiting_approval_notification_to_moderators', [
+            'times' => 1,
+            'args'  => [ $listing, $moderate_listings, $moderate_images ],
+        ] );
 
         // Execution & Verification.
         $this->get_test_subject()->send_ad_posted_email_notifications(

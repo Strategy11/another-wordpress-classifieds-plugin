@@ -47,6 +47,7 @@ abstract class AWPCP_ContainerConfigurationTestCase extends AWPCP_UnitTestCase i
     /**
      * @param mixed $offset     The name of the offset to check.
      * @since 4.0.0
+     * @return bool
      */
     public function offsetExists( $offset ) {
         return true;

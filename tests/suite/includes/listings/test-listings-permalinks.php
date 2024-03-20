@@ -3,8 +3,6 @@
  * @package \AWPCP\Tests\Plugin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Test cases for Listings Permalinks class.
  *
@@ -26,10 +24,11 @@ class AWPCP_ListingPermalinksTest extends AWPCP_UnitTestCase {
             ->with( 'seofriendlyurls' )
             ->andReturn( false );
 
-        Functions\expect( 'get_option' )
-            ->once()
-            ->with( 'permalink_structure' )
-            ->andReturn( 'something' );
+        WP_Mock::userFunction( 'get_option', array(
+            'times' => 1,
+            'args' => array( 'permalink_structure' ),
+            'return' => 'something',
+        ) );
 
         $listings_permalinks = new AWPCP_ListingsPermalinks( $post_type, null, null, $settings );
 
@@ -51,10 +50,10 @@ class AWPCP_ListingPermalinksTest extends AWPCP_UnitTestCase {
     }
 
     public function test_get_post_type_permastruct_includes_location_placeholder() {
-        Functions\expect( 'get_option' )
-            ->zeroOrMoreTimes()
-            ->with( 'permalink_structure' )
-            ->andReturn( 'something' );
+        WP_Mock::userFunction( 'get_option', array(
+            'args'   => array( 'permalink_structure' ),
+            'return' => 'something',
+        ) );
 
         // Execution & Verification
         $this->check_placeholder_is_inclued_when_setting_is_enabled( 'include-country-in-listing-url' );

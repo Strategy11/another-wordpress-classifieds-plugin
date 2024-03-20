@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Functions
  */
 
-use Brain\Monkey\Functions;
-
 class AWPCP_Test_Listings_Functions extends AWPCP_UnitTestCase {
 
     public function test_display_listings() {
@@ -24,8 +22,12 @@ class AWPCP_Test_Listings_Functions extends AWPCP_UnitTestCase {
 
         $classifieds_bar->shouldReceive( 'render' )->andReturn( 'classifieds-bar' );
 
-        Functions\when( 'awpcp_classifieds_bar' )->justReturn( $classifieds_bar );
-        Functions\when( 'is_admin' )->justReturn( $is_admin );
+        WP_Mock::userFunction( 'awpcp_classifieds_bar', [
+            'return' => $classifieds_bar,
+        ] );
+        WP_Mock::userFunction( 'is_admin', [
+            'return' => $is_admin,
+        ] );
 
         // Execution.
         $output = awpcp_render_classifieds_bar();
@@ -54,8 +56,12 @@ class AWPCP_Test_Listings_Functions extends AWPCP_UnitTestCase {
             $query_parameter = $default;
         }
 
-        Functions\when( 'awpcp_request_param' )->justReturn( $query_parameter );
-        Functions\when( 'get_awpcp_option' )->justReturn( $default );
+        WP_Mock::userFunction( 'awpcp_request_param', [
+            'return' => $query_parameter,
+        ] );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'return' => $default,
+        ] );
 
         $this->assertEquals( $results_per_page, awpcp_get_results_per_page( $query_vars ) );
     }

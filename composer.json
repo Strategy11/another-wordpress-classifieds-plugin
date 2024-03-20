@@ -21,7 +21,6 @@
     "require-dev": {
         "yoast/phpunit-polyfills": "^1.0",
         "antecedent/patchwork": "^2.1.21",
-        "brain/monkey": "dev-dev",
         "dealerdirect/phpcodesniffer-composer-installer": "0.*",
         "phake/phake": "^4.0",
         "phpcompatibility/php-compatibility": "*",

@@ -3,12 +3,22 @@
  * @package AWPCP\Tests\Plugin\Admin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for Listing Fields metabox.
  */
 class AWPCP_ListingFieldsMetaboxTest extends AWPCP_UnitTestCase {
+
+    private $post;
+    private $post_type;
+    private $listings_logic;
+    private $form_fields_data;
+    private $form_fields_validator;
+    private $form_fields;
+    private $date_form_fields;
+    private $media_center;
+    private $template_renderer;
+    private $wordpress;
+    private $listing_authorization;
 
     /**
      * @since 4.0.0
@@ -78,17 +88,20 @@ class AWPCP_ListingFieldsMetaboxTest extends AWPCP_UnitTestCase {
         $this->template_renderer->shouldReceive( 'render_template' )
             ->andReturn( $output );
 
-        Functions\expect( 'wp_create_nonce' )
-            ->with( 'save-listing-fields-metabox' )
-            ->andReturn( 'nonce' );
+        WP_Mock::userFunction( 'wp_create_nonce', [
+            'args'   => [ 'save-listing-fields-metabox' ],
+            'return' => 'nonce',
+        ] );
 
-        Functions\expect( 'get_post_meta' )
-            ->with( $this->post->ID, '__awpcp_admin_editor_validation_errors', true )
-            ->andReturn( [] );
+        WP_Mock::userFunction( 'get_post_meta', [
+            'args'   => [ $this->post->ID, '__awpcp_admin_editor_validation_errors', true ],
+            'return' => [],
+        ] );
 
-        Functions\expect( 'get_post_meta' )
-            ->with( $this->post->ID, '__awpcp_admin_editor_save_errors', true )
-            ->andReturn( [] );
+        WP_Mock::userFunction( 'get_post_meta', [
+            'args'   => [ $this->post->ID, '__awpcp_admin_editor_save_errors', true ],
+            'return' => [],
+        ] );
 
         // Verification.
         $this->expectOutputString( $output );
@@ -124,12 +137,17 @@ class AWPCP_ListingFieldsMetaboxTest extends AWPCP_UnitTestCase {
     public function test_save( $successful_save, $data, $errors ) {
         $_POST['awpcp_listing_fields_nonce'] = 'nonce';
 
-        Functions\when( 'sanitize_key' )->returnArg();
+        WP_Mock::userFunction( 'sanitize_key', [
+            'return' => function( $arg ) {
+                return $arg;
+            },
+        ] );
 
-        Functions\expect( 'wp_verify_nonce' )
-            ->once()
-            ->with( 'nonce', 'save-listing-fields-metabox' )
-            ->andReturn( true );
+        WP_Mock::userFunction( 'wp_verify_nonce', [
+            'times'  => 1,
+            'args'   => [ 'nonce', 'save-listing-fields-metabox' ],
+            'return' => true,
+        ] );
 
         $this->form_fields_data->shouldReceive( 'get_posted_data' )
             ->andReturn( $data );

@@ -3,12 +3,18 @@
  * @package AWPCP\Tests\Plugin
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for Uninstaller.
  */
 class AWPCP_UninstallerTest extends AWPCP_UnitTestCase {
+
+    private $listings_logic;
+    private $listings_collection;
+    private $categories_logic;
+    private $categories_collection;
+    private $roles_and_capabilities;
+    private $settings;
+    private $db;
 
     /**
      * @since 4.0.0
@@ -38,13 +44,27 @@ class AWPCP_UninstallerTest extends AWPCP_UnitTestCase {
         $this->settings               = Mockery::mock( 'AWPCP_SettingsAPI' );
         $this->db                     = Mockery::mock( 'wpdb' );
 
-        Functions\when( 'awpcp_get_plugin_pages_ids' )->justReturn( [] );
-        Functions\when( 'awpcp_setup_uploads_dir' )->justReturn( [ $uploads_dir, null ] );
-        Functions\when( 'esc_sql' )->justReturn( '' );
-        Functions\when( 'delete_option' )->justReturn( true );
-        Functions\when( 'wp_clear_scheduled_hook' )->justReturn( true );
-        Functions\when( 'get_option' )->justReturn( [] );
-        Functions\when( 'deactivate_plugins' )->justReturn( null );
+        WP_Mock::userFunction( 'awpcp_get_plugin_pages_ids', [
+            'return' => [],
+        ] );
+        WP_Mock::userFunction( 'awpcp_setup_uploads_dir', [
+            'return' => [ $uploads_dir, null ],
+        ] );
+        WP_Mock::userFunction( 'esc_sql', [
+            'return' => '',
+        ] );
+        WP_Mock::userFunction( 'delete_option', [
+            'return' => true,
+        ] );
+        WP_Mock::userFunction( 'wp_clear_scheduled_hook', [
+            'return' => true,
+        ] );
+        WP_Mock::userFunction( 'get_option', [
+            'return' => [],
+        ] );
+        WP_Mock::userFunction( 'deactivate_plugins', [
+            'return' => null,
+        ] );
 
         $this->categories_collection->shouldReceive( 'find_categories' )
             ->andReturn( $categories );

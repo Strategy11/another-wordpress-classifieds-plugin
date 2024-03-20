@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Admin
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for List Table Actions Handler class.
  */
@@ -37,13 +35,14 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         $_REQUEST['awpcp-action'] = 'custom-action';
         $_REQUEST['awpcp-result'] = 'success~1';
 
-        Functions\expect( 'remove_query_arg' )
-            ->zeroOrMoreTimes()
-            ->with( Mockery::any(), $return_uri );
+        WP_Mock::userFunction( 'remove_query_arg', [
+            'args' => [ Mockery::any(), $return_uri ],
+        ] );
 
-        Functions\expect( 'awpcp_current_user_is_moderator' )
-            ->once()
-            ->andReturn( true );
+        WP_Mock::userFunction( 'awpcp_current_user_is_moderator', [
+            'times'  => 1,
+            'return' => true,
+        ] );
 
         $actions = array(
             'custom-action' => $action_handler,
@@ -91,12 +90,15 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         );
         $current_url = 'https://example.org';
 
-        Functions\expect( 'add_query_arg' )
-            ->once()
-            ->with( [] )
-            ->andReturn( $current_url );
-        Functions\when( 'wp_nonce_url' )
-            ->justReturn( '');
+        WP_Mock::userFunction( 'add_query_arg', [
+            'times'  => 1,
+            'args'   => [],
+            'return' => $current_url,
+        ] );
+
+        WP_Mock::userFunction( 'wp_nonce_url', [
+            'return' => '',
+        ] );
         $table_actions = new AWPCP_ListTableActionsHandler( $actions, null );
 
         $actions = $table_actions->row_actions_links( array(), $post );
@@ -136,12 +138,12 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
             'custom-action' => $action_handler,
         );
 
-        Functions\when( 'add_query_arg' )->alias(
-            function( $params, $url ) use ( &$query_params ) {
+        WP_Mock::userFunction( 'add_query_arg', [
+            'return' => function( $params, $url ) use ( &$query_params ) {
                 $query_params = $params;
                 return $url;
-            }
-        );
+            },
+        ] );
 
         $actions_handler = new AWPCP_ListTableActionsHandler(
             $actions,

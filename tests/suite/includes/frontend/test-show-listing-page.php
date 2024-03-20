@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Frontend
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * @group core
  */
@@ -44,7 +42,9 @@ class AWPCP_ShowListingPageTest extends AWPCP_UnitTestCase {
             ->once()
             ->andReturn( 'some-content' );
 
-        Functions\when( 'get_awpcp_option' )->justReturn( true );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'return' => true,
+        ] );
 
         $content = $this->get_test_subject()->dispatch();
 

@@ -8,6 +8,8 @@
  */
 abstract class AWPCP_ListingsTableSearchModeTestCase extends AWPCP_UnitTestCase {
 
+    protected $query;
+
     /**
      * @since 4.0.0
      */

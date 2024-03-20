@@ -5,8 +5,6 @@
  * @package AWPCP\Tests\Frontend
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * @since 4.0.1
  */
@@ -43,17 +41,21 @@ class AWPCP_Image_Placeholders_Test extends AWPCP_UnitTestCase {
         $this->attachments_collection->shouldReceive( 'count_attachments_of_type' )
             ->andReturn( 0 );
 
-        Functions\expect( 'get_awpcp_option' )
-            ->once()
-            ->with( 'displayadthumbwidth' )
-            ->andReturn( wp_rand() );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'times' => 1,
+            'args'  => 'displayadthumbwidth',
+            'return' => wp_rand(),
+        ] );
 
-        Functions\expect( 'get_awpcp_option' )
-            ->once()
-            ->with( 'hide-noimage-placeholder', 1 )
-            ->andReturn( true );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'times' => 1,
+            'args'  => [ 'hide-noimage-placeholder', 1 ],
+            'return' => true,
+        ] );
 
-        Functions\when( 'awpcp_are_images_allowed' )->justReturn( true );
+        WP_Mock::userFunction( 'awpcp_are_images_allowed', [
+            'return' => true,
+        ] );
 
         $output = $this->get_test_subject()->do_image_placeholders(
             $listing,

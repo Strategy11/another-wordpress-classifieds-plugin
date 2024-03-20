@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Frontend
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for Listing Form Steps Component class.
  */

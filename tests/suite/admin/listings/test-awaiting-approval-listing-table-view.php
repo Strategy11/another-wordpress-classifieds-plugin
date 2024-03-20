@@ -6,8 +6,6 @@
 /**
  * Unit tests for Awaiting Approval listings table view.
  */
-use Brain\Monkey\Functions;
-
 class AWPCP_AwaitingApprovalListingTableViewTest extends AWPCP_UnitTestCase {
 
     /**
