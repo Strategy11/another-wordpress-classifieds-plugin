@@ -12,6 +12,8 @@ class AWPCP_Import_Listings_Ajax_Handler extends AWPCP_AjaxHandler {
 
     private $import_sessions_manager;
 
+    protected $csv_importer_factory;
+
     public function __construct( $import_sessions_manager, $csv_importer_factory, $response ) {
         parent::__construct( $response );
 
@@ -20,6 +22,8 @@ class AWPCP_Import_Listings_Ajax_Handler extends AWPCP_AjaxHandler {
     }
 
     public function ajax() {
+        awpcp_check_admin_ajax();
+
         $import_session = $this->import_sessions_manager->get_current_import_session();
 
         $csv_importer = $this->csv_importer_factory->create_importer( $import_session );

@@ -23,6 +23,7 @@ class AWPCP_Meta {
     private $request = null;
 
     private $doing_opengraph = false;
+    public $doin_description_meta_tag = false;
 
     public function __construct( $listings_collection, $categories_collection, $title_builder, $meta_tags_genertor, $query, $request ) {
         $this->listings_collection   = $listings_collection;

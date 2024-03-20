@@ -5,6 +5,22 @@
  */
 class AWPCP_Email {
 
+    public $headers;
+
+    public $subject;
+
+    public $from;
+
+    public $to;
+
+    public $cc;
+
+    public $body;
+
+    public $plain;
+
+    public $html;
+
     public function __construct() {
         $this->headers = array();
 

@@ -282,7 +282,11 @@ function awpcp_replace_placeholders( $placeholders, $listing, $content, $context
         $callback    = $available_placeholders[ $placeholder ]['callback'];
 
         if ( is_callable( $callback ) ) {
-            $replacement                      = call_user_func( $callback, $listing, $placeholder, $context );
+            $replacement = call_user_func( $callback, $listing, $placeholder, $context );
+            if ( is_null( $replacement ) ) {
+                $replacement = '';
+            }
+
             $content                          = str_replace( $match, $replacement, $content );
             $processed_placeholders[ $match ] = true;
         }

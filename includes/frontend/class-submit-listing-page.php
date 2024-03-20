@@ -34,6 +34,16 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     private $listing_renderer;
 
     /**
+     * @var AWPCP_ListingsAPI
+     */
+    protected $listings_logic;
+
+    /**
+     * @var AWPCP_ListingsCollection
+     */
+    protected $listings;
+
+    /**
      * @var ListingAuthorization
      */
     private $authorization;
@@ -42,6 +52,11 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
      * @var AWPCP_PaymentsAPI
      */
     private $payments;
+
+    /**
+     * @var AWPCP_Settings
+     */
+    protected $settings;
 
     /**
      * @since 4.0.0

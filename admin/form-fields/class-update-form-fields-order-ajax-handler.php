@@ -43,6 +43,8 @@ class AWPCP_UpdateFormFieldsOrderAjaxHandler extends AWPCP_AjaxHandler {
      * Handles ajax request.
      */
     public function ajax() {
+        awpcp_check_admin_ajax();
+
         $fields       = $this->form_fields->get_listing_details_form_fields();
         $fields_order = array();
 

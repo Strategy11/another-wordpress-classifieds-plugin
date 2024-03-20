@@ -1,9 +1,9 @@
-/*global alert*/
+/*global alert, AWPCPAjaxOptions*/
 /*jshint indent:4*/
 
 if (typeof jQuery !== 'undefined') {
 
-    (function($, undefined) {
+    (function($) {
 
         $.WordPressAjaxAdmin = function(element, options) {
             var self = this, block = self.block = $(element);
@@ -80,8 +80,9 @@ if (typeof jQuery !== 'undefined') {
                 first = tbody.find( 'tr:first' );
 
                 $.post(options.ajaxurl, $.extend({}, options.data, {
-                    'action': options.actions.add,
-                    'columns': tbody.closest('table').find('thead tr').first().children().length
+                    action: options.actions.add,
+                    nonce: AWPCPAjaxOptions.nonce,
+                    columns: tbody.closest('table').find('thead tr').first().children().length
                 }), function(response) {
                     if ( first.length ) {
                         inline = $(response.html).insertBefore( first );
@@ -103,7 +104,10 @@ if (typeof jQuery !== 'undefined') {
                         inline.find( '.awpcp-inline-form-error' ).remove();
 
                         inline.find('form').ajaxSubmit({
-                            data: {'save': true},
+                            data: {
+                                save: true,
+                                nonce: AWPCPAjaxOptions.nonce
+                            },
                             dataType: 'json',
                             success: function(response) {
                                 if ( response.status === 'success' || response.status === 'ok' ) {
@@ -146,9 +150,10 @@ if (typeof jQuery !== 'undefined') {
                     row = this.row, inline;
 
                 $.post(options.ajaxurl, $.extend({}, options.data, {
-                    'id': row.data('id'),
-                    'action': options.actions.edit,
-                    'columns': row.find('th, td').length
+                    id: row.data('id'),
+                    action: options.actions.edit,
+                    nonce: AWPCPAjaxOptions.nonce,
+                    columns: row.find('th, td').length
                 }), function(response) {
                     inline = $(response.html).insertAfter(row);
 
@@ -164,7 +169,9 @@ if (typeof jQuery !== 'undefined') {
                         inline.find('div.awpcp-ajax-error').remove();
 
                         inline.find('form').ajaxSubmit({
-                            data: $.extend({}, options.data, {save: true}),
+                            data: $.extend(
+                                {}, options.data, {save: true, nonce: AWPCPAjaxOptions.nonce}
+                            ),
                             dataType: 'json',
                             success: function(response) {
                                 if ( response.status === 'success' || response.status === 'ok' ) {
@@ -203,6 +210,7 @@ if (typeof jQuery !== 'undefined') {
 
                 $.post(options.ajaxurl, {
                     action: options.actions.move,
+                    nonce: AWPCPAjaxOptions.nonce,
                     target: parent.attr('class'),
                     id: row.data('id')
                 }, function(response) {
@@ -225,9 +233,10 @@ if (typeof jQuery !== 'undefined') {
                     row = this.row, inline;
 
                 $.post(options.ajaxurl, $.extend({}, options.data, {
-                    'id': row.data('id'),
-                    'action': options.actions.remove,
-                    'columns': row.find('th, td').length
+                    id: row.data('id'),
+                    action: options.actions.remove,
+                    nonce: AWPCPAjaxOptions.nonce,
+                    columns: row.find('th, td').length
                 }), function(response) {
                     inline = $(response.html).insertAfter(row);
                     inline.find('a.cancel').click(function() {
@@ -246,7 +255,11 @@ if (typeof jQuery !== 'undefined') {
                         loadingIcon.show().addClass( 'is-visible-inline-block' );
 
                         form.ajaxSubmit({
-                            data: { 'remove': true, 'option': option },
+                            data: {
+                                remove: true,
+                                option: option,
+                                nonce: AWPCPAjaxOptions.nonce
+                            },
                             dataType: 'json',
                             success: function(response) {
                                 var link = null, label, errorMessage;
@@ -310,8 +323,9 @@ if (typeof jQuery !== 'undefined') {
             default: function(action) {
                 var self = this, options = self.options;
                 $.post(options.ajaxurl, $.extend({}, options.data, {
-                    'action': options.actions[action],
-                    'id': self.row.data('id')
+                    action: options.actions[action],
+                    nonce: AWPCPAjaxOptions.nonce,
+                    id: self.row.data('id')
                 }), function(response) {
                     if (response.status == 'success' || response.status == 'ok') {
                         if ($.isFunction(options.onDefaultActionSuccess)) {

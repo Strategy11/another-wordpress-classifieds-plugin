@@ -13,6 +13,8 @@ class AWPCP_PaymentsAPI {
 
     private $cache = array();
 
+    public $current_transaction = null;
+
     public function __construct( /*AWPCP_Request*/ $request = null ) {
         if ( ! is_null( $request ) ) {
             $this->request = $request;
@@ -316,10 +318,6 @@ class AWPCP_PaymentsAPI {
     }
 
     private function get_transaction_with_method( $method_name ) {
-        if ( ! isset( $this->current_transaction ) ) {
-            $this->current_transaction = null;
-        }
-
         if ( is_null( $this->current_transaction ) ) {
             $transaction_id = awpcp_get_var( array( 'param' => 'transaction_id' ) );
             $this->current_transaction = call_user_func( array( 'AWPCP_Payment_Transaction', $method_name ), $transaction_id );
@@ -450,7 +448,7 @@ class AWPCP_PaymentsAPI {
         }
 
         return $transaction->add_item(
-            "{$payment_term->type}-{$payment_term->id}-${payment_type}",
+            "{$payment_term->type}-{$payment_term->id}-{$payment_type}",
             $payment_term->get_name(),
             $payment_term->description,
             $payment_type,

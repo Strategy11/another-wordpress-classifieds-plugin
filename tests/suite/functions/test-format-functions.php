@@ -21,7 +21,7 @@ class AWPCP_Test_Formatting_Functions extends AWPCP_UnitTestCase {
 
         $formatted = awpcp_format_money( 1234.56 );
 
-        $this->assertEquals( "\$${nbsp}1,234.56", $formatted );
+        $this->assertEquals( "\${$nbsp}1,234.56", $formatted );
     }
 
     public function test_format_money() {
@@ -33,7 +33,7 @@ class AWPCP_Test_Formatting_Functions extends AWPCP_UnitTestCase {
 
         $formatted = awpcp_format_money( 1234.56 );
 
-        $this->assertEquals( "\$${nbsp}1${nbsp}234.56", $formatted );
+        $this->assertEquals( "\${$nbsp}1{$nbsp}234.56", $formatted );
     }
 
     public function test_get_digits_from_string() {

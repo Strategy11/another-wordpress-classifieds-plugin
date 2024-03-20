@@ -1,4 +1,4 @@
-/* globals ajaxurl */
+/* globals ajaxurl, AWPCPAjaxOptions */
 if ( typeof jQuery !== 'undefined' ) {
     (function( $ ) {
         $( '.awpcp-test-ssl-client-button' ).click( function( event ) {
@@ -8,7 +8,8 @@ if ( typeof jQuery !== 'undefined' ) {
 
             options = {
                 data: {
-                    action: 'awpcp-test-ssl-client'
+                    action: 'awpcp-test-ssl-client',
+                    nonce: AWPCPAjaxOptions.nonce
                 }
             };
 

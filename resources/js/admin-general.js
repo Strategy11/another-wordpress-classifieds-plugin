@@ -1,6 +1,8 @@
-if (typeof jQuery !== 'undefined') {
+/* global AWPCPAjaxOptions */
 
-    (function($, undefined) {
+if (typeof jQuery !== 'undefined' && typeof jQuery.AWPCP !== 'undefined' ) {
+
+    (function($) {
 
         $.AWPCP.UpgradeForm = function(element) {
             var self = this;
@@ -32,7 +34,8 @@ if (typeof jQuery !== 'undefined') {
                 var self = this;
 
                 $.getJSON($.AWPCP.get('ajaxurl'), {
-                    action: self.action
+                    action: self.action,
+                    nonce: AWPCPAjaxOptions.nonce
                 }, function(response) {
                     if (response) {
                         self.total = self.total || response.total;
@@ -81,7 +84,7 @@ if (typeof jQuery !== 'undefined') {
 
     })(jQuery);
 
-    (function($, undefined) {
+    (function($) {
 
         $.AWPCP.StickyNotice = function(element) {
             var self = this;
@@ -101,7 +104,8 @@ if (typeof jQuery !== 'undefined') {
                     url: $.AWPCP.get('ajaxurl'),
                     type: 'POST',
                     data: {
-                        'action': button.attr('data-action')
+                        action: button.attr('data-action'),
+                        nonce: AWPCPAjaxOptions.nonce
                     },
                     success: function() {
                         self.element.fadeOut(function() {
@@ -114,7 +118,7 @@ if (typeof jQuery !== 'undefined') {
 
     })(jQuery);
 
-    (function($, undefined) {
+    (function($) {
 
         $.AWPCP.CategoriesChecklist = function(element) {
             var self = this, fn = $.fn.prop ? 'prop' : 'attr';
@@ -131,7 +135,7 @@ if (typeof jQuery !== 'undefined') {
 
     })(jQuery);
 
-    (function($, undefined) {
+    (function($) {
 
         $(function() {
             $('#widget-modification-notice, #quick-start-guide-notice').each(function() {
@@ -145,26 +149,27 @@ if (typeof jQuery !== 'undefined') {
 
     })(jQuery);
 
-    (function($, undefined) {
+    (function($) {
         $(function() {
             $( '.awpcp-notice.is-dismissible' ).on( 'click', '.notice-dismiss', function() {
                 var $notice = $( this ).closest( '.awpcp-notice' );
 
                 $.post( ajaxurl, {
                     action: 'awpcp-dismiss-notice',
+                    nonce: AWPCPAjaxOptions.nonce,
                     notice: $notice.attr( 'id' ),
                 } );
             } );
 
             $( '.awpcp-notice.is-dismissible' ).on( 'click', '[data-action]', function( event ) {
                 event.preventDefault();
-
                 var $button = $( this );
-                var $notice = $button.closest( '.awpcp-notice' );
-
                 $.post( ajaxurl, $.extend(
                     JSON.parse( $button.attr( 'data-action-params' ) ),
-                    { action: $button.attr( 'data-action' ) }
+                    {
+                        action: $button.attr( 'data-action' ),
+                        nonce: AWPCPAjaxOptions.nonce
+                    }
                 ) );
 
                 $( '.awpcp-notice.is-dismissible .notice-dismiss' ).click();

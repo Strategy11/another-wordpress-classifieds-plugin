@@ -30,6 +30,7 @@ require_once AWPCP_DIR . '/functions.php';
 require_once AWPCP_DIR . '/includes/functions/assets.php';
 require_once AWPCP_DIR . '/includes/functions/listings.php';
 require_once AWPCP_DIR . '/includes/functions/routes.php';
+require_once AWPCP_DIR . '/includes/functions/format.php';
 
 /**
  * TODO: We probably won't need this if we stop using WordPress testing framework.

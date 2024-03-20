@@ -20,9 +20,6 @@ module.exports = function( grunt ) {
 			this.registered[ id ] = config;
 
 			config.pluginPath = config.folder + '/';
-			if ( id === 'awpcp' ) {
-				config.pluginPath = '';
-			}
 
 			grunt.config.set( 'path.' + id, config.pluginPath );
 			grunt.wpbdp.registerSetVersionTasks( config );
@@ -33,7 +30,6 @@ module.exports = function( grunt ) {
 			}
 
 			if ( config.concat ) {
-				console.log('register js');
 				grunt.wpbdp.registerJavaScriptTasks( config );
 			}
 
@@ -210,39 +206,45 @@ module.exports = function( grunt ) {
 		},
 
 		registerLessTask: function( config ) {
-			var path = '<%= path.' + config.name + ' %>';
+			var folder = '<%= path.' + config.name + ' %>';
 
 			grunt.config.set( 'less.' + config.slug, config.less );
 			grunt.config.set( 'watch.' + config.name + '-css', {
-				files: [ path + '/less/**/*.less' ],
+				files: [ folder + '/less/**/*.less' ],
 				tasks: [ 'less:' + config.slug ]
 			} );
 		},
 
 		registerJavaScriptTasks: function( config ) {
-			var path = '<%= path.' + config.name + ' %>', targetFiles;
+			const basedir = config.pluginPath
 
 			grunt.config.set( 'concat.' + config.slug, config.concat );
 
 			grunt.config.set( 'watch.' + config.name + '-js', {
-				files: [path + '/js/**/*.js', '!' + path + '/js/**/*.src.js', '!' + path + '/js/**/*.min.js'],
+				files: [
+					path.join(basedir, '**/*.js'),
+					'!' + path.join(basedir, 'vendors/**/*'),
+					'!' + path.join(basedir, '**/*.src.js'),
+					'!' + path.join(basedir, '**/*.min.js'),
+					'!' + path.join(basedir, 'assets/vendor/**/*')
+				],
 				tasks: ['concat:' + config.slug, 'uglify:' + config.slug]
 			} );
 
-			targetFiles = grunt.task.normalizeMultiTaskFiles( config.concat );
+			let targetFiles = grunt.task.normalizeMultiTaskFiles( config.concat );
 
 			grunt.wpbdp.registerJSHintTask( config, targetFiles );
 			grunt.wpbdp.registerUglifyTask( config, targetFiles );
 		},
 
 		registerJSHintTask: function( config, targetFiles ) {
-			var path = '<%= path.' + config.name + ' %>', filesToCheck;
+			const folder = '<%= path.' + config.name + ' %>';
 
-			filesToCheck = _.flatten( _.map( targetFiles, function( value ) {
+			let filesToCheck = _.flatten( _.map( targetFiles, function( value ) {
 				return value.orig.src;
 			} ) );
 
-			grunt.config.set( 'jshint.' + config.slug, filesToCheck.concat( ['!' + path + '/js/**/*.min.js'] ) );
+			grunt.config.set( 'jshint.' + config.slug, filesToCheck.concat( ['!' + folder + '/js/**/*.min.js'] ) );
 		},
 
 		registerUglifyTask: function( config, targetFiles ) {
@@ -344,7 +346,7 @@ module.exports = function( grunt ) {
 	grunt.loadTasks( '../awpcp-zip-code-search/grunt' );
 	*/
 
-	grunt.registerTask('default', ['concat', 'jshint', 'uglify', 'less']);
+	grunt.registerTask('default', ['watch', 'concat', 'jshint', 'uglify', 'less']);
 
 	grunt.registerTask('i18n', '', function(t) {
 		grunt.task.run('makepot:' + t);

@@ -1,4 +1,4 @@
-/*global AWPCP, ajaxurl*/
+/*global AWPCP, ajaxurl, AWPCPAjaxOptions */
 AWPCP.run( 'awpcp/listing-admin-page', [
     'jquery'
 ], function( $, settings ) {
@@ -48,6 +48,7 @@ AWPCP.run( 'awpcp/listing-admin-page', [
                 data: {
                     selected: ui.item.attr( 'id' ),
                     action: 'awpcp-update-form-fields-order',
+                    nonce: AWPCPAjaxOptions.nonce,
                     'awpcp-form-fields-order': $( event.target ).sortable( 'toArray' )
                 },
                 dataType: 'json',

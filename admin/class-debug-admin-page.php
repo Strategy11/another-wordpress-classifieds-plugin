@@ -36,6 +36,11 @@ class AWPCP_DebugAdminPage {
     private $settings_manager;
 
     /**
+     * @var TemplateRenderer
+     */
+    protected $template_renderer;
+
+    /**
      * @var wpdb
      */
     private $db;

@@ -6,6 +6,8 @@ function awpcp_ajax_request_handler( $routes ) {
 
 class AWPCP_Ajax_Request_Handler {
 
+    protected $routes;
+
     public function __construct( $routes ) {
         $this->routes = $routes;
     }

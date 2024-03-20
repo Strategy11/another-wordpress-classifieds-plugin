@@ -3,6 +3,20 @@
 class AWPCP_CreditPlan {
     private static $defaults;
 
+    public $id;
+
+    public $name;
+
+    public $description;
+
+    public $credits;
+
+    public $price;
+
+    public $created;
+
+    public $updated;
+
     public function __construct($data=array()) {
         if (!is_array(self::$defaults)) {
             self::$defaults = array(

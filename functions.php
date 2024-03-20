@@ -520,6 +520,18 @@ function awpcp_user_is_admin($id) {
     return awpcp_roles_and_capabilities()->user_is_administrator( $id );
 }
 
+/**
+ * Check the nonce and user role.
+ *
+ * @since 4.3.2
+ */
+function awpcp_check_admin_ajax() {
+    check_ajax_referer( 'awpcp_ajax', 'nonce' );
+    if ( ! awpcp_current_user_is_admin() ) {
+        wp_die( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+    }
+}
+
 function awpcp_get_grid_item_css_class($classes, $pos, $columns, $rows) {
 	if ($pos < $columns)
 		$classes[] = 'first-row';

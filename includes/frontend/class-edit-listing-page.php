@@ -19,6 +19,11 @@ class AWPCP_EditListingPage extends AWPCP_Page {
     private $ad;
 
     /**
+     * @var AWPCP_SubmitLisitngSectionsGenerator
+     */
+    private $sections_generator;
+
+    /**
      * @var ListingRenderer
      */
     private $listing_renderer;
@@ -29,6 +34,11 @@ class AWPCP_EditListingPage extends AWPCP_Page {
     private $listings_logic;
 
     /**
+     * @var AWPCP_ListingsCollection
+     */
+    private $listings;
+
+    /**
      * @var Settings
      */
     private $settings;
@@ -37,6 +47,11 @@ class AWPCP_EditListingPage extends AWPCP_Page {
      * @var ListingAuthorization
      */
     private $authorization;
+
+    /**
+     * @var AWPCP_Request
+     */
+    private $request;
 
     /**
      * @since 4.0.0

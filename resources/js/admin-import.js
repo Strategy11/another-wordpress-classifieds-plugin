@@ -1,4 +1,4 @@
-/*global AWPCP */
+/*global AWPCP, AWPCPAjaxOptions */
 
 AWPCP.run('awpcp/admin-import', [
     'jquery',
@@ -102,7 +102,10 @@ function( $, DatepickerField, settings, UserSelector ) {
                         return;
                     }
 
-                    $.getJSON( settings.get( 'ajaxurl' ), { action: 'awpcp-import-listings' } )
+                    $.getJSON( settings.get( 'ajaxurl' ), {
+                        action: 'awpcp-import-listings',
+                        nonce: AWPCPAjaxOptions.nonce
+                    } )
                         .done( $.proxy( this._handleAjaxResponse, this ) )
                         .fail( $.proxy( this._handleFailedRequest, this ) );
                 },

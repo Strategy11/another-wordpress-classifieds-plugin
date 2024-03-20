@@ -1,7 +1,7 @@
-/*global ajaxurl:true */
+/*global ajaxurl:true, AWPCPAjaxOptions */
 
 if (jQuery !== undefined) {
-    (function($, undefined) {
+    (function($) {
 
         /* handlers for Fees page */
 
@@ -23,6 +23,7 @@ if (jQuery !== undefined) {
 
                 $.post(ajaxurl, {
                     action: 'awpcp-users-' + action,
+                    nonce: AWPCPAjaxOptions.nonce,
                     user: parseInt(link.closest('tr').attr('id').replace('user-', ''), 10),
                     columns: link.closest('table').find('thead th').length
                 }, function(response) {
@@ -38,7 +39,8 @@ if (jQuery !== undefined) {
                         inline.find('div.error').remove();
                         inline.find('form').ajaxSubmit({
                             data: {
-                                'save': true
+                                save: true,
+                                nonce: AWPCPAjaxOptions.nonce
                             },
                             dataType: 'json',
                             success: function(response) {

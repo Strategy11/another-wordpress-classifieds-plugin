@@ -20,6 +20,7 @@ class AWPCP_ListingsViewCounter extends AWPCP_AjaxHandler {
     }
 
     public function ajax() {
+        // No nonce check for front-end.
         if ( ! $this->request->is_bot() ) {
             $listing_id = $this->request->post( 'listing_id' );
             $listing    = get_post( $listing_id );
