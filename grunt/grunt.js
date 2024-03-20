@@ -80,8 +80,6 @@ module.exports = function(grunt) {
 		less: {
 			files: {
 				'<%= path.awpcp %>resources/css/awpcpstyle.css': '<%= path.awpcp %>resources/less/frontend.less',
-				'<%= path.awpcp %>resources/css/awpcpstyle-ie-6.css': '<%= path.awpcp %>resources/less/frontend-ie6.less',
-				'<%= path.awpcp %>resources/css/awpcpstyle-lte-ie-7.css': '<%= path.awpcp %>resources/less/frontend-lte-ie-7.less',
 				'<%= path.awpcp %>resources/css/awpcp-admin.css': '<%= path.awpcp %>resources/less/admin.less',
 				'<%= path.awpcp %>resources/css/awpcp-admin-menu.css': '<%= path.awpcp %>resources/less/admin-menu.less',
 			}
