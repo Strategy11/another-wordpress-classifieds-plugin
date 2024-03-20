@@ -111,11 +111,7 @@ class AWPCP_SEOFrameworkIntegration {
 	 * @since 4.1.0
 	 */
 	public function configure_canonical_url() {
-		add_filter(
-			'the_seo_framework_meta_render_data',
-			[ $this, 'canonical_url' ],
-			'canonical'
-		);
+		add_filter( 'the_seo_framework_rel_canonical_output', [ $this, 'canonical_url' ] );
 	}
 
 	/**
