@@ -523,7 +523,7 @@ function awpcp_user_is_admin($id) {
 /**
  * Check the nonce and user role.
  *
- * @since x.x
+ * @since 4.3.2
  */
 function awpcp_check_admin_ajax() {
     check_ajax_referer( 'awpcp_ajax', 'nonce' );
