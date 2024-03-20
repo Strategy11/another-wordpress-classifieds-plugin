@@ -3,13 +3,15 @@
  * @package AWPCP\Tests\Plugin\FormFields
  */
 
-use Brain\Monkey\Filters;
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for Form Fields Data Validator.
  */
 class AWPCP_FormFieldsDataValidatorTest extends AWPCP_UnitTestCase {
+
+    private $authorization;
+    private $roles;
+    private $settings;
+    private $data;
 
     /**
      * @since 4.0.0
@@ -33,7 +35,9 @@ class AWPCP_FormFieldsDataValidatorTest extends AWPCP_UnitTestCase {
             'terms_of_service' => 'accepted',
         );
 
-        Functions\when( 'awpcp_is_email_address_allowed' )->justReturn( true );
+        WP_Mock::userFunction( 'awpcp_is_email_address_allowed', [
+            'return' => true,
+        ] );
     }
 
     /**
@@ -43,7 +47,7 @@ class AWPCP_FormFieldsDataValidatorTest extends AWPCP_UnitTestCase {
         $this->get_validation_errors();
 
 		$this->markTestSkipped( 'Failing. Needs work' );
-        $this->assertTrue( Filters\applied( 'awpcp-validate-post-listing-details' ) > 0 );
+        //$this->assertTrue( Brain\Monkey\Filters\applied( 'awpcp-validate-post-listing-details' ) > 0 );
     }
 
     /**
@@ -158,7 +162,9 @@ class AWPCP_FormFieldsDataValidatorTest extends AWPCP_UnitTestCase {
      * @since 4.0.0
      */
     public function test_contact_email_must_be_one_of_the_allowed_addresses() {
-        Functions\when( 'awpcp_is_email_address_allowed' )->justReturn( false );
+        WP_Mock::userFunction( 'awpcp_is_email_address_allowed', [
+            'return' => false,
+        ] );
 
         $this->check_metadata_error( '_awpcp_contact_email', 'not@allowed.address.test', 'ad_contact_email' );
     }

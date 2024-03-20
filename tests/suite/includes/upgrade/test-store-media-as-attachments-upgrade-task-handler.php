@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Upgrade
  */
 
-use Brain\Monkey\Functions;
-
 class AWPCP_Test_Store_Media_As_Attachments_Upgrade_Task_Handler extends AWPCP_UnitTestCase {
 
     public function setUp(): void {
@@ -33,17 +31,39 @@ class AWPCP_Test_Store_Media_As_Attachments_Upgrade_Task_Handler extends AWPCP_U
     public function test_process_item() {
         $parent_listing = (object) array( 'ID' => wp_rand() + 1 );
 
-        Functions\when( 'get_post_meta' )->justReturn( '' );
-        Functions\when( 'media_handle_upload' )->justReturn( null );
-        Functions\when( 'get_temp_dir' )->justReturn( '/tmp/' );
-        Functions\when( 'wp_unique_filename' )->returnArg( 2 );
-        Functions\when( 'is_wp_error' )->justReturn( false );
-        Functions\when( 'update_post_meta' )->justReturn( true );
-        Functions\when( 'get_intermediate_image_sizes' )->justReturn( [] );
+        WP_Mock::userFunction( 'get_post_meta', [
+            'return' => '',
+        ] );
+        WP_Mock::userFunction( 'media_handle_upload', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'get_temp_dir', [
+            'return' => '/tmp/',
+        ] );
+        WP_Mock::userFunction( 'wp_unique_filename', [
+            'return' => function( $dir, $filename ) {
+                return $filename;
+            },
+        ] );
+        WP_Mock::userFunction( 'is_wp_error', [
+            'return' => false,
+        ] );
+        WP_Mock::userFunction( 'update_post_meta', [
+            'return' => true,
+        ] );
+        WP_Mock::userFunction( 'get_intermediate_image_sizes', [
+            'return' => [],
+        ] );
 
-        Functions\when( 'awpcp_sanitize_file_name' )->returnArg();
+        WP_Mock::userFunction( 'awpcp_sanitize_file_name', [
+            'return' => function( $arg ) {
+                return $arg;
+            },
+        ] );
 
-        Functions\when( 'add_post_meta' )->justReturn( true );
+        WP_Mock::userFunction( 'add_post_meta', [
+            'return' => true,
+        ] );
 
         Phake::when( $this->settings )->get_runtime_option->thenReturn( WP_TESTS_DATA_DIR . '/upgrade' );
 

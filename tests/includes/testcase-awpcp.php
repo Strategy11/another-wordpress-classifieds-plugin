@@ -3,15 +3,14 @@
  * @package AWPCP\Tests
  */
 
-use Brain\Monkey;
-use Brain\Monkey\Functions;
+use WP_Mock\Tools\TestCase;
 
 use function Patchwork\redefine;
 
 /**
  * Base class for all plugin tests.
  */
-abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
+abstract class AWPCP_UnitTestCase extends TestCase {
     protected static $mockCommonWpFunctionsInSetUp = false;
     /**
      * @var array [Patchwork\CallRouting\Handle]
@@ -28,7 +27,6 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
      */
     public function setUp(): void {
         parent::setUp();
-        Monkey\setup();
         $this->mockCommonWpFunctions();
     }
 
@@ -37,7 +35,6 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
      */
     public function tearDown(): void {
         array_map( 'Patchwork\restore', $this->redefined_functions );
-        Monkey\teardown();
         parent::tearDown();
     }
 
@@ -47,10 +44,18 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
     protected function logout() {
         $user = (object) [ 'ID' => 0 ];
 
-        Functions\when( 'is_user_logged_in' )->justReturn( false );
-        Functions\when( 'wp_get_current_user' )->justReturn( $user );
-        Functions\when( 'get_current_user_id' )->justReturn( $user->ID );
-        Functions\when( 'awpcp_current_user_is_admin' )->justReturn( false );
+        WP_Mock::userFunction( 'is_user_logged_in', [
+            'return' => false,
+        ] );
+        WP_Mock::userFunction( 'wp_get_current_user', [
+            'return' => $user,
+        ] );
+        WP_Mock::userFunction( 'get_current_user_id', [
+            'return' => $user->ID,
+        ] );
+        WP_Mock::userFunction( 'awpcp_current_user_is_admin', [
+            'return' => false,
+        ] );
     }
 
     /**
@@ -61,10 +66,18 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
 
         $user->ID = wp_rand();
 
-        Functions\when( 'is_user_logged_in' )->justReturn( true );
-        Functions\when( 'wp_get_current_user' )->justReturn( $user );
-        Functions\when( 'get_current_user_id' )->justReturn( $user->ID );
-        Functions\when( 'awpcp_current_user_is_admin' )->justReturn( false );
+        WP_Mock::userFunction( 'is_user_logged_in', [
+            'return' => true,
+        ] );
+        WP_Mock::userFunction( 'wp_get_current_user', [
+            'return' => $user,
+        ] );
+        WP_Mock::userFunction( 'get_current_user_id', [
+            'return' => $user->ID,
+        ] );
+        WP_Mock::userFunction( 'awpcp_current_user_is_admin', [
+            'return' => false,
+        ] );
     }
 
     /**
@@ -73,7 +86,9 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
     protected function login_as_administrator() {
         $this->login_as_subscriber();
 
-        Functions\when( 'awpcp_current_user_is_admin' )->justReturn( true );
+        WP_Mock::userFunction( 'awpcp_current_user_is_admin', [
+            'return' => true,
+        ] );
     }
 
     /**
@@ -120,9 +135,6 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
     /**
      * Use it to redefine methods of the object under the test or static methods.
      *
-     * To set expectations or control the behaviour of other methods/functions
-     * use Brain\Monkey\Functions API.
-     *
      * The same can be achieved creating a partial mock of the object under test,
      * but I find the following easier to write:
      *
@@ -153,8 +165,7 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
         );
     }
     protected function mockCommonWpFunctions() {
-        Functions\stubs(
-            [
+        $functions = [
                 '__',
                 'esc_attr__',
                 'esc_html__',
@@ -168,6 +179,7 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
                 'esc_textarea',
                 'esc_url',
                 'sanitize_text_field',
+                'sanitize_textarea_field',
                 'wp_parse_args'        => static function ( $settings, $defaults ) {
                     return \array_merge( $defaults, $settings );
                 },
@@ -179,8 +191,21 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
                     return  rand();
                 },
                 'esc_url_raw',
-            ]
-        );
+                'wp_json_encode' => static function( $value ) {
+                    return \json_encode( $value );
+                },
+        ];
+
+        foreach ( $functions as $function => $callback ) {
+            if ( \is_string( $function ) ) {
+                WP_Mock::userFunction( $function, [ 'return' => $callback ] );
+            } else {
+                // Return the first argument.
+                WP_Mock::userFunction( $callback,  [ 'return' => function( $arg ) {
+                    return $arg;
+                } ] );
+            }
+        }
 
         $functions = [
             '_e',
@@ -190,18 +215,23 @@ abstract class AWPCP_UnitTestCase extends PHPUnit\Framework\TestCase {
         ];
 
         foreach ( $functions as $function ) {
-            Functions\when( $function )->echoArg();
+            WP_Mock::userFunction( $function, [
+                'return' => function( $arg ) {
+                    echo $arg;
+                }
+            ] );
         }
     }
 
     protected function expectAddQueryArg( $key = null, $val = null, $url = null ) {
-        Functions\expect( 'add_query_arg' )->andReturnUsing(
-            function () use ( $key, $val, $url ) {
+        WP_Mock::userFunction( 'add_query_arg', [
+            'return' => function () use ( $key, $val, $url ) {
                 if ( is_array( $key ) ) {
                     return 'https://example.org' . '?' . key( $key ) . '=' . $key[ key( $key ) ];
                 } else {
                     return $url . '?' . $key . '=' . $val;
                 }
-            } );
+            }
+        ] );
     }
 }

@@ -8,6 +8,8 @@
  */
 class AWPCP_ListingFormFieldsTest extends AWPCP_UnitTestCase {
 
+    private $authorization;
+
     /**
      * @since 4.0.2
      */

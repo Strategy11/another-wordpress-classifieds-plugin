@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Frontend
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Tests for main Container Configuration class.
  */
@@ -23,7 +21,9 @@ class AWPCP_FrontendContainerConfigurationTest extends AWPCP_ContainerConfigurat
             ],
         ];
 
-        Functions\when( 'awpcp' )->justReturn( $awpcp );
+        WP_Mock::userFunction( 'awpcp', [
+            'return' => $awpcp,
+        ] );
     }
 
     /**

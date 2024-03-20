@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Upgrade
  */
 
-use Brain\Monkey\Functions;
-
 class AWPCP_Test_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler extends AWPCP_UnitTestCase {
 
 	private $term_name;
@@ -35,7 +33,9 @@ class AWPCP_Test_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Hand
         $this->term_id = rand() + 1;
         $this->last_item_id = rand() + 1;
 
-        Functions\when( 'is_wp_error' )->justReturn( false );
+        WP_Mock::userFunction( 'is_wp_error', [
+            'return' => false,
+        ] );
     }
 
     public function test_process_item() {
@@ -203,11 +203,18 @@ class AWPCP_Test_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Hand
             }
         );
 
-        Functions\when( 'sanitize_title' )->alias( 'strtolower' );
+        WP_Mock::userFunction( 'sanitize_title', [
+            'return' => function( $name ) {
+                return strtolower( $name );
+            },
+        ] );
 
-        Functions\expect( 'get_term_by' )
-            ->with( 'slug', 'unknown', 'awpcp_listing_category' )
-            ->andReturn( null );
+        // Q: convert to WP_Mock
+
+        WP_Mock::userFunction( 'get_term_by', [
+            'args'   => [ 'slug', 'unknown', 'awpcp_listing_category' ],
+            'return' => null,
+        ] );
 
         $this->categories->shouldReceive( 'get_categories_registry' )
             ->andReturn( null );

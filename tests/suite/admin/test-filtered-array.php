@@ -3,8 +3,6 @@
  * @package AWPCP\Admin
  */
 
-use Brain\Monkey\Filters;
-
 /**
  * Unit tests for Filtered Array class
  */
@@ -21,9 +19,8 @@ class AWPCP_FilteredArrayTest extends AWPCP_UnitTestCase {
 
         $table_actions = new AWPCP_FilteredArray( 'awpcp_test_filter' );
 
-        Filters\expectApplied( 'awpcp_test_filter' )
-            ->once()
-            ->andReturn( $actions );
+        \WP_Mock::onFilter( 'awpcp_test_filter' )
+            ->reply( $actions );
 
 		$this->markTestSkipped( 'Failing. Needs work' );
 

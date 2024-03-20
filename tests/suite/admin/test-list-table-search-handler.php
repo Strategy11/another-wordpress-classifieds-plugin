@@ -6,9 +6,11 @@
 /**
  * Unit tests for List Table Search Handler.
  */
-use Brain\Monkey\Functions;
-
 class AWPCP_ListTableSearchHandlerTest extends AWPCP_UnitTestCase {
+
+    private $search;
+    private $html_renderer;
+    private $request;
 
     /**
      * @since 4.0.0
@@ -33,8 +35,10 @@ class AWPCP_ListTableSearchHandlerTest extends AWPCP_UnitTestCase {
 
         $this->search['title']->shouldReceive( 'pre_get_posts' )->once()->with( $query );
 
-        Functions\expect( 'awpcp_get_var' )->with(  array( 'param' => 'awpcp_search_by' ) )
-                                           ->andReturn( 'title' );
+        WP_Mock::userFunction( 'awpcp_get_var', [
+            'args'   => [ [ 'param' => 'awpcp_search_by' ] ],
+            'return' => 'title',
+        ] );
 
         // Execution.
         $this->get_test_subject()->pre_get_posts( $query );
@@ -74,8 +78,11 @@ class AWPCP_ListTableSearchHandlerTest extends AWPCP_UnitTestCase {
     public function test_get_search_query() {
         $search_term = 'Something';
 
-        Functions\expect( 'awpcp_get_var' )->with(  array( 'param' => 's' )  )
-                                           ->andReturn( $search_term );
+        WP_Mock::userFunction( 'awpcp_get_var', [
+            'args'   => [ [ 'param' => 's' ] ],
+            'return' => $search_term,
+        ] );
+
         // Execution and Verification.
         $this->assertEquals( $search_term, $this->get_test_subject()->get_search_query( null ) );
     }
@@ -95,8 +102,11 @@ class AWPCP_ListTableSearchHandlerTest extends AWPCP_UnitTestCase {
 
         $this->search[ $search_mode_id ]->shouldReceive( 'get_name' )->andReturn( $search_mode_name );
 
-        Functions\expect( 'awpcp_get_var' )->with( array( 'param' => 'awpcp_search_by') )
-                                           ->andReturn( $selected_search_mode_id );
+        WP_Mock::userFunction( 'awpcp_get_var', [
+            'args'   => [ [ 'param' => 'awpcp_search_by' ] ],
+            'return' => $selected_search_mode_id,
+        ] );
+
         // Verification.
         $this->html_renderer->shouldReceive( 'render' )->once()->with(
             Mockery::on(

@@ -3,8 +3,6 @@
  * @package AWPCP\Tests
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for the plugin's main class.
  */
@@ -69,10 +67,16 @@ class AWPCP_TestAWPCP extends AWPCP_UnitTestCase {
         $this->container['SendListingToFacebookHelper']     = Mockery::mock( 'AWPCP_SendToFacebookHelper' );
         $this->container['CategoriesListCache']             = Mockery::mock( 'AWPCP_CategoriesListCache' );
 
-        Functions\when( 'awpcp_facebook_cache_helper' )->justReturn( Mockery::mock( 'AWPCP_FacebookCacheHelper' ) );
+        WP_Mock::userFunction( 'awpcp_facebook_cache_helper', [
+            'return' => Mockery::mock( 'AWPCP_FacebookCacheHelper' ),
+        ] );
 
-        Functions\when( 'wp_doing_ajax' )->justReturn( true );
-        Functions\when( 'is_admin' )->justReturn( true );
+        WP_Mock::userFunction( 'wp_doing_ajax', [
+            'return' => true,
+        ] );
+        WP_Mock::userFunction( 'is_admin', [
+            'return' => true,
+        ] );
 
         // Execution.
         $this->get_test_subject()->init();

@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Categories
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * @since 4.0.0
  */
@@ -22,9 +20,10 @@ class AWPCP_CategoryPresenterTest extends AWPCP_UnitTestCase {
      * @since 4.0.0
      */
     public function test_get_full_name_from_meta( $category, $full_name, $stored_name, $categories ) {
-        Functions\expect( 'get_term_meta' )
-            ->with( $category->term_id, '_awpcp_full_name', true )
-            ->andReturn( $stored_name );
+        WP_Mock::userFunction( 'get_term_meta', [
+            'args'   => [ $category->term_id, '_awpcp_full_name', true ],
+            'return' => $stored_name,
+        ] );
 
         foreach ( $categories as $c ) {
             $this->categories_collection->shouldReceive( 'get' )

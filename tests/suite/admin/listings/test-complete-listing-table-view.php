@@ -6,8 +6,6 @@
 /**
  * Unit tests for Complete Listing Table View.
  */
-use Brain\Monkey\Functions;
-
 class AWPCP_CompleteListingTableViewTest extends AWPCP_UnitTestCase {
 
     /**

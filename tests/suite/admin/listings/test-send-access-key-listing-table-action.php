@@ -3,12 +3,13 @@
  * @package AWPCP\Tests\Plugin\Admin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Tests for Send Access Key Listing Table Action.
  */
 class AWPCP_SendAccessKeyListingTableActionTest extends AWPCP_UnitTestCase {
+
+    private $email_factory;
+    private $listing_renderer;
 
     /**
      * @since 4.0.0
@@ -66,10 +67,12 @@ class AWPCP_SendAccessKeyListingTableActionTest extends AWPCP_UnitTestCase {
 
         $query_params = null;
 
-        Functions\when( 'add_query_arg' )->alias( function( $params, $url ) use ( &$query_params ) {
-            $query_params = $params;
-            return $url;
-        } );
+        WP_Mock::userFunction( 'add_query_arg', [
+            'return' => function( $params, $url ) use ( &$query_params ) {
+                $query_params = $params;
+                return $url;
+            },
+        ] );
 
         $action = $this->get_test_subject();
 
@@ -109,8 +112,12 @@ class AWPCP_SendAccessKeyListingTableActionTest extends AWPCP_UnitTestCase {
             'send'    => true,
         ] );
 
-        Functions\when( 'awpcp_format_recipient_address' )->justReturn( 'formatted address' );
-        Functions\when( 'awpcp_get_edit_listing_url_with_access_key' )->justReturn( 'edit url' );
+        WP_Mock::userFunction( 'awpcp_format_recipient_address', [
+            'return' => 'formatted address',
+        ] );
+        WP_Mock::userFunction( 'awpcp_get_edit_listing_url_with_access_key', [
+            'return' => 'edit url',
+        ] );
 
         $action = $this->get_test_subject();
 

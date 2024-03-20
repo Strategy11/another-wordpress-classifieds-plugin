@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Tests for Listings Container Configuration.
  */
@@ -16,8 +14,12 @@ class AWPCP_ListingsContainerConfigurationTest extends AWPCP_ContainerConfigurat
     public function setUp(): void {
         parent::setUp();
 
-        Functions\when( 'awpcp_roles_and_capabilities' )->justReturn( null );
-        Functions\when( 'awpcp_categories_registry' )->justReturn( null );
+        WP_Mock::userFunction( 'awpcp_roles_and_capabilities', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'awpcp_categories_registry', [
+            'return' => null,
+        ] );
     }
 
     /**

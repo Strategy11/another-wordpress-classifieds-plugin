@@ -3,12 +3,16 @@
  * @package AWPCP\Tests\Plugin\Admin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit testss for Listing Information Metabox class.
  */
 class AWPCP_ListingInformationMetaboxTest extends AWPCP_UnitTestCase {
+
+    private $listings_logic;
+    private $listing_renderer;
+    private $payments;
+    private $template_renderer;
+    private $request;
 
     /**
      * @since 4.0.0
@@ -30,7 +34,9 @@ class AWPCP_ListingInformationMetaboxTest extends AWPCP_UnitTestCase {
             'post_author' => wp_rand() + 1,
         ];
 
-        Functions\when( 'awpcp_current_user_is_moderator' )->justReturn( true );
+        WP_Mock::userFunction( 'awpcp_current_user_is_moderator', [
+            'return' => true,
+        ] );
 
         $this->listing_renderer->shouldReceive(
             [
@@ -86,7 +92,9 @@ class AWPCP_ListingInformationMetaboxTest extends AWPCP_UnitTestCase {
 
         $transaction->shouldReceive( 'set' );
 
-        Functions\when( 'awpcp_current_user_is_moderator' )->justReturn( true );
+        WP_Mock::userFunction( 'awpcp_current_user_is_moderator', [
+            'return' => true,
+        ] );
 
         $this->request->shouldReceive( 'post' )
             ->with( 'payment_term' )

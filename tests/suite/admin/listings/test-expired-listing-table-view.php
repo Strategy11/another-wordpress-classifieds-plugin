@@ -6,8 +6,6 @@
 /**
  * Unit tests for Expired Listings table view.
  */
-use Brain\Monkey\Functions;
-
 class AWPCP_ExpiredListingTableViewTest extends AWPCP_UnitTestCase {
 
     /**

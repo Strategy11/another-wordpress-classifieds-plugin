@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Settings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Tests for Settings Container Configuration.
  */
@@ -17,7 +15,9 @@ class AWPCP_SettingsContainerConfigurationTest extends AWPCP_ContainerConfigurat
         parent::setUp();
 
         // XXX: The Settings class does some stuff on the constructor.
-        Functions\when( 'get_option' )->justReturn( false );
+        WP_Mock::userFunction( 'get_option', [
+            'return' => false,
+        ] );
     }
 
     /**

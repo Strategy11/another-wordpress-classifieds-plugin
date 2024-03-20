@@ -1,7 +1,5 @@
 <?php
 
-use Brain\Monkey\Functions;
-
 use function Patchwork\always;
 use function Patchwork\redefine;
 use function Patchwork\relay;
@@ -160,17 +158,26 @@ class AWPCP_Test_Media_Uploaded_Notification extends AWPCP_UnitTestCase {
         Phake::when( $this->listings )->get( $listing->ID )->thenReturn( $listing );
         Phake::when( $this->attachments )->get( $attachment->ID )->thenReturn( $attachment );
 
-        Functions::expect( 'get_option' )
-            ->once()
-            ->with( "awpcp-media-uploaded-notification-files-{$listing->ID}", array() )
-            ->andReturn( array(
+        WP_Mock::userFunction( 'get_option', [
+            'times'  => 1,
+            'args'   => array( "awpcp-media-uploaded-notification-files-{$listing->ID}", array() ),
+            'return' => array(
                 array( 'id' => $attachment->ID ),
-            ) );
+            ),
+        ]);
 
-        Functions::when( 'awpcp_admin_email_to' )->justReturn( 'admin@example.org' );
-        Functions::when( 'awpcp_get_admin_listings_url' )->justReturn( 'http://example.org/wp-admin/admin.php?page=awpcp-admin-listings' );
-        Functions::when( 'awpcp_get_blog_name' )->justReturn( 'Test Blog' );
-        Functions::when( 'home_url' )->justReturn( 'http://example.org' );
+        WP_Mock::userFunction( 'awpcp_admin_email_to', [
+            'return' => 'admin@example.org',
+        ] );
+        WP_Mock::userFunction( 'awpcp_get_admin_listings_url', [
+            'return' => 'http://example.org/wp-admin/admin.php?page=awpcp-admin-listings',
+        ] );
+        WP_Mock::userFunction( 'awpcp_get_blog_name', [
+            'return' => 'Test Blog',
+        ] );
+        WP_Mock::userFunction( 'home_url', [
+            'return' => 'http://example.org',
+        ] );
 
         redefine( 'AWPCP_Email::prepare', function( $template, $params ) use ( &$other_attachments ) {
             $other_attachments = $params['other_attachments'];

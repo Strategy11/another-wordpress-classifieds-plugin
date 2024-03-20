@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Admin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Test for Mark as Spam Listing Table Action.
  */
@@ -52,7 +50,9 @@ class AWPCP_MarkAsSPAMListingTableActionTest extends AWPCP_UnitTestCase {
     public function test_should_not_show_action_if_akismet_api_key_is_not_set() {
         $this->wordpress = Mockery::mock( 'AWPCP_WordPress' );
 
-        Functions\when( 'akismet_init' )->justReturn( null );
+        WP_Mock::userFunction( 'akismet_init', [
+            'return' => null,
+        ] );
 
         $this->wordpress->shouldReceive( 'get_option' )
             ->with( 'wordpress_api_key' )
@@ -73,7 +73,9 @@ class AWPCP_MarkAsSPAMListingTableActionTest extends AWPCP_UnitTestCase {
     public function test_should_show_action_if_akismet_is_available() {
         $this->wordpress = Mockery::mock( 'AWPCP_WordPress' );
 
-        Functions\when( 'akismet_init' )->justReturn( null );
+        WP_Mock::userFunction( 'akismet_init', [
+            'return' => null,
+        ] );
 
         $this->wordpress->shouldReceive( 'get_option' )
             ->with( 'wordpress_api_key' )
@@ -114,12 +116,12 @@ class AWPCP_MarkAsSPAMListingTableActionTest extends AWPCP_UnitTestCase {
 
         $action = $this->get_test_subject();
 
-        Functions\when( 'add_query_arg' )->alias(
-            function( $params, $url ) use ( &$query_parms ) {
+        WP_Mock::userFunction( 'add_query_arg', [
+            'return' => function( $params, $url ) use ( &$query_parms ) {
                 $query_parms = $params;
                 return $url;
-            }
-        );
+            },
+        ] );
 
         // Execution.
         $url = $action->get_url( $post, $current_url );

@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for Listing Authorization.
  */
@@ -34,7 +32,9 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
             'post_author' => null,
         );
 
-        Functions\when( 'is_user_logged_in' )->justReturn( false );
+        WP_Mock::userFunction( 'is_user_logged_in', [
+            'return' => false,
+        ] );
 
         $this->request = Phake::mock( 'AWPCP_Request' );
 
@@ -111,7 +111,9 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
         $this->listing_renderer->shouldReceive( 'get_start_date' )
             ->andReturn( $start_date );
 
-        Functions\when( 'current_time' )->justReturn( $now );
+        WP_Mock::userFunction( 'current_time', [
+            'return' => $now,
+        ] );
 
         $this->assertFalse( $this->get_test_subject()->is_current_user_allowed_to_edit_listing_start_date( null ) );
     }
@@ -132,7 +134,9 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
         $this->listing_renderer->shouldReceive( 'get_start_date' )
             ->andReturn( $start_date );
 
-        Functions\when( 'current_time' )->justReturn( $now );
+        WP_Mock::userFunction( 'current_time', [
+            'return' => $now,
+        ] );
         $this->request->shouldReceive( 'post' )->with( 'mode' )->andReturn( 'edit', 'create' );
 
         $this->assertTrue( $this->get_test_subject()->is_current_user_allowed_to_edit_listing_start_date( null ) );

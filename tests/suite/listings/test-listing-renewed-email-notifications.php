@@ -3,12 +3,14 @@
  * @package AWPCP\Tests\Plugin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Test ListingRenewedEmailNotification class.
  */
 class AWPCP_ListingRenewedEmailNotificationTest extends AWPCP_UnitTestCase {
+
+    private $listing_renderer;
+    private $template_renderer;
+    private $settings;
 
     /**
      * @since 4.0.0
@@ -47,7 +49,9 @@ class AWPCP_ListingRenewedEmailNotificationTest extends AWPCP_UnitTestCase {
     public function test_send_admin_notification() {
         $notifications = $this->get_test_subject();
 
-        Functions\when( 'awpcp_admin_email_to' )->justReturn( 'admin@example.org' );
+        WP_Mock::userFunction( 'awpcp_admin_email_to', [
+            'return' => 'admin@example.org',
+        ] );
 
         // Execution.
         $email_sent = $notifications->send_admin_notification( null );

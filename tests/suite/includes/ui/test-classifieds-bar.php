@@ -1,7 +1,5 @@
 <?php
 
-use \Brain\Monkey\Functions;
-
 class AWPCP_Test_Classifieds_Bar extends AWPCP_UnitTestCase {
 
     public function test_constructor_function() {

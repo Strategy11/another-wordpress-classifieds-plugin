@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Media
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for Image Attachment Creator.
  */
@@ -27,7 +25,9 @@ class AWPCP_Test_Image_Attachment_Creator extends AWPCP_UnitTestCase {
      * @since unknown
      */
     public function test_create_attachment_as_moderator() {
-        Functions\when( 'awpcp_current_user_is_moderator' )->justReturn( true );
+        WP_Mock::userFunction( 'awpcp_current_user_is_moderator', [
+            'return' => true,
+        ] );
 
         $this->verify_create_attachment( AWPCP_Attachment_Status::STATUS_APPROVED );
     }
@@ -76,7 +76,9 @@ class AWPCP_Test_Image_Attachment_Creator extends AWPCP_UnitTestCase {
      * @since unknown
      */
     public function test_create_attachment_as_subscriber_when_imagesapprove_is_enabled() {
-        Functions\when( 'awpcp_current_user_is_moderator' )->justReturn( false );
+        WP_Mock::userFunction( 'awpcp_current_user_is_moderator', [
+            'return' => false,
+        ] );
 
         Phake::when( $this->settings )->get_option( 'imagesapprove' )->thenReturn( true );
 
@@ -103,7 +105,9 @@ class AWPCP_Test_Image_Attachment_Creator extends AWPCP_UnitTestCase {
             ->once()
             ->with( $post );
 
-        Functions\when( 'awpcp_current_user_is_moderator' )->justReturn( false );
+        WP_Mock::userFunction( 'awpcp_current_user_is_moderator', [
+            'return' => false,
+        ] );
 
         Phake::when( $this->settings )->get_option( 'imagesapprove' )->thenReturn( true );
         Phake::when( $this->attachments_creator )->create_attachment->thenReturn( $attachment );

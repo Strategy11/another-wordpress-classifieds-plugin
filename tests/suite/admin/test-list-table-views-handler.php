@@ -8,6 +8,9 @@
  */
 class AWPCP_ListTableViewsHandlerTest extends AWPCP_UnitTestCase {
 
+    private $views;
+    private $request;
+
     /**
      * @since 4.0.0
      */

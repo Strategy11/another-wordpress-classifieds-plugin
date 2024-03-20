@@ -5,8 +5,6 @@
  * @package AWPCP\Tests\Helpers
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * @group core
  */
@@ -123,7 +121,10 @@ class AWPCP_TestRequest extends AWPCP_UnitTestCase {
      * @dataProvider get_query_var_data_provider
      */
     public function test_get_query_var( $name, $real_value, $expected_value, $default = '' ) {
-        Functions\expect( 'get_query_var' )->with( $name )->andReturn( $real_value );
+        WP_Mock::userFunction( 'get_query_var', [
+            'args'   => [ $name ],
+            'return' => $real_value,
+        ] );
 
         $returned_value = $this->get_test_subject()->get_query_var( $name, $default );
 
@@ -184,7 +185,10 @@ class AWPCP_TestRequest extends AWPCP_UnitTestCase {
     }
 
     public function test_get_category_id_from_query_var() {
-        Functions\expect( 'get_query_var' )->with( 'cid' )->andReturn( 13 );
+        WP_Mock::userFunction( 'get_query_var', [
+            'args'   => [ 'cid' ],
+            'return' => 13,
+        ] );
 
         $request = new AWPCP_Request();
 
@@ -192,7 +196,9 @@ class AWPCP_TestRequest extends AWPCP_UnitTestCase {
     }
 
     public function test_get_current_listing_from_request() {
-        Functions\when( 'get_query_var' )->justReturn( false );
+        WP_Mock::userFunction( 'get_query_var', [
+            'return' => false,
+        ] );
 
         $request = new AWPCP_Request();
 

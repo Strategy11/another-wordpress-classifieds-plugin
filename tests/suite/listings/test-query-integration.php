@@ -3,13 +3,16 @@
  * @package AWPCP\Tests\Plugin\Listings
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for the class that integrates with WP Query to support Classifieds
  * query parameters.
  */
 class AWPCP_QueryIntegrationTest extends AWPCP_UnitTestCase {
+
+    private $settings;
+    private $db;
+    private $post_type;
+    private $query_vars;
 
     /**
      * @since 4.0.0
@@ -388,7 +391,9 @@ class AWPCP_QueryIntegrationTest extends AWPCP_UnitTestCase {
     public function test_is_enabled_query_parameter() {
         $this->query_vars['classifieds_query']['is_enabled'] = true;
 
-        Functions\when( 'current_time' )->justReturn( 1 );
+        WP_Mock::userFunction( 'current_time', [
+            'return' => 1,
+        ] );
 
         $query_vars = $this->process_query_parameters();
         $meta_keys  = $this->get_meta_keys( $query_vars );
@@ -408,7 +413,9 @@ class AWPCP_QueryIntegrationTest extends AWPCP_UnitTestCase {
             ->with( 'ad-renew-email-threshold' )
             ->andReturn( 1 );
 
-        Functions\when( 'current_time' )->justReturn( 1 );
+            WP_Mock::userFunction( 'current_time', [
+                'return' => 1,
+            ] );
 
         $query_vars = $this->process_query_parameters();
         $meta_keys  = $this->get_meta_keys( $query_vars );
@@ -424,7 +431,9 @@ class AWPCP_QueryIntegrationTest extends AWPCP_UnitTestCase {
     public function test_is_expired_query_parameter() {
         $this->query_vars['classifieds_query']['is_expired'] = true;
 
-        Functions\when( 'current_time' )->justReturn( 1 );
+        WP_Mock::userFunction( 'current_time', [
+            'return' => 1,
+        ] );
 
         $query_vars = $this->process_query_parameters();
         $meta_keys  = $this->get_meta_keys( $query_vars );
@@ -638,7 +647,9 @@ class AWPCP_QueryIntegrationTest extends AWPCP_UnitTestCase {
 
         $this->query_vars['classifieds_query']['contact_phone'] = '(316) 632 61 98';
 
-        Functions\when( 'awpcp_get_digits_from_string' )->justReturn( $phone_number_digits );
+        WP_Mock::userFunction( 'awpcp_get_digits_from_string', [
+            'return' => $phone_number_digits,
+        ] );
 
         // Execution.
         $query_vars = $this->process_query_parameters();

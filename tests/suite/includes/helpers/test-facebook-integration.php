@@ -3,8 +3,6 @@
  * @package AWPCP\Tests
  */
 
-use Brain\Monkey\Functions;
-
 class AWPCP_TestSendListingToFacebookHelper extends AWPCP_UnitTestCase {
 
     public function setUp(): void {
@@ -33,7 +31,9 @@ class AWPCP_TestSendListingToFacebookHelper extends AWPCP_UnitTestCase {
 
         Phake::when( $this->wordpress )->current_time->thenReturn( $current_time );
 
-        Functions\when( 'wp_next_scheduled' )->justReturn( false );
+        WP_Mock::userFunction( 'wp_next_scheduled', [
+            'return' => false,
+        ] );
 
         $this->get_test_subject()->maybe_schedelue_send_to_facebook_action( $listing );
 

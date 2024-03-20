@@ -3,8 +3,6 @@
  * @package AWPCP\Tests
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * @group core
  */
@@ -15,21 +13,30 @@ class AWPCP_TestPaymentsAPI extends AWPCP_UnitTestCase {
             'ID' => wp_rand(),
         ];
 
-        Functions\expect( 'get_awpcp_option' )
-            ->with( 'freepay' )
-            ->andReturn( 1 );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'args'   => 'freepay',
+            'return' => 1,
+        ] );
 
-        Functions\expect( 'get_awpcp_option' )
-            ->with( 'enable-credit-system' )
-            ->andReturn( 1 );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'args'   => 'enable-credit-system',
+            'return' => 1,
+        ] );
 
-        Functions\expect( 'get_user_meta' )
-            ->with( $user->ID, 'awpcp-account-balance', true )
-            ->andReturn( 45000 );
+        WP_Mock::userFunction( 'get_user_meta', [
+            'args'   => [ $user->ID, 'awpcp-account-balance', true ],
+            'return' => 45000,
+        ] );
 
-        Functions\when( 'is_admin' )->justReturn( false );
-        Functions\when( 'is_user_logged_in' )->justReturn( true );
-        Functions\when( 'wp_get_current_user' )->justReturn( $user );
+        WP_Mock::userFunction( 'is_admin', [
+            'return' => false,
+        ] );
+        WP_Mock::userFunction( 'is_user_logged_in', [
+            'return' => true,
+        ] );
+        WP_Mock::userFunction( 'wp_get_current_user', [
+            'return' => $user,
+        ] );
 
         $api = $this->get_test_subject();
 
@@ -64,11 +71,14 @@ class AWPCP_TestPaymentsAPI extends AWPCP_UnitTestCase {
         $transaction->shouldReceive( 'get_total_credits' )
             ->andReturn( 35000 );
 
-        Functions\when( 'is_admin' )->justReturn( false );
+        WP_Mock::userFunction( 'is_admin', [
+            'return' => false,
+        ] );
 
-        Functions\expect( 'get_user_meta' )
-            ->with( $transaction->user_id, 'awpcp-account-balance', true )
-            ->andReturn( 45000 );
+        WP_Mock::userFunction( 'get_user_meta', [
+            'args'   => [ $transaction->user_id, 'awpcp-account-balance', true ],
+            'return' => 45000,
+        ] );
 
         $this->redefine( 'AWPCP_PaymentsAPI::get_credit_plan', \Patchwork\always( $credit_plan ) );
 

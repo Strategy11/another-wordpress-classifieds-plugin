@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Plugin
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Tests for main Container Configuration class.
  */
@@ -20,12 +18,20 @@ class AWPCP_ContainerConfigurationTest extends AWPCP_ContainerConfigurationTestC
         $GLOBALS['wpdb'] = (object) [];
 
         // Required by ModulesManager.
-        Functions\when( 'awpcp_upgrade_tasks_manager' )->justReturn( null );
-        Functions\when( 'awpcp_licenses_manager' )->justReturn( null );
-        Functions\when( 'awpcp_modules_updater' )->justReturn( null );
+        WP_Mock::userFunction( 'awpcp_upgrade_tasks_manager', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'awpcp_licenses_manager', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'awpcp_modules_updater', [
+            'return' => null,
+        ] );
 
         // Used by AWPCP_PaymentsAPI's constructor.
-        Functions\when( 'is_admin' )->justReturn( false );
+        WP_Mock::userFunction( 'is_admin', [
+            'return' => false,
+        ] );
     }
 
     /**
@@ -114,10 +120,18 @@ class AWPCP_ContainerConfigurationTest extends AWPCP_ContainerConfigurationTestC
      * @since 4.0.0
      */
     public function test_send_listing_to_facebook_helper_definition() {
-        Functions\when( 'awpcp_attachment_properties' )->justReturn( null );
-        Functions\when( 'awpcp_attachments_collection' )->justReturn( null );
-        Functions\when( 'awpcp_facebook_integration' )->justReturn( null );
-        Functions\when( 'awpcp' )->justReturn( (object) [ 'settings' => null ] );
+        WP_Mock::userFunction( 'awpcp_attachment_properties', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'awpcp_attachments_collection', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'awpcp_facebook_integration', [
+            'return' => null,
+        ] );
+        WP_Mock::userFunction( 'awpcp', [
+            'return' => (object) [ 'settings' => null ],
+        ] );
 
         $this->test_class_definition(
             'SendListingToFacebookHelper',

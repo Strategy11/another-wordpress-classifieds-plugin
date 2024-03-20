@@ -16,3 +16,49 @@ if ( ! function_exists( 'is_post_type_viewable' ) ) {
         return $post_type_object->publicly_queryable || ( $post_type_object->_builtin && $post_type_object->public );
     }
 }
+
+if ( ! function_exists( 'wp_strip_all_tags' ) ) {
+    /**
+     * Strips all of the HTML in the content.
+     *
+     * @param string $data Content to strip all HTML from.
+     * @return string Content without any HTML.
+     */
+    function wp_strip_all_tags( $data ) {
+        return strip_tags( $data );
+    }
+}
+
+if ( ! function_exists( 'has_action' ) ) {
+    /**
+     * Check if any action has been registered for a hook.
+     *
+     * @param string $tag The name of the action hook.
+     * @param callable|bool $function_to_check Optional. The callback to check for. Default false.
+     * @return int|bool If $function_to_check is omitted, returns boolean for whether the hook has anything registered.
+     *   When checking a specific function, the priority of that hook is returned, or false if the function is not attached.
+     */
+    function has_action( $tag, $function_to_check = false ) {
+        return has_filter( $tag, $function_to_check );
+    }
+}
+
+if ( ! function_exists( 'has_filter' ) ) {
+    /**
+     * Check if any filter has been registered for a hook.
+     *
+     * @param string $tag The name of the filter hook.
+     * @param callable|bool $function_to_check Optional. The callback to check for. Default false.
+     * @return int|bool If $function_to_check is omitted, returns boolean for whether the hook has anything registered.
+     *   When checking a specific function, the priority of that hook is returned, or false if the function is not attached.
+     */
+    function has_filter( $tag, $function_to_check = false ) {
+        global $wp_filter;
+
+        if ( ! isset( $wp_filter[ $tag ] ) ) {
+            return false;
+        }
+
+        return $wp_filter[ $tag ]->has_filter( $tag, $function_to_check );
+    }
+}

@@ -5,8 +5,6 @@
  * @package AnotherWordPressClassifiedsPlugin
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Tests for Edit Listing Page class.
  */
@@ -204,7 +202,9 @@ class AWPCP_Test_Edit_Listing_Page extends AWPCP_UnitTestCase {
             ],
         ];
 
-        Functions\when( 'awpcp' )->justReturn( $awpcp );
+        WP_Mock::userFunction( 'awpcp', [
+            'return' => $awpcp,
+        ] );
 
         $email_address = 'john@example.org';
 
@@ -216,9 +216,10 @@ class AWPCP_Test_Edit_Listing_Page extends AWPCP_UnitTestCase {
             ->with( 'attempts', 0 )
             ->andReturn( 3 ); // A number greater or equal than 1.
 
-        Functions\expect( 'is_email' )
-            ->with( $email_address )
-            ->andReturn( true );
+        WP_Mock::userFunction( 'is_email', [
+            'args' => [ $email_address ],
+            'return' => true,
+        ] );
 
         $query_vars_matcher = function( $query_vars ) use ( $email_address ) {
             if ( ! isset( $query_vars['meta_query'][0]['value'] ) ) {

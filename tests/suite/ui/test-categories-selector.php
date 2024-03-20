@@ -3,12 +3,14 @@
  * @package AWPCP\Tests\Plugin\UI
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for Categories Selector component.
  */
 class AWPCP_CategoriesSelectorTest extends AWPCP_UnitTestCase {
+
+    private $categories_selector_helper;
+    private $categories_collection;
+    private $template_renderer;
 
     /**
      * @since 4.0.0
@@ -40,7 +42,9 @@ class AWPCP_CategoriesSelectorTest extends AWPCP_UnitTestCase {
             'use_multiple_dropdowns' => null,
         ];
 
-        Functions\when( 'awpcp_render_categories_dropdown_options' )->justReturn( '' );
+        WP_Mock::userFunction( 'awpcp_render_categories_dropdown_options', [
+            'return' => '',
+        ] );
 
         $this->get_test_subject();
         $template_renderer = new AWPCP_Template_Renderer();

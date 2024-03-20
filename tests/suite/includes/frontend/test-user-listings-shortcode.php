@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Frontend
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * Unit tests for the AWPCPUSERLISTINGS shortcode.
  */
@@ -23,16 +21,24 @@ class AWPCP_UserListingsShortcodeTest extends AWPCP_UnitTestCase {
 
         $this->redefine( 'awpcp_browse_listings_page', Patchwork\always( (object) [] ) );
 
-        Functions\when( 'get_awpcp_option' )->justReturn( true );
-        Functions\when( 'is_user_logged_in' )->justReturn( true );
-        Functions\when( 'wp_enqueue_script' )->justReturn();
-        Functions\when( 'get_current_user_id' )->justReturn( $current_user_id );
+        WP_Mock::userFunction( 'get_awpcp_option', [
+            'return' => true,
+        ] );
+        WP_Mock::userFunction( 'is_user_logged_in', [
+            'return' => true,
+        ] );
+        WP_Mock::userFunction( 'wp_enqueue_script', [
+            'return' => '',
+        ] );
+        WP_Mock::userFunction( 'get_current_user_id', [
+            'return' => $current_user_id,
+        ] );
 
         $arguments = [];
 
-        Functions\expect( 'awpcp_display_listings' )
-            ->once()
-            ->withArgs(
+        WP_Mock::userFunction( 'awpcp_display_listings', [
+            'times' => 1,
+            'args'  => [
                 function( $query, $context, $options ) use ( &$arguments ) {
                     if ( $context !== 'user-listings-shortcode' ) {
                         return false;
@@ -43,8 +49,9 @@ class AWPCP_UserListingsShortcodeTest extends AWPCP_UnitTestCase {
                     $arguments['options'] = $options;
 
                     return true;
-                }
-            );
+                },
+            ],
+        ] );
 
         $pages = new AWPCP_Pages( $container );
 

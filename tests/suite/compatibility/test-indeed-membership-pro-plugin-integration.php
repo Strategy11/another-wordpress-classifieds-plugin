@@ -3,12 +3,12 @@
  * @package AWPCP\Tests\Compatibility
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * @since 4.0.4
  */
 class AWPCP_IndeedMemebershipProPluginIntegrationTest extends AWPCP_UnitTestCase {
+
+    private $query;
 
     /**
      * @since 4.0.4
@@ -57,8 +57,15 @@ class AWPCP_IndeedMemebershipProPluginIntegrationTest extends AWPCP_UnitTestCase
 
         $this->query->shouldReceive( $expectations );
 
-        Functions\expect( 'wp_dequeue_style' )->times( $times )->with( 'ihc_select2_style' );
-        Functions\expect( 'wp_dequeue_script' )->times( $times )->with( 'ihc-select2' );
+        WP_Mock::userFunction( 'wp_dequeue_style', [
+            'times' => $times,
+            'args'  => [ 'ihc_select2_style' ],
+        ] );
+
+        WP_Mock::userFunction( 'wp_dequeue_script', [
+            'times' => $times,
+            'args'  => [ 'ihc-select2' ],
+        ] );
 
         // Execution & Verification.
         $this->get_test_subject()->maybe_dequeue_select2();

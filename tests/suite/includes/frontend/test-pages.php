@@ -3,8 +3,6 @@
  * @package AWPCP\Tests\Frontend
  */
 
-use Brain\Monkey\Functions;
-
 /**
  * @since 4.0.0
  */
