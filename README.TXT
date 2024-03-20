@@ -4,7 +4,7 @@ Contributors: awpcp, sswells, srwells
 Tags: listings, classified ads, classified, classifieds, directory plugin, classifieds script, classified theme, wp classified, ads
 Requires at least: 4.9
 Requires PHP: 5.6
-Tested up to: 6.2.2
+Tested up to: 6.4.3
 Stable tag: 4.3.2
 License: GPLv2 or later
 
@@ -223,11 +223,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Remove mentions of deprecated modules.
 * Fix: The link to download the debug info works now.
 * Fix: Remove a regions setting that is no longer used.
-
-= 4.1.3 =
-* Show list of user's listings on renewal page if no listing was selected.
-* Replace the renewal button icon with a label to make it more clear.
-* Fix: Show the admin menu to moderators.
-* Fix: Flush rewrite rules sooner. Hopefully this will fix the htaccess issue some sites are seeing.
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>
