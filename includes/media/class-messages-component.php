@@ -8,6 +8,11 @@ class AWPCP_MessagesComponent {
 
     private $javascript;
 
+    /**
+     * @var bool
+     */
+    private $echo = false;
+
     public function __construct( $javascript ) {
         $this->javascript = $javascript;
     }
@@ -15,6 +20,12 @@ class AWPCP_MessagesComponent {
     public function render( $channels ) {
         $component_id = $this->configure_component( $channels );
         return $this->render_component( $component_id, $channels );
+    }
+
+    public function show( $channels ) {
+        $this->echo = true;
+        $this->render( $channels );
+        $this->echo = false;
     }
 
     private function configure_component( $channels ) {
@@ -28,8 +39,14 @@ class AWPCP_MessagesComponent {
     }
 
     private function render_component( $component_id, $channels ) {
+        $file = AWPCP_DIR . '/templates/components/messages.tpl.php';
+        if ( $this->echo ) {
+            include $file;
+            return;
+        }
+
         ob_start();
-        include( AWPCP_DIR . '/templates/components/messages.tpl.php' );
+        include $file;
         $output = ob_get_contents();
         ob_end_clean();
 

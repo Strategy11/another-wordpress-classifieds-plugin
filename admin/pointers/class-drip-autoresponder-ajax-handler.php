@@ -116,8 +116,8 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
     private function render_pointer_content() {
         $template = '<h3><title></h3><p><content></p>';
 
-        $title = _x( 'Thank you for signing up!', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' );
-        $content = _x( 'Please check your email and click the link provided to confirm your subscription.', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' );
+        $title   = esc_html__( 'Thank you for signing up!', 'another-wordpress-classifieds-plugin' );
+        $content = esc_html__( 'Please check your email and click the link provided to confirm your subscription.', 'another-wordpress-classifieds-plugin' );
 
         $template = str_replace( '<title>', $title, $template );
         $template = str_replace( '<content>', $content, $template );

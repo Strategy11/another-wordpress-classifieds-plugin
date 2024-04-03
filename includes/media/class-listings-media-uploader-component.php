@@ -35,6 +35,11 @@ class AWPCP_Listings_Media_Uploader_Component {
     private $javascript;
 
     /**
+     * @var bool
+     */
+    private $echo = false;
+
+    /**
      * Constructor.
      */
     public function __construct( $media_uploader_component, $validation_errors, $javascript ) {
@@ -63,6 +68,23 @@ class AWPCP_Listings_Media_Uploader_Component {
 
         $configuration['l10n'] = $strings;
 
+        if ( $this->echo ) {
+            return $this->media_uploader_component->show( $configuration );
+        }
+
         return $this->media_uploader_component->render( $configuration );
+    }
+
+    /**
+     * @since x.x
+     *
+     * @param array $configuration  An array of configuration options.
+     *
+     * @return void
+     */
+    public function show( $configuration ) {
+        $this->echo = true;
+        $this->render( $configuration );
+        $this->echo = false;
     }
 }

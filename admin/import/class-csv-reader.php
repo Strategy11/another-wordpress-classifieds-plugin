@@ -116,13 +116,13 @@ class AWPCP_CSV_Reader {
         $filtered_row_data = array_filter( $row_data );
 
         if ( empty( $filtered_row_data ) ) {
-            throw new UnexpectedValueException( __( 'The row was empty.', 'another-wordpress-classifieds-plugin' ) );
+            throw new UnexpectedValueException( esc_html__( 'The row was empty.', 'another-wordpress-classifieds-plugin' ) );
         } else if ( count( $header ) != count( $row_data ) ) {
             $message = __( "The number of values in the row (<number-of-values-in-row>) does not match the number of columns in the file's header (<number-of-columns>).", 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<number-of-values-in-row>', count( $row_data ), $message );
             $message = str_replace( '<number-of-columns>', count( $header ), $message );
 
-            throw new UnexpectedValueException( $message );
+            throw new UnexpectedValueException( esc_html( $message ) );
         }
 
         $this->number_of_lines_processed = $this->number_of_lines_processed + 1;

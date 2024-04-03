@@ -15,6 +15,7 @@ function awpcp_move_categories_admin_page() {
     );
 }
 
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_Move_Categories_Admin_Page {
 
     private $categories_logic;
@@ -51,7 +52,7 @@ class AWPCP_Move_Categories_Admin_Page {
         $target_category_id  = $this->request->post( 'moveadstocategory' );
         $nonce        = awpcp_get_var( array( 'param' => 'awpcp-multiple-form-nonce' ), 'post' );
         if ( ! wp_verify_nonce( $nonce, 'cat-multiple-form' ) ) {
-            throw new AWPCP_Exception( __( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
         }
         try {
             $target_category = $this->categories->get( $target_category_id );
@@ -59,18 +60,18 @@ class AWPCP_Move_Categories_Admin_Page {
             $message = __( "The categories couldn't be moved because there was an error trying to load the target category. <specific-error-message>", 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<specific-error-message>', $e->getMessage(), $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $result = $this->move_categories( $selected_categories, $target_category );
 
         if ( $result['categories_not_moved'] === 0 ) {
-            awpcp_flash( __( 'The selected categories have been moved.', 'another-wordpress-classifieds-plugin' ) );
+            awpcp_flash( esc_html__( 'The selected categories have been moved.', 'another-wordpress-classifieds-plugin' ) );
             return;
         }
 
         if ( $result['categories_moved'] === 0 ) {
-            awpcp_flash( __( 'There was an error trying to move the selected categories.', 'another-wordpress-classifieds-plugin' ), 'error' );
+            awpcp_flash( esc_html__( 'There was an error trying to move the selected categories.', 'another-wordpress-classifieds-plugin' ), 'error' );
             return;
         }
 
@@ -79,7 +80,7 @@ class AWPCP_Move_Categories_Admin_Page {
         $message = str_replace( '<categories-not-moved>', $result['categories_not_moved'], $message );
         $message = str_replace( '<categories-count>', count( $selected_categories ), $message );
 
-        awpcp_flash( $message, 'error' );
+        awpcp_flash( esc_html( $message ), 'error' );
     }
 
     private function move_categories( $selected_categories, $target_category ) {

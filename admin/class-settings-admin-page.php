@@ -136,12 +136,7 @@ class AWPCP_Classified_Pages_Settings {
 
 		$missing = awpcp_array_filter_recursive( $this->missing_pages_finder->find_broken_page_id_references() );
 
-		ob_start();
-			include(AWPCP_DIR . '/admin/templates/admin-panel-settings-pages-settings.tpl.php');
-			$content = ob_get_contents();
-		ob_end_clean();
-
-		echo $content;
+		include AWPCP_DIR . '/admin/templates/admin-panel-settings-pages-settings.tpl.php';
 	}
 
 	private function should_restore_pages() {
@@ -253,11 +248,6 @@ class AWPCP_Facebook_Page_Settings {
 			$errors[] = $error_msg;
 		}
 
-		ob_start();
-			include(AWPCP_DIR . '/admin/templates/admin-panel-settings-facebook-settings.tpl.php');
-			$content = ob_get_contents();
-		ob_end_clean();
-
-		echo $content;
+		include AWPCP_DIR . '/admin/templates/admin-panel-settings-facebook-settings.tpl.php';
 	}
 }

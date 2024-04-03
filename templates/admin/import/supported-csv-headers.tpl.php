@@ -9,7 +9,7 @@
 
 <?php require AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php'; ?>
 
-            <p><?php esc_html_e( 'The following are the valid header names that can be included in the CSV file used to import listings.' ); ?></p>
+            <p><?php esc_html_e( 'The following are the valid header names that can be included in the CSV file used to import listings.', 'another-wordpress-classifieds-plugin' ); ?></p>
 
             <table class="widefat striped">
                 <thead>

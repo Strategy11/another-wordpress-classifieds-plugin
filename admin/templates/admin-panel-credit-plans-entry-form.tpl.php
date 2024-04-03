@@ -3,7 +3,7 @@
         <?php $id = awpcp_get_property( $entry, 'id', false ); ?>
         <form action="<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>" method="post">
         <fieldset class="inline-edit-col-left"><div class="inline-edit-col">
-                <h4><?php echo $id ? _x( 'Edit Credit Plan Details', 'credit plans form', 'another-wordpress-classifieds-plugin' ) : _x( 'New Credit Plan Details', 'credit plans form', 'another-wordpress-classifieds-plugin' ); ?></h4>
+                <h4><?php echo esc_html( $id ? _x( 'Edit Credit Plan Details', 'credit plans form', 'another-wordpress-classifieds-plugin' ) : _x( 'New Credit Plan Details', 'credit plans form', 'another-wordpress-classifieds-plugin' ) ); ?></h4>
 
                 <label>
                     <span class="title"><?php echo esc_html( __( 'Name', 'another-wordpress-classifieds-plugin' ) ); ?></span>

@@ -59,7 +59,9 @@
                         </tr>
                         <tr data-usableform="show-if:images_source:local">
                             <th scope="row">
-                                <label for="awpcp-importer-local-path"><?php echo esc_html( __( 'Local directory path', 'another-wordpress-classifieds-plugin' ) ); ?></label>
+                                <label for="awpcp-importer-local-path">
+                                    <?php esc_html_e( 'Local directory path', 'another-wordpress-classifieds-plugin' ); ?>
+                                </label>
                             </th>
                             <td>
                                 <input id="awpcp-importer-local-path" type="text" name="local_path" value="<?php echo esc_attr( $form_data['local_path'] ); ?>"/>
@@ -69,10 +71,12 @@
                                 echo awpcp_form_error( 'local_path', $form_errors );
                                 ?>
                                 <p class="awpcp-helptext">
-                                <?php
-                                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                    echo str_replace( '<uploads-directory-path>', '<code>' . awpcp()->settings->get_runtime_option( 'awpcp-uploads-dir' ) . '</code>', __( 'The relative path to a directory inside <uploads-directory-path>.', 'another-wordpress-classifieds-plugin' ) );
-                                ?>
+                                    <?php
+                                    printf(
+                                        esc_html__( 'The relative path to a directory inside %s.', 'another-wordpress-classifieds-plugin' ),
+                                        '<code>' . esc_html( awpcp()->settings->get_runtime_option( 'awpcp-uploads-dir' ) ) . '</code>'
+                                    );
+                                    ?>
                                     </p>
                             </td>
                         </tr>

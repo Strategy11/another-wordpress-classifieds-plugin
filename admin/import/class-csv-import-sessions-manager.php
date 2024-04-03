@@ -16,6 +16,7 @@ function awpcp_csv_import_sessions_manager() {
     );
 }
 
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_CSV_Import_Sessions_Manager {
 
     private $csv_importer_factory;

@@ -1,4 +1,4 @@
-<h2><?php _ex('Complete Payment', 'place ad checkout step', 'another-wordpress-classifieds-plugin') ?></h2>
+<h2><?php esc_html_e( 'Complete Payment', 'another-wordpress-classifieds-plugin' ); ?></h2>
 
 <?php
     if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {

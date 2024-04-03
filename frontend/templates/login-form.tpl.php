@@ -13,7 +13,7 @@
 	<?php if ( isset($_GET['checkemail']) && in_array( $_GET['checkemail'], array('confirm', 'newpass') ) ) : ?>
 	<!-- nothing here -->
 	<?php elseif ( $show_register_link ) : ?>
-	<a href="<?php echo esc_url( $register_url ); ?>"><?php _e( 'Register', 'another-wordpress-classifieds-plugin' ); ?></a> |
+	<a href="<?php echo esc_url( $register_url ); ?>"><?php esc_html_e( 'Register', 'another-wordpress-classifieds-plugin' ); ?></a> |
 	<a href="<?php echo esc_url( $lost_password_url ); ?>" title="<?php esc_attr_e( 'Password Lost and Found', 'another-wordpress-classifieds-plugin' ); ?>"><?php echo esc_html( __( 'Lost your password?', 'another-wordpress-classifieds-plugin' ) ); ?></a>
 	<?php else : ?>
 	<a href="<?php echo esc_url( $lost_password_url ); ?>" title="<?php esc_attr_e( 'Password Lost and Found', 'another-wordpress-classifieds-plugin' ); ?>"><?php echo esc_html( __( 'Lost your password?', 'another-wordpress-classifieds-plugin' ) ); ?></a>

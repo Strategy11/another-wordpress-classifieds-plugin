@@ -8,6 +8,7 @@ function awpcp_import_listings_ajax_handler() {
     );
 }
 
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_Import_Listings_Ajax_Handler extends AWPCP_AjaxHandler {
 
     private $import_sessions_manager;

@@ -3,9 +3,13 @@
  * @package AWPCP\Templates\Admin\Debug
  */
 
-?><?php echo awpcp_html_admin_second_level_heading( array( 'content' => __( 'Are you seeing 404 Not Found errors?', 'another-wordpress-classifieds-plugin' ) ) ); // XSS Ok. ?>
+awpcp_html_admin_second_level_heading(
+    array(
+        'content' => esc_html__( 'Are you seeing 404 Not Found errors?', 'another-wordpress-classifieds-plugin' ),
+        'echo'    => true,
+    )
+);
 
-<?php
 $allowed_html = array(
     'a' => array(
         'href',
@@ -30,7 +34,14 @@ $message = str_replace( '<support-link>', '<a href="https://awpcp.com/contact/">
     <a class="button-primary" href="<?php echo esc_url( admin_url( 'options-permalink.php' ) ); ?>"><?php echo esc_html_x( 'Flush Rewrite Rules', 'debug page', 'another-wordpress-classifieds-plugin' ); ?></a>
 </p>
 
-<?php echo awpcp_html_admin_second_level_heading( array( 'content' => _x( 'Plugin Pages', 'debug page', 'another-wordpress-classifieds-plugin' ) ) ); // XSS Ok. ?>
+<?php
+awpcp_html_admin_second_level_heading(
+    array(
+        'content' => esc_html__( 'Plugin Pages', 'another-wordpress-classifieds-plugin' ),
+        'echo'    => true,
+    )
+);
+?>
 
 <table class="widefat striped">
     <thead>

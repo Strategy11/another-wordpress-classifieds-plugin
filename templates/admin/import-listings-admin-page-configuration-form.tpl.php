@@ -23,7 +23,7 @@
                             <td>
                                 <input type="hidden" name="define_default_dates" value="0">
                                 <input id="awpcp-importer-define-default-dates" type="checkbox" name="define_default_dates" value="1"<?php echo $form_data['define_default_dates'] ? ' checked="checked"' : ''; ?>>
-                                <label for="awpcp-importer-define-default-dates" class="helptext"><?php echo __( 'The default values will be used if the CSV does not contain a value for the start date or end date columns.', 'another-wordpress-classifieds-plugin' ); ?></label>
+                                <label for="awpcp-importer-define-default-dates" class="helptext"><?php esc_html_e( 'The default values will be used if the CSV does not contain a value for the start date or end date columns.', 'another-wordpress-classifieds-plugin' ); ?></label>
                             </td>
                         </tr>
                         <tr data-usableform="show-if:define_default_dates">
@@ -118,7 +118,7 @@
                                     <option value="0"<?php echo $form_data['create_missing_categories'] == "0" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Generate an error', 'another-wordpress-classifieds-plugin' ) ); ?></option>
                                 </select>
                                 <?php echo awpcp_form_error( 'create_missing_categories', $form_errors ); ?>
-                                <p class="helptext"><?php echo __( 'Define whether you want to create missing categories or generate an error whenever a category in the CSV file is not found in the system.', 'another-wordpress-classifieds-plugin' ); ?></p>
+                                <p class="helptext"><?php esc_html_e( 'Define whether you want to create missing categories or generate an error whenever a category in the CSV file is not found in the system.', 'another-wordpress-classifieds-plugin' ); ?></p>
                             </td>
                         </tr>
                         <tr>
@@ -175,7 +175,7 @@
 
                 <hr>
 
-                <p><?php echo __( "Press the button below to cancel the current import operation and discard the uploaded CSV file and ZIP file (if any). If you manually uploaded images to the directory specified in the Local Directory field, those won't be deleted.", 'another-wordpress-classifieds-plugin' ); ?></p>
+                <p><?php esc_html_e( "Press the button below to cancel the current import operation and discard the uploaded CSV file and ZIP file (if any). If you manually uploaded images to the directory specified in the Local Directory field, those won't be deleted.", 'another-wordpress-classifieds-plugin' ); ?></p>
 
                 <p class="cancel-submit">
                     <input type="submit" class="button" name="cancel" value="<?php echo esc_html( __( 'Cancel', 'another-wordpress-classifieds-plugin' ) ); ?>"></input>

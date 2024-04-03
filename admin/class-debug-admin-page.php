@@ -18,6 +18,7 @@ function awpcp_debug_admin_page() {
 /**
  * Renders the Debug admin page.
  */
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_DebugAdminPage {
 
     /**

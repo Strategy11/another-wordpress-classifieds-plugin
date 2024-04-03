@@ -11,7 +11,14 @@ if ( isset( $errors ) && $errors ) {
 
 ?><div class="awpcp-facebook-inline-documentation">
 
-<?php echo awpcp_html_admin_second_level_heading( array( 'content' => __( 'Facebook Integration', 'another-wordpress-classifieds-plugin' ) ) ); // XSS Ok. ?>
+<?php
+awpcp_html_admin_second_level_heading(
+    array(
+        'content' => esc_html__( 'Facebook Integration', 'another-wordpress-classifieds-plugin' ),
+        'echo'    => true,
+    )
+);
+?>
 
 <p><?php esc_html_e( 'We currently support two methods for posting new ads to Facebook: Facebook API and Zapier/IFTTT Webhooks.', 'another-wordpress-classifieds-plugin' ); ?></p>
 

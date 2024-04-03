@@ -17,6 +17,7 @@ function awpcp_delete_category_admin_page() {
     );
 }
 
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_Delete_Category_Admin_Page {
 
     private $categories_logic;
@@ -53,7 +54,7 @@ class AWPCP_Delete_Category_Admin_Page {
             $message = __( 'There was an error trying to delete the category. <error-message>', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<error-message>', $e->getMessage(), $message );
 
-            awpcp_flash( $message, 'error' );
+            awpcp_flash( esc_html( $message ), 'error' );
         }
 
         return $this->redirect_to_main_page();
@@ -65,7 +66,7 @@ class AWPCP_Delete_Category_Admin_Page {
         $nonce                = awpcp_get_var( array( 'param' => 'awpcp-del-cat-nonce' ), 'post' );
 
         if ( ! wp_verify_nonce( $nonce, 'delete-category' ) ) {
-            throw new AWPCP_Exception( __( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
         }
         try {
             $target_category = $this->categories->get( $target_category_id );
@@ -74,7 +75,7 @@ class AWPCP_Delete_Category_Admin_Page {
                 $message = __( 'There was an error trying to load the selected category. <error-message>', 'another-wordpress-classifieds-plugin' );
                 $message = str_replace( '<error-message>', $e->getMessage(), $message );
 
-                throw new AWPCP_Exception( $message );
+                throw new AWPCP_Exception( esc_html( $message ) );
             }
 
             $target_category = null;

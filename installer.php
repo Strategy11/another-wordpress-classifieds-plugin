@@ -42,6 +42,7 @@ function awpcp_installer() {
     return $instance;
 }
 
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_Installer {
 
     private static $instance = null;
@@ -846,7 +847,7 @@ class AWPCP_Installer {
      */
     private function migrate_verify_email_message_email_template() {
         $previous_subject = $this->settings->get_option( 'verifyemailsubjectline', __( 'Verify the email address used for Ad $title', 'another-wordpress-classifieds-plugin' ) );
-        $previous_body    = $this->settings->get_option( 'verifyemailbodymessage', _x( "Hello \$author_name \n\nYou recently posted the Ad \$title to \$website_name. \n\nIn order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad. \n\n\$verification_link \n\nAfter you verify your email address, the administrator will be notified about the new Ad. If moderation is enabled, your Ad will remain in a disabled status until the administrator approves it.\n\n\$website_name\n\n\$website_url", 'another-wordpress-classifieds-plugin' ) );
+        $previous_body    = $this->settings->get_option( 'verifyemailbodymessage', __( "Hello \$author_name \n\nYou recently posted the Ad \$title to \$website_name. \n\nIn order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad. \n\n\$verification_link \n\nAfter you verify your email address, the administrator will be notified about the new Ad. If moderation is enabled, your Ad will remain in a disabled status until the administrator approves it.\n\n\$website_name\n\n\$website_url", 'another-wordpress-classifieds-plugin' ) );
 
         $template = $this->settings->get_option( 'verify-email-message-email-template' );
 

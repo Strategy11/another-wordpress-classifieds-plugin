@@ -4,7 +4,7 @@
 	<tbody>
 		<tr valign="top">
 			<th scope="row">
-				<label for="awpcp-profile-phone"><?php _e('Phone Number', 'another-wordpress-classifieds-plugin') ?></label>
+				<label for="awpcp-profile-phone"><?php esc_html_e( 'Phone Number', 'another-wordpress-classifieds-plugin' ); ?></label>
 			</th>
 			<td>
 				<input id="awpcp-profile-phone" class="regular-text" type="text" name="awpcp-profile[phone]" value="<?php echo esc_attr(awpcp_array_data('phone', '', $profile)) ?>" />
@@ -13,7 +13,7 @@
 		</tr>
 		<tr valign="top">
 			<th scope="row">
-				<label for="awpcp-profile-address"><?php _e('Address', 'another-wordpress-classifieds-plugin') ?></label>
+				<label for="awpcp-profile-address"><?php esc_html_e( 'Address', 'another-wordpress-classifieds-plugin' ); ?></label>
 			</th>
 			<td>
 				<input id="awpcp-profile-address" class="regular-text" type="text" name="awpcp-profile[address]" value="<?php echo esc_attr(awpcp_array_data('address', '', $profile)) ?>" />

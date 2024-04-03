@@ -36,7 +36,7 @@
     <p class="awpcp-form-field awpcp-form-spacer">
         <label for="name"><?php esc_html_e( 'For ads posted by', 'another-wordpress-classifieds-plugin' ); ?></label>
         <select id="name" name="searchname">
-            <option value=""><?php _e("All Users", 'another-wordpress-classifieds-plugin'); ?></option>
+            <option value=""><?php esc_html_e( 'All Users', 'another-wordpress-classifieds-plugin' ); ?></option>
             <?php echo create_ad_postedby_list($form['name']); ?>
         </select>
     </p>

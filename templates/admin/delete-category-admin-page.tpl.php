@@ -10,11 +10,11 @@
         <div class="metabox-sortables">
             <div class="postbox">
                 <?php
-                    // @phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                    echo awpcp_html_admin_third_level_heading(
+                    awpcp_html_admin_third_level_heading(
                         array(
                             'content'    => esc_html( $form_title ),
                             'attributes' => array( 'class' => 'hndle' ),
+                            'echo'       => true,
                         )
                     );
                     ?>

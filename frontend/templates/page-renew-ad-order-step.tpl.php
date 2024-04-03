@@ -3,7 +3,7 @@
  * @package AWPCP\Templates
  */
 
-?><h2><?php _ex('Select Payment Term', 'renew ad order step', 'another-wordpress-classifieds-plugin') ?></h2>
+?><h2><?php esc_html_e( 'Select Payment Term', 'another-wordpress-classifieds-plugin' ); ?></h2>
 
 <?php foreach ($messages as $message): ?>
     <?php echo awpcp_print_message($message) ?>

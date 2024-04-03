@@ -8,11 +8,12 @@
         <div class="metabox-sortables">
             <div class="postbox">
                 <?php
-                    echo awpcp_html_admin_third_level_heading(
+                    awpcp_html_admin_third_level_heading(
                         array(
-                            'content'    => $form_title,
+                            'content'    => esc_html( $form_title ),
                             'attributes' => array( 'class' => 'hndle' ),
-                            )
+                            'echo'       => true,
+                        )
                     );
                 ?>
                 <div class="inside">
@@ -72,7 +73,7 @@
 <div class="awpcp-manage-categories-icons-meaning">
     <ul>
         <li class="awpcp-manage-categories-icons-meaning-header">
-            <span><?php echo __( 'Icon Meanings:', 'another-wordpress-classifieds-plugin' ); ?></span>
+            <span><?php esc_html_e( 'Icon Meanings:', 'another-wordpress-classifieds-plugin' ); ?></span>
         </li>
     <?php foreach ( $icons as $icon ) : ?>
         <li class="awpcp-manage-categories-icons-meaning-icon"><i class="<?php echo esc_attr( $icon['class'] ); ?>"></i><span><?php echo $icon['label']; ?></span></li>
@@ -89,9 +90,9 @@
         wp_dropdown_categories( $target_category_dropdown_args );
         ?>
         <br/>
-        <?php echo __( 'Delete categories should do this with existing ads:', 'another-wordpress-classifieds-plugin' ); ?>
-        <label><input type="radio" name="movedeleteads" value="1" checked='checked' ><?php echo __( 'Move ads to new category', 'another-wordpress-classifieds-plugin' ); ?></label>
-        <label><input type="radio" name="movedeleteads" value="2" ><?php echo __( 'Delete ads too', 'another-wordpress-classifieds-plugin' ); ?></label>
+        <?php esc_html_e( 'Delete categories should do this with existing ads:', 'another-wordpress-classifieds-plugin' ); ?>
+        <label><input type="radio" name="movedeleteads" value="1" checked='checked' ><?php esc_html_e( 'Move ads to new category', 'another-wordpress-classifieds-plugin' ); ?></label>
+        <label><input type="radio" name="movedeleteads" value="2" ><?php esc_html_e( 'Delete ads too', 'another-wordpress-classifieds-plugin' ); ?></label>
     </p>
 
     <?php echo $pager1; ?>
@@ -123,20 +124,20 @@
             <td style="width:33%;padding:5px;">
                 <?php esc_html_e( 'Category Name (Total Ads)', 'another-wordpress-classifieds-plugin' ); ?>
             </td>
-            <td style="width:28%;padding:5px;"><?php echo __( 'Parent', 'another-wordpress-classifieds-plugin' ); ?></td>
-            <td style="width:5%;padding:5px;"><?php echo __( 'Order', 'another-wordpress-classifieds-plugin' ); ?></td>
-            <td style="width:15%;padding:5px;;"><?php echo __( 'Action', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="width:28%;padding:5px;"><?php esc_html_e( 'Parent', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="width:5%;padding:5px;"><?php esc_html_e( 'Order', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="width:15%;padding:5px;;"><?php esc_html_e( 'Action', 'another-wordpress-classifieds-plugin' ); ?></td>
         </tr>
 
         <?php echo smart_table2( $items, 1, '', '', false ); ?>
 
         <tr>
             <td style="padding:5px"></td>
-            <td style="width:10%; text-align: center;"><?php echo __( 'Category ID', 'another-wordpress-classifieds-plugin' ); ?></td>
-            <td style="padding:5px;"><?php echo __( 'Category Name (Total Ads)', 'another-wordpress-classifieds-plugin' ); ?></td>
-            <td style="padding:5px;"><?php echo __( 'Parent', 'another-wordpress-classifieds-plugin' ); ?></td>
-            <td style="padding:5px;"><?php echo __( 'Order', 'another-wordpress-classifieds-plugin' ); ?></td>
-            <td style="padding:5px;"><?php echo __( 'Action', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="width:10%; text-align: center;"><?php esc_html_e( 'Category ID', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="padding:5px;"><?php esc_html_e( 'Category Name (Total Ads)', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="padding:5px;"><?php esc_html_e( 'Parent', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="padding:5px;"><?php esc_html_e( 'Order', 'another-wordpress-classifieds-plugin' ); ?></td>
+            <td style="padding:5px;"><?php esc_html_e( 'Action', 'another-wordpress-classifieds-plugin' ); ?></td>
         </tr>
     </table>
 </form>

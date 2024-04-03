@@ -88,7 +88,14 @@ class AWPCP_CSVExporter {
 
             if ( $direrror ) {
                 /* translators: %s the error. */
-                throw new Exception( sprintf( _x( 'Error while creating a temporary directory for CSV export: %s', 'admin csv-export', 'another-wordpress-classifieds-plugin' ), $direrror ) );
+                throw new Exception(
+                    esc_html(
+                        sprintf(
+                            _x( 'Error while creating a temporary directory for CSV export: %s', 'admin csv-export', 'another-wordpress-classifieds-plugin' ),
+                            $direrror
+                        ),
+                    )
+                );
             }
         }
     }
@@ -120,7 +127,6 @@ class AWPCP_CSVExporter {
                 'fields'         => 'ids',
             )
         );
-
     }
 
     public static function &from_state( $state ) {
@@ -179,7 +185,7 @@ class AWPCP_CSVExporter {
                 fwrite( $csvfile, $this->prepare_content( $content ) );
             }
 
-            $this->exported ++;
+            $this->exported++;
         }
 
         fclose( $csvfile );
@@ -249,7 +255,6 @@ class AWPCP_CSVExporter {
         }
 
         return $urldir . 'export.csv';
-
     }
 
     /**

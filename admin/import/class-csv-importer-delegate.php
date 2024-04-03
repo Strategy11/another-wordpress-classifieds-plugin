@@ -98,7 +98,7 @@ class AWPCP_CSV_Importer_Delegate {
                     $message =_x( 'Required value for column "<column-name>" is missing.', 'csv importer', 'another-wordpress-classifieds-plugin' );
                     $message = str_replace( $message, '<column-name>', $column_name );
 
-                    throw new AWPCP_CSV_Importer_Exception( $message );
+                    throw new AWPCP_CSV_Importer_Exception( esc_html( $message ) );
                 }
 
                 try {
@@ -271,7 +271,7 @@ class AWPCP_CSV_Importer_Delegate {
             $message = __( 'No user could be assigned to this listing. Our attempt to create a new user failed with the following error: <error-message>.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<error-message>', $result->get_error_message(), $message );
 
-            throw new AWPCP_CSV_Importer_Exception( $message );
+            throw new AWPCP_CSV_Importer_Exception( esc_html( $message ) );
         }
 
         $this->users_cache[ $username ] = get_user_by( 'id', $result );
@@ -312,7 +312,7 @@ class AWPCP_CSV_Importer_Delegate {
             $message = _x( 'No category with name "<category-name>" was found.', 'csv importer', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<category-name>', $name, $message );
 
-            throw new AWPCP_CSV_Importer_Exception( $message );
+            throw new AWPCP_CSV_Importer_Exception( esc_html( $message ) );
         }
 
         return $category;
@@ -328,7 +328,7 @@ class AWPCP_CSV_Importer_Delegate {
             $message = _x( 'There was an error trying to create category "<category-name>".', 'csv importer', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<category-name>', $name, $message );
 
-            throw new AWPCP_CSV_Importer_Exception( $message, null, $e );
+            throw new AWPCP_CSV_Importer_Exception( esc_html( $message ), null, $e );
         }
 
         try {
@@ -337,7 +337,7 @@ class AWPCP_CSV_Importer_Delegate {
             $message = _x( 'A category with name "<category-name>" was created, but there was an error trying to retrieve its information from the database.', 'csv importer', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<category-name>', $name, $message );
 
-            throw new AWPCP_CSV_Importer_Exception( $message, null, $e );
+            throw new AWPCP_CSV_Importer_Exception( esc_html( $message ), null, $e );
         }
 
         return $category;
@@ -347,7 +347,7 @@ class AWPCP_CSV_Importer_Delegate {
         // numeric validation
         if ( ! is_numeric( $price ) ) {
             $message = _x( "Item price must be a number.", 'csv importer', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         // AWPCP stores Ad prices using an INT column (WTF!) so we need to
@@ -370,7 +370,7 @@ class AWPCP_CSV_Importer_Delegate {
     private function parse_date_column( $date, $default_date, $error_messages = array() ) {
         if ( empty( $date ) && empty( $default_date ) ) {
             $message = $error_messages['empty-date-with-no-default'];
-            throw new AWPCP_CSV_Importer_Exception( $message );
+            throw new AWPCP_CSV_Importer_Exception( esc_html( $message ) );
         }
 
         if ( ! empty( $date ) ) {
@@ -384,7 +384,7 @@ class AWPCP_CSV_Importer_Delegate {
             // TODO: validation
             if ( empty( $parsed_value ) ) {
                 $message = $error_messages['invalid-date'];
-                throw new AWPCP_CSV_Importer_Exception( $message );
+                throw new AWPCP_CSV_Importer_Exception( esc_html( $message ) );
             }
 
             return $parsed_value;
@@ -399,7 +399,7 @@ class AWPCP_CSV_Importer_Delegate {
 
         if ( empty( $parsed_value ) ) {
             $message = $error_messages['invalid-default-date'];
-            throw new AWPCP_CSV_Importer_Exception( $message );
+            throw new AWPCP_CSV_Importer_Exception( esc_html( $message ) );
         }
 
         return $parsed_value;
@@ -467,7 +467,7 @@ class AWPCP_CSV_Importer_Delegate {
         }
 
         if ( ! in_array( $payment_term_type, [ 'fee', 'subscription' ] ) ) {
-            throw new AWPCP_CSV_Importer_Exception( __( "The payment term type must be 'fee' or 'subscription'.", 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_CSV_Importer_Exception( esc_html__( "The payment term type must be 'fee' or 'subscription'.", 'another-wordpress-classifieds-plugin' ) );
         }
 
         $payment_term = $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
@@ -477,7 +477,7 @@ class AWPCP_CSV_Importer_Delegate {
             $message = str_replace( '{payment_term_type}', $payment_term_type, $message );
             $message = str_replace( '{payment_term_id}', $payment_term_id, $message );
 
-            throw new AWPCP_CSV_Importer_Exception( $message );
+            throw new AWPCP_CSV_Importer_Exception( esc_html( $message ) );
         }
 
         return $payment_term;
@@ -487,7 +487,7 @@ class AWPCP_CSV_Importer_Delegate {
         $images_directory = $this->import_session->get_images_directory();
 
         if ( empty( $images_directory ) ) {
-            throw new AWPCP_CSV_Importer_Exception( __( 'No images directory was configured. Are you sure you uploaded a ZIP file or defined a local directory?', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_CSV_Importer_Exception( esc_html__( 'No images directory was configured. Are you sure you uploaded a ZIP file or defined a local directory?', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $entries = array();
@@ -499,7 +499,7 @@ class AWPCP_CSV_Importer_Delegate {
                 $message = _x( 'Image file with name <image-name> not found.', 'csv importer', 'another-wordpress-classifieds-plugin' );
                 $message = str_replace( '<image-name>', $filename, $message );
 
-                throw new AWPCP_CSV_Importer_Exception( $message );
+                throw new AWPCP_CSV_Importer_Exception( esc_html( $message ) );
             }
 
             $pathinfo = awpcp_utf8_pathinfo( $file_path );
@@ -518,7 +518,7 @@ class AWPCP_CSV_Importer_Delegate {
             try{
                 $this->media_manager->validate_file( (object) [ 'ID' => -1 ], $imported_file );
             } catch ( AWPCP_Exception $previous ) {
-                throw new AWPCP_CSV_Importer_Exception( $previous->getMessage(), $previous->getCode(), $previous );
+                throw new AWPCP_CSV_Importer_Exception( esc_html( $previous->getMessage() ), $previous->getCode(), $previous );
             }
 
             $entries[] = $file_path;
@@ -564,7 +564,7 @@ class AWPCP_CSV_Importer_Delegate {
 
         } catch ( AWPCP_Exception $previous ) {
             $message = _x( 'There was an error trying to store imported data into the database.', 'csv importer', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_CSV_Importer_Exception( $message, 0, $previous );
+            throw new AWPCP_CSV_Importer_Exception( esc_html( $message ), 0, $previous );
         }
 
         foreach ( $listing_data['attachments'] as $file_path ) {
@@ -587,7 +587,7 @@ class AWPCP_CSV_Importer_Delegate {
                 $message = _x( 'There was an error trying to import one of the images: {image-validation-error}', 'csv importer', 'another-wordpress-classifieds-plugin' );
                 $message = str_replace( '{image-validation-error}', $previous->getMessage(), $message );
 
-                throw new AWPCP_CSV_Importer_Exception( $message, 0, $previous );
+                throw new AWPCP_CSV_Importer_Exception( esc_html( $message ), 0, $previous );
             }
         }
 
@@ -658,6 +658,7 @@ class AWPCP_CSV_Importer_Delegate {
  *                    not assigned to any category.
  *                    required fields may be empty if enforce is false.
  */
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, $enforce, &$errors ) {
     $validation_errors = array();
 

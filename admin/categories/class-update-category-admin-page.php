@@ -14,6 +14,7 @@ function awpcp_update_category_admin_page() {
     );
 }
 
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_Update_Category_Admin_Page {
 
     private $categories_logic;
@@ -47,13 +48,13 @@ class AWPCP_Update_Category_Admin_Page {
         $category_id = awpcp_get_var( array( 'param' => 'category_id' ) );
         $nonce        = awpcp_get_var( array( 'param' => 'awpcp-cat-form-nonce' ), 'post' );
         if ( ! wp_verify_nonce( $nonce, 'category-form' ) ) {
-            throw new AWPCP_Exception( __( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
         }
         try {
             $category = $this->categories->get( $category_id );
         } catch ( AWPCP_Exception $e ) {
             $message = __( "The category you're trying to update doesn't exist.", 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $category->name        = awpcp_get_var( array( 'param' => 'category_name' ) );

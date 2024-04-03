@@ -70,7 +70,7 @@
 
     <?php if ( ! $skip_payment_term_selection ): ?>
         <?php if ( $payments->payments_enabled() ): ?>
-    <h3><?php _e( 'Please select a payment term for your Ad', 'another-wordpress-classifieds-plugin' ); ?></h3>
+    <h3><?php esc_html_e( 'Please select a payment term for your Ad', 'another-wordpress-classifieds-plugin' ); ?></h3>
     <?php echo awpcp_form_error( 'payment-term', $form_errors ); ?>
         <?php endif; ?>
     <?php echo $payment_terms_list->render( $payment_options ); ?>

@@ -4,10 +4,11 @@
 
     <div data-bind="ifnot: group.completed">
         <?php
-            echo awpcp_html_admin_second_level_heading( array(
+            awpcp_html_admin_second_level_heading( array(
                 'attributes' => array(
                     'data-bind' => 'html: title, visible: title',
                 ),
+                'echo'       => true,
             ) );
         ?>
         <p data-bind="html: introduction"></p>
@@ -17,10 +18,11 @@
         <li>
             <div data-bind="if: tasks">
                 <?php
-                    echo awpcp_html_admin_third_level_heading( array(
+                    awpcp_html_admin_third_level_heading( array(
                         'attributes' => array(
                             'data-bind' => 'text: title, visible: title',
                         ),
+                        'echo'       => true,
                     ) );
                 ?>
                 <div data-bind="html: content, visible: content"></div>
@@ -41,10 +43,11 @@
 
             <div data-bind="if: completed">
                 <?php
-                    echo awpcp_html_admin_third_level_heading( array(
+                    awpcp_html_admin_third_level_heading( array(
                         'attributes' => array(
                             'data-bind' => 'html: successTitle, visible: successTitle',
                         ),
+                        'echo'       => true,
                     ) );
                 ?>
                 <div data-bind="html: successContent, visible: successContent"></div>

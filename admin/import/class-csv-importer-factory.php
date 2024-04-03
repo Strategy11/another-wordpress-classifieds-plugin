@@ -7,6 +7,7 @@ function awpcp_csv_importer_factory() {
     );
 }
 
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_CSV_Importer_Factory {
 
     private $importer_delegate_factory;

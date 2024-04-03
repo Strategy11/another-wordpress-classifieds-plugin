@@ -59,13 +59,13 @@ class AWPCP_DripAutoresponder {
     private function render_content() {
         $template = '<h3><title></h3><p><content></p><p><label for="awpcp-autoresponder-email"><b><label>:</b></label><br><input style="min-width: 100%" id="awpcp-autoresponder-email" type="text" name="awpcp-user-email" value="<user-email>" /></p><div class="awpcp-message error is-hidden"></div>';
 
-        $title = _x( 'Want to know the Secrets of Building an Awesome Classifieds Website?', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' );
-        $content = _x( 'Find out how to create a compelling, thriving classifieds site from scratch in this ridiculously actionable (and free) 5-part email course.', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' );
+        $title   = esc_html__( 'Want to know the Secrets of Building an Awesome Classifieds Website?', 'another-wordpress-classifieds-plugin' );
+        $content = esc_html__( 'Find out how to create a compelling, thriving classifieds site from scratch in this ridiculously actionable (and free) 5-part email course.', 'another-wordpress-classifieds-plugin' );
 
         $template = str_replace( '<title>', $title, $template );
         $template = str_replace( '<content>', $content, $template );
-        $template = str_replace( '<label>', __( 'Email Address', 'another-wordpress-classifieds-plugin' ), $template );
-        $template = str_replace( '<user-email>', wp_get_current_user()->user_email, $template );
+        $template = str_replace( '<label>', esc_html__( 'Email Address', 'another-wordpress-classifieds-plugin' ), $template );
+        $template = str_replace( '<user-email>', esc_html( wp_get_current_user()->user_email ), $template );
 
         return $template;
     }

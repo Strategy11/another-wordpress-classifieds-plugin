@@ -12,9 +12,10 @@
                         'class' => 'awpcp-page-header',
                     ),
                     'content' => $page_title, // no need to escape; title() is allowed to output html
+                    'echo'       => true,
                 );
 
-                echo awpcp_html_admin_first_level_heading( $heading_params );
+                awpcp_html_admin_first_level_heading( $heading_params );
             }
         ?>
 

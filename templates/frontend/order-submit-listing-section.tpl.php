@@ -84,7 +84,14 @@
         </div>
 
         <div class="awpcp-order-submit-listing-section__read_mode">
-            <p class="awpcp-order-submit-listing-section--selected-categories-container"><?php echo str_replace( '{categories}', '<span class="awpcp-order-submit-listing-section--selected-categories"></span>', esc_html_x( 'Your ad will be posted on the following categories: {categories}.', 'order submit listing section', 'another-wordpress-classifieds-plugin' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+            <p class="awpcp-order-submit-listing-section--selected-categories-container">
+                <?php
+                printf(
+                    esc_html__( 'Your ad will be posted on the following categories: %s.', 'another-wordpress-classifieds-plugin' ),
+                    '<span class="awpcp-order-submit-listing-section--selected-categories"></span>'
+                );
+                ?>
+            </p>
             <?php
             $display = awpcp_payments_api()->payments_enabled() ? 'block' : 'none';
             ?>

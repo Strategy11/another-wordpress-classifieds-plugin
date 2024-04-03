@@ -2,29 +2,29 @@
 <?php echo $introduction ?>
 
 
-<?php _e("Listing Title", 'another-wordpress-classifieds-plugin') ?>: <?php echo $listing_title; ?>
+<?php esc_html_e( 'Listing Title', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $listing_title; ?>
 
-<?php _e("Listing URL", 'another-wordpress-classifieds-plugin') ?>: <?php echo urldecode( url_showad( $ad->ID ) ); ?>
+<?php esc_html_e( 'Listing URL', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo urldecode( url_showad( $ad->ID ) ); ?>
 
-<?php _e("Listing ID", 'another-wordpress-classifieds-plugin') ?>: <?php echo $ad->ID; ?>
+<?php esc_html_e( 'Listing ID', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $ad->ID ); ?>
 
-<?php _e("Listing Edit Email", 'another-wordpress-classifieds-plugin') ?>: <?php echo $contact_email; ?>
+<?php esc_html_e( 'Listing Edit Email', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $contact_email ); ?>
 
 <?php if ( get_awpcp_option( 'include-ad-access-key' ) ): ?>
-<?php _e("Listing Edit Key", 'another-wordpress-classifieds-plugin') ?>: <?php echo $access_key; ?>
+<?php esc_html_e( 'Listing Edit Key', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $access_key; ?>
 <?php endif; ?>
 
-<?php _e("Listing End Date", 'another-wordpress-classifieds-plugin') ?>: <?php echo $end_date; ?>
+<?php esc_html_e( 'Listing End Date', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $end_date ); ?>
 
 
 
 <?php
     $text = __( 'If you have questions about your listing, please contact %s.', 'another-wordpress-classifieds-plugin' );
-    echo sprintf( $text, awpcp_admin_recipient_email_address() );
+    echo esc_html( sprintf( $text, awpcp_admin_recipient_email_address() ) );
 ?>
 
 
-<?php _e('Thank you for your business', 'another-wordpress-classifieds-plugin') ?>
+<?php esc_html_e( 'Thank you for your business', 'another-wordpress-classifieds-plugin' ); ?>
 
 
-<?php echo home_url() ?>
+<?php echo esc_html( home_url() ); ?>

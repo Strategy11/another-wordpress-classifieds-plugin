@@ -115,7 +115,7 @@ function awpcp_rel_canonical() {
 	$url = awpcp_rel_canonical_url();
 
 	if ( $url ) {
-		echo "<link rel='canonical' href='$url' />\n";
+		echo "<link rel='canonical' href='" . esc_url( $url ) . "' />\n";
 	} else {
 		rel_canonical();
 	}
@@ -2185,6 +2185,8 @@ function awpcp_html_admin_second_level_heading_tag() {
 
 /**
  * @since 4.0.0
+ *
+ * @return string|void
  */
 function awpcp_html_admin_third_level_heading( $params ) {
     $params['tag'] = awpcp_html_admin_third_level_heading_tag();
@@ -2207,12 +2209,15 @@ function awpcp_html_admin_third_level_heading_tag() {
  *
  * @access private
  * @since 3.6
+ *
+ * @return string|void
  */
 function awpcp_html_heading( $params ) {
     $default_params = array(
-        'tag' => 'h1',
+        'tag'        => 'h1',
         'attributes' => array(),
-        'content' => '',
+        'content'    => '',
+        'echo'       => false,
     );
 
     $params = wp_parse_args( $params, $default_params );
@@ -2222,6 +2227,11 @@ function awpcp_html_heading( $params ) {
     $element = str_replace( '<heading-tag>', $params['tag'], $element );
     $element = str_replace( '<heading-attributes>', awpcp_html_attributes( $params['attributes'] ), $element );
     $element = str_replace( '<content>', $params['content'], $element );
+
+    if ( $params['echo'] ) {
+        echo $element;
+        return;
+    }
 
     return $element;
 }

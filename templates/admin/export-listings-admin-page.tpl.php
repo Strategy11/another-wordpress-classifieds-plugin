@@ -139,7 +139,7 @@
     </div>
 
     <div class="awpcp-step-3">
-        <h2><?php echo esc_html_x( 'Export Complete', 'listings-csv-export' ); ?></h2>
+        <h2><?php esc_html_e( 'Export Complete', 'another-wordpress-classifieds-plugin' ); ?></h2>
         <p><?php echo esc_html_x( 'Your export file has been successfully created and it is now ready for download.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
         <div class="download-link">
             <a href="" class="button button-primary">
@@ -162,7 +162,7 @@
     </div>
 
     <div class="canceled-export">
-        <h2><?php echo esc_html_x( 'Export Canceled', 'listings-csv-export' ); ?></h2>
+        <h2><?php esc_html_e( 'Export Canceled', 'another-wordpress-classifieds-plugin' ); ?></h2>
         <p><?php echo esc_html_x( 'The export has been canceled.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
         <p><a href="" class="button"><?php echo esc_html_x( '← Return to CSV Export', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></a></p>
     </div>

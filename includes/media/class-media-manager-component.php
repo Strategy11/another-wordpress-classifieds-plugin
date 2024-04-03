@@ -35,6 +35,11 @@ class AWPCP_MediaManagerComponent {
     private $settings;
 
     /**
+     * @var bool
+     */
+    private $echo = false;
+
+    /**
      * Constructor.
      */
     public function __construct( $attachment_properties, $javascript, $settings ) {
@@ -53,6 +58,12 @@ class AWPCP_MediaManagerComponent {
         $this->javascript->set( 'media-manager-data', $options );
 
         return $this->render_component( $options );
+    }
+
+    public function show( $files = array(), $options = array() ) {
+        $this->echo = true;
+        $this->render( $files, $options );
+        $this->echo = false;
     }
 
     /**
@@ -82,12 +93,19 @@ class AWPCP_MediaManagerComponent {
 
     /**
      * @param array $options    An array of options.
+     *
+     * @return string|void
      */
     private function render_component( $options ) {
         $thumbnails_width = $this->settings->get_option( 'imgthumbwidth' );
+        $file             = AWPCP_DIR . '/templates/components/media-manager.tpl.php';
+        if ( $this->echo ) {
+            include $file;
+            return;
+        }
 
         ob_start();
-        include AWPCP_DIR . '/templates/components/media-manager.tpl.php';
+        include $file;
         $output = ob_get_contents();
         ob_end_clean();
 

@@ -69,15 +69,15 @@ class AWPCP_FilesSettings {
     }
 
     public function primary_image_excerpt_section_header() {
-        echo __( 'Configure the dimensions of the image displayed as the thumbnail for each ad in the page with the list of ads.', 'another-wordpress-classifieds-plugin' );
+        esc_html_e( 'Configure the dimensions of the image displayed as the thumbnail for each ad in the page with the list of ads.', 'another-wordpress-classifieds-plugin' );
     }
 
     public function primary_image_section_header() {
-        echo __( 'Configure the dimensions of the image displayed as the main thumbnail on the page that shows the ad details.', 'another-wordpress-classifieds-plugin' );
+        esc_html_e( 'Configure the dimensions of the image displayed as the main thumbnail on the page that shows the ad details.', 'another-wordpress-classifieds-plugin' );
     }
 
     public function thumbnails_section_header() {
-        echo __( 'These are the remaining images that are not primary ones, if you have more than one image allowed per listing.', 'another-wordpress-classifieds-plugin' );
+        esc_html_e( 'These are the remaining images that are not primary ones, if you have more than one image allowed per listing.', 'another-wordpress-classifieds-plugin' );
     }
 
     /**
