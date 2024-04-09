@@ -24,4 +24,3 @@ class AWPCP_Classifieds_Menu_Component {
         ) );
     }
 }
-

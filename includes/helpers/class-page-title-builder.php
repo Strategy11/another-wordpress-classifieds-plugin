@@ -66,7 +66,7 @@ class AWPCP_PageTitleBuilder {
         if (preg_match('/^' . $regex . '/', $title, $matches)) {
             $title = preg_replace('/^' . $regex . '/', '', $title);
             $appendix = ($matches[0]);
-        } else if (preg_match('/' . $regex . '$/', $title, $matches)) {
+        } elseif (preg_match('/' . $regex . '$/', $title, $matches)) {
             $title = preg_replace('/' . $regex . '$/', '', $title);
             $appendix = ($matches[0]);
         } else {
@@ -124,7 +124,7 @@ class AWPCP_PageTitleBuilder {
     private function get_queried_object_name() {
         if ( ! empty( $this->category_id ) ) {
             return get_adcatname( $this->category_id );
-        } else if ( ! is_null( $this->listing ) ) {
+        } elseif ( ! is_null( $this->listing ) ) {
             return $this->listing_renderer->get_listing_title( $this->listing );
         }
 
@@ -175,7 +175,7 @@ class AWPCP_PageTitleBuilder {
         if (preg_match($left, $title, $matches)) {
             $name_position = 'left';
             $regex = $left;
-        } else if (preg_match($right, $title, $matches)) {
+        } elseif (preg_match($right, $title, $matches)) {
             $name_position = 'right';
             $regex = $right;
         } else {
@@ -215,7 +215,7 @@ class AWPCP_PageTitleBuilder {
         if ( ! empty( $this->category_id ) ) {
             $parts[] = $this->get_category_name();
 
-        } else if ( ! is_null( $this->listing ) ) {
+        } elseif ( ! is_null( $this->listing ) ) {
             $regions = $this->listing_renderer->get_regions( $this->listing );
             if ( count( $regions ) > 0 ) {
                 $region = $regions[0];
@@ -268,9 +268,9 @@ class AWPCP_PageTitleBuilder {
 
         if ( strpos( $original_title, $page_title ) !== false ) {
             return true;
-        } else if ( strpos( $original_title, $texturized_title ) !== false ) {
+        } elseif ( strpos( $original_title, $texturized_title ) !== false ) {
             return true;
-        } else if ( strpos( $original_title, $escaped_texturized_title ) !== false ) {
+        } elseif ( strpos( $original_title, $escaped_texturized_title ) !== false ) {
             return true;
         }
 

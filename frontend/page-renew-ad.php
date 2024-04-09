@@ -195,10 +195,8 @@ class AWPCP_RenewAdPageImplementation {
     protected function validate_order($data, &$errors=array()) {
         if ( is_null( $data['payment_term'] ) ) {
             $errors[] = __( 'You should choose one of the available Payment Terms.', 'another-wordpress-classifieds-plugin');
-        } else {
-            if ( $data['payment_term']->type != $data['fee']->type || $data['payment_term']->id != $data['fee']->id ) {
-                $errors[] = __("You are trying to renew your Ad using a different Payment Term. That's not allowed.", 'another-wordpress-classifieds-plugin');
-            }
+        } elseif ( $data['payment_term']->type != $data['fee']->type || $data['payment_term']->id != $data['fee']->id ) {
+            $errors[] = __( "You are trying to renew your Ad using a different Payment Term. That's not allowed.", 'another-wordpress-classifieds-plugin' );
         }
     }
 

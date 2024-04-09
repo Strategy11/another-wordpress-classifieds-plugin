@@ -47,7 +47,7 @@ class AWPCP_HTML_Renderer {
 
         if ( isset( $this->element_renderers[ $class_name ] ) ) {
             return $this->element_renderers[ $class_name ];
-        } else if ( function_exists( $constructor_function ) ) {
+        } elseif ( function_exists( $constructor_function ) ) {
             $this->element_renderers[ $class_name ] = call_user_func( $constructor_function );
         } else {
             $this->element_renderers[ $class_name ] = awpcp_html_default_element_renderer();

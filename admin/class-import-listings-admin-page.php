@@ -40,7 +40,7 @@ class AWPCP_ImportListingsAdminPage {
 
         if ( ! is_null( $import_session ) && ( $import_session->is_ready() || $import_session->is_in_progress() ) ) {
             $step = 'execute';
-        } else if ( ! is_null( $import_session ) ) {
+        } elseif ( ! is_null( $import_session ) ) {
             $step = 'configure';
         } else {
             $step = awpcp_get_var( array( 'param' => 'step', 'default' => 'upload-files' ), 'get' );
@@ -48,9 +48,9 @@ class AWPCP_ImportListingsAdminPage {
 
         if ( $step == 'upload-files' ) {
             return $this->do_upload_files_step();
-        } else if ( $step == 'configure' ) {
+        } elseif ( $step == 'configure' ) {
             return $this->do_configuration_step();
-        } else if ( $step == 'execute' ) {
+        } elseif ( $step == 'execute' ) {
             return $this->do_execute_step();
         }
     }
@@ -96,11 +96,11 @@ class AWPCP_ImportListingsAdminPage {
             $form_errors['csv_file'] = $file_error[1];
 
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-        } else if ( substr( $_FILES['csv_file']['name'], -4 ) !== '.csv' ) {
+        } elseif ( substr( $_FILES['csv_file']['name'], -4 ) !== '.csv' ) {
             $form_errors['csv_file'] = __( "The uploaded file doesn't look like a CSV file. Please upload a valid CSV file.", 'another-wordpress-classifieds-plugin' );
 
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-        } else if ( ! @move_uploaded_file( $_FILES['csv_file']['tmp_name'], "$working_directory/source.csv" ) ) {
+        } elseif ( ! @move_uploaded_file( $_FILES['csv_file']['tmp_name'], "$working_directory/source.csv" ) ) {
             $form_errors['csv_file'] = __( 'There was an error moving the uploaded CSV file to a proper location.', 'another-wordpress-classifieds-plugin' );
         }
 
@@ -113,15 +113,15 @@ class AWPCP_ImportListingsAdminPage {
                 $form_errors['zip_file'] = $file_error[1];
 
 				// phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
-            } else if ( $_FILES['zip_file']['error'] == UPLOAD_ERR_NO_FILE ) {
+            } elseif ( $_FILES['zip_file']['error'] == UPLOAD_ERR_NO_FILE ) {
                 // all good...
 
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-            } else if ( substr( $_FILES['zip_file']['name'], -4 ) !== '.zip' ) {
+            } elseif ( substr( $_FILES['zip_file']['name'], -4 ) !== '.zip' ) {
                 $form_errors['zip_file'] = __( "The uploaded file doesn't look like a ZIP file. Please upload a valid ZIP file.", 'another-wordpress-classifieds-plugin' );
 
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-            } else if ( ! @move_uploaded_file( $_FILES['zip_file']['tmp_name'], "$working_directory/images.zip" ) ) {
+            } elseif ( ! @move_uploaded_file( $_FILES['zip_file']['tmp_name'], "$working_directory/images.zip" ) ) {
                 $form_errors['zip_file'] = __( 'There was an error moving the uploaded ZIP file to a proper location.', 'another-wordpress-classifieds-plugin' );
             }
 
@@ -135,7 +135,7 @@ class AWPCP_ImportListingsAdminPage {
 
                 if ( ! is_array( $zip_contents ) ) {
                     $form_errors['zip_file'] = __( 'Incompatible ZIP Archive', 'another-wordpress-classifieds-plugin' );
-                } else if ( 0 === count( $zip_contents ) ) {
+                } elseif ( 0 === count( $zip_contents ) ) {
                     $form_errors['zip_file'] = __( 'Empty ZIP Archive', 'another-wordpress-classifieds-plugin' );
                 }
 
@@ -167,12 +167,12 @@ class AWPCP_ImportListingsAdminPage {
                     }
                 }
             }
-        } else if ( $form_data['images_source'] == 'local' ) {
+        } elseif ( $form_data['images_source'] == 'local' ) {
             $local_directory = realpath( $uploads_dir . DIRECTORY_SEPARATOR . str_replace( '..', '', $form_data['local_path'] ) );
 
             if ( strpos( $local_directory, $uploads_dir ) !== 0 || strpos( $local_directory, $uploads_dir ) === false ) {
                 $form_errors['local_path'] = __( 'The specified directory is not a valid path.', 'another-wordpress-classifieds-plugin' );
-            } else if ( ! is_dir( $local_directory ) ) {
+            } elseif ( ! is_dir( $local_directory ) ) {
                 $form_errors['local_path'] = __( 'The specified directory does not exists.', 'another-wordpress-classifieds-plugin' );
             } else {
                 $images_directory = $local_directory;

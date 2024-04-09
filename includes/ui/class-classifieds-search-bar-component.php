@@ -20,4 +20,3 @@ class AWPCP_Classifieds_Search_Bar_Component {
         return awpcp_render_template( $template, $params );
     }
 }
-

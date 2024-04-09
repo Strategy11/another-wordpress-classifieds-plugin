@@ -42,7 +42,7 @@ class AWPCP_ModulesUpdater {
         // instance to carefully extracting the slug, name, version and path to
         // the main file.
         if (
-               ! isset( $module->slug )
+                ! isset( $module->slug )
             || ! isset( $module->name )
             || ! isset( $module->version )
             || ! isset( $module->file )

@@ -16,13 +16,13 @@ class AWPCP_PaymentTermsTable {
 
         if ($selected) {
             $this->selected = $selected;
-        } else if (count($this->items) > 0) {
+        } elseif (count($this->items) > 0) {
             $item = reset($this->items);
 
             $columns = $this->get_columns();
             if (isset($columns['price'])) {
                 $this->selected = $this->item_id( $item, AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY );
-            } else if (isset($columns['credits'])) {
+            } elseif (isset($columns['credits'])) {
                 $this->selected = $this->item_id( $item, AWPCP_Payment_Transaction::PAYMENT_TYPE_CREDITS );
             }
         }

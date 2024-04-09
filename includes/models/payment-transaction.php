@@ -115,13 +115,13 @@ class AWPCP_Payment_Transaction {
 
         if (is_array($status) && !empty($status)) {
             $conditions[] = sprintf("status IN ('%s')", join("','", $status));
-        } else if (!is_null($status)) {
+        } elseif (!is_null($status)) {
             $conditions[] = $wpdb->prepare('status = %s', $status);
         }
 
         if (is_array($created) && !empty($created)) {
             $conditions[] = $wpdb->prepare(sprintf('created %s %%s', $created[0]), $created[1]);
-        } else if (!is_null($created)) {
+        } elseif (!is_null($created)) {
             $conditions[] = $wpdb->prepare('created = %s', $created);
         }
 

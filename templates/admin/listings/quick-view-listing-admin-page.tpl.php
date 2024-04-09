@@ -22,7 +22,7 @@ if ( isset( $awpcp_result ) ) {
     <?php
     foreach ( $awpcp_actions as $awpcp_action ) {
         echo wp_kses_post( $awpcp_action );
-    };
+    }
     ?>
     <?php
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

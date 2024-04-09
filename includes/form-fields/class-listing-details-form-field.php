@@ -86,7 +86,7 @@ class AWPCP_ListingDetailsFormField extends AWPCP_FormField {
         if ( is_object( $listing ) ) {
             $payment_term = $this->listing_renderer->get_payment_term( $listing );
             $characters_used = strlen( $this->listing_renderer->get_listing_title( $listing ) );
-        } else if ( $transaction = $this->payments->get_transaction() ) {
+        } elseif ( $transaction = $this->payments->get_transaction() ) {
             $payment_term = $this->payments->get_transaction_payment_term( $transaction );
             $characters_used = 0;
         } else {

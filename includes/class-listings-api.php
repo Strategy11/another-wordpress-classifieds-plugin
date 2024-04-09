@@ -345,7 +345,7 @@ class AWPCP_ListingsAPI {
 
         if ( $is_listing_verified  ) {
             $this->send_ad_posted_email_notifications( $ad, array(), $transaction );
-        } else if ( ! $is_listing_verified ) {
+        } elseif ( ! $is_listing_verified ) {
             $this->send_verification_email( $ad );
         }
 
@@ -367,7 +367,7 @@ class AWPCP_ListingsAPI {
         if ( $should_disable_listing && $this->listing_renderer->is_public( $ad )  ) {
             $this->disable_listing( $ad );
             $this->wordpress->delete_post_meta( $ad->ID, '_awpcp_disabled_date' );
-        } else if ( $should_disable_listing ) {
+        } elseif ( $should_disable_listing ) {
             $this->wordpress->delete_post_meta( $ad->ID, '_awpcp_disabled_date' );
         }
 
@@ -395,9 +395,9 @@ class AWPCP_ListingsAPI {
     private function should_mark_listing_as_verified( $listing, $transaction ) {
         if ( ! $this->settings->get_option( 'enable-email-verification' ) ) {
             return true;
-        } else if ( is_user_logged_in() ) {
+        } elseif ( is_user_logged_in() ) {
             return true;
-        } else if ( $transaction->payment_is_completed() || $transaction->payment_is_pending() ) {
+        } elseif ( $transaction->payment_is_completed() || $transaction->payment_is_pending() ) {
             return true;
         }
         return false;

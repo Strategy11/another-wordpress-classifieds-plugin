@@ -619,5 +619,4 @@ class AWPCP_ListingsSettings {
     public function seo_settings_validated( $options, $group, $subgroup ) {
         update_option( 'awpcp-flush-rewrite-rules', true );
     }
-
 }

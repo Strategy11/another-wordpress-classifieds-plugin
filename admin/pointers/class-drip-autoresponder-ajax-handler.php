@@ -27,7 +27,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
 
         if ( $action == 'awpcp-autoresponder-user-subscribed' ) {
             return $this->user_subscribed();
-        } else if ( $action == 'awpcp-autoresponder-dismissed' ) {
+        } elseif ( $action == 'awpcp-autoresponder-dismissed' ) {
             return $this->autoresponder_dismissed();
         }
     }
@@ -58,7 +58,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
         if ( $this->was_request_successful( $response ) ) {
             $this->disable_autoresponder();
             return $this->success( array( 'pointer' => $this->build_confirmation_pointer() ) );
-        } else if ( isset( $response['body'] ) ) {
+        } elseif ( isset( $response['body'] ) ) {
             return $this->error_response( $this->get_error_from_response_body( $response['body'] ) );
         } else {
             return $this->error_response( $this->get_unexpected_error_message() );
@@ -138,7 +138,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
 
         if ( count( $errors ) == 1 ) {
             return trim( reset( $errors ) );
-        } else if ( ! empty( $errors ) ) {
+        } elseif ( ! empty( $errors ) ) {
             return sprintf( '<li>%s</li>', implode( '</li><li>', array_map( 'trim', $errors ) ) );
         } else {
             return $this->get_unexpected_error_message();

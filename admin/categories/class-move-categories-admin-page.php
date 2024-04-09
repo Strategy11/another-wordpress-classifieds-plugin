@@ -90,9 +90,9 @@ class AWPCP_Move_Categories_Admin_Page {
         foreach ( $selected_categories as $category_id ) {
             try {
                 $this->categories_logic->move_category( $this->categories->get( $category_id ), $target_category );
-                $categories_moved++;
+                ++$categories_moved;
             } catch ( AWPCP_Exception $e ) {
-                $categories_not_moved++;
+                ++$categories_not_moved;
             }
         }
 

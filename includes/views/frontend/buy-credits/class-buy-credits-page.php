@@ -100,7 +100,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
         if ( ! is_null( $transaction ) && $transaction->is_payment_completed() ) {
             if ( $transaction->payment_is_not_verified() ) {
                 $this->set_current_step( 'payment-completed' );
-            } else if ( $transaction->was_payment_successful() && $step_not_allowed ) {
+            } elseif ( $transaction->was_payment_successful() && $step_not_allowed ) {
                 $this->set_current_step( 'payment-completed' );
             }
         }

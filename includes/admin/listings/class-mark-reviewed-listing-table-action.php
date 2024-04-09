@@ -143,4 +143,3 @@ class AWPCP_MarkReviewedListingTableAction implements
         return '';
     }
 }
-

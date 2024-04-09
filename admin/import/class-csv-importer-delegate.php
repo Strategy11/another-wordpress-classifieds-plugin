@@ -251,9 +251,9 @@ class AWPCP_CSV_Importer_Delegate {
         $message = '';
         if ( empty( $username ) && empty( $contact_email ) ) {
             $message = _x( "No user could be assigned to this listing. A new user couldn't be created because both the username and contact email columns are missing or have an empty value. Please include a username and contact email or select a default user.", 'csv importer', 'another-wordpress-classifieds-plugin' );
-        } else if ( empty( $username ) ) {
+        } elseif ( empty( $username ) ) {
             $message = _x( "No user could be assigned to this listing. A new user couldn't be created because the username column is missing or has an empty value. Please include a username or select a default user.", 'csv importer', 'another-wordpress-classifieds-plugin' );
-        } else if ( empty( $contact_email ) ) {
+        } elseif ( empty( $contact_email ) ) {
             $message = _x( "No user could be assigned to this listing. A new user couldn't be created because the contact_email column is missing or has an empty value. Please include a contact_email or select a default user.", 'csv importer', 'another-wordpress-classifieds-plugin' );
         }
         if ( $message ) {
@@ -307,9 +307,9 @@ class AWPCP_CSV_Importer_Delegate {
 
         if ( is_null( $category ) && $create_missing_categories && $is_test_mode_enabled ) {
             return (object) array( 'term_id' => rand() + 1, 'parent' => 0 );
-        } else if ( is_null( $category ) && $create_missing_categories ) {
+        } elseif ( is_null( $category ) && $create_missing_categories ) {
             return $this->create_category( $name );
-        } else if ( is_null( $category ) ) {
+        } elseif ( is_null( $category ) ) {
             $message = _x( 'No category with name "<category-name>" was found.', 'csv importer', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<category-name>', $name, $message );
 

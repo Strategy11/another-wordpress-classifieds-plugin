@@ -77,7 +77,7 @@ class AWPCP_EasyDigitalDownloads {
 
         if ( isset( $decoded_data->error ) && ! empty( $decoded_data->error ) ) {
             throw new AWPCP_Easy_Digital_Downloads_Exception( esc_html( $decoded_data->error ) );
-        } else if ( isset( $decoded_data->error ) ) {
+        } elseif ( isset( $decoded_data->error ) ) {
             $message = __( "Unknown. The response didn't include a meaningful error message.", 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Easy_Digital_Downloads_Exception( esc_html( $message ) );
         }

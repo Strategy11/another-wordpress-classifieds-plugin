@@ -78,9 +78,9 @@ class AWPCP_LicensesSettings {
             return '';
         }
 
-        $description = _x( 'The IP address of your server is <ip-address>. Please make sure to include that information if you need to contact support about problems trying to activate your licenses.', 'settings', 'WPBDM' );
-        $description = str_replace( '<ip-address>', '<strong>' . $ip_address . '</strong>', $description );
+        $description = __( 'The IP address of your server is <ip-address>. Please make sure to include that information if you need to contact support about problems trying to activate your licenses.', 'another-wordpress-classifieds-plugin' );
+        $description = str_replace( '<ip-address>', $ip_address, $description );
 
-        return '<p class="description">' . $description . '</p>';
+        return '<p class="description">' . esc_html( $description ) . '</p>';
     }
 }

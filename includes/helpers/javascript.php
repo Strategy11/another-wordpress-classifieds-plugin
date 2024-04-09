@@ -26,7 +26,7 @@ class AWPCP_JavaScript {
     public function localize($context, $key, $value=null) {
         if ( is_array( $key ) && isset( $this->l10n[ $context ] ) ) {
             $this->l10n[ $context ] = array_merge( $this->l10n[ $context ], $key );
-        } else if ( is_array( $key ) ) {
+        } elseif ( is_array( $key ) ) {
             $this->l10n[ $context ] = $key;
         } else {
             $this->l10n[ $context ][ $key ] = $value;

@@ -61,7 +61,7 @@ class AWPCP_ExampleCSVFileAdminPage {
                     $data[ $i + 1 ][ $current_column ] = array_rand( $examples );
                 }
 
-                $current_column++;
+                ++$current_column;
             }
         }
 

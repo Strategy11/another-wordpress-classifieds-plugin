@@ -29,7 +29,7 @@
                 'required' => false,
                 'multiple' => true,
                 'auto'     => false,
-              ) ); ?>
+                ) ); ?>
     </p>
 
     <?php if ($ui['posted-by-field']): ?>

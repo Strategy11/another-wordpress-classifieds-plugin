@@ -49,7 +49,7 @@ class AWPCP_AddMetaTagsPluginIntegration {
             add_filter( 'amt_opengraph_metadata_head', array( $this, 'overwrite_opengraph_metadata' ) );
 
             return false;
-        } else if ( ! empty( $options['site_wide_meta'] ) ) {
+        } elseif ( ! empty( $options['site_wide_meta'] ) ) {
             if ( ! isset( $this->metadata ) ) {
                 $this->metadata = $meta->get_listing_metadata();
             }

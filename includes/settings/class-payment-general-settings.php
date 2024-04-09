@@ -100,7 +100,6 @@ class AWPCP_PaymentSettings {
         $settings_manager->add_setting( $key, 'pay-before-place-ad', _x( 'Pay before entering Ad details', 'settings', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, _x( 'Check to ask for payment before entering Ad details. Uncheck if you want users to pay for Ads at the end of the process, after images have been uploaded.', 'settings', 'another-wordpress-classifieds-plugin' ) );
         $settings_manager->add_setting( $key, 'paylivetestmode', __( 'Put payment gateways in test mode?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Leave this OFF to accept real payments, turn it on to perform payment tests.', 'another-wordpress-classifieds-plugin' ) );
         $settings_manager->add_setting( $key, 'force-secure-urls', __( 'Force secure URLs on payment pages', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'If checked all classifieds pages that involve payments will be accessed through a secure (HTTPS) URL. Do not enable this feature if your server does not support HTTPS.', 'another-wordpress-classifieds-plugin' ) );
-
     }
 
     public function validate_group_settings( $options ) {

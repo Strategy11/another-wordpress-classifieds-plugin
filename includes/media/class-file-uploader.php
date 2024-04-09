@@ -41,7 +41,7 @@ class AWPCP_FileUploader {
         if ( empty( $filename ) && isset( $_FILES['file']['name'] ) ) {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 			$filename = sanitize_option( 'upload_path', $_FILES['file']['name'] );
-        } else if ( empty( $filename ) ) {
+        } elseif ( empty( $filename ) ) {
             throw new AWPCP_Exception( esc_html__( 'Unable to find the uploaded file name.', 'another-wordpress-classifieds-plugin' ) );
         }
 

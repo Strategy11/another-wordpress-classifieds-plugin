@@ -20,7 +20,7 @@ class AWPCP_Filesystem {
     private function prepare_directory( $path ) {
         if ( ! is_dir( $path ) ) {
             return $this->create_directory( $path );
-        } else if ( ! is_writable( $path ) ) {
+        } elseif ( ! is_writable( $path ) ) {
             return $this->make_directory_writable( $path );
         } else {
             return $path;

@@ -37,7 +37,7 @@
         }
     },
     "scripts": {
-        "format": "phpcbf --standard=phpcs.xml --report-summary --report-source",
+        "format": "phpcbf . --standard=phpcs.xml --extensions=php --report-summary --report-source -d memory_limit=512M",
         "phpcs": "phpcs -p -s -v -n . --standard=phpcs.xml --extensions=php"
     }
 }

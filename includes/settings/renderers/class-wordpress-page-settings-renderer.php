@@ -41,6 +41,7 @@ class AWPCP_WordPressPageSettingsRenderer {
         $content = str_replace( '{dropdown}', wp_dropdown_pages( $dropdown_params ), $content );
         $content = str_replace( '{create_page_button}', $create_page_button, $content );
 
-        echo  $content . '<br/>' . $description; // XSS Ok.
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $content . '<br/>' . $description;
     }
 }

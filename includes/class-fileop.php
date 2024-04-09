@@ -98,11 +98,11 @@ class fileop {
 			ini_set('display_errors',0);
 			$myreturn=@ftp_rename($this->ftp_id,$source,$destination);
 			// because the source might have the web server owner instead of the ftp owner, we try to copy+delete
-			//			$this->copy($source,$destination);
-			//			if (!$this->_disk_delete($source)) {
-			//				$source=str_replace(_BASEPATH_.'/',_FTPPATH_,$source);
-			//				$this->_ftp_delete($source);
-			//			}
+			//          $this->copy($source,$destination);
+			//          if (!$this->_disk_delete($source)) {
+			//              $source=str_replace(_BASEPATH_.'/',_FTPPATH_,$source);
+			//              $this->_ftp_delete($source);
+			//          }
 			ini_set('display_errors',$old_de);
 		}
 		return $myreturn;

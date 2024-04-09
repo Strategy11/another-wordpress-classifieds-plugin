@@ -100,7 +100,7 @@ class AWPCP_ListingPaymentTransactionHandler {
             if ( ! $is_transaction_consolidated ) {
                 $this->listings_logic->consolidate_new_ad( $listing, $transaction );
             }
-        } else if ( $transaction->did_payment_failed() && $listing_had_accepted_payment_status ) {
+        } elseif ( $transaction->did_payment_failed() && $listing_had_accepted_payment_status ) {
             if ( $is_transaction_consolidated ) {
                 $this->listings_logic->disable_listing( $should_trigger_actions );
             } else {
@@ -112,9 +112,9 @@ class AWPCP_ListingPaymentTransactionHandler {
     private function is_accepted_payment_status( $payment_status ) {
         if ( $payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING ) {
             return true;
-        } else if ( $payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED ) {
+        } elseif ( $payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED ) {
             return true;
-        } else if ( $payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED ) {
+        } elseif ( $payment_status === AWPCP_Payment_Transaction::PAYMENT_STATUS_NOT_REQUIRED ) {
             return true;
         }
         return false;

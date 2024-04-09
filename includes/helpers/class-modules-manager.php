@@ -113,7 +113,7 @@ class AWPCP_ModulesManager {
             $module->notices[] = 'inactive-license-notice';
             $this->notices['modules-with-inactive-license'][] = $module;
             throw new AWPCP_Exception( "Module's license is inactive." );
-        } else if ( ! $this->module_has_an_accepted_license( $module ) ) {
+        } elseif ( ! $this->module_has_an_accepted_license( $module ) ) {
             $this->notices['modules-with-invalid-license'][] = $module;
             throw new AWPCP_Exception( 'Module has not valid license.' );
         }

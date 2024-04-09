@@ -185,7 +185,7 @@ class AWPCP_CSVExporter {
                 fwrite( $csvfile, $this->prepare_content( $content ) );
             }
 
-            $this->exported++;
+            ++$this->exported;
         }
 
         fclose( $csvfile );

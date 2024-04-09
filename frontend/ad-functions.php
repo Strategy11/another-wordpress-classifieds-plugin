@@ -32,11 +32,11 @@ function awpcp_calculate_end_date($increment, $period, $start_date) {
 	// 0 means no expiration date, we understand that as ten years
 	if ($increment == 0 && $period == 'DAY') {
 		$increment = 3650;
-	} else if ($increment == 0 && $period == 'WEEK') {
+	} elseif ($increment == 0 && $period == 'WEEK') {
 		$increment = 5200;
-	} else if ($increment == 0 && $period == 'MONTH') {
+	} elseif ($increment == 0 && $period == 'MONTH') {
 		$increment = 1200;
-	} else if ($increment == 0 && $period == 'YEAR') {
+	} elseif ($increment == 0 && $period == 'YEAR') {
 		$increment = 10;
 	}
 
@@ -64,11 +64,11 @@ function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment
 
     if ( awpcp_current_user_is_moderator() ) {
         $disabled = 0;
-    } else if ( get_awpcp_option( 'adapprove' ) == 1 ) {
+    } elseif ( get_awpcp_option( 'adapprove' ) == 1 ) {
         $disabled = 1;
-    } else if ( $payment_is_pending && get_awpcp_option( 'enable-ads-pending-payment' ) == 1 ) {
+    } elseif ( $payment_is_pending && get_awpcp_option( 'enable-ads-pending-payment' ) == 1 ) {
         $disabled = 0;
-    } else if ( $payment_is_pending ) {
+    } elseif ( $payment_is_pending ) {
         $disabled = 1;
     } else {
         $disabled = 0;
@@ -85,11 +85,11 @@ function awpcp_should_disable_new_listing_with_payment_status( $listing, $paymen
 
     if ( awpcp_current_user_is_moderator() ) {
         $should_disable = false;
-    } else if ( get_awpcp_option( 'adapprove' ) == 1 ) {
+    } elseif ( get_awpcp_option( 'adapprove' ) == 1 ) {
         $should_disable = true;
-    } else if ( $payment_is_pending && get_awpcp_option( 'enable-ads-pending-payment' ) == 1 ) {
+    } elseif ( $payment_is_pending && get_awpcp_option( 'enable-ads-pending-payment' ) == 1 ) {
         $should_disable = false;
-    } else if ( $payment_is_pending ) {
+    } elseif ( $payment_is_pending ) {
         $should_disable = true;
     } else {
         $should_disable = false;
@@ -108,7 +108,7 @@ function awpcp_should_enable_new_listing_with_payment_status( $listing, $payment
 function awpcp_should_disable_existing_listing( $listing ) {
     if ( awpcp_current_user_is_moderator() ) {
         $should_disable = false;
-    } else if ( get_awpcp_option( 'disable-edited-listings-until-admin-approves' ) ) {
+    } elseif ( get_awpcp_option( 'disable-edited-listings-until-admin-approves' ) ) {
         $should_disable = true;
     } else {
         $should_disable = false;
@@ -135,7 +135,7 @@ function awpcp_ad_renewed_user_email( $ad ) {
 	$access_key = $listing_renderer->get_access_key( $ad );
 	$end_date = $listing_renderer->get_end_date( $ad );
 
-	$mail = new AWPCP_Email;
+	$mail = new AWPCP_Email();
 	$mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
 	$mail->subject = sprintf( get_awpcp_option( 'ad-renewed-email-subject' ), $listing_title );
 
@@ -155,7 +155,7 @@ function awpcp_ad_renewed_admin_email( $ad, $body ) {
 	$subject = __( 'The ad "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' );
 	$subject = sprintf( $subject, awpcp_listing_renderer()->get_listing_title( $ad ) );
 
-	$mail = new AWPCP_Email;
+	$mail = new AWPCP_Email();
 	$mail->to[] = awpcp_admin_email_to();
 	$mail->subject = $subject;
 
@@ -230,7 +230,7 @@ function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {
 					$message=__("Your Ad details and any photos you have uploaded have been deleted from the system",'another-wordpress-classifieds-plugin');
 					$errors[] = $message;
 				}
-			} else if ( $ad === null ) {
+			} elseif ( $ad === null ) {
 				$errors[] = __( "The specified Ad doesn't exists.", 'another-wordpress-classifieds-plugin' );
 			} else {
 				$errors[] = __( "There was an error trying to delete the Ad. The Ad was not deleted.", 'another-wordpress-classifieds-plugin' );
@@ -305,7 +305,7 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
 		'blog_name'
 	);
 
-	$email = new AWPCP_Email;
+	$email = new AWPCP_Email();
 	$email->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
 	$email->subject = get_awpcp_option('listingaddedsubject');
 	$email->prepare( AWPCP_DIR . '/frontend/templates/email-place-ad-success-user.tpl.php', $params );

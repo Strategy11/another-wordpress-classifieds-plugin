@@ -428,7 +428,7 @@ function awpcp_get_url_with_page_permastruct( $path ) {
 function awpcp_get_edit_listing_url( $listing, $context = 'display' ) {
     if ( awpcp_listing_authorization()->is_current_user_allowed_to_edit_listing( $listing ) ) {
         $url = awpcp_get_edit_listing_direct_url( $listing, $context );
-    } else if ( awpcp()->settings->get_option( 'requireuserregistration' ) ) {
+    } elseif ( awpcp()->settings->get_option( 'requireuserregistration' ) ) {
         $url = awpcp_get_edit_listing_direct_url( $listing, $context );
     } else {
         $url = awpcp_get_edit_listing_generic_url();

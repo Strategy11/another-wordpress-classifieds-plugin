@@ -102,9 +102,9 @@ class AWPCP_Delete_Categories_Admin_Page {
                     $this->categories_logic->delete_category_and_associated_listings( $category );
                 }
 
-                $categories_deleted++;
+                ++$categories_deleted;
             } catch ( AWPCP_Exception $e ) {
-                $categories_not_deleted++;
+                ++$categories_not_deleted;
                 continue;
             }
         }

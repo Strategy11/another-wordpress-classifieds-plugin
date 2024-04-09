@@ -143,7 +143,7 @@ function awpcp_redirect_canonical($redirect_url, $requested_url) {
 
 	// do not redirect requests to the front page, if any of the AWPCP pages
 	// with rewrite rules is the front page
-	} else if (is_page() && !is_feed() && isset($wp_query->queried_object) &&
+	} elseif (is_page() && !is_feed() && isset($wp_query->queried_object) &&
         'page' == get_option( 'show_on_front' ) && in_array( $wp_query->queried_object->ID, $ids ) &&
         $wp_query->queried_object->ID == get_option( 'page_on_front' )
     ) {
@@ -412,7 +412,7 @@ function awpcp_get_datetime_formats() {
 function awpcp_datetime( $format='mysql', $date=null ) {
 	if ( is_null( $date ) || strlen( $date ) === 0 ) {
 		$timestamp = current_time( 'timestamp' );
-	} else if ( is_string( $date ) ) {
+	} elseif ( is_string( $date ) ) {
 		$timestamp = strtotime( $date );
 	} else {
         $timestamp = $date;
@@ -743,7 +743,7 @@ function awpcp_get_comma_separated_list($items=array(), $threshold=5, $none='') 
 		$message = _x( '%s and %d more.', 'comma separated list of things', 'another-wordpress-classifieds-plugin' );
 		$items = array_splice( $items, 0, $threshold - 1 );
 		return sprintf( $message, join( ', ', $items ), $count - $threshold + 1 );
-	} else if ( $count > 0 ) {
+	} elseif ( $count > 0 ) {
 		return sprintf( '%s.', join( ', ', $items ) );
 	} else {
 		return $none;
@@ -1060,7 +1060,7 @@ function awpcp_array_insert($array, $index, $key, $item, $where='before') {
 	if ( $p !== false ) {
 		if ($where === 'before')
 			array_splice($keys, max($p, 0), 0, $key);
-		else if ($where === 'after')
+		elseif ($where === 'after')
 			array_splice($keys, min($p+1, count($keys)), 0, $key);
 
 		$array = array();
@@ -1280,7 +1280,7 @@ function awpcp_array_data($name, $default, $from=array()) {
 
 	if (is_array($value) && count($value) > 0) {
 		return $value;
-	} else if (!empty($value)) {
+	} elseif (!empty($value)) {
 		return $value;
 	}
 
@@ -1326,7 +1326,7 @@ function awpcp_array_merge_recursive( $a, $b ) {
 function awpcp_get_property($object, $property, $default='') {
     if ( is_object( $object ) && ( isset( $object->$property ) || array_key_exists( $property, get_object_vars( $object ) ) ) ) {
         return $object->$property;
-    } else if ( is_array( $object ) && isset( $object[ $property ] ) ) {
+    } elseif ( is_array( $object ) && isset( $object[ $property ] ) ) {
         return $object[ $property ];
     }
     return $default;
@@ -1439,7 +1439,7 @@ function _awpcp_flatten_array($array, $path=array(), &$return=array()) {
 		foreach ( $array as $key => $value) {
 			_awpcp_flatten_array( $value, array_merge( $path, array( $key ) ), $return );
 		}
-	} else if ( count( $path ) > 0 ){
+	} elseif ( count( $path ) > 0 ){
 		$first = $path[0];
 		if ( count( $path ) > 1 ) {
 			$return[ $first . '[' . join('][', array_slice( $path, 1 ) ) . ']'] = $array;
@@ -2408,7 +2408,7 @@ function awpcp_admin_recipient_email_address() {
 function awpcp_admin_sender_email_address($include_contact_name=false) {
     if ( awpcp_get_option( 'sent-emails-using-wordpress-email-address' ) ) {
         $email_address = sprintf( 'wordpress@%s', awpcp_request()->domain( false ) );
-    } else if ( strlen( get_awpcp_option( 'awpcpadminemail' ) ) > 0 ) {
+    } elseif ( strlen( get_awpcp_option( 'awpcpadminemail' ) ) > 0 ) {
         $email_address = get_awpcp_option( 'awpcpadminemail' );
     } else {
         $email_address = get_option( 'admin_email' );
@@ -2481,7 +2481,7 @@ function awpcp_ad_enabled_email( $listing ) {
     $contact_email = $listing_renderer->get_contact_email( $listing );
 
 	// user email
-	$mail = new AWPCP_Email;
+	$mail = new AWPCP_Email();
 	$mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
 	$mail->subject = sprintf( __( 'Your Ad "%s" has been approved', 'another-wordpress-classifieds-plugin'), $listing_title );
 
@@ -2504,7 +2504,7 @@ function awpcp_ad_updated_user_email( $ad, $message ) {
     $contact_name = $listing_renderer->get_contact_name( $ad );
     $contact_email = $listing_renderer->get_contact_email( $ad );
 
-	$mail = new AWPCP_Email;
+	$mail = new AWPCP_Email();
 	$mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
 	$mail->subject = sprintf( __( 'Your Ad "%s" has been successfully updated', 'another-wordpress-classifieds-plugin' ), $listing_title );
 
@@ -2548,7 +2548,7 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 		}
 	}
 
-	$mail = new AWPCP_Email;
+	$mail = new AWPCP_Email();
 	$mail->to[] = awpcp_admin_email_to();
 	$mail->subject = sprintf( $subject, $listing_renderer->get_listing_title( $ad ) );
 
@@ -2802,7 +2802,7 @@ function awpcp_remove_path_prefix( $path_parts, $path_part_type, $prefix = '_629
         foreach ( $path_parts as $key => $value ) {
             $path_parts[ $key ] = str_replace( $prefix, '', $value );
         }
-    } else if ( is_string( $path_parts ) ) {
+    } elseif ( is_string( $path_parts ) ) {
         $path_parts = str_replace( $prefix, '', $path_parts );
     }
 

@@ -599,7 +599,7 @@ class AWPCP_Installer {
         $show_currency_symbol = awpcp()->settings->get_option( 'show-currency-symbol' );
         if ( is_numeric( $show_currency_symbol ) && $show_currency_symbol ) {
             awpcp()->settings->update_option( 'show-currency-symbol', 'show-currency-symbol-on-left' );
-        } else if ( is_numeric( $show_currency_symbol ) ) {
+        } elseif ( is_numeric( $show_currency_symbol ) ) {
             awpcp()->settings->update_option( 'show-currency-symbol', 'do-not-show-currency-symbol' );
         }
     }
@@ -885,7 +885,7 @@ class AWPCP_Installer {
         if ( $main_plugin_page && $show_listing_page && $show_listing_page->post_parent == $main_plugin_page->ID ) {
             $this->settings->set_or_update_option( 'listings-slug', $show_listing_page->post_name );
             $this->settings->set_or_update_option( 'include-main-page-slug-in-listing-url', true );
-        } else if ( $show_listing_page ) {
+        } elseif ( $show_listing_page ) {
             $this->settings->set_or_update_option( 'listings-slug', get_page_uri( $show_listing_page ) );
             $this->settings->set_or_update_option( 'include-main-page-slug-in-listing-url', false );
         }

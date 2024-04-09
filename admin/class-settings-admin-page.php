@@ -225,7 +225,7 @@ class AWPCP_Facebook_Page_Settings {
             $error_message = sprintf( $error_message, urldecode_deep( sanitize_text_field( wp_unslash( $_GET['error_message'] ) ) ) );
 
             $errors[] = esc_html( $error_message );
-		} else if ( isset( $_GET['code_error'] ) ) {
+		} elseif ( isset( $_GET['code_error'] ) ) {
 			$errors[] = esc_html( __( 'We could not obtain a valid access token from Facebook. Please try again.', 'another-wordpress-classifieds-plugin' ) );
 		}
 
