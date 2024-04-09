@@ -29,8 +29,7 @@
 
                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo awpcp_categories_selector()->render( $params );
-                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                    echo awpcp_form_error( 'category', $form_errors );
+                    awpcp_show_form_error( 'category', $form_errors );
                     ?>
                 </div>
 
@@ -51,7 +50,7 @@
                         ]
                     );
 
-                    echo awpcp_form_error( 'user', $form_errors );
+                    awpcp_show_form_error( 'user', $form_errors );
                     ?>
                 </div>
 
@@ -72,8 +71,7 @@
                 <div class="awpcp-form-spacer awpcp-captcha">
                     <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                     <?php echo $captcha->render(); ?>
-                    <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                    <?php echo awpcp_form_error( 'captcha', $form_errors ); ?>
+                    <?php awpcp_show_form_error( 'captcha', $form_errors ); ?>
                 </div>
                 <?php endif; ?>
 

@@ -5,7 +5,7 @@
 
 ?><p class="awpcp-form-field awpcp-clearfix awpcp-form-spacer">
     <label class="awpcp-form-field__label" for="<?php echo esc_attr( $html['id'] ); ?>"><?php echo esc_html( $label ); ?><?php echo $required ? '<span class="required">*</span>' : ''; ?></label>
-    <?php echo awpcp_form_error( $html['name'], $errors );  // XSS Okay. ?>
+    <?php awpcp_show_form_error( $html['name'], $errors ); ?>
     <?php if ( ! empty( $help_text ) ) : ?>
     <label for="<?php echo esc_attr( $html['id'] ); ?>" class="helptext"><?php echo wp_kses_post( $help_text ); ?></label>
     <?php endif; ?>

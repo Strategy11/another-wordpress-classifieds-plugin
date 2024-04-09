@@ -28,7 +28,7 @@
     </ul>
 
     <a class="button add-region" href="#" data-bind="click: onAddRegion, visible: showAddRegionButton, text: $root.getLocalizedText('add-region')"></a>
-    <?php echo awpcp_form_error( 'regions', $errors ); // XSS Okay. ?>
+    <?php awpcp_show_form_error( 'regions', $errors ); ?>
 </div>
 
 <script type="text/javascript">

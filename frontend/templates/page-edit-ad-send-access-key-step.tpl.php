@@ -21,7 +21,7 @@
         <p class="awpcp-form-spacer">
             <label for="ad-email"><?php echo esc_html( __( 'Enter your email address', 'another-wordpress-classifieds-plugin' ) ); ?></label>
             <input class="awpcp-textfield inputbox" id="ad-email" type="text" size="50" name="ad_email" value="<?php echo awpcp_esc_attr( $form['ad_email'] ); ?>" />
-            <?php echo awpcp_form_error( 'ad_email', $errors ); ?>
+            <?php awpcp_show_form_error( 'ad_email', $errors ); ?>
         </p>
 
         <input type="submit" class="button" value="<?php echo esc_html( _x(  "Continue", 'send ad access key form', 'another-wordpress-classifieds-plugin' ) ); ?>" />

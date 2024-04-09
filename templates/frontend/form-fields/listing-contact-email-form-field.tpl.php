@@ -9,5 +9,5 @@
     <?php if ( ! empty( $help_text ) ) : ?>
     <label class="helptext" for="<?php echo esc_attr( $html['id'] ); ?>"><?php echo wp_kses_post( $help_text ); ?></label>
     <?php endif; ?>
-    <?php echo awpcp_form_error( $html['name'], $errors ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+    <?php awpcp_show_form_error( $html['name'], $errors ); ?>
 </p>

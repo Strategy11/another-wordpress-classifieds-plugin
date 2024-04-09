@@ -1258,6 +1258,14 @@ function awpcp_sanitize_value( $sanitize, &$value ) {
 }
 
 /**
+ * @since x.x
+ * @param string $value
+ */
+function awpcp_get_server_value( $value ) {
+	return isset( $_SERVER[ $value ] ) ? wp_strip_all_tags( wp_unslash( $_SERVER[ $value ] ) ) : '';
+}
+
+/**
  * Use awpcp_get_var().
  *
  * @deprecated 4.3
@@ -1761,7 +1769,7 @@ function awpcp_print_message( $message, $class = array( 'awpcp-updated', 'notice
     }
 
 	$class = array_merge(array('awpcp-message'), $class);
-	return '<div class="' . join(' ', $class) . '"><p>' . $message . '</p></div>';
+	return '<div class="' . esc_attr( join( ' ', $class ) ) . '"><p>' . wp_kses_post( $message ) . '</p></div>';
 }
 
 function awpcp_print_error($message) {
@@ -1823,7 +1831,16 @@ function awpcp_validate_error($field, $errors) {
 	return '<label for="' . $field . '" generated="true" class="error" style="">' . $error . '</label>';
 }
 
-function awpcp_form_error($field, $errors) {
+/**
+ * @since x.x
+ */
+function awpcp_show_form_error( $field, $errors ) {
+    echo wp_kses_post(
+        awpcp_form_error( $field, $errors, array( 'echo' => true ) )
+    );
+}
+
+function awpcp_form_error( $field, $errors ) {
 	$error = awpcp_array_data($field, '', $errors);
 	return empty($error) ? '' : '<span class="awpcp-error">' . $error . '</span>';
 }
@@ -3128,7 +3145,7 @@ function awpcp_getip() {
 
     foreach ( $alternatives as $variable ) {
         if ( ! empty( $_SERVER[ $variable ] ) ) {
-            $variables[ $variable ] = sanitize_text_field( wp_unslash( $_SERVER[ $variable ] ) );
+            $variables[ $variable ] = awpcp_get_server_value( $variable );
         }
     }
 

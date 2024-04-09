@@ -119,9 +119,9 @@ class AWPCP_Installer {
         $upgrade_log[] = array(
             'oldversion'    => $oldversion,
             'newversion'    => $newversion,
-            'PHP_SELF'      => isset( $_SERVER['PHP_SELF'] ) ? wp_strip_all_tags( wp_unslash( $_SERVER['PHP_SELF'] ) ) : '',
-            'DOCUMENT_ROOT' => isset( $_SERVER['DOCUMENT_ROOT'] ) ? wp_strip_all_tags( wp_unslash( $_SERVER['DOCUMENT_ROOT'] ) ) : '',
-            'SERVER_NAME'   => isset( $_SERVER['SERVER_NAME'] ) ? wp_strip_all_tags( wp_unslash( $_SERVER['SERVER_NAME'] ) ) : '',
+            'PHP_SELF'      => awpcp_get_server_value( 'PHP_SELF' ),
+            'DOCUMENT_ROOT' => awpcp_get_server_value( 'DOCUMENT_ROOT' ),
+            'SERVER_NAME'   => awpcp_get_server_value( 'SERVER_NAME' ),
             'REQUEST_URI'   => isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '',
             'QUERY_STRING'  => isset( $_SERVER['QUERY_STRING'] ) ? esc_url_raw( wp_unslash( $_SERVER['QUERY_STRING'] ) ) : '',
             'date'          => current_time( 'mysql' ),

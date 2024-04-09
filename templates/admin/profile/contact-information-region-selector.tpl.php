@@ -34,5 +34,5 @@
     </div>
 
     <a class="button add-region" href="#" data-bind="click: onAddRegion, visible: showAddRegionButton, text: $root.getLocalizedText('add-region')"></a>
-    <?php echo awpcp_form_error('regions', $errors); ?>
+    <?php awpcp_show_form_error( 'regions', $errors ); ?>
 </div>

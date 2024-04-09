@@ -26,10 +26,7 @@
                             <td>
                                 <input id="awpcp-importer-csv-file" type="file" name="csv_file" />
                                 <br/>
-                                <?php
-                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                echo awpcp_form_error( 'csv_file', $form_errors );
-                                ?>
+                                <?php awpcp_show_form_error( 'csv_file', $form_errors ); ?>
                             </td>
                         </tr>
                         <tr>
@@ -51,10 +48,7 @@
                             <td>
                                 <input id="awpcp-importer-zip-file" type="file" name="zip_file" />
                                 <br/>
-                                <?php
-                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                echo awpcp_form_error( 'zip_file', $form_errors );
-                                ?>
+                                <?php awpcp_show_form_error( 'zip_file', $form_errors ); ?>
                             </td>
                         </tr>
                         <tr data-usableform="show-if:images_source:local">
@@ -66,10 +60,7 @@
                             <td>
                                 <input id="awpcp-importer-local-path" type="text" name="local_path" value="<?php echo esc_attr( $form_data['local_path'] ); ?>"/>
                                 <br/>
-                                <?php
-                                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                                echo awpcp_form_error( 'local_path', $form_errors );
-                                ?>
+                                <?php awpcp_show_form_error( 'local_path', $form_errors ); ?>
                                 <p class="awpcp-helptext">
                                     <?php
                                     printf(

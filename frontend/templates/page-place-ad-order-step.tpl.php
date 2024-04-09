@@ -46,7 +46,7 @@
             $params = apply_filters( 'awpcp_post_listing_categories_selector_args', $params );
 
             echo awpcp_categories_selector()->render( $params );
-            echo awpcp_form_error('category', $form_errors);
+            awpcp_show_form_error( 'category', $form_errors );
         ?>
     </div>
 
@@ -64,14 +64,14 @@
                 'class' => array( 'awpcp-users-dropdown', 'awpcp-dropdown' ),
             ) );
         ?>
-        <?php echo awpcp_form_error( 'user', $form_errors ); ?>
+        <?php awpcp_show_form_error( 'user', $form_errors ); ?>
     </div>
     <?php endif ?>
 
     <?php if ( ! $skip_payment_term_selection ): ?>
         <?php if ( $payments->payments_enabled() ): ?>
     <h3><?php esc_html_e( 'Please select a payment term for your Ad', 'another-wordpress-classifieds-plugin' ); ?></h3>
-    <?php echo awpcp_form_error( 'payment-term', $form_errors ); ?>
+    <?php awpcp_show_form_error( 'payment-term', $form_errors ); ?>
         <?php endif; ?>
     <?php echo $payment_terms_list->render( $payment_options ); ?>
 

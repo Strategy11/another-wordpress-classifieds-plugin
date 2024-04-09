@@ -108,7 +108,7 @@
 
 	<rule ref="WordPress.Security.EscapeOutput">
 		<properties>
-			<property name="customAutoEscapedFunctions" type="array" value="awpcp_esc_attr,awpcp_esc_textarea,wp_nonce_url"/>
+			<property name="customAutoEscapedFunctions" type="array" value="awpcp_esc_attr,awpcp_esc_textarea,wp_nonce_url,awpcp_print_error,awpcp_print_message"/>
 		</properties>
 	</rule>
 

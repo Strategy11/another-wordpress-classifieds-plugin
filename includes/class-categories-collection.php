@@ -44,7 +44,7 @@ class AWPCP_Categories_Collection {
         if ( $category === false || is_null( $category ) ) {
             /* translators: %d the category id */
             $message = __( 'No category was found with ID: %d', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $category_id ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $category_id ) ) );
         }
 
         return $this->prepare_category_object( $category );
@@ -125,7 +125,7 @@ class AWPCP_Categories_Collection {
         if ( empty( $name ) ) {
             /* translators: %s the submitted value */
             $message = __( 'The category name must be a non empty string, %s was given.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $name ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $name ) ) );
         }
 
         // See: https://core.trac.wordpress.org/ticket/11311#comment:14
@@ -135,7 +135,7 @@ class AWPCP_Categories_Collection {
         if ( $category === false || is_null( $category ) ) {
             /* translators: %s is the category name */
             $message = __( 'No category was found with name: %s.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $name ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $name ) ) );
         }
 
         return $this->prepare_category_object( $category );

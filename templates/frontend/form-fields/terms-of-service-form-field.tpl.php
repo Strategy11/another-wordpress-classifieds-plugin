@@ -20,5 +20,5 @@
     <input class="awpcp-has-value" type="hidden" name="<?php echo esc_attr( $html['name'] ); ?>" value="accepted" />
     <?php endif; ?>
 
-    <?php echo awpcp_form_error( $html['name'], $errors ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+    <?php awpcp_show_form_error( $html['name'], $errors ); ?>
 </p>

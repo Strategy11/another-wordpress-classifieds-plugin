@@ -158,7 +158,7 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
         $this->payments->set_transaction_status_to_open( $transaction, $errors );
 
         if ( $errors ) {
-            throw new AWPCP_Exception( array_shift( $errors ) );
+            throw new AWPCP_Exception( esc_html( array_shift( $errors ) ) );
         }
 
         return $transaction;
@@ -182,7 +182,7 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
         $errors = $this->payment_information_validator->get_validation_errors( $post_data );
 
         if ( $errors ) {
-            throw new AWPCP_Exception( array_shift( $errors ) );
+            throw new AWPCP_Exception( esc_html( array_shift( $errors ) ) );
         }
 
         $listing = $this->listings_logic->create_listing( $post_data );

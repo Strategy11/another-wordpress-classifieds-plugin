@@ -7,13 +7,13 @@
             <select id="awpcp-billling-country" class="required" name="country" data-bind="value: country">
                 <?php echo awpcp_country_list_options(awpcp_array_data('country', '', $data), false); ?>
             </select>
-            <?php echo awpcp_form_error('country', $errors); ?>
+            <?php awpcp_show_form_error( 'country', $errors ); ?>
         </div>
 
         <div class="awpcp-form-spacer clearfix">
             <label for="awpcp-billing-credit-card-number"><?php esc_html_e( 'Card Number', 'another-wordpress-classifieds-plugin' ); ?></label>
             <input class="textfield required" id="awpcp-billing-credit-card-number" type="text" size="50" name="credit_card_number" value="<?php echo esc_attr( awpcp_array_data( 'credit_card_number', '', $data ) ); ?>" data-bind="value: credit_card_number">
-            <?php echo awpcp_form_error('credit_card_number', $errors); ?>
+            <?php awpcp_show_form_error( 'credit_card_number', $errors ); ?>
         </div>
 
         <div class="awpcp-form-spacer clearfix">
@@ -53,14 +53,14 @@
                 <label for="awpcp-billing-card-exp-year"><small>yyyy</small></label>
                 <input class="textfield short required" id="awpcp-billing-card-exp-year" type="text" size="2" name="exp_year" value="<?php echo esc_attr( awpcp_array_data( 'exp_year', '', $data ) ); ?>" data-bind="value: exp_year">
             </div>
-            <?php echo awpcp_form_error('exp_month', $errors); ?>
-            <?php echo awpcp_form_error('exp_year', $errors); ?>
+            <?php awpcp_show_form_error( 'exp_month', $errors ); ?>
+            <?php awpcp_show_form_error( 'exp_year', $errors ); ?>
         </div>
 
         <div class="awpcp-form-spacer clearfix">
             <label for="awpcp-billing-csc"><?php esc_html_e( 'CSC', 'another-wordpress-classifieds-plugin' ); ?></label>
             <input class="textfield required" id="awpcp-billing-csc" type="text" size="50" name="csc" value="<?php echo esc_attr( awpcp_array_data('csc', '', $data ) ); ?>">
-            <?php echo awpcp_form_error('csc', $errors); ?>
+            <?php awpcp_show_form_error( 'csc', $errors ); ?>
         </div>
     </fieldset>
 
@@ -68,19 +68,19 @@
         <div class="awpcp-form-spacer clearfix">
             <label for="awpcp-billing-first-name"><?php esc_html_e( 'First Name', 'another-wordpress-classifieds-plugin' ); ?></label>
             <input class="textfield required" id="awpcp-billing-first-name" type="text" size="50" name="first_name" value="<?php echo esc_attr( awpcp_array_data('first_name', '', $data ) ); ?>" data-bind="value: first_name">
-            <?php echo awpcp_form_error('first_name', $errors); ?>
+            <?php awpcp_show_form_error( 'first_name', $errors ); ?>
         </div>
 
         <div class="awpcp-form-spacer clearfix">
             <label for="awpcp-billing-last-name"><?php esc_html_e( 'Last Name', 'another-wordpress-classifieds-plugin' ); ?></label>
             <input class="textfield required" id="awpcp-billing-last-name" type="text" size="50" name="last_name" value="<?php echo esc_attr( awpcp_array_data('last_name', '', $data ) ); ?>" data-bind="value: last_name">
-            <?php echo awpcp_form_error('last_name', $errors); ?>
+            <?php awpcp_show_form_error( 'last_name', $errors ); ?>
         </div>
 
         <div class="awpcp-form-spacer clearfix">
             <label for="awpcp-billing-address-1"><?php esc_html_e( 'Address Line 1', 'another-wordpress-classifieds-plugin' ); ?></label>
             <input class="textfield required" id="awpcp-billing-address-1" type="text" size="50" name="address_1" value="<?php echo esc_attr( awpcp_array_data('address_1', '', $data ) ); ?>" data-bind="value: address_1">
-            <?php echo awpcp_form_error('address_1', $errors); ?>
+            <?php awpcp_show_form_error( 'address_1', $errors ); ?>
         </div>
 
         <div class="awpcp-form-spacer clearfix">
@@ -94,25 +94,25 @@
             <div data-bind="with: _country">
                 <select class="required" id="awpcp-billing-state" name="state" data-bind="options: states, optionsText: 'name', optionsValue: 'code', value: $root.state, enable: $root._country, visible: $root._country"></select>
             </div>
-            <?php echo awpcp_form_error('state', $errors); ?>
+            <?php awpcp_show_form_error( 'state', $errors ); ?>
         </div>
 
         <div class="awpcp-form-spacer clearfix">
             <label for="awpcp-billing-city"><?php esc_html_e( 'City', 'another-wordpress-classifieds-plugin' ); ?></label>
             <input class="textfield required" id="awpcp-billing-city" type="text" size="50" name="city" value="<?php echo esc_attr( awpcp_array_data('city', '', $data ) ); ?>" data-bind="value: city">
-            <?php echo awpcp_form_error('city', $errors); ?>
+            <?php awpcp_show_form_error( 'city', $errors ); ?>
         </div>
 
         <div class="awpcp-form-spacer clearfix">
             <label for="awpcp-billing-postal-code"><?php esc_html_e( 'Postal Code', 'another-wordpress-classifieds-plugin' ); ?></label>
             <input class="textfield required" id="awpcp-billing-postal-code" type="text" size="50" name="postal_code" value="<?php echo esc_attr( awpcp_array_data('postal_code', '', $data ) ); ?>" data-bind="value: postal_code">
-            <?php echo awpcp_form_error('postal_code', $errors); ?>
+            <?php awpcp_show_form_error( 'postal_code', $errors ); ?>
         </div>
 
         <div class="awpcp-form-spacer clearfix">
             <label for="awpcp-billing-email"><?php esc_html_e( 'Email', 'another-wordpress-classifieds-plugin' ); ?></label>
             <input class="textfield required" id="awpcp-billing-email" type="text" size="50" name="email" value="<?php echo esc_attr( awpcp_array_data('email', '', $data ) ); ?>" data-bind="value: email">
-            <?php echo awpcp_form_error('email', $errors); ?>
+            <?php awpcp_show_form_error( 'email', $errors ); ?>
         </div>
     </fieldset>
 

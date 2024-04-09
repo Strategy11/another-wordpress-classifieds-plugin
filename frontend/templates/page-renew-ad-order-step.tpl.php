@@ -18,7 +18,7 @@
 <?php endif ?>
 
 <form class="awpcp-order-form" method="post">
-    <?php echo awpcp_form_error( 'payment-term', $form_errors ); ?>
+    <?php awpcp_show_form_error( 'payment-term', $form_errors ); ?>
     <?php echo $payment_terms_list->render( null, $payment_terms_list_options ); ?>
 
     <?php echo $payments->render_credit_plans_table( $transaction ); ?>

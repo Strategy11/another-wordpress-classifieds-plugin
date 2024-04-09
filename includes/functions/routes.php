@@ -686,7 +686,7 @@ function awpcp_get_user_panel_url( $params=array() ) {
 }
 
 function awpcp_current_url() {
-    return ( is_ssl() ? 'https://' : 'http://' ) . wp_strip_all_tags( wp_unslash( $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] ) );
+    return ( is_ssl() ? 'https://' : 'http://' ) . awpcp_get_server_value( 'HTTP_HOST' ) . awpcp_get_server_value( 'REQUEST_URI' );
 }
 
 /**
