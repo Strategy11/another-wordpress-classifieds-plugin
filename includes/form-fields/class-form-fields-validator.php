@@ -122,7 +122,7 @@ class AWPCP_FormFieldsValidator {
 
         if ( $this->settings->get_option( 'displaypricefield' ) && $this->settings->get_option( 'displaypricefieldreqop' ) ) {
             if ( 0 === strlen( $data['metadata']['_awpcp_price'] ) || false === $data['metadata']['_awpcp_price'] ) {
-                $errors['ad_item_price'] = __( 'Please enter a price for the ad.', 'another-wordpress-classified-plugin' );
+                $errors['ad_item_price'] = __( 'Please enter a price for the ad.', 'another-wordpress-classifieds-plugin' );
             }
         }
 

@@ -342,9 +342,10 @@ class AWPCP_ListingRenderer {
     /**
      * @param object $listing  An instance of WP_Post.
      * @since 4.0.0
+     * @return bool
      */
     public function is_flagged( $listing ) {
-        return ! ! $this->wordpress->get_post_meta( $listing->ID, '_awpcp_flagged', true );
+        return (bool) $this->wordpress->get_post_meta( $listing->ID, '_awpcp_flagged', true );
     }
 
     /**

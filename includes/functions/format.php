@@ -127,4 +127,3 @@ function awpcp_trim_html_content( $content, $word_count ) {
 
     return trim( force_balance_tags( $output ) );
 }
-

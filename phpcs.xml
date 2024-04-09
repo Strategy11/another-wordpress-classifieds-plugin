@@ -53,6 +53,7 @@
         <exclude name="WordPress.Arrays.ArrayIndentation.ItemNotAligned" />
         <exclude name="WordPress.Arrays.MultipleStatementAlignment" />
         <exclude name="WordPress.Arrays.ArrayIndentation.CloseBraceNotAligned" />
+        <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
         <exclude name="Squiz.PHP.EmbeddedPhp" />
         <exclude name="Generic.WhiteSpace.ScopeIndent" />
         <exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited" />

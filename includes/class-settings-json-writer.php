@@ -42,7 +42,7 @@ class AWPCP_Settings_JSON_Writer {
         $json_content = file_get_contents( $filename ); // @codingStandardsIgnoreLine
 
         if ( false === $json_content ) {
-            $message = __( 'There was a problem reading the content of the file. Please try again or contact customer support with a copy of the file.', 'another-wordpress-classifieds-plugin.' );
+            $message = __( 'There was a problem reading the content of the file. Please try again or contact customer support with a copy of the file.', 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( esc_html( $message ) );
         }
 

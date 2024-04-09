@@ -23,7 +23,7 @@ class AWPCP_FileCache {
             fwrite( $file, $value );
             fclose( $file );
         } else {
-            throw new AWPCP_IOError( sprintf( "Can't open file %s to write cache entry for '%s'.", $filename, $name ) );
+            throw new AWPCP_IOError( esc_html( sprintf( "Can't open file %s to write cache entry for '%s'.", $filename, $name ) ) );
         }
     }
 
@@ -39,7 +39,7 @@ class AWPCP_FileCache {
             $content = fread( $file, filesize( $filename ) );
             fclose( $file );
         } else {
-            throw new AWPCP_Exception( sprintf( "No cache entry found with name '%s'.", $name ) );
+            throw new AWPCP_Exception( esc_html( sprintf( "No cache entry found with name '%s'.", $name ) ) );
         }
 
         return $content;
@@ -53,7 +53,7 @@ class AWPCP_FileCache {
         $filename = $this->path( $name );
 
         if ( file_exists( $filename ) && ! @unlink( $filename ) ) {
-            throw new AWPCP_IOError( sprintf( "Can't remove %s associated with entry '%s'.", $filename, $name ) );
+            throw new AWPCP_IOError( esc_html( sprintf( "Can't remove %s associated with entry '%s'.", $filename, $name ) ) );
         }
     }
 }

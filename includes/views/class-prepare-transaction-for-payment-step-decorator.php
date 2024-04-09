@@ -39,7 +39,7 @@ class AWPCP_PrepareTransactionForPaymentStepDecorator extends AWPCP_StepDecorato
         }
 
         if ( ! $this->transaction->is_payment_completed() && ! $this->transaction->is_ready_to_checkout() ) {
-            throw new AWPCP_Exception( implode( ' ', $errors ) );
+            throw new AWPCP_Exception( esc_html( implode( ' ', $errors ) ) );
         }
     }
 }

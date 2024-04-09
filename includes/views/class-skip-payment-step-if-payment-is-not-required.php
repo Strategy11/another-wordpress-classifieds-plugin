@@ -40,7 +40,7 @@ class AWPCP_SkipPaymentStepIfPaymentIsNotRequiredStepDecorator extends AWPCP_Ste
         $this->payments->set_transaction_status_to_payment_completed( $this->transaction, $errors );
 
         if ( ! $this->transaction->is_payment_completed() ) {
-            throw new AWPCP_Exception( implode( ' ', $errors ) );
+            throw new AWPCP_Exception( esc_html( implode( ' ', $errors ) ) );
         }
     }
 }

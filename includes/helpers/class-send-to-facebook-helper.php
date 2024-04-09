@@ -77,11 +77,11 @@ class AWPCP_SendToFacebookHelper {
      */
     public function send_listing_to_facebook_page( $listing ) {
         if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_sent_to_facebook_page', true ) ) {
-            throw new AWPCP_ListingAlreadySharedException( __( 'The ad was already sent to a Facebook Page.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_ListingAlreadySharedException( esc_html__( 'The ad was already sent to a Facebook Page.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         if ( ! $this->listing_renderer->is_public( $listing ) ) {
-            throw new AWPCP_ListingDisabledException( __( "The ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_ListingDisabledException( esc_html__( "The ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
         }
 
         $integration_method = $this->settings->get_option( 'facebook-integration-method' );
@@ -265,11 +265,11 @@ class AWPCP_SendToFacebookHelper {
      */
     public function send_listing_to_facebook_group( $listing ) {
         if ( $this->wordpress->get_post_meta( $listing->ID, '_awpcp_sent_to_facebook_group', true ) ) {
-            throw new AWPCP_ListingAlreadySharedException( __( 'The ad was already sent to a Facebook Group.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_ListingAlreadySharedException( esc_html__( 'The ad was already sent to a Facebook Group.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         if ( ! $this->listing_renderer->is_public( $listing ) ) {
-            throw new AWPCP_ListingDisabledException( __( "The ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_ListingDisabledException( esc_html__( "The ad is currently disabled. If you share it, Facebook servers and users won't be able to access it.", 'another-wordpress-classifieds-plugin' ) );
         }
 
         $integration_method = $this->settings->get_option( 'facebook-integration-method' );

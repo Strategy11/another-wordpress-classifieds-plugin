@@ -11,4 +11,3 @@ class AWPCP_ListingsTableSearchByIdCondition {
         return $query;
     }
 }
-

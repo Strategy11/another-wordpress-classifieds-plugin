@@ -95,8 +95,7 @@ function awpcp_listing_updated_user_message( $listing, $messages ) {
     return awpcp_ad_posted_user_email( $listing, null, $messages );
 }
 
-function awpcp_send_listing_awaiting_approval_notification_to_moderators(
-        $listing, $moderate_listings, $moderate_images ) {
+function awpcp_send_listing_awaiting_approval_notification_to_moderators( $listing, $moderate_listings, $moderate_images ) {
 
     $email_recipients = awpcp_get_recipients_for_listing_awaiting_approval_notification();
 

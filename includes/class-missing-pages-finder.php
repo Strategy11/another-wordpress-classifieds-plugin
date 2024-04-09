@@ -70,7 +70,7 @@ class AWPCP_Missing_Pages_Finder {
 
                 $missing_pages['not-published'][] = $page;
             } else if ( is_null( $page ) ) {
-                $page = new stdClass;
+                $page = new stdClass();
 
                 $page->page = $page_ref;
                 $page->id = $page_id;

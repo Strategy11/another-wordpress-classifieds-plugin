@@ -31,7 +31,7 @@ class AWPCP_SetTransactionStatusToCompletedStepDecorator extends AWPCP_StepDecor
         $this->payments->set_transaction_status_to_completed( $this->transaction, $errors );
 
         if ( ! $this->transaction->is_completed() ) {
-            throw new AWPCP_Exception( implode( ' ', $errors ) );
+            throw new AWPCP_Exception( esc_html( implode( ' ', $errors ) ) );
         }
     }
 }

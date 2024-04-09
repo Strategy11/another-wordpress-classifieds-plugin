@@ -83,5 +83,4 @@ class AWPCP_Pages_Creator {
 
         return $restored_pages;
     }
-
 }
