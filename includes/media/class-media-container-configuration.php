@@ -16,7 +16,7 @@ class AWPCP_MediaContainerConfiguration implements AWPCP_ContainerConfigurationI
      */
     public function modify( $container ) {
         $container['AttachmentsLogic'] = $container->service(
-            function( $container ) {
+            function ( $container ) {
                 return new AWPCP_Attachments_Logic(
                     awpcp_file_types(),
                     $container['AttachmentsCollection'],
@@ -26,7 +26,7 @@ class AWPCP_MediaContainerConfiguration implements AWPCP_ContainerConfigurationI
         );
 
         $container['AttachmentsCollection'] = $container->service(
-            function( $container ) {
+            function ( $container ) {
                 return new AWPCP_Attachments_Collection(
                     $container['FileTypes'],
                     $container['WordPress']
@@ -35,7 +35,7 @@ class AWPCP_MediaContainerConfiguration implements AWPCP_ContainerConfigurationI
         );
 
         $container['FileHandlersManager'] = $container->service(
-            function( $container ) {
+            function ( $container ) {
                 return new AWPCP_File_Handlers_Manager( $container );
             }
         );
@@ -48,7 +48,7 @@ class AWPCP_MediaContainerConfiguration implements AWPCP_ContainerConfigurationI
      */
     private function register_file_handlers( $container ) {
         $container['ImageFileHandler'] = $container->service(
-            function( $container ) {
+            function ( $container ) {
                 return new AWPCP_ListingFileHandler(
                     awpcp_image_file_validator(),
                     awpcp_image_file_processor(),

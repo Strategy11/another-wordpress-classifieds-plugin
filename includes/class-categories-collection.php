@@ -58,7 +58,7 @@ class AWPCP_Categories_Collection {
             $message = __( 'The category ID must be a positive integer, {category_id} was given.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{category_id}', $category_id, $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         return absint( $category_id );
@@ -105,7 +105,7 @@ class AWPCP_Categories_Collection {
             $message = __( 'No category was found with old ID: {old_category_id}.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{old_category_id}', $old_category_id, $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $category = $this->get_category_by_id( $new_categories[ $old_category_id ] );
@@ -115,7 +115,7 @@ class AWPCP_Categories_Collection {
             $message = str_replace( '{category_id}', $new_categories[ $old_category_id ], $message );
             $message = str_replace( '{old_category_id}', $old_category_id, $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         return $this->prepare_category_object( $category );

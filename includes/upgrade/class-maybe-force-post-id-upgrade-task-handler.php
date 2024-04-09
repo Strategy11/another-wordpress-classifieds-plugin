@@ -78,7 +78,7 @@ class AWPCP_MaybeForcePostIDUpgradeTaskHandler implements AWPCP_Upgrade_Task_Run
             $message = str_replace( '{post_id}', $max_legacy_post_id, $message );
             $message = str_replace( '{error_message}', $post_id->get_error_message(), $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         if ( $this->wordpress->delete_post( $post_id ) ) {

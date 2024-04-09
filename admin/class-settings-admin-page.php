@@ -168,13 +168,12 @@ class AWPCP_Facebook_Page_Settings {
 		if ( isset( $_GET[ 'error_code' ] ) ) {
 			return $this->redirect_with_error(
 				sanitize_text_field( wp_unslash( $_GET[ 'error_code' ] ) ),
-				urlencode( sanitize_text_field( wp_unslash( $_GET['error_message'] ) ) )
+				urlencode( awpcp_get_var( array( 'param' => 'error_message' ), 'get' ) )
 			);
 		}
 
-		$code = isset( $_GET['code'] ) ? sanitize_text_field( wp_unslash( $_GET['code'] ) ) : '';
-
-		$fb = AWPCP_Facebook::instance();
+		$code         = awpcp_get_var( array( 'param' => 'code' ), 'get' );
+		$fb           = AWPCP_Facebook::instance();
 		$access_token = $fb->token_from_code( $code );
 
 		if ( ! $access_token ) {

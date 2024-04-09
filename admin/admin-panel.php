@@ -258,7 +258,7 @@ class AWPCP_AdminPanel {
             __( 'Import & Export', 'another-wordpress-classifieds-plugin' ),
             awpcp_admin_page_title( __( 'Import & Export', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-tools',
-            function() {
+            function () {
                 return awpcp()->container['ToolsAdminPage'];
             },
             $admin_capability,
@@ -294,7 +294,7 @@ class AWPCP_AdminPanel {
 		    'supported-csv-headers',
 		    'awpcp-view',
 		    'supported-csv-headers',
-		    function() {
+		    function () {
                 return awpcp()->container['SupportedCSVHeadersAdminPage'];
             }
 	    );
@@ -304,7 +304,7 @@ class AWPCP_AdminPanel {
 		    'example-csv-file',
 		    'awpcp-view',
 		    'example-csv-file',
-		    function() {
+		    function () {
                 return awpcp()->container['ExampleCSVFileAdminPage'];
             }
 	    );
@@ -314,7 +314,7 @@ class AWPCP_AdminPanel {
             'export-listings',
             'awpcp-view',
             'export-listings',
-            function() {
+            function () {
                 return awpcp()->container['ExportListingsAdminPage'];
             }
         );
@@ -354,7 +354,7 @@ class AWPCP_AdminPanel {
                 __( 'Renew Ad', 'another-wordpress-classifieds-plugin' ),
                 awpcp_admin_page_title( __( 'Renew Ad', 'another-wordpress-classifieds-plugin' ) ),
                 $renew_listing_subscriber_admin_page_slug,
-                function() {
+                function () {
                     return awpcp()->container['SubscriberRenewListingAdminPage'];
                 },
                 awpcp_roles_and_capabilities()->get_dashboard_capability()

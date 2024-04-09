@@ -12,7 +12,7 @@ class AWPCP_Fees_Collection {
         if ( is_null( $fee ) ) {
             $message = __( 'No Fee Plan was found with ID = <fee-id>.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<fee-id>', $fee_id, $message );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         return $fee;

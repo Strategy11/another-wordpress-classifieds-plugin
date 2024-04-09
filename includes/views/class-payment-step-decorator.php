@@ -55,7 +55,7 @@ class AWPCP_PaymentStepDecorator extends AWPCP_StepDecorator {
             if ( ! ( $transaction->was_payment_successful() || $transaction->payment_is_not_verified() ) ) {
                 $message = __( 'The payment associated with the current transaction failed (see reasons below).', 'another-wordpress-classifieds-plugin' );
 
-                throw new AWPCP_Exception( $message, awpcp_flatten_array( $transaction->errors ) );
+                throw new AWPCP_Exception( esc_html( $message ), awpcp_flatten_array( $transaction->errors ) );
             }
         }
     }

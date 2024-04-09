@@ -114,7 +114,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         $nonce   = awpcp_get_var( array( 'param' => 'nonce' ), 'post' );
 
         if ( ! wp_verify_nonce( $nonce, "awpcp-save-listing-information-{$listing->ID}" ) ) {
-            throw new AWPCP_Exception( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         if ( $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
@@ -134,7 +134,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
         if ( is_null( $transaction ) ) {
             $message = __( 'There is no payment transaction associated with this request. Aborting.', 'another-wordpress-classifieds-plugin' );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         // TODO: I believe the post_status is never going to be auto-draft when

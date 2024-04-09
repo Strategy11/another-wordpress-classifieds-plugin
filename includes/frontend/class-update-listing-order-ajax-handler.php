@@ -66,20 +66,20 @@ class AWPCP_UpdateListingOrderAjaxHandler extends AWPCP_AjaxHandler {
         $nonce = awpcp_get_var( array( 'param' => 'nonce' ), 'post' );
 
         if ( ! wp_verify_nonce( $nonce, 'awpcp-update-listing-order' ) ) {
-            throw new AWPCP_Exception( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $listing_id = awpcp_get_var( array( 'param' => 'listing_id' ) );
         $listing    = $this->listings->get( $listing_id );
 
         if ( ! $this->listings_logic->can_payment_information_be_modified_during_submit( $listing ) ) {
-            throw new AWPCP_Exception( __( 'The payment information for the specified ad cannot be modified at this time.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'The payment information for the specified ad cannot be modified at this time.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $transaction = $this->listings_transactions->get_current_transaction();
 
         if ( is_null( $transaction ) ) {
-            throw new AWPCP_Exception( __( "The specified transaction doesn't exist.", 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( "The specified transaction doesn't exist.", 'another-wordpress-classifieds-plugin' ) );
         }
 
         $posted_data = $this->posted_data->get_posted_data();

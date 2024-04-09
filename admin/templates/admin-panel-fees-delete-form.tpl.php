@@ -10,9 +10,19 @@
         </fieldset>
 
         <p class="submit inline-edit-save">
-            <?php $url = $this->page_url( array( 'action' => 'delete', 'id' => absint( $_POST['id'] ) ) ); ?>
-            <?php $cancel = __( 'Cancel', 'another-wordpress-classifieds-plugin'); ?>
-            <?php $delete = __( 'Delete', 'another-wordpress-classifieds-plugin'); ?>
+            <?php
+            $url = $this->page_url(
+                array(
+                    'action' => 'delete',
+                    'id'     => awpcp_get_var(
+                        array( 'param' => 'id', 'sanitize' => 'absint' ),
+                        'post'
+                    ),
+                )
+            );
+            $cancel = __( 'Cancel', 'another-wordpress-classifieds-plugin');
+            $delete = __( 'Delete', 'another-wordpress-classifieds-plugin');
+            ?>
             <a class="button-secondary cancel alignleft" title="<?php echo esc_attr( $cancel ); ?>" href="#inline-edit" accesskey="c"><?php echo esc_html( $cancel ); ?></a>
             <a class="button-primary alignright" title="<?php echo esc_attr( $delete ); ?>" href="<?php echo esc_url( $url ); ?>" accesskey="s"><?php echo esc_html( $delete ); ?></a>
             <br class="clear">

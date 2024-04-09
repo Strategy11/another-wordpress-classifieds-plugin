@@ -104,7 +104,7 @@ class AWPCP_ListingsAPI {
 
         if ( is_wp_error( $listing_id ) ) {
             $message = __( 'There was an unexpected error trying to save the listing details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $listing = $this->listings->get( $listing_id );
@@ -306,7 +306,7 @@ class AWPCP_ListingsAPI {
                 $message = __( 'There was an unexpected error trying to save the listing details. Please try again or contact an administrator.', 'another-wordpress-classifieds-plugin' );
             }
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $this->update_listing_terms( $listing, $listing_data['terms'] );

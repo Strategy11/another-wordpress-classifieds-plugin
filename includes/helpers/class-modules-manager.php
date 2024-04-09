@@ -291,7 +291,7 @@ class AWPCP_ModulesManager {
 
     public function get_module( $module_slug ) {
         if ( ! isset( $this->modules[ $module_slug ] ) ) {
-            throw new AWPCP_Exception( __( 'The specified module does not exists!.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'The specified module does not exists!.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         return $this->modules[ $module_slug ];

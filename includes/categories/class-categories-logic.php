@@ -41,7 +41,7 @@ class AWPCP_Categories_Logic {
         if ( is_wp_error( $term_info ) ) {
             $message = __( 'There was an error trying to create a category: <error-message>', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<error-message>', $term_info->get_error_message(), $message );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         if ( ! is_null( $data['order'] ) ) {
@@ -69,7 +69,7 @@ class AWPCP_Categories_Logic {
         if ( isset( $category->name ) && ! empty( $category->name ) ) {
             $category_data['name'] = $category->name;
         } elseif ( ! isset( $category->name ) || empty( $category->name ) ) {
-            throw new AWPCP_Exception( __( 'The name of the Category is required.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'The name of the Category is required.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         if ( isset( $category->description ) && ! empty( $category->description ) ) {
@@ -77,7 +77,7 @@ class AWPCP_Categories_Logic {
         }
 
         if ( isset( $category->parent ) && isset( $category->term_id ) && $category->parent === $category->term_id ) {
-            throw new AWPCP_Exception( __( 'The ID of the parent category and the ID of the category must be different.' ) );
+            throw new AWPCP_Exception( esc_html__( 'The ID of the parent category and the ID of the category must be different.', 'another-wordpress-classifieds-plugin' ) );
         } elseif ( isset( $category->parent ) ) {
             $category_data['parent'] = $category->parent;
         }
@@ -93,7 +93,7 @@ class AWPCP_Categories_Logic {
 
     public function update_category( $category, $category_order = null ) {
         if ( ! isset( $category->term_id ) ) {
-            throw new AWPCP_Exception( __( 'There was an error trying to update a category. The ID of the category is required.' ) );
+            throw new AWPCP_Exception( esc_html__( 'There was an error trying to update a category. The ID of the category is required.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $data      = $this->get_category_data( $category, $category_order );
@@ -102,7 +102,7 @@ class AWPCP_Categories_Logic {
         if ( is_wp_error( $term_info ) ) {
             $message = __( 'There was an error trying to update a category: <error-message>.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<error-message>', $term_info->get_error_message(), $message );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         if ( ! is_null( $data['order'] ) ) {
@@ -121,7 +121,7 @@ class AWPCP_Categories_Logic {
     public function move_category( $category, $target_category ) {
         if ( $category->term_id === $target_category->term_id ) {
             $message = __( 'The category to be moved and the target category can not be the same.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $category->parent = $target_category->term_id;
@@ -131,7 +131,7 @@ class AWPCP_Categories_Logic {
 
     public function delete_category_moving_listings_to( $category, $target_category ) {
         if ( $category->term_id === $target_category->term_id ) {
-            throw new AWPCP_Exception( __( 'The move-to category and the category that is going to be deleted must be different.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'The move-to category and the category that is going to be deleted must be different.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         // wp_delete_term() moves children terms to the parent of the
@@ -154,7 +154,7 @@ class AWPCP_Categories_Logic {
 
     public function delete_category_and_associated_listings( $category, $target_category = null ) {
         if ( is_object( $target_category ) && $category->term_id === $target_category->term_id ) {
-            throw new AWPCP_Exception( __( 'The move-to category and the category that is going to be deleted must be different.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'The move-to category and the category that is going to be deleted must be different.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $listings = $this->listings->find_listings(
@@ -178,7 +178,7 @@ class AWPCP_Categories_Logic {
             $message = __( "The category couldn't be deleted because there was an error trying to delete one of the associated listings: <error-message>", 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<error-message>', $e->getMessage(), $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         if ( ! is_null( $target_category ) ) {

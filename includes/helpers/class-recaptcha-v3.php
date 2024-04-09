@@ -97,7 +97,7 @@ class AWPCP_ReCAPTCHAv3 implements AWPCP_ReCAPTCHADelegate {
         if ( $score <= $threshold ) {
             $message = __( 'The current interaction was not approved by reCAPTCHA. Please try again.', 'another-wordpress-classifieds-plugin' );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         return true;

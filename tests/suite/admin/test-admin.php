@@ -248,7 +248,7 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
             ->once()
             ->with( $this->post->ID, $this->post )
             ->andReturnUsing(
-                function() use ( $test_subject ) {
+                function () use ( $test_subject ) {
                     // Simulate a recursive call to do_action( 'save_post' ), to verify
                     // save() methods are executed only once.
                     $test_subject->save_classifieds_meta_boxes( $this->post->ID, $this->post );

@@ -102,24 +102,24 @@ class AWPCP_Import_Settings_Admin_Page {
 
         if ( ! wp_verify_nonce( $nonce, $this->nonce_action ) ) {
             $message = _x( 'Are you sure you want to do this?', 'import settings', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         if ( isset( $file['error'] ) && UPLOAD_ERR_OK !== absint( $file['error'] ) ) {
             $error = awpcp_uploaded_file_error( $file );
-            throw new AWPCP_Exception( $error[1] );
+            throw new AWPCP_Exception( esc_html( $error[1] ) );
         }
 
         $settings_file = $file['tmp_name'];
 
         if ( ! is_uploaded_file( $settings_file ) ) {
             $message = _x( "There was a problem trying to read the settings file; it appears the file wasn't uploaded correctly. Please try again.", 'import settings', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $this->settings_writer->write( $settings_file );
 
-        awpcp_flash( _x( 'Your settings have been successfully imported.', 'another-wordpress-classifieds-plugin' ), array( 'notice', 'notice-info' ) );
+        awpcp_flash( esc_html__( 'Your settings have been successfully imported.', 'another-wordpress-classifieds-plugin' ), array( 'notice', 'notice-info' ) );
     }
 
     /**

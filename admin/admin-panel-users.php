@@ -88,7 +88,7 @@ class AWPCP_AdminUsers {
             // load the table so the get_columns methods is properly called
             // when attempt to find out the number of columns in the table
             $table = $this->get_table();
-            $columns = absint( wp_unslash( $_POST['columns'] ) );
+            $columns = absint( awpcp_get_var( array( 'param' => 'columns' ), 'post' ) );
 
             ob_start();
                 include(AWPCP_DIR . '/admin/templates/admin-panel-users-balance-form.tpl.php');

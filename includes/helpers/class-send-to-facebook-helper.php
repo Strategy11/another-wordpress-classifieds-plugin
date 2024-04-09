@@ -138,14 +138,14 @@ class AWPCP_SendToFacebookHelper {
             /* translators: %s the error message */
             $message = __( 'There was an error trying to contact Facebook servers: %s.', 'another-wordpress-classifieds-plugin' );
             $message = sprintf( $message, $e->getMessage() );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         if ( ! $response || ! isset( $response->id ) ) {
             /* translators: %s the error message */
             $message = __( 'Facebook API returned the following errors: %s.', 'another-wordpress-classifieds-plugin' );
             $message = sprintf( $message, $this->facebook->get_last_error()->message );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
     }
 

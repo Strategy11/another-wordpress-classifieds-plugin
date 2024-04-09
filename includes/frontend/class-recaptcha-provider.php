@@ -52,7 +52,7 @@ class AWPCP_ReCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
 
     public function validate() {
         if ( empty( $this->secret_key ) ) {
-            throw new AWPCP_Exception( $this->missing_key_message() );
+            throw new AWPCP_Exception( esc_html( $this->missing_key_message() ) );
         }
 
         $response = wp_remote_post(
@@ -69,7 +69,7 @@ class AWPCP_ReCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
         if ( is_wp_error( $response ) ) {
             $message = $this->delegate->get_verification_error_message( $response->get_error_message() );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $json = json_decode( $response['body'], true );
@@ -78,13 +78,13 @@ class AWPCP_ReCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
             $error_message = $this->delegate->process_error_codes( $json['error-codes'] );
             $message       = $this->delegate->get_verification_error_message( $error_message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         if ( empty( $json['success'] ) ) {
             $message = __( "Your answers couldn't be verified by the reCAPTCHA server.", 'another-wordpress-classifieds-plugin' );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         return $this->delegate->handle_successful_response( $json );

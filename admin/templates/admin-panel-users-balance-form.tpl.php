@@ -21,7 +21,7 @@
             <a class="button-primary save alignleft" style="margin-left: 5px;" title="<?php echo esc_attr( $label ); ?>" href="#inline-edit" accesskey="s"><?php echo esc_html( $label ); ?></a>
             <img alt="" src="<?php echo esc_url( admin_url( '/images/wpspin_light.gif' ) ); ?>" style="display: none;" class="waiting">
             <input type="hidden" value="<?php echo esc_attr( $user->ID ); ?>" name="user">
-            <input type="hidden" value="<?php echo esc_attr( sanitize_text_field( wp_unslash( $_POST['action'] ) ) ); ?>" name="action">
+            <input type="hidden" value="<?php echo esc_attr( awpcp_get_var( array( 'param' => 'action' ), 'post' ) ); ?>" name="action">
             <br class="clear">
         </p>
 

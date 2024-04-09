@@ -63,6 +63,7 @@
         <exclude name="WordPress.WhiteSpace.OperatorSpacing.NoSpaceBefore" />
         <exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed" />
         <exclude name="Universal.Files.SeparateFunctionsFromOO.Mixed" />
+        <exclude name="Generic.Files.OneObjectStructurePerFile.MultipleFound" />
         <exclude name="Generic.WhiteSpace.ArbitraryParenthesesSpacing" />
         <exclude name="Generic.Functions.FunctionCallArgumentSpacing" />
         <exclude name="WordPress.DateTime.RestrictedFunctions.date_date" />
