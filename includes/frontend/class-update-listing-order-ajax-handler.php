@@ -88,7 +88,7 @@ class AWPCP_UpdateListingOrderAjaxHandler extends AWPCP_AjaxHandler {
         $errors = $this->payment_information_validator->get_validation_errors( $post_data );
 
         if ( $errors ) {
-            throw new AWPCP_Exception( array_shift( $errors ) );
+            throw new AWPCP_Exception( wp_kses_post( array_shift( $errors ) ) );
         }
 
         $this->listings_logic->update_listing( $listing, $post_data );
