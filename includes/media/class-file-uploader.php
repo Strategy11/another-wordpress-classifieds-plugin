@@ -120,7 +120,7 @@ class AWPCP_FileUploader {
             throw new AWPCP_Exception( esc_html__( "Temporary directory doesn't exists and couldn't be created.", 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( ! empty( $_FILES ) && isset( $_FILES['file'] ) ) {
+        if ( ! empty( $_FILES ) && isset( $_FILES['file'] ) && isset( $_FILES['file']['tmp_name'] ) ) {
             if ( ! empty( $_FILES['file']['error'] ) ) {
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
                 list( $error_code, $error_message ) = awpcp_uploaded_file_error( $_FILES['file'] );

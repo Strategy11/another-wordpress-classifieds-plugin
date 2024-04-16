@@ -59,7 +59,7 @@ class AWPCP_ExecuteListingActionAjaxHandler extends AWPCP_AjaxHandler {
         }
 
         if ( ! has_filter( "awpcp-custom-listing-action-$action" ) ) {
-            throw new AWPCP_Exception( str_replace( '{action}', $action, __( 'Unknown action: {action}', 'another-wordpress-classifieds-plugin' ) ) );
+            throw new AWPCP_Exception( esc_html( str_replace( '{action}', $action, __( 'Unknown action: {action}', 'another-wordpress-classifieds-plugin' ) ) ) );
         }
 
         $response = apply_filters( "awpcp-custom-listing-action-$action", [], $listing );

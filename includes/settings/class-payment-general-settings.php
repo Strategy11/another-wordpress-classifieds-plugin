@@ -166,7 +166,10 @@ class AWPCP_PaymentSettings {
             'name'        => __( 'PayPal Merchant ID', 'another-wordpress-classifieds-plugin' ),
             'type'        => 'textfield',
             'default'     => '',
-            'description' => __( 'Merchant ID associated with the PayPal account that will receive the payments. Go to <a href="https://www.paypal.com/myaccount/settings/" target="_blank">https://www.paypal.com/myaccount/settings/</a> to obtain your Merchant ID.' ),
+            'description' => sprintf(
+                esc_html__( 'Merchant ID associated with the PayPal account that will receive the payments. Go to %s to obtain your Merchant ID.', 'another-wordpress-classifieds-plugin' ),
+                '<a href="https://www.paypal.com/myaccount/settings/" target="_blank">https://www.paypal.com/myaccount/settings/</a>'
+            ),
             'behavior'   => [
                 'enabledIf' => 'activatepaypal',
             ],

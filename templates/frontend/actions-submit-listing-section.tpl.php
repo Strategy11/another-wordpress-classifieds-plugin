@@ -8,7 +8,7 @@
 
     <div class="awpcp-submit-listing-section-content" data-collapsible awpcp-keep-open>
         <div class="awpcp-actions-submit-listing-section__edit_mode">
-            <?php echo $listing_actions; // XSS Ok. ?>
+            <?php echo $listing_actions; ?>
         </div>
     </div>
 </div>

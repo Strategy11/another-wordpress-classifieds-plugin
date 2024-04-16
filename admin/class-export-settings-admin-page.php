@@ -66,7 +66,7 @@ class AWPCP_Export_Settings_Admin_Page {
         header( 'Content-Disposition: attachment; filename=' . $filename );
         header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ), true );
 
-        echo $this->settings_reader->read_all(); // WPCS: XSS OK.
+        echo $this->settings_reader->read_all();
 
         exit();
     }

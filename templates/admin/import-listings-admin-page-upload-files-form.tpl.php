@@ -9,10 +9,7 @@
 
 <?php require AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php'; ?>
 
-            <?php
-            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo $form_steps;
-            ?>
+            <?php echo wp_kses_post( $form_steps ); ?>
 
             <h3><?php echo esc_html( __( 'Upload Source Files', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 

@@ -109,7 +109,7 @@ class AWPCP_Store_Listings_As_Custom_Post_Types_Upgrade_Task_Handler implements 
         }
 
         if ( is_wp_error( $post_id ) ) {
-            throw new AWPCP_Exception( sprintf( "A custom post entry couldn't be created for listing %d. %s", $item->ad_id, $post_id->get_error_message() ) );
+            throw new AWPCP_Exception( esc_html( sprintf( "A custom post entry couldn't be created for listing %d. %s", $item->ad_id, $post_id->get_error_message() ) ) );
         }
 
         if ( $existing_listing_id ) {

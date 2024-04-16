@@ -49,7 +49,7 @@ class AWPCP_Container implements ArrayAccess {
     #[\ReturnTypeWillChange]
     public function offsetGet( $key ) {
         if ( ! array_key_exists( $key, $this->values ) ) {
-            throw new Exception( sprintf( "Container doesn't have a value stored for key: %s", $key ) );
+            throw new Exception( esc_html( sprintf( "Container doesn't have a value stored for key: %s", $key ) ) );
         }
 
         if ( $this->values[ $key ] instanceof Closure ) {

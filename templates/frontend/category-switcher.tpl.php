@@ -9,6 +9,6 @@
     <?php endforeach; ?>
 
     <div class="awpcp-category-dropdown-container">
-        <?php echo awpcp_categories_selector()->render( $category_dropdown_params ); // XSS Ok. ?>
+        <?php echo awpcp_categories_selector()->render( $category_dropdown_params ); ?>
     </div>
 </form>

@@ -329,6 +329,7 @@ class AWPCP_CSV_Importer_Delegate {
             $message = _x( 'There was an error trying to create category "<category-name>".', 'csv importer', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<category-name>', $name, $message );
 
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
             throw new AWPCP_CSV_Importer_Exception( esc_html( $message ), null, $e );
         }
 
@@ -338,6 +339,7 @@ class AWPCP_CSV_Importer_Delegate {
             $message = _x( 'A category with name "<category-name>" was created, but there was an error trying to retrieve its information from the database.', 'csv importer', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<category-name>', $name, $message );
 
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
             throw new AWPCP_CSV_Importer_Exception( esc_html( $message ), null, $e );
         }
 
@@ -519,7 +521,11 @@ class AWPCP_CSV_Importer_Delegate {
             try{
                 $this->media_manager->validate_file( (object) [ 'ID' => -1 ], $imported_file );
             } catch ( AWPCP_Exception $previous ) {
-                throw new AWPCP_CSV_Importer_Exception( esc_html( $previous->getMessage() ), $previous->getCode(), $previous );
+                throw new AWPCP_CSV_Importer_Exception(
+                    esc_html( $previous->getMessage() ),
+                    esc_html( $previous->getCode() ),
+                    $previous // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+                );
             }
 
             $entries[] = $file_path;
@@ -565,6 +571,8 @@ class AWPCP_CSV_Importer_Delegate {
 
         } catch ( AWPCP_Exception $previous ) {
             $message = _x( 'There was an error trying to store imported data into the database.', 'csv importer', 'another-wordpress-classifieds-plugin' );
+
+            // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
             throw new AWPCP_CSV_Importer_Exception( esc_html( $message ), 0, $previous );
         }
 
@@ -588,6 +596,7 @@ class AWPCP_CSV_Importer_Delegate {
                 $message = _x( 'There was an error trying to import one of the images: {image-validation-error}', 'csv importer', 'another-wordpress-classifieds-plugin' );
                 $message = str_replace( '{image-validation-error}', $previous->getMessage(), $message );
 
+                // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
                 throw new AWPCP_CSV_Importer_Exception( esc_html( $message ), 0, $previous );
             }
         }

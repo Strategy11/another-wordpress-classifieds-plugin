@@ -4,7 +4,7 @@
  */
 
 ?><?php if ( ! empty( $message ) ) : ?>
-<?php echo $message; // XSS Ok. ?>
+<?php echo $message; ?>
 <?php endif; ?>
 
 <?php if ( 'confirm' === $action ) : ?>

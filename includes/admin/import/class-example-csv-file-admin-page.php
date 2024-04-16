@@ -39,7 +39,7 @@ class AWPCP_ExampleCSVFileAdminPage {
             'content' => $this->convert_to_csv( $this->prepare_data() ),
         ];
 
-        echo $this->template_renderer->render_template( $this->template, $params ); // XSS Ok.
+        echo $this->template_renderer->render_template( $this->template, $params );
     }
 
     /**

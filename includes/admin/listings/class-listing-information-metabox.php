@@ -74,7 +74,7 @@ class AWPCP_ListingInfromationMetabox {
 
         $params['payment_terms'] = $this->get_available_payment_terms( $post->post_author, $payment_term );
 
-        echo $this->template_renderer->render_template( 'admin/listings/listing-information-metabox.tpl.php', $params ); // XSS Ok.
+        echo $this->template_renderer->render_template( 'admin/listings/listing-information-metabox.tpl.php', $params );
     }
 
     /**

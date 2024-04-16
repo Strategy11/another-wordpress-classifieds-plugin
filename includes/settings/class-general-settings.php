@@ -756,7 +756,7 @@ class AWPCP_GeneralSettings {
                 'name'        => __( 'Ask Facebook to clear cache for ads pages', 'another-wordpress-classifieds-plugin' ),
                 'type'        => 'checkbox',
                 'default'     => false,
-                'description' => __( 'Clearing Facebook cache is useful to ensure users always see the latest version when the ad is shared on Facebook Pages, Groups and user feeds.' ),
+                'description' => __( 'Clearing Facebook cache is useful to ensure users always see the latest version when the ad is shared on Facebook Pages, Groups and user feeds.', 'another-wordpress-classifieds-plugin' ),
                 'section'     => 'general',
             ]
         );

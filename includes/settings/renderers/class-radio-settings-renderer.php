@@ -62,6 +62,6 @@ class AWPCP_RadioSettingsRenderer {
 
         $html .= '<span class="description">' . $setting['description'] . '</span>';
 
-        echo $html; // XSS Ok.
+        echo $html;
     }
 }

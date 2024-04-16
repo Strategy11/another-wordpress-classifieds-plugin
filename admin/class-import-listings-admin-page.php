@@ -90,30 +90,33 @@ class AWPCP_ImportListingsAdminPage {
             'local_path'    => awpcp_get_var( array( 'param' => 'local_path' ), 'post' ),
         );
 
-        if ( $_FILES['csv_file']['error'] != UPLOAD_ERR_OK ) {
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-            $file_error              = awpcp_uploaded_file_error( $_FILES['csv_file'] );
-            $form_errors['csv_file'] = $file_error[1];
+        if ( isset( $_FILES['csv_file'] ) ) {
+            $csv_error = isset( $_FILES['csv_file']['error'] ) ? sanitize_text_field( $_FILES['csv_file']['error'] ) : 0;
+            if ( $csv_error != UPLOAD_ERR_OK ) {
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+                $file_error              = awpcp_uploaded_file_error( $_FILES['csv_file'] );
+                $form_errors['csv_file'] = $file_error[1];
 
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-        } elseif ( substr( $_FILES['csv_file']['name'], -4 ) !== '.csv' ) {
-            $form_errors['csv_file'] = __( "The uploaded file doesn't look like a CSV file. Please upload a valid CSV file.", 'another-wordpress-classifieds-plugin' );
+            } elseif ( isset( $_FILES['csv_file']['name'] ) && substr( sanitize_text_field( $_FILES['csv_file']['name'] ), -4 ) !== '.csv' ) {
+                $form_errors['csv_file'] = __( "The uploaded file doesn't look like a CSV file. Please upload a valid CSV file.", 'another-wordpress-classifieds-plugin' );
 
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-        } elseif ( ! @move_uploaded_file( $_FILES['csv_file']['tmp_name'], "$working_directory/source.csv" ) ) {
-            $form_errors['csv_file'] = __( 'There was an error moving the uploaded CSV file to a proper location.', 'another-wordpress-classifieds-plugin' );
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+            } elseif ( ! @move_uploaded_file( $_FILES['csv_file']['tmp_name'], "$working_directory/source.csv" ) ) {
+                $form_errors['csv_file'] = __( 'There was an error moving the uploaded CSV file to a proper location.', 'another-wordpress-classifieds-plugin' );
+            }
         }
 
         $uploads_dir = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
 
         if ( $form_data['images_source'] == 'zip' ) {
-            if ( ! in_array( $_FILES['zip_file']['error'], array( UPLOAD_ERR_OK, UPLOAD_ERR_NO_FILE ) ) ) {
+            $zip_error = isset( $_FILES['zip_file']['error'] ) ? sanitize_text_field( $_FILES['zip_file']['error'] ) : 0;
+            if ( ! in_array( $zip_error, array( UPLOAD_ERR_OK, UPLOAD_ERR_NO_FILE ) ) ) {
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
                 $file_error              = awpcp_uploaded_file_error( $_FILES['zip_file'] );
                 $form_errors['zip_file'] = $file_error[1];
 
-				// phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedIf
-            } elseif ( $_FILES['zip_file']['error'] == UPLOAD_ERR_NO_FILE ) {
+				// phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif
+            } elseif ( $zip_error == UPLOAD_ERR_NO_FILE ) {
                 // all good...
 
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput

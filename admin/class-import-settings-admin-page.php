@@ -64,14 +64,12 @@ class AWPCP_Import_Settings_Admin_Page {
      * Executed during admin_init when this page is visited.
      */
     public function on_admin_init() {
-        if ( ! isset( $_FILES['settings_file'] ) ) { // WPCS: Input var okay.
+        if ( ! isset( $_FILES['settings_file'] ) ) {
             return;
         }
 
-        $file = wp_unslash( $_FILES['settings_file'] ); // WPCS: Input var and sanitization okay.
-
         try {
-            $this->try_to_import_settings( $file );
+            $this->try_to_import_settings( 'settings_file' );
         } catch ( AWPCP_Exception $e ) {
             awpcp_flash( $e->getMessage(), array( 'notice', 'notice-error' ) );
         }
@@ -91,13 +89,13 @@ class AWPCP_Import_Settings_Admin_Page {
      * Verifies that the request is valid, that a file was uploaded
      * and uses the Settings Writer to update the settings.
      *
-     * @param array $file An entry from $_FILES.
+     * @param string $file_id The name inside the $_FILES array.
      *
      * @throws AWPCP_Exception When input parameters are invalid or there
      *                          is an error trying to write from the JSON
      *                          file.
      */
-    private function try_to_import_settings( $file ) {
+    private function try_to_import_settings( $file_id ) {
         $nonce = $this->request->post( '_wpnonce' );
 
         if ( ! wp_verify_nonce( $nonce, $this->nonce_action ) ) {
@@ -105,12 +103,13 @@ class AWPCP_Import_Settings_Admin_Page {
             throw new AWPCP_Exception( esc_html( $message ) );
         }
 
-        if ( isset( $file['error'] ) && UPLOAD_ERR_OK !== absint( $file['error'] ) ) {
-            $error = awpcp_uploaded_file_error( $file );
+        if ( isset( $_FILES[ $file_id ]['error'] ) && UPLOAD_ERR_OK !== absint( $_FILES[ $file_id ]['error'] ) ) {
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+            $error = awpcp_uploaded_file_error( $_FILES[ $file_id ] );
             throw new AWPCP_Exception( esc_html( $error[1] ) );
         }
 
-        $settings_file = $file['tmp_name'];
+        $settings_file = sanitize_text_field( isset( $_FILES[ $file_id ]['tmp_name'] ) ? $_FILES[ $file_id ]['tmp_name'] : '' );
 
         if ( ! is_uploaded_file( $settings_file ) ) {
             $message = _x( "There was a problem trying to read the settings file; it appears the file wasn't uploaded correctly. Please try again.", 'import settings', 'another-wordpress-classifieds-plugin' );

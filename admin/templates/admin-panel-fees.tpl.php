@@ -35,6 +35,6 @@ else :
         );
     ?></p>
 
-    <?php echo $table->display(); // XSS Ok. ?>
+    <?php echo $table->display(); ?>
 </form>
 <?php endif; ?>

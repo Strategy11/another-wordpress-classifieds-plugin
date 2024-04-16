@@ -63,8 +63,8 @@ class AWPCP_FormFieldsTable extends WP_List_Table {
 
         // the 'field-' part in the id attribute is important. The jQuery UI Sortable plugin relies on that
         // to build a serialized string with the current order of fields.
-        echo '<tr id="field-' . esc_attr( $item->get_slug() ) . '" data-id="' . esc_attr( $item->get_slug() ) . '"' . $row_class . '>'; // XSS Ok.
-        echo $this->single_row_columns( $item ); // XSS Ok.
+        echo '<tr id="field-' . esc_attr( $item->get_slug() ) . '" data-id="' . esc_attr( $item->get_slug() ) . '"' . $row_class . '>';
+        echo $this->single_row_columns( $item );
         echo '</tr>';
     }
 }

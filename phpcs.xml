@@ -108,7 +108,15 @@
 
 	<rule ref="WordPress.Security.EscapeOutput">
 		<properties>
-			<property name="customAutoEscapedFunctions" type="array" value="awpcp_esc_attr,awpcp_esc_textarea,wp_nonce_url,awpcp_print_error,awpcp_print_message"/>
+			<property name="customAutoEscapedFunctions" type="array">
+                <element value="awpcp_esc_attr" />
+                <element value="awpcp_esc_textarea" />
+                <element value="wp_nonce_url" />
+                <element value="awpcp_print_error" />
+                <element value="awpcp_print_message" />
+                <element value="awpcp_render_warning" />
+                <element value="awpcp_render_categories_dropdown_options" />
+            </property>
 		</properties>
 	</rule>
 

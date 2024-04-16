@@ -80,10 +80,12 @@ class AWPCP_EmailSettings {
 
         $settings_manager->add_setting( $key, 'usesenderemailinsteadofadmin', __( 'Use sender email for reply messages', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Check this to use the name and email of the sender in the FROM field when someone replies to an ad. When unchecked the messages go out with the website name and WP admin email address in the from field. Some servers will not process outgoing emails that have an email address from gmail, yahoo, hotmail and other free email services in the FROM field. Some servers will also not process emails that have an email address that is different from the email address associated with your hosting account in the FROM field. If you are with such a webhost you need to leave this option unchecked and make sure your WordPress admin email address is tied to your hosting account.', 'another-wordpress-classifieds-plugin' ) );
 
-        /* translators: full-email-address=John Doe <john.doe@example.com>, short-email-address=john.doe@example.com */
-        $description = __( 'If checked, whenever the name of the recipient is available, emails will be sent to <full-email-address> instead of just <short-email-address>. Some email servers, however, have problems handling email address that include the name of the recipient. If emails sent by the plugin are not being delivered properly, try unchecking this settting.' );
-        $description = str_replace( '<full-email-address>', '<strong>' . esc_html( 'John Doe <john.doe@example.com>' ) . '</strong>', $description );
-        $description = str_replace( '<short-email-address>', '<strong>' . esc_html( 'john.doe@example.com' ) . '</strong>', $description );
+        /* translators: %1$s=John Doe <john.doe@example.com>, %2$s=john.doe@example.com */
+        $description = sprintf(
+            __( 'If checked, whenever the name of the recipient is available, emails will be sent to %1$s instead of just %2$s. Some email servers, however, have problems handling email address that include the name of the recipient. If emails sent by the plugin are not being delivered properly, try unchecking this settting.', 'another-wordpress-classifieds-plugin' ),
+            '<strong>' . esc_html( 'John Doe <john.doe@example.com>' ) . '</strong>',
+            '<strong>john.doe@example.com</strong>'
+        );
 
         $settings_manager->add_setting(
             $key,
@@ -198,7 +200,7 @@ class AWPCP_EmailSettings {
                 'type'         => 'email-template',
                 'default'      => [
                     'subject' => __( 'Verify the email address used for Ad {listing_title}', 'another-wordpress-classifieds-plugin' ),
-                    'body'    => _x( "Hello {author_name} \n\nYou recently posted the Ad {listing_title} to {website_title}. \n\nIn order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad. \n\n{verification_link} \n\nAfter you verify your email address, the administrator will be notified about the new Ad. If moderation is enabled, your Ad will remain in a disabled status until the administrator approves it.\n\n{website_title}\n\n{website_url}", 'another-wordpress-classifieds-plugin' ),
+                    'body'    => __( "Hello {author_name} \n\nYou recently posted the Ad {listing_title} to {website_title}. \n\nIn order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad. \n\n{verification_link} \n\nAfter you verify your email address, the administrator will be notified about the new Ad. If moderation is enabled, your Ad will remain in a disabled status until the administrator approves it.\n\n{website_title}\n\n{website_url}", 'another-wordpress-classifieds-plugin' ),
                     'version' => '4.0.0',
                 ],
                 'description'  => __( 'Subject and body template for email sent out to verify the email address.', 'another-wordpress-classifieds-plugin' ),

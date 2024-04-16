@@ -9,7 +9,7 @@
 
 <?php include( AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>
 
-            <?php echo $form_steps; // XSS Ok. ?>
+            <?php echo wp_kses_post( $form_steps ); ?>
 
             <h3><?php echo esc_html( __( 'Configure', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
@@ -158,7 +158,7 @@
                                         'name'                          => 'default_user',
                                         'class'                         => array( 'awpcp-user-selector' ),
                                         'include_full_user_information' => false,
-                                    ) ); // XSS Ok.
+                                    ) );
                                 ?>
                                 <?php awpcp_show_form_error( 'default_user', $form_errors ); ?>
                             </td>

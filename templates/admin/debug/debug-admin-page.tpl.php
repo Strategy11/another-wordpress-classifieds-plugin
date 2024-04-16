@@ -28,7 +28,7 @@ $msg = sprintf( $msg, esc_url( $download_url ) );
 </h2>
 
 <div class="awpcp-debug-section-content">
-<?php echo $content; // XSS Ok. ?>
+<?php echo $content; ?>
 </div>
 
 <hr>

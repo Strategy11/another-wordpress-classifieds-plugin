@@ -35,29 +35,29 @@ class AWPCP_LicenseSettingsRenderer {
 
         $license = $this->settings->get_option( $setting['id'] );
 
-        echo '<input id="' . $setting['id'] . '" class="regular-text" type="text" name="awpcp-options[' . $setting['id'] . ']" value="' . esc_attr( $license ) . '">'; // XSS Ok.
+        echo '<input id="' . esc_attr( $setting['id'] ) . '" class="regular-text" type="text" name="awpcp-options[' . esc_attr( $setting['id'] ) . ']" value="' . esc_attr( $license ) . '">';
 
         if ( ! empty( $license ) ) {
             if ( $this->licenses_manager->is_license_valid( $module_name, $module_slug ) ) {
-                echo '<input class="button-secondary" type="submit" name="awpcp-deactivate-' . $module_slug . '-license" value="' . __( 'Deactivate', 'another-wordpress-classifieds-plugin' ) . '"/>'; // XSS Ok.
-                echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-valid">' . __( 'active', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) ); // XSS Ok.
+                echo '<input class="button-secondary" type="submit" name="awpcp-deactivate-' . esc_attr( $module_slug ) . '-license" value="' . esc_attr__( 'Deactivate', 'another-wordpress-classifieds-plugin' ) . '"/>';
+                echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-valid">' . esc_html__( 'active', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) );
             } elseif ( $this->licenses_manager->is_license_inactive( $module_name, $module_slug ) ) {
-                echo '<input class="button-secondary" type="submit" name="awpcp-activate-' . $module_slug . '-license" value="' . __( 'Activate', 'another-wordpress-classifieds-plugin' ) . '"/>'; // XSS Ok.
-                echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-inactive">' . __( 'inactive', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) ); // XSS Ok.
+                echo '<input class="button-secondary" type="submit" name="awpcp-activate-' . esc_attr( $module_slug ) . '-license" value="' . esc_attr__( 'Activate', 'another-wordpress-classifieds-plugin' ) . '"/>';
+                echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-inactive">' . esc_html__( 'inactive', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) );
             } else {
-                echo '<input class="button-secondary" type="submit" name="awpcp-activate-' . $module_slug . '-license" value="' . __( 'Activate', 'another-wordpress-classifieds-plugin' ) . '"/>'; // XSS Ok.
+                echo '<input class="button-secondary" type="submit" name="awpcp-activate-' . esc_attr( $module_slug ) . '-license" value="' . esc_attr__( 'Activate', 'another-wordpress-classifieds-plugin' ) . '"/>';
 
                 $contact_url     = 'https://awpcp.com/contact';
                 $contact_message = __( 'Click the button above to check the status of your license. Please <contact-link>contact customer support</a> if you think the reported status is wrong.', 'another-wordpress-classifieds-plugin' );
 
-                echo '<br>' . str_replace( '<contact-link>', '<a href="' . esc_url( $contact_url ) . '" target="_blank">', $contact_message ); // XSS Ok.
+                echo '<br>' . str_replace( '<contact-link>', '<a href="' . esc_url( $contact_url ) . '" target="_blank">', $contact_message );
 
                 if ( $this->licenses_manager->is_license_expired( $module_name, $module_slug ) ) {
-                    echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-expired">' . __( 'expired', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) ); // XSS Ok.
+                    echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-expired">' . esc_html__( 'expired', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) );
                 } elseif ( $this->licenses_manager->is_license_disabled( $module_name, $module_slug ) ) {
-                    echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-invalid">' . __( 'disabled', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) ); // XSS Ok.
+                    echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-invalid">' . esc_html__( 'disabled', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) );
                 } else {
-                    echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-invalid">' . __( 'unknown', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) ); // XSS Ok.
+                    echo '<br>' . str_replace( '<license-status>', '<span class="awpcp-license-status awpcp-license-invalid">' . esc_html__( 'unknown', 'another-wordpress-classifieds-plugin' ) . '</span>.', __( 'Status: <license-status>', 'another-wordpress-classifieds-plugin' ) );
                 }
             }
             wp_nonce_field( 'awpcp-update-license-status-nonce', 'awpcp-update-license-status-nonce' );

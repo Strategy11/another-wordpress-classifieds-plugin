@@ -33,11 +33,11 @@ class AWPCP_SettingsRenderer {
         $section = $this->settings_manager->get_settings_section( $params['id'] );
 
         if ( isset( $section['description'] ) ) {
-            echo $section['description']; // XSS Ok.
+            echo $section['description'];
         }
 
         if ( isset( $section['callback'] ) && is_callable( $section['callback'] ) ) {
-            echo call_user_func( $section['callback'], $section ); // XSS Ok.
+            echo call_user_func( $section['callback'], $section );
         }
     }
 
@@ -55,7 +55,7 @@ class AWPCP_SettingsRenderer {
         try {
             return $this->get_settings_renderer( $setting['type'] )->render_setting( $setting, $config );
         } catch ( AWPCP_Exception $e ) {
-            echo $e->getMessage(); // XSS Ok.
+            echo wp_kses_post( $e->getMessage() );
         }
     }
 
@@ -65,7 +65,7 @@ class AWPCP_SettingsRenderer {
      */
     private function get_settings_renderer( $setting_type ) {
         if ( ! isset( $this->settings_renderers[ $setting_type ] ) ) {
-            throw new AWPCP_Exception( "Setting renderer not found for setting type: {$setting_type}." );
+            throw new AWPCP_Exception( esc_html( "Setting renderer not found for setting type: {$setting_type}." ) );
         }
 
         return $this->settings_renderers[ $setting_type ];

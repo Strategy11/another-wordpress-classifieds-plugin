@@ -35,6 +35,6 @@
 /* <![CDATA[ */
     window.awpcp = window.awpcp || {};
     window.awpcp.options = window.awpcp.options || [];
-    window.awpcp.options.push( ['multiple-region-selector-<?php echo $uuid; // XSS Ok. ?>', <?php echo wp_json_encode( $configuration ); ?> ] );
+    window.awpcp.options.push( ['multiple-region-selector-<?php echo esc_attr( $uuid ); ?>', <?php echo wp_json_encode( $configuration ); ?> ] );
 /* ]]> */
 </script>

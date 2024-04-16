@@ -424,7 +424,10 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 		case 'timestamp':
 			return $timestamp;
 		case 'time-elapsed':
-			return sprintf( __( '%s ago' ), human_time_diff( strtotime( $date ) ) );
+			return sprintf(
+                __( '%s ago', 'another-wordpress-classifieds-plugin' ),
+                human_time_diff( strtotime( $date ) )
+            );
 		case 'awpcp':
 			return date_i18n( awpcp_get_datetime_format(), $timestamp );
 		case 'awpcp-date':
@@ -1512,7 +1515,7 @@ function awpcp_currency_symbols() {
  */
 function awpcp_format_money( $value, $show_free = false ) {
     if ( ! $value && $show_free ) {
-        return __( 'Free', 'another_wordpress_classifieds_plugin' );
+        return __( 'Free', 'another-wordpress-classifieds-plugin' );
     }
     return awpcp_get_formmatted_amount(
         $value,
@@ -3019,10 +3022,11 @@ function createdefaultcategory($idtomake,$titletocallit) {
     $wpdb->insert( AWPCP_TABLE_CATEGORIES, array( 'category_name' => $titletocallit, 'category_parent_id' => 0 ) );
 
     $query = 'UPDATE ' . AWPCP_TABLE_CATEGORIES . ' SET category_id = 1 WHERE category_id = %d';
-    $query = $wpdb->prepare( $query, $wpdb->insert_id );
 
     // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
-    $wpdb->query( $query ); // WPCS: unprepared SQL OK
+    $wpdb->query(
+        $wpdb->prepare( $query, $wpdb->insert_id )
+    );
 }
 
 function create_ad_postedby_list($name) {
@@ -3240,7 +3244,7 @@ function awpcp_get_curl_info() {
         $output[] = __( 'SSL Support: No.', 'another-wordpress-classifieds-plugin' );
     }
 
-    $output[] = __( 'OpenSSL version:' ) . ' ' . $curl_info['ssl_version'];
+    $output[] = __( 'OpenSSL version:', 'another-wordpress-classifieds-plugin' ) . ' ' . $curl_info['ssl_version'];
 
     return implode( '<br>', $output );
 }

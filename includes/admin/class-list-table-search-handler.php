@@ -111,6 +111,6 @@ class AWPCP_ListTableSearchHandler {
             ],
         ];
 
-        echo $this->html_renderer->render( $container ); // XSS Ok.
+        echo $this->html_renderer->render( $container );
     }
 }

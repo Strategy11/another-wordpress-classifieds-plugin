@@ -42,14 +42,16 @@ class fileop {
 			$myreturn=@chmod($file,$mode);
 		} elseif ($this->op_mode=='ftp') {
 			$file   = str_replace( _BASEPATH_ . '/', _FTPPATH_, $file );
-			$old_de=ini_get('display_errors');
+			$old_de = defined( 'WP_DEBUG_DISPLAY' ) ? WP_DEBUG_DISPLAY : 0;
 			ini_set('display_errors',0);
 			if (function_exists('ftp_chmod')) {
 				$myreturn=@ftp_chmod($this->ftp_id,$mode,$file);
 			} else {
 				$myreturn=ftp_site($this->ftp_id,"CHMOD $mode $file");
 			}
-			ini_set('display_errors',$old_de);
+			if ( $old_de ) {
+				ini_set( 'display_errors', $old_de );
+			}
 		}
 	}
 

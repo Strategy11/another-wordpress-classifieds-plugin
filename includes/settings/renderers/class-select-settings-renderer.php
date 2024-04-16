@@ -39,6 +39,6 @@ class AWPCP_SelectSettingsRenderer {
         $html .= '</select><br/>';
         $html .= '<span class="description">' . $setting['description'] . '</span>';
 
-        echo $html; // XSS Ok.
+        echo $html;
     }
 }
