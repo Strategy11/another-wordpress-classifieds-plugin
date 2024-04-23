@@ -93,7 +93,7 @@ class AWPCP_CSVExporter {
                         sprintf(
                             _x( 'Error while creating a temporary directory for CSV export: %s', 'admin csv-export', 'another-wordpress-classifieds-plugin' ),
                             $direrror
-                        ),
+                        )
                     )
                 );
             }
