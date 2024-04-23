@@ -15,7 +15,7 @@
 
     <p><?php
         printf(
-            esc_html_e( 'Contact name, email address, website URL and content of submitted classified listings may be checked through Akismet\'s spam detection service. The Akismet service privacy policy is available %1$shere%2$s.', 'another-wordpress-classifieds-plugin' ),
+            esc_html__( 'Contact name, email address, website URL and content of submitted classified listings may be checked through Akismet\'s spam detection service. The Akismet service privacy policy is available %1$shere%2$s.', 'another-wordpress-classifieds-plugin' ),
             '<a href="https://automattic.com/privacy/">',
             '</a>'
         );
