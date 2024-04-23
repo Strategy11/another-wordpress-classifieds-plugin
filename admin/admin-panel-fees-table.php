@@ -195,7 +195,7 @@ class AWPCP_FeesTable extends WP_List_Table {
 
         return sprintf(
             esc_html__( 'Duration: %s', 'another-wordpress-classifieds-plugin' ),
-            '<strong>' . esc_html( $duration ) . '</strong>',
+            '<strong>' . esc_html( $duration ) . '</strong>'
         );
     }
 
