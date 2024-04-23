@@ -1839,7 +1839,7 @@ function awpcp_validate_error($field, $errors) {
  */
 function awpcp_show_form_error( $field, $errors ) {
     echo wp_kses_post(
-        awpcp_form_error( $field, $errors, array( 'echo' => true ) )
+        awpcp_form_error( $field, $errors )
     );
 }
 
