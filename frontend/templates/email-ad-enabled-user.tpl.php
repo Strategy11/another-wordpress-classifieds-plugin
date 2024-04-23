@@ -8,4 +8,4 @@ printf( esc_html__( 'Hello %s,', 'another-wordpress-classifieds-plugin'), esc_ht
 
 <?php echo esc_html( awpcp_get_blog_name() ); ?>
 <?php
-echo esc_url( home_url() );
+echo esc_url_raw( home_url() );

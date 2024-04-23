@@ -27,4 +27,4 @@
 <?php esc_html_e( 'Thank you for your business', 'another-wordpress-classifieds-plugin' ); ?>
 
 
-<?php echo esc_url( home_url() ); ?>
+<?php echo esc_url_raw( home_url() ); ?>

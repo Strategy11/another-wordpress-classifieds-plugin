@@ -34,7 +34,7 @@ echo PHP_EOL;
 <?php
 printf(
     esc_html__( 'Click here to manage media uploaded to the listing: %s.', 'another-wordpress-classifieds-plugin' ),
-    esc_url( $manage_listing_media_url )
+    esc_url_raw( $manage_listing_media_url )
 );
 echo PHP_EOL;
 ?>
@@ -42,10 +42,10 @@ echo PHP_EOL;
 <?php
 printf(
     esc_html__( 'Click here to view the listing: %s.', 'another-wordpress-classifieds-plugin' ),
-    esc_url( $view_listing_url )
+    esc_url_raw( $view_listing_url )
 );
 echo PHP_EOL;
 ?>
 
 <?php echo esc_html( awpcp_get_blog_name() ) . PHP_EOL; ?>
-<?php echo esc_url( home_url() ) . PHP_EOL; ?>
+<?php echo esc_url_raw( home_url() ) . PHP_EOL; ?>

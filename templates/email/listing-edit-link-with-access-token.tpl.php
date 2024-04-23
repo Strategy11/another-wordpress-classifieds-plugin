@@ -12,4 +12,4 @@
 
 <?php echo esc_html( awpcp_get_blog_name() ); ?>
 <?php
-echo esc_url( home_url() );
+echo esc_url_raw( home_url() );
