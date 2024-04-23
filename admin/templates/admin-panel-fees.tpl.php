@@ -21,17 +21,14 @@ else :
     <?php $url   = $page->url( array( 'awpcp-action' => 'add-fee' ) ); ?>
     <?php $label = __( 'Add Fee Plan', 'another-wordpress-classifieds-plugin' ); ?>
     <a class="button-primary" title="<?php echo esc_attr( $label ); ?>" href="<?php echo esc_attr( $url ); ?>" accesskey="s"><?php echo esc_html( $label ); ?></a>
-    <?php
-        $fee_settings_link = sprintf(
-            '<a href="%s">%s</a>',
-            esc_url( awpcp_get_admin_settings_url( 'payment-settings' ) ),
-            esc_html__( 'Fee Plan sort order and sort direction Settings', 'another-wordpress-classifieds-plugin' )
-        );
-    ?>
     <p><?php
         printf(
             esc_html__( 'If you wish to change the sorting of your fee plans, you can change the %s.', 'another-wordpress-classifieds-plugin' ),
-            $fee_settings_link
+            sprintf(
+                '<a href="%s">%s</a>',
+                esc_url( awpcp_get_admin_settings_url( 'payment-settings' ) ),
+                esc_html__( 'Fee Plan sort order and sort direction Settings', 'another-wordpress-classifieds-plugin' )
+            )
         );
     ?></p>
 

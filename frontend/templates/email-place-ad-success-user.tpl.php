@@ -2,7 +2,7 @@
 
 <?php esc_html_e( 'Listing Title', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $listing_title ); ?>
 
-<?php esc_html_e( 'Listing URL', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( urldecode( url_showad( $ad->ID ) ) ); ?>
+<?php esc_html_e( 'Listing URL', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_url_raw( get_permalink( $ad->ID ) ); ?>
 
 <?php esc_html_e( 'Listing ID', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $ad->ID ); ?>
 
@@ -33,7 +33,7 @@
 
 <?php esc_html_e( 'The next link will take you to a page where you can edit the listing:', 'another-wordpress-classifieds-plugin' ); ?>
 
-<?php echo esc_url( awpcp_get_edit_listing_url( $ad, 'email' ) ); ?>
+<?php echo esc_url_raw( awpcp_get_edit_listing_url( $ad, 'email' ) ); ?>
 
 <?php endif; ?>
 <?php if (!empty($message)): ?>

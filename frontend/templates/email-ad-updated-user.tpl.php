@@ -4,10 +4,10 @@
 <?php echo $message ?>
 <?php endif ?>
 
-<?php esc_html_e( 'Ad Information', 'another-wordpress-classifieds-plugin') ?>
+<?php esc_html_e( 'Ad Information', 'another-wordpress-classifieds-plugin' ); ?>
 
 <?php esc_html_e( 'Listing Title', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $listing_title ); ?>
-<?php esc_html_e( 'Listing URL', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( urldecode( url_showad( $ad->ID ) ) ); ?>
+<?php esc_html_e( 'Listing URL', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_url_raw( get_permalink( $ad->ID ) ); ?>
 <?php esc_html_e( 'Listing ID', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $ad->ID ); ?>
 <?php esc_html_e( 'Listing Edit Email', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $contact_email ); ?>
 <?php if ( get_awpcp_option( 'include-ad-access-key' ) ): ?>
