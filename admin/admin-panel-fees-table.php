@@ -205,7 +205,7 @@ class AWPCP_FeesTable extends WP_List_Table {
     private function get_number_of_images( $payment_term ) {
         return sprintf(
             esc_html__( '# of images: %s', 'another-wordpress-classifieds-plugin' ),
-            '<strong>' . esc_html( $payment_term->images ) . '</strong>',
+            '<strong>' . esc_html( $payment_term->images ) . '</strong>'
         );
     }
 
@@ -221,7 +221,7 @@ class AWPCP_FeesTable extends WP_List_Table {
 
         return sprintf(
             esc_html__( 'Chars in title: %s', 'another-wordpress-classifieds-plugin' ),
-            '<strong>' . esc_html( $characters_limit ) . '</strong>',
+            '<strong>' . esc_html( $characters_limit ) . '</strong>'
         );
     }
 
@@ -237,7 +237,7 @@ class AWPCP_FeesTable extends WP_List_Table {
 
         return sprintf(
             esc_html__( 'Chars in description: %s', 'another-wordpress-classifieds-plugin' ),
-            '<strong>' . esc_html( $characters_limit ) . '</strong>',
+            '<strong>' . esc_html( $characters_limit ) . '</strong>'
         );
     }
 
