@@ -33,7 +33,7 @@
 
 <?php esc_html_e( 'The next link will take you to a page where you can edit the listing:', 'another-wordpress-classifieds-plugin' ); ?>
 
-<?php echo esc_html( awpcp_get_edit_listing_url( $ad, 'email' ) ); ?>
+<?php echo esc_url( awpcp_get_edit_listing_url( $ad, 'email' ) ); ?>
 
 <?php endif; ?>
 <?php if (!empty($message)): ?>
@@ -51,4 +51,4 @@ printf(
 
 <?php echo esc_html( $blog_name ); ?>
 
-<?php echo esc_html( home_url() ); ?>
+<?php echo esc_url( home_url() ); ?>

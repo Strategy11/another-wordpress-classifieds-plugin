@@ -424,7 +424,7 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 		case 'timestamp':
 			return $timestamp;
 		case 'time-elapsed':
-			return sprintf(
+            return sprintf(
                 __( '%s ago', 'another-wordpress-classifieds-plugin' ),
                 human_time_diff( strtotime( $date ) )
             );

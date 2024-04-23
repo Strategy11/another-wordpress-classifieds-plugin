@@ -50,7 +50,7 @@ class AWPCP_EasyDigitalDownloads {
         }
 
         if ( $response->license === 'failed' ) {
-            throw new AWPCP_Easy_Digital_Downloads_Exception( esc_html__( 'License Status parameter was set to <strong>Failed</strong>', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Easy_Digital_Downloads_Exception( esc_html__( 'License Status parameter was set to Failed', 'another-wordpress-classifieds-plugin' ) );
         }
 
         if ( $response->license === 'item_name_mismatch' ) {

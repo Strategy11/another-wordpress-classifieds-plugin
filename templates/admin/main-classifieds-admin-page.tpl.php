@@ -53,7 +53,7 @@
                             <?php $msg = __( 'You have not configured your Listing fees. Go to %s to set up your listing fees. Once completed, the options will appear on the new ads form.', 'another-wordpress-classifieds-plugin' ); ?>
                         <?php endif; ?>
                         <?php $url = add_query_arg( 'page', 'awpcp-admin-fees', admin_url( 'admin.php' ) ); ?>
-                        <p><?php printf( esc_html( $msg ), sprintf( '<a href="%s">%s</a>', esc_url( $url ), esc_html__( 'Fees', 'another-wordpress-classifieds-plugin' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+                        <p><?php printf( esc_html( $msg ), sprintf( '<a href="%s">%s</a>', esc_url( $url ), esc_html__( 'Fees', 'another-wordpress-classifieds-plugin' ) ) ); ?></p>
                     <?php else : ?>
                         <?php esc_html_e( 'Free', 'another-wordpress-classifieds-plugin' ); ?><br/>
                         <?php
@@ -83,7 +83,7 @@
                     <?php /* translators: %s is the link the Manage Categories admin page. */ ?>
                     <?php $msg = __( 'Go to the %s section to edit/delete current categories or add new categories.', 'another-wordpress-classifieds-plugin' ); ?>
                     <?php $url = awpcp_get_admin_categories_url(); ?>
-                    <p><?php printf( esc_html( $msg ), sprintf( '<a href="%s">%s</a>', $url, esc_html__( 'Manage Categories', 'another-wordpress-classifieds-plugin' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+                    <p><?php printf( esc_html( $msg ), sprintf( '<a href="%s">%s</a>', $url, esc_html__( 'Manage Categories', 'another-wordpress-classifieds-plugin' ) ) ); ?></p>
 
                     <ul>
                         <li style="margin-bottom:6px;list-style:none;">
@@ -108,7 +108,7 @@
                     <?php /* translators: %s is the link to the Manage Categories admin page. */ ?>
                     <?php $msg = __( 'You have not categories defined. Go to the %s section to set up your categories.', 'another-wordpress-classifieds-plugin' ); ?>
                     <?php $url = awpcp_get_admin_categories_url(); ?>
-                    <p><?php printf( esc_html( $msg ), sprintf( '<a href="%s">%s</a>', esc_url( $url ), esc_html__( 'Manage Categories', 'another-wordpress-classifieds-plugin' ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+                    <p><?php printf( esc_html( $msg ), sprintf( '<a href="%s">%s</a>', esc_url( $url ), esc_html__( 'Manage Categories', 'another-wordpress-classifieds-plugin' ) ) ); ?></p>
                 </div>
 
                 <?php endif; ?>

@@ -18,4 +18,4 @@ echo $introduction;
 <?php echo esc_html_x( 'The edit link will expire after 24 hours. If you use the link after it has expired, a new one will be delivered to your email address automatically.', 'edit link email', 'another-wordpress-classifieds-plugin' ); ?>
 
 <?php echo esc_html( awpcp_get_blog_name() ); ?>
-<?php echo esc_html( home_url() ); ?>
+<?php echo esc_url( home_url() ); ?>

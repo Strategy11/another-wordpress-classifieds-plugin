@@ -78,8 +78,10 @@ class AWPCP_LicensesSettings {
             return '';
         }
 
-        $description = __( 'The IP address of your server is <ip-address>. Please make sure to include that information if you need to contact support about problems trying to activate your licenses.', 'another-wordpress-classifieds-plugin' );
-        $description = str_replace( '<ip-address>', $ip_address, $description );
+        $description = sprintf(
+            __( 'The IP address of your server is %s. Please make sure to include that information if you need to contact support about problems trying to activate your licenses.', 'another-wordpress-classifieds-plugin' ),
+            $ip_address
+        );
 
         return '<p class="description">' . esc_html( $description ) . '</p>';
     }

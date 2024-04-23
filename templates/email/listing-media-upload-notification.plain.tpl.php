@@ -48,4 +48,4 @@ echo PHP_EOL;
 ?>
 
 <?php echo esc_html( awpcp_get_blog_name() ) . PHP_EOL; ?>
-<?php echo esc_html( home_url() ) . PHP_EOL; ?>
+<?php echo esc_url( home_url() ) . PHP_EOL; ?>
