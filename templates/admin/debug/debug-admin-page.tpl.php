@@ -28,12 +28,19 @@ $msg = sprintf( $msg, esc_url( $download_url ) );
 </h2>
 
 <div class="awpcp-debug-section-content">
-<?php echo $content; // XSS Ok. ?>
+<?php echo $content; ?>
 </div>
 
 <hr>
 
-<?php echo awpcp_html_admin_second_level_heading( array( 'content' => __( 'Debug & Development Tools', 'another-wordpress-classifieds-plugin' ) ) ); // XSS Ok. ?>
+<?php
+awpcp_html_admin_second_level_heading(
+    array(
+        'content' => esc_html__( 'Debug & Development Tools', 'another-wordpress-classifieds-plugin' ),
+        'echo'    => true,
+    )
+);
+?>
 
 <ul>
     <li><a href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=plugin-information&plugin=query-monitor&TB_iframe=true&width=600&height=550' ) ); ?>">Query Monitor</a></li>

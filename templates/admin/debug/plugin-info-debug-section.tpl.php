@@ -3,7 +3,11 @@
  * @package AWPCP\Templates\Admin\Debug
  */
 
-?><?php echo awpcp_html_admin_second_level_heading( [ 'content' => __( 'AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ) ] ); // XSS Ok. ?>
+awpcp_html_admin_second_level_heading( [
+    'content' => esc_html__( 'AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ),
+    'echo'    => true,
+] );
+?>
 
 <table class="awpcp-debug-plugin-info widefat striped">
     <tbody>
@@ -15,7 +19,12 @@
     </tbody>
 </table>
 
-<?php echo awpcp_html_admin_second_level_heading( [ 'content' => __( 'Premium Modules', 'another-wordpress-classifieds-plugin' ) ] ); // XSS Ok. ?>
+<?php
+awpcp_html_admin_second_level_heading( [
+    'content' => esc_html__( 'Premium Modules', 'another-wordpress-classifieds-plugin' ),
+    'echo'    => true,
+] );
+?>
 
 <?php if ( $premium_modules ) : ?>
     <table class="awpcp-debug-plugin-info widefat striped">

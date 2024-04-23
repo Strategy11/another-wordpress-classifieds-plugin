@@ -5,13 +5,20 @@
 
 if ( isset( $errors ) && $errors ) {
     foreach ( $errors as $err ) {
-        echo awpcp_print_error( $err ); // XSS Ok.
+        echo awpcp_print_error( $err );
     }
 }
 
 ?><div class="awpcp-facebook-inline-documentation">
 
-<?php echo awpcp_html_admin_second_level_heading( array( 'content' => __( 'Facebook Integration', 'another-wordpress-classifieds-plugin' ) ) ); // XSS Ok. ?>
+<?php
+awpcp_html_admin_second_level_heading(
+    array(
+        'content' => esc_html__( 'Facebook Integration', 'another-wordpress-classifieds-plugin' ),
+        'echo'    => true,
+    )
+);
+?>
 
 <p><?php esc_html_e( 'We currently support two methods for posting new ads to Facebook: Facebook API and Zapier/IFTTT Webhooks.', 'another-wordpress-classifieds-plugin' ); ?></p>
 
@@ -22,7 +29,7 @@ if ( isset( $errors ) && $errors ) {
     $content = esc_html__( 'You can read more about Facebook changes here: {facebook_post_link}', 'another-wordpress-classifieds-plugin' );
     $content = str_replace( '{facebook_post_link}', '<a href="https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes/">https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes/</a>', $content );
 
-    echo $content; // XSS Ok.
+    echo $content;
 ?>
 </p>
 
@@ -38,7 +45,7 @@ if ( isset( $errors ) && $errors ) {
     $content = str_replace( '{link_to_facebook_integration_documentation}', '<a href="https://awpcp.com/knowledge-base/facebook-integration/">', $content );
     $content = str_replace( '{/link_to_facebook_integration_documentation}', '</a>', $content );
 
-    echo $content; // XSS Ok.
+    echo $content;
 ?>
 </p>
 
@@ -58,7 +65,7 @@ if ( isset( $errors ) && $errors ) {
     $content = str_replace( '{webhook_instructions_for_ifttt}', '<a href="https://awpcp.com/knowledge-base/facebook-integration/">', $content );
     $content = str_replace( '{/webhook_instructions_for_ifttt}', '</a>', $content );
 
-    echo $content; // XSS Ok.
+    echo $content;
 ?>
 </p>
 
@@ -72,7 +79,7 @@ if ( isset( $errors ) && $errors ) {
     $content = str_replace( '{link_to_facebook_integration_documentation}', '<a href="https://awpcp.com/knowledge-base/facebook-integration/">', $content );
     $content = str_replace( '{/link_to_facebook_integration_documentation}', '</a>', $content );
 
-    echo $content; // XSS Ok.
+    echo $content;
 ?>
 </p>
 
@@ -98,7 +105,7 @@ if ( isset( $errors ) && $errors ) {
     $content = str_replace( '{link_to_how_to_add_apps_to_a_group}', '<a href="https://www.facebook.com/help/261149227954100">', $content );
     $content = str_replace( '{/link_to_how_to_add_apps_to_a_group}', '</a>', $content );
 
-    echo $content; // XSS Ok.
+    echo $content;
 ?>
 </p>
 

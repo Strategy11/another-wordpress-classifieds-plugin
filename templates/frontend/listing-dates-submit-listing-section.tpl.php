@@ -12,7 +12,7 @@
         <div class="awpcp-listing-dates-submit-listing-section__edit_mode">
             <form>
                 <p><?php echo esc_html( $description ); ?></p>
-                <?php echo $form_fields; // XSS Ok. ?>
+                <?php echo $form_fields; ?>
             </form>
         </div>
 

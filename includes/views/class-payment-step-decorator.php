@@ -41,7 +41,7 @@ class AWPCP_PaymentStepDecorator extends AWPCP_StepDecorator {
             $message = __( 'You are trying to buy credits using a transaction created for a different purpose. Please go back to the %1$s page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %2$s', 'another-wordpress-classifieds-plugin' );
             $message = sprintf( $message, '<a href="' . $page_url . '">' . $page_name . '</a>', $transaction->id );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( wp_kses_post( $message ) );
         }
     }
 
@@ -55,7 +55,7 @@ class AWPCP_PaymentStepDecorator extends AWPCP_StepDecorator {
             if ( ! ( $transaction->was_payment_successful() || $transaction->payment_is_not_verified() ) ) {
                 $message = __( 'The payment associated with the current transaction failed (see reasons below).', 'another-wordpress-classifieds-plugin' );
 
-                throw new AWPCP_Exception( $message, awpcp_flatten_array( $transaction->errors ) );
+                throw new AWPCP_Exception( esc_html( $message ), esc_html( awpcp_flatten_array( $transaction->errors ) ) );
             }
         }
     }
@@ -66,7 +66,7 @@ class AWPCP_PaymentStepDecorator extends AWPCP_StepDecorator {
         if ( ! is_null( $transaction ) && $transaction->is_payment_completed() ) {
             if ( $transaction->payment_is_not_verified() ) {
                 $this->controller->redirect( 'payment-completed' );
-            } else if ( $transaction->was_payment_successful() && $this->current_step_is_not_allowed() ) {
+            } elseif ( $transaction->was_payment_successful() && $this->current_step_is_not_allowed() ) {
                 $this->controller->redirect( 'payment-completed' );
             }
         }

@@ -13,10 +13,10 @@
         $message = __( 'Go to the <form-fields-settings-link> settings section to control which of the standard fields appear and if the user is required to enter a value. If you have the Extra Fields module, the rest of the fields can be configured from the Extra Fields admin section.', 'another-wordpress-classifieds-plugin' );
         $message = str_replace( '<form-fields-settings-link>', $settings_link, $message );
 
-        echo $message; // XSS Ok.
+        echo $message;
     ?>
     </p>
 
-    <?php echo $table->views(); // XSS Ok. ?>
-    <?php echo $table->display(); // XSS Ok. ?>
+    <?php echo $table->views(); ?>
+    <?php echo $table->display(); ?>
 </form>

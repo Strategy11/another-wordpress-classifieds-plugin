@@ -43,7 +43,7 @@ class AWPCP_FormStepsComponent {
 
             if ( $selected_step == $step ) {
                 $step_class = 'current';
-            } else if ( ! in_array( $selected_step, $previous_steps ) ) {
+            } elseif ( ! in_array( $selected_step, $previous_steps ) ) {
                 $step_class = 'completed';
             } else {
                 $step_class = 'pending';

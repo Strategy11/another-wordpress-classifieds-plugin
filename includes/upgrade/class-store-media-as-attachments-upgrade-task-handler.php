@@ -121,7 +121,7 @@ class AWPCP_Store_Media_As_Attachments_Upgrade_Task_Handler implements AWPCP_Upg
         $file_was_copied = @copy( $file_path, $tmp_name );
 
         if ( ! $file_was_copied ) {
-            throw new AWPCP_Exception( sprintf( "The file %s couldn't be copied to the temporary location %s", $file_path, $tmp_name ) );
+            throw new AWPCP_Exception( esc_html( sprintf( "The file %s couldn't be copied to the temporary location %s", $file_path, $tmp_name ) ) );
         }
 
         $file_array  = array(

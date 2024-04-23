@@ -60,7 +60,7 @@ class AWPCP_AdminPanel {
 	public function configure_routes( $router ) {
         if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin', 'blocking' => true ) ) ) {
             $this->configure_routes_for_blocking_manual_upgrades( 'awpcp-admin-upgrade', $router );
-        } else if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) ) ) {
+        } elseif ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) ) ) {
             $this->configure_routes_for_non_blocking_manual_upgrades( 'awpcp.php', $router );
         } else {
             $this->configure_regular_routes( 'awpcp.php', $router );
@@ -258,7 +258,7 @@ class AWPCP_AdminPanel {
             __( 'Import & Export', 'another-wordpress-classifieds-plugin' ),
             awpcp_admin_page_title( __( 'Import & Export', 'another-wordpress-classifieds-plugin' ) ),
             'awpcp-tools',
-            function() {
+            function () {
                 return awpcp()->container['ToolsAdminPage'];
             },
             $admin_capability,
@@ -294,7 +294,7 @@ class AWPCP_AdminPanel {
 		    'supported-csv-headers',
 		    'awpcp-view',
 		    'supported-csv-headers',
-		    function() {
+		    function () {
                 return awpcp()->container['SupportedCSVHeadersAdminPage'];
             }
 	    );
@@ -304,7 +304,7 @@ class AWPCP_AdminPanel {
 		    'example-csv-file',
 		    'awpcp-view',
 		    'example-csv-file',
-		    function() {
+		    function () {
                 return awpcp()->container['ExampleCSVFileAdminPage'];
             }
 	    );
@@ -314,7 +314,7 @@ class AWPCP_AdminPanel {
             'export-listings',
             'awpcp-view',
             'export-listings',
-            function() {
+            function () {
                 return awpcp()->container['ExportListingsAdminPage'];
             }
         );
@@ -354,7 +354,7 @@ class AWPCP_AdminPanel {
                 __( 'Renew Ad', 'another-wordpress-classifieds-plugin' ),
                 awpcp_admin_page_title( __( 'Renew Ad', 'another-wordpress-classifieds-plugin' ) ),
                 $renew_listing_subscriber_admin_page_slug,
-                function() {
+                function () {
                     return awpcp()->container['SubscriberRenewListingAdminPage'];
                 },
                 awpcp_roles_and_capabilities()->get_dashboard_capability()
@@ -396,7 +396,7 @@ class AWPCP_AdminPanel {
 
         if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin', 'blocking' => true ) ) ) {
             return $this->load_notice_for_blocking_manual_uprades();
-        } else if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) ) ) {
+        } elseif ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin' ) ) ) {
             return $this->load_notice_for_non_blocking_manual_uprades();
 		}
 
@@ -718,7 +718,7 @@ function awpcp_admin_categories_render_category_items($categories, &$children, $
 			$items[] = awpcp_admin_categories_render_category_item( $category, $level, $start, $per_page  );
 		}
 
-		$count++;
+		++$count;
 
 		if ( isset( $children[ $category->term_id ] ) ) {
 			$_children = awpcp_admin_categories_render_category_items( $categories, $children, $start, $per_page, $count, $category->term_id, $level + 1 );
@@ -916,7 +916,7 @@ function awpcp_create_subpage($refname, $name, $shortcode, $awpcp_page_id=null) 
 		// we should create Subpages without a parent.
 		if (is_null($awpcp_page_id) && awpcp_find_page('main-page-name')) {
 			$awpcp_page_id = awpcp_get_page_id_by_ref('main-page-name');
-		} else if (is_null(($awpcp_page_id))) {
+		} elseif (is_null(($awpcp_page_id))) {
 			$awpcp_page_id = '';
 		}
 

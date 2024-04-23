@@ -725,7 +725,7 @@ class AWPCP {
         add_action( 'admin_init', array( $this->container['Admin'], 'admin_init' ) );
         add_action( 'admin_init', [ $this->container['SettingsIntegration'], 'setup' ] );
 
-        add_action( 'load-options-reading.php', function() {
+        add_action( 'load-options-reading.php', function () {
             $integration = $this->container['ReadingSettingsIntegration'];
 
             add_action( 'wp_dropdown_pages', [ $integration, 'filter_plugin_pages' ], 10, 3 );
@@ -970,7 +970,6 @@ class AWPCP {
         update_option( 'awpcp-show-delete-browse-categories-page-notice' , true, false );
 
         delete_option( 'awpcp-store-browse-categories-page-information' );
-
     }
 
     private function maybe_fix_browse_categories_page_information() {
@@ -1499,7 +1498,7 @@ class AWPCP {
      * @since 2.2.2
      */
     public function register_payment_term_types($payments) {
-        $payments->register_payment_term_type(new AWPCP_FeeType);
+        $payments->register_payment_term_type(new AWPCP_FeeType());
     }
 
     /**
@@ -1511,7 +1510,7 @@ class AWPCP {
         }
 
         if (get_awpcp_option('activate2checkout')) {
-            $payments->register_payment_method(new AWPCP_2CheckoutPaymentGateway);
+            $payments->register_payment_method(new AWPCP_2CheckoutPaymentGateway());
         }
     }
 

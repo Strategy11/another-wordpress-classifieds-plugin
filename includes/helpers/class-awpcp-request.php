@@ -32,7 +32,7 @@ class AWPCP_Request {
      * @since 3.0.2
      */
     public function method() {
-        return strtoupper( sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) );
+        return strtoupper( awpcp_get_server_value( 'REQUEST_METHOD' ) );
     }
 
     /**
@@ -81,11 +81,7 @@ class AWPCP_Request {
      * @since 4.0.0
      */
     private function filter_input( $var_name ) {
-        if ( ! isset( $_SERVER[ $var_name ] ) ) {
-            return '';
-        }
-
-        return sanitize_text_field( wp_unslash( $_SERVER[ $var_name ] ) );
+        return awpcp_get_server_value( $var_name );
     }
 
     /**
@@ -278,7 +274,6 @@ class AWPCP_Request {
 
         $regexp = '/' . implode( '|', self::$bot_user_agents_keywords ) . '/';
 
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-        return (bool) preg_match( $regexp, strtolower( $_SERVER['HTTP_USER_AGENT'] ) );
+        return (bool) preg_match( $regexp, strtolower( awpcp_get_server_value( 'HTTP_USER_AGENT' ) ) );
     }
 }

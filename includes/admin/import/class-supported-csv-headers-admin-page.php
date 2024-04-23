@@ -39,7 +39,7 @@ class AWPCP_SupportedCSVHeadersAdminPage {
             'columns' => $this->get_supported_columns(),
         ];
 
-        echo $this->template_renderer->render_template( $this->template, $params ); // XSS Ok.
+        echo $this->template_renderer->render_template( $this->template, $params );
     }
 
     /**

@@ -64,7 +64,7 @@ class AWPCP_ListingsPaymentTransactions {
         $this->payments->set_transaction_status_to_ready_to_checkout( $transaction, $transaction_errors );
 
         if ( $transaction_errors ) {
-            throw new AWPCP_Exception( array_shift( $transaction_errors ) );
+            throw new AWPCP_Exception( esc_html( array_shift( $transaction_errors ) ) );
         }
     }
 }

@@ -92,11 +92,11 @@ class AWPCP_Facebook {
         $response = $this->api_request( '/me/permissions', 'GET', array() );
 
         if ( ! $response && is_object( $response->last_error ) ) {
-            throw new AWPCP_Exception( $this->last_error->message );
+            throw new AWPCP_Exception( esc_html( $this->last_error->message ) );
         }
 
         if ( ! $response || ! isset( $response->data ) ) {
-            throw new AWPCP_Exception( __( 'Could not validate User Access Token.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'Could not validate User Access Token.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $permissions = array();

@@ -69,8 +69,8 @@ class AWPCP_Missing_Pages_Finder {
                 $page->label = $this->settings->get_option_label( awpcp_translate_page_ref_to_setting_name( $page_ref ) );
 
                 $missing_pages['not-published'][] = $page;
-            } else if ( is_null( $page ) ) {
-                $page = new stdClass;
+            } elseif ( is_null( $page ) ) {
+                $page = new stdClass();
 
                 $page->page = $page_ref;
                 $page->id = $page_id;

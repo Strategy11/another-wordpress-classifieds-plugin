@@ -57,7 +57,7 @@
 					// unwanted behaviours.
 				?>
 
-				<?php echo $output; // XSS Ok. ?>
+				<?php echo $output; ?>
 
 				<?php if ( $output ) : ?>
 				<p class="submit">

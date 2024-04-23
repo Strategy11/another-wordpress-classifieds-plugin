@@ -190,7 +190,6 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 );
             }
         );
-
     }
 
     /**

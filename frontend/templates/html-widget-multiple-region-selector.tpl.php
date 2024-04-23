@@ -28,13 +28,13 @@
     </ul>
 
     <a class="button add-region" href="#" data-bind="click: onAddRegion, visible: showAddRegionButton, text: $root.getLocalizedText('add-region')"></a>
-    <?php echo awpcp_form_error( 'regions', $errors ); // XSS Okay. ?>
+    <?php awpcp_show_form_error( 'regions', $errors ); ?>
 </div>
 
 <script type="text/javascript">
 /* <![CDATA[ */
     window.awpcp = window.awpcp || {};
     window.awpcp.options = window.awpcp.options || [];
-    window.awpcp.options.push( ['multiple-region-selector-<?php echo $uuid; // XSS Ok. ?>', <?php echo wp_json_encode( $configuration ); ?> ] );
+    window.awpcp.options.push( ['multiple-region-selector-<?php echo esc_attr( $uuid ); ?>', <?php echo wp_json_encode( $configuration ); ?> ] );
 /* ]]> */
 </script>

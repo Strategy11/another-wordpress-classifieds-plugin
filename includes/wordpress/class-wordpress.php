@@ -90,7 +90,12 @@ class AWPCP_WordPress {
     }
 
     public function get_terms( $taxonomies, $args = array() ) {
-        return get_terms( $taxonomies, $args );
+        if ( is_array( $taxonomies ) && ! empty( $taxonomies['taxonomy'] ) ) {
+            $args = $taxonomies;
+        } else {
+            $args['taxonomy'] = (array) $taxonomies;
+        }
+        return get_terms( $args );
     }
 
     public function get_term_hierarchy( $taxonomy ) {

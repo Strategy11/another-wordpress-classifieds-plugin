@@ -51,7 +51,7 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
     public function count_pending_items( $last_item_id ) {
         return $this->execute_query_for_posts_with_id_greater_than(
             $last_item_id,
-            function() {
+            function () {
                 return $this->listings->count_listings( $this->get_pending_items_query_vars() );
             }
         );
@@ -146,7 +146,7 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
             $message = str_replace( '{post_id}', $old_post_id, $message );
             $message = str_replace( '{error_message}', $new_post_id->get_error_message(), $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         // Cast the old WP_Post to stdClass and set the ID property to the ID
@@ -161,7 +161,7 @@ class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade
             $message = str_replace( '{post_id}', $old_post_id, $message );
             $message = str_replace( '{error_message}', $new_post_id->get_error_message(), $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $sql  = "UPDATE {$this->db->term_relationships} ";

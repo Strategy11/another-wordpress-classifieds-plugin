@@ -40,6 +40,6 @@ class AWPCP_EmailTemplateSettingsRenderer {
 
         $template = '/admin/settings/email-template.tpl.php';
 
-        echo $this->template_renderer->render_template( $template, $params ); // XSS Ok.
+        echo $this->template_renderer->render_template( $template, $params );
     }
 }

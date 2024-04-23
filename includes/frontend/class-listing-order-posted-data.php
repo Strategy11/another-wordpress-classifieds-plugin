@@ -61,7 +61,7 @@ class AWPCP_ListingOrderPostedData {
         $payment_term = $this->payments->get_payment_term( $payment_term_id, $payment_term_type );
 
         if ( is_null( $payment_term ) ) {
-            throw new AWPCP_Exception( __( "The selected payment term couldn't be found.", 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( "The selected payment term couldn't be found.", 'another-wordpress-classifieds-plugin' ) );
         }
 
         $posted_data = [

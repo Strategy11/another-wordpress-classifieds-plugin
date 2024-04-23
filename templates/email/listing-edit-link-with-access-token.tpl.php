@@ -10,6 +10,6 @@
 
 <?php echo esc_html_x( "You are receiving this message because you tried to edit this listing using an expired link or because you or the administrator requested the access key to be sent. If that's not the case, please ignore this message, or contact the adiministrator if you have received similar messages today.", 'edit link email', 'another-wordpress-classifieds-plugin' ); ?>
 
-<?php echo awpcp_get_blog_name(); ?>
+<?php echo esc_html( awpcp_get_blog_name() ); ?>
 <?php
-echo home_url();
+echo esc_url_raw( home_url() );

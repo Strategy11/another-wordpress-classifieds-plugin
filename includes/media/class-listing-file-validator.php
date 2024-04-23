@@ -65,7 +65,7 @@ abstract class AWPCP_ListingFileValidator {
      */
     private function throw_file_validation_exception( $file, $message ) {
         $message = str_replace( '<filename>', '<strong>' . $file->get_real_name() . '</strong>', $message );
-        throw new AWPCP_Exception( $message );
+        throw new AWPCP_Exception( wp_kses_post( $message ) );
     }
 
     /**

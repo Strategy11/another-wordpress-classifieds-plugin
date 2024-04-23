@@ -72,9 +72,9 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
 
             /* translators: %1$s back link, %2$s transaction id */
             $message = __( 'You are trying to buy credits using a transaction created for a different purpose. Please go back to the %1$s page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %2$s', 'another-wordpress-classifieds-plugin' );
-            $message = sprintf( $message, '<a href="' . $page_url . '">' . $page_name . '</a>', $transaction->id );
+            $message = sprintf( $message, '<a href="' . esc_url( $page_url ) . '">' . esc_html( $page_name ) . '</a>', $transaction->id );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( wp_kses_post( $message ) );
         }
     }
 
@@ -86,7 +86,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
                 $this->errors = array_merge( $this->errors, awpcp_flatten_array( $transaction->errors ) );
                 $message = __( 'The payment associated with this transaction failed (see reasons below).', 'another-wordpress-classifieds-plugin');
 
-                throw new AWPCP_Exception( $message );
+                throw new AWPCP_Exception( esc_html( $message ) );
             }
         }
     }
@@ -100,7 +100,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
         if ( ! is_null( $transaction ) && $transaction->is_payment_completed() ) {
             if ( $transaction->payment_is_not_verified() ) {
                 $this->set_current_step( 'payment-completed' );
-            } else if ( $transaction->was_payment_successful() && $step_not_allowed ) {
+            } elseif ( $transaction->was_payment_successful() && $step_not_allowed ) {
                 $this->set_current_step( 'payment-completed' );
             }
         }

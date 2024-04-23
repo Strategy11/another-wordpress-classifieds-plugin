@@ -469,8 +469,10 @@ class AWPCP_ListingsSettings {
             $show_listings_link = _x( 'Show Ad', 'page name', 'another-wordpress-classifieds-plugin' );
         }
 
-        $description = __( "Enable this setting to display each listing on its own page, instead of showing the listing's content inside the <show-listing-page> page." );
-        $description = str_replace( '<show-listing-page>', $show_listings_link, $description );
+        $description = sprintf(
+            __( "Enable this setting to display each listing on its own page, instead of showing the listing's content inside the %s page.", 'another-wordpress-classifieds-plugin' ),
+            $show_listings_link
+        );
 
         $settings_manager->add_setting(
             $key,
@@ -619,5 +621,4 @@ class AWPCP_ListingsSettings {
     public function seo_settings_validated( $options, $group, $subgroup ) {
         update_option( 'awpcp-flush-rewrite-rules', true );
     }
-
 }

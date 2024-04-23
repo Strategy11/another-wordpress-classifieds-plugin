@@ -52,7 +52,7 @@ class AWPCP_Store_Listing_Categories_As_Custom_Taxonomies_Upgrade_Task_Handler i
         $term = $this->insert_or_update_term( $item );
 
         if ( is_wp_error( $term ) ) {
-            throw new AWPCP_Exception( sprintf( "A custom taxonomy term coulnd't be created for listing category \"%s\".", $item->category_name ) );
+            throw new AWPCP_Exception( esc_html( sprintf( "A custom taxonomy term coulnd't be created for listing category \"%s\".", $item->category_name ) ) );
         }
 
         $this->categories->update_categories_registry( $item->category_id, $term['term_id'] );

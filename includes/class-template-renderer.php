@@ -58,7 +58,7 @@ class AWPCP_Template_Renderer {
     public function render_template( $template, $params = array() ) {
         if ( file_exists( $template ) ) {
             $template_file = $template;
-        } else if ( file_exists( AWPCP_DIR . '/templates/' . $template ) ) {
+        } elseif ( file_exists( AWPCP_DIR . '/templates/' . $template ) ) {
             $template_file = AWPCP_DIR . '/templates/' . $template;
         } else {
             $template_file = null;

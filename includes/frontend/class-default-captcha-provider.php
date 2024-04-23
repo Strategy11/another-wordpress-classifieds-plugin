@@ -57,12 +57,12 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
 
         if ( empty( $answer ) ) {
             $error = __( 'You did not solve the math problem. Please solve the math problem to proceed.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( $error );
+            throw new AWPCP_Exception( esc_html( $error ) );
         }
 
         if ( ! wp_verify_nonce( $expected, "captcha-answer-$answer" ) ) {
             $error = __( 'Your solution to the math problem was incorrect. Please try again.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( $error );
+            throw new AWPCP_Exception( esc_html( $error ) );
         }
 
         return true;

@@ -3,7 +3,7 @@
  * @package AWPCP\Templates
  */
 
-?><h2><?php _ex('Select Payment Term', 'renew ad order step', 'another-wordpress-classifieds-plugin') ?></h2>
+?><h2><?php esc_html_e( 'Select Payment Term', 'another-wordpress-classifieds-plugin' ); ?></h2>
 
 <?php foreach ($messages as $message): ?>
     <?php echo awpcp_print_message($message) ?>
@@ -18,7 +18,7 @@
 <?php endif ?>
 
 <form class="awpcp-order-form" method="post">
-    <?php echo awpcp_form_error( 'payment-term', $form_errors ); ?>
+    <?php awpcp_show_form_error( 'payment-term', $form_errors ); ?>
     <?php echo $payment_terms_list->render( null, $payment_terms_list_options ); ?>
 
     <?php echo $payments->render_credit_plans_table( $transaction ); ?>

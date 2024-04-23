@@ -44,7 +44,7 @@ class AWPCP_Categories_Collection {
         if ( $category === false || is_null( $category ) ) {
             /* translators: %d the category id */
             $message = __( 'No category was found with ID: %d', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $category_id ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $category_id ) ) );
         }
 
         return $this->prepare_category_object( $category );
@@ -58,7 +58,7 @@ class AWPCP_Categories_Collection {
             $message = __( 'The category ID must be a positive integer, {category_id} was given.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{category_id}', $category_id, $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         return absint( $category_id );
@@ -105,7 +105,7 @@ class AWPCP_Categories_Collection {
             $message = __( 'No category was found with old ID: {old_category_id}.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '{old_category_id}', $old_category_id, $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $category = $this->get_category_by_id( $new_categories[ $old_category_id ] );
@@ -115,7 +115,7 @@ class AWPCP_Categories_Collection {
             $message = str_replace( '{category_id}', $new_categories[ $old_category_id ], $message );
             $message = str_replace( '{old_category_id}', $old_category_id, $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         return $this->prepare_category_object( $category );
@@ -125,7 +125,7 @@ class AWPCP_Categories_Collection {
         if ( empty( $name ) ) {
             /* translators: %s the submitted value */
             $message = __( 'The category name must be a non empty string, %s was given.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $name ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $name ) ) );
         }
 
         // See: https://core.trac.wordpress.org/ticket/11311#comment:14
@@ -135,7 +135,7 @@ class AWPCP_Categories_Collection {
         if ( $category === false || is_null( $category ) ) {
             /* translators: %s is the category name */
             $message = __( 'No category was found with name: %s.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $name ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $name ) ) );
         }
 
         return $this->prepare_category_object( $category );

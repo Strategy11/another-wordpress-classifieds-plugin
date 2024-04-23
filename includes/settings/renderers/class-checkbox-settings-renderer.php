@@ -51,6 +51,6 @@ class AWPCP_CheckboxSettingsRenderer {
         $html .= '&nbsp;<span class="description">' . $setting['description'] . '</span>';
         $html .= '</label>';
 
-        echo $html; // XSS Ok.
+        echo $html;
     }
 }

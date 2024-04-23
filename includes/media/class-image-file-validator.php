@@ -19,20 +19,20 @@ class AWPCP_Image_File_Validator extends AWPCP_ListingFileValidator {
 
         if ( ! isset( $img_info[ 0 ] ) && ! isset( $img_info[ 1 ] ) ) {
             $message = _x( 'There was an error trying to find out the dimension of <filename>. The file was not uploaded.', 'upload files', 'another-wordpress-classifieds-plugin' );
-            $message = str_replace( '<filename>', '<strong>' . $file->get_real_name() . '</strong>', $message );
-            throw new AWPCP_Exception( $message );
+            $message = str_replace( '<filename>', $file->get_real_name(), $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         if ( $img_info[ 0 ] < $image_upload_limits['min_image_width'] ) {
             $message = _x( 'The image %s did not meet the minimum width of %s pixels. The file was not uploaded.', 'upload files', 'another-wordpress-classifieds-plugin');
-            $message = sprintf( $message, '<strong>' . $file->get_real_name() . '</strong>', $image_upload_limits['min_image_width'] );
-            throw new AWPCP_Exception( $message );
+            $message = sprintf( $message, $file->get_real_name(), $image_upload_limits['min_image_width'] );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         if ( $img_info[ 1 ] < $image_upload_limits['min_image_height'] ) {
             $message = _x( 'The image %s did not meet the minimum height of %s pixels. The file was not uploaded.', 'upload files', 'another-wordpress-classifieds-plugin');
-            $message = sprintf( $message, '<strong>' . $file->get_real_name() . '</strong>', $image_upload_limits['min_image_height'] );
-            throw new AWPCP_Exception( $message );
+            $message = sprintf( $message, $file->get_real_name(), $image_upload_limits['min_image_height'] );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
     }
 }

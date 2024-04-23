@@ -19,7 +19,7 @@ class AWPCP_PaymentsAPI {
         if ( ! is_null( $request ) ) {
             $this->request = $request;
         } else {
-            $this->request = new AWPCP_Request;
+            $this->request = new AWPCP_Request();
         }
 
         add_action( 'init', array( $this, 'register_payment_term_types' ), 9999 );
@@ -796,14 +796,14 @@ class AWPCP_PaymentsAPI {
                 $html = ob_get_contents();
             ob_end_clean();
 
-        } else if (isset($result['output'])) {
+        } elseif (isset($result['output'])) {
             $integration = $payment_method->get_integration_type();
             if ($integration === AWPCP_PaymentGateway::INTEGRATION_BUTTON) {
                 $message = _x('Please use the button below to complete your payment.', 'checkout-payment page', 'another-wordpress-classifieds-plugin');
                 $html = $this->render_checkout_payment_template($result['output'], $message, $transaction);
-            } else if ($integration === AWPCP_PaymentGateway::INTEGRATION_CUSTOM_FORM) {
+            } elseif ($integration === AWPCP_PaymentGateway::INTEGRATION_CUSTOM_FORM) {
                 $html = $result['output'];
-            } else if ($integration === AWPCP_PaymentGateway::INTEGRATION_REDIRECT) {
+            } elseif ($integration === AWPCP_PaymentGateway::INTEGRATION_REDIRECT) {
                 $html = $result['output'];
             }
         }
@@ -819,26 +819,26 @@ class AWPCP_PaymentsAPI {
 
             if ($transaction->payment_is_completed())
                 $text = __( 'Your Payment has been processed successfully. Please press the button below to continue with the process.', 'another-wordpress-classifieds-plugin');
-            else if ($transaction->payment_is_pending())
+            elseif ($transaction->payment_is_pending())
                 $text = __( 'Your Payment has been processed successfully. However is still pending approvation from the payment gateway. Please press the button below to continue with the process.', 'another-wordpress-classifieds-plugin');
 
             $success = true;
 
-        } else if ($transaction->payment_is_not_required()) {
+        } elseif ($transaction->payment_is_not_required()) {
             $title = __( 'Payment Not Required', 'another-wordpress-classifieds-plugin');
             $text = __( 'No Payment is required for this transaction. Please press the button below to continue with the process.', 'another-wordpress-classifieds-plugin');
 
             $success = true;
 
-        } else if ($transaction->payment_is_failed()) {
+        } elseif ($transaction->payment_is_failed()) {
             $title = __( 'Payment Failed', 'another-wordpress-classifieds-plugin');
             $text = __("Your Payment has been processed successfully. However, the payment gateway didn't return a payment status that allows us to continue with the process. Please contact the website administrator to solve this issue.", 'another-wordpress-classifieds-plugin');
 
-        } else if ($transaction->payment_is_canceled()) {
+        } elseif ($transaction->payment_is_canceled()) {
             $title = __( 'Payment Canceled', 'another-wordpress-classifieds-plugin');
             $text = __("The Payment transaction was canceled. You can't post an Ad this time.", 'another-wordpress-classifieds-plugin');
 
-        } else if ( $transaction->payment_is_not_verified() ) {
+        } elseif ( $transaction->payment_is_not_verified() ) {
             $title = __( 'Waiting on Confirmation', 'another-wordpress-classifieds-plugin' );
             $text = __( 'The payment gateway is taking a bit longer than expected to confirm your payment. Please wait a few seconds while we verify the transaction. The page will reload automatically.', 'another-wordpress-classifieds-plugin' );
         // } else if ($transaction->payment_is_invalid() || ) {
@@ -867,9 +867,9 @@ class AWPCP_PaymentsAPI {
     public function render_payment_completed_page_title($transaction) {
         if ($transaction->was_payment_successful()) {
             return __( 'Payment Completed', 'another-wordpress-classifieds-plugin');
-        } else if ($transaction->payment_is_canceled()) {
+        } elseif ($transaction->payment_is_canceled()) {
             return __( 'Payment Canceled', 'another-wordpress-classifieds-plugin');
-        } else if ( $transaction->payment_is_not_verified() ) {
+        } elseif ( $transaction->payment_is_not_verified() ) {
             return __( 'Payment Not Verified', 'another-wordpress-classifieds-plugin' );
         } else {
             return __( 'Payment Failed', 'another-wordpress-classifieds-plugin');

@@ -80,7 +80,7 @@ class AWPCP_BasePage extends AWPCP_Page {
         } else {
             /* translators: %s the step name */
             $message = __( 'Unkown step "%s". Please contact the administrator about this error.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $step_name ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $step_name ) ) );
         }
     }
 
@@ -133,7 +133,7 @@ class AWPCP_BasePage extends AWPCP_Page {
             $step->get( $this );
         } else {
             $message = __( 'Your request cannot be processed at this time. Please try again or contact the administrator about the incident.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( $message, $exception->get_errors() );
+            throw new AWPCP_Exception( esc_html( $message ), esc_html( $exception->get_errors() ) );
         }
     }
 
@@ -195,7 +195,7 @@ class AWPCP_BasePage extends AWPCP_Page {
 
     public function redirect( $step_name, $request_method='GET' ) {
         if ( strcmp( $this->get_current_step_name(), $step_name ) !== 0 ) {
-            throw new AWPCP_RedirectionException( $step_name, $request_method );
+            throw new AWPCP_RedirectionException( esc_html( $step_name ), esc_html( $request_method ) );
         }
     }
 }

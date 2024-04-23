@@ -42,7 +42,7 @@ class AWPCP_AllInOneSEOPackPluginIntegration {
     public function meta_tag_value( $value, $group, $name ) {
         if ( $group === 'facebook' ) {
             $value = $this->facebook_meta_tag_value( $name, $value );
-        } else if ( $group === 'twitter') {
+        } elseif ( $group === 'twitter') {
             $value = $this->twitter_meta_tag_value( $name, $value );
         }
 

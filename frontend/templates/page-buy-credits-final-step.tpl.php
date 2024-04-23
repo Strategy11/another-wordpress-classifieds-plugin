@@ -4,7 +4,7 @@
 
 <p><?php echo $payments->render_account_balance(); ?></p>
 
-<p><?php _e( 'The credit in your account can be used to pay for posting your Ads. You can add more credit when posting a new Ad or using the "Add Credit" button below.', 'another-wordpress-classifieds-plugin' ); ?></p>
+<p><?php esc_html_e( 'The credit in your account can be used to pay for posting your Ads. You can add more credit when posting a new Ad or using the "Add Credit" button below.', 'another-wordpress-classifieds-plugin' ); ?></p>
 
 <form method="get" action="<?php echo esc_attr( $action_url ); ?>">
     <p class="awpcp-form-submit">

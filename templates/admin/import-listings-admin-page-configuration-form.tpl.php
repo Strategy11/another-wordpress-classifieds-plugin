@@ -9,7 +9,7 @@
 
 <?php include( AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php') ?>
 
-            <?php echo $form_steps; // XSS Ok. ?>
+            <?php echo wp_kses_post( $form_steps ); ?>
 
             <h3><?php echo esc_html( __( 'Configure', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
@@ -23,7 +23,7 @@
                             <td>
                                 <input type="hidden" name="define_default_dates" value="0">
                                 <input id="awpcp-importer-define-default-dates" type="checkbox" name="define_default_dates" value="1"<?php echo $form_data['define_default_dates'] ? ' checked="checked"' : ''; ?>>
-                                <label for="awpcp-importer-define-default-dates" class="helptext"><?php echo __( 'The default values will be used if the CSV does not contain a value for the start date or end date columns.', 'another-wordpress-classifieds-plugin' ); ?></label>
+                                <label for="awpcp-importer-define-default-dates" class="helptext"><?php esc_html_e( 'The default values will be used if the CSV does not contain a value for the start date or end date columns.', 'another-wordpress-classifieds-plugin' ); ?></label>
                             </td>
                         </tr>
                         <tr data-usableform="show-if:define_default_dates">
@@ -33,7 +33,7 @@
                             <td>
                                 <input id="awpcp-importer-start-date" type="text" datepicker-placeholder value="<?php echo esc_attr( $form_data['default_start_date'] ); ?>" />
                                 <input type="hidden" name="default_start_date" value="<?php echo esc_attr( awpcp_datetime( 'm/d/Y', $form_data['default_start_date'] ) ); ?>" />
-                                <?php echo awpcp_form_error( 'default_start_date', $form_errors ); ?>
+                                <?php awpcp_show_form_error( 'default_start_date', $form_errors ); ?>
                             </td>
                         </tr>
                         <tr data-usableform="show-if:define_default_dates">
@@ -43,7 +43,7 @@
                             <td>
                                 <input id="awpcp-importer-end-date" type="text" datepicker-placeholder value="<?php echo esc_attr( $form_data['default_end_date'] ); ?>" />
                                 <input type="hidden" name="default_end_date" value="<?php echo esc_attr( awpcp_datetime( 'm/d/Y', $form_data['default_end_date'] ) ); ?>" />
-                                <?php echo awpcp_form_error( 'default_end_date', $form_errors ); ?>
+                                <?php awpcp_show_form_error( 'default_end_date', $form_errors ); ?>
                             </td>
                         </tr>
                         <tr>
@@ -51,7 +51,7 @@
                                 <?php echo esc_html( __( 'Date Format', 'another-wordpress-classifieds-plugin' ) ); ?>
                             </th>
                             <td>
-                                <?php echo awpcp_form_error( 'date_format', $form_errors ); ?>
+                                <?php awpcp_show_form_error( 'date_format', $form_errors ); ?>
 
 								<select name="date_format" id="awpcp-importer-format">
 									<option value="auto">
@@ -74,22 +74,22 @@
 
                                 <p><label for="awpcp-importer-time-separator"><?php echo esc_html( __( 'Time Separator', 'another-wordpress-classifieds-plugin' ) ); ?></label>
                                     <input id="awpcp-importer-time-separator" type="text" maxlength="1" size="1" name="time_separator"
-                                           value="<?php echo esc_attr( $form_data['time_separator'] ); ?>"/>
-                                    <?php echo awpcp_form_error( 'time_separator', $form_errors ); ?>
+                                            value="<?php echo esc_attr( $form_data['time_separator'] ); ?>"/>
+                                    <?php awpcp_show_form_error( 'time_separator', $form_errors ); ?>
                                 </p>
 
                                 <p>
                                     <label for="awpcp-importer-image-separator"><?php echo esc_html( __( 'Category Separator',
                                             'another-wordpress-classifieds-plugin' ) ); ?></label>
                                     <input id="awpcp-importer-category-separator" type="text" maxlength="1" size="1" name="category_separator"
-                                           value="<?php echo esc_attr( $form_data['category_separator'] ); ?>"/>
-                                    <?php echo awpcp_form_error( 'category_separator', $form_errors ); ?>
+                                            value="<?php echo esc_attr( $form_data['category_separator'] ); ?>"/>
+                                    <?php awpcp_show_form_error( 'category_separator', $form_errors ); ?>
                                 </p>
                                 <p>
                                     <label for="awpcp-importer-image-separator"><?php echo esc_html( __( 'Image Separator', 'another-wordpress-classifieds-plugin' ) ); ?></label>
                                     <input id="awpcp-importer-image-separator" type="text" maxlength="1" size="1" name="images_separator"
-                                           value="<?php echo esc_attr( $form_data['images_separator'] ); ?>" disabled="disabled"/> <?php esc_html_e( '(semi-colon)', 'another-wordpress-classifieds-plugin' ); ?>
-                                    <?php echo awpcp_form_error( 'images_separator', $form_errors ); ?>
+                                            value="<?php echo esc_attr( $form_data['images_separator'] ); ?>" disabled="disabled"/> <?php esc_html_e( '(semi-colon)', 'another-wordpress-classifieds-plugin' ); ?>
+                                    <?php awpcp_show_form_error( 'images_separator', $form_errors ); ?>
                                 </p>
                             </td>
                         </tr>
@@ -117,8 +117,8 @@
                                     <option value="1"<?php echo $form_data['create_missing_categories'] == "1" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Create missing categories', 'another-wordpress-classifieds-plugin' ) ); ?></option>
                                     <option value="0"<?php echo $form_data['create_missing_categories'] == "0" ? ' selected="selected"' : ''; ?>><?php echo esc_html( __( 'Generate an error', 'another-wordpress-classifieds-plugin' ) ); ?></option>
                                 </select>
-                                <?php echo awpcp_form_error( 'create_missing_categories', $form_errors ); ?>
-                                <p class="helptext"><?php echo __( 'Define whether you want to create missing categories or generate an error whenever a category in the CSV file is not found in the system.', 'another-wordpress-classifieds-plugin' ); ?></p>
+                                <?php awpcp_show_form_error( 'create_missing_categories', $form_errors ); ?>
+                                <p class="helptext"><?php esc_html_e( 'Define whether you want to create missing categories or generate an error whenever a category in the CSV file is not found in the system.', 'another-wordpress-classifieds-plugin' ); ?></p>
                             </td>
                         </tr>
                         <tr>
@@ -130,7 +130,7 @@
                                 <input type="checkbox" name="assign_listings_to_user" id="awpcp-importer-auto-assign-user" value="1" <?php echo $form_data['assign_listings_to_user'] == 1 ? 'checked="checked"' : ''; ?> />
                                 <label for="awpcp-importer-auto-assign-user"><?php echo esc_html( _x( 'Assign listings to a user', 'csv-importer', 'another-wordpress-classifieds-plugin' ) ); ?></label><br/>
                                 <p class="helptext"><?php echo esc_html( __( 'If checked, listings will be assigned to the user specified in the CSV file or a default user that can be defined below.', 'another-wordpress-classifieds-plugin' ) ); ?></span>
-                                <?php echo awpcp_form_error( 'assign_listings_to_user', $form_errors ); ?>
+                                <?php awpcp_show_form_error( 'assign_listings_to_user', $form_errors ); ?>
                             </td>
                         </tr>
                         <tr data-usableform="show-if:assign_listings_to_user">
@@ -141,7 +141,7 @@
                                 <input type="hidden" name="define_default_user" value="0">
                                 <input type="checkbox" name="define_default_user" id="awpcp-importer-define-default-user" value="1" <?php echo $form_data['define_default_user'] == 1 ? 'checked="checked"' : ''; ?> />
                                 <label for="awpcp-importer-define-default-user" class="helptext"><?php echo esc_html( _x( "The default user will be used when the username column is not present in the CSV file or there is no user with the specified username and we couldn't find a user with the contact email address specified in the CSV file.", 'csv-importer', 'another-wordpress-classifieds-plugin' ) ); ?></label>
-                                <?php echo awpcp_form_error( 'define_default_user', $form_errors ); ?>
+                                <?php awpcp_show_form_error( 'define_default_user', $form_errors ); ?>
                             </td>
                         </tr>
                         <tr data-usableform="show-if:define_default_user">
@@ -158,9 +158,9 @@
                                         'name'                          => 'default_user',
                                         'class'                         => array( 'awpcp-user-selector' ),
                                         'include_full_user_information' => false,
-                                    ) ); // XSS Ok.
+                                    ) );
                                 ?>
-                                <?php echo awpcp_form_error( 'default_user', $form_errors ); // XSS Ok. ?>
+                                <?php awpcp_show_form_error( 'default_user', $form_errors ); ?>
                             </td>
                         </tr>
                     </tbody>
@@ -175,7 +175,7 @@
 
                 <hr>
 
-                <p><?php echo __( "Press the button below to cancel the current import operation and discard the uploaded CSV file and ZIP file (if any). If you manually uploaded images to the directory specified in the Local Directory field, those won't be deleted.", 'another-wordpress-classifieds-plugin' ); ?></p>
+                <p><?php esc_html_e( "Press the button below to cancel the current import operation and discard the uploaded CSV file and ZIP file (if any). If you manually uploaded images to the directory specified in the Local Directory field, those won't be deleted.", 'another-wordpress-classifieds-plugin' ); ?></p>
 
                 <p class="cancel-submit">
                     <input type="submit" class="button" name="cancel" value="<?php echo esc_html( __( 'Cancel', 'another-wordpress-classifieds-plugin' ) ); ?>"></input>

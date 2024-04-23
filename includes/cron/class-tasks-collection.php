@@ -24,7 +24,7 @@ class AWPCP_TasksCollection {
 
         if ( $result === false ) {
             $message = __( 'There was an error trying to save the task to the database.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         return $this->db->insert_id;
@@ -36,12 +36,12 @@ class AWPCP_TasksCollection {
         $result = $this->db->get_row( $this->db->prepare( $sql, $task_id ) );
 
         if ( $result === false ) {
-            throw new AWPCP_Exception( __( 'There was an error trying to find tasks in the database.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'There was an error trying to find tasks in the database.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         if ( is_null( $result ) ) {
             $message = __( 'There is no task with ID %d.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $task_id ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $task_id ) ) );
         }
 
         return $this->create_task_logic_from_result( $result );
@@ -105,7 +105,7 @@ class AWPCP_TasksCollection {
         $results = $this->db->get_results( $query );
 
         if ( $results === false ) {
-            throw new AWPCP_Exception( __( 'There was an error trying to retrive the tasks from the database.', 'awpcp-attachments' ) );
+            throw new AWPCP_Exception( esc_html__( 'There was an error trying to retrive the tasks from the database.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         foreach ( $results as $result ) {
@@ -123,7 +123,7 @@ class AWPCP_TasksCollection {
         $count = $this->db->get_var( $query );
 
         if ( $count === false ) {
-            throw new AWPCP_Exception( __( 'There was an erroy trying to count the tasks in the database.', 'awpcp-attachments' ) );
+            throw new AWPCP_Exception( esc_html__( 'There was an erroy trying to count the tasks in the database.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         return $count;
@@ -165,7 +165,7 @@ class AWPCP_TasksCollection {
 
         if ( $result === false ) {
             $message = 'There was an error trying to save task <task-id> to the database.';
-            throw new AWPCP_Exception( str_replace( '<task-id>', $task->get_id(), $message ) );
+            throw new AWPCP_Exception( esc_html( str_replace( '<task-id>', $task->get_id(), $message ) ) );
         }
 
         return $result;
@@ -176,7 +176,7 @@ class AWPCP_TasksCollection {
 
         if ( $result === false ) {
             $message = 'There was an error trying to delete task <task-id> from the database.';
-            throw new AWPCP_Exception( str_replace( '<task-id>', $task_id, $message ) );
+            throw new AWPCP_Exception( esc_html( str_replace( '<task-id>', $task_id, $message ) ) );
         }
 
         return $result;

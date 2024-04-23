@@ -5,12 +5,12 @@
 
 ?><div class="awpcp-pagination pager">
     <?php if ( $pages > 1 ) : ?>
-    <div class="awpcp-pagination-links"><?php echo implode( '', $items ); // XSS Ok. ?></div>
+    <div class="awpcp-pagination-links"><?php echo implode( '', $items ); ?></div>
     <?php endif; ?>
 
     <?php if ( $show_dropdown ) : ?>
     <form class="awpcp-pagination-form" method="get">
-        <?php echo awpcp_html_hidden_fields( $params ); // XSS Ok. ?>
+        <?php echo awpcp_html_hidden_fields( $params ); ?>
 
         <?php if ( count( $options ) > 1 ) : ?>
 

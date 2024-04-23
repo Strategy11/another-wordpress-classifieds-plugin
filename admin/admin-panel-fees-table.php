@@ -193,20 +193,20 @@ class AWPCP_FeesTable extends WP_List_Table {
         $duration = str_replace( '<duration-amount>', $payment_term->duration_amount, $duration );
         $duration = str_replace( '<duration-interval>', $payment_term->get_duration_interval(), $duration );
 
-        $description = __( 'Duration: <payment-term-duration>', 'another-wordpress-classifieds-plugin' );
-        $description = str_replace( '<payment-term-duration>', '<strong>' . $duration . '</strong>', $description );
-
-        return $description;
+        return sprintf(
+            esc_html__( 'Duration: %s', 'another-wordpress-classifieds-plugin' ),
+            '<strong>' . esc_html( $duration ) . '</strong>'
+        );
     }
 
     /**
      * @since 4.0.0
      */
     private function get_number_of_images( $payment_term ) {
-        $description = __( '# of images: <number-of-images-allowed>', 'another-wordpress-classifieds-plugin' );
-        $description = str_replace( '<number-of-images-allowed>', '<strong>' . $payment_term->images . '</strong>', $description );
-
-        return $description;
+        return sprintf(
+            esc_html__( '# of images: %s', 'another-wordpress-classifieds-plugin' ),
+            '<strong>' . esc_html( $payment_term->images ) . '</strong>'
+        );
     }
 
     /**
@@ -219,10 +219,10 @@ class AWPCP_FeesTable extends WP_List_Table {
             $characters_limit = __( 'unlimited', 'another-wordpress-classifieds-plugin' );
         }
 
-        $description = __( 'Chars in title: <characters-limit>', 'another-wordpress-classifieds-plugin' );
-        $description = str_replace( '<characters-limit>', '<strong>' . $characters_limit . '</strong>', $description );
-
-        return $description;
+        return sprintf(
+            esc_html__( 'Chars in title: %s', 'another-wordpress-classifieds-plugin' ),
+            '<strong>' . esc_html( $characters_limit ) . '</strong>'
+        );
     }
 
     /**
@@ -235,10 +235,10 @@ class AWPCP_FeesTable extends WP_List_Table {
             $characters_limit = __( 'unlimited', 'another-wordpress-classifieds-plugin' );
         }
 
-        $description = __( 'Chars in description: <characters-limit>', 'another-wordpress-classifieds-plugin' );
-        $description = str_replace( '<characters-limit>', '<strong>' . $characters_limit . '</strong>', $description );
-
-        return $description;
+        return sprintf(
+            esc_html__( 'Chars in description: %s', 'another-wordpress-classifieds-plugin' ),
+            '<strong>' . esc_html( $characters_limit ) . '</strong>'
+        );
     }
 
     public function column_price($item) {
@@ -273,7 +273,7 @@ class AWPCP_FeesTable extends WP_List_Table {
         static $row_class = '';
         $row_class = ( $row_class == '' ? ' class="alternate"' : '' );
 
-        echo '<tr id="fee-' . $item->id . '" data-id="' . $item->id . '"' . $row_class . '>';
+        echo '<tr id="fee-' . esc_attr( $item->id ) . '" data-id="' . esc_attr( $item->id ) . '"' . $row_class . '>';
         echo $this->single_row_columns( $item );
         echo '</tr>';
     }

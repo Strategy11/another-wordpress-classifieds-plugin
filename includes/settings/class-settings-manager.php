@@ -81,11 +81,11 @@ class AWPCP_SettingsManager {
         ] );
 
         if ( empty( $subgroup['parent'] ) ) {
-            throw new AWPCP_Exception( "No parent specified for settings subgroup {$subgroup['name']}." );
+            throw new AWPCP_Exception( esc_html( "No parent specified for settings subgroup {$subgroup['name']}." ) );
         }
 
         if ( ! isset( $this->groups[ $subgroup['parent'] ] ) ) {
-            throw new AWPCP_Exception( "Settings group {$subgroup['parent']} doesn't exist." );
+            throw new AWPCP_Exception( esc_html( "Settings group {$subgroup['parent']} doesn't exist." ) );
         }
 
         $subgroup['sections'] = [];
@@ -130,11 +130,11 @@ class AWPCP_SettingsManager {
         ] );
 
         if ( empty( $section['subgroup'] ) ) {
-            throw new AWPCP_Exception( "No subgroup specified for settings section {$section['id']}." );
+            throw new AWPCP_Exception( esc_html( "No subgroup specified for settings section {$section['id']}." ) );
         }
 
         if ( ! isset( $this->subgroups[ $section['subgroup'] ] ) ) {
-            throw new AWPCP_Exception( "Settings subgroup {$section['subgroup']} doesn't exist." );
+            throw new AWPCP_Exception( esc_html( "Settings subgroup {$section['subgroup']} doesn't exist." ) );
         }
 
         $section['settings'] = [];
@@ -194,11 +194,11 @@ class AWPCP_SettingsManager {
         ] );
 
         if ( empty( $setting['section'] ) ) {
-            throw new AWPCP_Exception( "No section specified for setting {$setting['id']}." );
+            throw new AWPCP_Exception( esc_html( "No section specified for setting {$setting['id']}." ) );
         }
 
         if ( ! isset( $this->sections[ $setting['section'] ] ) ) {
-            throw new AWPCP_Exception( "Settings section {$setting['section']} doesn't exist." );
+            throw new AWPCP_Exception( esc_html( "Settings section {$setting['section']} doesn't exist." ) );
         }
 
         $this->sections[ $setting['section'] ]['settings'][] = $setting['id'];

@@ -25,7 +25,7 @@ class AWPCP_Authentication_Redirection_Handler {
 
         if ( $this->query->is_post_listings_page() ) {
             $page_requires_authentication = $this->post_listing_page_requires_authentication();
-        } else if ( $this->query->is_reply_to_listing_page() ) {
+        } elseif ( $this->query->is_reply_to_listing_page() ) {
             $page_requires_authentication = $this->reply_to_listing_page_requires_autentication();
         } else {
             $page_requires_authentication = false;

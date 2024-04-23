@@ -42,15 +42,15 @@ class AWPCP_Settings_JSON_Writer {
         $json_content = file_get_contents( $filename ); // @codingStandardsIgnoreLine
 
         if ( false === $json_content ) {
-            $message = __( 'There was a problem reading the content of the file. Please try again or contact customer support with a copy of the file.', 'another-wordpress-classifieds-plugin.' );
-            throw new AWPCP_Exception( $message );
+            $message = __( 'There was a problem reading the content of the file. Please try again or contact customer support with a copy of the file.', 'another-wordpress-classifieds-plugin' );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $settings = json_decode( $json_content, true );
 
         if ( is_null( $settings ) ) {
             $message = __( 'There was a problem reading the content of the file. Are sure the file contains a JSON representation of your settings? Please try again or contact customer support with a copy of your file.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         foreach ( $settings as $name => $value ) {

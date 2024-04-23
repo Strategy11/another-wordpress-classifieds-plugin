@@ -80,7 +80,7 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
 		$message = __( 'The file %s could not be moved to the destination directory.', 'another-wordpress-classifieds-plugin');
 		return sprintf($message, $filename);
 
-	} else if (!$uploaded && !@copy($tmpname, $newpath)) {
+	} elseif (!$uploaded && !@copy($tmpname, $newpath)) {
 		/* translators: %s the file name */
 		$message = __( 'The file %s could not be moved to the destination directory.', 'another-wordpress-classifieds-plugin');
 		return sprintf($message, $filename);
@@ -208,9 +208,9 @@ function awpcp_fix_image_rotation( $filepath ) {
 	$rotation_angle = 0;
 	if ( 6 == $orientation ) {
 		$rotation_angle = 90;
-	} else if ( 3 == $orientation ) {
+	} elseif ( 3 == $orientation ) {
 		$rotation_angle = 180;
-	} else if ( 8 == $orientation ) {
+	} elseif ( 8 == $orientation ) {
 		$rotation_angle = 270;
 	}
 

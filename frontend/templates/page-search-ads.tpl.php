@@ -18,7 +18,7 @@
     <p class="awpcp-form-field awpcp-form-spacer">
         <label for="query"><?php esc_html_e( 'Search for ads containing this word or phrase', 'another-wordpress-classifieds-plugin' ); ?>:</label>
         <input type="text" id="query" class="awpcp-textfield inputbox" size="50" name="keywordphrase" value="<?php echo esc_attr($form['query']); ?>" />
-        <?php echo awpcp_form_error('query', $errors); ?>
+        <?php awpcp_show_form_error( 'query', $errors ); ?>
     </p>
 
     <p class="awpcp-form-spacer">
@@ -29,14 +29,14 @@
                 'required' => false,
                 'multiple' => true,
                 'auto'     => false,
-              ) ); ?>
+                ) ); ?>
     </p>
 
     <?php if ($ui['posted-by-field']): ?>
     <p class="awpcp-form-field awpcp-form-spacer">
         <label for="name"><?php esc_html_e( 'For ads posted by', 'another-wordpress-classifieds-plugin' ); ?></label>
         <select id="name" name="searchname">
-            <option value=""><?php _e("All Users", 'another-wordpress-classifieds-plugin'); ?></option>
+            <option value=""><?php esc_html_e( 'All Users', 'another-wordpress-classifieds-plugin' ); ?></option>
             <?php echo create_ad_postedby_list($form['name']); ?>
         </select>
     </p>
@@ -52,8 +52,8 @@
             <label for="max-price"><?php esc_html_e( 'Max price', 'another-wordpress-classifieds-plugin' ); ?></label>
             <input id="max-price" class="awpcp-textfield inputbox money" type="text" name="searchpricemax" value="<?php echo esc_attr( $form['max_price'] ); ?>">
         </div>
-        <?php echo awpcp_form_error('min_price', $errors); ?>
-        <?php echo awpcp_form_error('max_price', $errors); ?>
+        <?php awpcp_show_form_error( 'min_price', $errors ); ?>
+        <?php awpcp_show_form_error( 'max_price', $errors ); ?>
     </div>
     <?php endif ?>
 

@@ -29,8 +29,7 @@
 
                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     echo awpcp_categories_selector()->render( $params );
-                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                    echo awpcp_form_error( 'category', $form_errors );
+                    awpcp_show_form_error( 'category', $form_errors );
                     ?>
                 </div>
 
@@ -51,7 +50,7 @@
                         ]
                     );
 
-                    echo awpcp_form_error( 'user', $form_errors );
+                    awpcp_show_form_error( 'user', $form_errors );
                     ?>
                 </div>
 
@@ -72,8 +71,7 @@
                 <div class="awpcp-form-spacer awpcp-captcha">
                     <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                     <?php echo $captcha->render(); ?>
-                    <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                    <?php echo awpcp_form_error( 'captcha', $form_errors ); ?>
+                    <?php awpcp_show_form_error( 'captcha', $form_errors ); ?>
                 </div>
                 <?php endif; ?>
 
@@ -84,7 +82,14 @@
         </div>
 
         <div class="awpcp-order-submit-listing-section__read_mode">
-            <p class="awpcp-order-submit-listing-section--selected-categories-container"><?php echo str_replace( '{categories}', '<span class="awpcp-order-submit-listing-section--selected-categories"></span>', esc_html_x( 'Your ad will be posted on the following categories: {categories}.', 'order submit listing section', 'another-wordpress-classifieds-plugin' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+            <p class="awpcp-order-submit-listing-section--selected-categories-container">
+                <?php
+                printf(
+                    esc_html__( 'Your ad will be posted on the following categories: %s.', 'another-wordpress-classifieds-plugin' ),
+                    '<span class="awpcp-order-submit-listing-section--selected-categories"></span>'
+                );
+                ?>
+            </p>
             <?php
             $display = awpcp_payments_api()->payments_enabled() ? 'block' : 'none';
             ?>

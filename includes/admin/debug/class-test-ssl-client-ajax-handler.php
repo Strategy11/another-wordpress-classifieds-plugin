@@ -37,9 +37,9 @@ class AWPCP_TestSSLClientAjaxHandler {
 
         $json = json_decode( $data );
 
-        echo "Cipher Suites:\n" . implode( ',', $json->given_cipher_suites ) . "\n\n"; // XSS Ok.
-        echo "TLS Version:\n" . $json->tls_version . "\n\n"; // XSS Ok.
-        echo "Rating:\n" . $json->rating; // XSS Ok.
+        echo "Cipher Suites:\n" . implode( ',', $json->given_cipher_suites ) . "\n\n";
+        echo "TLS Version:\n" . $json->tls_version . "\n\n";
+        echo "Rating:\n" . $json->rating;
 
         exit();
     }

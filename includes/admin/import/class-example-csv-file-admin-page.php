@@ -39,7 +39,7 @@ class AWPCP_ExampleCSVFileAdminPage {
             'content' => $this->convert_to_csv( $this->prepare_data() ),
         ];
 
-        echo $this->template_renderer->render_template( $this->template, $params ); // XSS Ok.
+        echo $this->template_renderer->render_template( $this->template, $params );
     }
 
     /**
@@ -61,7 +61,7 @@ class AWPCP_ExampleCSVFileAdminPage {
                     $data[ $i + 1 ][ $current_column ] = array_rand( $examples );
                 }
 
-                $current_column++;
+                ++$current_column;
             }
         }
 

@@ -113,7 +113,7 @@ class AWPCP_ModulesManager {
             $module->notices[] = 'inactive-license-notice';
             $this->notices['modules-with-inactive-license'][] = $module;
             throw new AWPCP_Exception( "Module's license is inactive." );
-        } else if ( ! $this->module_has_an_accepted_license( $module ) ) {
+        } elseif ( ! $this->module_has_an_accepted_license( $module ) ) {
             $this->notices['modules-with-invalid-license'][] = $module;
             throw new AWPCP_Exception( 'Module has not valid license.' );
         }
@@ -291,7 +291,7 @@ class AWPCP_ModulesManager {
 
     public function get_module( $module_slug ) {
         if ( ! isset( $this->modules[ $module_slug ] ) ) {
-            throw new AWPCP_Exception( __( 'The specified module does not exists!.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'The specified module does not exists!.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         return $this->modules[ $module_slug ];

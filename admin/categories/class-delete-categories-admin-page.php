@@ -15,6 +15,7 @@ function awpcp_delete_categories_admin_page() {
     );
 }
 
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_Delete_Categories_Admin_Page {
 
     private $categories_logic;
@@ -52,28 +53,30 @@ class AWPCP_Delete_Categories_Admin_Page {
         $target_category      = null;
         $nonce        = awpcp_get_var( array( 'param' => 'awpcp-multiple-form-nonce' ), 'post' );
         if ( ! wp_verify_nonce( $nonce, 'cat-multiple-form' ) ) {
-            throw new AWPCP_Exception( __( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
         }
         if ( $should_move_listings ) {
             try {
                 $target_category = $this->categories->get( $target_category_id );
             } catch ( AWPCP_Exception $e ) {
-                $message = __( "The categories couldn't be deleted because there was an error trying to load the categoery that you selecetd to become the new category associated to affected ads. <error-message>", 'another-wordpress-classifieds-plugin' );
-                $message = str_replace( '<error-message>', $e->getMessage(), $message );
+                $message = sprintf(
+                    __( "The categories couldn't be deleted because there was an error trying to load the categoery that you selected to become the new category associated to affected ads. %s", 'another-wordpress-classifieds-plugin' ),
+                    $e->getMessage()
+                );
 
-                throw new AWPCP_Exception( $message );
+                throw new AWPCP_Exception( esc_html( $message ) );
             }
         }
 
         $result = $this->delete_categories( $selected_categories, $target_category, $should_move_listings );
 
         if ( $result['categories_not_deleted'] === 0 ) {
-            awpcp_flash( __( 'The selected categories have been deleted.', 'another-wordpress-classifieds-plugin' ) );
+            awpcp_flash( esc_html__( 'The selected categories have been deleted.', 'another-wordpress-classifieds-plugin' ) );
             return;
         }
 
         if ( $result['categories_deleted'] === 0 ) {
-            awpcp_flash_error( __( 'There was an error trying to delete the selected categories.', 'another-wordpress-classifieds-plugin' ) );
+            awpcp_flash_error( esc_html__( 'There was an error trying to delete the selected categories.', 'another-wordpress-classifieds-plugin' ) );
             return;
         }
 
@@ -82,7 +85,7 @@ class AWPCP_Delete_Categories_Admin_Page {
         $message = str_replace( '<categories-not-deleted>', $result['categories_not_deleted'], $message );
         $message = str_replace( '<categories-count>', count( $selected_categories ), $message );
 
-        awpcp_flash_error( $message );
+        awpcp_flash_error( esc_html( $message ) );
     }
 
     private function delete_categories( $selected_categories, $target_category, $should_move_listings ) {
@@ -99,9 +102,9 @@ class AWPCP_Delete_Categories_Admin_Page {
                     $this->categories_logic->delete_category_and_associated_listings( $category );
                 }
 
-                $categories_deleted++;
+                ++$categories_deleted;
             } catch ( AWPCP_Exception $e ) {
-                $categories_not_deleted++;
+                ++$categories_not_deleted;
                 continue;
             }
         }

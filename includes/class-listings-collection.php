@@ -78,7 +78,7 @@ class AWPCP_ListingsCollection {
         if ( $listing_id <= 0 ) {
             /* translators: %d is the ID used to search. */
             $message = __( 'The listing ID must be a positive integer, %d was given.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $listing_id ) ) );
         }
 
         $listing = $this->wordpress->get_post( $listing_id );
@@ -86,13 +86,13 @@ class AWPCP_ListingsCollection {
         if ( empty( $listing ) ) {
             /* translators: %d is the ID used to search. */
             $message = __( 'No Listing was found with id: %d.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $listing_id ) ) );
         }
 
         if ( $listing->post_type !== $this->listing_post_type ) {
             /* translators: %d is the ID used to search. */
             $message = __( 'No Listing was found with id: %d.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $listing_id ) ) );
         }
 
         return $listing;
@@ -118,7 +118,7 @@ class AWPCP_ListingsCollection {
         if ( empty( $listings ) ) {
             /* translators: %d is the ID used to search. */
             $message = __( 'No Listing was found with old id: %d.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $listing_id ) ) );
         }
 
         $listing = $listings[0];
@@ -126,7 +126,7 @@ class AWPCP_ListingsCollection {
         if ( $listing->post_type !== $this->listing_post_type ) {
             /* translators: %d is the ID used to search. */
             $message = __( 'No Listing was found with old id: %d.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( sprintf( $message, $listing_id ) );
+            throw new AWPCP_Exception( esc_html( sprintf( $message, $listing_id ) ) );
         }
 
         return $listing;

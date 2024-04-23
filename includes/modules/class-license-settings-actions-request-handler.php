@@ -35,9 +35,9 @@ class AWPCP_License_Settings_Actions_Request_Handler {
 
             if ( $this->request->post( "awpcp-check-$sanitized_setting_name", false ) ) {
                 $this->refresh_license_status( $module->name, $module_slug );
-            } else if ( $this->request->post( "awpcp-activate-$sanitized_setting_name", false ) ) {
+            } elseif ( $this->request->post( "awpcp-activate-$sanitized_setting_name", false ) ) {
                 $this->licenses_manager->activate_license( $module->name, $module_slug );
-            } else if ( $this->request->post( "awpcp-deactivate-$sanitized_setting_name", false ) ) {
+            } elseif ( $this->request->post( "awpcp-deactivate-$sanitized_setting_name", false ) ) {
                 $this->licenses_manager->deactivate_license( $module->name, $module_slug );
             }
         }

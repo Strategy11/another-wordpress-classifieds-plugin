@@ -144,7 +144,7 @@ trait AWPCP_UpgradeCategoriesTaskHandlerHelper {
             $message = 'There was an error trying to create a record on term_taxonomy table using a custom ID: {error_message}';
             $message = str_replace( '{error_message}', $this->db->last_error, $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         return [

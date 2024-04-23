@@ -3,9 +3,16 @@
 	<?php $page_title = awpcp_admin_page_title( __( 'Debug', 'another-wordpress-classifieds-plugin' ) ); ?>
 
 	<?php include( AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php' ); ?>
-<?php endif ?>
+<?php
+endif;
 
-		<?php echo awpcp_html_admin_second_level_heading( array( 'content' => __( 'Are you seeing 404 Not Found errors?', 'another-wordpress-classifieds-plugin' ) ) ); ?>
+	awpcp_html_admin_second_level_heading(
+		array(
+			'content' => esc_html__( 'Are you seeing 404 Not Found errors?', 'another-wordpress-classifieds-plugin' ),
+			'echo'    => true,
+		)
+	);
+	?>
 
 		<p>
         <?php
@@ -21,10 +28,17 @@
 
 		<p><a class="button-primary" href="<?php echo esc_url( admin_url( 'options-permalink.php' ) ); ?>"><?php echo _x( 'Flush Rewrite Rules', 'debug page', 'another-wordpress-classifieds-plugin' ); ?></a></p>
 
-		<?php echo awpcp_html_admin_second_level_heading( array( 'content' => __( 'Debug Information', 'another-wordpress-classifieds-plugin' ) ) ); ?>
+		<?php
+		awpcp_html_admin_second_level_heading(
+			array(
+				'content' => esc_html__( 'Debug Information', 'another-wordpress-classifieds-plugin' ),
+				'echo'    => true,
+			)
+		);
+		?>
 
 		<?php $msg = _x('This information can help AWPCP Developers to debug possible problems. If you are submitting a bug report please <strong><a href="%s">Download the Debug Information</a></strong> and attach it to your bug report or take a minute to copy the information below to <a href="http://fpaste.org" target="_blank">http://fpaste.org</a> and provide the resulting URL in your report.', 'debug page', 'another-wordpress-classifieds-plugin'); ?>
-		<p><?php echo sprintf( $msg, esc_url( add_query_arg( 'download', 'debug page', awpcp_current_url() ) ) ); ?></p>
+		<p><?php printf( $msg, esc_url( add_query_arg( 'download', 'debug page', awpcp_current_url() ) ) ); ?></p>
 
 		<?php $title_pages = _x('AWPCP Pages', 'debug page', 'another-wordpress-classifieds-plugin'); ?>
 		<?php $title_php_info = _x('PHP Info', 'debug page', 'another-wordpress-classifieds-plugin'); ?>
@@ -46,18 +60,18 @@
 				<table>
 					<thead>
 						<tr>
-							<th><?php _e('Stored ID', 'another-wordpress-classifieds-plugin'); ?></th>
-							<th><?php _e('Reference', 'another-wordpress-classifieds-plugin'); ?></th>
-							<th><?php _e('Title', 'another-wordpress-classifieds-plugin'); ?></th>
+							<th><?php esc_html_e( 'Stored ID', 'another-wordpress-classifieds-plugin' ); ?></th>
+							<th><?php esc_html_e( 'Reference', 'another-wordpress-classifieds-plugin' ); ?></th>
+							<th><?php esc_html_e( 'Title', 'another-wordpress-classifieds-plugin' ); ?></th>
 						</tr>
 					</thead>
 					<tbody>
 				<?php foreach( $plugin_pages_info as $page_ref => $info ): ?>
 					<?php $page = isset( $plugin_pages[ $info[ 'page_id' ] ] ) ? $plugin_pages[ $info[ 'page_id' ] ] : null; ?>
 						<tr>
-							<td class="align-center"><?php echo $info['page_id']; ?></td>
+							<td class="align-center"><?php echo esc_html( $info['page_id'] ); ?></td>
 							<td class="align-center"><?php echo $page_ref; ?></td>
-							<td><?php echo $page ? $page->post_title : __( 'Page not found', 'another-wordpress-classifieds-plugin' ); ?></td>
+							<td><?php echo esc_html( $page ? $page->post_title : __( 'Page not found', 'another-wordpress-classifieds-plugin' ) ); ?></td>
 						</tr>
 				<?php endforeach ?>
 					</tbody>
@@ -71,8 +85,8 @@
 		    	<table>
 					<thead>
 						<tr>
-							<th><?php _e('Option Name', 'another-wordpress-classifieds-plugin'); ?></th>
-							<th><?php _e('Option Value', 'another-wordpress-classifieds-plugin'); ?></th>
+							<th><?php esc_html_e( 'Option Name', 'another-wordpress-classifieds-plugin' ); ?></th>
+							<th><?php esc_html_e( 'Option Value', 'another-wordpress-classifieds-plugin' ); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -93,8 +107,8 @@
 				<table>
 					<thead>
 						<tr>
-							<th><?php _e('Pattern', 'another-wordpress-classifieds-plugin'); ?></th>
-							<th><?php _e('Replacement', 'another-wordpress-classifieds-plugin'); ?></th>
+							<th><?php esc_html_e( 'Pattern', 'another-wordpress-classifieds-plugin' ); ?></th>
+							<th><?php esc_html_e( 'Replacement', 'another-wordpress-classifieds-plugin' ); ?></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -115,25 +129,25 @@
 				<table>
 					<tbody>
 						<tr>
-							<th scope="row"><?php _ex('PHP Version', 'debug page', 'another-wordpress-classifieds-plugin'); ?></th>
+							<th scope="row"><?php esc_html_e( 'PHP Version', 'another-wordpress-classifieds-plugin' ); ?></th>
 							<td scope="row"><?php echo phpversion(); ?></td>
 						</tr>
 						<tr>
-							<th scope="row"><?php _ex('cURL', 'debug page', 'another-wordpress-classifieds-plugin'); ?></th>
+							<th scope="row"><?php esc_html_e( 'cURL', 'another-wordpress-classifieds-plugin' ); ?></th>
 							<td><?php echo awpcp_get_curl_info(); ?></td>
 						</tr>
 						<tr>
-							<th scope="row"><?php _ex("cURL's alternate CA info (cacert.pem)", 'debug page', 'another-wordpress-classifieds-plugin'); ?></th>
+							<th scope="row"><?php esc_html_e( "cURL's alternate CA info (cacert.pem)", 'another-wordpress-classifieds-plugin' ); ?></th>
 							<td><?php echo file_exists(AWPCP_DIR . '/cacert.pem') ? _x('Exists', 'alternate CA info for cURL', 'another-wordpress-classifieds-plugin') : _x('Missing', 'alternate CA info for cURL', 'another-wordpress-classifieds-plugin'); ?></td>
 						</tr>
 						<tr>
-							<th scope="row"><?php _ex('PayPal Connection', 'debug page', 'another-wordpress-classifieds-plugin'); ?></th>
+							<th scope="row"><?php esc_html_e( 'PayPal', 'another-wordpress-classifieds-plugin' ); ?></th>
 							<?php $response = awpcp_paypal_verify_received_data(array(), $errors); ?>
 							<?php if ($response === 'INVALID'): ?>
 							<td><?php esc_html_e( 'Working', 'another-wordpress-classifieds-plugin' ); ?></td>
 							<?php else: ?>
 							<td>
-								<?php _ex( 'Not Working', 'debug page', 'another-wordpress-classifieds-plugin' ); ?><br/>
+								<?php esc_html_e( 'Not Working', 'another-wordpress-classifieds-plugin' ); ?><br/>
 								<?php foreach ( (array) $errors as $error ): ?>
 								<?php echo $error ?><br/>
 								<?php endforeach ?>
@@ -145,10 +159,19 @@
 		    </div>
 	    </div>
 
-		<?php echo awpcp_html_admin_second_level_heading( array( 'content' => __( 'Debug & Development Tools', 'another-wordpress-classifieds-plugin' ) ) ); ?>
+		<?php
+		awpcp_html_admin_second_level_heading(
+			array(
+				'content' => esc_html__( 'Debug & Development Tools', 'another-wordpress-classifieds-plugin' ),
+				'echo'    => true,
+			)
+		);
+		?>
 
         <ul>
-            <li><a href="<?php echo admin_url( 'plugin-install.php?tab=plugin-information&plugin=query-monitor&TB_iframe=true&width=600&height=550' ); ?>">Query Monitor</a></li>
+            <li>
+				<a href="<?php echo esc_url( admin_url( 'plugin-install.php?tab=plugin-information&plugin=query-monitor&TB_iframe=true&width=600&height=550' ) ); ?>">Query Monitor</a>
+			</li>
         </ul>
 
 	    </div>

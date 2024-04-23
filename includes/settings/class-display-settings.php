@@ -205,7 +205,6 @@ class AWPCP_DisplaySettings {
 
         $settings_manager->add_setting( $key, 'hyperlinkurlsinadtext', __( 'Make URLs in ad text clickable', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '' );
         $settings_manager->add_setting( $key, 'visitwebsitelinknofollow', __( 'Add no follow to links in Ads', 'another-wordpress-classifieds-plugin' ), 'checkbox', 1, '' );
-
     }
 
     /**

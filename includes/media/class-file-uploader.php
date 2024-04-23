@@ -41,8 +41,8 @@ class AWPCP_FileUploader {
         if ( empty( $filename ) && isset( $_FILES['file']['name'] ) ) {
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 			$filename = sanitize_option( 'upload_path', $_FILES['file']['name'] );
-        } else if ( empty( $filename ) ) {
-            throw new AWPCP_Exception( __( 'Unable to find the uploaded file name.', 'another-wordpress-classifieds-plugin' ) );
+        } elseif ( empty( $filename ) ) {
+            throw new AWPCP_Exception( esc_html__( 'Unable to find the uploaded file name.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         return $filename;
@@ -50,7 +50,7 @@ class AWPCP_FileUploader {
 
     private function try_to_upload_file( $posted_data ) {
         if ( ! $this->is_filename_extension_allowed( $posted_data['filename'] ) ) {
-            throw new AWPCP_Exception( __( 'File extension not allowed.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'File extension not allowed.', 'another-wordpress-classifieds-plugin' ) );
         }
         add_filter( 'upload_dir', array( &$this, 'upload_dir' ) );
 
@@ -117,30 +117,30 @@ class AWPCP_FileUploader {
         $base_dir = dirname( $file_path );
 
         if ( ! file_exists( $base_dir ) && ! wp_mkdir_p( $base_dir ) ) {
-            throw new AWPCP_Exception( __( "Temporary directory doesn't exists and couldn't be created.", 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( "Temporary directory doesn't exists and couldn't be created.", 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( ! empty( $_FILES ) && isset( $_FILES['file'] ) ) {
+        if ( ! empty( $_FILES ) && isset( $_FILES['file'] ) && isset( $_FILES['file']['tmp_name'] ) ) {
             if ( ! empty( $_FILES['file']['error'] ) ) {
 				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
                 list( $error_code, $error_message ) = awpcp_uploaded_file_error( $_FILES['file'] );
-                throw new AWPCP_Exception( $error_message );
+                throw new AWPCP_Exception( esc_html( $error_message ) );
             }
 
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 			$file_name = sanitize_option( 'upload_path', $_FILES['file']['tmp_name'] );
             if ( ! is_uploaded_file( $file_name ) ) {
-                throw new AWPCP_Exception( __( 'There was an error trying to move the uploaded file to a temporary location.', 'another-wordpress-classifieds-plugin' ) );
+                throw new AWPCP_Exception( esc_html__( 'There was an error trying to move the uploaded file to a temporary location.', 'another-wordpress-classifieds-plugin' ) );
             }
 
             move_uploaded_file( $file_name, $file_path );
         } else {
             if ( ! $input = fopen( 'php://input', 'rb' ) ) {
-                throw new AWPCP_Exception( __( "There was an error trying to open PHP's input stream.", 'another-wordpress-classifieds-plugin' ) );
+                throw new AWPCP_Exception( esc_html__( "There was an error trying to open PHP's input stream.", 'another-wordpress-classifieds-plugin' ) );
             }
 
             if ( ! $output = fopen( $file_path, 'wb' ) ) {
-                throw new AWPCP_Exception( $this->get_failed_to_open_output_stream_error_message( $file_path ) );
+                throw new AWPCP_Exception( esc_html( $this->get_failed_to_open_output_stream_error_message( $file_path ) ) );
             }
 
             while ( $buffer = fread( $input, 4096 ) ) {
@@ -166,18 +166,18 @@ class AWPCP_FileUploader {
 
     private function write_uploaded_chunks_to_file( $chunks_count, $file_path ) {
         if ( ! $output = fopen( $file_path, 'wb' ) ) {
-            throw new AWPCP_Exception( $this->get_failed_to_open_output_stream_error_message( $file_path ) );
+            throw new AWPCP_Exception( esc_html( $this->get_failed_to_open_output_stream_error_message( $file_path ) ) );
         }
 
         for ( $i = 0; $i < $chunks_count; ++$i ) {
             $chunk_path = "$file_path.part$i";
 
             if ( ! file_exists( $chunk_path ) ) {
-                throw new AWPCP_Exception( __( 'Missing chunk.', 'another-wordpress-classifieds-plugin' ) );
+                throw new AWPCP_Exception( esc_html__( 'Missing chunk.', 'another-wordpress-classifieds-plugin' ) );
             }
 
             if ( ! $input = fopen( $chunk_path, 'rb' ) ) {
-                throw new AWPCP_Exception( __( 'There was an error trying to open the input stream.', 'another-wordpress-classifieds-plugin' ) );
+                throw new AWPCP_Exception( esc_html__( 'There was an error trying to open the input stream.', 'another-wordpress-classifieds-plugin' ) );
             }
 
             while ( $buffer = fread( $input, 4096 ) ) {

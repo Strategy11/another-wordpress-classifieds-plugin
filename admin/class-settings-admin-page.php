@@ -136,12 +136,7 @@ class AWPCP_Classified_Pages_Settings {
 
 		$missing = awpcp_array_filter_recursive( $this->missing_pages_finder->find_broken_page_id_references() );
 
-		ob_start();
-			include(AWPCP_DIR . '/admin/templates/admin-panel-settings-pages-settings.tpl.php');
-			$content = ob_get_contents();
-		ob_end_clean();
-
-		echo $content;
+		include AWPCP_DIR . '/admin/templates/admin-panel-settings-pages-settings.tpl.php';
 	}
 
 	private function should_restore_pages() {
@@ -173,13 +168,12 @@ class AWPCP_Facebook_Page_Settings {
 		if ( isset( $_GET[ 'error_code' ] ) ) {
 			return $this->redirect_with_error(
 				sanitize_text_field( wp_unslash( $_GET[ 'error_code' ] ) ),
-				urlencode( sanitize_text_field( wp_unslash( $_GET['error_message'] ) ) )
+				urlencode( awpcp_get_var( array( 'param' => 'error_message' ), 'get' ) )
 			);
 		}
 
-		$code = isset( $_GET['code'] ) ? sanitize_text_field( wp_unslash( $_GET['code'] ) ) : '';
-
-		$fb = AWPCP_Facebook::instance();
+		$code         = awpcp_get_var( array( 'param' => 'code' ), 'get' );
+		$fb           = AWPCP_Facebook::instance();
 		$access_token = $fb->token_from_code( $code );
 
 		if ( ! $access_token ) {
@@ -231,7 +225,7 @@ class AWPCP_Facebook_Page_Settings {
             $error_message = sprintf( $error_message, urldecode_deep( sanitize_text_field( wp_unslash( $_GET['error_message'] ) ) ) );
 
             $errors[] = esc_html( $error_message );
-		} else if ( isset( $_GET['code_error'] ) ) {
+		} elseif ( isset( $_GET['code_error'] ) ) {
 			$errors[] = esc_html( __( 'We could not obtain a valid access token from Facebook. Please try again.', 'another-wordpress-classifieds-plugin' ) );
 		}
 
@@ -253,11 +247,6 @@ class AWPCP_Facebook_Page_Settings {
 			$errors[] = $error_msg;
 		}
 
-		ob_start();
-			include(AWPCP_DIR . '/admin/templates/admin-panel-settings-facebook-settings.tpl.php');
-			$content = ob_get_contents();
-		ob_end_clean();
-
-		echo $content;
+		include AWPCP_DIR . '/admin/templates/admin-panel-settings-facebook-settings.tpl.php';
 	}
 }

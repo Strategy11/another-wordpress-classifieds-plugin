@@ -1,8 +1,8 @@
 <table class="awpcp-table awpcp-transaction-items-table">
     <thead>
         <tr>
-            <th class="item"><?php _ex('Item', 'transaction items', 'another-wordpress-classifieds-plugin'); ?></th>
-            <th class="amount"><?php _ex('Amount', 'transaction items', 'another-wordpress-classifieds-plugin'); ?></th>
+            <th class="item"><?php esc_html_e( 'Item', 'another-wordpress-classifieds-plugin' ); ?></th>
+            <th class="amount"><?php esc_html_e( 'Amount', 'another-wordpress-classifieds-plugin' ); ?></th>
         </tr>
     </thead>
 
@@ -10,11 +10,11 @@
     <?php foreach ($transaction->get_items() as $item): ?>
 
         <tr>
-            <td class="item" data-title="<?php echo _x( 'Item', 'transaction items', 'another-wordpress-classifieds-plugin' ); ?>">
+            <td class="item" data-title="<?php esc_attr_e( 'Item', 'another-wordpress-classifieds-plugin' ); ?>">
                 <?php echo $item->name; ?><br>
                 <?php echo $item->description; ?>
             </td>
-            <td class="amount" data-title="<?php echo _x( 'Amount', 'transaction items', 'another-wordpress-classifieds-plugin' ); ?>">
+            <td class="amount" data-title="<?php esc_attr_e( 'Amount', 'another-wordpress-classifieds-plugin' ); ?>">
             <?php if ( $item->payment_type === AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY ): ?>
                 <?php echo esc_html( awpcp_format_money( $item->amount ) ); ?>
             <?php else: ?>
@@ -31,7 +31,7 @@
 
         <?php if ($show_credits): ?>
         <tr>
-            <td class="row-header"><?php _ex('Total Amount (credit)', 'transaction items', 'another-wordpress-classifieds-plugin'); ?></td>
+            <td class="row-header"><?php esc_html_e( 'Total Amount (credit)', 'another-wordpress-classifieds-plugin' ); ?></td>
             <td class="amount"><?php echo esc_html( number_format( $totals['credits'], 0 ) ); ?></td>
         </tr>
         <?php endif; ?>

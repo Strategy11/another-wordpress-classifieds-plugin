@@ -26,12 +26,10 @@ class AWPCP_TextareaSettingsRenderer {
     public function render_setting( $setting ) {
         $value = stripslashes( $this->settings->get_option( $setting['id'] ) );
 
-        $html  = '<textarea id="' . $setting['id'] . '" class="all-options" ';
-        $html .= 'name="awpcp-options[' . $setting['id'] . ']">';
-        $html .= esc_html( $value );
-        $html .= '</textarea><br/>';
-        $html .= '<span class="description">' . $setting['description'] . '</span>';
-
-        echo $html; // XSS Ok.
+        echo '<textarea id="' . esc_attr( $setting['id'] ) . '" class="all-options" ';
+        echo 'name="awpcp-options[' . esc_attr( $setting['id'] ) . ']">';
+        echo esc_html( $value );
+        echo '</textarea><br/>';
+        echo '<span class="description">' . wp_kses_post( $setting['description'] ) . '</span>';
     }
 }

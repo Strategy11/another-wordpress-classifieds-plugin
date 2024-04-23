@@ -89,4 +89,3 @@ class AWPCP_Loop_Integration {
         return $this->listing_renderer->get_listing_title( $listing );
     }
 }
-

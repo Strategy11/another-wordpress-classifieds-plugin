@@ -16,6 +16,7 @@ function awpcp_create_category_admin_page() {
 /**
  * Handles admin requests to create categories.
  */
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_Create_Category_Admin_Page {
 
     private $categories_data_mapper;
@@ -35,11 +36,11 @@ class AWPCP_Create_Category_Admin_Page {
             'parent'      => awpcp_get_var( array( 'param' => 'category_parent_id', 'sanitize' => 'intval' ) ),
         );
         if ( ! wp_verify_nonce( $nonce, 'category-form' ) ) {
-            throw new AWPCP_Exception( __( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'invalid nonce', 'another-wordpress-classifieds-plugin' ) );
         }
         try {
             $this->categories_data_mapper->create_category( $category_data, $category_order );
-            awpcp_flash( __( 'The new category was successfully added.', 'another-wordpress-classifieds-plugin' ) );
+            awpcp_flash( esc_html__( 'The new category was successfully added.', 'another-wordpress-classifieds-plugin' ) );
         } catch ( AWPCP_Exception $e ) {
             awpcp_flash( $e->getMessage(), 'error' );
         }

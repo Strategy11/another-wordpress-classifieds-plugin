@@ -92,7 +92,7 @@ class AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler implements AWPC
             $message = str_replace( '{category_id}', $current_category_id, $message );
             $message = str_replace( '{error_message}', $new_term->get_error_message(), $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $this->replace_term( $current_category, $new_term['term_id'] );
@@ -147,7 +147,7 @@ class AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler implements AWPC
             $message = str_replace( '{category_id}', $current_category->term_id, $message );
             $message = str_replace( '{error_message}', $result->get_error_message(), $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $result = $this->wordpress->delete_term(
@@ -164,7 +164,7 @@ class AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler implements AWPC
             $message = str_replace( '{category_id}', $current_category->term_id, $message );
             $message = str_replace( '{error_message}', $result->get_error_message(), $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         $result = $this->wordpress->update_term(
@@ -181,7 +181,7 @@ class AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler implements AWPC
             $message = str_replace( '{category_id}', $new_category_id, $message );
             $message = str_replace( '{error_message}', $result->get_error_message(), $message );
 
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
     }
 }

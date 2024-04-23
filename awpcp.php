@@ -153,7 +153,7 @@ function awpcp_required_php_version_notice( $product_name ) {
     $content .= wp_kses_post( __( 'You should upgrade to <strong>PHP 5.6</strong>, but if you want your site to also be considerable faster and even more secure, we recommend going up to <strong>PHP 7.2</strong>.', 'another-wordpress-classifieds-plugin' ) );
     $content .= '</p>';
     $content .= '<p>';
-    $content .= wp_kses_post( __( 'Please read <a href="https://wordpress.org/support/upgrade-php/">Upgrading PHP</a> to understand more about PHP and how to upgrade.', 'wpbpd-stripe' ) );
+    $content .= wp_kses_post( __( 'Please read <a href="https://wordpress.org/support/upgrade-php/">Upgrading PHP</a> to understand more about PHP and how to upgrade.', 'another-wordpress-classifieds-plugin' ) );
     $content .= '</p>';
 
     awpcp_activation_failed_notice( $content );
@@ -197,7 +197,7 @@ function awpcp_missing_autoload() {
  * @since 4.0.0
  */
 function awpcp_missing_autoload_notice() {
-    $message = esc_html__( 'AWP Classifieds Plugin installation is incomplete. Please {support_link}contact support{/support_link}.', 'wordpress-seo' );
+    $message = esc_html__( 'AWP Classifieds Plugin installation is incomplete. Please {support_link}contact support{/support_link}.', 'another-wordpress-classifieds-plugin' );
     $message = str_replace( '{support_link}', '<a href="https://awpcp.com/contact/">', $message );
     $message = str_replace( '{/support_link}', '</a>', $message );
 

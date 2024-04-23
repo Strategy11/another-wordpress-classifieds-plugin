@@ -44,7 +44,7 @@ function awpcp_ordinalize($num) {
 function awpcp_render_template( $template, $params ) {
     if ( file_exists( $template ) ) {
         $template_file = $template;
-    } else if ( file_exists( AWPCP_DIR . '/templates/' . $template ) ) {
+    } elseif ( file_exists( AWPCP_DIR . '/templates/' . $template ) ) {
         $template_file = AWPCP_DIR . '/templates/' . $template;
     } else {
         $template_file = null;
@@ -127,4 +127,3 @@ function awpcp_trim_html_content( $content, $word_count ) {
 
     return trim( force_balance_tags( $output ) );
 }
-

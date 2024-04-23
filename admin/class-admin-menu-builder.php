@@ -24,7 +24,7 @@ class AWPCP_AdminMenuBuilder {
         $routes = $this->router->get_routes();
 
         foreach ( $routes->get_admin_pages() as $admin_page ) {
-            uasort( $admin_page->subpages, function( $a, $b ) {
+            uasort( $admin_page->subpages, function ( $a, $b ) {
                 return $a->priority - $b->priority;
             } );
 
@@ -134,5 +134,4 @@ class AWPCP_AdminMenuBuilder {
             array_splice( $submenu[ $admin_menu ], 1, 0, $submenu[ $cpt_menu ] );
         }
     }
-
 }

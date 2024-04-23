@@ -42,6 +42,7 @@ function awpcp_installer() {
     return $instance;
 }
 
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_Installer {
 
     private static $instance = null;
@@ -118,9 +119,9 @@ class AWPCP_Installer {
         $upgrade_log[] = array(
             'oldversion'    => $oldversion,
             'newversion'    => $newversion,
-            'PHP_SELF'      => isset( $_SERVER['PHP_SELF'] ) ? wp_strip_all_tags( wp_unslash( $_SERVER['PHP_SELF'] ) ) : '',
-            'DOCUMENT_ROOT' => isset( $_SERVER['DOCUMENT_ROOT'] ) ? wp_strip_all_tags( wp_unslash( $_SERVER['DOCUMENT_ROOT'] ) ) : '',
-            'SERVER_NAME'   => isset( $_SERVER['SERVER_NAME'] ) ? wp_strip_all_tags( wp_unslash( $_SERVER['SERVER_NAME'] ) ) : '',
+            'PHP_SELF'      => awpcp_get_server_value( 'PHP_SELF' ),
+            'DOCUMENT_ROOT' => awpcp_get_server_value( 'DOCUMENT_ROOT' ),
+            'SERVER_NAME'   => awpcp_get_server_value( 'SERVER_NAME' ),
             'REQUEST_URI'   => isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '',
             'QUERY_STRING'  => isset( $_SERVER['QUERY_STRING'] ) ? esc_url_raw( wp_unslash( $_SERVER['QUERY_STRING'] ) ) : '',
             'date'          => current_time( 'mysql' ),
@@ -598,7 +599,7 @@ class AWPCP_Installer {
         $show_currency_symbol = awpcp()->settings->get_option( 'show-currency-symbol' );
         if ( is_numeric( $show_currency_symbol ) && $show_currency_symbol ) {
             awpcp()->settings->update_option( 'show-currency-symbol', 'show-currency-symbol-on-left' );
-        } else if ( is_numeric( $show_currency_symbol ) ) {
+        } elseif ( is_numeric( $show_currency_symbol ) ) {
             awpcp()->settings->update_option( 'show-currency-symbol', 'do-not-show-currency-symbol' );
         }
     }
@@ -846,7 +847,7 @@ class AWPCP_Installer {
      */
     private function migrate_verify_email_message_email_template() {
         $previous_subject = $this->settings->get_option( 'verifyemailsubjectline', __( 'Verify the email address used for Ad $title', 'another-wordpress-classifieds-plugin' ) );
-        $previous_body    = $this->settings->get_option( 'verifyemailbodymessage', _x( "Hello \$author_name \n\nYou recently posted the Ad \$title to \$website_name. \n\nIn order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad. \n\n\$verification_link \n\nAfter you verify your email address, the administrator will be notified about the new Ad. If moderation is enabled, your Ad will remain in a disabled status until the administrator approves it.\n\n\$website_name\n\n\$website_url", 'another-wordpress-classifieds-plugin' ) );
+        $previous_body    = $this->settings->get_option( 'verifyemailbodymessage', __( "Hello \$author_name \n\nYou recently posted the Ad \$title to \$website_name. \n\nIn order to complete the posting process you have to verify your email address. Please click the link below to complete the verification process. You will be redirected to the website where you can see your Ad. \n\n\$verification_link \n\nAfter you verify your email address, the administrator will be notified about the new Ad. If moderation is enabled, your Ad will remain in a disabled status until the administrator approves it.\n\n\$website_name\n\n\$website_url", 'another-wordpress-classifieds-plugin' ) );
 
         $template = $this->settings->get_option( 'verify-email-message-email-template' );
 
@@ -884,7 +885,7 @@ class AWPCP_Installer {
         if ( $main_plugin_page && $show_listing_page && $show_listing_page->post_parent == $main_plugin_page->ID ) {
             $this->settings->set_or_update_option( 'listings-slug', $show_listing_page->post_name );
             $this->settings->set_or_update_option( 'include-main-page-slug-in-listing-url', true );
-        } else if ( $show_listing_page ) {
+        } elseif ( $show_listing_page ) {
             $this->settings->set_or_update_option( 'listings-slug', get_page_uri( $show_listing_page ) );
             $this->settings->set_or_update_option( 'include-main-page-slug-in-listing-url', false );
         }

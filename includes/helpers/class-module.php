@@ -42,7 +42,7 @@ abstract class AWPCP_Module {
 		}
 
 		if ( ! $this->is_up_to_date() ) {
-			throw new AWPCP_Exception( sprintf( '%s is outdated.', $this->name ) );
+			throw new AWPCP_Exception( esc_html( sprintf( '%s is outdated.', $this->name ) ) );
 		}
 
 		if ( ! $loaded ) {

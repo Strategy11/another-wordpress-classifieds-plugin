@@ -41,13 +41,13 @@ class AWPCP_UploadGeneratedThumbnailAjaxHandler extends AWPCP_AjaxHandler {
         $media = $this->attachments->get( $this->request->post( 'file' ) );
 
         if ( is_null( $media ) ) {
-            throw new AWPCP_Exception( __( 'Trying to upload a thumbnail for an unknown file.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'Trying to upload a thumbnail for an unknown file.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $listing = $this->listings->get( $media->post_parent );
 
         if ( ! $this->is_user_authorized_to_upload_thumbnails_to_listing( $listing ) ) {
-            throw new AWPCP_Exception( __( 'You are not authorized to upload thumbnails.' ) );
+            throw new AWPCP_Exception( esc_html__( 'You are not authorized to upload thumbnails.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $this->process_uploaded_thumbnail( $listing, $media );
@@ -81,7 +81,7 @@ class AWPCP_UploadGeneratedThumbnailAjaxHandler extends AWPCP_AjaxHandler {
         $thumbnail = $this->request->post( 'thumbnail' );
 
         if ( ! preg_match( '/data:([^;]*);base64,(.*)/', $thumbnail, $matches ) ) {
-            throw new AWPCP_Exception( __( 'No thumbnail data found.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'No thumbnail data found.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $uploads_dir = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );

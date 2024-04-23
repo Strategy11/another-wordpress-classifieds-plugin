@@ -27,7 +27,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
 
         if ( $action == 'awpcp-autoresponder-user-subscribed' ) {
             return $this->user_subscribed();
-        } else if ( $action == 'awpcp-autoresponder-dismissed' ) {
+        } elseif ( $action == 'awpcp-autoresponder-dismissed' ) {
             return $this->autoresponder_dismissed();
         }
     }
@@ -58,7 +58,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
         if ( $this->was_request_successful( $response ) ) {
             $this->disable_autoresponder();
             return $this->success( array( 'pointer' => $this->build_confirmation_pointer() ) );
-        } else if ( isset( $response['body'] ) ) {
+        } elseif ( isset( $response['body'] ) ) {
             return $this->error_response( $this->get_error_from_response_body( $response['body'] ) );
         } else {
             return $this->error_response( $this->get_unexpected_error_message() );
@@ -116,8 +116,8 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
     private function render_pointer_content() {
         $template = '<h3><title></h3><p><content></p>';
 
-        $title = _x( 'Thank you for signing up!', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' );
-        $content = _x( 'Please check your email and click the link provided to confirm your subscription.', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' );
+        $title   = esc_html__( 'Thank you for signing up!', 'another-wordpress-classifieds-plugin' );
+        $content = esc_html__( 'Please check your email and click the link provided to confirm your subscription.', 'another-wordpress-classifieds-plugin' );
 
         $template = str_replace( '<title>', $title, $template );
         $template = str_replace( '<content>', $content, $template );
@@ -138,7 +138,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
 
         if ( count( $errors ) == 1 ) {
             return trim( reset( $errors ) );
-        } else if ( ! empty( $errors ) ) {
+        } elseif ( ! empty( $errors ) ) {
             return sprintf( '<li>%s</li>', implode( '</li><li>', array_map( 'trim', $errors ) ) );
         } else {
             return $this->get_unexpected_error_message();

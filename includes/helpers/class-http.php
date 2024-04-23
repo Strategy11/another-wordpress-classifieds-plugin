@@ -37,7 +37,7 @@ class AWPCP_HTTP {
             $message = str_replace( '</support-link>', '</a>', $message );
             $message = str_replace( '<ip-address>', awpcp_get_server_ip_address(), $message );
 
-            throw new AWPCP_HTTP_Exception( $message );
+            throw new AWPCP_HTTP_Exception( wp_kses_post( $message ) );
         }
 
         return $response;
@@ -77,7 +77,7 @@ class AWPCP_HTTP {
             $message = str_replace( '</support-link>', '</a>', $message );
             $message = str_replace( '<ip-address>', awpcp_get_server_ip_address(), $message );
 
-            throw new AWPCP_HTTP_Exception( $message );
+            throw new AWPCP_HTTP_Exception( wp_kses_post( $message ) );
         } elseif ( in_array( $error_number, array( 35 ), true ) ) {
             $message = '<strong>' . __( 'It was not possible to establish a connection with <host>. A problem occurred in the SSL/TSL handshake:', 'another-wordpress-classifieds-plugin' ) . '</strong>';
 
@@ -92,9 +92,9 @@ class AWPCP_HTTP {
 
             $message = str_replace( '<host>', $host, $message );
 
-            throw new AWPCP_HTTP_Exception( $message );
+            throw new AWPCP_HTTP_Exception( wp_kses_post( $message ) );
         } else {
-            throw new AWPCP_HTTP_Exception( $response->get_error_message() );
+            throw new AWPCP_HTTP_Exception( esc_html( $response->get_error_message() ) );
         }
     }
 }

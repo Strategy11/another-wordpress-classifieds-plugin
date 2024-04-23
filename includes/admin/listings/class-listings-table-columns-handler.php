@@ -151,13 +151,13 @@ class AWPCP_ListingsTableColumnsHandler {
                 echo $renewed_date ? esc_html( $renewed_date ) : '&mdash;';
                 return;
             case 'awpcp-payment-term':
-                echo $this->render_payment_term_column( $post ); // XSS Ok.
+                echo $this->render_payment_term_column( $post );
                 return;
             case 'awpcp-status':
-                echo $this->render_status_column( $post ); // XSS Ok.
+                echo $this->render_status_column( $post );
                 return;
             case 'awpcp-actions':
-                echo $this->render_actions_column( $post ); // XSS Ok.
+                echo $this->render_actions_column( $post );
                 return;
         }
     }

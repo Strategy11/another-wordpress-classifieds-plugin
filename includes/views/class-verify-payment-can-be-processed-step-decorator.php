@@ -17,7 +17,7 @@ class AWPCP_VerifyPaymentCanBeProcessedStepDecorator extends AWPCP_StepDecorator
             /* translators: %s the transaction id */
             $message = __( "We can't process payments for this Payment Transaction at this time. Please contact the website administrator and provide the following transaction ID: %s", 'another-wordpress-classifieds-plugin');
             $message = sprintf( $message, $transaction->id );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
     }
 

@@ -26,7 +26,6 @@ class AWPCP_Simple_Facebook_OpenGraph_Tags_Plugin_Integration implements AWPCP_P
     public function load() {
         $callback = array( $this, 'should_generate_opengraph_tags' );
         add_filter( 'awpcp-should-generate-opengraph-tags', $callback, 10, 2 );
-
     }
 
     /**
@@ -113,4 +112,3 @@ class AWPCP_Simple_Facebook_OpenGraph_Tags_Plugin_Integration implements AWPCP_P
         return array();
     }
 }
-

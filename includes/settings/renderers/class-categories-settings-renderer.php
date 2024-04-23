@@ -33,7 +33,7 @@ class AWPCP_CategoriesSettingsRenderer {
 
         $checklist = awpcp_categories_checkbox_list_renderer()->render( $params );
 
-        echo sprintf( '<div class="cat-checklist category-checklist">%s</div>', $checklist ); // XSS Ok.
-        echo '<span class="description">' . $setting['description'] . '</span>'; // XSS Ok.
+        printf( '<div class="cat-checklist category-checklist">%s</div>', $checklist );
+        echo '<span class="description">' . $setting['description'] . '</span>';
     }
 }

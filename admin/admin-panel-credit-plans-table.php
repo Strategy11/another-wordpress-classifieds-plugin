@@ -125,7 +125,7 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
         static $row_class = '';
         $row_class = ( $row_class == '' ? ' class="alternate"' : '' );
 
-        echo '<tr id="credit-plan-' . $item->id . '" data-id="' . $item->id . '"' . $row_class . '>';
+        echo '<tr id="credit-plan-' . esc_attr( $item->id ) . '" data-id="' . esc_attr( $item->id ) . '"' . $row_class . '>';
         echo $this->single_row_columns( $item );
         echo '</tr>';
     }

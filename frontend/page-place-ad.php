@@ -417,7 +417,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
                 /** @phpstan-ignore-next-line */
                 if ($pay_first && empty($transaction_errors)) {
                     return $this->checkout_step();
-                } else if (empty($transaction_errors)) { /** @phpstan-ignore-line */
+                } elseif (empty($transaction_errors)) { /** @phpstan-ignore-line */
                     return $this->details_step();
                 }
             }
@@ -462,9 +462,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if ( ! is_array( $categories ) && $categories ) {
             $most_specific_categories = array( intval( $categories ) );
-        } else if ( ! is_array( $categories ) ) {
+        } elseif ( ! is_array( $categories ) ) {
             $most_specific_categories = array();
-        } else if ( awpcp_is_array_of_arrays( $categories ) ) {
+        } elseif ( awpcp_is_array_of_arrays( $categories ) ) {
             $categories = array_map( 'array_filter', $categories );
             $categories = array_values( $categories );
 
@@ -542,7 +542,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if ($pay_first && $transaction->payment_is_not_required()) {
             return $this->details_step();
-        } else if ($transaction->payment_is_not_required()) {
+        } elseif ($transaction->payment_is_not_required()) {
             return $this->finish_step();
         }
 
@@ -665,7 +665,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $max_characters_in_body = $this->get_characters_allowed_in_content( $ad );
             $remaining_characters_in_body = $this->get_remaining_characters_in_content( $ad );
 
-        } else if (!is_null($transaction)) {
+        } elseif (!is_null($transaction)) {
             $term = $this->payments->get_transaction_payment_term($transaction);
             if ($term) {
                 $max_characters_in_title = $remaining_characters_in_title = $term->get_characters_allowed_in_title();
@@ -727,7 +727,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         if ( ! is_null( $ad ) ) {
             $payment_term = $this->listing_renderer->get_payment_term( $ad );
             $regions_allowed = $payment_term->get_regions_allowed();
-        } else if ( ! is_null( $transaction ) ) {
+        } elseif ( ! is_null( $transaction ) ) {
             $term = $this->payments->get_transaction_payment_term( $transaction );
             if ( $term ) {
                 $regions_allowed = $term->get_regions_allowed();
@@ -832,9 +832,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if ( $edit ) {
             $messages[] = __("Your Ad details have been filled out in the form below. Make any changes needed and then resubmit the Ad to update it.", 'another-wordpress-classifieds-plugin');
-        } else if ($is_admin_user) {
+        } elseif ($is_admin_user) {
             $messages[] = __("You are logged in as an administrator. Any payment steps will be skipped.", 'another-wordpress-classifieds-plugin');
-        } else if (empty($errors)) {
+        } elseif (empty($errors)) {
             $messages[] = __( "Fill out the form below to post your classified ad.", 'another-wordpress-classifieds-plugin' );
         }
 
@@ -859,9 +859,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if ( $ui['show-start-date-field'] && $ui['show-end-date-field'] ) {
             $ui['date-fields-title'] = __( 'Start & End Date', 'another-wordpress-classifieds-plugin' );
-        } else if ( $ui['show-start-date-field'] ) {
+        } elseif ( $ui['show-start-date-field'] ) {
             $ui['date-fields-title'] = __( 'Start Date', 'another-wordpress-classifieds-plugin' );
-        } else if ( $ui['show-end-date-field'] ) {
+        } elseif ( $ui['show-end-date-field'] ) {
             $ui['date-fields-title'] = __( 'End Date', 'another-wordpress-classifieds-plugin' );
         }
 
@@ -1056,7 +1056,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         // Check if email address entered is in a valid email address format
         if ( ! awpcp_is_valid_email_address( $data['ad_contact_email'] ) ) {
             $errors['ad_contact_email'] = __("The email address you entered was not a valid email address. Please check for errors and try again.", 'another-wordpress-classifieds-plugin');
-        } else if ( ! awpcp_is_email_address_allowed( $data['ad_contact_email'] ) ) {
+        } elseif ( ! awpcp_is_email_address_allowed( $data['ad_contact_email'] ) ) {
             $message = __( 'The email address you entered is not allowed in this website. Please use an email address from one of the following domains: %s.', 'another-wordpress-classifieds-plugin' );
             $domains_whitelist = explode( "\n", get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
             $domains_list = '<strong>' . implode( '</strong>, <strong>', $domains_whitelist ) . '</strong>';
@@ -1133,7 +1133,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             // backward compatibility with old extra fields
             if (function_exists('validate_extra_fields_form')) {
                 $_errors = validate_extra_fields_form($data['ad_category']);
-            } else if (function_exists('validate_x_form')) {
+            } elseif (function_exists('validate_x_form')) {
                 $_errors = validate_x_form();
             }
 
@@ -1311,7 +1311,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if ( awpcp_post_param('preview-hash', false) ) {
             return $this->preview_step();
-        } else if ( $this->should_show_upload_files_step( $ad ) ) {
+        } elseif ( $this->should_show_upload_files_step( $ad ) ) {
             return $this->upload_images_step();
         } elseif ( (bool) get_awpcp_option( 'pay-before-place-ad' ) ) {
             return $this->finish_step();
@@ -1374,9 +1374,9 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if ( $skip && $show_preview ) {
             return $this->preview_step();
-        } else if ( $skip && $pay_first ) {
+        } elseif ( $skip && $pay_first ) {
             return $this->finish_step();
-        } else if ( $skip ) {
+        } elseif ( $skip ) {
             return $this->checkout_step();
         } else {
             return $this->show_upload_images_form( $ad, $transaction, $params, array() );
@@ -1415,7 +1415,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if ( $show_preview ) {
             $next = _x( 'Preview Ad', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
-        } else if ( $pay_first || ! $payments_enabled ) {
+        } elseif ( $pay_first || ! $payments_enabled ) {
             $next = _x( 'Place Ad', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
         } else {
             $next = _x( 'Checkout', 'upload listing images form', 'another-wordpress-classifieds-plugin' );
@@ -1452,11 +1452,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         if ( isset( $_POST['edit-details'] ) ) {
             return $this->details_step();
-        } else if ( isset( $_POST['manage-images'] ) ) {
+        } elseif ( isset( $_POST['manage-images'] ) ) {
             return $this->upload_images_step();
-        } else if ( $pay_first && isset( $_POST['finish'] ) ) {
+        } elseif ( $pay_first && isset( $_POST['finish'] ) ) {
             return $this->finish_step();
-        } else if ( isset( $_POST['finish'] ) ) {
+        } elseif ( isset( $_POST['finish'] ) ) {
             return $this->checkout_step();
         } else {
             $payment_term = $this->listing_renderer->get_payment_term( $ad );

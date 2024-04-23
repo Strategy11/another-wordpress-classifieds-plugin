@@ -20,7 +20,7 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
-        $container['WordPressPageEvents'] = $container->service( function() {
+        $container['WordPressPageEvents'] = $container->service( function () {
             return new AWPCP_WordPressPageEvents();
         } );
 

@@ -20,7 +20,7 @@ class AWPCP_Filesystem {
     private function prepare_directory( $path ) {
         if ( ! is_dir( $path ) ) {
             return $this->create_directory( $path );
-        } else if ( ! is_writable( $path ) ) {
+        } elseif ( ! is_writable( $path ) ) {
             return $this->make_directory_writable( $path );
         } else {
             return $path;
@@ -33,13 +33,13 @@ class AWPCP_Filesystem {
         if ( ! wp_mkdir_p( $path ) ) {
             $message = __( 'There was a problem trying to create directory <directory-name>.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<directory-name>', awpcp_utf8_basename( $path ), $message );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         if ( ! @chown( $path, fileowner( WP_CONTENT_DIR ) ) ) {
             $message = __( 'There was a problem trying to change the owner of <directory-name>.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<directory-name>', awpcp_utf8_basename( $path ), $message );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         umask( $previous_umask );
@@ -61,7 +61,7 @@ class AWPCP_Filesystem {
         if ( ! $fileop->set_permission( $path, $this->get_default_directory_mode() ) ) {
             $message = __( 'There was a problem trying to make directory <directory-name> writable.', 'another-wordpress-classifieds-plugin' );
             $message = str_replace( '<directory-name>', awpcp_utf8_basename( $path ), $message );
-            throw new AWPCP_Exception( $message );
+            throw new AWPCP_Exception( esc_html( $message ) );
         }
 
         umask( $previous_umask );

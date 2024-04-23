@@ -47,7 +47,7 @@ class AWPCP_ExecuteListingActionAjaxHandler extends AWPCP_AjaxHandler {
         $listing_id = $this->request->post( 'listing_id' );
 
         if ( empty( $listing_id ) ) {
-            throw new AWPCP_Exception( __( 'No listing ID was provided.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'No listing ID was provided.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         $listing = $this->listings->get( $listing_id );
@@ -55,11 +55,11 @@ class AWPCP_ExecuteListingActionAjaxHandler extends AWPCP_AjaxHandler {
         $nonce   = $this->request->post( 'nonce' );
 
         if ( ! wp_verify_nonce( $nonce, "awpcp-listing-action-{$listing->ID}-{$action}" ) ) {
-            throw new AWPCP_Exception( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+            throw new AWPCP_Exception( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
         if ( ! has_filter( "awpcp-custom-listing-action-$action" ) ) {
-            throw new AWPCP_Exception( str_replace( '{action}', $action, __( 'Unknown action: {action}', 'another-wordpress-classifieds-plugin' ) ) );
+            throw new AWPCP_Exception( esc_html( str_replace( '{action}', $action, __( 'Unknown action: {action}', 'another-wordpress-classifieds-plugin' ) ) ) );
         }
 
         $response = apply_filters( "awpcp-custom-listing-action-$action", [], $listing );

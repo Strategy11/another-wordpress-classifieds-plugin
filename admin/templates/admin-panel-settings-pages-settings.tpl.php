@@ -1,6 +1,8 @@
 			<div class="metabox-holder">
 				<div class="postbox">
-					<h3 class="hndle"><span><?php _e('Restore AWPCP Pages', 'another-wordpress-classifieds-plugin') ?></span></h3>
+					<h3 class="hndle">
+						<span><?php esc_html_e('Restore AWPCP Pages', 'another-wordpress-classifieds-plugin') ?></span>
+					</h3>
 					<div class="inside">
 
 			<?php
@@ -16,7 +18,7 @@
 
 			<div class="error">
 			<?php if ( ! empty( $missing['not-found'] ) ): ?>
-				<p><?php _e( "The pages listed below are missing. The plugin is looking for a page with a particular ID but it seems that the page was permanently deleted. Please a select a new one.", 'another-wordpress-classifieds-plugin' ); ?></p>
+				<p><?php esc_html_e( 'The pages listed below are missing. The plugin is looking for a page with a particular ID but it seems that the page was permanently deleted. Please a select a new one.', 'another-wordpress-classifieds-plugin' ); ?></p>
 
 				<ul>
 				<?php foreach ( $missing['not-found'] as $page ): ?>
@@ -28,7 +30,7 @@
 			<?php endif; ?>
 
 			<?php if ( ! empty( $missing['not-published'] ) ): ?>
-				<p><?php _e( "The following pages are not published. Did you move them to the Trash by accident or saved them as Draft?", 'another-wordpress-classifieds-plugin' ); ?></p>
+				<p><?php esc_html_e( 'The following pages are not published. Did you move them to the Trash by accident or saved them as Draft?', 'another-wordpress-classifieds-plugin' ); ?></p>
 
 				<ul>
 				<?php foreach ( $missing['not-published'] as $page ): ?>
@@ -46,7 +48,7 @@
 			<?php endif; ?>
 
 			<?php if ( ! empty( $missing['not-referenced'] ) ): ?>
-				<p><?php _e( "The following pages are not currently assigned. Please select an existing page or create a new one to use as the following plugin pages:", 'another-wordpress-classifieds-plugin' ); ?></p>
+				<p><?php esc_html_e( 'The following pages are not currently assigned. Please select an existing page or create a new one to use as the following plugin pages:', 'another-wordpress-classifieds-plugin' ); ?></p>
 
 				<ul>
 				<?php foreach ( $missing['not-referenced'] as $page ): ?>
@@ -82,7 +84,7 @@
 
 			<form method="post">
 				<?php wp_nonce_field('awpcp-restore-pages'); ?>
-				<p><?php _e( 'Use the button below to have the plugin attempt to find the necessary pages. If you continue to have problems or seeing page related warnings above, you can delete affected plugin pages and use the Restore Pages button to have the plugin create them again.', 'another-wordpress-classifieds-plugin') ?></p>
+				<p><?php esc_html_e( 'Use the button below to have the plugin attempt to find the necessary pages. If you continue to have problems or seeing page related warnings above, you can delete affected plugin pages and use the Restore Pages button to have the plugin create them again.', 'another-wordpress-classifieds-plugin') ?></p>
 				<input type="submit" value="<?php echo esc_attr( __( 'Restore Pages', 'another-wordpress-classifieds-plugin' ) ); ?>" class="button-primary" id="submit" name="restore-pages">
 			</form>
 

@@ -47,6 +47,6 @@ class AWPCP_TextfieldSettingsRenderer {
         $html .= strlen( $setting['description'] ) > 20 ? '<br/>' : '&nbsp;';
         $html .= '<span class="description">' . $setting['description'] . '</span>';
 
-        echo $html; // XSS Ok.
+        echo $html;
     }
 }

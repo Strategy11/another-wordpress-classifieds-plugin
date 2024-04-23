@@ -117,6 +117,7 @@ class WP_Skeleton_Logger {
     }
 }
 
+// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 if (!function_exists('debug')) {
     function debugp($var = false) {
         $args = func_get_args();

@@ -34,7 +34,7 @@ class AWPCP_UsersCollection {
         $user = $this->find_by_id( $user_id, $fields );
 
         if ( is_null( $user ) ) {
-            throw new AWPCP_Exception( sprintf( 'No User was found with ID: %d.', $user_id ) );
+            throw new AWPCP_Exception( esc_html( sprintf( 'No User was found with ID: %d.', $user_id ) ) );
         }
 
         return $user;
