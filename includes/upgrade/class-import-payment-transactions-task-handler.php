@@ -7,11 +7,12 @@ class AWPCP_Import_Payment_Transactions_Task_Handler {
 
         $existing_transactions = $this->count_old_payment_transactions();
 
-        $query = 'SELECT option_name FROM ' . $wpdb->options . ' ';
-        $query.= "WHERE option_name LIKE 'awpcp-payment-transaction-%' ";
-        $query.= "LIMIT 0, 100";
-
-        $transactions = $wpdb->get_col($query);
+        $transactions = $wpdb->get_col(
+            'SELECT option_name FROM ' . $wpdb->options . ' ' .
+            'WHERE option_name LIKE %s ' .
+            'LIMIT 0, 100',
+            'awpcp-payment-transaction-%'
+        );
 
         foreach ($transactions as $option_name) {
             $option_name_parts = explode( '-', $option_name );
@@ -101,9 +102,12 @@ class AWPCP_Import_Payment_Transactions_Task_Handler {
     private function count_old_payment_transactions() {
         global $wpdb;
 
-        $query = 'SELECT COUNT(option_name) FROM ' . $wpdb->options . ' ';
-        $query.= "WHERE option_name LIKE 'awpcp-payment-transaction-%'";
-
-        return (int) $wpdb->get_var($query);
+        return (int) $wpdb->get_var(
+            $wpdb->prepare(
+                'SELECT COUNT(option_name) FROM ' . $wpdb->options .
+                ' WHERE option_name LIKE %s',
+                'awpcp-payment-transaction-%'
+            )
+        );
     }
 }

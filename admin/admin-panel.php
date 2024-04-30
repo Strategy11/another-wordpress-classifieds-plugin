@@ -686,8 +686,9 @@ function checkifclassifiedpage() {
 	global $wpdb;
 
 	$id = awpcp_get_page_id_by_ref( 'main-page-name' );
-	$query = 'SELECT ID FROM ' . $wpdb->posts . ' WHERE ID = %d';
-	$page_id = intval( $wpdb->get_var( $wpdb->prepare( $query, $id ) ) );
+	$page_id = intval( $wpdb->get_var(
+        $wpdb->prepare( 'SELECT ID FROM ' . $wpdb->posts . ' WHERE ID = %d', $id ) )
+    );
 
 	return $page_id === $id;
 }

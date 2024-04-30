@@ -14,11 +14,14 @@ class AWPCP_Migrate_Regions_Information_Task_Handler {
             $cursor = get_option( 'awpcp-migrate-regions-info-cursor', 0 );
             $total = $this->count_ads_pending_region_information_migration( $cursor );
 
-            $sql = 'SELECT ad_id, ad_country, ad_state, ad_city, ad_county_village ';
-            $sql.= 'FROM ' . AWPCP_TABLE_ADS . ' ';
-            $sql.= 'WHERE ad_id > %d ORDER BY ad_id LIMIT 0, 100';
-
-            $results = $wpdb->get_results( $wpdb->prepare( $sql, $cursor ) );
+            $results = $wpdb->get_results(
+                $wpdb->prepare(
+                    "SELECT ad_id, ad_country, ad_state, ad_city, ad_county_village FROM %i
+                    WHERE ad_id > %d ORDER BY ad_id LIMIT 0, 100",
+                    AWPCP_TABLE_ADS,
+                    $cursor
+                )
+            );
 
             $regions = awpcp_basic_regions_api();
             foreach ( $results as $ad ) {
@@ -58,9 +61,14 @@ class AWPCP_Migrate_Regions_Information_Task_Handler {
     private function count_ads_pending_region_information_migration($cursor) {
         global $wpdb;
 
-        $sql = 'SELECT COUNT(ad_id) FROM ' . AWPCP_TABLE_ADS . ' ';
-        $sql.= 'WHERE ad_id > %d';
-
-        return intval( $wpdb->get_var( $wpdb->prepare( $sql, $cursor ) ) );
+        return intval(
+            $wpdb->get_var(
+                $wpdb->prepare(
+                    'SELECT COUNT(ad_id) FROM %i WHERE ad_id > %d',
+                    AWPCP_TABLE_ADS,
+                    $cursor
+                )
+            )
+        );
     }
 }

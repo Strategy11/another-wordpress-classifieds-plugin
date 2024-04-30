@@ -15,16 +15,19 @@ function exclude_awpcp_child_pages($excluded=array()) {
 		return array();
 	}
 
-	$query = "SELECT ID FROM {$table_prefix}posts ";
-	$query.= "WHERE post_parent=$awpcp_page_id AND post_content LIKE '%AWPCP%'";
-
-	$child_pages = $wpdb->get_col( $query );
+	$child_pages = $wpdb->get_col(
+        $wpdb->prepare(
+            "SELECT ID FROM %i WHERE post_parent=%d AND post_content LIKE %s",
+            $table_prefix . 'posts',
+            $awpcp_page_id,
+            '%AWPCP%'
+        )
+    );
 
 	if ( is_array( $child_pages ) ) {
 		return array_merge( $child_pages, $excluded );
-	} else {
-		return $excluded;
 	}
+	return $excluded;
 }
 
 // PROGRAM FUNCTIONS
@@ -2308,7 +2311,9 @@ function awpcp_directory_permissions() {
  */
 function awpcp_table_exists($table) {
     global $wpdb;
-    $result = $wpdb->get_var("SHOW TABLES LIKE '" . $table . "'");
+    $result = $wpdb->get_var(
+        $wpdb->prepare( 'SHOW TABLES LIKE %i', $table )
+    );
     return strcasecmp($result, $table) === 0;
 }
 
@@ -2334,7 +2339,9 @@ function awpcp_check_if_column_exists( $table, $column ) {
     global $wpdb;
 
     $suppress_errors = $wpdb->suppress_errors();
-    $result = $wpdb->query("SELECT `$column` FROM $table");
+    $result = $wpdb->query(
+        $wpdb->prepare( "SELECT %i FROM %i", $column, $table )
+    );
     $wpdb->suppress_errors( $suppress_errors );
 
     return $result !== false;
@@ -3020,13 +3027,7 @@ function createdefaultcategory($idtomake,$titletocallit) {
     global $wpdb;
 
     $wpdb->insert( AWPCP_TABLE_CATEGORIES, array( 'category_name' => $titletocallit, 'category_parent_id' => 0 ) );
-
-    $query = 'UPDATE ' . AWPCP_TABLE_CATEGORIES . ' SET category_id = 1 WHERE category_id = %d';
-
-    // phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching
-    $wpdb->query(
-        $wpdb->prepare( $query, $wpdb->insert_id )
-    );
+    $wpdb->update( AWPCP_TABLE_CATEGORIES, array( 'category_id' => 1 ), array( 'category_id' => $wpdb->insert_id ) );
 }
 
 function create_ad_postedby_list($name) {
