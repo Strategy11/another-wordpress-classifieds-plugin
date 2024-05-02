@@ -122,9 +122,13 @@ class AWPCP_Payment_Transaction {
 
         if ( is_array( $created ) && ! empty( $created ) ) {
             // created[0] is the operator like =, >, <, etc.
+            if ( ! in_array( $created[0], array( '=', '!=', '>', '<', '>=', '<=' ) ) ) {
+                $created[0] = '=';
+            }
+
             // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
             $conditions[] = $wpdb->prepare( 'created ' . $created[0] . ' %s', $created[1] );
-        } elseif ( $created ) {
+        } elseif ( ! is_null( $created ) ) {
             $conditions[] = $wpdb->prepare( 'created = %s', $created );
         }
 
