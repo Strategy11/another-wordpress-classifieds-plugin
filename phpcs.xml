@@ -20,7 +20,6 @@
         <exclude name="Squiz.Commenting.FunctionComment" />
         <exclude name="WordPress.Files.FileName.InvalidClassFileName" />
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
-        <exclude name="WordPress.DB" />
         <exclude name="WordPress.PHP.YodaConditions.NotYoda" />
         <exclude name="Squiz.Commenting.VariableComment" />
         <exclude name="Squiz.Commenting.ClassComment" />

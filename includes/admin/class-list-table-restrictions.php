@@ -113,17 +113,16 @@ class AWPCP_ListTableRestrictions {
         $results   = wp_cache_get( $cache_key, 'awpcp-counts' );
 
         if ( ! is_array( $results ) ) {
-            $query = $wpdb->prepare(
-                "
-                SELECT post_status, COUNT( * ) AS num_posts
-                FROM {$wpdb->posts}
-                WHERE post_type = %s AND post_author = %d GROUP BY post_status
-                ",
-                $type,
-                $current_user_id
+            $results = $wpdb->get_results(
+                $wpdb->prepare(
+                    "SELECT post_status, COUNT( * ) AS num_posts
+                    FROM {$wpdb->posts}
+                    WHERE post_type = %s AND post_author = %d GROUP BY post_status",
+                    $type,
+                    $current_user_id
+                ),
+                ARRAY_A
             );
-
-            $results = $wpdb->get_results( $query, ARRAY_A );
 
             // This function is called on the Classifieds Ads admin page only.
             // This cache should prevent the query from being executed twice or

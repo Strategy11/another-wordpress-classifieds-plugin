@@ -16,3 +16,9 @@ if ( ! function_exists( 'is_post_type_viewable' ) ) {
         return $post_type_object->publicly_queryable || ( $post_type_object->_builtin && $post_type_object->public );
     }
 }
+
+if ( ! function_exists( 'wp_kses_post' ) ) {
+    function wp_kses_post( $data ) {
+        return $data;
+    }
+}

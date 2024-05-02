@@ -105,12 +105,13 @@ class AWPCP_Payment_Transaction {
             'user_id' => null,
         )));
 
-        $query = 'SELECT %s FROM ' . AWPCP_TABLE_PAYMENTS . ' ';
+        $query_vars = array( AWPCP_TABLE_PAYMENTS );
 
         if ($fields == 'count') {
-            $query = sprintf($query, 'COUNT(id)');
+            $query = $wpdb->prepare( 'SELECT COUNT(id) FROM %i', $query_vars );
         } else {
-            $query = sprintf($query, $fields);
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+            $query = $wpdb->prepare( 'SELECT ' . $fields . ' FROM %i', $query_vars );
         }
 
         if (is_array($status) && !empty($status)) {
@@ -119,29 +120,37 @@ class AWPCP_Payment_Transaction {
             $conditions[] = $wpdb->prepare('status = %s', $status);
         }
 
-        if (is_array($created) && !empty($created)) {
-            $conditions[] = $wpdb->prepare(sprintf('created %s %%s', $created[0]), $created[1]);
-        } elseif (!is_null($created)) {
-            $conditions[] = $wpdb->prepare('created = %s', $created);
+        if ( is_array( $created ) && ! empty( $created ) ) {
+            // created[0] is the operator like =, >, <, etc.
+            if ( ! in_array( $created[0], array( '=', '!=', '>', '<', '>=', '<=' ) ) ) {
+                $created[0] = '=';
+            }
+
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+            $conditions[] = $wpdb->prepare( 'created ' . $created[0] . ' %s', $created[1] );
+        } elseif ( ! is_null( $created ) ) {
+            $conditions[] = $wpdb->prepare( 'created = %s', $created );
         }
 
         if ( ! is_null( $user_id ) ) {
             $conditions[] = $wpdb->prepare( 'user_id = %d', $user_id );
         }
 
-        $query = sprintf("%s WHERE %s", $query, join(' AND ', $conditions));
-        $query = sprintf("%s ORDER BY id ASC", $query);
+        $query .= ' WHERE ' . join( ' AND ', $conditions );
+        $query .= ' ORDER BY id ASC';
 
-        if ($fields == 'count') {
+        if ( $fields === 'count' ) {
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
             return $wpdb->get_var( $query );
-        } else {
-            $results = array();
-            foreach ($wpdb->get_results($query, ARRAY_A) as $item) {
-                $results[] = new AWPCP_Payment_Transaction($item, true);
-            }
-
-            return $results;
         }
+
+        $results = array();
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+        foreach ( $wpdb->get_results( $query, ARRAY_A ) as $item ) {
+            $results[] = new AWPCP_Payment_Transaction($item, true);
+        }
+
+        return $results;
     }
 
 	public static function find_by_id($id) {
@@ -210,9 +219,7 @@ class AWPCP_Payment_Transaction {
     public function delete() {
         global $wpdb;
 
-        $query = 'DELETE FROM ' . AWPCP_TABLE_PAYMENTS . ' WHERE id = %s';
-
-        return $wpdb->query($wpdb->prepare($query, $this->id));
+        return $wpdb->delete( AWPCP_TABLE_PAYMENTS, array( 'id' => $this->id ) );
     }
 
 	/* Transaction Status */

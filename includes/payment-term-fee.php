@@ -65,47 +65,65 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
     public static function query( $args = array() ) {
         global $wpdb;
 
-        // phpcs:ignore WordPress.PHP.DontExtract.extract_extract
-        extract(
-            wp_parse_args(
-                $args,
-                array(
-                    'fields'  => '*',
-                    'where'   => '1 = 1',
-                    'orderby' => 'adterm_name',
-                    'order'   => 'asc',
-                    'offset'  => 0,
-                    'limit'   => 0,
-                )
+        $args = wp_parse_args(
+            $args,
+            array(
+                'fields'  => '*',
+                'where'   => array( '1 = %d', 1 ),
+                'orderby' => 'adterm_name',
+                'order'   => 'asc',
+                'offset'  => 0,
+                'limit'   => 0,
             )
         );
 
-        $query = 'SELECT %s FROM ' . AWPCP_TABLE_ADFEES . ' ';
+        $query_vars = array( AWPCP_TABLE_ADFEES );
 
-        if ( $fields === 'count' ) {
-            $query = sprintf( $query, 'COUNT(adterm_id)' );
-            $limit = 0;
-        } else {
-            $fields .= ', CASE rec_increment ';
-            $fields .= "WHEN 'D' THEN 1 ";
-            $fields .= "WHEN 'W' THEN 2 ";
-            $fields .= "WHEN 'M' THEN 3 ";
-            $fields .= "WHEN 'Y' THEN 4 END AS _duration_interval ";
-            $query   = sprintf( $query, $fields );
+        if ( is_array( $args['where'] ) ) {
+            $original_where = $args['where'];
+            $args['where']  = $args['where'][0];
+            $query_vars = array_merge( $query_vars, array_slice( $original_where, 1 ) );
         }
 
-        $query .= sprintf( 'WHERE %s ', $where );
-        $query .= sprintf( 'ORDER BY %s %s ', $orderby, strtoupper( $order ) );
+        $query_vars[] = $args['orderby'];
 
-        if ( $limit > 0 ) {
-            $query .= $wpdb->prepare( 'LIMIT %d, %d', $offset, $limit );
+        if ( $args['fields'] === 'count' ) {
+            return $wpdb->get_var(
+                $wpdb->prepare(
+                    // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+                    'SELECT COUNT(adterm_id) FROM %i WHERE ' . $args['where'] . ' ORDER BY %i ' . strtoupper( $args['order'] ),
+                    $query_vars
+                )
+            );
         }
 
-        if ( $fields === 'count' ) {
-            return $wpdb->get_var( $query );
+        // Add fields to beginning of the array.
+        array_unshift( $query_vars, $args['fields'] );
+
+        if ( $args['limit'] > 0 ) {
+            $query_vars[] = $args['offset'];
+            $query_vars[] = $args['limit'];
         }
 
-        $items = $wpdb->get_results( $query );
+        $order = strtolower( $args['order'] ) === 'desc' ? 'DESC' : 'ASC';
+
+        $items = $wpdb->get_results(
+            $wpdb->prepare(
+                'SELECT %i, CASE rec_increment ' .
+                "WHEN 'D' THEN 1 " .
+                "WHEN 'W' THEN 2 " .
+                "WHEN 'M' THEN 3 " .
+                "WHEN 'Y' THEN 4 END AS _duration_interval " .
+                ' FROM %i ' .
+                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+                ' WHERE ' . $args['where'] .
+                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+                ' ORDER BY %i ' . $order .
+                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+                ( $args['limit'] > 0 ? ' LIMIT %d, %d' : '' ),
+                $query_vars
+            )
+        );
 
         $results = array();
         foreach ( $items as $item ) {
@@ -116,7 +134,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
     }
 
     public static function find_by_id( $id ) {
-        $args = array( 'where' => sprintf( 'adterm_id = %d', absint( $id ) ) );
+        $args = array( 'where' => array( 'adterm_id = %d', absint( $id ) ) );
         $fees = self::query( $args );
         return ! empty( $fees ) ? array_shift( $fees ) : null;
     }
@@ -150,9 +168,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             return false;
         }
 
-        $query  = 'DELETE FROM ' . AWPCP_TABLE_ADFEES . ' WHERE adterm_id = %d';
-        $result = $wpdb->query( $wpdb->prepare( $query, $id ) );
-
+        $result = $wpdb->delete( AWPCP_TABLE_ADFEES, array( 'adterm_id' => $id ) );
         return $result !== false;
     }
 

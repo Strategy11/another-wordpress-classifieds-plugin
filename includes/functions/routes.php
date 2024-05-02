@@ -36,9 +36,12 @@ function awpcp_get_page_id( $name ) {
     global $wpdb;
 
     if ( ! empty( $name ) ) {
-        $sql = "SELECT ID FROM {$wpdb->posts} WHERE post_name = '$name'";
-        $id = $wpdb->get_var( $sql );
-        return $id;
+        return $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s",
+                $name
+            )
+        );
     }
 
     return 0;

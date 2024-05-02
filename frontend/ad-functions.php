@@ -12,8 +12,12 @@
 function awpcp_get_fees() {
 	global $wpdb;
 
-	$sql = 'SELECT * FROM ' . AWPCP_TABLE_ADFEES . ' ORDER BY adterm_name ASC';
-	$results = $wpdb->get_results($sql);
+	$results = $wpdb->get_results(
+		$wpdb->prepare(
+			'SELECT * FROM %i ORDER BY adterm_name ASC',
+			AWPCP_TABLE_ADFEES
+		)
+	);
 
 	return is_array($results) ? $results : array();
 }
