@@ -714,6 +714,7 @@ function awpcp_fix_table_charset_and_collate($tables) {
 
         $wpdb->query(
             $wpdb->prepare(
+                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
                 "ALTER TABLE %i " . join( ', ', $parts ),
                 $query_vars
             )

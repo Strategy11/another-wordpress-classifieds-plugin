@@ -105,6 +105,8 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             $query_vars[] = $args['limit'];
         }
 
+        $order = strtolower( $args['order'] ) === 'desc' ? 'DESC' : 'ASC';
+
         $items = $wpdb->get_results(
             $wpdb->prepare(
                 'SELECT %i, CASE rec_increment ' .
@@ -115,7 +117,8 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
                 ' FROM %i ' .
                 // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
                 ' WHERE ' . $args['where'] .
-                ' ORDER BY %i ' . strtoupper( $args['order'] ) .
+                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+                ' ORDER BY %i ' . $order .
                 // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
                 ( $args['limit'] > 0 ? ' LIMIT %d, %d' : '' ),
                 $query_vars
