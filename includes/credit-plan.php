@@ -42,41 +42,47 @@ class AWPCP_CreditPlan {
         global $wpdb;
 
         extract(wp_parse_args($args, array(
-            'fields' => '*',
-            'where' => '1 = 1',
+            'fields'  => '*',
+            'where'   => '1 = 1',
             'orderby' => 'name',
-            'order' => 'asc',
-            'offset' => 0,
+            'order'   => 'asc',
+            'offset'  => 0,
             'limit'   => 0,
         )));
 
-        $query = 'SELECT %s FROM ' . AWPCP_TABLE_CREDIT_PLANS . ' ';
+        $query_vars = array( AWPCP_TABLE_CREDIT_PLANS );
 
-        if ($fields == 'count') {
-            $query = sprintf($query, 'COUNT(id)');
+        if ( $fields == 'count' ) {
+            $query = 'SELECT COUNT(id) FROM %i';
             $limit = 0;
         } else {
-            $query = sprintf($query, $fields);
+            $query = 'SELECT ' . $fields . ' FROM %i';
         }
 
-        $query.= sprintf('WHERE %s ', $where);
-        $query.= sprintf('ORDER BY %s %s ', $orderby, strtoupper($order));
+        $query .= ' WHERE ' . $where;
+        $query .= ' ORDER BY %i ' . strtoupper( $order );
+        $query_vars[] = $orderby;
 
-        if ($limit > 0)
-            $query.= sprintf('LIMIT %s, %s', $offset, $limit);
-
-        if ($fields == 'count') {
-            return $wpdb->get_var($query);
-        } else {
-            $items = $wpdb->get_results($query);
-            $results = array();
-
-            foreach($items as $item) {
-                $results[] = new AWPCP_CreditPlan( (array) $item );
-            }
-
-            return $results;
+        if ( $limit > 0 ) {
+            $query.= ' LIMIT %d, %d';
+            $query_vars[] = $offset;
+            $query_vars[] = $limit;
         }
+
+        if ( $fields === 'count' ) {
+            // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+            return $wpdb->get_var( $wpdb->prepare( $query, $query_vars ) );
+        }
+
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+        $items = $wpdb->get_results( $wpdb->prepare( $query, $query_vars ) );
+        $results = array();
+
+        foreach($items as $item) {
+            $results[] = new AWPCP_CreditPlan( (array) $item );
+        }
+
+        return $results;
     }
 
     public static function find($conditions=array()) {
@@ -154,9 +160,7 @@ class AWPCP_CreditPlan {
             return false;
         }
 
-        $query = 'DELETE FROM ' . AWPCP_TABLE_CREDIT_PLANS . ' WHERE id = %d';
-        $result = $wpdb->query($wpdb->prepare($query, $id));
-
+        $result = $wpdb->delete( AWPCP_TABLE_CREDIT_PLANS, array( 'id' => $id ) );
         return $result !== false;
     }
 

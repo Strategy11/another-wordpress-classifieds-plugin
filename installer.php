@@ -148,7 +148,12 @@ class AWPCP_Installer {
         dbDelta( $this->plugin_tables->get_tasks_table_definition() );
 
         // insert default Fee
-        $fee = $wpdb->get_results( 'SELECT * FROM ' . AWPCP_TABLE_ADFEES . ' WHERE adterm_id = 1' );
+        $fee = $wpdb->get_results(
+            $wpdb->prepare(
+                'SELECT * FROM %i WHERE adterm_id = 1',
+                AWPCP_TABLE_ADFEES
+            )
+        );
         if ( empty( $fee ) ) {
             $data = array(
                 'adterm_id' => 1,
@@ -207,55 +212,6 @@ class AWPCP_Installer {
     private function get_upgrade_routines() {
         // You have to use at least major.minor.patch version numbers.
         return array(
-            '2.0.0' => 'upgrade_to_2_0_0',
-            '2.0.1' => 'upgrade_to_2_0_1',
-            '2.0.5' => 'upgrade_to_2_0_5',
-            '2.0.6' => 'upgrade_to_2_0_6',
-            '2.0.7' => 'upgrade_to_2_0_7',
-            '2.1.3' => 'upgrade_to_2_1_3',
-            '2.2.1' => 'upgrade_to_2_2_1',
-            '3.0.0-beta23' => 'upgrade_to_3_0_0',
-            '3.0.2' => 'upgrade_to_3_0_2',
-            '3.2.2' => 'upgrade_to_3_2_2',
-            '3.3.2' => 'upgrade_to_3_3_2',
-            '3.3.3' => 'upgrade_to_3_3_3',
-            '3.4.0' => 'upgrade_to_3_4',
-            '3.5.3' => 'upgrade_to_3_5_3',
-            '3.6.4' => array(
-                'create_tasks_table',
-                'create_metadata_column_in_media_table',
-                'create_regions_column_in_fees_table',
-                'create_description_column_in_fees_table',
-                'try_to_convert_tables_to_utf8mb4',
-                'allow_null_values_in_user_id_column_in_payments_table',
-            ),
-            '3.6.4.1' => array(
-                'create_tasks_table',
-                'create_metadata_column_in_media_table',
-                'create_regions_column_in_fees_table',
-                'create_description_column_in_fees_table',
-                'try_to_convert_tables_to_utf8mb4',
-                'allow_null_values_in_user_id_column_in_payments_table',
-            ),
-            '3.7.1' => array(
-                'create_phone_number_digits_column',
-                'enable_upgrade_task_to_store_phone_number_digits',
-            ),
-            '3.7.2' => array(
-                'set_flag_to_store_browse_categories_page_information',
-                'set_flag_to_maybe_fix_browse_categories_page_information',
-            ),
-            '3.7.4' => array(
-                'set_flag_to_show_missing_paypal_merchant_id_setting_notice',
-            ),
-            '3.8.5' => array(
-                'remove_fulltext_index_from_listings_table',
-                'convert_tables_to_innodb',
-                'create_listings_table_if_missing',
-            ),
-            '3.8.6' => array(
-                'migrate_facebook_integration_settings',
-            ),
             '4.0.0beta1' => array(
                 'create_old_listing_id_column_in_listing_regions_table',
                 'migrate_wordpress_page_settings',
@@ -309,495 +265,23 @@ class AWPCP_Installer {
         );
     }
 
-    private function upgrade_to_2_0_0($version) {
-        global $awpcp;
-        // Change Expired Ad subject line setting
-        if (version_compare($version, '1.9.9.4 beta') <= 0) {
-            $awpcp->settings->update_option('adexpiredsubjectline',
-                'Your classifieds listing at %s has expired', $force=true);
-        }
-    }
-
-    private function upgrade_to_2_0_1($version) {
-        global $wpdb;
-
-        // update CHARSET and COLLATE values for standard AWPCP tables and columns
-        $tables = $wpdb->get_col("SHOW TABLES LIKE '%_awpcp_%'");
-        awpcp_fix_table_charset_and_collate($tables);
-    }
-
-    private function upgrade_to_2_0_5($version) {
-        global $wpdb, $awpcp;
-
-        $translations = array(
-            'userpagename' => 'main-page-name',
-            'showadspagename' => 'show-ads-page-name',
-            'placeadpagename' => 'place-ad-page-name',
-            'editadpagename' => 'edit-ad-page-name',
-            'page-name-renew-ad' => 'renew-ad-page-name',
-            'replytoadpagename' => 'reply-to-ad-page-name',
-            'browseadspagename' => 'browse-ads-page-name',
-            'searchadspagename' => 'search-ads-page-name',
-            'browsecatspagename' => 'browse-categories-page-name',
-            'categoriesviewpagename' => 'view-categories-page-name',
-            'paymentthankyoupagename' => 'payment-thankyou-page-name',
-            'paymentcancelpagename'   => 'payment-cancel-page-name',
-        );
-
-        // Users who upgraded from 1.8.9.4 to 2.0.4 have an installation
-        // with no AWPCP pages. The pages exist, but are not recognized
-        // by the plugin.
-        foreach ($translations as $old => $new) {
-            $page_id = awpcp_get_page_id_by_ref( $new );
-
-            if ( $page_id > 0 ) {
-                continue;
-            }
-
-            // Let's try to find the pages using the old AND new names
-            foreach (array($old, $new) as $option) {
-                // The setting doesn't exist. Nothing to do.
-                $name = $awpcp->settings->get_option($option, null);
-                if ($name == null) {
-                    continue;
-                }
-
-                $sanitized = sanitize_title($name);
-                $sql = "SELECT ID FROM $wpdb->posts WHERE post_name = %s AND post_type = 'page'";
-
-                $id = intval($wpdb->get_var($wpdb->prepare($sql, $sanitized)));
-                $id = $id > 0 ? $id : -1;
-
-                awpcp_update_plugin_page_id( $new, $id );
-
-                if ($id > 0) {
-                    $awpcp->settings->update_option($new, $name, true);
-                    break;
-                }
-            }
-        }
-
-        // Since pages automatic creation is not enabled, we need to create the
-        // Renew Ad page manually.
-        $plugin_pages = awpcp_pages();
-
-        awpcp_create_subpage(
-            'renew-ad-page-name',
-            $plugin_pages['renew-ad-page-name'][0],
-            '[AWPCP-RENEW-AD]'
-        );
-    }
-
-    private function upgrade_to_2_0_6($version) {
-        global $awpcp;
-
-        // force disable recurring payments
-        $awpcp->settings->update_option('paypalpaymentsrecurring', 0, true);
-        $awpcp->settings->update_option('twocheckoutpaymentsrecurring', 0, true);
-    }
-
-    private function upgrade_to_2_0_7($version) {
-        global $wpdb;
-        global $awpcp;
-
-        // change Ad's title CSS class to avoid problems with Ad Blocker extensions
-        $value = $awpcp->settings->get_option('awpcpshowtheadlayout');
-        $value = preg_replace('/<div class="adtitle">/', '<div class="awpcp-title">', $value);
-        $awpcp->settings->update_option('awpcpshowtheadlayout', $value);
-
-        if ( ! awpcp_column_exists( AWPCP_TABLE_ADPHOTOS, 'is_primary' ) ) {
-            $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADPHOTOS . "  ADD `is_primary` TINYINT(1) NOT NULL DEFAULT 0");
-        }
-
-        // add character limit to Fee plans
-        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'characters_allowed' ) ) {
-            $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADFEES . "  ADD `characters_allowed` INT(1) NOT NULL DEFAULT 0");
-        }
-
-        $fees = awpcp_get_fees();
-        $characters_allowed = get_awpcp_option('maxcharactersallowed', 0);
-        foreach ($fees as $fee) {
-            $sql = 'UPDATE ' . AWPCP_TABLE_ADFEES . ' SET characters_allowed = %d WHERE adterm_id = %d';
-            $wpdb->query($wpdb->prepare($sql, $characters_allowed, $fee->adterm_id));
-        }
-    }
-
-    private function upgrade_to_2_1_3($version) {
-        global $wpdb;
-
-        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'renewed_date' ) ) {
-            $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `renewed_date` DATETIME");
-        }
-    }
-
-    private function upgrade_to_2_2_1($version) {
-        global $wpdb;
-
-        // Upgrade posterip for IPv6 address space
-        if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'posterip' ) ) {
-            $sql = $this->database_helper->replace_charset_and_collate( "ALTER TABLE " . AWPCP_TABLE_ADS . "  MODIFY `posterip` VARCHAR(50) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT ''" );
-            $wpdb->query( $sql );
-        }
-    }
-
-    private function upgrade_to_2_2_2($version) {
-        global $wpdb;
-
-        // Users who installed (not upgraded) version 2.2.1 got a posterip field
-        // that does not support more than 15 caharacters. We need to
-        // upgrade the field again
-        // https://github.com/drodenbaugh/awpcp/issues/347#issuecomment-13159975
-        if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'posterip' ) ) {
-            $sql = $this->database_helper->replace_charset_and_collate( "ALTER TABLE " . AWPCP_TABLE_ADS . "  MODIFY `posterip` VARCHAR(50) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT ''" );
-            $wpdb->query( $sql );
-        }
-    }
-
-    private function upgrade_to_3_0_0($version) {
-        global $wpdb, $awpcp;
-
-        /* Create Credit Plans table */
-        dbDelta( $this->plugin_tables->get_credit_plans_table_definition() );
-
-        /* Create Payments table and tell AWPCP to migrate Payment Transactions information */
-        dbDelta( $this->plugin_tables->get_payments_table_definition() );
-
-        /* Add payment_term_type columns to Ads table */
-
-        if ( ! awpcp_column_exists( AWPCP_TABLE_ADS, 'payment_term_type' ) ) {
-            $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADS . "  ADD `payment_term_type` VARCHAR(64) NOT NULL DEFAULT 'fee'");
-        }
-
-        /* Add credits, private, title_characters columns to Fees table */
-
-        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'credits' ) ) {
-            $wpdb->query("ALTER TABLE " . AWPCP_TABLE_ADFEES . "  ADD `credits` INT(10) NOT NULL DEFAULT 0");
-        }
-
-        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'private' )   ) {
-            $wpdb->query( "ALTER TABLE " . AWPCP_TABLE_ADFEES . " ADD `private` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0" );
-        }
-
-        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'title_characters' )   ) {
-            $wpdb->query( "ALTER TABLE " . AWPCP_TABLE_ADFEES . " ADD `title_characters` INT(1) NOT NULL DEFAULT 0" );
-        }
-
-        /* Remove widget options that can break the Latest Ads Widget */
-        $widget = get_option( 'widget_awpcp-latest-ads' );
-        unset( $widget[0] );
-        update_option( 'widget_awpcp-latest-ads', $widget );
-
-        /* Increase min image file size */
-        $size = $awpcp->settings->get_option( 'maximagesize', 150000 );
-        if ( $size == 150000 ) {
-            $awpcp->settings->update_option( 'maximagesize', 1048576 );
-        }
-
-        if ( is_null( $awpcp->settings->get_option( 'show-widget-modification-notice', null ) ) ) {
-            $awpcp->settings->update_option('show-widget-modification-notice', true, true);
-        }
-
-        $query = "SELECT option_name FROM $wpdb->options ";
-        $query.= "WHERE option_name LIKE 'awpcp-payment-transaction-%' ";
-        $query.= "LIMIT 0, 100";
-
-        $transactions = $wpdb->get_results( $query );
-
-        if ( count( $transactions ) > 0 ) {
-            update_option('awpcp-import-payment-transactions', true);
-            update_option('awpcp-pending-manual-upgrade', true);
-        }
-    }
-
-    private function upgrade_to_3_0_2($oldversion) {
-        global $wpdb;
-
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
-        $manual_upgrade_required = false;
-        $settings = awpcp()->settings;
-
-        // fix for all Ads being (visually) marked as featured (part of #527).
-        $layout = $settings->get_option( 'displayadlayoutcode' );
-        $layout = str_replace( 'awpcp_featured_ad_wrapper', '$isfeaturedclass', $layout );
-        $settings->update_option( 'displayadlayoutcode', $layout );
-
-        // create awpcp_ad_regions table
-        dbDelta( $this->plugin_tables->get_listing_regions_table_definition() );
-
-        // create awpcp_media table
-        dbDelta( $this->plugin_tables->get_media_table_definition() );
-
-        // Create ad metadata table.
-        dbDelta( $this->plugin_tables->get_listing_meta_table_definition() );
-
-        // migrate old regions
-        if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'ad_country' )   ) {
-            update_option( 'awpcp-migrate-regions-information', true );
-
-            // the following option was used as the cursor during the first
-            // upgrade. However, we had to rollback some of the modifications
-            // and the upgrade had to be run again. The new cursor is:
-            // 'awpcp-migrate-regions-info-cursor'.
-            delete_option( 'awpcp-migrate-regions-information-cursor' );
-
-            $manual_upgrade_required = true;
-        }
-
-        // migrate media regions
-        if ( awpcp_table_exists( AWPCP_TABLE_ADPHOTOS ) ) {
-            update_option( 'awpcp-migrate-media-information', true );
-
-            $manual_upgrade_required = true;
-        }
-
-        // add columns required for email verification feature
-        $this->columns->create( AWPCP_TABLE_ADS, 'verified', "TINYINT(1) NOT NULL DEFAULT 1" );
-        $this->columns->create( AWPCP_TABLE_ADS, 'verified_at', "DATETIME" );
-
-        // add payer email column
-        $column_definition = $this->database_helper->replace_charset_and_collate( "VARCHAR(255) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '' AFTER `payment_status`" );
-        $this->columns->create( AWPCP_TABLE_ADS, 'payer_email', $column_definition );
-        $this->columns->create( AWPCP_TABLE_PAYMENTS, 'payment_gateway', $column_definition );
-        $this->columns->create( AWPCP_TABLE_PAYMENTS, 'payer_email', $column_definition );
-
-        if ( awpcp_column_exists( AWPCP_TABLE_ADS, 'payer_email' )   ) {
-            $wpdb->query( "UPDATE " . AWPCP_TABLE_ADS . " SET payer_email = ad_contact_email" );
-        }
-
-        if ( $manual_upgrade_required ) {
-            update_option( 'awpcp-pending-manual-upgrade', true );
-        }
-    }
-
-    private function upgrade_to_3_2_2( $oldversion ) {
-        global $wpdb;
-
-        if ( ! awpcp_column_exists( AWPCP_TABLE_MEDIA, 'status' ) ) {
-            $sql = 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . ' ADD `status` VARCHAR(20) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT %s AFTER `enabled`';
-            $sql = $wpdb->prepare( $sql, AWPCP_Attachment_Status::STATUS_APPROVED );
-            $sql = $this->database_helper->replace_charset_and_collate( $sql );
-            $wpdb->query( $sql );
-        }
-
-        if ( get_awpcp_option( 'imagesapprove' ) ) {
-            update_option( 'awpcp-update-media-status', true );
-            update_option( 'awpcp-pending-manual-upgrade', true );
-        }
-    }
-
-    private function upgrade_to_3_3_2( $oldversion ) {
-        // create tasks table
-        dbDelta( $this->plugin_tables->get_tasks_table_definition() );
-    }
-
-    private function upgrade_to_3_3_3( $oldversion ) {
-        update_option( 'awpcp-flush-rewrite-rules', true );
-    }
-
-    private function upgrade_to_3_4( $oldversion ) {
-        $show_currency_symbol = awpcp()->settings->get_option( 'show-currency-symbol' );
-        if ( is_numeric( $show_currency_symbol ) && $show_currency_symbol ) {
-            awpcp()->settings->update_option( 'show-currency-symbol', 'show-currency-symbol-on-left' );
-        } elseif ( is_numeric( $show_currency_symbol ) ) {
-            awpcp()->settings->update_option( 'show-currency-symbol', 'do-not-show-currency-symbol' );
-        }
-    }
-
-    /**
-     */
-    private function upgrade_to_3_5_3( $oldversion ) {
-        global $wpdb;
-
-        $plugin_pages = get_option( 'awpcp-plugin-pages', array() );
-
-        if ( empty( $plugin_pages ) ) {
-            // move plugin pages info from PAGES table to awpcp-plugin-pages option
-            $pages = $wpdb->get_results( 'SELECT page, id FROM ' . AWPCP_TABLE_PAGES, OBJECT_K );
-            foreach ( $pages as $page_ref => $page_info ) {
-                awpcp_update_plugin_page_id( $page_ref, $page_info->id );
-            }
-        }
-
-        // make sure there are entries for 'view-categories-page-name' in the plugin pages info
-        $plugin_pages = get_option( 'awpcp-plugin-pages', array() );
-
-        if ( isset( $plugin_pages['view-categories-page-name'] ) ) {
-            unset( $plugin_pages['view-categories-page-name'] );
-            awpcp_update_plugin_pages_info( $plugin_pages );
-        }
-
-        // drop no longer used PAGENAME table
-        $wpdb->query( 'DROP TABLE IF EXISTS ' . AWPCP_TABLE_PAGENAME );
-    }
-
-    private function create_tasks_table( $oldversion ) {
-        // create tasks table if missing
-        // https://github.com/drodenbaugh/awpcp/issues/1246
-        dbDelta( $this->plugin_tables->get_tasks_table_definition() );
-    }
-
-    private function create_metadata_column_in_media_table( $oldversion ) {
-        global $wpdb;
-
-        if ( ! awpcp_column_exists( AWPCP_TABLE_MEDIA, 'metadata' ) ) {
-            $sql = $this->database_helper->replace_charset_and_collate( 'ALTER TABLE ' . AWPCP_TABLE_MEDIA . " ADD `metadata` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '' AFTER `is_primary`" );
-            $wpdb->query( $sql );
-        }
-    }
-
-    private function create_regions_column_in_fees_table( $oldversion ) {
-        global $wpdb;
-
-        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'regions' ) ) {
-            $query = 'ALTER TABLE ' . AWPCP_TABLE_ADFEES . ' ADD `regions` INT(10) NOT NULL DEFAULT 1 AFTER `imagesallowed`';
-            $wpdb->query( $query );
-        }
-    }
-
-    private function create_description_column_in_fees_table( $oldversion ) {
-        global $wpdb;
-
-        if ( ! awpcp_column_exists( AWPCP_TABLE_ADFEES, 'description' ) ) {
-            $sql = $this->database_helper->replace_charset_and_collate( 'ALTER TABLE ' . AWPCP_TABLE_ADFEES . ' ADD `description` TEXT CHARACTER SET <charset> COLLATE <collate> NOT NULL AFTER `adterm_name`' );
-            $wpdb->query( $sql );
-        }
-    }
-
-    private function try_to_convert_tables_to_utf8mb4( $oldversion ) {
-        global $wpdb;
-
-        if ( $wpdb->charset !== 'utf8mb4' ) {
-            return;
-        }
-
-        if ( ! function_exists( 'maybe_convert_table_to_utf8mb4' ) ) {
-            return;
-        }
-
-        $plugin_tables = $wpdb->get_col( "SHOW TABLES LIKE '%awpcp_%'" );
-
-        foreach ( $plugin_tables as $table_name ) {
-            maybe_convert_table_to_utf8mb4( $table_name );
-        }
-    }
-
-    private function allow_null_values_in_user_id_column_in_payments_table( $oldversion ) {
-        global $wpdb;
-
-        if ( awpcp_column_exists( AWPCP_TABLE_PAYMENTS, 'user_id' ) ) {
-            $wpdb->query(  'ALTER TABLE ' . AWPCP_TABLE_PAYMENTS . ' CHANGE user_id user_id INT( 10 ) NULL'  );
-        }
-    }
-
-    private function create_phone_number_digits_column( $oldversion ) {
-        if ( ! awpcp_table_exists( AWPCP_TABLE_ADS ) ) {
-            return;
-        }
-
-        $this->columns->create(
-            AWPCP_TABLE_ADS,
-            'phone_number_digits',
-            $this->database_helper->replace_charset_and_collate(
-                "VARCHAR(25) CHARACTER SET <charset> COLLATE <collate> NOT NULL DEFAULT '' AFTER `ad_contact_phone`"
-            )
-        );
-    }
-
-    private function enable_upgrade_task_to_store_phone_number_digits() {
-        if ( ! awpcp_table_exists( AWPCP_TABLE_ADS ) ) {
-            return;
-        }
-
-        $this->upgrade_tasks->enable_upgrade_task( 'awpcp-store-phone-number-digits' );
-    }
-
-    private function set_flag_to_store_browse_categories_page_information() {
-        update_option( 'awpcp-store-browse-categories-page-information', true, false );
-    }
-
-    private function set_flag_to_maybe_fix_browse_categories_page_information() {
-        update_option( 'awpcp-maybe-fix-browse-categories-page-information', true, false );
-    }
-
-    private function set_flag_to_show_missing_paypal_merchant_id_setting_notice() {
-        update_option( 'awpcp-show-missing-paypal-merchant-id-setting-notice', true, false );
-    }
-
-    private function remove_fulltext_index_from_listings_table() {
-        global $wpdb;
-
-        $indexes = $wpdb->get_results( "SHOW INDEX FROM wp_awpcp_ads WHERE key_name = 'titdes'" );
-
-        if ( is_array( $indexes ) && count( $indexes ) ) {
-            $wpdb->query( 'ALTER TABLE ' . AWPCP_TABLE_ADS . '  DROP INDEX `titdes`' );
-        }
-    }
-
-    private function convert_tables_to_innodb() {
-        global $wpdb;
-
-        $tables = $wpdb->get_col( "SHOW TABLES LIKE '%_awpcp_%'" );
-
-        foreach ( $tables as $table ) {
-            $wpdb->query( sprintf( 'ALTER TABLE %s ENGINE=InnoDB', $table ) );
-        }
-    }
-
-    private function create_listings_table_if_missing() {
-        if ( ! awpcp_table_exists( AWPCP_TABLE_ADS ) ) {
-            dbDelta( $this->plugin_tables->get_listings_table_definition() );
-        }
-    }
-
-    /**
-     * @since 3.8.6
-     */
-    private function migrate_facebook_integration_settings() {
-        $settings = awpcp()->settings;
-        $config   = get_option( 'awpcp-facebook-config', array() );
-
-        if ( ! empty( $config['app_id'] ) ) {
-            $settings->set_or_update_option( 'facebook-app-id', $config['app_id'] );
-        }
-
-        if ( ! empty( $config['app_secret'] ) ) {
-            $settings->set_or_update_option( 'facebook-app-secret', $config['app_secret'] );
-        }
-
-        if ( ! empty( $config['user_token'] ) ) {
-            $settings->set_or_update_option( 'facebook-user-access-token', $config['user_token'] );
-        }
-
-        if ( ! empty( $config['page_id'] ) ) {
-            $settings->set_or_update_option( 'facebook-page', $config['page_id'] . '|' . $config['page_token'] );
-        }
-
-        if ( ! empty( $config['page_token'] ) ) {
-            $settings->set_or_update_option( 'facebook-page-access-token', $config['page_token'] );
-        }
-
-        if ( ! empty( $config['group_id'] ) ) {
-            $settings->set_or_update_option( 'facebook-group', $config['group_id'] );
-        }
-
-        if ( ! empty( $config['app_id'] ) && ! empty( $config['app_secret'] ) && ! empty( $config['user_token'] ) ) {
-            $settings->set_or_update_option( 'clear-facebook-cache-for-ads-pages', true );
-        }
-
-        if ( ! empty( $config['app_id'] ) && ! empty( $config['app_secret'] ) ) {
-            $settings->set_or_update_option( 'facebook-integration-method', 'facebook-api' );
-        }
-    }
-
     private function create_old_listing_id_column_in_listing_regions_table() {
         global $wpdb;
 
         if ( ! awpcp_column_exists( AWPCP_TABLE_AD_REGIONS, 'old_listing_id' ) ) {
-            $wpdb->query( 'ALTER TABLE ' . AWPCP_TABLE_AD_REGIONS . ' ADD `old_listing_id` INT(10) NOT NULL AFTER `ad_id`' );
+            $wpdb->query(
+                $wpdb->prepare(
+                    'ALTER TABLE %i ADD `old_listing_id` INT(10) NOT NULL AFTER `ad_id`',
+                    AWPCP_TABLE_AD_REGIONS
+                )
+            );
         }
 
-        $wpdb->query( 'UPDATE ' . AWPCP_TABLE_AD_REGIONS . ' SET `old_listing_id` = `ad_id` WHERE old_listing_id = 0' );
+        $wpdb->update(
+            AWPCP_TABLE_AD_REGIONS,
+            array( 'old_listing_id' => 'ad_id' ),
+            array( 'old_listing_id' => 0 )
+        );
     }
 
     private function migrate_wordpress_page_settings() {
@@ -1171,8 +655,12 @@ class AWPCP_Installer {
         global $wpdb;
 
         if ( awpcp_column_exists( AWPCP_TABLE_ADFEES, 'amount' ) ) {
-            $sql = $this->database_helper->replace_charset_and_collate( 'ALTER TABLE ' . AWPCP_TABLE_ADFEES . ' MODIFY `amount` FLOAT(10,2) UNSIGNED NOT NULL DEFAULT 0.00' );
-            $wpdb->query( $sql );
+            $wpdb->query(
+                $wpdb->prepare(
+                    'ALTER TABLE %i MODIFY `amount` FLOAT(10,2) UNSIGNED NOT NULL DEFAULT 0.00',
+                    AWPCP_TABLE_ADFEES
+                )
+            );
         }
     }
 }
@@ -1188,23 +676,35 @@ function awpcp_fix_table_charset_and_collate($tables) {
     $types = array('varchar', 'char', 'text', 'enum', 'set');
 
     foreach ($tables as $table) {
-        $sql = "ALTER TABLE `$table` CHARACTER SET utf8 COLLATE utf8_general_ci";
-        $wpdb->query($sql);
+        $wpdb->query(
+            $wpdb->prepare( "ALTER TABLE %i CHARACTER SET utf8 COLLATE utf8_general_ci", $table ),
+        );
 
-        $sql = "SHOW COLUMNS FROM `$table`";
-        $columns = $wpdb->get_results($sql, ARRAY_N);
+        $columns = $wpdb->get_results(
+            $wpdb->prepare( "SHOW COLUMNS FROM %i", $table ),
+            ARRAY_N
+        );
 
-        $parts = array();
+        $parts      = array();
+        $query_vars = array( $table );
         foreach ($columns as $col) {
             foreach ($types as $type) {
                 if (strpos($col[1], $type) !== false) {
-                    $definition = "CHANGE `$col[0]` `$col[0]` $col[1] ";
+                    $definition = 'CHANGE %i %i %i ';
+                    $query_vars[] = $col[0];
+                    $query_vars[] = $col[0];
+                    $query_vars[] = $col[1];
                     $definition.= "CHARACTER SET utf8 COLLATE utf8_general_ci ";
                     $definition.= strcasecmp($col[2], 'NO') === 0 ? 'NOT NULL ' : '';
 
                     // TEXT columns can't have a default value in Strict mode.
                     if ( $type !== 'text' ) {
-                        $definition.= strcasecmp($col[4], 'NULL') === 0 ? 'DEFAULT NULL' : "DEFAULT '$col[4]'";
+                        if ( strcasecmp( $col[4], 'NULL' ) === 0 ) {
+                            $definition .= 'DEFAULT NULL';
+                        } else {
+                            $definition .= 'DEFAULT %s';
+                            $query_vars[] = $col[4];
+                        }
                     }
                     $parts[] = $definition;
                     break;
@@ -1212,7 +712,11 @@ function awpcp_fix_table_charset_and_collate($tables) {
             }
         }
 
-        $sql = "ALTER TABLE `$table` " . join(', ', $parts);
-        $wpdb->query($sql);
+        $wpdb->query(
+            $wpdb->prepare(
+                "ALTER TABLE %i " . join( ', ', $parts ),
+                $query_vars
+            )
+        );
     }
 }
