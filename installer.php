@@ -677,7 +677,7 @@ function awpcp_fix_table_charset_and_collate($tables) {
 
     foreach ($tables as $table) {
         $wpdb->query(
-            $wpdb->prepare( "ALTER TABLE %i CHARACTER SET utf8 COLLATE utf8_general_ci", $table ),
+            $wpdb->prepare( "ALTER TABLE %i CHARACTER SET utf8 COLLATE utf8_general_ci", $table )
         );
 
         $columns = $wpdb->get_results(
