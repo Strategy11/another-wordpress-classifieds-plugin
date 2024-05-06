@@ -1775,7 +1775,9 @@ function awpcp_print_message( $message, $class = array( 'awpcp-updated', 'notice
     }
 
 	$class = array_merge(array('awpcp-message'), $class);
-	return '<div class="' . esc_attr( join( ' ', $class ) ) . '"><p>' . wp_kses_post( $message ) . '</p></div>';
+	return '<div class="' . esc_attr( join( ' ', $class ) ) . '">' .
+        '<p>' . wp_kses_post( $message ) . '</p>' .
+        '</div>';
 }
 
 function awpcp_print_error($message) {
@@ -1924,7 +1926,7 @@ function awpcp_html_attributes( $attributes ) {
     }
 
     foreach ( $attributes as $name => $value ) {
-        $output[] = sprintf( '%s="%s"', $name, $value );
+        $output[] = sprintf( '%s="%s"', esc_attr( $name ), esc_attr( $value ) );
     }
 
     return implode( ' ', $output );
@@ -1980,7 +1982,7 @@ function awpcp_html_label( $params ) {
 
     $element = '<label <attributes>><text></label>';
     $element = str_replace( '<attributes>', $attributes, $element );
-    $element = str_replace( '<text>', $params['text'], $element );
+    $element = str_replace( '<text>', wp_kses_post( $params['text'] ), $element );
 
     return $element;
 }
@@ -2247,12 +2249,12 @@ function awpcp_html_heading( $params ) {
     $params['attributes'] = awpcp_parse_html_attributes( $params['attributes'] );
 
     $element = '<<heading-tag> <heading-attributes>><content></<heading-tag>>';
-    $element = str_replace( '<heading-tag>', $params['tag'], $element );
+    $element = str_replace( '<heading-tag>', esc_attr( $params['tag'] ), $element );
     $element = str_replace( '<heading-attributes>', awpcp_html_attributes( $params['attributes'] ), $element );
     $element = str_replace( '<content>', $params['content'], $element );
 
     if ( $params['echo'] ) {
-        echo $element;
+        echo wp_kses_post( $element );
         return;
     }
 
@@ -2896,6 +2898,38 @@ function awpcp_is_filename_already_used( $filename, $directories ) {
     }
 
     return false;
+}
+
+/**
+ * @since x.x
+ *
+ * @param string $file
+ * @param bool   $echo
+ * @param array  $args The variables to substitute into the query's placeholders
+ *                        if being called with an array of arguments, or the first variable
+ *                        to substitute into the query's placeholders if being called with individual arguments.
+ *
+ * @return string
+ */
+function awpcp_get_file_contents( $file, $args ) {
+    if ( ! is_file( $file ) ) {
+        return '';
+    }
+
+    // phpcs:ignore WordPress.PHP.DontExtract
+    extract( $args );
+
+    if ( ! empty( $args['echo'] ) ) {
+        include $file;
+        return '';
+    }
+
+    ob_start();
+    include $file;
+    $contents = ob_get_contents();
+    ob_end_clean();
+
+    return $contents;
 }
 
 /**

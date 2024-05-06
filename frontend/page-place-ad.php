@@ -40,6 +40,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     protected $payments;
     protected $wordpress;
     protected $request;
+    protected $transaction;
 
     public function __construct( $page, $title, $attachments, $listing_upload_limits, $authorization, $listing_renderer, $listings_logic, $listings, $payments, $template_renderer, $wordpress ) {
         parent::__construct( $page, $title, $template_renderer );

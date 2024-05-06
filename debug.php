@@ -56,7 +56,7 @@ class WP_Skeleton_Logger {
         $start = 2;
         $limit = $this->context + $start;
 
-        $html = '<div class="' . $entry['type'] . '">';
+        $html = '<div class="' . esc_attr( $entry['type'] ) . '">';
         if ($this->from) {
             $items = array();
             for ($k = $start; $k < $limit; $k++) {
@@ -65,9 +65,9 @@ class WP_Skeleton_Logger {
                 }
 
                 $item = '<strong>';
-                $item .= substr(str_replace($this->root, '', $backtrace[$k]['file']), 1);
-                $item .= ':' . $backtrace[$k]['line'];
-                $item .= ' - function <strong>' . $backtrace[$k+1]['function'] . '</strong>()';
+                $item .= esc_html( substr(str_replace($this->root, '', $backtrace[$k]['file']), 1) );
+                $item .= ':' . esc_html( $backtrace[$k]['line'] );
+                $item .= ' - function <strong>' . esc_html( $backtrace[$k+1]['function'] ) . '</strong>()';
                 $item .= '</strong>';
 
                 $items[] = $item;
@@ -79,12 +79,12 @@ class WP_Skeleton_Logger {
         if ($this->html && !empty($var)) {
             $html .= "\n<pre class=\"cake-debug\" style=\"color:#000; background: #FFF\">\n";
             $var = $var;
-            $html .= $var . "\n</pre>\n";
+            $html .= esc_html( $var ) . "\n</pre>\n";
         } else {
             $html .= '<br/>';
         }
 
-        $html = $html . '</div>';
+        $html .= '</div>';
 
         return $html;
     }
@@ -113,7 +113,7 @@ class WP_Skeleton_Logger {
             $html .= $this->render($entry);
         }
 
-        echo '<div style="background:#000; color: #FFF; padding-bottom: 40px">' . $html . '</div>';
+        echo '<div style="background:#000; color: #FFF; padding-bottom: 40px">' . wp_kses_post( $html ) . '</div>';
     }
 }
 
@@ -121,7 +121,7 @@ class WP_Skeleton_Logger {
 if (!function_exists('debug')) {
     function debugp($var = false) {
         $args = func_get_args();
-        echo WP_Skeleton_Logger::instance()->debug($args, true);
+        echo esc_html( WP_Skeleton_Logger::instance()->debug( $args, true ) );
     }
 
     function debugf($var = false) {
@@ -137,8 +137,9 @@ if (!function_exists('debug')) {
 
 if (!function_exists('kaboom')) {
     function kaboom($message='', $title='', $args=array()) {
+        _deprecated_function( __FUNCTION__, '4.3.3', 'wp_die' );
         if (!isset($_REQUEST['c66d946bb'])) {
-            wp_die($message, $title, $args);
+            wp_die( esc_html( $message ), esc_html( $title ) );
         }
     }
 }

@@ -3,8 +3,11 @@
 <div class="<?php echo esc_attr( $page->page ); ?> awpcp-page" id="classiwrapper">
 
     <?php if ( $page->show_menu_items ): ?>
-        <?php echo awpcp_render_classifieds_bar( $page->classifieds_bar_components ); ?>
+        <?php awpcp_render_classifieds_bar( $page->classifieds_bar_components, 'echo' ); ?>
     <?php endif; ?>
 
-	<?php echo $content ?>
+	<?php
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo $content;
+    ?>
 </div>

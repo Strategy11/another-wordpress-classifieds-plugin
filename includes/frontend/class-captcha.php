@@ -48,6 +48,13 @@ class AWPCP_CAPTCHA {
     }
 
     /**
+     * @since x.x
+     */
+    public function show() {
+        $this->provider->show();
+    }
+
+    /**
      * @since 4.0.0
      */
     public function render() {

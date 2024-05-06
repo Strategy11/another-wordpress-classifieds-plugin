@@ -14,9 +14,16 @@ interface AWPCP_ReCAPTCHADelegate {
     public function enqueue_scripts( $site_key );
 
     /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_recaptcha( $site_key );
+
+    /**
      * @since 4.0.0
      */
-    public function get_recaptcha_html( $site_key );
+    public function get_recaptcha_html( $site_key, $echo = '' );
 
     /**
      * @since 4.0.0

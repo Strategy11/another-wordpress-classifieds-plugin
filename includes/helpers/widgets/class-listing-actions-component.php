@@ -18,6 +18,18 @@ function awpcp_listing_actions_component() {
  */
 class AWPCP_ListingActionsComponent {
 
+    /**
+     * Show the component.
+     *
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show( $listing ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $this->render( $listing );
+    }
+
     public function render( $listing ) {
         $actions = apply_filters( 'awpcp-listing-actions', array(), $listing );
 

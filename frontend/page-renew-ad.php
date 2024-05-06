@@ -30,6 +30,8 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
 
     public $messages = array();
 
+    protected $ad = null;
+
     protected function get_panel_url() {
         if ( awpcp_current_user_is_moderator() ) {
             return awpcp_get_admin_listings_url();
@@ -38,9 +40,6 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
     }
 
     public function get_ad() {
-        if (!isset($this->ad))
-            $this->ad = null;
-
         if ( ! is_null( $this->ad ) ) {
             return $this->ad;
         }
@@ -157,9 +156,11 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
     }
 
     public function render_finish_step($ad) {
-        $response = __( "The Ad has been successfully renewed. New expiration date is %s.", 'another-wordpress-classifieds-plugin' );
-        $response = sprintf( $response, $this->listing_renderer->get_end_date( $ad ) );
-        $response = sprintf( "%s %s.", $response, $this->get_return_link( $ad ) );
+        $response = sprintf(
+            __( 'The Ad has been successfully renewed. New expiration date is %s.', 'another-wordpress-classifieds-plugin' ),
+            $this->listing_renderer->get_end_date( $ad )
+        );
+        $response .= ' ' . $this->get_return_link( $ad );
 
         $params = compact('response');
         $template = AWPCP_DIR . '/frontend/templates/page-renew-ad-finish-step.tpl.php';
@@ -182,6 +183,7 @@ class AWPCP_RenewAdPageImplementation {
     public $messages = array();
 
     private $page;
+    private $listings_logic;
     private $listing_renderer;
     private $payments;
 

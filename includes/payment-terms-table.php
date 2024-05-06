@@ -7,6 +7,11 @@ class AWPCP_PaymentTermsTable {
 
     protected $term = null;
 
+    /**
+     * @var bool
+     */
+    protected $echo = false;
+
     public function __construct($items, $default=null) {
         foreach ($items as $type => $terms) {
             $this->items = array_merge($this->items, $terms);
@@ -73,6 +78,17 @@ class AWPCP_PaymentTermsTable {
         return trim($name, '- ');
     }
 
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_item_attributes( $item ) {
+        $this->echo = true;
+        $this->item_attributes( $item );
+        $this->echo = false;
+    }
+
     public function item_attributes($item) {
         $attrs = array(
             'class' => 'awpcp-payment-term',
@@ -82,51 +98,71 @@ class AWPCP_PaymentTermsTable {
             'data-categories' => esc_attr( json_encode( array_map( 'absint', $item->categories ) ) ),
         );
 
-        return awpcp_html_attributes($attrs);
+        if ( $this->echo ) {
+            echo awpcp_html_attributes( $attrs );
+            return;
+        }
+        return awpcp_html_attributes( $attrs );
+    }
+
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_item_column( $item, $column ) {
+        $this->echo = true;
+        $this->item_column( $item, $column );
+        $this->echo = false;
     }
 
     public function item_column($item, $column) {
         switch ($column) {
             case 'name':
                 if ( $item->description ) {
-                    $description = sprintf( '%s<p>%s</p>', esc_html( $item->get_name() ), esc_html( $item->description ) );
+                    $return = sprintf( '%s<p>%s</p>', esc_html( $item->get_name() ), esc_html( $item->description ) );
                 } else {
-                    $description = esc_html( $item->get_name() );
+                    $return = esc_html( $item->get_name() );
                 }
-                return $description;
 
             case 'ads':
-                return esc_html( $item->get_allowed_ads_count() );
+                $return = esc_html( $item->get_allowed_ads_count() );
 
             case 'images':
-                return esc_html( $item->images );
+                $return = esc_html( $item->images );
 
             case 'title_characters':
                 $characters = $item->get_characters_allowed_in_title();
                 $characters = empty( $characters ) ? _x( 'No Limit', 'payment term duration', 'another-wordpress-classifieds-plugin' ) : $characters;
-                return esc_html( $characters );
+                $return     = esc_html( $characters );
 
             case 'characters':
                 $characters = $item->get_characters_allowed();
                 $characters = empty( $characters ) ? _x( 'No Limit', 'payment term duration', 'another-wordpress-classifieds-plugin' ) : $characters;
-                return esc_html( $characters );
+                $return     = esc_html( $characters );
 
             case 'duration':
-                return esc_html( $item->get_duration() );
+                $return = esc_html( $item->get_duration() );
 
             case 'price':
-                return $this->render_payment_option(
+                $return = $this->render_payment_option(
                     $this->item_id( $item, AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY ),
                     awpcp_format_money( $item->price ),
                     $this->selected
                 );
 
             case 'credits':
-                return $this->render_payment_option(
+                $return = $this->render_payment_option(
                     $this->item_id( $item, AWPCP_Payment_Transaction::PAYMENT_TYPE_CREDITS ),
                     number_format( $item->credits, 0 ),
                     $this->selected
                 );
+        }
+
+        if ( $this->echo ) {
+            echo $return;
+        } else {
+            return $return;
         }
     }
 

@@ -57,7 +57,10 @@
 					// unwanted behaviours.
 				?>
 
-				<?php echo $output; ?>
+				<?php
+				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				echo $output;
+				?>
 
 				<?php if ( $output ) : ?>
 				<p class="submit">

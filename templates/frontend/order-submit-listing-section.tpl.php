@@ -27,8 +27,7 @@
 
                     $params = apply_filters( 'awpcp_post_listing_categories_selector_args', $params );
 
-                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                    echo awpcp_categories_selector()->render( $params );
+                    awpcp_categories_selector()->show( $params );
                     awpcp_show_form_error( 'category', $form_errors );
                     ?>
                 </div>
@@ -36,17 +35,18 @@
                 <div class="awpcp-form-spacer<?php echo $show_user_field ? '' : esc_attr( ' awpcp-hidden' ); ?>">
                     <?php
                     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                    echo awpcp()->container['UserSelector']->render(
+                    awpcp()->container['UserSelector']->render(
                         [
-                            'required'                   => true,
-                            'selected'                   => awpcp_array_data( 'user', '', $form ),
-                            'label'                      => _x( 'Who is the owner of this ad?', 'order submit listing section', 'another-wordpress-classifieds-plugin' ),
-                            'default'                    => $show_user_field ? __( 'Please select a user', 'another-wordpress-classifieds-plugin' ) : '',
-                            'id'                         => 'ad-user-id',
-                            'name'                       => 'user',
-                            'class'                      => array( 'awpcp-user-selector' ),
-                            'include_selected_user_only' => ! $show_user_field,
-                            'include_full_user_information' => $show_user_field,
+                            'required'                      => true,
+                            'selected'                      => awpcp_array_data( 'user', '', $form ),
+                            'label'                         => esc_html__( 'Who is the owner of this ad?', 'another-wordpress-classifieds-plugin' ),
+                            'default'                       => $show_user_field ? esc_html__( 'Please select a user', 'another-wordpress-classifieds-plugin' ) : '',
+                            'id'                            => 'ad-user-id',
+                            'name'                          => 'user',
+                            'class'                         => array( 'awpcp-user-selector' ),
+                            'include_selected_user_only'    => (bool) ! $show_user_field,
+                            'include_full_user_information' => (bool) $show_user_field,
+                            'echo'                          => true,
                         ]
                     );
 
@@ -69,8 +69,7 @@
 
                 <?php if ( $show_captcha ) : ?>
                 <div class="awpcp-form-spacer awpcp-captcha">
-                    <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-                    <?php echo $captcha->render(); ?>
+                    <?php $captcha->show(); ?>
                     <?php awpcp_show_form_error( 'captcha', $form_errors ); ?>
                 </div>
                 <?php endif; ?>

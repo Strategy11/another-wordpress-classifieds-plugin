@@ -4,7 +4,10 @@
  */
 
 ?><div class="awpcp-listing-actions-component">
-<?php foreach ( $actions as $action ) : ?>
-    <?php echo $action->render( $listing ); ?>
-<?php endforeach; ?>
+<?php
+foreach ( $actions as $action ) :
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo $action->render( $listing );
+endforeach;
+?>
 </div>

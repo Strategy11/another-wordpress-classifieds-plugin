@@ -13,7 +13,7 @@ echo PHP_EOL;
 ?>
 
 <?php foreach ( $other_attachments as $attachment ): ?>
-- <?php echo $attachment->post_title . PHP_EOL; ?>
+- <?php echo esc_html( $attachment->post_title ) . PHP_EOL; ?>
 <?php endforeach; ?>
 <?php endif; ?>
 <?php if ( $attachments_awaiting_approval ): ?>
@@ -27,7 +27,7 @@ echo PHP_EOL;
 ?>
 
 <?php foreach ( $attachments_awaiting_approval as $attachment ): ?>
-- <?php echo $attachment->post_title . PHP_EOL; ?>
+- <?php echo esc_html( $attachment->post_title ) . PHP_EOL; ?>
 <?php endforeach; ?>
 <?php endif; ?>
 

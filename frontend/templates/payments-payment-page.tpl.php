@@ -4,7 +4,7 @@
 
 <h3><?php esc_html_e( 'Payment Terms', 'another-wordpress-classifieds-plugin' ); ?></h3>
 
-<?php echo $this->render_account_balance(); ?>
+<?php $this->show_account_balance(); ?>
 
 <?php echo $this->render_transaction_items($transaction); ?>
 

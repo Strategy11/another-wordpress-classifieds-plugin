@@ -3,7 +3,10 @@
 
 <?php esc_html_e( "There was a problem during a customer's attempt to submit payment. Transaction details are shown below", 'another-wordpress-classifieds-plugin' ); ?>
 
-<?php printf( "\t%s", $message ); ?>
+<?php
+echo "\t";
+echo wp_kses_post( $message );
+?>
 
 <?php if ($user): ?>
 <?php esc_html_e( 'User Name', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $user->display_name ); ?>

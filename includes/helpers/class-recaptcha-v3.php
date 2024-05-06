@@ -32,14 +32,28 @@ class AWPCP_ReCAPTCHAv3 implements AWPCP_ReCAPTCHADelegate {
     }
 
     /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_recaptcha( $site_key ) {
+        $this->get_recaptcha_html( $site_key, 'echo' );
+    }
+
+    /**
      * @since 3.9.4
      */
-    public function get_recaptcha_html( $site_key ) {
-        $template  = '<div class="awpcp-recaptcha-action" data-name="awpcp_submit" data-sitekey="%s">';
+    public function get_recaptcha_html( $site_key, $echo = '' ) {
+        $template  = '<div class="awpcp-recaptcha-action" data-name="awpcp_submit" data-sitekey="' . esc_attr( $site_key ) . '">';
         $template .= '<input type="hidden" name="awpcp_recaptcha_v3_response" />';
         $template .= '</div>';
 
-        return sprintf( $template, $site_key );
+        if ( $echo ) {
+            echo $template;
+            return;
+        }
+
+        return $template;
     }
 
     /**

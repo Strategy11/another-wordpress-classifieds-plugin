@@ -2,7 +2,7 @@
 
 <?php
     if ( get_awpcp_option( 'show-create-listing-form-steps' ) ) {
-        echo awpcp_render_listing_form_steps( 'login' );
+        awpcp_listing_form_steps_componponent()->show( 'login' );
     }
 ?>
 

@@ -34,10 +34,30 @@ class AWPCP_ReCAPTCHAv2 implements AWPCP_ReCAPTCHADelegate {
     }
 
     /**
-     * @since 4.0.0
+     * @since x.x
+     *
+     * @return void
      */
-    public function get_recaptcha_html( $site_key ) {
-        return '<div class="g-recaptcha awpcp-recaptcha" data-sitekey="' . esc_attr( $site_key ) . '"></div>';
+    public function show_recaptcha( $site_key ) {
+        $this->get_recaptcha_html( $site_key, 'echo' );
+    }
+
+    /**
+     * @since 4.0.0
+     *
+     * @param string $site_key
+     * @param string $echo
+     *
+     * @return string|void
+     */
+    public function get_recaptcha_html( $site_key, $echo = '' ) {
+        $html = '<div class="g-recaptcha awpcp-recaptcha" data-sitekey="' . esc_attr( $site_key ) . '"></div>';
+        if ( $echo ) {
+            echo $html;
+            return;
+        }
+
+        return $html;
     }
 
     public function get_recaptcha_response() {

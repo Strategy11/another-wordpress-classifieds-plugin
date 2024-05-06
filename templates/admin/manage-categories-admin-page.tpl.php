@@ -19,18 +19,18 @@
                 <div class="inside">
                     <div class="form-wrap">
                     <form id="awpcp_launch" class="awpcp-manage-categories-category-form" method="post">
-                        <input type="hidden" name="awpcp-action" value="<?php echo $form_values['action']; ?>" />
-                        <input type="hidden" name="category_id" value="<?php echo $form_values['category_id']; ?>" />
-                        <input type="hidden" name="aeaction" value="<?php echo $form_values['action']; ?>" />
+                        <input type="hidden" name="awpcp-action" value="<?php echo esc_attr( $form_values['action'] ); ?>" />
+                        <input type="hidden" name="category_id" value="<?php echo esc_attr( $form_values['category_id'] ); ?>" />
+                        <input type="hidden" name="aeaction" value="<?php echo esc_attr( $form_values['action'] ); ?>" />
                         <input type="hidden" name="awpcp-cat-form-nonce" value="<?php echo esc_attr( $form_values['nonce'] ); ?>" />
-                        <input type="hidden" name="offset" value="<?php echo $offset; ?>" />
-                        <input type="hidden" name="results" value="<?php echo $results; ?>" />
+                        <input type="hidden" name="offset" value="<?php echo esc_attr( $offset ); ?>" />
+                        <input type="hidden" name="results" value="<?php echo esc_attr( $results ); ?>" />
 
                         <div class="l-awpcp-row">
                             <div class="l-awpcp-column-50">
                                 <div class="form-field form-required">
                                     <label for="m-awpcp-category-form__name-field"><?php esc_html_e( 'Name', 'another-wordpress-classifieds-plugin' ); ?></label>
-                                    <input name="category_name" id="m-awpcp-category-form__name-field" type="text" value="<?php echo $form_values['category_name']; ?>" size="40" aria-required="true">
+                                    <input name="category_name" id="m-awpcp-category-form__name-field" type="text" value="<?php echo esc_attr( $form_values['category_name'] ); ?>" size="40" aria-required="true">
                                 </div>
 
                                 <div class="form-field">
@@ -76,7 +76,10 @@
             <span><?php esc_html_e( 'Icon Meanings:', 'another-wordpress-classifieds-plugin' ); ?></span>
         </li>
     <?php foreach ( $icons as $icon ) : ?>
-        <li class="awpcp-manage-categories-icons-meaning-icon"><i class="<?php echo esc_attr( $icon['class'] ); ?>"></i><span><?php echo $icon['label']; ?></span></li>
+        <li class="awpcp-manage-categories-icons-meaning-icon">
+            <i class="<?php echo esc_attr( $icon['class'] ); ?>"></i>
+            <span><?php echo esc_html( $icon['label'] ); ?></span>
+        </li>
     <?php endforeach; ?>
     </ul>
 </div>
@@ -95,7 +98,10 @@
         <label><input type="radio" name="movedeleteads" value="2" ><?php esc_html_e( 'Delete ads too', 'another-wordpress-classifieds-plugin' ); ?></label>
     </p>
 
-    <?php echo $pager1; ?>
+    <?php
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo $pager1;
+    ?>
 
     <p>
         <input type="hidden" name="awpcp-multiple-form-nonce" value="<?php echo esc_attr( $multi_form_nonce ); ?>">
@@ -129,7 +135,10 @@
             <td style="width:15%;padding:5px;;"><?php esc_html_e( 'Action', 'another-wordpress-classifieds-plugin' ); ?></td>
         </tr>
 
-        <?php echo smart_table2( $items, 1, '', '', false ); ?>
+        <?php
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo smart_table2( $items, 1, '', '', false );
+        ?>
 
         <tr>
             <td style="padding:5px"></td>
@@ -141,4 +150,7 @@
         </tr>
     </table>
 </form>
-<?php echo $pager2; ?>
+<?php
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo $pager2;
+?>

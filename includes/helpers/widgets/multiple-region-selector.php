@@ -31,6 +31,11 @@ class AWPCP_MultipleRegionSelector {
     public $regions = array();
 
     /**
+     * @var bool
+     */
+    private $echo = false;
+
+    /**
      * @param array $regions    An array of already selected regions.
      * @param array $options    An array of options.
      */
@@ -98,6 +103,21 @@ class AWPCP_MultipleRegionSelector {
     private function get_region_field_options( $context, $type, $selected, $hierarchy ) {
         $options = apply_filters( 'awpcp-region-field-options', false, $context, $type, $selected, $hierarchy );
         return $options;
+    }
+
+    /**
+     * @since x.x
+     *
+     * @param string $context      'search' or 'details'
+     * @param array  $translations A region type => field name map.
+     * @param array  $errors       An array of form errors.
+     *
+     * @return void
+     */
+    public function show( $context, $translations = array(), $errors = array() ) {
+        $this->echo = true;
+        $this->render( $context, $translations, $errors );
+        $this->echo = false;
     }
 
     /**
@@ -177,6 +197,11 @@ class AWPCP_MultipleRegionSelector {
         ];
 
         awpcp()->js->set( "multiple-region-selector-$uuid", $configuration );
+
+        if ( $this->echo ) {
+            include $this->template;
+            return;
+        }
 
         ob_start();
         include $this->template;

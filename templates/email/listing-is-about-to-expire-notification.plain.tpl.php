@@ -1,4 +1,7 @@
-<?php echo $introduction; ?>
+<?php
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo $introduction;
+?>
 
 <?php esc_html_e( 'Listing Details are below:', 'another-wordpress-classifieds-plugin' ); ?>
 
@@ -9,6 +12,6 @@
 <?php
 printf(
 	esc_html__( 'You can renew your Ad visiting this link: %s', 'another-wordpress-classifieds-plugin' ),
-	$renew_url
+	esc_url_raw( $renew_url )
 );
 ?>

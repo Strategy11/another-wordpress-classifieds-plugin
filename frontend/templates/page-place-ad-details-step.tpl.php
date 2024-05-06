@@ -8,22 +8,23 @@
 ?><h2><?php echo esc_html( __( 'Enter Ad Details', 'another-wordpress-classifieds-plugin' ) ); ?></h2>
 
 <?php
-    if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
-        echo awpcp_render_listing_form_steps( 'listing-information', $transaction );
-    }
+if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
+    awpcp_listing_form_steps_componponent()->show( 'listing-information', compact( 'transaction' ) );
+}
+
+foreach ( $messages as $message ) {
+    echo awpcp_print_message( $message );
+}
+
+awpcp_print_form_errors( $errors );
+
+if ( $ui['listing-actions'] ) :
+    awpcp_listing_actions_component()->show(
+        $listing,
+        array( 'hidden-params' => $hidden, 'current_url' => $page->url() )
+    );
+endif;
 ?>
-
-<?php
-    foreach ($messages as $message) {
-        echo awpcp_print_message($message);
-    }
-
-    awpcp_print_form_errors( $errors );
-?>
-
-<?php if ($ui['listing-actions']): ?>
-<?php echo awpcp_listing_actions_component()->render( $listing, array( 'hidden-params' => $hidden, 'current_url' => $page->url() ) ); ?>
-<?php endif ?>
 
 <!-- TODO: check where is used $formdisplayvalue -->
 <div>
@@ -35,17 +36,20 @@
         <h3><?php echo esc_html( __( 'Ad Owner', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
         <p class="awpcp-form-spacer">
             <?php
-                echo awpcp_users_field()->render( array(
+            awpcp_users_field()->show(
+                array(
                     'required' => awpcp_get_option( 'requireuserregistration' ),
                     'selected' => awpcp_array_data( 'user_id', $edit ? null : '', $form ),
-                    'label' => __( 'User', 'another-wordpress-classifieds-plugin' ),
-                    'default' => __( 'Select an User owner for this Ad', 'another-wordpress-classifieds-plugin' ),
-                    'id' => 'ad-user-id',
-                    'name' => 'user',
-                    'class' => array( 'awpcp-users-dropdown', 'awpcp-dropdown' ),
-                ) );
+                    'label'    => __( 'User', 'another-wordpress-classifieds-plugin' ),
+                    'default'  => __( 'Select an User owner for this Ad', 'another-wordpress-classifieds-plugin' ),
+                    'id'       => 'ad-user-id',
+                    'name'     => 'user',
+                    'class'    => array( 'awpcp-users-dropdown', 'awpcp-dropdown' ),
+                )
+            );
+
+            awpcp_show_form_error( 'user', $errors );
             ?>
-            <?php awpcp_show_form_error( 'user', $errors ); ?>
         </p>
 
         <?php endif; ?>
@@ -79,12 +83,14 @@
         <?php if ($ui['category-field']): ?>
         <div class="awpcp-form-spacer">
             <?php
-                echo awpcp_categories_selector()->render(array(
-                    'name' => 'ad_category',
-                    'selected' => awpcp_array_data( 'ad_category', '', $form ),
-                    'hide_empty' => false,
-                    'payment_terms' => isset( $payment_terms ) ? $payment_terms : array(),
-                ));
+                awpcp_categories_selector()->show(
+                    array(
+                        'name' => 'ad_category',
+                        'selected' => awpcp_array_data( 'ad_category', '', $form ),
+                        'hide_empty' => false,
+                        'payment_terms' => isset( $payment_terms ) ? $payment_terms : array(),
+                    )
+                );
                 awpcp_show_form_error( 'ad_category', $errors );
             ?>
         </div>
@@ -111,7 +117,7 @@
         <?php if ($ui['captcha']): ?>
         <div class='awpcp-form-spacer'>
             <?php $captcha = awpcp_create_captcha( get_awpcp_option( 'captcha-provider' ) ); ?>
-            <?php echo $captcha->render(); ?>
+            <?php $captcha->show(); ?>
             <?php awpcp_show_form_error( 'captcha', $errors ); ?>
         </div>
         <?php endif; ?>

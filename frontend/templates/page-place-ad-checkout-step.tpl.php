@@ -3,9 +3,9 @@
 <?php
     if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
         if ( $transaction->is_doing_checkout() ) {
-            echo awpcp_render_listing_form_steps( 'checkout', $transaction );
+            awpcp_listing_form_steps_componponent()->show( 'checkout', compact( 'transaction' ) );
         } elseif ( $transaction->is_processing_payment() ) {
-            echo awpcp_render_listing_form_steps( 'payment', $transaction );
+            awpcp_listing_form_steps_componponent()->show( 'payment', compact( 'transaction' ) );
         }
     }
 ?>
@@ -14,4 +14,4 @@
     <?php echo awpcp_print_message($message) ?>
 <?php endforeach ?>
 
-<?php echo $payments->render_checkout_page($transaction, $hidden) ?>
+<?php $payments->show_checkout_page( $transaction, $hidden ); ?>

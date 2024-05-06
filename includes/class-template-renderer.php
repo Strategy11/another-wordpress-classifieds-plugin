@@ -65,13 +65,24 @@ class AWPCP_Template_Renderer {
         }
 
         if ( ! is_null( $template_file ) ) {
-            ob_start();
             extract( $params );
+
+            if ( ! empty( $params['echo'] ) ) {
+                include $template_file;
+                return '';
+            }
+
+            ob_start();
             include( $template_file );
             $output = ob_get_contents();
             ob_end_clean();
         } else {
             $output = sprintf( 'Template %s not found!', str_replace( AWPCP_DIR, '', $template ) );
+
+            if ( ! empty( $params['echo'] ) ) {
+                echo esc_html( $output );
+                return '';
+            }
         }
 
         return $output;

@@ -4,7 +4,7 @@
  */
 
 if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
-    echo awpcp_render_listing_form_steps( 'finish', $transaction ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    awpcp_listing_form_steps_componponent()->show( 'finish', compact( 'transaction' ) );
 }
 
 ?><?php foreach ( (array) $messages as $message ) : ?>

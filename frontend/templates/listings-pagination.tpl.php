@@ -5,7 +5,12 @@
 
 ?><div class="awpcp-pagination pager">
     <?php if ( $pages > 1 ) : ?>
-    <div class="awpcp-pagination-links"><?php echo implode( '', $items ); ?></div>
+    <div class="awpcp-pagination-links">
+        <?php
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo implode( '', $items );
+        ?>
+    </div>
     <?php endif; ?>
 
     <?php if ( $show_dropdown ) : ?>

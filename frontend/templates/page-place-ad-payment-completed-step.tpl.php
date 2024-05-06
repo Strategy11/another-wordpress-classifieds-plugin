@@ -1,8 +1,8 @@
-<h2><?php echo $payments->render_payment_completed_page_title($transaction) ?></h2>
+<h2><?php $payments->show_payment_completed_page_title( $transaction ); ?></h2>
 
 <?php
     if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
-        echo awpcp_render_listing_form_steps( 'payment', $transaction );
+        awpcp_listing_form_steps_componponent()->show( 'payment', compact( 'transaction' ) );
     }
 ?>
 
@@ -10,4 +10,4 @@
     <?php echo awpcp_print_message($message) ?>
 <?php endforeach ?>
 
-<?php echo $payments->render_payment_completed_page($transaction, $url, $hidden) ?>
+<?php $payments->show_payment_completed_page( $transaction, $url, $hidden ); ?>

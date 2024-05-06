@@ -239,9 +239,14 @@ function awpcp_insert_classifieds_bar_before_listing_page( $content_before_page 
  *
  * @since 4.0.0
  */
-function awpcp_render_classifieds_bar( $components = array() ) {
+function awpcp_render_classifieds_bar( $components = array(), $echo = false ) {
     if ( is_admin() ) {
         return '';
+    }
+
+    if ( $echo ) {
+        awpcp_classifieds_bar()->show( $components );
+        return;
     }
 
     return awpcp_classifieds_bar()->render( $components );

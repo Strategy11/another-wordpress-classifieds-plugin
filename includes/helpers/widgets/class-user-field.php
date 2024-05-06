@@ -10,6 +10,11 @@ function awpcp_users_field() {
 
 abstract class AWPCP_UserField {
 
+    /**
+     * @var bool
+     */
+    protected $echo = false;
+
     abstract public function render( $args = array() );
 
     protected function find_selected_user( $args ) {
@@ -21,6 +26,17 @@ abstract class AWPCP_UserField {
         }
 
         return $args['selected'];
+    }
+
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    protected function show( $args = array() ) {
+        $this->echo = true;
+        $this->render( $args );
+        $this->echo = false;
     }
 
     protected function render_template( $template, $args = array() ) {
@@ -37,6 +53,11 @@ abstract class AWPCP_UserField {
 
         if ( $args['required'] ) {
             $args['class'][] = 'required';
+        }
+
+        if ( $this->echo ) {
+            include( $template );
+            return;
         }
 
         ob_start();

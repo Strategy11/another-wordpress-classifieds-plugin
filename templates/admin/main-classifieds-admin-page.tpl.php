@@ -80,10 +80,15 @@
                 <hr/>
                 <?php if ( categoriesexist() ) : ?>
                 <div>
-                    <?php /* translators: %s is the link the Manage Categories admin page. */ ?>
-                    <?php $msg = __( 'Go to the %s section to edit/delete current categories or add new categories.', 'another-wordpress-classifieds-plugin' ); ?>
-                    <?php $url = awpcp_get_admin_categories_url(); ?>
-                    <p><?php printf( esc_html( $msg ), sprintf( '<a href="%s">%s</a>', $url, esc_html__( 'Manage Categories', 'another-wordpress-classifieds-plugin' ) ) ); ?></p>
+                    <p>
+                        <?php
+                        printf(
+                            /* translators: %s is the link the Manage Categories admin page. */
+                            esc_html__( 'Go to the %s section to edit/delete current categories or add new categories.', 'another-wordpress-classifieds-plugin' ),
+                            '<a href="' . esc_url( awpcp_get_admin_categories_url() ) . '">' . esc_html__( 'Manage Categories', 'another-wordpress-classifieds-plugin' ) . '</a>'
+                        );
+                        ?>
+                    </p>
 
                     <ul>
                         <li style="margin-bottom:6px;list-style:none;">

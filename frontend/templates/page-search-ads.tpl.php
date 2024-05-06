@@ -22,14 +22,18 @@
     </p>
 
     <p class="awpcp-form-spacer">
-        <?php echo awpcp_categories_selector()->render( array(
-                'context' => 'search',
+        <?php
+        awpcp_categories_selector()->show(
+            array(
+                'context'  => 'search',
                 'selected' => awpcp_array_data('category', '', $form),
-                'name' => 'searchcategory',
+                'name'     => 'searchcategory',
                 'required' => false,
                 'multiple' => true,
                 'auto'     => false,
-                ) ); ?>
+            )
+        );
+        ?>
     </p>
 
     <?php if ($ui['posted-by-field']): ?>

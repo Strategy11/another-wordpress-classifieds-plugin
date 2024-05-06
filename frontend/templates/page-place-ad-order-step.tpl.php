@@ -11,7 +11,7 @@
 
 <?php
     if ( get_awpcp_option( 'show-create-listing-form-steps' ) ) {
-        echo awpcp_render_listing_form_steps( 'select-category' );
+        awpcp_listing_form_steps_componponent()->show( 'select-category' );
     }
 ?>
 
@@ -26,7 +26,7 @@
 <?php awpcp_print_form_errors( $form_errors ); ?>
 
 <?php if ( ! $skip_payment_term_selection && ! awpcp_current_user_is_admin() ): ?>
-<?php echo $payments->render_account_balance(); ?>
+<?php $payments->show_account_balance(); ?>
 <?php endif ?>
 
 <form class="awpcp-order-form" method="post">
@@ -45,7 +45,7 @@
 
             $params = apply_filters( 'awpcp_post_listing_categories_selector_args', $params );
 
-            echo awpcp_categories_selector()->render( $params );
+            awpcp_categories_selector()->show( $params );
             awpcp_show_form_error( 'category', $form_errors );
         ?>
     </div>
@@ -75,7 +75,7 @@
         <?php endif; ?>
     <?php echo $payment_terms_list->render( $payment_options ); ?>
 
-    <?php echo $payments->render_credit_plans_table( $transaction ); ?>
+    <?php $payments->show_credit_plans_table( $transaction ); ?>
     <?php endif; ?>
 
     <p class="awpcp-form-submit">

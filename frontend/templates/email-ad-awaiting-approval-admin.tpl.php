@@ -1,5 +1,5 @@
 <?php foreach ($messages as $message): ?>
-<?php echo $message; ?>
+<?php echo wp_kses_post( $message ); ?>
 
 <?php endforeach; ?>
 

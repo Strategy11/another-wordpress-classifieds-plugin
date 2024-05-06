@@ -17,10 +17,28 @@ class AWPCP_Classifieds_Bar {
     private $classifieds_menu;
     private $settings;
 
+    /**
+     * @var bool
+     */
+    private $echo = false;
+
     public function __construct( $classifieds_search_bar, $classifieds_menu, $settings ) {
         $this->classifieds_search_bar = $classifieds_search_bar;
         $this->classifieds_menu       = $classifieds_menu;
         $this->settings               = $settings;
+    }
+
+    /**
+     * @since x.x
+     *
+     * @param array $components
+     *
+     * @return void
+     */
+    public function show( $components = array() ) {
+        $this->echo = true;
+        $this->render( $components );
+        $this->echo = false;
     }
 
     public function render( $components = array() ) {
@@ -53,6 +71,11 @@ class AWPCP_Classifieds_Bar {
 
         if ( $components['menu'] ) {
             $output .= $this->classifieds_menu->render();
+        }
+
+        if ( $this->echo ) {
+            echo $output;
+            return;
         }
 
         return $output;

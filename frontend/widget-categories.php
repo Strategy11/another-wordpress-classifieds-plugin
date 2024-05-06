@@ -19,14 +19,14 @@ class AWPCP_CategoriesWidget extends WP_Widget {
     }
 
     public function widget($args, $instance) {
-        extract($args);
-
-        echo $before_widget;
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $args['before_widget'];
 
         // do not show empty titles
         $title = apply_filters('widget_title', $instance['title']);
         if ( ! empty( $title ) ) {
-            echo $before_title . $title . $after_title;
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo $args['before_title'] . esc_html( $title ) . $args['after_title'];
         }
 
         $params = array(
@@ -34,9 +34,11 @@ class AWPCP_CategoriesWidget extends WP_Widget {
             'show_children_categories' => $instance['show-parents-only'] ? false : true,
             'show_listings_count' => $instance['show-ad-count'],
         );
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_categories_renderer_factory()->create_list_renderer()->render( $params );
 
-        echo $after_widget;
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $args['after_widget'];
     }
 
     public function form($instance) {
