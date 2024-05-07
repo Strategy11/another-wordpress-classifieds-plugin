@@ -762,6 +762,16 @@ class AWPCP_PaymentsAPI {
         return awpcp_get_file_contents( $file, compact( 'column_names', 'table_only', 'credit_plans', 'selected', 'echo' ) );
     }
 
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_transaction_items( $transaction ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $this->render_transaction_items( $transaction );
+    }
+
     public function render_transaction_items($transaction) {
         $show_credits = get_awpcp_option('enable-credit-system');
 
@@ -771,6 +781,16 @@ class AWPCP_PaymentsAPI {
         ob_end_clean();
 
         return apply_filters('awpcp-render-transaction-items', $html, $transaction);
+    }
+
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_transaction_errors( $transaction ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $this->render_transaction_errors( $transaction );
     }
 
     public function render_transaction_errors($transaction) {

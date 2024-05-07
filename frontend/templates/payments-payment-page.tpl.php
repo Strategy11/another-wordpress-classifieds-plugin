@@ -6,6 +6,6 @@
 
 <?php $this->show_account_balance(); ?>
 
-<?php echo $this->render_transaction_items($transaction); ?>
+<?php $this->show_transaction_items( $transaction ); ?>
 
 <?php echo $output; ?>

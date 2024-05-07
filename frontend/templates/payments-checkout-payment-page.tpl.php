@@ -11,6 +11,6 @@
 
 <?php echo $this->render_account_balance_for_transaction( $transaction ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
-<?php echo $this->render_transaction_items( $transaction ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+<?php $this->show_transaction_items( $transaction ); ?>
 
 <?php echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

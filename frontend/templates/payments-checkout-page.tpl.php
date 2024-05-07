@@ -18,7 +18,7 @@ if ( $attempts > 0 ) {
 
     <?php echo $this->render_account_balance_for_transaction( $transaction ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
-    <?php echo $this->render_transaction_items( $transaction ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+    <?php $this->show_transaction_items( $transaction ); ?>
 
     <h3><?php echo esc_html_x( 'Payment Method', 'checkout step', 'another-wordpress-classifieds-plugin' ); ?></h3>
 

@@ -71,9 +71,15 @@
                     <li><?php echo $message; ?></li>
                 <?php else: ?>
                     <?php $message = __( "%s (Default name: %s).", 'another-wordpress-classifieds-plugin' ); ?>
-                    <?php $message = sprintf( $message, '<strong>' . $page->label . '</strong>', $page->default_name, $page->id );  ?>
-
-                    <li><?php echo $message; ?></li>
+                    <li>
+						<?php
+						printf(
+							esc_html__( "%s (Default name: %s).", 'another-wordpress-classifieds-plugin' ),
+							'<strong>' . esc_html( $page->label ) . '</strong>',
+							esc_html( $page->default_name ),
+						);
+						?>
+					</li>
                 <?php endif; ?>
 				<?php endforeach ?>
 				</ul>
