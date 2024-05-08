@@ -194,7 +194,11 @@ class AWPCP_ListingsAPI {
      * @see fill_default_listing_metadata()
      */
     public function get_default_listing_metadata( $metadata ) {
-        _doing_it_wrong( __FUNCTION__, __( 'To avoid overwritting existing metadata, use fill_default_listing_metadata() instead.', 'another-wordpress-classifieds-plugin' ), '4.0.1' );
+        _doing_it_wrong(
+            __FUNCTION__,
+            esc_html__( 'To avoid overwritting existing metadata, use fill_default_listing_metadata() instead.', 'another-wordpress-classifieds-plugin' ),
+            '4.0.1'
+        );
 
         $metadata = wp_parse_args( $metadata, array(
             '_awpcp_payment_status'         => 'Unpaid',

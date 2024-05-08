@@ -23,7 +23,7 @@ interface AWPCP_ReCAPTCHADelegate {
     /**
      * @since 4.0.0
      */
-    public function get_recaptcha_html( $site_key, $echo = '' );
+    public function get_recaptcha_html( $site_key );
 
     /**
      * @since 4.0.0

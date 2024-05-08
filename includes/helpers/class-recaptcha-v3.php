@@ -14,6 +14,11 @@ class AWPCP_ReCAPTCHAv3 implements AWPCP_ReCAPTCHADelegate {
     private $request;
 
     /**
+     * @var bool
+     */
+    protected $echo = false;
+
+    /**
      * @since 4.0.0
      */
     public function __construct( $request ) {
@@ -37,18 +42,20 @@ class AWPCP_ReCAPTCHAv3 implements AWPCP_ReCAPTCHADelegate {
      * @return void
      */
     public function show_recaptcha( $site_key ) {
-        $this->get_recaptcha_html( $site_key, 'echo' );
+        $this->echo = true;
+        $this->get_recaptcha_html( $site_key );
+        $this->echo = false;
     }
 
     /**
      * @since 3.9.4
      */
-    public function get_recaptcha_html( $site_key, $echo = '' ) {
+    public function get_recaptcha_html( $site_key ) {
         $template  = '<div class="awpcp-recaptcha-action" data-name="awpcp_submit" data-sitekey="' . esc_attr( $site_key ) . '">';
         $template .= '<input type="hidden" name="awpcp_recaptcha_v3_response" />';
         $template .= '</div>';
 
-        if ( $echo ) {
+        if ( $this->echo ) {
             echo $template;
             return;
         }

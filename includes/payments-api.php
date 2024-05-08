@@ -489,27 +489,30 @@ class AWPCP_PaymentsAPI {
 
     public function process_payment_request($action) {
         $transaction = AWPCP_Payment_Transaction::find_by_id( get_query_var( 'awpcp-txn' ) );
+        $messages    = [];
+
+        $payment_method = null;
 
         if (is_null($transaction)) {
-            $messages[] = __( 'The specified payment transaction doesn\'t exists. We can\'t process your payment.', 'another-wordpress-classifieds-plugin');
-            $messages[] = __( 'Please contact customer service if you are viewing this message after having made a payment. If you have not tried to make a payment and you are viewing this message, it means this message is being shown in error and can be disregarded.', 'another-wordpress-classifieds-plugin');
+            $messages[] = esc_html__( 'The specified payment transaction doesn\'t exists. We can\'t process your payment.', 'another-wordpress-classifieds-plugin' );
+        } else {
+            $payment_method = $this->get_transaction_payment_method( $transaction );
 
-            /* translators: %s link HTML */
-            $messages[] = __( 'Return to %shome page', 'another-wordpress-classifieds-plugin');
-            $message = '<p>' . join( '</p><p>', $messages ) . '</p>';
-            wp_die( sprintf( $message . '</a>', '<a href="' . home_url() . '">' ) );
+            if ( is_null( $payment_method ) ) {
+                $messages[] = esc_html__( 'The payment method associated with this transaction is not available at this time. We can\'t process your payment.', 'another-wordpress-classifieds-plugin' );
+            }
         }
 
-        $payment_method = $this->get_transaction_payment_method($transaction);
-
-        if (is_null($payment_method)) {
-            $messages[] = __("The payment method associated with this transaction is not available at this time. We can't process your payment.", 'another-wordpress-classifieds-plugin');
-            $messages[] = __( 'Please contact customer service if you are viewing this message after having made a payment. If you have not tried to make a payment and you are viewing this message, it means this message is being shown in error and can be disregarded.', 'another-wordpress-classifieds-plugin');
+        if ( is_null( $payment_method ) || is_null( $transaction ) ) {
+            $messages[] = esc_html__( 'Please contact customer service if you are viewing this message after having made a payment. If you have not tried to make a payment and you are viewing this message, it means this message is being shown in error and can be disregarded.', 'another-wordpress-classifieds-plugin' );
 
             /* translators: %s link HTML */
-            $messages[] = __( 'Return to %shome page', 'another-wordpress-classifieds-plugin');
-            $message = '<p>' . join( '</p><p>', $messages ) . '</p>';
-            wp_die( sprintf( $message . '</a>', '<a href="' . home_url() . '">' ) );
+            $messages[] = sprintf(
+                esc_html__( 'Return to %shome page', 'another-wordpress-classifieds-plugin' ),
+                '<a href="' . esc_url( home_url() ) . '">'
+            ) . '</a>';
+
+            wp_die( '<p>' . join( '</p><p>', $messages ) . '</p>' );
         }
 
         switch ($action) {
@@ -872,6 +875,7 @@ class AWPCP_PaymentsAPI {
         }
 
         if ( $this->echo ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $html;
             return;
         }
