@@ -41,7 +41,10 @@
         <label for="name"><?php esc_html_e( 'For ads posted by', 'another-wordpress-classifieds-plugin' ); ?></label>
         <select id="name" name="searchname">
             <option value=""><?php esc_html_e( 'All Users', 'another-wordpress-classifieds-plugin' ); ?></option>
-            <?php echo create_ad_postedby_list($form['name']); ?>
+            <?php
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo create_ad_postedby_list( $form['name'] );
+            ?>
         </select>
     </p>
     <?php endif ?>
@@ -76,7 +79,7 @@
 
     if (is_plugin_active( 'awpcp-region-control/awpcp_region_control_module.php' ) ) {
         $selector = awpcp_multiple_region_selector( $form['regions'], $options );
-        echo $selector->render( 'search', array(), $errors );
+        $selector->show( 'search', array(), $errors );
     }
     ?>
 

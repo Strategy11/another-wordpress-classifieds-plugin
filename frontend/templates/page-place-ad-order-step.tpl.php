@@ -54,15 +54,17 @@
     <h3><?php echo esc_html( _x( 'Please select the owner for this Ad', 'place ad order step', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
     <div class="awpcp-form-spacer">
         <?php
-            echo awpcp_users_field()->render( array(
-                'required' => true,
-                'selected' => awpcp_array_data( 'user', '', $form ),
-                'label' => __( 'User', 'another-wordpress-classifieds-plugin' ),
-                'default' => __( 'Select an User owner for this Ad', 'another-wordpress-classifieds-plugin' ),
-                'id' => 'ad-user-id',
-                'name' => 'user',
-                'class' => array( 'awpcp-users-dropdown', 'awpcp-dropdown' ),
-            ) );
+            awpcp_users_field()->show(
+                array(
+                    'required' => true,
+                    'selected' => awpcp_array_data( 'user', '', $form ),
+                    'label'    => __( 'User', 'another-wordpress-classifieds-plugin' ),
+                    'default'  => __( 'Select an User owner for this Ad', 'another-wordpress-classifieds-plugin' ),
+                    'id'       => 'ad-user-id',
+                    'name'     => 'user',
+                    'class'    => array( 'awpcp-users-dropdown', 'awpcp-dropdown' ),
+                )
+            );
         ?>
         <?php awpcp_show_form_error( 'user', $form_errors ); ?>
     </div>

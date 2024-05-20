@@ -6,4 +6,7 @@
     }
 ?>
 
-<?php echo awpcp_login_form( $message, $page_url ); ?>
+<?php
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo awpcp_login_form( $message, $page_url );
+?>

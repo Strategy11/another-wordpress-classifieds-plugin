@@ -12,8 +12,12 @@
 	<p><?php echo $part ?></p>
 	<?php endforeach ?>
 
-	<?php $msg = __( 'Please click the payment button below to proceed with Payment for your Ad renewal. You will be asked to pay %s.', 'another-wordpress-classifieds-plugin') ?>
-	<p><?php printf( esc_html( $msg ), $amount ); ?></p>
+	<p><?php
+	printf(
+		esc_html__( 'Please click the payment button below to proceed with Payment for your Ad renewal. You will be asked to pay %s.', 'another-wordpress-classifieds-plugin'),
+		wp_kses_post( $amount )
+	);
+	?></p>
 	<?php echo $content ?>
 
 <?php endif ?>

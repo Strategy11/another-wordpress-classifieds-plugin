@@ -142,6 +142,19 @@ class AWPCP_ListingsContentRenderer {
     }
 
     /**
+     * @since x.x
+     *
+     * @param string $content   The content of the post.
+     * @param object $post      An instance of WP_Post.
+     *
+     * @return void
+     */
+    public function show_content_without_notices( $content, $post ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $this->render_content_without_notices( $content, $post );
+    }
+
+    /**
      * @param string $content   The content of the post.
      * @param object $post      An instance of WP_Post.
      * @return Show Ad page content.

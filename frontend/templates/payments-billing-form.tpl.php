@@ -5,7 +5,7 @@
         <div class="awpcp-form-spacer clearfix">
             <label for="awpcp-billing-country"><?php esc_html_e( 'Country', 'another-wordpress-classifieds-plugin' ); ?></label>
             <select id="awpcp-billling-country" class="required" name="country" data-bind="value: country">
-                <?php echo awpcp_country_list_options(awpcp_array_data('country', '', $data), false); ?>
+                <?php awpcp_country_list_options( awpcp_array_data( 'country', '', $data ), false, 'echo' ); ?>
             </select>
             <?php awpcp_show_form_error( 'country', $errors ); ?>
         </div>

@@ -845,7 +845,7 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     return $fields;
 }
 
-function awpcp_country_list_options($value=false, $use_names=true) {
+function awpcp_country_list_options( $value = false, $use_names = true, $show = false ) {
 	$countries = array(
 	    'US' => 'United States',
 	    'AL' => 'Albania',
@@ -1039,19 +1039,27 @@ function awpcp_country_list_options($value=false, $use_names=true) {
 	    'ZM' => 'Zambia',
 	);
 
-	$options[] ='<option value="">' . __( '-- Choose a Country --', 'another-wordpress-classifieds-plugin') . '</option>';
+	$options = '<option value="">' .
+        esc_html__( '-- Choose a Country --', 'another-wordpress-classifieds-plugin') .
+        '</option>';
 
 	foreach ( apply_filters( 'awpcp_country_list_options_countries', $countries ) as $code => $name) {
-		if ($use_names) {
-			$selected = $value == $name ? ' selected="selected"' : '';
-			$options[] = sprintf('<option value="%s"%s>%s</option>', $name, $selected, $name);
-		} else {
-			$selected = $value == $code ? ' selected="selected"' : '';
-			$options[] = sprintf('<option value="%s"%s>%s</option>', $code, $selected, $name);
-		}
+        $option_value = $use_names ? $name : $code;
+
+        $options .= sprintf(
+            '<option value="%s"%s>%s</option>',
+            esc_attr( $option_value ),
+            selected( $value, $option_value, false ),
+            esc_html( $name )
+        );
 	}
 
-	return join('', $options);
+    if ( $show ) {
+        echo $options;
+        return;
+    }
+
+	return $options;
 }
 
 /**
@@ -2069,10 +2077,9 @@ function awpcp_html_options( $params ) {
         'options' => array(),
     ) );
 
-    $options = array();
+    $options = '';
 
     foreach ( $params['options'] as $value => $text ) {
-        $option = '<option <attributes>><text></option>';
 
         if ( strcmp( $value, $params['current-value'] ) === 0 ) {
             $attributes = array( 'value' => $value, 'selected' => 'selected' );
@@ -2080,13 +2087,12 @@ function awpcp_html_options( $params ) {
             $attributes = array( 'value' => $value );
         }
 
-        $option = str_replace( '<attributes>', awpcp_html_attributes( $attributes ), $option );
-        $option = str_replace( '<text>', $text, $option );
-
-        $options[] = $option;
+        $options .= '<option ' . awpcp_html_attributes( $attributes ) . '>' .
+            esc_html( $text ) .
+            '</option>';
     }
 
-    return implode( '', $options );
+    return $options;
 }
 
 /**
@@ -2159,7 +2165,7 @@ function awpcp_html_postbox_handle( $params ) {
     $heading = $params['heading_tag'];
     $element = '<' . esc_attr( $heading ) . ' ' . awpcp_html_attributes( $params['heading_attributes'] ) . '>' .
         '<span ' . awpcp_html_attributes( $params['span_attributes'] ) . '>' .
-            wp_kses_post( $params['content'] ).
+            wp_kses_post( $params['content'] ) .
         '</span>' .
         '</' . esc_attr( $heading ) . '>';
 

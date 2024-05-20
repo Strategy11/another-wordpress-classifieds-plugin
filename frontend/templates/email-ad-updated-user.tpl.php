@@ -1,7 +1,7 @@
 <?php esc_html_e( 'Your Ad has been successfully updated. Ad information is shown below.', 'another-wordpress-classifieds-plugin') ?>
 
 <?php if (!empty($message)): ?>
-<?php echo $message ?>
+<?php echo wp_kses_post( $message ); ?>
 <?php endif ?>
 
 <?php esc_html_e( 'Ad Information', 'another-wordpress-classifieds-plugin' ); ?>

@@ -22,7 +22,11 @@
     <input id="<?php echo esc_attr( $this->get_field_id( 'show_by' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'show_by' ) ); ?>" type="checkbox" value="1" <?php checked( $show_by, 1 ); ?> />
     <label for="<?php echo esc_attr( $this->get_field_id( 'show_by' ) ); ?>"><?php esc_html_e( 'Show Posted By field?', 'another-wordpress-classifieds-plugin' ); ?></label>
     <br/>
-    <?php echo $additional_fields ?>
+    <?php
+    // This has a value only if it was added using a hook. We need to allow form fields here.
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo $additional_fields;
+    ?>
     <input name="<?php echo esc_attr( $this->get_field_name( 'show_category' ) ); ?>" type="hidden" value="0" />
     <input id="<?php echo esc_attr( $this->get_field_id( 'show_category' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'show_category' ) ); ?>" type="checkbox" value="1" <?php checked( $show_category, 1 ); ?> />
     <label for="<?php echo esc_attr( $this->get_field_id( 'show_category' ) ); ?>"><?php esc_html_e( 'Show Category field?', 'another-wordpress-classifieds-plugin' ); ?></label>

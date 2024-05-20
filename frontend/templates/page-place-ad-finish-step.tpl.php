@@ -13,5 +13,7 @@ if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps'
 
 <?php
 // TODO: ContentRenderer or the rendered content itself should be available as a parameter for this view.
-// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-echo awpcp()->container['ListingsContentRenderer']->render_content_without_notices( apply_filters( 'the_content', $ad->post_content ), $ad );
+awpcp()->container['ListingsContentRenderer']->show_content_without_notices(
+    apply_filters( 'the_content', $ad->post_content ),
+    $ad
+);
