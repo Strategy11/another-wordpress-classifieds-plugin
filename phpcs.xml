@@ -110,9 +110,11 @@
                 <element value="wp_nonce_url" />
                 <element value="awpcp_print_error" />
                 <element value="awpcp_print_message" />
+                <element value="awpcp_render_info_message" />
                 <element value="awpcp_render_warning" />
                 <element value="awpcp_render_categories_dropdown_options" />
                 <element value="awpcp_html_hidden_fields" />
+                <element value="awpcp_html_attributes" />
             </property>
 		</properties>
 	</rule>

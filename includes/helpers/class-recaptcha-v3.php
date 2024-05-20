@@ -56,6 +56,7 @@ class AWPCP_ReCAPTCHAv3 implements AWPCP_ReCAPTCHADelegate {
         $template .= '</div>';
 
         if ( $this->echo ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $template;
             return;
         }

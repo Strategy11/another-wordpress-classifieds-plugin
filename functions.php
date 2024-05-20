@@ -2141,6 +2141,7 @@ function awpcp_html_postbox_handle( $params ) {
         'heading_class' => 'hndle',
         'heading_tag' => null,
         'content' => '',
+        'echo'               => false,
     );
 
     $params = wp_parse_args( $params, $default_params );
@@ -2155,11 +2156,17 @@ function awpcp_html_postbox_handle( $params ) {
         $params['heading_tag'] = awpcp_html_admin_second_level_heading_tag();
     }
 
-    $element = '<<heading-tag> <heading-attributes>><span <span-attributes>><content></span></<heading-tag>>';
-    $element = str_replace( '<heading-tag>', $params['heading_tag'], $element );
-    $element = str_replace( '<heading-attributes>', awpcp_html_attributes( $params['heading_attributes'] ), $element );
-    $element = str_replace( '<span-attributes>', awpcp_html_attributes( $params['span_attributes'] ), $element );
-    $element = str_replace( '<content>', $params['content'], $element );
+    $heading = $params['heading_tag'];
+    $element = '<' . esc_attr( $heading ) . ' ' . awpcp_html_attributes( $params['heading_attributes'] ) . '>' .
+        '<span ' . awpcp_html_attributes( $params['span_attributes'] ) . '>' .
+            wp_kses_post( $params['content'] ).
+        '</span>' .
+        '</' . esc_attr( $heading ) . '>';
+
+    if ( $params['echo'] ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $element;
+    }
 
     return $element;
 }

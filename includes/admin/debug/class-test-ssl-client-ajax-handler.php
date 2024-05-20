@@ -26,7 +26,7 @@ class AWPCP_TestSSLClientAjaxHandler {
         $data = curl_exec( $ch );
 
         if ( 0 !== curl_errno( $ch ) ) {
-            die( 'cURL error: ' . curl_error( $ch ) );
+            die( 'cURL error: ' . esc_html( curl_error( $ch ) ) );
         }
 
         curl_close( $ch );
@@ -37,9 +37,9 @@ class AWPCP_TestSSLClientAjaxHandler {
 
         $json = json_decode( $data );
 
-        echo "Cipher Suites:\n" . implode( ',', $json->given_cipher_suites ) . "\n\n";
-        echo "TLS Version:\n" . $json->tls_version . "\n\n";
-        echo "Rating:\n" . $json->rating;
+        echo "Cipher Suites:\n" . esc_html( implode( ',', $json->given_cipher_suites ) ) . "\n\n";
+        echo "TLS Version:\n" . esc_html( $json->tls_version ) . "\n\n";
+        echo "Rating:\n" . esc_html( $json->rating );
 
         exit();
     }

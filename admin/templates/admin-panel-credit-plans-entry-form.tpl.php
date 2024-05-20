@@ -23,7 +23,7 @@
 
         <fieldset class="inline-edit-col-right"><div class="inline-edit-col">
                 <label><span class="title"><?php echo esc_html( __( 'Description', 'another-wordpress-classifieds-plugin' ) ); ?></span></label>
-                <textarea name="description" cols="54" rows="6"><?php echo stripslashes( awpcp_get_property( $entry, 'description' ) ) ?></textarea>
+                <textarea name="description" cols="54" rows="6"><?php echo esc_textarea( stripslashes( awpcp_get_property( $entry, 'description' ) ) ); ?></textarea>
         </fieldset>
 
         <p class="submit inline-edit-save">

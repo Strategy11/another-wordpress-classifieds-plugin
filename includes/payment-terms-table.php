@@ -124,25 +124,31 @@ class AWPCP_PaymentTermsTable {
                 } else {
                     $return = esc_html( $item->get_name() );
                 }
+                break;
 
             case 'ads':
                 $return = esc_html( $item->get_allowed_ads_count() );
+                break;
 
             case 'images':
                 $return = esc_html( $item->images );
+                break;
 
             case 'title_characters':
                 $characters = $item->get_characters_allowed_in_title();
                 $characters = empty( $characters ) ? _x( 'No Limit', 'payment term duration', 'another-wordpress-classifieds-plugin' ) : $characters;
                 $return     = esc_html( $characters );
+                break;
 
             case 'characters':
                 $characters = $item->get_characters_allowed();
                 $characters = empty( $characters ) ? _x( 'No Limit', 'payment term duration', 'another-wordpress-classifieds-plugin' ) : $characters;
                 $return     = esc_html( $characters );
+                break;
 
             case 'duration':
                 $return = esc_html( $item->get_duration() );
+                break;
 
             case 'price':
                 $return = $this->render_payment_option(
@@ -150,6 +156,7 @@ class AWPCP_PaymentTermsTable {
                     awpcp_format_money( $item->price ),
                     $this->selected
                 );
+                break;
 
             case 'credits':
                 $return = $this->render_payment_option(
@@ -160,6 +167,7 @@ class AWPCP_PaymentTermsTable {
         }
 
         if ( $this->echo ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $return;
         } else {
             return $return;

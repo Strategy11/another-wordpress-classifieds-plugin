@@ -5,6 +5,7 @@
     "test": "tests"
   },
   "scripts": {
+    "watch": "grunt watch",
     "test": "phpunit"
   },
   "repository": {

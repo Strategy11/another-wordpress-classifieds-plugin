@@ -32,6 +32,9 @@ else :
         );
     ?></p>
 
-    <?php echo $table->display(); ?>
+    <?php
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo $table->display();
+    ?>
 </form>
 <?php endif; ?>

@@ -3,10 +3,7 @@
  * @package AWPCP\Templates
  */
 
-?><?php if ( ! empty( $message ) ) : ?>
-<?php echo $message; ?>
-<?php endif; ?>
-
+?>
 <?php if ( 'confirm' === $action ) : ?>
 
 <p>

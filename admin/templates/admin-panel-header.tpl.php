@@ -6,7 +6,10 @@
         <h1 class="awpcp-page-header"><?php echo esc_html( $page_title ); ?></h1>
         <?php endif; ?>
 
-        <?php $show_sidebar = isset($show_sidebar) ? $show_sidebar : true ?>
-		<?php echo $sidebar = $show_sidebar ? awpcp_admin_sidebar() : ''; ?>
+        <?php
+        $show_sidebar = isset( $show_sidebar ) ? $show_sidebar : true;
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $sidebar = $show_sidebar ? awpcp_admin_sidebar() : '';
+        ?>
 
 		<div class="awpcp-main-content <?php echo (empty($sidebar) ? 'without-sidebar' : 'with-sidebar') ?>">

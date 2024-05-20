@@ -28,6 +28,7 @@ class AWPCP_ImportListingsAdminPage {
 	}
 
     public function dispatch() {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $this->handle_request();
     }
 

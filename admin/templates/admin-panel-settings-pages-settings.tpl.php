@@ -22,9 +22,15 @@
 
 				<ul>
 				<?php foreach ( $missing['not-found'] as $page ): ?>
-				<?php $message = __( "%s (Default name: %s).", 'another-wordpress-classifieds-plugin' ); ?>
-				<?php $message = sprintf( $message, '<strong>' . $page->label . '</strong>', $page->default_name, $page->id );  ?>
-				<li><?php echo $message; ?></li>
+                    <li>
+                        <?php
+                        printf(
+                            esc_html__( '%1$s (Default name: %2$s).', 'another-wordpress-classifieds-plugin' ),
+                            '<strong>' . esc_html( $page->label ) . '</strong>',
+                            esc_html( $page->default_name )
+                        );
+                        ?>
+                    </li>
 				<?php endforeach ?>
 				</ul>
 			<?php endif; ?>
@@ -33,16 +39,28 @@
 				<p><?php esc_html_e( 'The following pages are not published. Did you move them to the Trash by accident or saved them as Draft?', 'another-wordpress-classifieds-plugin' ); ?></p>
 
 				<ul>
-				<?php foreach ( $missing['not-published'] as $page ): ?>
-                <?php if ( 'trash' == $page->status ): ?>
-                <?php $url = add_query_arg( array( 's' => $page->name, 'post_status' => 'trash', 'post_type' => 'page' ), admin_url( 'edit.php' ) ); ?>
-                <?php else: ?>
-                <?php $url = add_query_arg( array( 'post' => $page->id, 'action' => 'edit' ), admin_url( 'post.php' ) ); ?>
-                <?php endif; ?>
-                <?php $link = sprintf( '<a href="%s">%s</a>', $url, $page->name ); ?>
-                <?php $message = __( "%s &mdash; Selected page: %s (%s)", 'another-wordpress-classifieds-plugin' ); ?>
-                <?php $message = sprintf( $message, '<strong>' . $page->label . '</strong>', $link, $page->status ); ?>
-				<li><?php echo $message; ?></li>
+                <?php
+                foreach ( $missing['not-published'] as $page ):
+                    if ( 'trash' == $page->status ):
+                        $url = add_query_arg(
+                            array( 's' => $page->name, 'post_status' => 'trash', 'post_type' => 'page' ),
+                            admin_url( 'edit.php' )
+                        );
+                    else:
+                        $url = add_query_arg( array( 'post' => $page->id, 'action' => 'edit' ), admin_url( 'post.php' ) );
+                    endif;
+                    ?>
+                    <li>
+                        <?php
+                        printf(
+                            // translators: %1$s page label, %2$s link to the page, %3$s the page status.
+                            esc_html__( '%1$s Selected page: %2$s (%3$s)', 'another-wordpress-classifieds-plugin' ),
+                            '<strong>' . esc_html( $page->label ) . '</strong> &mdash;',
+                            '<a href="' . esc_url( $url ) . '">' . esc_html( $page->name ) . '</a>',
+                            esc_html( $page->status )
+                        );
+                        ?>
+                    </li>
 				<?php endforeach ?>
 				</ul>
 			<?php endif; ?>
@@ -51,37 +69,41 @@
 				<p><?php esc_html_e( 'The following pages are not currently assigned. Please select an existing page or create a new one to use as the following plugin pages:', 'another-wordpress-classifieds-plugin' ); ?></p>
 
 				<ul>
-				<?php foreach ( $missing['not-referenced'] as $page ): ?>
-                <?php if ( $page->candidates ): ?>
-                    <?php $candidate_pages = array(); ?>
+                <?php
+                foreach ( $missing['not-referenced'] as $page ):
+                    if ( $page->candidates ):
+                        ?>
+                        <li>
+                            <?php
+                            $candidate_pages = array();
+                            foreach ( $page->candidates as $candidate_page ):
+                                $candidate_pages[] = $candidate_page->post_title;
+                            endforeach;
 
-                    <?php foreach ( $page->candidates as $candidate_page ): ?>
-                        <?php $edit_page_url = add_query_arg( array( 'post' => $page->id, 'action' => 'edit' ), admin_url( 'post.php' ) ); ?>
-                        <?php // $candidate_pages[] = sprintf( '<a href="%s">%s</a>', $edit_page_url, $candidate_page->post_title ); ?>
-                        <?php $candidate_pages[] = sprintf( '<strong>%s</strong>', $candidate_page->post_title ); ?>
-                    <?php endforeach; ?>
-
-                    <?php $create_page_url = add_query_arg( 'post_type', 'page', admin_url( 'post-new.php' ) ); ?>
-
-                    <?php $message = __( '<page-label> &mdash; You can select one of these pages that already include the necessary shortcode: <page-links> or <a>create a new one</a>.', 'another-wordpress-classifieds-plugin' ); ?>
-                    <?php $message = str_replace( '<page-label>', '<strong>' . $page->label . '</strong>', $message ); ?>
-                    <?php $message = str_replace( '<a>', '<a href="' . esc_url( $create_page_url ) . '">', $message ); ?>
-                    <?php $message = str_replace( '<page-links>', implode( ', ', $candidate_pages ), $message ); ?>
-
-                    <li><?php echo $message; ?></li>
-                <?php else: ?>
-                    <?php $message = __( "%s (Default name: %s).", 'another-wordpress-classifieds-plugin' ); ?>
-                    <li>
-						<?php
-						printf(
-							esc_html__( "%s (Default name: %s).", 'another-wordpress-classifieds-plugin' ),
-							'<strong>' . esc_html( $page->label ) . '</strong>',
-							esc_html( $page->default_name ),
-						);
-						?>
-					</li>
-                <?php endif; ?>
-				<?php endforeach ?>
+                            $create_page_url = add_query_arg( 'post_type', 'page', admin_url( 'post-new.php' ) );
+                            printf(
+                                esc_html__( '%1$s You can select one of these pages that already include the necessary shortcode: %2$s or %3$screate a new one%4$s.', 'another-wordpress-classifieds-plugin' ),
+                                '<strong>' . esc_html( $page->label ) . '</strong> &mdash;',
+                                '<strong>' . esc_html( implode( ', ', $candidate_pages ) ) . '</strong>',
+                                '<a href="' . esc_url( $create_page_url ) . '">',
+                                '</a>'
+                            );
+                            ?>
+                        </li>
+                    <?php else: ?>
+                        <li>
+                            <?php
+                            printf(
+                                esc_html__( '%1$s (Default name: %2$s).', 'another-wordpress-classifieds-plugin' ),
+                                '<strong>' . esc_html( $page->label ) . '</strong>',
+                                esc_html( $page->default_name ),
+                            );
+                            ?>
+                        </li>
+                        <?php
+                    endif;
+                endforeach;
+                ?>
 				</ul>
 			<?php endif; ?>
 			</div>

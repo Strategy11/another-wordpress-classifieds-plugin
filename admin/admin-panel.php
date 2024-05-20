@@ -406,21 +406,11 @@ class AWPCP_AdminPanel {
 		if ( $show_quick_start_quide_notice && is_awpcp_admin_page() && ! $show_drip_autoresponder ) {
             wp_enqueue_style( 'awpcp-admin-style' );
 
-			ob_start();
-				include(AWPCP_DIR . '/admin/templates/admin-quick-start-guide-notice.tpl.php');
-				$html = ob_get_contents();
-			ob_end_clean();
-
-			echo $html;
+			include AWPCP_DIR . '/admin/templates/admin-quick-start-guide-notice.tpl.php';
 		}
 
 		if (get_awpcp_option('show-widget-modification-notice')) {
-			ob_start();
-				include(AWPCP_DIR . '/admin/templates/admin-widget-modification-notice.tpl.php');
-				$html = ob_get_contents();
-			ob_end_clean();
-
-			echo $html;
+			include AWPCP_DIR . '/admin/templates/admin-widget-modification-notice.tpl.php';
 		}
 
         if ( awpcp_get_var( array( 'param' => 'action' ) ) === 'awpcp-manage-credits' ) {
@@ -472,14 +462,7 @@ class AWPCP_AdminPanel {
     private function load_notice_for_manual_upgrades( $message ) {
         wp_enqueue_style( 'awpcp-admin-style' );
 
-        ob_start();
-            include( AWPCP_DIR . '/admin/templates/admin-pending-manual-upgrade-notice.tpl.php' );
-            $html = ob_get_contents();
-        ob_end_clean();
-
-        echo $html;
-
-        return;
+        include AWPCP_DIR . '/admin/templates/admin-pending-manual-upgrade-notice.tpl.php';
     }
 
     private function load_notice_for_non_blocking_manual_uprades() {

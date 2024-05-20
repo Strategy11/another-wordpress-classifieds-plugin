@@ -33,13 +33,16 @@ class AWPCP_ExampleCSVFileAdminPage {
 
     /**
      * @since 4.0.0
+     *
+     * @return void
      */
     public function dispatch() {
         $params = [
             'content' => $this->convert_to_csv( $this->prepare_data() ),
+            'echo'    => true,
         ];
 
-        echo $this->template_renderer->render_template( $this->template, $params );
+        $this->template_renderer->render_template( $this->template, $params );
     }
 
     /**
