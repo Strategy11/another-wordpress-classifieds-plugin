@@ -59,6 +59,7 @@ class AWPCP_ReCAPTCHAv2 implements AWPCP_ReCAPTCHADelegate {
     public function get_recaptcha_html( $site_key ) {
         $html = '<div class="g-recaptcha awpcp-recaptcha" data-sitekey="' . esc_attr( $site_key ) . '"></div>';
         if ( $this->echo ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $html;
             return;
         }

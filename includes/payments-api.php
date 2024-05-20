@@ -512,7 +512,7 @@ class AWPCP_PaymentsAPI {
                 '<a href="' . esc_url( home_url() ) . '">'
             ) . '</a>';
 
-            wp_die( '<p>' . join( '</p><p>', $messages ) . '</p>' );
+            wp_die( wp_kses_post( '<p>' . join( '</p><p>', $messages ) . '</p>' ) );
         }
 
         switch ($action) {

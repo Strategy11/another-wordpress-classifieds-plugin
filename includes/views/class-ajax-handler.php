@@ -23,6 +23,7 @@ class AWPCP_AjaxResponse {
      * @deprecated x.x
      */
     public function write( $content ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $content;
     }
 

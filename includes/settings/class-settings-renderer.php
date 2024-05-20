@@ -33,7 +33,7 @@ class AWPCP_SettingsRenderer {
         $section = $this->settings_manager->get_settings_section( $params['id'] );
 
         if ( isset( $section['description'] ) ) {
-            echo $section['description'];
+            echo wp_kses_post( $section['description'] );
         }
 
         if ( isset( $section['callback'] ) && is_callable( $section['callback'] ) ) {

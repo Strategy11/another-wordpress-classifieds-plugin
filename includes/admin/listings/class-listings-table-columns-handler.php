@@ -151,13 +151,13 @@ class AWPCP_ListingsTableColumnsHandler {
                 echo $renewed_date ? esc_html( $renewed_date ) : '&mdash;';
                 return;
             case 'awpcp-payment-term':
-                echo $this->render_payment_term_column( $post );
+                $this->render_payment_term_column( $post );
                 return;
             case 'awpcp-status':
-                echo $this->render_status_column( $post );
+                $this->render_status_column( $post );
                 return;
             case 'awpcp-actions':
-                echo $this->render_actions_column( $post );
+                $this->render_actions_column( $post );
                 return;
         }
     }
@@ -204,27 +204,33 @@ class AWPCP_ListingsTableColumnsHandler {
      */
     private function render_status_column( $post ) {
         if ( $this->listing_renderer->is_public( $post ) ) {
-            return _x( 'Active', 'listing status', 'another-wordpress-classifieds-plugin' );
+            echo esc_html_x( 'Active', 'listing status', 'another-wordpress-classifieds-plugin' );
+            return;
         }
 
         if ( $this->listing_renderer->is_pending_approval( $post ) ) {
-            return _x( 'Pending Approval', 'listing status', 'another-wordpress-classifieds-plugin' );
+            echo esc_html_x( 'Pending Approval', 'listing status', 'another-wordpress-classifieds-plugin' );
+            return;
         }
 
         if ( $this->listing_renderer->is_expired( $post ) ) {
-            return _x( 'Expired', 'listing status', 'another-wordpress-classifieds-plugin' );
+            echo esc_html_x( 'Expired', 'listing status', 'another-wordpress-classifieds-plugin' );
+            return;
         }
 
         if ( $this->listing_renderer->is_disabled( $post ) ) {
-            return _x( 'Disabled', 'listing status', 'another-wordpress-classifieds-plugin' );
+            echo esc_html_x( 'Disabled', 'listing status', 'another-wordpress-classifieds-plugin' );
+            return;
         }
 
         if ( ! $this->listing_renderer->has_payment( $post ) ) {
-            return _x( 'Pending Payment', 'listing status', 'another-wordpress-classifieds-plugin' );
+            echo esc_html_x( 'Pending Payment', 'listing status', 'another-wordpress-classifieds-plugin' );
+            return;
         }
 
         if ( ! $this->listing_renderer->is_verified( $post ) ) {
-            return _x( 'Pending Verification', 'listing status', 'another-wordpress-classifieds-plugin' );
+            echo esc_html_x( 'Pending Verification', 'listing status', 'another-wordpress-classifieds-plugin' );
+            return;
         }
     }
 
@@ -234,6 +240,6 @@ class AWPCP_ListingsTableColumnsHandler {
     private function render_actions_column( $post ) {
         $actions = apply_filters( "{$this->listing_post_type}_row_actions", [], $post );
 
-        return implode( '', $actions );
+        echo implode( '', $actions );
     }
 }

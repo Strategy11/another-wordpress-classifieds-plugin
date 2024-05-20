@@ -196,9 +196,10 @@ class AWPCP_Router {
             'should_show_title' => true,
             'show_sidebar' => $this->show_sidebar( $this->current_page ),
             'content' => $content,
+            'echo'              => true,
         );
 
-        echo $this->template_renderer->render_template( $template, $params );
+        $this->template_renderer->render_template( $template, $params );
     }
 
     public function redirect( $redirect ) {
