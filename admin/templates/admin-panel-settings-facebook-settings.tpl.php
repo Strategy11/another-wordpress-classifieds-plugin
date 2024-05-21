@@ -30,7 +30,7 @@ printf(
     esc_html__( 'You can read more about Facebook changes here: %s', 'another-wordpress-classifieds-plugin' ),
     '<a href="https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes/">' .
         'https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes/' .
-        '</a>',
+        '</a>'
 );
 ?>
 </p>
