@@ -8,9 +8,12 @@ class AWPCP_Classifieds_Menu_Component {
         $this->settings = $settings;
     }
 
-    public function render() {
+    /**
+     * Can echo or return the rendered component.
+     */
+    public function render( $params = array() ) {
         $template = AWPCP_DIR . '/templates/components/classifieds-menu.tpl.php';
-        $params = array( 'buttons' => $this->get_menu_buttons() );
+        $params['buttons'] = $this->get_menu_buttons();
 
         return awpcp_render_template( $template, $params );
     }

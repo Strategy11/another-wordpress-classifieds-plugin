@@ -130,14 +130,16 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $awpcp = awpcp();
 
         $awpcp->js->localize( 'page-place-ad-order', array(
-            'category' => __( 'Please select a category.', 'another-wordpress-classifieds-plugin' ),
-            'user' => __( "Please select the Ad's owner.", 'another-wordpress-classifieds-plugin' ),
+            'category'     => __( 'Please select a category.', 'another-wordpress-classifieds-plugin' ),
+            'user'         => __( 'Please select the Ad owner.', 'another-wordpress-classifieds-plugin' ),
             'payment_term' => __( 'Please select a payment term.', 'another-wordpress-classifieds-plugin' ),
         ) );
 
         $awpcp->js->localize( 'page-place-ad-details', awpcp_listing_form_fields_validation_messages() );
 
-        if ( is_admin() && isset( $_GET['page'] ) && in_array( $_GET['page'], array( 'awpcp-listings', 'awpcp-panel' ), true ) ) {
+        $this_page = awpcp_get_var( array( 'param' => 'page' ), 'get' );
+        if ( is_admin() && in_array( $this_page, array( 'awpcp-listings', 'awpcp-panel' ), true ) ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $this->_dispatch( $default );
         } else {
             return $this->_dispatch( $default );

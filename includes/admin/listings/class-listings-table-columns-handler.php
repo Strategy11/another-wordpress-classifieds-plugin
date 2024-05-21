@@ -240,6 +240,6 @@ class AWPCP_ListingsTableColumnsHandler {
     private function render_actions_column( $post ) {
         $actions = apply_filters( "{$this->listing_post_type}_row_actions", [], $post );
 
-        echo implode( '', $actions );
+        echo wp_kses_post( implode( '', $actions ) );
     }
 }

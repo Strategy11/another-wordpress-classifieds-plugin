@@ -36,10 +36,11 @@ class AWPCP_EmailTemplateSettingsRenderer {
             'subject_field_name' => "{$this->settings->setting_name}[{$setting['id']}][subject]",
             'body_field_name'    => "{$this->settings->setting_name}[{$setting['id']}][body]",
             'version_field_name' => "{$this->settings->setting_name}[{$setting['id']}][version]",
+            'echo'               => true,
         ];
 
         $template = '/admin/settings/email-template.tpl.php';
 
-        echo $this->template_renderer->render_template( $template, $params );
+        $this->template_renderer->render_template( $template, $params );
     }
 }

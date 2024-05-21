@@ -31,22 +31,20 @@ class AWPCP_TextfieldSettingsRenderer {
             $type = 'password';
         }
 
-        $html  = '<input id="' . esc_attr( $setting['id'] ) . '" class="regular-text" ';
-        $html .= 'value="' . esc_attr( $value ) . '" type="' . esc_attr( $type ) . '" ';
-        $html .= 'name="awpcp-options[' . $setting['id'] . ']" ';
+        echo '<input id="' . esc_attr( $setting['id'] ) . '" class="regular-text" ';
+        echo 'value="' . esc_attr( $value ) . '" type="' . esc_attr( $type ) . '" ';
+        echo 'name="awpcp-options[' . esc_attr( $setting['id'] ) . ']" ';
 
         if ( ! empty( $setting['readonly'] ) ) {
-            $html .= 'disabled="disabled" ';
+            echo 'disabled="disabled" ';
         }
 
         if ( ! empty( $config ) ) {
-            $html .= 'awpcp-setting="' . esc_attr( wp_json_encode( $config ) ) . '" ';
+            echo 'awpcp-setting="' . esc_attr( wp_json_encode( $config ) ) . '" ';
         }
 
-        $html .= '/>';
-        $html .= strlen( $setting['description'] ) > 20 ? '<br/>' : '&nbsp;';
-        $html .= '<span class="description">' . $setting['description'] . '</span>';
-
-        echo $html;
+        echo '/>';
+        echo strlen( $setting['description'] ) > 20 ? '<br/>' : '&nbsp;';
+        echo '<span class="description">' . wp_kses_post( $setting['description'] ) . '</span>';
     }
 }

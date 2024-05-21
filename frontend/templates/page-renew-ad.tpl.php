@@ -2,14 +2,10 @@
 
 	<h2><?php esc_html_e( 'Renew Ad', 'another-wordpress-classifieds-plugin' ); ?></h2>
 
-<?php if (in_array($step, array('renew-ad', 'error', 'post-checkout'))): ?>
-
-	<?php echo $content ?>
-
-<?php elseif ($step == 'checkout'): ?>
+<?php if ( $step == 'checkout' ): ?>
 
 	<?php foreach ($header as $part): ?>
-	<p><?php echo $part ?></p>
+	<p><?php echo wp_kses_post( $part ); ?></p>
 	<?php endforeach ?>
 
 	<p><?php
@@ -18,8 +14,9 @@
 		wp_kses_post( $amount )
 	);
 	?></p>
-	<?php echo $content ?>
-
 <?php endif ?>
-
+<?php
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo $content;
+?>
 </div>

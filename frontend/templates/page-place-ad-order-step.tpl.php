@@ -75,7 +75,7 @@
     <h3><?php esc_html_e( 'Please select a payment term for your Ad', 'another-wordpress-classifieds-plugin' ); ?></h3>
     <?php awpcp_show_form_error( 'payment-term', $form_errors ); ?>
         <?php endif; ?>
-    <?php echo $payment_terms_list->render( $payment_options ); ?>
+    <?php $payment_terms_list->show( $payment_options ); ?>
 
     <?php $payments->show_credit_plans_table( $transaction ); ?>
     <?php endif; ?>

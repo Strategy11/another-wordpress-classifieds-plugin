@@ -1055,6 +1055,7 @@ function awpcp_country_list_options( $value = false, $use_names = true, $show = 
 	}
 
     if ( $show ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $options;
         return;
     }

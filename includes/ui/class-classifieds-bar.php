@@ -65,16 +65,19 @@ class AWPCP_Classifieds_Bar {
             return $output;
         }
 
+        $params = [
+            $this->echo,
+        ];
+
         if ( $components['search_bar'] ) {
-            $output .= $this->classifieds_search_bar->render();
+            $output .= $this->classifieds_search_bar->render( $params );
         }
 
         if ( $components['menu'] ) {
-            $output .= $this->classifieds_menu->render();
+            $output .= $this->classifieds_menu->render( $params );
         }
 
         if ( $this->echo ) {
-            echo $output;
             return;
         }
 

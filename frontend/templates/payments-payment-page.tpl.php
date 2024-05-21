@@ -8,4 +8,7 @@
 
 <?php $this->show_transaction_items( $transaction ); ?>
 
-<?php echo $output; ?>
+<?php
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo $output;
+?>

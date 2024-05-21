@@ -84,12 +84,12 @@
     ?>
 
     <?php
-        echo awpcp()->container['ListingDetailsFormFieldsRenderer']->render_fields(
-            $form,
-            $errors,
-            null,
-            array( 'category' => 0, 'action' => 'search' )
-        );
+    awpcp()->container['ListingDetailsFormFieldsRenderer']->show_fields(
+        $form,
+        $errors,
+        null,
+        array( 'category' => 0, 'action' => 'search' )
+    );
     ?>
 
     <p class="awpcp-form-field"><input type="submit" class="button" value="<?php echo esc_attr( _x( 'Find Ads', 'ad search form', 'another-wordpress-classifieds-plugin' ) ); ?>"/></p>

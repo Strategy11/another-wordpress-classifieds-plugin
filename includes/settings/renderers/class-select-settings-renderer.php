@@ -26,19 +26,17 @@ class AWPCP_SelectSettingsRenderer {
     public function render_setting( $setting ) {
         $current = stripslashes( $this->settings->get_option( $setting['id'] ) );
 
-        $html = '<select id="' . esc_attr( $setting['id'] ) . '" name="awpcp-options[' . esc_attr( $setting['id'] ) . ']">';
+        echo '<select id="' . esc_attr( $setting['id'] ) . '" name="awpcp-options[' . esc_attr( $setting['id'] ) . ']">';
 
         foreach ( $setting['options'] as $value => $label ) {
             if ( 0 === strcmp( $value, $current ) ) {
-                $html .= '<option value="' . esc_attr( $value ) . '" selected="selected">' . esc_html( $label ) . '</option>';
+                 echo '<option value="' . esc_attr( $value ) . '" selected="selected">' . esc_html( $label ) . '</option>';
             } else {
-                $html .= '<option value="' . esc_attr( $value ) . '">' . esc_html( $label ) . '</option>';
+                echo '<option value="' . esc_attr( $value ) . '">' . esc_html( $label ) . '</option>';
             }
         }
 
-        $html .= '</select><br/>';
-        $html .= '<span class="description">' . $setting['description'] . '</span>';
-
-        echo $html;
+        echo '</select><br/>';
+        echo '<span class="description">' . wp_kses_post( $setting['description'] ) . '</span>';
     }
 }

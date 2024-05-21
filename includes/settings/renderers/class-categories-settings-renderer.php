@@ -25,7 +25,7 @@ class AWPCP_CategoriesSettingsRenderer {
      */
     public function render_setting( $setting ) {
         $params = array(
-            'field_name'           => 'awpcp-options[' . $setting['id'] . ']',
+            'field_name'           => 'awpcp-options[' . esc_attr( $setting['id'] ) . ']',
             'selected'             => $this->settings->get_option( $setting['id'] ),
             'first_level_ul_class' => 'awpcp-categories-list',
             'no-cache'             => time(),
@@ -33,7 +33,8 @@ class AWPCP_CategoriesSettingsRenderer {
 
         $checklist = awpcp_categories_checkbox_list_renderer()->render( $params );
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         printf( '<div class="cat-checklist category-checklist">%s</div>', $checklist );
-        echo '<span class="description">' . $setting['description'] . '</span>';
+        echo '<span class="description">' . wp_kses_post( $setting['description'] ) . '</span>';
     }
 }

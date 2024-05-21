@@ -29,19 +29,21 @@ class AWPCP_WordPressPageSettingsRenderer {
             'echo'              => false,
         );
 
-        $create_page_button = sprintf(
-            '<a class="button" href="%s">%s</a>',
-            esc_url( admin_url( 'post-new.php?post_type=page' ) ),
-            esc_html( __( 'Create Page', 'another-wordpress-classifieds-plugin' ) )
+        printf(
+            /* translators: %1$s is a dropdown with existing pages, %2$s is a link to create a new page */
+            esc_html_x( 'Select existing page %1$s -or- %2$s', 'page settings', 'another-wordpress-classifieds-plugin' ),
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            wp_dropdown_pages( $dropdown_params ),
+            '<a class="button" href="' . esc_url( admin_url( 'post-new.php?post_type=page' ) ) . '">' .
+                esc_html__( 'Create Page', 'another-wordpress-classifieds-plugin' ) .
+                '</a>',
         );
 
-        $description = sprintf( '<span class="description">%s</span>', $setting['description'] );
+        echo '<br/>';
 
-        $content = esc_html( _x( 'Select existing page {dropdown} -or- {create_page_button}', 'page settings', 'another-wordpress-classifieds-plugin' ) );
-        $content = str_replace( '{dropdown}', wp_dropdown_pages( $dropdown_params ), $content );
-        $content = str_replace( '{create_page_button}', $create_page_button, $content );
-
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $content . '<br/>' . $description;
+        printf(
+            '<span class="description">%s</span>',
+            wp_kses_post( $setting['description'] )
+        );
     }
 }

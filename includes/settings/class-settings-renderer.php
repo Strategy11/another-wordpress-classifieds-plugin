@@ -37,6 +37,7 @@ class AWPCP_SettingsRenderer {
         }
 
         if ( isset( $section['callback'] ) && is_callable( $section['callback'] ) ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo call_user_func( $section['callback'], $section );
         }
     }
