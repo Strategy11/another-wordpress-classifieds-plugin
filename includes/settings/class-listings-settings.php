@@ -603,12 +603,15 @@ class AWPCP_ListingsSettings {
         $main_page_slug = $this->get_main_page_slug();
         $default_slug   = $this->get_default_listings_slug();
 
-        $example_path = '<code>/' . $main_page_slug . '/' . $default_slug . '/id/listing-title/city/state/category</code>';
-        $example_text = _x( 'Example path: <example-path>.', 'listing url settings section', 'another-wordpress-classifieds-plugin' );
-        $example_text = str_replace( '<example-path>', $example_path, $example_text );
+        echo '<p>' . esc_html( $introduction ) . '<br/><br/>';
 
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo '<p>' . esc_html( $introduction ) . '<br/><br/>' . $example_text . '</p>';
+        printf(
+            /* translators: %s: example URL */
+            esc_html_x( 'Example path: %s.', 'listing url settings section', 'another-wordpress-classifieds-plugin' ),
+            '<code>/' . esc_html( $main_page_slug . '/' . $default_slug ) . '/id/listing-title/city/state/category</code>'
+        );
+
+        echo '</p>';
     }
 
     /**

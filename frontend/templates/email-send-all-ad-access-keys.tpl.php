@@ -3,7 +3,7 @@
  * emails are sent in plain text, all blank lines in templates are required
  */
 
-echo $introduction;
+echo wp_kses_post( $introduction );
 ?>:
 
 <?php esc_html_e( 'Total ads found sharing your email address', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( count( $ads ) ); ?>

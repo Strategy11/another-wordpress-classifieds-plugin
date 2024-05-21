@@ -34,7 +34,6 @@
 
                 <div class="awpcp-form-spacer<?php echo $show_user_field ? '' : esc_attr( ' awpcp-hidden' ); ?>">
                     <?php
-                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
                     awpcp()->container['UserSelector']->render(
                         [
                             'required'                      => true,

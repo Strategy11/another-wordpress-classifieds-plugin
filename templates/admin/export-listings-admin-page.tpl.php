@@ -22,21 +22,16 @@
 
         <div class="notice notice-info"><p>
 				<?php
-				$notice = _x(
-					"Please note that the export process is a resource intensive task. If your export does not succeed try disabling other plugins first and/or increasing the values of the 'memory_limit' and 'max_execution_time' directives in your server's php.ini configuration file.",
-					'listings-csv-export',
-					'another-wordpress-classifieds-plugin'
+				printf(
+                    /* translators: %1$s: memory_limit link, %2$s: max_execution_time link */
+                    esc_html_x(
+					    'Please note that the export process is a resource intensive task. If your export does not succeed try disabling other plugins first and/or increasing the values of the %1$s and %2$s directives in your server php.ini configuration file.',
+					    'listings-csv-export',
+					    'another-wordpress-classifieds-plugin'
+                    ),
+                    '<a href="http://www.php.net/manual/en/ini.core.php#ini.memory-limit" target="_blank" rel="noopener">memory_limit</a>',
+                    '<a href="http://www.php.net/manual/en/info.configuration.php#ini.max-execution-time" target="_blank" rel="noopener">max_execution_time</a>'
 				);
-				$notice = str_replace(
-					array( 'memory_limit', 'max_execution_time' ),
-					array(
-						'<a href="http://www.php.net/manual/en/ini.core.php#ini.memory-limit" target="_blank" rel="noopener">memory_limit</a>',
-						'<a href="http://www.php.net/manual/en/info.configuration.php#ini.max-execution-time" target="_blank" rel="noopener">max_execution_time</a>',
-					),
-					$notice
-				);
-				// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $notice;
 				?>
             </p>
         </div>

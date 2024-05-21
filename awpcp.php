@@ -177,11 +177,9 @@ function awpcp_activation_failed_notice( $content ) {
 function awpcp_self_deactivate() {
     deactivate_plugins( plugin_basename( AWPCP_FILE ) );
 
-    // phpcs:disable WordPress.Security.NonceVerification.Recommended
-    if ( isset( $_GET['activate'] ) ) {
+    if ( isset( $_GET['activate'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         unset( $_GET['activate'] );
     }
-    // phpcs:enable WordPress.Security.NonceVerification.Recommended
 }
 
 /**

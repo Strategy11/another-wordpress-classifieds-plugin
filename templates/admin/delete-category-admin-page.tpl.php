@@ -29,12 +29,12 @@
 
                     <p>
                     <?php
-                        $message = __( 'Click <cancel-button-label> to go back to the list of categories or click <submit-button-label> to proceed.', 'another-wordpress-classifieds-plugin' );
-                        $message = str_replace( '<cancel-button-label>', '<strong>' . esc_html( $form_cancel ) . '</strong>', $message );
-                        $message = str_replace( '<submit-button-label>', '<strong>' . esc_html( $form_submit ) . '</strong>', $message );
-
-                        // @phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                        echo $message;
+                    printf(
+                        /* translators: %1$s: Cancel button , %2$s: Submit button label */
+                        esc_html__( 'Click %1$s to go back to the list of categories or click %2$s to proceed.', 'another-wordpress-classifieds-plugin' ),
+                        '<strong>' . esc_html( $form_cancel ) . '</strong>',
+                        '<strong>' . esc_html( $form_submit ) . '</strong>'
+                    );
                     ?>
                     </p>
 

@@ -15,7 +15,7 @@
 <?php endif; ?>
 
 <div class="metabox-holder">
-    <div class="meta-box-sortables" <?php echo empty( $sidebar ) ? '' : ' style="float:left;width:70%;"'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+    <div class="meta-box-sortables" <?php echo empty( $sidebar ) ? '' : ' style="float:left;width:70%;"'; ?>>
 
         <div class="postbox">
             <h3>

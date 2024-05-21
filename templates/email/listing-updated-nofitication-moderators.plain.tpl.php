@@ -7,5 +7,4 @@ printf(
 ?>
 
 <?php
-// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-echo $content;
+echo wp_kses_post( $content );

@@ -9,7 +9,7 @@
         <?php
         $show_sidebar = isset( $show_sidebar ) ? $show_sidebar : true;
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		echo $sidebar = $show_sidebar ? awpcp_admin_sidebar() : '';
+        echo $sidebar = $show_sidebar ? awpcp_admin_sidebar() : '';
         ?>
 
 		<div class="awpcp-main-content <?php echo (empty($sidebar) ? 'without-sidebar' : 'with-sidebar') ?>">
