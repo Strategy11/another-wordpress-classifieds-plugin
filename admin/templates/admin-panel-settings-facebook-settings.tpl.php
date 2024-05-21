@@ -66,7 +66,7 @@ printf(
     /* translators: %1$s opening anchor link, %2$s closing anchor link */
     esc_html__( 'Follow the instructiones to create the tasks on %1$sZapier or IFTTT%2$s. Then update the settings at the bottom of this page to enter the webhook URLs associated with those tasks.', 'another-wordpress-classifieds-plugin' ),
     '<a href="https://awpcp.com/knowledge-base/facebook-integration/">',
-    '</a>',
+    '</a>'
 );
 ?>
 </p>

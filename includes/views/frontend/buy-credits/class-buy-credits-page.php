@@ -5,6 +5,8 @@
  */
 class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
 
+    private $transaction = null;
+
     public function __construct( $steps, $request ) {
         parent::__construct( $steps, $request );
 
@@ -13,7 +15,7 @@ class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
     }
 
     public function get_transaction( $create = true ) {
-        if ( ! isset( $this->transaction ) ) {
+        if ( $this->transaction !== null ) {
             $id = awpcp_get_var( array( 'param' => 'transaction_id' ) );
 
             if ( $create === true  ) {
