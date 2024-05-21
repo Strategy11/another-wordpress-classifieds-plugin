@@ -36,7 +36,7 @@ class AWPCP_WordPressPageSettingsRenderer {
             wp_dropdown_pages( $dropdown_params ),
             '<a class="button" href="' . esc_url( admin_url( 'post-new.php?post_type=page' ) ) . '">' .
                 esc_html__( 'Create Page', 'another-wordpress-classifieds-plugin' ) .
-                '</a>',
+                '</a>'
         );
 
         echo '<br/>';

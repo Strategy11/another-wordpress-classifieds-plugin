@@ -896,6 +896,7 @@ class AWPCP_PaymentsAPI {
 
     public function render_payment_completed_page($transaction, $action='', $hidden=array()) {
         $success = false;
+        $text    = '';
 
         if ($transaction->payment_is_completed() || $transaction->payment_is_pending()) {
             $title = __( 'Payment Completed', 'another-wordpress-classifieds-plugin');
@@ -939,6 +940,7 @@ class AWPCP_PaymentsAPI {
         );
 
         $file = AWPCP_DIR . '/frontend/templates/payments-payment-completed-page.tpl.php';
+        $echo = $this->echo;
         return awpcp_get_file_contents(
             $file,
             compact( 'transaction', 'action', 'hidden', 'success', 'title', 'text', 'redirect', 'echo' )

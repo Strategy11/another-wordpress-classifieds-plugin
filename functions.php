@@ -845,6 +845,13 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     return $fields;
 }
 
+/**
+ * @param string      $value
+ * @param bool        $use_names
+ * @param bool|string $show      If has a value, the function will echo the list of countries.
+ *
+ * @return string|void
+ */
 function awpcp_country_list_options( $value = false, $use_names = true, $show = false ) {
 	$countries = array(
 	    'US' => 'United States',
