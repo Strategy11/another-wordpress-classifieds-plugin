@@ -96,7 +96,7 @@
                             printf(
                                 esc_html__( '%1$s (Default name: %2$s).', 'another-wordpress-classifieds-plugin' ),
                                 '<strong>' . esc_html( $page->label ) . '</strong>',
-                                esc_html( $page->default_name ),
+                                esc_html( $page->default_name )
                             );
                             ?>
                         </li>
