@@ -7,6 +7,10 @@ class AWPCP_PrepareTransactionForPaymentStepDecorator extends AWPCP_StepDecorato
 
     public $payments;
 
+    protected $controller;
+
+    protected $transaction;
+
     public function __construct( $decorated, $payments, $payment_completed_step, $checkout_step ) {
         parent::__construct( $decorated );
         $this->payments = $payments;

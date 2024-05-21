@@ -16,7 +16,6 @@ parameters:
 		- */bin/*
 		- */build/*
 	ignoreErrors:
-		- '#Access to an undefined property#'
 		- '#no (typehint|value type|return type)+ specified.#'
 		- '#might not be defined.#'
 		- '#has an unused parameter \$null#'

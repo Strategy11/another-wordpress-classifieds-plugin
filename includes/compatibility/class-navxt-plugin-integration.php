@@ -29,6 +29,14 @@ class AWPCP_NavXTPluginIntegration {
      */
     private $post;
 
+    protected $is_archive;
+    protected $is_category;
+    protected $is_page;
+    protected $is_singular_post;
+    protected $queried_object;
+    protected $is_singular;
+    protected $current_category;
+
     public function __construct( $listing_post_type ) {
         $this->listing_post_type = $listing_post_type;
     }

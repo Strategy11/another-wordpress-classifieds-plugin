@@ -2922,38 +2922,6 @@ function awpcp_is_filename_already_used( $filename, $directories ) {
 }
 
 /**
- * @since x.x
- *
- * @param string $file
- * @param bool   $echo
- * @param array  $args The variables to substitute into the query's placeholders
- *                        if being called with an array of arguments, or the first variable
- *                        to substitute into the query's placeholders if being called with individual arguments.
- *
- * @return string
- */
-function awpcp_get_file_contents( $file, $args ) {
-    if ( ! is_file( $file ) ) {
-        return '';
-    }
-
-    // phpcs:ignore WordPress.PHP.DontExtract
-    extract( $args );
-
-    if ( ! empty( $args['echo'] ) ) {
-        include $file;
-        return '';
-    }
-
-    ob_start();
-    include $file;
-    $contents = ob_get_contents();
-    ob_end_clean();
-
-    return $contents;
-}
-
-/**
  * @since 3.3
  */
 function awpcp_register_activation_hook( $__FILE__, $callback ) {

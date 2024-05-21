@@ -38,9 +38,16 @@ class AWPCP_FormStepsComponent {
     private function render_steps( $selected_step, $steps ) {
         $form_steps = $this->prepare_steps( $steps, $selected_step );
         $file       = AWPCP_DIR . '/templates/components/form-steps.tpl.php';
-        $echo       = $this->echo;
+        if ( $this->echo ) {
+            include $file;
+            return;
+        }
 
-        return awpcp_get_file_contents( $file, compact( 'form_steps', 'echo' ) );
+        ob_start();
+        include $file;
+        $html = ob_get_contents();
+        ob_end_clean();
+        return $html;
     }
 
     private function prepare_steps( $steps, $selected_step ) {

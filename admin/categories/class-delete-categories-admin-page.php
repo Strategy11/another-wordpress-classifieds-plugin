@@ -21,6 +21,7 @@ class AWPCP_Delete_Categories_Admin_Page {
     private $categories_logic;
     private $categories;
     private $request;
+    protected $router;
 
     public function __construct( $categories_logic, $categories, $router, $request ) {
         $this->categories_logic = $categories_logic;

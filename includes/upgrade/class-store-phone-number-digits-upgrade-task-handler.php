@@ -15,6 +15,8 @@
  */
 class AWPCP_Store_Phone_Number_Digits_Upgrade_Task_Handler implements AWPCP_Upgrade_Task_Runner {
 
+    private $db;
+
     public function __construct( $db ) {
         $this->db = $db;
     }

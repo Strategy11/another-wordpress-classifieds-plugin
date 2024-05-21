@@ -6,6 +6,8 @@ function awpcp_default_login_form_implementation() {
 
 class AWPCP_Default_Login_Form_Implementation {
 
+    protected $settings;
+
     public function __construct( $settings ) {
         $this->settings = $settings;
     }

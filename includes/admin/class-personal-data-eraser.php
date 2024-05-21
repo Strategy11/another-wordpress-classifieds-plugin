@@ -8,6 +8,8 @@
  */
 class AWPCP_PersonalDataEraser {
 
+    protected $data_eraser;
+
     /**
      * @since 3.8.6
      */

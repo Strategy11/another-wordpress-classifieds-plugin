@@ -3,6 +3,12 @@
 class WP_Skeleton_Logger {
     static $instance = null;
 
+    protected $html;
+    protected $from;
+    protected $context;
+    protected $root;
+    protected $log;
+
     private function __construct() {
         $this->html = true;
         $this->from = true;

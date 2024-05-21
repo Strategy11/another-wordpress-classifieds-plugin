@@ -35,6 +35,7 @@ class AWPCP_CSVExporter {
     private $exported = 0;
     private $listing;
     private $listing_data;
+    private $images_archive;
 
     public function __construct( $settings, $settings_api, $workingdir = null, $listings = array() ) {
         $this->settings     = array_merge( $this->settings, $settings );
@@ -300,7 +301,7 @@ class AWPCP_CSVExporter {
                     continue;
                 }
 
-                $this->images_archive = ( ! isset( $this->images_archive ) ) ? $this->get_pclzip_instance( $this->workingdir . 'images.zip' ) : $this->images_archive;
+                $this->images_archive = $this->images_archive === null ? $this->get_pclzip_instance( $this->workingdir . 'images.zip' ) : $this->images_archive;
                 $success              = $this->images_archive->add( $img_path, PCLZIP_OPT_REMOVE_ALL_PATH );
                 if ( $success ) {
                     $images[] = basename( $img_path );

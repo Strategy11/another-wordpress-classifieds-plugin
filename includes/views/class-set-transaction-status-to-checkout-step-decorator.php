@@ -4,6 +4,8 @@ class AWPCP_SetTransactionStatusToCheckoutStepDecorator extends AWPCP_StepDecora
 
     private $payments;
 
+    protected $transaction;
+
     public function __construct( $decorated, $payments ) {
         parent::__construct( $decorated );
         $this->payments = $payments;

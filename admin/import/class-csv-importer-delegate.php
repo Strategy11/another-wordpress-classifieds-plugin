@@ -59,6 +59,9 @@ class AWPCP_CSV_Importer_Delegate {
     );
 
     private $messages = array();
+    protected $users_cache = array();
+    protected $options = array();
+    protected $extra_fields;
 
     public function __construct( $import_session, $columns, $listings_payments, $mime_types, $categories_logic, $categories, $listings_logic, $listings, $payments, $media_manager ) {
         $this->import_session    = $import_session;

@@ -761,8 +761,17 @@ class AWPCP_PaymentsAPI {
         );
 
         $file = AWPCP_DIR . '/frontend/templates/payments-credit-plans-table.tpl.php';
-        $echo = $this->echo;
-        return awpcp_get_file_contents( $file, compact( 'column_names', 'table_only', 'credit_plans', 'selected', 'echo' ) );
+        if ( $this->echo ) {
+            include $file;
+            return;
+        }
+
+        ob_start();
+        include $file;
+        $html = ob_get_contents();
+        ob_end_clean();
+
+        return $html;
     }
 
     /**
@@ -826,8 +835,16 @@ class AWPCP_PaymentsAPI {
 
     public function render_checkout_payment_template($output, $message, $transaction) {
         $file = AWPCP_DIR . '/frontend/templates/payments-checkout-payment-page.tpl.php';
-        $echo = $this->echo;
-        return awpcp_get_file_contents( $file, compact( 'output', 'message', 'transaction', 'echo' ) );
+        if ( $this->echo ) {
+            include $file;
+            return;
+        }
+
+        ob_start();
+        include $file;
+        $html = ob_get_contents();
+        ob_end_clean();
+        return $html;
     }
 
     /**
@@ -851,12 +868,16 @@ class AWPCP_PaymentsAPI {
         if (is_null($payment_method) || isset($result['errors'])) {
             $transaction_errors = awpcp_array_data('errors', array(), $result);
             $file = AWPCP_DIR . '/frontend/templates/payments-checkout-page.tpl.php';
-            $echo = $this->echo;
+            if ( $this->echo ) {
+                include $file;
+                return;
+            }
 
-            return awpcp_get_file_contents(
-                $file,
-                compact( 'transaction', 'attempts', 'hidden', 'transaction_errors', 'echo' )
-            );
+            ob_start();
+            include $file;
+            $html = ob_get_contents();
+            ob_end_clean();
+            return $html;
         }
 
         if ( ! isset( $result['output'] ) ) {
@@ -940,11 +961,16 @@ class AWPCP_PaymentsAPI {
         );
 
         $file = AWPCP_DIR . '/frontend/templates/payments-payment-completed-page.tpl.php';
-        $echo = $this->echo;
-        return awpcp_get_file_contents(
-            $file,
-            compact( 'transaction', 'action', 'hidden', 'success', 'title', 'text', 'redirect', 'echo' )
-        );
+        if ( $this->echo ) {
+            include $file;
+            return;
+        }
+
+        ob_start();
+        include $file;
+        $html = ob_get_contents();
+        ob_end_clean();
+        return $html;
     }
 
     /**

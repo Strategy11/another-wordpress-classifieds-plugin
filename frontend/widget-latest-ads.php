@@ -8,6 +8,10 @@
  */
 class AWPCP_LatestAdsWidget extends WP_Widget {
 
+    protected $listing_renderer;
+    protected $attachment_properties;
+    protected $attachments;
+
     public function __construct($id=null, $name=null, $description=null) {
         $id = is_null($id) ? 'awpcp-latest-ads': $id;
         $name = is_null($name) ? __( 'AWPCP Latest Ads', 'another-wordpress-classifieds-plugin') : $name;

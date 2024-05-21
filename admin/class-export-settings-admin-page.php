@@ -44,6 +44,11 @@ class AWPCP_Export_Settings_Admin_Page {
     private $template_renderer;
 
     /**
+     * @var Request
+     */
+    private $request;
+
+    /**
      * Constructor.
      */
     public function __construct( $settings_reader, $template_renderer, $request ) {

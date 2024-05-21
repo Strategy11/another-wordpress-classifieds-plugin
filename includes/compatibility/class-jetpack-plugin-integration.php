@@ -16,6 +16,8 @@ function awpcp_jetpack_plugin_integration() {
  */
 class AWPCP_Jetpack_Plugin_Integration implements AWPCP_Plugin_Integration {
 
+    protected $query;
+
     /**
      * Constructor.
      *

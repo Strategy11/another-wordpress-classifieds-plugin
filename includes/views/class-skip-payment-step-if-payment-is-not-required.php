@@ -7,6 +7,10 @@ class AWPCP_SkipPaymentStepIfPaymentIsNotRequiredStepDecorator extends AWPCP_Ste
 
     private $payments;
 
+    protected $transaction;
+
+    protected $controller;
+
     public function __construct( $decorated, $payments ) {
         parent::__construct( $decorated );
         $this->payments = $payments;

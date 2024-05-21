@@ -5,7 +5,7 @@
  */
 class AWPCP_BuyCreditsPage extends AWPCP_BasePage {
 
-    private $transaction = null;
+    protected $transaction = null;
 
     public function __construct( $steps, $request ) {
         parent::__construct( $steps, $request );

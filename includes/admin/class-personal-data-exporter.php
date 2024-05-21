@@ -8,6 +8,8 @@
  */
 class AWPCP_PersonalDataExporter {
 
+    protected $data_exporter;
+
     /**
      * @since 3.8.6
      */
