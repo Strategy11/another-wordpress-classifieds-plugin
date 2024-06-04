@@ -77,6 +77,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             )
         );
 
+        $fields     = $args['fields'];
         $query_vars = array( AWPCP_TABLE_ADFEES );
 
         if ( is_array( $args['where'] ) ) {
@@ -87,7 +88,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
 
         $query_vars[] = $args['orderby'];
 
-        if ( $args['fields'] === 'count' ) {
+        if ( $fields === 'count' ) {
             return $wpdb->get_var(
                 $wpdb->prepare(
                     // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
@@ -96,9 +97,6 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
                 )
             );
         }
-
-        // Add fields to beginning of the array.
-        array_unshift( $query_vars, $args['fields'] );
 
         if ( $args['limit'] > 0 ) {
             $query_vars[] = $args['offset'];
@@ -109,7 +107,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
 
         $items = $wpdb->get_results(
             $wpdb->prepare(
-                'SELECT %i, CASE rec_increment ' .
+                'SELECT ' . $fields . ', CASE rec_increment ' .
                 "WHEN 'D' THEN 1 " .
                 "WHEN 'W' THEN 2 " .
                 "WHEN 'M' THEN 3 " .
