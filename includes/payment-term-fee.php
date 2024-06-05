@@ -91,8 +91,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             return $wpdb->get_var(
                 $wpdb->prepare(
                     // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-                    'SELECT COUNT(adterm_id) FROM %i WHERE ' . $args['where'] .
-                    ' ORDER BY ' . $args['orderby'] . ' ' . strtoupper( $args['order'] ),
+                    'SELECT COUNT(adterm_id) FROM %i WHERE ' . $args['where'] . ' ORDER BY ' . $args['orderby'] . ' ' . strtoupper( $args['order'] ),
                     $query_vars
                 )
             );
@@ -107,6 +106,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
 
         $items = $wpdb->get_results(
             $wpdb->prepare(
+                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
                 'SELECT ' . $fields . ', CASE rec_increment ' .
                 "WHEN 'D' THEN 1 " .
                 "WHEN 'W' THEN 2 " .
