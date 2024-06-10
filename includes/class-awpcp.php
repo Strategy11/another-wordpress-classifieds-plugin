@@ -1132,7 +1132,7 @@ class AWPCP {
         );
 
         /* helpers */
-        $src = ! $min && file_exists( AWPCP_DIR . '/resources/js/awpcp.src.js' ) ? '.src' : $min;
+        $src = ! $min && file_exists( AWPCP_DIR . '/resources/js/awpcp.src.js' ) ? '.src' : '.min';
         wp_register_script(
             'awpcp',
             $js . '/awpcp' . $src . '.js',
