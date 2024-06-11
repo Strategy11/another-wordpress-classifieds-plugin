@@ -42,25 +42,8 @@ function awpcp_ordinalize($num) {
 }
 
 function awpcp_render_template( $template, $params ) {
-    if ( file_exists( $template ) ) {
-        $template_file = $template;
-    } elseif ( file_exists( AWPCP_DIR . '/templates/' . $template ) ) {
-        $template_file = AWPCP_DIR . '/templates/' . $template;
-    } else {
-        $template_file = null;
-    }
-
-    if ( ! is_null( $template_file ) ) {
-        ob_start();
-        extract( $params );
-        include( $template_file );
-        $output = ob_get_contents();
-        ob_end_clean();
-    } else {
-        $output = sprintf( 'Template %s not found!', str_replace( AWPCP_DIR, '', $template ) );
-    }
-
-    return $output;
+    $template_renderer = awpcp()->container['TemplateRenderer'];
+    return $template_renderer->render_template( $template, $params );
 }
 
 function awpcp_admin_page_title() {

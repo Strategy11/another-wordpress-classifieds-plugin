@@ -66,7 +66,7 @@ class AWPCP_Classifieds_Bar {
         }
 
         $params = [
-            $this->echo,
+            'echo' => $this->echo,
         ];
 
         if ( $components['search_bar'] ) {
