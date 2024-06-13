@@ -4,6 +4,17 @@
     }
 }
 
+.single-awpcp_listing {
+    header + main > div:first-child > .wp-block-post-featured-image, // 2024, 2023 theme.
+    h1 + .wp-block-post-featured-image, // 2022 theme.
+    h1 + .post-thumbnail, // 2021 theme.
+    header + .entry-media, // BuddyBoss theme.
+    header > .post-thumb, // Astra theme.
+    .entry-header + .featured-media { // 2020 theme.
+        display: none;
+    }
+}
+
 #classiwrapper .awpcp-attachments-list,
 #displayimagethumbs ul {
     align-items: flex-start;
