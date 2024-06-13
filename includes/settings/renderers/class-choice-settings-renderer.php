@@ -35,24 +35,25 @@ class AWPCP_ChoiceSettingsRenderer {
         // when the default value of the setting is returned by get_option().
         $selected = array_filter( array_map( 'strval', $this->settings->get_option( $setting['id'], array() ) ), 'strlen' );
 
-        $html = array( sprintf( '<input type="hidden" name="%s" value="">', $field_name ) );
+        printf( '<input type="hidden" name="%s" value="">', esc_attr( $field_name ) );
 
         foreach ( $setting['choices'] as $value => $label ) {
             $id = "{$setting['id']}-$value";
 
             // Options values ($selected) are retrieved as strings.
-            $checked = in_array( (string) $value, $selected, true ) ? 'checked="checked"' : '';
+            $checked = in_array( (string) $value, $selected, true ) ? 'checked' : '';
 
-            $html_field = '<input id="%s" type="%s" name="%s" value="%s" %s />';
-            $html_field = sprintf( $html_field, $id, $field_type, $field_name, $value, $checked );
-            $html_label = '<label for="' . $id . '">' . $label . '</label><br/>';
+            echo '<input id="' . esc_attr( $id ) . '" ' .
+                'type="' . esc_attr( $field_type ) . '" ' .
+                'name="' . esc_attr( $field_name ) . '" ' .
+                'value="' . esc_attr( $value ) . '" ' .
+                esc_attr( $checked ) .
+                '>';
 
-            $html[] = $html_field . '&nbsp;' . $html_label;
+            echo '&nbsp;';
+            echo '<label for="' . esc_attr( $id ) . '">' . wp_kses_post( $label ) . '</label><br/>';
         }
 
-        $html[] = '<span class="description">' . $setting['description'] . '</span>';
-
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo join( '', $html );
+        echo '<span class="description">' . wp_kses_post( $setting['description'] ) . '</span>';
     }
 }

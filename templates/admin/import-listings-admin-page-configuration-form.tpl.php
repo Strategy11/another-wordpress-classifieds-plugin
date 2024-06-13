@@ -150,7 +150,8 @@
                             </th>
                             <td>
                                 <?php
-                                    echo awpcp()->container['UserSelector']->render( array(
+                                awpcp()->container['UserSelector']->render(
+                                    array(
                                         'selected'                      => empty( $form_data['default_user'] ) ? null : $form_data['default_user'],
                                         'label'                         => false,
                                         'default'                       => false,
@@ -158,7 +159,9 @@
                                         'name'                          => 'default_user',
                                         'class'                         => array( 'awpcp-user-selector' ),
                                         'include_full_user_information' => false,
-                                    ) );
+                                        'echo'                          => true,
+                                    )
+                                );
                                 ?>
                                 <?php awpcp_show_form_error( 'default_user', $form_errors ); ?>
                             </td>

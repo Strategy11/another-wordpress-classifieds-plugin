@@ -15,6 +15,8 @@
  */
 class AWPCP_ListingsRegistry {
 
+    protected $array_options;
+
     /**
      * @since 4.0.0
      */

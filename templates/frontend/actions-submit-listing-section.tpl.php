@@ -8,7 +8,10 @@
 
     <div class="awpcp-submit-listing-section-content" data-collapsible awpcp-keep-open>
         <div class="awpcp-actions-submit-listing-section__edit_mode">
-            <?php echo $listing_actions; ?>
+            <?php
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo $listing_actions;
+            ?>
         </div>
     </div>
 </div>

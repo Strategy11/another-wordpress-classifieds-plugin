@@ -2,8 +2,11 @@
 
 <?php
     if ( get_awpcp_option( 'show-create-listing-form-steps' ) ) {
-        echo awpcp_render_listing_form_steps( 'login' );
+        awpcp_listing_form_steps_componponent()->show( 'login' );
     }
 ?>
 
-<?php echo awpcp_login_form( $message, $page_url ); ?>
+<?php
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo awpcp_login_form( $message, $page_url );
+?>

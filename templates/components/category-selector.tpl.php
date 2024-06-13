@@ -4,7 +4,6 @@
  */
 
 ?><?php if ( $label ) : ?>
-<?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <label class="awpcp-category-dropdown-label" for="awpcp-category-dropdown-<?php echo esc_attr( $hash ); ?>"><?php echo esc_html( $label ); ?><?php echo $required ? '<span class="required">*</span>' : ''; ?></label>
 <?php endif; ?>
 

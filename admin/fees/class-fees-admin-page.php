@@ -146,9 +146,9 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
             'fees' => AWPCP_Fee::query(),
         );
 
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         $template = AWPCP_DIR . '/admin/templates/admin-panel-fees-delete.tpl.php';
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $this->render( $template, $params );
     }
 

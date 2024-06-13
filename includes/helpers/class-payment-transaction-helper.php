@@ -9,6 +9,8 @@ class AWPCP_PaymentTransactionHelper {
     private $transaction_attributes;
     private $transaction;
 
+    private $transaction_context;
+
     public function __construct( $transaction_attributes ) {
         $this->transaction_attributes = $transaction_attributes;
     }

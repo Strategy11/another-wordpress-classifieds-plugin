@@ -12,7 +12,10 @@
         <div class="awpcp-listing-dates-submit-listing-section__edit_mode">
             <form>
                 <p><?php echo esc_html( $description ); ?></p>
-                <?php echo $form_fields; ?>
+                <?php
+                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                echo $form_fields;
+                ?>
             </form>
         </div>
 

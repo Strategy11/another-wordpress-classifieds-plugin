@@ -21,6 +21,16 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
     }
 
     /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show() {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $this->render();
+    }
+
+    /**
      * Renders the form field to enter the answer to the challenge.
      */
     public function render() {
@@ -30,15 +40,22 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
         $hash   = $this->hash( $left + $right );
         $answer = awpcp_get_var( array( 'param' => 'captcha' ), 'post' );
 
-        /* translators: the numbers that need to be added up for the math challenge. */
-        $label = _x( 'Enter the value of the following sum: %1$d + %2$d', 'CAPTCHA', 'another-wordpress-classifieds-plugin' ) . '<span class="required">*</span>';
-        $label = sprintf( $label, $left, $right );
+        $label = sprintf(
+            /* translators: the numbers that need to be added up for the math challenge. */
+            _x( 'Enter the value of the following sum: %1$d + %2$d', 'CAPTCHA', 'another-wordpress-classifieds-plugin' ),
+            $left,
+            $right
+        );
 
-        $html  = '<label for="captcha"><span>%s</span></label>';
-        $html .= '<input type="hidden" name="captcha-hash" value="%s" />';
-        $html .= '<input id="captcha" class="awpcp-textfield inputbox required" type="text" name="captcha" value="%s" size="5" autocomplete="off"/>';
+        $html  = '<label for="captcha"><span>' .
+            esc_html( $label ) .
+            '<span class="required">*</span>' .
+            '</span></label>';
+        $html .= '<input type="hidden" name="captcha-hash" value="' . esc_attr( $hash ) . '" />';
+        $html .= '<input id="captcha" class="awpcp-textfield inputbox required" type="text" ' .
+            'name="captcha" value="' . esc_attr( $answer ) . '" size="5" autocomplete="off"/>';
 
-        return sprintf( $html, $label, $hash, esc_attr( $answer ) );
+        return $html;
     }
 
     /**

@@ -3,14 +3,14 @@
  * emails are sent in plain text, all blank lines in templates are required
  */
 
-echo $introduction;
+echo wp_kses_post( $introduction );
 ?>:
 
 <?php esc_html_e( 'Total ads found sharing your email address', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( count( $ads ) ); ?>
 
 <?php foreach ( $ads as $ad ): ?>
-<?php echo $listing_renderer->get_listing_title( $ad ); ?>
-<?php esc_html_e( 'Access Key', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo $listing_renderer->get_access_key( $ad ); ?>
+<?php echo esc_html( $listing_renderer->get_listing_title( $ad ) ); ?>
+<?php esc_html_e( 'Access Key', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $listing_renderer->get_access_key( $ad ) ); ?>
 <?php esc_html_e( 'Edit Link:', 'another-wordpress-classifieds-plugin' ); ?> <?php echo esc_url_raw( awpcp_get_edit_listing_url_with_access_key( $ad ) ); ?>
 
 <?php endforeach; ?>

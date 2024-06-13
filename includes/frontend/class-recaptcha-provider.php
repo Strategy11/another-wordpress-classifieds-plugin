@@ -26,10 +26,26 @@ class AWPCP_ReCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
      */
     private $delegate;
 
+    /**
+     * @var bool
+     */
+    private $echo = false;
+
     public function __construct( $site_key, $secret_key, $delegate ) {
         $this->site_key   = $site_key;
         $this->secret_key = $secret_key;
         $this->delegate   = $delegate;
+    }
+
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show() {
+        $this->echo = true;
+        $this->render();
+        $this->echo = false;
     }
 
     public function render() {
@@ -38,6 +54,11 @@ class AWPCP_ReCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
         }
 
         $this->delegate->enqueue_scripts( $this->site_key );
+
+        if ( $this->echo ) {
+            $this->delegate->show_recaptcha( $this->site_key );
+            return;
+        }
 
         return $this->delegate->get_recaptcha_html( $this->site_key );
     }

@@ -15,6 +15,11 @@ class AWPCP_PaymentsAPI {
 
     public $current_transaction = null;
 
+    /**
+     * @var bool
+     */
+    private $echo = false;
+
     public function __construct( /*AWPCP_Request*/ $request = null ) {
         if ( ! is_null( $request ) ) {
             $this->request = $request;
@@ -484,27 +489,30 @@ class AWPCP_PaymentsAPI {
 
     public function process_payment_request($action) {
         $transaction = AWPCP_Payment_Transaction::find_by_id( get_query_var( 'awpcp-txn' ) );
+        $messages    = [];
+
+        $payment_method = null;
 
         if (is_null($transaction)) {
-            $messages[] = __( 'The specified payment transaction doesn\'t exists. We can\'t process your payment.', 'another-wordpress-classifieds-plugin');
-            $messages[] = __( 'Please contact customer service if you are viewing this message after having made a payment. If you have not tried to make a payment and you are viewing this message, it means this message is being shown in error and can be disregarded.', 'another-wordpress-classifieds-plugin');
+            $messages[] = esc_html__( 'The specified payment transaction doesn\'t exists. We can\'t process your payment.', 'another-wordpress-classifieds-plugin' );
+        } else {
+            $payment_method = $this->get_transaction_payment_method( $transaction );
 
-            /* translators: %s link HTML */
-            $messages[] = __( 'Return to %shome page', 'another-wordpress-classifieds-plugin');
-            $message = '<p>' . join( '</p><p>', $messages ) . '</p>';
-            wp_die( sprintf( $message . '</a>', '<a href="' . home_url() . '">' ) );
+            if ( is_null( $payment_method ) ) {
+                $messages[] = esc_html__( 'The payment method associated with this transaction is not available at this time. We can\'t process your payment.', 'another-wordpress-classifieds-plugin' );
+            }
         }
 
-        $payment_method = $this->get_transaction_payment_method($transaction);
-
-        if (is_null($payment_method)) {
-            $messages[] = __("The payment method associated with this transaction is not available at this time. We can't process your payment.", 'another-wordpress-classifieds-plugin');
-            $messages[] = __( 'Please contact customer service if you are viewing this message after having made a payment. If you have not tried to make a payment and you are viewing this message, it means this message is being shown in error and can be disregarded.', 'another-wordpress-classifieds-plugin');
+        if ( is_null( $payment_method ) || is_null( $transaction ) ) {
+            $messages[] = esc_html__( 'Please contact customer service if you are viewing this message after having made a payment. If you have not tried to make a payment and you are viewing this message, it means this message is being shown in error and can be disregarded.', 'another-wordpress-classifieds-plugin' );
 
             /* translators: %s link HTML */
-            $messages[] = __( 'Return to %shome page', 'another-wordpress-classifieds-plugin');
-            $message = '<p>' . join( '</p><p>', $messages ) . '</p>';
-            wp_die( sprintf( $message . '</a>', '<a href="' . home_url() . '">' ) );
+            $messages[] = sprintf(
+                esc_html__( 'Return to %shome page', 'another-wordpress-classifieds-plugin' ),
+                '<a href="' . esc_url( home_url() ) . '">'
+            ) . '</a>';
+
+            wp_die( wp_kses_post( '<p>' . join( '</p><p>', $messages ) . '</p>' ) );
         }
 
         switch ($action) {
@@ -692,6 +700,17 @@ class AWPCP_PaymentsAPI {
         return awpcp_print_message( $message );
     }
 
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_account_balance() {
+        $this->echo = true;
+        $this->render_account_balance();
+        $this->echo = false;
+    }
+
     public function render_account_balance() {
         if (!$this->credit_system_enabled())
             return '';
@@ -701,7 +720,23 @@ class AWPCP_PaymentsAPI {
         /* translators: %s credit balance */
         $text = sprintf( __( 'You currently have %s credits in your account.', 'another-wordpress-classifieds-plugin' ), $balance );
 
-        return awpcp_print_message( $text );
+        if ( $this->echo ) {
+            echo awpcp_print_message( esc_html( $text ) );
+            return;
+        }
+
+        return awpcp_print_message( esc_html( $text ) );
+    }
+
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_credit_plans_table( $transaction = null, $table_only = false ) {
+        $this->echo = true;
+        $this->render_credit_plans_table( $transaction, $table_only );
+        $this->echo = false;
     }
 
     /**
@@ -725,12 +760,28 @@ class AWPCP_PaymentsAPI {
             'price' => _x( 'Price', 'credit plans table', 'another-wordpress-classifieds-plugin' ),
         );
 
+        $file = AWPCP_DIR . '/frontend/templates/payments-credit-plans-table.tpl.php';
+        if ( $this->echo ) {
+            include $file;
+            return;
+        }
+
         ob_start();
-            include(AWPCP_DIR . '/frontend/templates/payments-credit-plans-table.tpl.php');
-            $html = ob_get_contents();
+        include $file;
+        $html = ob_get_contents();
         ob_end_clean();
 
         return $html;
+    }
+
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_transaction_items( $transaction ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $this->render_transaction_items( $transaction );
     }
 
     public function render_transaction_items($transaction) {
@@ -742,6 +793,16 @@ class AWPCP_PaymentsAPI {
         ob_end_clean();
 
         return apply_filters('awpcp-render-transaction-items', $html, $transaction);
+    }
+
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_transaction_errors( $transaction ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $this->render_transaction_errors( $transaction );
     }
 
     public function render_transaction_errors($transaction) {
@@ -773,12 +834,28 @@ class AWPCP_PaymentsAPI {
     }
 
     public function render_checkout_payment_template($output, $message, $transaction) {
-        ob_start();
-            include(AWPCP_DIR . '/frontend/templates/payments-checkout-payment-page.tpl.php');
-            $html = ob_get_contents();
-        ob_end_clean();
+        $file = AWPCP_DIR . '/frontend/templates/payments-checkout-payment-page.tpl.php';
+        if ( $this->echo ) {
+            include $file;
+            return;
+        }
 
+        ob_start();
+        include $file;
+        $html = ob_get_contents();
+        ob_end_clean();
         return $html;
+    }
+
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_checkout_page( $transaction, $hidden = array() ) {
+        $this->echo = true;
+        $this->render_checkout_page( $transaction, $hidden );
+        $this->echo = false;
     }
 
     public function render_checkout_page($transaction, $hidden=array()) {
@@ -790,29 +867,57 @@ class AWPCP_PaymentsAPI {
 
         if (is_null($payment_method) || isset($result['errors'])) {
             $transaction_errors = awpcp_array_data('errors', array(), $result);
+            $file = AWPCP_DIR . '/frontend/templates/payments-checkout-page.tpl.php';
+            if ( $this->echo ) {
+                include $file;
+                return;
+            }
 
             ob_start();
-                include(AWPCP_DIR . '/frontend/templates/payments-checkout-page.tpl.php');
-                $html = ob_get_contents();
+            include $file;
+            $html = ob_get_contents();
             ob_end_clean();
+            return $html;
+        }
 
-        } elseif (isset($result['output'])) {
-            $integration = $payment_method->get_integration_type();
-            if ($integration === AWPCP_PaymentGateway::INTEGRATION_BUTTON) {
-                $message = _x('Please use the button below to complete your payment.', 'checkout-payment page', 'another-wordpress-classifieds-plugin');
-                $html = $this->render_checkout_payment_template($result['output'], $message, $transaction);
-            } elseif ($integration === AWPCP_PaymentGateway::INTEGRATION_CUSTOM_FORM) {
-                $html = $result['output'];
-            } elseif ($integration === AWPCP_PaymentGateway::INTEGRATION_REDIRECT) {
-                $html = $result['output'];
+        if ( ! isset( $result['output'] ) ) {
+            return '';
+        }
+
+        $integration = $payment_method->get_integration_type();
+        if ( $integration === AWPCP_PaymentGateway::INTEGRATION_BUTTON ) {
+            $message = _x('Please use the button below to complete your payment.', 'checkout-payment page', 'another-wordpress-classifieds-plugin');
+            $html = $this->render_checkout_payment_template($result['output'], $message, $transaction);
+            if ( $this->echo ) {
+                return;
             }
+        } elseif ( $integration === AWPCP_PaymentGateway::INTEGRATION_CUSTOM_FORM || $integration === AWPCP_PaymentGateway::INTEGRATION_REDIRECT ) {
+            $html = $result['output'];
+        }
+
+        if ( $this->echo ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo $html;
+            return;
         }
 
         return $html;
     }
 
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_payment_completed_page( $transaction, $action = '', $hidden = array() ) {
+        $this->echo = true;
+        $this->render_payment_completed_page( $transaction, $action, $hidden );
+        $this->echo = false;
+    }
+
     public function render_payment_completed_page($transaction, $action='', $hidden=array()) {
         $success = false;
+        $text    = '';
 
         if ($transaction->payment_is_completed() || $transaction->payment_is_pending()) {
             $title = __( 'Payment Completed', 'another-wordpress-classifieds-plugin');
@@ -841,7 +946,6 @@ class AWPCP_PaymentsAPI {
         } elseif ( $transaction->payment_is_not_verified() ) {
             $title = __( 'Waiting on Confirmation', 'another-wordpress-classifieds-plugin' );
             $text = __( 'The payment gateway is taking a bit longer than expected to confirm your payment. Please wait a few seconds while we verify the transaction. The page will reload automatically.', 'another-wordpress-classifieds-plugin' );
-        // } else if ($transaction->payment_is_invalid() || ) {
         } else {
             $title = __( 'Payment Error', 'another-wordpress-classifieds-plugin');
             $text = __("There was an error processing your payment. The payment status couldn't be found. Please contact the website admin to solve this issue.", 'another-wordpress-classifieds-plugin');
@@ -856,12 +960,26 @@ class AWPCP_PaymentsAPI {
             $hidden
         );
 
-        ob_start();
-            include(AWPCP_DIR . '/frontend/templates/payments-payment-completed-page.tpl.php');
-            $html = ob_get_contents();
-        ob_end_clean();
+        $file = AWPCP_DIR . '/frontend/templates/payments-payment-completed-page.tpl.php';
+        if ( $this->echo ) {
+            include $file;
+            return;
+        }
 
+        ob_start();
+        include $file;
+        $html = ob_get_contents();
+        ob_end_clean();
         return $html;
+    }
+
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_payment_completed_page_title( $transaction ) {
+        echo esc_html( $this->render_payment_completed_page_title( $transaction ) );
     }
 
     public function render_payment_completed_page_title($transaction) {

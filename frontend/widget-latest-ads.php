@@ -8,6 +8,10 @@
  */
 class AWPCP_LatestAdsWidget extends WP_Widget {
 
+    protected $listing_renderer;
+    protected $attachment_properties;
+    protected $attachments;
+
     public function __construct($id=null, $name=null, $description=null) {
         $id = is_null($id) ? 'awpcp-latest-ads': $id;
         $name = is_null($name) ? __( 'AWPCP Latest Ads', 'another-wordpress-classifieds-plugin') : $name;
@@ -177,22 +181,25 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     public function widget($args, $instance) {
-        extract($args);
-
         $title = apply_filters( 'widget_title', $instance['title'] );
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $args['before_widget'];
 
         // Do not show empty titles.
         if ( $title ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo $args['before_title'] . $title . $args['after_title'];
         }
 
         echo '<ul class="awpcp-listings-widget-items-list">';
         $items = awpcp_listings_collection()->find_enabled_listings( $this->query( $instance ) );
+
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $this->render( $items, $instance );
         echo '</ul>';
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $args['after_widget'];
     }
 

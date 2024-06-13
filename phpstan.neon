@@ -14,9 +14,8 @@ parameters:
 		- stubs.php
 		- */includes/class-fileop.php
 		- */bin/*
+		- */build/*
 	ignoreErrors:
-		- '#Access to an undefined property#'
 		- '#no (typehint|value type|return type)+ specified.#'
 		- '#might not be defined.#'
-		- '#Function (apply_filters)+ invoked with#'
 		- '#has an unused parameter \$null#'

@@ -2,4 +2,4 @@
 <?php printf( esc_html( $message ), esc_url_raw( $url ) ); ?>
 
 <?php
-echo $content;
+echo wp_kses_post( $content );

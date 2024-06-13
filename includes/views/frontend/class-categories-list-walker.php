@@ -67,7 +67,7 @@ class AWPCP_CategoriesListWalker extends Walker {
         $class = $this->options['second_level_ul_class'];
 
         if ( ! empty( $class ) ) {
-            $output .= sprintf( $element_start, 'class="' . $class . '"' );
+            $output .= sprintf( $element_start, 'class="' . esc_attr( $class ) . '"' );
         } else {
             $output .= sprintf( $element_start, '' );
         }
@@ -83,7 +83,7 @@ class AWPCP_CategoriesListWalker extends Walker {
         }
 
         if ( $depth === 0 ) {
-            $output .= sprintf( '<li class="columns-%d">', $this->options['show_in_columns'] );
+            $output .= sprintf( '<li class="columns-%d">', esc_attr( $this->options['show_in_columns'] ) );
             $output .= $this->first_level_element_wrapper_start();
         } else {
             $output .= '<li>';
@@ -119,7 +119,7 @@ class AWPCP_CategoriesListWalker extends Walker {
 
     private function first_level_ul_start() {
         if ( ! empty( $this->options['first_level_ul_class'] ) ) {
-            return sprintf( '<ul class="%s">', $this->options['first_level_ul_class'] );
+            return sprintf( '<ul class="%s">', esc_attr( $this->options['first_level_ul_class'] ) );
         }
 
         return '<ul>';
@@ -133,9 +133,9 @@ class AWPCP_CategoriesListWalker extends Walker {
 
     private function element_wrapper_start( $tag, $class ) {
         if ( ! empty( $tag ) && ! empty( $class ) ) {
-            return sprintf( '<%s class="%s">', $tag, $class );
+            return sprintf( '<%s class="%s">', esc_attr( $tag ), esc_attr( $class ) );
         } elseif ( ! empty( $tag ) ) {
-            return sprintf( '<%s>', $tag );
+            return sprintf( '<%s>', esc_attr( $tag ) );
         }
 
         return '';
@@ -157,7 +157,7 @@ class AWPCP_CategoriesListWalker extends Walker {
         $element = str_replace( '[category-url]', esc_attr( url_browsecategory( $category ) ), $element );
         $element = str_replace( '[category-name]', esc_attr( $category->name ), $element );
         $element = str_replace( '[category-description]', esc_html( $category->description ), $element );
-        $element = str_replace( '[listings-count]', $this->render_listings_count( $category ), $element );
+        $element = str_replace( '[listings-count]', esc_html( $this->render_listings_count( $category ) ), $element );
         $element = str_replace( '[js-handler]', $this->render_js_handler( $depth ), $element );
 
         return $element;
@@ -169,7 +169,7 @@ class AWPCP_CategoriesListWalker extends Walker {
 
     private function element_wrapper_end( $tag ) {
         if ( $tag ) {
-            return '</' . $tag . '>';
+            return '</' . esc_attr( $tag ) . '>';
         }
 
         return '';
@@ -193,13 +193,13 @@ class AWPCP_CategoriesListWalker extends Walker {
         $category_icon_url = awpcp_category_icon_url( $category_icon_filename );
 
         $category_icon = '<a class="awpcp-category-icon" href="[category-url]"><img class="awpcp-category-icon-image categoryicon" src="[category-icon-url]" alt="[category-name]" border="0" /></a>';
-        $category_icon = str_replace( '[category-icon-url]', $category_icon_url, $category_icon );
+        $category_icon = str_replace( '[category-icon-url]', esc_attr( $category_icon_url ), $category_icon );
 
         return $category_icon;
     }
 
     private function render_listings_count( $category ) {
-        return $this->options['show_listings_count'] ? '(' . $category->listings_count . ')' : '';
+        return $this->options['show_listings_count'] ? '(' . esc_html( $category->listings_count ) . ')' : '';
     }
 
     private function render_js_handler( $depth ) {

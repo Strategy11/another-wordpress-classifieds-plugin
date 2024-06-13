@@ -35,8 +35,6 @@ class AWPCP_RadioSettingsRenderer {
             $options = call_user_func( $setting['options'] );
         }
 
-        $html = '';
-
         foreach ( $options as $key => $label ) {
             $value = $key;
 
@@ -45,23 +43,19 @@ class AWPCP_RadioSettingsRenderer {
                 $label = $label['label'];
             }
 
-            $id    = "{$setting['id']}-$key";
-            $label = ' <label for="' . esc_attr( $id ) . '">' . $label . '</label>';
-
-            $html .= '<input id="' . esc_attr( $id ) . '"type="radio" value="' . esc_attr( $value ) . '" ';
-            $html .= 'name="awpcp-options[' . $setting['id'] . ']" ';
+            $id = "{$setting['id']}-$key";
+            echo '<input id="' . esc_attr( $id ) . '"type="radio" value="' . esc_attr( $value ) . '" ';
+            echo 'name="awpcp-options[' . esc_attr( $setting['id'] ) . ']" ';
 
             if ( 0 === strcmp( (string) $key, $current ) ) {
-                $html .= 'checked="checked" />' . $label;
-            } else {
-                $html .= '>' . $label;
+                echo 'checked="checked"';
             }
+            echo '>';
+            echo ' <label for="' . esc_attr( $id ) . '">' . wp_kses_post( $label ) . '</label>';
 
-            $html .= '<br/>';
+            echo '<br/>';
         }
 
-        $html .= '<span class="description">' . $setting['description'] . '</span>';
-
-        echo $html;
+        echo '<span class="description">' . wp_kses_post( $setting['description'] ) . '</span>';
     }
 }

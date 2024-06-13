@@ -142,6 +142,19 @@ class AWPCP_ListingsContentRenderer {
     }
 
     /**
+     * @since x.x
+     *
+     * @param string $content   The content of the post.
+     * @param object $post      An instance of WP_Post.
+     *
+     * @return void
+     */
+    public function show_content_without_notices( $content, $post ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $this->render_content_without_notices( $content, $post );
+    }
+
+    /**
      * @param string $content   The content of the post.
      * @param object $post      An instance of WP_Post.
      * @return Show Ad page content.
@@ -150,7 +163,7 @@ class AWPCP_ListingsContentRenderer {
         // Filters to provide alternative method of storing custom layouts.
         if ( has_action( 'awpcp_single_ad_template_action' ) || has_filter( 'awpcp_single_ad_template_filter' ) ) {
             do_action( 'awpcp_single_ad_template_action' );
-            return apply_filters( 'awpcp_single_ad_template_filter' );
+            return apply_filters( 'awpcp_single_ad_template_filter', '' );
         }
 
         /* Enqueue necessary scripts. */

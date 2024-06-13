@@ -111,6 +111,7 @@ class AWPCP_ListTableSearchHandler {
             ],
         ];
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $this->html_renderer->render( $container );
     }
 }

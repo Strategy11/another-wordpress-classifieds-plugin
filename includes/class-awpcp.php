@@ -740,7 +740,7 @@ class AWPCP {
         }
 
         if ( ! function_exists( 'imagecreatefrompng' ) ) {
-            echo $this->missing_gd_library_notice();
+            $this->missing_gd_library_notice();
         }
     }
 
@@ -760,7 +760,7 @@ class AWPCP {
     private function missing_gd_library_notice() {
         $message = __( "AWPCP requires the graphics processing library GD and it is not installed. Contact your web host to fix this.", 'another-wordpress-classifieds-plugin' );
         $message = sprintf( '<strong>%s</strong> %s', __( 'Warning', 'another-wordpress-classifieds-plugin' ), $message );
-        return awpcp_print_error( $message );
+        echo awpcp_print_error( $message );
     }
 
     /**
@@ -1132,7 +1132,7 @@ class AWPCP {
         );
 
         /* helpers */
-        $src = ! $min && file_exists( AWPCP_DIR . '/resources/js/awpcp.src.js' ) ? '.src' : $min;
+        $src = ! $min && file_exists( AWPCP_DIR . '/resources/js/awpcp.src.js' ) ? '.src' : '.min';
         wp_register_script(
             'awpcp',
             $js . '/awpcp' . $src . '.js',

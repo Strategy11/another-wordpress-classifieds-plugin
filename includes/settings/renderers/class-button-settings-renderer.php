@@ -25,23 +25,28 @@ class AWPCP_ButtonSettingsRenderer {
      */
     public function render_setting( $setting, $config ) {
         add_thickbox();
-        $html = '<a href="#TB_inline?&width=500&height=130&modal=true&inlineId=pop-' . esc_attr( $setting['id'] ) . '" class="button-secondary thickbox"';
+        echo '<a href="#TB_inline?&width=500&height=130&modal=true&inlineId=pop-' . esc_attr( $setting['id'] ) . '" class="button-secondary thickbox"';
 
         if ( ! empty( $config ) ) {
-            $html .= 'awpcp-setting="' . esc_attr( wp_json_encode( $config ) ) . '" ';
+            echo 'awpcp-setting="' . esc_attr( wp_json_encode( $config ) ) . '" ';
         }
 
         $nonce = wp_create_nonce( 'reset-default' );
-        $html .= '>' . esc_html( $setting['default'] ) . '</a>';
-        $html .= strlen( $setting['description'] ) > 20 ? '<br/>' : '&nbsp;';
-        $html .= '<span class="description">' . $setting['description'] . '</span>';
-        $html .= '<div id="pop-' . esc_attr( $setting['id'] ) . '" style="display:none">';
-        $html .= '<h2 style="text-align: center">' . __( 'Resetting to the default layout will cause any custom HTML layout changes you\'ve made to be lost. Are you sure?', 'another-wordpress-classifieds-plugin' ) . '</h2>';
-        $html .= '<p style="text-align: center">';
-        $html .= '<button  class="button-secondary TB_closeWindowButton">' . __( 'Cancel', 'another-wordpress-classifieds-plugin' ) . '</button> ';
-        $html .= '<button data-nonce="' . esc_attr( $nonce ) . '" id="' . esc_attr( $setting['id'] ) . '" class="button-primary">' . __( 'Reset', 'another-wordpress-classifieds-plugin' ) . '</button></p>';
-        $html .= '</div>';
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $html;
+        echo '>' . esc_html( $setting['default'] ) . '</a>';
+        echo strlen( $setting['description'] ) > 20 ? '<br/>' : '&nbsp;';
+        echo '<span class="description">' . wp_kses_post( $setting['description'] ) . '</span>';
+        echo '<div id="pop-' . esc_attr( $setting['id'] ) . '" style="display:none">';
+        echo '<h2 style="text-align: center">';
+        esc_html_e( 'Resetting to the default layout will cause any custom HTML layout changes you\'ve made to be lost. Are you sure?', 'another-wordpress-classifieds-plugin' );
+        echo '</h2>';
+        echo '<p style="text-align: center">';
+        echo '<button  class="button-secondary TB_closeWindowButton">';
+        esc_html_e( 'Cancel', 'another-wordpress-classifieds-plugin' );
+        echo '</button> ';
+        echo '<button data-nonce="' . esc_attr( $nonce ) . '" id="' . esc_attr( $setting['id'] ) . '" class="button-primary">';
+        esc_html_e( 'Reset', 'another-wordpress-classifieds-plugin' );
+        echo '</button>';
+        echo '</p>';
+        echo '</div>';
     }
 }

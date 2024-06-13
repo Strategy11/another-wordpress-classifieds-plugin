@@ -5,7 +5,6 @@
     <exclude-pattern>includes/functions/deprecated.php</exclude-pattern>
     <exclude-pattern>includes/functions/listings.php</exclude-pattern>
     <exclude-pattern>includes/functions/legacy.php</exclude-pattern>
-    <exclude-pattern>frontend/templates/email-send-all-ad-access-keys.tpl.php</exclude-pattern>
     <exclude-pattern>vendor/*</exclude-pattern>
     <exclude-pattern>tests/*</exclude-pattern>
     <exclude-pattern>bin/*</exclude-pattern>
@@ -32,7 +31,6 @@
         <exclude name="PEAR.NamingConventions.ValidClassName" />
 
         <!-- Temporary exclusions -->
-        <exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped" />
         <exclude name="WordPress.Security.NonceVerification.Missing" />
         <exclude name="WordPress.WP.Capabilities.RoleFound" />
         <exclude name="WordPress.WP.I18n.UnorderedPlaceholdersText" />
@@ -111,8 +109,12 @@
                 <element value="wp_nonce_url" />
                 <element value="awpcp_print_error" />
                 <element value="awpcp_print_message" />
+                <element value="awpcp_render_info_message" />
+                <element value="awpcp_render_error_message" />
                 <element value="awpcp_render_warning" />
                 <element value="awpcp_render_categories_dropdown_options" />
+                <element value="awpcp_html_hidden_fields" />
+                <element value="awpcp_html_attributes" />
             </property>
 		</properties>
 	</rule>

@@ -70,6 +70,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             array(
                 'fields'  => '*',
                 'where'   => array( '1 = %d', 1 ),
+                // Can also be formatted like 'adterm_name ASC, adterm_id'.
                 'orderby' => 'adterm_name',
                 'order'   => 'asc',
                 'offset'  => 0,
@@ -77,6 +78,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             )
         );
 
+        $fields     = $args['fields'];
         $query_vars = array( AWPCP_TABLE_ADFEES );
 
         if ( is_array( $args['where'] ) ) {
@@ -85,20 +87,15 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
             $query_vars = array_merge( $query_vars, array_slice( $original_where, 1 ) );
         }
 
-        $query_vars[] = $args['orderby'];
-
-        if ( $args['fields'] === 'count' ) {
+        if ( $fields === 'count' ) {
             return $wpdb->get_var(
                 $wpdb->prepare(
                     // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-                    'SELECT COUNT(adterm_id) FROM %i WHERE ' . $args['where'] . ' ORDER BY %i ' . strtoupper( $args['order'] ),
+                    'SELECT COUNT(adterm_id) FROM %i WHERE ' . $args['where'] . ' ORDER BY ' . $args['orderby'] . ' ' . strtoupper( $args['order'] ),
                     $query_vars
                 )
             );
         }
-
-        // Add fields to beginning of the array.
-        array_unshift( $query_vars, $args['fields'] );
 
         if ( $args['limit'] > 0 ) {
             $query_vars[] = $args['offset'];
@@ -109,7 +106,8 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
 
         $items = $wpdb->get_results(
             $wpdb->prepare(
-                'SELECT %i, CASE rec_increment ' .
+                // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
+                'SELECT ' . $fields . ', CASE rec_increment ' .
                 "WHEN 'D' THEN 1 " .
                 "WHEN 'W' THEN 2 " .
                 "WHEN 'M' THEN 3 " .
@@ -118,7 +116,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
                 // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
                 ' WHERE ' . $args['where'] .
                 // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
-                ' ORDER BY %i ' . $order .
+                ' ORDER BY ' . $args['orderby'] . ' ' . $order .
                 // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared
                 ( $args['limit'] > 0 ? ' LIMIT %d, %d' : '' ),
                 $query_vars

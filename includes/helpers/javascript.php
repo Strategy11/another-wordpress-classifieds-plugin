@@ -38,7 +38,7 @@ class AWPCP_JavaScript {
      */
     public function print_data() {
         echo "\n";
-        echo "<script type=\"text/javascript\">\n";
+        echo "<script>\n";
         echo "/* <![CDATA[ */\n";
         echo "(function($, window){\n";
 
@@ -51,10 +51,12 @@ class AWPCP_JavaScript {
     }
 
     private function print_variable( $property_name, $variable_name, $content ) {
-        echo "\twindow.$variable_name = " . json_encode( $this->encode_scalar_values( $content ) ) . ";\n";
-        echo "\tif ( typeof $.AWPCP !== 'undefined' ) {\n";
-        echo "\t\t$.extend( $.AWPCP.$property_name, $variable_name );\n";
-        echo "\t}\n";
+        ?>
+window.<?php echo esc_attr( $variable_name ); ?> = <?php echo json_encode( $this->encode_scalar_values( $content ) ); ?>;
+if ( typeof $.AWPCP !== 'undefined' ) {
+    $.extend( $.AWPCP.<?php echo esc_attr( $property_name ); ?>, <?php echo esc_attr( $variable_name ); ?> );
+}
+        <?php
     }
 
     private function encode_scalar_values( $values ) {

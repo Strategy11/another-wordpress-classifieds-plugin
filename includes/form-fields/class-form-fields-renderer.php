@@ -49,6 +49,21 @@ class AWPCP_FormFieldsRenderer {
     }
 
     /**
+     * @since x.x
+     *
+     * @param mixed  $form_values The values for this form.
+     * @param array  $form_errors An array of form field errors index by field slug.
+     * @param object $listing     An instance of WP_Post.
+     * @param array  $context     Information about the context where the form is being rendered.
+     *
+     * @return void
+     */
+    public function show_fields( $form_values, $form_errors, $listing, $context ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $this->render_fields( $form_values, $form_errors, $listing, $context );
+    }
+
+    /**
      * @param mixed  $form_values   The values for this form.
      * @param array  $form_errors   An array of form field errors index by field slug.
      * @param object $listing       An instance of WP_Post.

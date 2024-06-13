@@ -17,6 +17,11 @@ class AWPCP_Payment_Terms_List {
 
     private $submitted_data;
 
+    /**
+     * @var bool
+     */
+    private $echo = false;
+
     public function __construct( $payments, $template_renderer ) {
         $this->payments = $payments;
         $this->template_renderer = $template_renderer;
@@ -41,6 +46,17 @@ class AWPCP_Payment_Terms_List {
         );
     }
 
+    /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show( $model_data, $options = array() ) {
+        $this->echo = true;
+        $this->render( $model_data, $options );
+        $this->echo = false;
+    }
+
     public function render( $model_data, $options = array() ) {
         $option_name = 'hide-all-payment-terms-if-no-category-is-selected';
         awpcp()->js->set( $option_name, awpcp_parse_bool( get_awpcp_option( $option_name ) ) );
@@ -58,7 +74,8 @@ class AWPCP_Payment_Terms_List {
             'show_payment_terms' => $this->should_show_payment_terms( $options['payment_terms'] ),
             'selected_payment_option' => $this->from_model_to_view( $model_data ),
             'show_currency_payment_option' => $this->payments->is_currency_accepted(),
-            'show_credits_payment_option' => $this->payments->is_credit_accepted(),
+            'show_credits_payment_option'  => $this->payments->is_credit_accepted(),
+            'echo'                         => $this->echo,
         );
 
         $template = AWPCP_DIR . '/templates/components/payment-terms-list.tpl.php';

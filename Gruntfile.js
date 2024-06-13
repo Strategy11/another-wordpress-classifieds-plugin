@@ -52,7 +52,7 @@ module.exports = function( grunt ) {
 					'**/*', '!**/*~', '!**/**.less', '!**/less/**', '!**/**.css.map',
 					'!**/.*', '!phpcs.xml', '!composer.json', '!**/**.sh',
 					'!composer.lock', '!grunt/**', '!Gruntfile.js',
-					'!**/*.src.js',
+					'!**/*.src.js', '!**/stubs.php', '!**/**.neon',
 					'!node_modules/**', '!package.json', '!package-lock.json',
 					'!phpunit.xml', '!Pipfile*', '!tasks.py',
 					'!Vagrantfile', '!tests/**', '!bin/**', '!vendor/**',

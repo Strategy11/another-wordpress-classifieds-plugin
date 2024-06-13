@@ -12,6 +12,8 @@ function awpcp_yoast_wordpress_seo_plugin_integration() {
 
 class AWPCP_YoastWordPressSEOPluginIntegration {
 
+    protected $metadata;
+
     public function __construct() {
         _deprecated_function( __METHOD__, '4.2' );
     }

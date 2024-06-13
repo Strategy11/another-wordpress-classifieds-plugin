@@ -22,14 +22,18 @@
     </p>
 
     <p class="awpcp-form-spacer">
-        <?php echo awpcp_categories_selector()->render( array(
-                'context' => 'search',
+        <?php
+        awpcp_categories_selector()->show(
+            array(
+                'context'  => 'search',
                 'selected' => awpcp_array_data('category', '', $form),
-                'name' => 'searchcategory',
+                'name'     => 'searchcategory',
                 'required' => false,
                 'multiple' => true,
                 'auto'     => false,
-                ) ); ?>
+            )
+        );
+        ?>
     </p>
 
     <?php if ($ui['posted-by-field']): ?>
@@ -37,7 +41,10 @@
         <label for="name"><?php esc_html_e( 'For ads posted by', 'another-wordpress-classifieds-plugin' ); ?></label>
         <select id="name" name="searchname">
             <option value=""><?php esc_html_e( 'All Users', 'another-wordpress-classifieds-plugin' ); ?></option>
-            <?php echo create_ad_postedby_list($form['name']); ?>
+            <?php
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo create_ad_postedby_list( $form['name'] );
+            ?>
         </select>
     </p>
     <?php endif ?>
@@ -72,17 +79,17 @@
 
     if (is_plugin_active( 'awpcp-region-control/awpcp_region_control_module.php' ) ) {
         $selector = awpcp_multiple_region_selector( $form['regions'], $options );
-        echo $selector->render( 'search', array(), $errors );
+        $selector->show( 'search', array(), $errors );
     }
     ?>
 
     <?php
-        echo awpcp()->container['ListingDetailsFormFieldsRenderer']->render_fields(
-            $form,
-            $errors,
-            null,
-            array( 'category' => 0, 'action' => 'search' )
-        );
+    awpcp()->container['ListingDetailsFormFieldsRenderer']->show_fields(
+        $form,
+        $errors,
+        null,
+        array( 'category' => 0, 'action' => 'search' )
+    );
     ?>
 
     <p class="awpcp-form-field"><input type="submit" class="button" value="<?php echo esc_attr( _x( 'Find Ads', 'ad search form', 'another-wordpress-classifieds-plugin' ) ); ?>"/></p>

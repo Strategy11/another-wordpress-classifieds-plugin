@@ -21,7 +21,7 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
 
     if ( has_action( 'awpcp_browse_ads_template_action' ) || has_filter( 'awpcp_browse_ads_template_filter' ) ) {
         do_action( 'awpcp_browse_ads_template_action' );
-        return apply_filters( 'awpcp_browse_ads_template_filter' );
+        return apply_filters( 'awpcp_browse_ads_template_filter', '' );
     }
 
 	// Correctly set the context for the featured ads module.
@@ -238,10 +238,20 @@ function awpcp_insert_classifieds_bar_before_listing_page( $content_before_page 
  * to avoid the component to be shown on the Quick View admin page.
  *
  * @since 4.0.0
+ *
+ * @param array       $components The components to show in the Classifieds Bar.
+ * @param bool|string $echo       Whether to echo the output or return it.
+ *
+ * @return string|void
  */
-function awpcp_render_classifieds_bar( $components = array() ) {
+function awpcp_render_classifieds_bar( $components = array(), $echo = false ) {
     if ( is_admin() ) {
         return '';
+    }
+
+    if ( $echo ) {
+        awpcp_classifieds_bar()->show( $components );
+        return;
     }
 
     return awpcp_classifieds_bar()->render( $components );
@@ -304,7 +314,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
 		// layouts (e.g. can be outside of this plugin's directory)
 		if ( has_action( 'awpcp_single_ad_template_action' ) || has_filter( 'awpcp_single_ad_template_filter' ) ) {
 			do_action( 'awpcp_single_ad_template_action' );
-			return apply_filters( 'awpcp_single_ad_template_filter' );
+			return apply_filters( 'awpcp_single_ad_template_filter', '' );
 
 		} else {
 			try {

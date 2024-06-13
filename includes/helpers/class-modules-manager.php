@@ -155,28 +155,28 @@ class AWPCP_ModulesManager {
     private function show_admin_notice( $notice, $modules ) {
         switch ( $notice ) {
             case 'modules-not-registered':
-                echo $this->show_modules_no_registered_notice( $modules );
+                $this->show_modules_no_registered_notice( $modules );
                 break;
             case 'modules-that-require-different-awpcp-version':
-                echo $this->show_required_awpcp_version_notice( $modules );
+                $this->show_required_awpcp_version_notice( $modules );
                 break;
             case 'modules-not-compatible':
-                echo $this->show_modules_not_compatible_notice( $modules );
+                $this->show_modules_not_compatible_notice( $modules );
                 break;
             case 'modules-removed':
-                echo $this->show_modules_removed_notice( $modules );
+                $this->show_modules_removed_notice( $modules );
                 break;
             case 'modules-with-inactive-license':
-                echo $this->show_inactive_licenses_notice( $modules );
+                $this->show_inactive_licenses_notice( $modules );
                 break;
             case 'modules-with-invalid-license':
-                echo $this->show_invalid_licenses_notice( $modules );
+                $this->show_invalid_licenses_notice( $modules );
                 break;
             case 'modules-with-expired-license':
-                echo $this->show_expired_licenses_notice( $modules );
+                $this->show_expired_licenses_notice( $modules );
                 break;
             case 'module-requires-manual-upgrade':
-                echo $this->show_module_requires_manual_upgrade_notice( $modules );
+                $this->show_module_requires_manual_upgrade_notice( $modules );
                 break;
         }
     }
@@ -185,7 +185,7 @@ class AWPCP_ModulesManager {
         $message = _n( 'Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <module-name>, or you need a newer version of AWPCP to use that module. Please contact customer support and ask for an update. Please also include a reference to this error in your message.', 'Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <modules-names>, or you need a newer version of AWPCP to use those modules. Please contact customer support and ask for an update. Please also include a reference to this error in your message.', count( $modules ), 'another-wordpress-classifieds-plugin' );
         $message = $this->replace_modules_names_in_message( $message, $modules );
 
-        return awpcp_print_error( $message );
+        echo awpcp_print_error( $message );
     }
 
     private function replace_modules_names_in_message( $message, $modules ) {
@@ -207,10 +207,13 @@ class AWPCP_ModulesManager {
 
     private function show_required_awpcp_version_notice( $modules ) {
         foreach ( $modules as $module ) {
-            echo $module->required_awpcp_version_notice();
+            echo wp_kses_post( $module->required_awpcp_version_notice() );
         }
     }
 
+    /**
+     * @return void
+     */
     private function show_modules_not_compatible_notice( $modules ) {
         $modules_information = $this->plugin->get_premium_modules_information();
 
@@ -228,11 +231,13 @@ class AWPCP_ModulesManager {
         $message = str_replace( '{awpcp_version}', '<strong>' . $this->plugin->version . '</strong>', $message );
         $message = str_replace( '{required_modules_versions}', awpcp_string_with_names( $strings['required_versions'] ), $message );
 
-        return awpcp_print_error( $message );
+        echo awpcp_print_error( $message );
     }
 
     /**
      * @since 4.0.0
+     *
+     * @return void
      */
     private function show_modules_removed_notice( $modules ) {
         $modules_information = $this->plugin->get_premium_modules_information();
@@ -240,36 +245,49 @@ class AWPCP_ModulesManager {
 
         foreach ( $modules as $module ) {
             $content  = call_user_func( $modules_information[ $module->slug ]['removed'] );
-            $notices .= awpcp_activation_failed_notice( $content );
+            awpcp_activation_failed_notice( $content );
         }
-
-        return $notices;
     }
 
+    /**
+     * @return void
+     */
     private function show_inactive_licenses_notice( $modules ) {
         $message = _n( 'The license for AWPCP <module-name> is inactive. All features will remain disabled until you activate the license. Please go to the <licenses-settings-link>License Settings</a> section to activate it.', 'The licenses for AWPCP <modules-names> are inactive. The features for those modules will remain disabled until you activate their licenses. Please go to the <licenses-settings-link>License Settings</a> section to activate them.', count( $modules ), 'another-wordpress-classifieds-plugin' );
-        return $this->show_license_notice( $message, $modules );
+        $this->show_license_notice( $message, $modules );
     }
 
+    /**
+     * @return void
+     */
     private function show_license_notice( $message, $modules ) {
         $link = sprintf( '<a href="%s">', awpcp_get_admin_settings_url( 'licenses-settings' ) );
 
         $message = $this->replace_modules_names_in_message( $message, $modules );
         $message = str_replace( '<licenses-settings-link>', $link, $message );
 
-        return awpcp_print_error( $message );
+        echo awpcp_print_error( $message );
     }
 
+    /**
+     * @return void
+     */
     private function show_invalid_licenses_notice( $modules ) {
         $message = _n( 'The AWPCP <module-name> requires a license to be used. All features will remain disabled until a valid license is entered. Please go to the <licenses-settings-link>Licenses Settings</a> section to enter or update your license.', 'The AWPCP <modules-names> require a license to be used. The features on each of those modules will remain disabled until a valid license is entered. Please go to the <licenses-settings-link>Licenses Settings</a> section to enter or update your license.', count( $modules ), 'another-wordpress-classifieds-plugin' );
-        return $this->show_license_notice( $message, $modules );
+        $this->show_license_notice( $message, $modules );
     }
 
+    /**
+     * @return void
+     */
     private function show_expired_licenses_notice( $modules ) {
         $message = _n( 'The license for AWPCP <module-name> expired. The module will continue to work but you will not receive automatic updates when a new version is available.', 'The license for AWPCP <modules-names> expired. Those modules will continue to work but you will not receive automatic updates when a new version is available.', count( $modules ), 'another-wordpress-classifieds-plugin' );
-        return $this->show_license_notice( $message, $modules );
+        $this->show_license_notice( $message, $modules );
     }
 
+    /**
+     * @return void
+     */
     private function show_module_requires_manual_upgrade_notice( $modules ) {
         $page = awpcp_get_var( array( 'param' => 'page' ) );
         if ( $page == 'awpcp-admin-upgrade' ) {
@@ -282,7 +300,7 @@ class AWPCP_ModulesManager {
         $message = $this->replace_modules_names_in_message( $message, $modules );
         $message = str_replace( '<upgrade-link>', sprintf( '<a href="%s">', $upgrade_url ), $message );
 
-        return awpcp_print_error( $message );
+        echo awpcp_print_error( $message );
     }
 
     public function get_modules() {

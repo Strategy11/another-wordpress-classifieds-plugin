@@ -4,8 +4,8 @@
     <input type="hidden" value="_cart" name="cmd">
     <?php /*<input type="hidden" value="utf-8" name="charset"> */ ?>
     <input type="hidden" value="<?php echo esc_attr( get_awpcp_option( 'paypalemail' ) ); ?>" name="business">
-	<input type="hidden" value="<?php echo $currency; ?>" name="currency_code" />
-	<input type="hidden" value="<?php echo $custom; ?>" name="custom" />
+	<input type="hidden" value="<?php echo esc_attr( $currency ); ?>" name="currency_code" />
+	<input type="hidden" value="<?php echo esc_attr( $custom ); ?>" name="custom" />
 
 	<input type="hidden" value="<?php echo esc_attr( $return_url ); ?>" name="return" />
 	<input type="hidden" value="<?php echo esc_attr( $notify_url ); ?>" name="notify_url" />

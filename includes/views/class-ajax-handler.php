@@ -20,14 +20,16 @@ class AWPCP_AjaxResponse {
 
     /**
      * @since 3.2.2
+     * @deprecated x.x
      */
     public function write( $content ) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $content;
     }
 
     /**
-     * TODO: use wp_die instead of die()
      * @since 3.2.2
+     * @deprecated x.x
      */
     public function close() {
         die();
@@ -95,8 +97,8 @@ abstract class AWPCP_AjaxHandler {
      */
     protected function flush( $array_response ) {
         $this->response->set_content_type( 'application/json' );
-        $this->response->write( json_encode( $array_response ) );
-        $this->response->close();
+        echo wp_json_encode( $array_response );
+        die();
     }
 }
 

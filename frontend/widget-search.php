@@ -82,14 +82,15 @@ class AWPCP_Search_Widget extends WP_Widget {
 		$instance = wp_parse_args($instance, $this->defaults());
 
 		if ( !empty( $instance['subtitle'] ) ) {
-			$title = $instance['title'] . '<br/><span class="widgetstitle">' . $instance['subtitle'] . '</span>';
+			$title = $instance['title'] . '<br/><span class="widgetstitle">' . esc_html( $instance['subtitle'] ) . '</span>';
 		} else {
 			$title = $instance['title'] . '</span>';
 		}
 
         echo '<div class="awpcp-search-listings-widget">';
-		echo $before_widget . $before_title . $title . $after_title;
-		echo '<form method="get" action="' . url_searchads() . '">';
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $args['before_widget'] . $args['before_title'] . esc_html( $title ) . $args['after_title'];
+		echo '<form method="get" action="' . esc_url( url_searchads() ) . '">';
 
         $url_params = wp_parse_args( parse_url( url_searchads(), PHP_URL_QUERY ) );
         foreach ( $url_params as $param => $value ) {
@@ -102,13 +103,14 @@ class AWPCP_Search_Widget extends WP_Widget {
 
 		if ($instance['show_keyword'] == 1) {
             echo '<div class="awpcp-form-field">';
-			echo '<label for="awpcp-search-keywordphrase" class="awpcp-block-label">' . __( 'Search by keyword', 'another-wordpress-classifieds-plugin') . '</label>';
+			echo '<label for="awpcp-search-keywordphrase" class="awpcp-block-label">' . esc_html__( 'Search by keyword', 'another-wordpress-classifieds-plugin') . '</label>';
 			echo '<input id="awpcp-search-keywordphrase" type="text" name="keywordphrase" value="' . esc_attr($keywordphrase) . '">';
             echo '</div>';
 		}
 
 		if ($instance['show_by'] == 1) {
             echo '<div class="awpcp-form-field">';
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			echo $this->render_find_by_contact_name_field();
             echo '</div>';
 		}
@@ -121,23 +123,27 @@ class AWPCP_Search_Widget extends WP_Widget {
 			$selected = awpcp_get_var( array( 'param' => $name, 'default' => null ) );
 
             echo '<div class="awpcp-form-field">';
-			echo awpcp_categories_selector()->render( array(
-                'context' => 'search',
-                'selected' => $selected,
-                'required' => false,
-                'multiple' => true,
-                'name' => $name,
-                'label' => $label,
-            ) );
+			awpcp_categories_selector()->show(
+                array(
+                    'context' => 'search',
+                    'selected' => $selected,
+                    'required' => false,
+                    'multiple' => true,
+                    'name' => $name,
+                    'label' => $label,
+                )
+            );
             echo '</div>';
 		}
 
         do_action( 'awpcp-search-listings-widget-form-field', $instance );
 
-		echo '<div class="submit"><input class="button" type="submit" value="' . __( 'Search', 'another-wordpress-classifieds-plugin' ) . '"></div>';
+		echo '<div class="submit"><input class="button" type="submit" value="' . esc_attr__( 'Search', 'another-wordpress-classifieds-plugin' ) . '"></div>';
         echo '</form>';
         echo '</div>';
-		echo $after_widget;
+
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $args['after_widget'];
 	}
 
 	function update($new_instance, $old_instance) {

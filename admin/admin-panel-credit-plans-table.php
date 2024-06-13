@@ -123,9 +123,12 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
 
     public function single_row($item) {
         static $row_class = '';
-        $row_class = ( $row_class == '' ? ' class="alternate"' : '' );
+        $row_class = $row_class === '' ? 'alternate' : '';
 
-        echo '<tr id="credit-plan-' . esc_attr( $item->id ) . '" data-id="' . esc_attr( $item->id ) . '"' . $row_class . '>';
+        echo '<tr id="credit-plan-' . esc_attr( $item->id ) . '" data-id="' . esc_attr( $item->id ) . '"';
+        echo ' class="' . esc_attr( $row_class ) . '"';
+        echo '>';
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $this->single_row_columns( $item );
         echo '</tr>';
     }

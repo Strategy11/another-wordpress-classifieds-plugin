@@ -39,6 +39,4 @@
 	);
 
 	$selector = awpcp_multiple_region_selector_with_template( $selected_region, $selector_options, 'form-table' );
-
-	echo $selector->render( 'user-profile', array(), array() );
-?>
+	$selector->show( 'user-profile', array(), array() );

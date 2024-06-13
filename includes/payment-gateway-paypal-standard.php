@@ -18,6 +18,8 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
     const PAYPAL_URL  = 'https://www.paypal.com/cgi-bin/webscr';
     const SANDBOX_URL = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
 
+    public $request;
+
     public function __construct( $request ) {
         parent::__construct(
             'paypal',

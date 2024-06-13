@@ -28,7 +28,10 @@ $msg = sprintf( $msg, esc_url( $download_url ) );
 </h2>
 
 <div class="awpcp-debug-section-content">
-<?php echo $content; ?>
+<?php
+// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+echo $content;
+?>
 </div>
 
 <hr>

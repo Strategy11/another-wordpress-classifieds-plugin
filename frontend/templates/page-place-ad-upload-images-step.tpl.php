@@ -2,7 +2,7 @@
 
 <?php
     if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
-        echo awpcp_render_listing_form_steps( 'upload-files', $transaction );
+        awpcp_listing_form_steps_componponent()->show( 'upload-files', compact( 'transaction' ) );
     }
 ?>
 

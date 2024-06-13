@@ -1,4 +1,4 @@
-<?php echo $introduction; ?>
+<?php echo wp_kses_post( $introduction ); ?>
 
 <?php esc_html_e( 'Listing Details are below:', 'another-wordpress-classifieds-plugin' ); ?>
 
@@ -8,7 +8,8 @@
 
 <?php
 printf(
+	/* translators: %s: URL to renew the ad */
 	esc_html__( 'You can renew your Ad visiting this link: %s', 'another-wordpress-classifieds-plugin' ),
-	$renew_url
+	esc_url_raw( $renew_url )
 );
 ?>

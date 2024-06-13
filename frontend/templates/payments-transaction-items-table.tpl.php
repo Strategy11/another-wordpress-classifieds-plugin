@@ -11,8 +11,8 @@
 
         <tr>
             <td class="item" data-title="<?php esc_attr_e( 'Item', 'another-wordpress-classifieds-plugin' ); ?>">
-                <?php echo $item->name; ?><br>
-                <?php echo $item->description; ?>
+                <?php echo esc_html( $item->name ); ?><br>
+                <?php echo wp_kses_post( $item->description ); ?>
             </td>
             <td class="amount" data-title="<?php esc_attr_e( 'Amount', 'another-wordpress-classifieds-plugin' ); ?>">
             <?php if ( $item->payment_type === AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY ): ?>

@@ -14,6 +14,11 @@ class AWPCP_ReCAPTCHAv2 implements AWPCP_ReCAPTCHADelegate {
     private $request;
 
     /**
+     * @var bool
+     */
+    protected $echo = false;
+
+    /**
      * @since 4.0.0
      */
     public function __construct( $request ) {
@@ -34,10 +39,32 @@ class AWPCP_ReCAPTCHAv2 implements AWPCP_ReCAPTCHADelegate {
     }
 
     /**
+     * @since x.x
+     *
+     * @return void
+     */
+    public function show_recaptcha( $site_key ) {
+        $this->echo = true;
+        $this->get_recaptcha_html( $site_key );
+        $this->echo = false;
+    }
+
+    /**
      * @since 4.0.0
+     *
+     * @param string $site_key
+     *
+     * @return string|void
      */
     public function get_recaptcha_html( $site_key ) {
-        return '<div class="g-recaptcha awpcp-recaptcha" data-sitekey="' . esc_attr( $site_key ) . '"></div>';
+        $html = '<div class="g-recaptcha awpcp-recaptcha" data-sitekey="' . esc_attr( $site_key ) . '"></div>';
+        if ( $this->echo ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo $html;
+            return;
+        }
+
+        return $html;
     }
 
     public function get_recaptcha_response() {

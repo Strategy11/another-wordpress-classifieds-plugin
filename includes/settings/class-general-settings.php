@@ -916,11 +916,12 @@ class AWPCP_GeneralSettings {
      * @since 3.8.6
      */
     public function facebook_application_settings_section() {
-        $content = __( 'You can find your application information in the <a>Facebook Developer Apps</a> page.', 'another-wordpress-classifieds-plugin' );
-        $content = str_replace( '<a>', '<a href="https://developers.facebook.com/apps/" target="_blank">', $content );
-
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $content;
+        printf(
+            /* translators: %1$s is the link to Facebook Developer Apps page. %2$s is the closing anchor tag. */
+            esc_html__( 'You can find your application information in the %1$sFacebook Developer Apps%2$s page.', 'another-wordpress-classifieds-plugin' ),
+            '<a href="https://developers.facebook.com/apps/" target="_blank">',
+            '</a>'
+        );
     }
 
     /**
@@ -932,8 +933,8 @@ class AWPCP_GeneralSettings {
          * - http://stackoverflow.com/a/19653226/201354
          * - https://github.com/drodenbaugh/awpcp/issues/1288#issuecomment-134198377
          */
-        $content  = '<p>' . esc_html__( 'AWPCP needs to get an authorization token from Facebook to work correctly. You\'ll be redirected to Facebook to login. AWPCP does not store or obtain any personal information from your profile.', 'another-wordpress-classifieds-plugin' ) . '</p>';
-        $content .= '<p>' . esc_html__( "Please choose Public as the audience for posts made by the application, even if you are just testing the integration. Facebook won't allow us to post content in some cases if you choose something else.", 'another-wordpress-classifieds-plugin' ) . '</p>';
+        echo '<p>' . esc_html__( 'AWPCP needs to get an authorization token from Facebook to work correctly. You\'ll be redirected to Facebook to login. AWPCP does not store or obtain any personal information from your profile.', 'another-wordpress-classifieds-plugin' ) . '</p>';
+        echo '<p>' . esc_html__( "Please choose Public as the audience for posts made by the application, even if you are just testing the integration. Facebook won't allow us to post content in some cases if you choose something else.", 'another-wordpress-classifieds-plugin' ) . '</p>';
 
         if ( $this->settings->get_option( 'facebook-app-id' ) && $this->settings->get_option( 'facebook-app-secret' ) ) {
             $facebook = AWPCP_Facebook::instance();
@@ -942,24 +943,35 @@ class AWPCP_GeneralSettings {
             $required_permissions = $facebook->get_required_permissions();
             $login_url            = $facebook->get_login_url( $redirect_uri, implode( ',', $required_permissions ) );
 
-            $content .= '<p><a href="' . $login_url . '">' . __( 'Click here to obtain an access token from Facebook', 'another-wordpress-classifieds-plugin' ) . '</a></p>';
+            echo '<p><a href="' . esc_url( $login_url ) . '">' .
+                esc_html__( 'Click here to obtain an access token from Facebook', 'another-wordpress-classifieds-plugin' ) .
+                '</a></p>';
         } else {
-            $content .= '<p><strong>' . esc_html__( 'Please provide a value for the App Id and App Secret settings before trying to get an access token from Facebook.', 'another-wordpress-classifieds-plugin' ) . '</strong></p>';
+            echo '<p><strong>' .
+                esc_html__( 'Please provide a value for the App Id and App Secret settings before trying to get an access token from Facebook.', 'another-wordpress-classifieds-plugin' ) .
+                '</strong></p>';
         }
-
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $content;
     }
 
     /**
      * @sicne 3.8.6
      */
     public function facebook_page_and_group_selection_section() {
-        $content  = '<p><strong>' . esc_html__( 'Available Facebook Pages and Groups will be displayed after you enter a valid User Access Token.', 'another-wordpress-classifieds-plugin' ) . '</strong></p>';
-        $content .= '<p>' . __( 'As of April 4, 2018, all applications need to go through <a href="https://developers.facebook.com/docs/apps/review" rel="nofollow">App Review</a> in order to get access to the <a href="https://developers.facebook.com/docs/graph-api/reference/page/" rel="nofollow">Page API</a> and <a href="https://developers.facebook.com/docs/graph-api/reference/user/groups/" rel="nofollow">Groups API</a>. That means that you may need to <a href="https://developers.facebook.com/docs/facebook-login/review" rel="nofollow">submit your app for review</a> (ask for the <code>manage_pages</code>, <code>publish_pages</code>, <code>publish_to_groups</code> permissions), before AWPCP can display the list of pages and groups you manage and be able to post classifieds ads to those groups and pages.', 'another-wordpress-classifieds-plugin' ) . '</p>';
-
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $content;
+        echo '<p><strong>' . esc_html__( 'Available Facebook Pages and Groups will be displayed after you enter a valid User Access Token.', 'another-wordpress-classifieds-plugin' ) . '</strong></p>';
+        echo '<p>';
+        printf(
+            /* translators: %1$s opening anchor tag, %2$s closing anchor tag, %3$s opening anchor tag, %4$s closing anchor tag, %5$s opening anchor tag, %6$s closing anchor tag, %7$s opening anchor tag, %8$s closing anchor tag */
+            esc_html__( 'All applications need to go through %1$sApp Review%2$s in order to get access to the %3$sPage API%4$s and %5$sGroups API%6$s. That means that you may need to %7$ssubmit your app for review%8$s (ask for the manage_pages, publish_pages, publish_to_groups permissions), before AWPCP can display the list of pages and groups you manage and be able to post classifieds ads to those groups and pages.', 'another-wordpress-classifieds-plugin' ),
+            '<a href="https://developers.facebook.com/docs/apps/review" rel="nofollow">',
+            '</a>',
+            '<a href="https://developers.facebook.com/docs/graph-api/reference/page/" rel="nofollow">',
+            '</a>',
+            '<a href="https://developers.facebook.com/docs/graph-api/reference/user/groups/" rel="nofollow">',
+            '</a>',
+            '<a href="https://developers.facebook.com/docs/facebook-login/review" rel="nofollow">',
+            '</a>'
+        );
+        echo '</p>';
     }
 
     /**

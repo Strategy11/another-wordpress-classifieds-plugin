@@ -8,13 +8,15 @@ class AWPCP_AddMetaTagsPluginIntegration {
 
     private $meta_tags_generator;
 
+    protected $metadata = null;
+
     public function __construct( $meta_tags_generator ) {
         $this->meta_tags_generator = $meta_tags_generator;
     }
 
     public function should_generate_basic_meta_tags( $should, $meta ) {
         if ( function_exists( 'amt_get_metadata_head' ) ) {
-            if ( ! isset( $this->metadata ) ) {
+            if ( $this->metadata === null ) {
                 $this->metadata = $meta->get_listing_metadata();
             }
 
@@ -42,7 +44,7 @@ class AWPCP_AddMetaTagsPluginIntegration {
         $options = get_option( 'add_meta_tags_opts' );
 
         if ( $options['auto_opengraph'] == '1' ) {
-            if ( ! isset( $this->metadata ) ) {
+            if ( $this->metadata === null ) {
                 $this->metadata = $meta->get_listing_metadata();
             }
 
@@ -50,7 +52,7 @@ class AWPCP_AddMetaTagsPluginIntegration {
 
             return false;
         } elseif ( ! empty( $options['site_wide_meta'] ) ) {
-            if ( ! isset( $this->metadata ) ) {
+            if ( $this->metadata === null ) {
                 $this->metadata = $meta->get_listing_metadata();
             }
 

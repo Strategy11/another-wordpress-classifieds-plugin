@@ -115,7 +115,7 @@ script;
         $label = $action->get_label( $post );
         $url   = $action->get_url( $post, $current_url );
 
-        return sprintf( '<a href="%1$s">%2$s</a>', wp_nonce_url( $url, 'bulk-posts' ), $label );
+        return sprintf( '<a href="%1$s">%2$s</a>', wp_nonce_url( $url, 'bulk-posts' ), wp_kses_post( $label ) );
     }
 
     /**

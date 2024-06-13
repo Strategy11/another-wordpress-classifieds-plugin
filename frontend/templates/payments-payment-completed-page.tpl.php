@@ -1,12 +1,12 @@
 <form id="awpcp-payment-completed-form" method="post" action=<?php echo esc_attr($action) ?>>
     <h3><?php esc_html_e( 'Transaction Details', 'another-wordpress-classifieds-plugin' ); ?></h3>
 
-    <?php echo $this->render_transaction_items($transaction) ?>
-    <h3><?php echo $title ?></h3>
+    <?php $this->show_transaction_items( $transaction ); ?>
+    <h3><?php echo esc_html( $title ); ?></h3>
 
-    <p><?php echo $text ?></p>
+    <p><?php echo esc_html( $text ); ?></p>
 
-    <?php echo $this->render_transaction_errors($transaction) ?>
+    <?php $this->show_transaction_errors( $transaction ); ?>
 
     <input type="hidden" value="<?php echo esc_attr( $transaction->id ); ?>" name="transaction_id">
     <?php foreach ($hidden as $name => $value): ?>

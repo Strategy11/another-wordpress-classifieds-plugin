@@ -8,6 +8,7 @@ class AWPCP_BasePage extends AWPCP_Page {
     private $default_step_name = null;
     private $current_step_name = null;
     private $do_next_step = true;
+    private $step = null;
     private $next_step = null;
 
     public $steps;
@@ -48,7 +49,7 @@ class AWPCP_BasePage extends AWPCP_Page {
     }
 
     protected function get_current_step() {
-        if ( ! isset( $this->step ) ) {
+        if ( $this->step === null ) {
             $step_name = $this->get_current_step_name();
             $this->step = $this->get_step_by_name( $step_name );
         }

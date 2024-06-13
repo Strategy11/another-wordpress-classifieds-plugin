@@ -44,6 +44,11 @@ class AWPCP_Export_Settings_Admin_Page {
     private $template_renderer;
 
     /**
+     * @var Request
+     */
+    private $request;
+
+    /**
      * Constructor.
      */
     public function __construct( $settings_reader, $template_renderer, $request ) {
@@ -66,6 +71,7 @@ class AWPCP_Export_Settings_Admin_Page {
         header( 'Content-Disposition: attachment; filename=' . $filename );
         header( 'Content-Type: application/json; charset=' . get_option( 'blog_charset' ), true );
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $this->settings_reader->read_all();
 
         exit();

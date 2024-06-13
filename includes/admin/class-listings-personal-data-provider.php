@@ -38,6 +38,8 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
      */
     private $db;
 
+    protected $listing_renderer;
+
     /**
      * @since 3.8.6
      */

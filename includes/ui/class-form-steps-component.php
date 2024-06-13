@@ -10,8 +10,22 @@ class AWPCP_FormStepsComponent {
      */
     private $form_steps;
 
+    /**
+     * @var bool
+     */
+    private $echo = false;
+
     public function __construct( AWPCP_FormSteps $form_steps ) {
         $this->form_steps = $form_steps;
+    }
+
+    /**
+     * @since x.x
+     */
+    public function show( $selected_step, $params = [] ) {
+        $this->echo = true;
+        $this->render( $selected_step, $params );
+        $this->echo = false;
     }
 
     /**
@@ -23,13 +37,17 @@ class AWPCP_FormStepsComponent {
 
     private function render_steps( $selected_step, $steps ) {
         $form_steps = $this->prepare_steps( $steps, $selected_step );
+        $file       = AWPCP_DIR . '/templates/components/form-steps.tpl.php';
+        if ( $this->echo ) {
+            include $file;
+            return;
+        }
 
         ob_start();
-        include( AWPCP_DIR . '/templates/components/form-steps.tpl.php' );
-        $content = ob_get_contents();
+        include $file;
+        $html = ob_get_contents();
         ob_end_clean();
-
-        return $content;
+        return $html;
     }
 
     private function prepare_steps( $steps, $selected_step ) {

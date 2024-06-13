@@ -19,4 +19,9 @@
 
 <?php // TODO: Make sure the menu is not shown. ?>
 <?php // TODO: ContentRenderer should be available as a parameter for this view. ?>
-<?php echo awpcp()->container['ListingsContentRenderer']->render_content_without_notices( apply_filters( 'the_content', $ad->post_content ), $ad ); ?>
+<?php
+awpcp()->container['ListingsContentRenderer']->show_content_without_notices(
+    apply_filters( 'the_content', $ad->post_content ),
+    $ad
+);
+?>

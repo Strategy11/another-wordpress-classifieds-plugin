@@ -36,6 +36,11 @@ class AWPCP_Category_Selector {
     private $template_renderer;
 
     /**
+     * @var bool
+     */
+    private $echo = false;
+
+    /**
      * @param object $helper                An instance of Categories Selector Helper.
      * @param object $categories            An instance of Categories Collection.
      * @param object $template_renderer     An instance of Template Renderer.
@@ -44,6 +49,19 @@ class AWPCP_Category_Selector {
         $this->helper            = $helper;
         $this->categories        = $categories;
         $this->template_renderer = $template_renderer;
+    }
+
+    /**
+     * @since x.x
+     *
+     * @param array $params An array of parameters for the Category Selector component.
+     *
+     * @return void
+     */
+    public function show( $params ) {
+        $this->echo = true;
+        $this->render( $params );
+        $this->echo = false;
     }
 
     /**
@@ -82,6 +100,10 @@ class AWPCP_Category_Selector {
             'javascript'             => $this->get_javascript_options( $params, $placeholder, $categories_hierarchy ),
             'use_multiple_dropdowns' => get_awpcp_option( 'use-multiple-category-dropdowns' ) && ! is_plugin_active( 'awpcp-fee-per-category/awpcp_fee_per_category.php' ) && $params['context'] === 'default',
         );
+
+        if ( $this->echo ) {
+            $template_params['echo'] = 'echo';
+        }
 
         return $this->template_renderer->render_template(
             AWPCP_DIR . '/templates/components/category-selector.tpl.php',

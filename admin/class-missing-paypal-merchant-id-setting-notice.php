@@ -40,6 +40,7 @@ class AWPCP_Missing_PayPal_Merchant_ID_Setting_Notice {
             return;
         }
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $this->render_notice();
     }
 

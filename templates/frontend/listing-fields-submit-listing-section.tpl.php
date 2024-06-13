@@ -12,7 +12,10 @@
         </div>
         <div class="awpcp-listing-fields-submit-listing-section__edit_mode">
             <form>
-                <?php echo $form_fields; ?>
+                <?php
+                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+                echo $form_fields;
+                ?>
             </form>
         </div>
 

@@ -15,12 +15,7 @@ class AWPCP_UserProfileContactInformationController {
     public function show_contact_information_fields( $user ) {
         $profile = (array) get_user_meta( $user->ID, 'awpcp-profile', true );
 
-        ob_start();
-        include( AWPCP_DIR . '/templates/admin/profile/contact-information-fields.tpl.php' );
-        $content = ob_get_contents();
-        ob_end_clean();
-
-        echo $content;
+        include AWPCP_DIR . '/templates/admin/profile/contact-information-fields.tpl.php';
     }
 
     public function save_contact_information( $user_id ) {

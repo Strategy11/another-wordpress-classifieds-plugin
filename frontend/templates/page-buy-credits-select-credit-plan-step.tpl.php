@@ -6,13 +6,13 @@
     <?php echo awpcp_print_error( $error ); ?>
 <?php endforeach; ?>
 
-<?php echo $payments->render_account_balance(); ?>
+<?php $payments->show_account_balance(); ?>
 
 <h3><?php echo esc_html( __( 'Select a Credit Plan', 'another-wordpress-classifieds-plugin' ) ); ?></h3>
 
 <form method="post">
 
-    <?php echo $payments->render_credit_plans_table( $transaction, true ); ?>
+    <?php $payments->show_credit_plans_table( $transaction, true ); ?>
 
     <p class="awpcp-form-submit">
         <input class="button" type="submit" value="<?php echo esc_attr( __( 'Continue', 'another-wordpress-classifieds-plugin' ) ); ?>" id="submit" name="submit">

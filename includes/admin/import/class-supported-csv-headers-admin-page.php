@@ -33,13 +33,16 @@ class AWPCP_SupportedCSVHeadersAdminPage {
 
     /**
      * @since 4.0.0
+     *
+     * @return void
      */
     public function dispatch() {
         $params = [
             'columns' => $this->get_supported_columns(),
+            'echo'    => true,
         ];
 
-        echo $this->template_renderer->render_template( $this->template, $params );
+        $this->template_renderer->render_template( $this->template, $params );
     }
 
     /**

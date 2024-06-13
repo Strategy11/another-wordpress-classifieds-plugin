@@ -10,8 +10,12 @@
 
             <div class="postbox">
                 <?php
-                // phpcs:ignore WordPress.Security.EscapeOutput
-                echo awpcp_html_postbox_handle( array( 'content' => __( 'Like this plugin?', 'another-wordpress-classifieds-plugin' ) ) );
+                awpcp_html_postbox_handle(
+                    array(
+                        'content' => __( 'Like this plugin?', 'another-wordpress-classifieds-plugin' ),
+                        'echo'    => true,
+                    )
+                );
                 ?>
                 <div class="inside">
                     <ul>
@@ -26,17 +30,20 @@
             <?php if ( count( $modules['premium']['not-installed'] ) !== 0 ) : ?>
                 <div class="awpcp-get-a-premium-module postbox" style="background-color:#FFFFCF; border-color:#0EAD00; border-width:3px;">
                     <?php
-                    $params = array(
-                        'heading_attributes' => array(
-                            'style' => 'color:#145200',
-                        ),
-                        'span_attributes'    => array(
-                            'class' => 'red',
-                        ),
-                        'content'            => '<strong>' . __( 'Get more features!', 'another-wordpress-classifieds-plugin' ) . '</strong>',
+                    awpcp_html_postbox_handle(
+                        array(
+                            'heading_attributes' => array(
+                                'style' => 'color:#145200',
+                            ),
+                            'span_attributes'    => array(
+                                'class' => 'red',
+                            ),
+                            'content'            => '<strong>' .
+                                __( 'Get more features!', 'another-wordpress-classifieds-plugin' ) .
+                                '</strong>',
+                            'echo'               => true,
+                        )
                     );
-                    // phpcs:ignore WordPress.Security.EscapeOutput
-                    echo awpcp_html_postbox_handle( $params );
                     ?>
 
                     <div class="inside">
@@ -55,41 +62,41 @@
 
             <div class="postbox">
                 <?php
-                // phpcs:ignore WordPress.Security.EscapeOutput
-                echo awpcp_html_postbox_handle(
+                awpcp_html_postbox_handle(
                     array(
-                        'content' => __( 'Found a bug?', 'another-wordpress-classifieds-plugin' ) . '&nbsp;' . __( 'Need Support?', 'another-wordpress-classifieds-plugin' ),
+                        'content' => __( 'Found a bug?', 'another-wordpress-classifieds-plugin' ) .
+                            '&nbsp;' . __( 'Need Support?', 'another-wordpress-classifieds-plugin' ),
+                        'echo'    => true,
                     )
                 );
                 ?>
                 <?php $tpl = '<a href="%s" target="_blank">%s</a>'; ?>
                 <div class="inside">
                     <ul>
-
-                        <?php
-                        $atag = sprintf( $tpl, 'https://awpcp.com/knowledge-base/quick-start-guide/', __( 'Quick Start Guide', 'another-wordpress-classifieds-plugin' ) );
-                        ?>
                         <li>
                             <?php
-                            /* translators: %s: translated link */
-                            $text = sprintf( esc_html_x( 'Browse the %s.', 'Browse the <a>Quick Start Guide</a>', 'another-wordpress-classifieds-plugin' ), $atag );
-                            echo wp_kses_post( $text );
-                            ?>
-                        </li>
-                        <?php
-                        $atag = sprintf( $tpl, 'https://awpcp.com/knowledge-base/', __( 'Documentation', 'another-wordpress-classifieds-plugin' ) );
-                        ?>
-                        <li>
-                            <?php
-                            /* translators: %s: translated link */
-                            $text = sprintf( esc_html_x( 'Read the full %s.', 'Read the full <a>Documentation</a>', 'another-wordpress-classifieds-plugin' ), $atag );
-                            echo wp_kses_post( $text );
+                            /* translators: %1$s: open anchor link, %2$s close anchor link */
+                            printf(
+                                esc_html__( 'Browse the %1$sQuick Start Guide%2$s', 'another-wordpress-classifieds-plugin' ),
+                                '<a href="https://awpcp.com/knowledge-base/quick-start-guide/" target="_blank">',
+                                '</a>'
+                            );
                             ?>
                         </li>
                         <li>
-	                        <?php
-	                        printf( $tpl, 'https://awpcp.com/get-help/', esc_html__( 'Get Help', 'another-wordpress-classifieds-plugin' ) );
-	                        ?>
+                            <?php
+                            /* translators: %1$s: open anchor link, %2$s close anchor link */
+                            printf(
+                                esc_html__( 'Read the full %1$sDocumentation%2$s.', 'another-wordpress-classifieds-plugin' ),
+                                '<a href="https://awpcp.com/knowledge-base/" target="_blank">',
+                                '</a>'
+                            );
+                            ?>
+                        </li>
+                        <li>
+	                        <a href="https://awpcp.com/get-help/" target="_blank">
+                                <?php esc_html_e( 'Get Help', 'another-wordpress-classifieds-plugin' ); ?>
+                            </a>
                         </li>
                     </ul>
                 </div>

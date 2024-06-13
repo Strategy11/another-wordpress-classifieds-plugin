@@ -60,8 +60,7 @@ class AWPCP_CreditPlan {
         }
 
         $query .= ' WHERE ' . $where;
-        $query .= ' ORDER BY %i ' . strtoupper( $order );
-        $query_vars[] = $orderby;
+        $query .= ' ORDER BY ' . $orderby . ' ' . strtoupper( $order );
 
         if ( $limit > 0 ) {
             $query.= ' LIMIT %d, %d';

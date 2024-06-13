@@ -6,25 +6,28 @@
     <?php endif; ?>
 
         <?php
-            if ( $should_show_title ) {
-                $heading_params = array(
-                    'attributes' => array(
-                        'class' => 'awpcp-page-header',
-                    ),
-                    'content' => $page_title, // no need to escape; title() is allowed to output html
-                    'echo'       => true,
-                );
+        if ( $should_show_title ) {
+            $heading_params = array(
+                'attributes' => array(
+                    'class' => 'awpcp-page-header',
+                ),
+                'content' => $page_title, // no need to escape; title() is allowed to output html
+                'echo'       => true,
+            );
 
-                awpcp_html_admin_first_level_heading( $heading_params );
-            }
+            awpcp_html_admin_first_level_heading( $heading_params );
+        }
+
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        echo $sidebar = $show_sidebar ? awpcp_admin_sidebar() : '';
         ?>
-
-        <?php $sidebar = $show_sidebar ? awpcp_admin_sidebar() : ''; ?>
-        <?php echo $sidebar; ?>
 
 		<div class="awpcp-main-content <?php echo empty( $sidebar ) ? 'without-sidebar' : 'with-sidebar'; ?>">
             <div class="awpcp-inner-content">
-            <?php echo $content; ?>
+            <?php
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo $content;
+            ?>
             </div>
         </div>
 

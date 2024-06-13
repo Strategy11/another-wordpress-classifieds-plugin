@@ -4,4 +4,4 @@
     <?php echo awpcp_print_message( $message ); ?>
 <?php endforeach ?>
 
-<?php echo $payments->render_checkout_page( $transaction, $hidden ); ?>
+<?php $payments->show_checkout_page( $transaction, $hidden ); ?>

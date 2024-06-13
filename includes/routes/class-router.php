@@ -182,7 +182,7 @@ class AWPCP_Router {
         }
 
         if ( $page_content ) {
-            echo $this->render_admin_page( $admin_page, $page_content );
+            $this->render_admin_page( $admin_page, $page_content );
         }
     }
 
@@ -196,9 +196,10 @@ class AWPCP_Router {
             'should_show_title' => true,
             'show_sidebar' => $this->show_sidebar( $this->current_page ),
             'content' => $content,
+            'echo'              => true,
         );
 
-        return $this->template_renderer->render_template( $template, $params );
+        $this->template_renderer->render_template( $template, $params );
     }
 
     public function redirect( $redirect ) {

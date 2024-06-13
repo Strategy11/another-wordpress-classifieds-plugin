@@ -3,7 +3,7 @@
  * @package AWPCP\Templates
  */
 
-?><?php echo awpcp_print_message( $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+?><?php echo awpcp_print_message( $message ); ?>
 
 <p><?php echo esc_html_x( 'You are about to pay for the following items.', 'checkout-payment page', 'another-wordpress-classifieds-plugin' ); ?></p>
 
@@ -11,6 +11,6 @@
 
 <?php echo $this->render_account_balance_for_transaction( $transaction ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
-<?php echo $this->render_transaction_items( $transaction ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+<?php $this->show_transaction_items( $transaction ); ?>
 
 <?php echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
