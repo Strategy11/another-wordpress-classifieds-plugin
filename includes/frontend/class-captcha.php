@@ -48,7 +48,7 @@ class AWPCP_CAPTCHA {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      */
     public function show() {
         $this->provider->show();

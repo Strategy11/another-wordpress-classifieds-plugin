@@ -20,7 +20,7 @@ class AWPCP_FormStepsComponent {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      */
     public function show( $selected_step, $params = [] ) {
         $this->echo = true;

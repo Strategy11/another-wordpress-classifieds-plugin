@@ -20,7 +20,7 @@ class AWPCP_AjaxResponse {
 
     /**
      * @since 3.2.2
-     * @deprecated x.x
+     * @deprecated 4.3.3
      */
     public function write( $content ) {
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -29,7 +29,7 @@ class AWPCP_AjaxResponse {
 
     /**
      * @since 3.2.2
-     * @deprecated x.x
+     * @deprecated 4.3.3
      */
     public function close() {
         die();

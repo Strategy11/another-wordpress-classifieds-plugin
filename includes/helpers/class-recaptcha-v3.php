@@ -37,7 +37,7 @@ class AWPCP_ReCAPTCHAv3 implements AWPCP_ReCAPTCHADelegate {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */

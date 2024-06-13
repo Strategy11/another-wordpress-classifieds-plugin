@@ -14,7 +14,7 @@ interface AWPCP_ReCAPTCHADelegate {
     public function enqueue_scripts( $site_key );
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */
