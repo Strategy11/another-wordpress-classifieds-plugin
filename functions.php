@@ -1280,7 +1280,8 @@ function awpcp_sanitize_value( $sanitize, &$value ) {
 }
 
 /**
- * @since x.x
+ * @since 4.3.3
+ *
  * @param string $value
  */
 function awpcp_get_server_value( $value ) {
@@ -1856,7 +1857,7 @@ function awpcp_validate_error($field, $errors) {
 }
 
 /**
- * @since x.x
+ * @since 4.3.3
  */
 function awpcp_show_form_error( $field, $errors ) {
     echo wp_kses_post(

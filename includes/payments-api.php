@@ -701,7 +701,7 @@ class AWPCP_PaymentsAPI {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */
@@ -729,7 +729,7 @@ class AWPCP_PaymentsAPI {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */
@@ -775,7 +775,7 @@ class AWPCP_PaymentsAPI {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */
@@ -796,7 +796,7 @@ class AWPCP_PaymentsAPI {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */
@@ -848,7 +848,7 @@ class AWPCP_PaymentsAPI {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */
@@ -905,7 +905,7 @@ class AWPCP_PaymentsAPI {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */
@@ -974,7 +974,7 @@ class AWPCP_PaymentsAPI {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */

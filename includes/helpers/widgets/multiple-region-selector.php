@@ -106,7 +106,7 @@ class AWPCP_MultipleRegionSelector {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @param string $context      'search' or 'details'
      * @param array  $translations A region type => field name map.

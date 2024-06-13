@@ -29,7 +29,7 @@ abstract class AWPCP_UserField {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */

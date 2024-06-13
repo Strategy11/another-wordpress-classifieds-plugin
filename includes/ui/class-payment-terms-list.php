@@ -47,7 +47,7 @@ class AWPCP_Payment_Terms_List {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */

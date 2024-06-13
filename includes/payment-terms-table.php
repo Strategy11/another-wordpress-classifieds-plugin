@@ -79,7 +79,7 @@ class AWPCP_PaymentTermsTable {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */
@@ -106,7 +106,7 @@ class AWPCP_PaymentTermsTable {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @return void
      */

@@ -47,7 +47,7 @@ class AWPCP_MediaUploaderComponent {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @param array $configuration  An array of configuration options.
      *

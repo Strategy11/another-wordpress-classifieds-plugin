@@ -52,7 +52,7 @@ class AWPCP_Category_Selector {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @param array $params An array of parameters for the Category Selector component.
      *

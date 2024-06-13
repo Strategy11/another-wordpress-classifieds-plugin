@@ -142,7 +142,7 @@ class AWPCP_ListingsContentRenderer {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @param string $content   The content of the post.
      * @param object $post      An instance of WP_Post.

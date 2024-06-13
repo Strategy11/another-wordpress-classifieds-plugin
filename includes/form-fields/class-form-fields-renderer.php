@@ -49,7 +49,7 @@ class AWPCP_FormFieldsRenderer {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @param mixed  $form_values The values for this form.
      * @param array  $form_errors An array of form field errors index by field slug.

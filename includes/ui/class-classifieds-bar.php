@@ -29,7 +29,7 @@ class AWPCP_Classifieds_Bar {
     }
 
     /**
-     * @since x.x
+     * @since 4.3.3
      *
      * @param array $components
      *
