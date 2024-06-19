@@ -2336,7 +2336,7 @@ function awpcp_directory_permissions() {
 function awpcp_table_exists($table) {
     global $wpdb;
     $result = $wpdb->get_var(
-        $wpdb->prepare( 'SHOW TABLES LIKE %i', $table )
+        $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table ) )
     );
     return strcasecmp($result, $table) === 0;
 }
