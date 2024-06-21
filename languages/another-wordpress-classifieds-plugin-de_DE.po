@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2024-06-13 20:37:03+00:00\n"
+"POT-Creation-Date: 2024-06-21 19:33:08+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: German (Germany) (http://www.transifex.com/wp-translations/"
@@ -2838,11 +2838,11 @@ msgstr "Länder durch Komma trennen"
 msgid "-- Choose a Country --"
 msgstr "-- Wähle ein Land --"
 
-#: functions.php:1537 templates/admin/main-classifieds-admin-page.tpl.php:58
+#: functions.php:1538 templates/admin/main-classifieds-admin-page.tpl.php:58
 msgid "Free"
 msgstr "Kostenlos"
 
-#: functions.php:1893 templates/components/media-center.tpl.php:14
+#: functions.php:1894 templates/components/media-center.tpl.php:14
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -2853,7 +2853,7 @@ msgstr ""
 "abgewiesen. Dateien mit gelb-blassen Hintergrund warten auf Freischaltung. "
 "Abgewiesene oder auf Freischaltung wartende Dateien werden nicht angezeigt."
 
-#: functions.php:1912
+#: functions.php:1913
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -2862,55 +2862,55 @@ msgstr ""
 "aktuellen Version %2$s von AWPCP nicht kompatibel. Bitte lade die Versionen "
 "%1$s %3$s oder neuer herunter."
 
-#: functions.php:1914
+#: functions.php:1915
 msgid "Error"
 msgstr "Fehler"
 
-#: functions.php:2287
+#: functions.php:2288
 msgid "No errors."
 msgstr "Keine Fehler."
 
-#: functions.php:2288
+#: functions.php:2289
 msgid "The file is larger than upload_max_filesize."
 msgstr "Die Datei ist zu groß."
 
-#: functions.php:2289
+#: functions.php:2290
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "Die Datei ist zu groß."
 
-#: functions.php:2290
+#: functions.php:2291
 msgid "The file was only partially uploaded."
 msgstr "Die Datei wurde nicht vollständig geladen."
 
-#: functions.php:2291
+#: functions.php:2292
 msgid "No file was uploaded."
 msgstr "Es wurde keine Datei hochgeladen."
 
-#: functions.php:2292
+#: functions.php:2293
 msgid "Missing temporary directory."
 msgstr "Das temporäre Verzeichnis fehlt!"
 
-#: functions.php:2293
+#: functions.php:2294
 msgid "Can't write file to disk."
 msgstr "Schreibfehler Festplatte."
 
-#: functions.php:2294
+#: functions.php:2295
 msgid "The file upload was stopped by extension."
 msgstr "Die Datei-Erweiterung ist nicht erlaubt."
 
-#: functions.php:2536
+#: functions.php:2537
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Deine Anzeige \"%s\" wurde angenommen"
 
-#: functions.php:2559
+#: functions.php:2560
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Deine Anzeige  \"%s\" wurde erfolgreich aktualisiert."
 
-#: functions.php:2581
+#: functions.php:2582
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Bilder der Anzeige \"%s\" warten auf Freischaltung"
 
-#: functions.php:2583
+#: functions.php:2584
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
@@ -2920,13 +2920,13 @@ msgstr ""
 "Anzeige genehmigen, indem Du zur Anzeigenverwaltung gehst und dort auf "
 "\"Genehmigen\" klickst. Hier geht es weiter: %s"
 
-#: functions.php:2586
+#: functions.php:2587
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "Die Anzeige %s wartet auf Freischaltung."
 
 #. translators: %1$s is the listing title. %2$s is the URL for managing
 #. listing.
-#: functions.php:2589 includes/functions/notifications.php:156
+#: functions.php:2590 includes/functions/notifications.php:156
 msgid ""
 "The Ad \"%1$s\" is awaiting approval. You can approve the Ad going to the "
 "Classified edit section and clicking the \"Publish\" button. Click here to "
@@ -2934,7 +2934,7 @@ msgid ""
 msgstr ""
 
 #. translators: %s is the URL for managing listing images.
-#: functions.php:2596 includes/functions/notifications.php:164
+#: functions.php:2597 includes/functions/notifications.php:164
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -2943,27 +2943,27 @@ msgstr ""
 "Zusätzlich kannst Du die Bilder in der Bildverwaltung freigeben. Hier geht "
 "es weiter: %s"
 
-#: functions.php:3123
+#: functions.php:3124
 msgid "Email sent %s."
 msgstr "Diese E-Mail wurde gesendet am: %s"
 
-#: functions.php:3254
+#: functions.php:3255
 msgid "Not Installed"
 msgstr "Nicht installiert"
 
-#: functions.php:3258
+#: functions.php:3259
 msgid "Installed"
 msgstr "Instaliert"
 
-#: functions.php:3266
+#: functions.php:3267
 msgid "SSL Support: Yes."
 msgstr "SSL Support: Ja."
 
-#: functions.php:3268
+#: functions.php:3269
 msgid "SSL Support: No."
 msgstr "SSL Support: Nein."
 
-#: functions.php:3271
+#: functions.php:3272
 msgid "OpenSSL version:"
 msgstr "OpenSSL version:"
 
