@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2024-06-13 20:37:03+00:00\n"
+"POT-Creation-Date: 2024-06-21 19:33:08+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Romanian (Romania) (http://www.transifex.com/wp-translations/"
@@ -2872,11 +2872,11 @@ msgstr "separă suburbiile/satele/comunele cu virgulă"
 msgid "-- Choose a Country --"
 msgstr "-- Alege o țară --"
 
-#: functions.php:1537 templates/admin/main-classifieds-admin-page.tpl.php:58
+#: functions.php:1538 templates/admin/main-classifieds-admin-page.tpl.php:58
 msgid "Free"
 msgstr "Gratuit"
 
-#: functions.php:1893 templates/components/media-center.tpl.php:14
+#: functions.php:1894 templates/components/media-center.tpl.php:14
 msgid ""
 "The images or files with pale red background have been rejected by an "
 "administrator user. Likewise, files with a pale yellow background are "
@@ -2886,7 +2886,7 @@ msgstr ""
 "Vă rugăm să încărcați imagini care au legătură cu anunțul dvs. si respectă "
 "termenii de serviciu ai acestui website."
 
-#: functions.php:1912
+#: functions.php:1913
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -2894,55 +2894,55 @@ msgstr ""
 "Această versiune a modulului AWPCP %1$s nu este compatibil cu versiunea "
 "AWPCP %2$s. Vă rugăm să obțineți %1$s %3$s sau mai nou!"
 
-#: functions.php:1914
+#: functions.php:1915
 msgid "Error"
 msgstr "Eroare"
 
-#: functions.php:2287
+#: functions.php:2288
 msgid "No errors."
 msgstr "Nici o eroare."
 
-#: functions.php:2288
+#: functions.php:2289
 msgid "The file is larger than upload_max_filesize."
 msgstr "Mărimea fișierului este mai mare decât upload_max_filesize."
 
-#: functions.php:2289
+#: functions.php:2290
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "Acest fișier este mai mare decât MAX_FILE_SIZE."
 
-#: functions.php:2290
+#: functions.php:2291
 msgid "The file was only partially uploaded."
 msgstr "Fișierul a fost încărcat doar parțial."
 
-#: functions.php:2291
+#: functions.php:2292
 msgid "No file was uploaded."
 msgstr "Nu a fost încărcat nici un fișier."
 
-#: functions.php:2292
+#: functions.php:2293
 msgid "Missing temporary directory."
 msgstr "Directorul temporar lipsește."
 
-#: functions.php:2293
+#: functions.php:2294
 msgid "Can't write file to disk."
 msgstr "Nu se poate scrie fișierul pe disc."
 
-#: functions.php:2294
+#: functions.php:2295
 msgid "The file upload was stopped by extension."
 msgstr "Încărcarea fișierului a fost oprită de către extensia acestuia."
 
-#: functions.php:2536
+#: functions.php:2537
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Anunțul dvs. \"%s\" a fost aprobat"
 
-#: functions.php:2559
+#: functions.php:2560
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Anunțul dvs. \"%s\" a fost actualizat cu succes"
 
-#: functions.php:2581
+#: functions.php:2582
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Imaginile anunțului \"%s\" așteaptă aprobarea"
 
-#: functions.php:2583
+#: functions.php:2584
 msgid ""
 "Images on Ad \"%s\" are awaiting approval. You can approve the images going "
 "to the Manage Images section for that Ad and clicking the \"Enable\" button "
@@ -2953,13 +2953,13 @@ msgstr ""
 "pe butonul \"Activează\" de sub fiecare imagine. Click aici pentru a "
 "continua: %s."
 
-#: functions.php:2586
+#: functions.php:2587
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "Anunțul \"%s\" așteaptă aprobarea"
 
 #. translators: %1$s is the listing title. %2$s is the URL for managing
 #. listing.
-#: functions.php:2589 includes/functions/notifications.php:156
+#: functions.php:2590 includes/functions/notifications.php:156
 msgid ""
 "The Ad \"%1$s\" is awaiting approval. You can approve the Ad going to the "
 "Classified edit section and clicking the \"Publish\" button. Click here to "
@@ -2967,7 +2967,7 @@ msgid ""
 msgstr ""
 
 #. translators: %s is the URL for managing listing images.
-#: functions.php:2596 includes/functions/notifications.php:164
+#: functions.php:2597 includes/functions/notifications.php:164
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
@@ -2977,27 +2977,27 @@ msgstr ""
 "Imagini pentru acest anunț și dând click pe butonul \"Activează\" de sub "
 "fiecare imagine. Click aici pentru a continua: %s."
 
-#: functions.php:3123
+#: functions.php:3124
 msgid "Email sent %s."
 msgstr "Email trimis %s."
 
-#: functions.php:3254
+#: functions.php:3255
 msgid "Not Installed"
 msgstr "Neinstalate"
 
-#: functions.php:3258
+#: functions.php:3259
 msgid "Installed"
 msgstr "Instalate"
 
-#: functions.php:3266
+#: functions.php:3267
 msgid "SSL Support: Yes."
 msgstr "Suport SSL: Da."
 
-#: functions.php:3268
+#: functions.php:3269
 msgid "SSL Support: No."
 msgstr "Suport SSL: Nu."
 
-#: functions.php:3271
+#: functions.php:3272
 msgid "OpenSSL version:"
 msgstr "Versiune OpenSSL:"
 

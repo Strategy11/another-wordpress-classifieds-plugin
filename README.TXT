@@ -5,7 +5,7 @@ Tags: listings, classified ads, classified, classifieds, directory plugin, class
 Requires at least: 6.2.0
 Requires PHP: 5.6
 Tested up to: 6.4.3
-Stable tag: 4.3.3
+Stable tag: 4.3.4
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
