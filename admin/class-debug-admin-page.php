@@ -89,7 +89,7 @@ class AWPCP_DebugAdminPage {
             'rewrite-rules'   => $this->get_rewrite_rules_data(),
         ];
 
-        $current_date = date( DATE_ATOM, current_time( 'timestamp' ) );
+        $current_date = gmdate( DATE_ATOM, current_time( 'timestamp' ) );
 
         $filename = sprintf( 'awpcp-debug-info-%s.json', $current_date );
         $filename = str_replace( ':', '', $filename );

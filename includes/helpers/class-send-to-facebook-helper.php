@@ -58,13 +58,13 @@ class AWPCP_SendToFacebookHelper {
 
         try {
             $this->send_listing_to_facebook_page( $listing );
-        } catch ( AWPCP_Exception $e ) {
+        } catch ( AWPCP_Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
             // pass
         }
 
         try {
             $this->send_listing_to_facebook_group( $listing );
-        } catch ( AWPCP_Exception $e ) {
+        } catch ( AWPCP_Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
             // pass
         }
 

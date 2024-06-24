@@ -85,10 +85,12 @@ function awpcp_query_vars($query_vars) {
 function awpcp_rel_canonical_url() {
 	global $wp_the_query;
 
-	if ( ! is_singular() )
+	if ( ! is_singular() ) {
 		return false;
+    }
 
-	if ( ! $page_id = $wp_the_query->get_queried_object_id() ) {
+    $page_id = $wp_the_query->get_queried_object_id();
+	if ( ! $page_id ) {
 		return false;
 	}
 
@@ -155,8 +157,8 @@ function awpcp_redirect_canonical($redirect_url, $requested_url) {
 
     if ( $awpcp_rewrite ) {
         // Fix for #943.
-        $requested_host = parse_url( $requested_url, PHP_URL_HOST );
-        $redirect_host = parse_url( $redirect_url, PHP_URL_HOST );
+        $requested_host = wp_parse_url( $requested_url, PHP_URL_HOST );
+        $redirect_host  = wp_parse_url( $redirect_url, PHP_URL_HOST );
 
         if ( $requested_host != $redirect_host ) {
             if ( strtolower( $redirect_host ) == ( 'www.' . $requested_host ) ) {
@@ -423,7 +425,7 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 
 	switch ( $format ) {
 		case 'mysql':
-			return date( 'Y-m-d H:i:s', $timestamp );
+			return gmdate( 'Y-m-d H:i:s', $timestamp );
 		case 'timestamp':
 			return $timestamp;
 		case 'time-elapsed':
@@ -444,10 +446,10 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 
 function awpcp_set_datetime_date( $datetime, $date ) {
     $base_timestamp = strtotime( $datetime );
-    $base_year_month_day_timestamp = strtotime( date( 'Y-m-d', strtotime( $datetime ) ) );
+    $base_year_month_day_timestamp = strtotime( gmdate( 'Y-m-d', strtotime( $datetime ) ) );
     $time_of_the_day_in_seconds = $base_timestamp - $base_year_month_day_timestamp;
 
-    $target_year_month_day_timestamp = strtotime( date( 'Y-m-d', strtotime( $date ) ) );
+    $target_year_month_day_timestamp = strtotime( gmdate( 'Y-m-d', strtotime( $date ) ) );
 
     $new_datetime_timestamp = $target_year_month_day_timestamp + $time_of_the_day_in_seconds;
 
@@ -456,7 +458,7 @@ function awpcp_set_datetime_date( $datetime, $date ) {
 
 function awpcp_extend_date_to_end_of_the_day( $datetime ) {
     $next_day = strtotime( '+ 1 days', $datetime );
-    $zero_hours_next_day = strtotime( date( 'Y-m-d', $next_day ) );
+    $zero_hours_next_day = strtotime( gmdate( 'Y-m-d', $next_day ) );
     $end_of_the_day = $zero_hours_next_day - 1;
 
     return $end_of_the_day;
@@ -596,6 +598,7 @@ function awpcp_pagination($config, $url) {
         'TCM_Cache_Query_2_',
     );
 
+    // phpcs:ignore WordPress.Security.NonceVerification
 	$params = array_merge($_GET, $_POST);
 	foreach ($blacklist as $param) {
 		unset($params[$param]);
@@ -746,7 +749,7 @@ function awpcp_get_comma_separated_list($items=array(), $threshold=5, $none='') 
 	$count = count( $items );
 
 	if ( $count > $threshold ) {
-		$message = _x( '%s and %d more.', 'comma separated list of things', 'another-wordpress-classifieds-plugin' );
+		$message = _x( '%1$s and %2$d more.', 'comma separated list of things', 'another-wordpress-classifieds-plugin' );
 		$items = array_splice( $items, 0, $threshold - 1 );
 		return sprintf( $message, join( ', ', $items ), $count - $threshold + 1 );
 	} elseif ( $count > 0 ) {
@@ -1145,7 +1148,8 @@ function awpcp_insert_submenu_item_after($menu, $slug, $after) {
     global $submenu;
 
     $items = isset($submenu[$menu]) ? $submenu[$menu] : array();
-    $to = -1; $from = -1;
+    $to    = -1;
+    $from  = -1;
 
     foreach ($items as $k => $item) {
         // insert after Fees
@@ -1247,7 +1251,7 @@ function awpcp_get_var( $args, $type = 'request' ) {
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         $value = isset( $_GET[ $args['param'] ] ) ? wp_unslash( $_GET[ $args['param'] ] ) : $value;
     } elseif ( $type === 'post' ) {
-        // phpcs:ignore Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        // phpcs:ignore Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification
         $value = isset( $_POST[ $args['param'] ] ) ? wp_unslash( $_POST[ $args['param'] ] ) : $value;
     } else {
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -1294,6 +1298,7 @@ function awpcp_get_server_value( $value ) {
  * @deprecated 4.3
  */
 function awpcp_post_param($name, $default='') {
+    // phpcs:ignore WordPress.Security.NonceVerification
 	return awpcp_array_data($name, $default, $_POST);
 }
 
@@ -1687,11 +1692,8 @@ function awpcp_get_flash_messages() {
         return $awp_messages ? $awp_messages : array();
     }
 
-    if ( $messages = get_user_option( 'awpcp-messages', get_current_user_id() ) ) {
-        return $messages;
-    }
-
-    return array();
+    $messages = get_user_option( 'awpcp-messages', get_current_user_id() );
+    return $messages ? $messages : array();
 }
 
 /**
@@ -2411,6 +2413,7 @@ function awpcp_phpmailer() {
         $phpmailer = new PHPMailer( true );
     }
 
+    // phpcs:ignore WordPress.NamingConventions.ValidVariableName
     $phpmailer->CharSet = apply_filters( 'wp_mail_charset', get_bloginfo( 'charset' ) );
 
     return $phpmailer;
@@ -2578,11 +2581,16 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 	$params = array( 'action' => 'edit', 'post' => $ad->ID );
     $manage_images_url = add_query_arg( urlencode_deep( $params ), admin_url( 'post.php' ) );
 
+    $messages = array();
+
 	if ( false == $ad_approve && $images_approve ) {
 		$subject = __( 'Images on Ad "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
 
-		$message = __( 'Images on Ad "%s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
-		$messages = array( sprintf( $message, $listing_renderer->get_listing_title( $ad ), $manage_images_url ) );
+		$messages[] = sprintf(
+            __( 'Images on Ad "%1$s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %2$s.', 'another-wordpress-classifieds-plugin' ),
+            $listing_renderer->get_listing_title( $ad ),
+            $manage_images_url
+        );
 	} else {
 		$subject = __( 'The Ad "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
@@ -2594,8 +2602,10 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 	    $messages[] = sprintf( $message, $listing_renderer->get_listing_title( $ad ), $url );
 
 	    if ( $images_approve ) {
-		    $message = __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin' );
-		    $messages[] = sprintf( $message, $manage_images_url );
+		    $messages[] = sprintf(
+                __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin' ),
+                $manage_images_url
+            );
 		}
 	}
 
@@ -3107,13 +3117,20 @@ function awpcp_phpmailer_init_smtp( $phpmailer ) {
     // still got defaults set? can't use those.
     if ( 'mail.example.com' == trim( $hostname ) ) return;
     if ( 'smtp_username' == trim( $username ) ) return;
+
+    // phpcs:ignore WordPress.NamingConventions.ValidVariableName
     $phpmailer->Mailer = 'smtp';
+    // phpcs:ignore WordPress.NamingConventions.ValidVariableName
     $phpmailer->Host = $hostname;
+    // phpcs:ignore WordPress.NamingConventions.ValidVariableName
     $phpmailer->Port = $port;
     // If there's a username and password then assume SMTP Auth is necessary and set the vars:
     if ( '' != trim( $username )  && '' != trim( $password ) ) {
+        // phpcs:ignore WordPress.NamingConventions.ValidVariableName
         $phpmailer->SMTPAuth = true;
+        // phpcs:ignore WordPress.NamingConventions.ValidVariableName
         $phpmailer->Username = $username;
+        // phpcs:ignore WordPress.NamingConventions.ValidVariableName
         $phpmailer->Password = $password;
     }
     // that's it!

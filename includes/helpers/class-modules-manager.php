@@ -31,7 +31,7 @@ class AWPCP_ModulesManager {
 
         try {
             $this->load_module( $module );
-        } catch ( AWPCP_Exception $e ) {
+        } catch ( AWPCP_Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
             // pass
         }
     }

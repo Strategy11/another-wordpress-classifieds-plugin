@@ -50,8 +50,8 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
 
     if ( in_array( $mime_type, awpcp_get_image_mime_types() ) ) {
         if ( $file_size > $constraints['max_image_size'] ) {
-            $error = _x( 'The file %s was larger than the maximum allowed file size of %s bytes. The file was not uploaded.', 'upload files', 'another-wordpress-classifieds-plugin' );
-            $error = sprintf( $error, '<strong>' . $filename . '</strong>', $constraints['max_image_size'] );
+            $error = __( 'The file %1$s was larger than the maximum allowed file size of %2$s bytes. The file was not uploaded.', 'another-wordpress-classifieds-plugin' );
+            $error = esc_html( sprintf( $error, $filename, $constraints['max_image_size'] ) );
             return false;
         }
 
@@ -70,22 +70,24 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
         }
 
         if ( $img_info[ 0 ] < $constraints['min_image_width'] ) {
-            $error = _x( 'The image %s did not meet the minimum width of %s pixels. The file was not uploaded.', 'upload files', 'another-wordpress-classifieds-plugin');
-            $error = sprintf( $error, '<strong>' . $filename . '</strong>', $constraints['min_image_width'] );
+            $error = __( 'The image %1$s did not meet the minimum width of %2$s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
+            $error = sprintf(
+                esc_html( $error ),
+                '<strong>' . esc_html( $filename ) . '</strong>',
+                esc_html( $constraints['min_image_width'] )
+            );
             return false;
         }
 
         if ( $img_info[ 1 ] < $constraints['min_image_height'] ) {
-            $error = _x( 'The image %s did not meet the minimum height of %s pixels. The file was not uploaded.', 'upload files', 'another-wordpress-classifieds-plugin');
-            $error = sprintf( $error, '<strong>' . $filename . '</strong>', $constraints['min_image_height'] );
+            $error = __( 'The image %1$s did not meet the minimum height of %2$s pixels. The file was not uploaded.', 'another-wordpress-classifieds-plugin');
+            $error = esc_html( sprintf( $error, $filename, $constraints['min_image_height'] ) );
             return false;
         }
-    } else {
-        if ( $file_size > $constraints['max_attachment_size'] ) {
-            $error = _x( 'The file %s was larger than the maximum allowed file size of %s bytes. The file was not uploaded.', 'upload files', 'another-wordpress-classifieds-plugin' );
-            $error = sprintf( $error, '<strong>' . $filename . '</strong>', $constraints['max_attachment_size'] );
-            return false;
-        }
+    } elseif ( $file_size > $constraints['max_attachment_size'] ) {
+        $error = __( 'The file %1$s was larger than the maximum allowed file size of %2$s bytes. The file was not uploaded.', 'another-wordpress-classifieds-plugin' );
+        $error = esc_html( sprintf( $error, $filename, $constraints['max_attachment_size'] ) );
+        return false;
     }
 
     $newname = awpcp_unique_filename( $tmpname, $filename, array( $paths['files_dir'], $paths['thumbnails_dir'] ) );
@@ -249,7 +251,7 @@ function awpcp_resizer($filename, $dir) {
     $maxwidth = get_awpcp_option('imgmaxwidth');
     $maxheight = get_awpcp_option('imgmaxheight');
 
-    if ('' == trim($maxheight) || '' == trim ($maxwidth)) {
+    if ( '' == trim( $maxheight ) || '' == trim( $maxwidth ) ) {
         return false;
     }
 
@@ -316,46 +318,52 @@ function get_categorynameidall($cat_id = 0) {
     $optionitem='';
 
     // Start with the main categories
-    $query = "SELECT category_id,category_name FROM " . AWPCP_TABLE_CATEGORIES . " ";
-    $query.= "WHERE category_parent_id=0 AND category_name <> '' ";
-    $query.= "ORDER BY category_order, category_name ASC";
 
-    $query_results = $wpdb->get_results( $query, ARRAY_N );
+    $query_results = $wpdb->get_results(
+        $wpdb->prepare(
+            'SELECT category_id,category_name FROM %i ' .
+            "WHERE category_parent_id=0 AND category_name <> '' " .
+            'ORDER BY category_order, category_name ASC',
+            AWPCP_TABLE_CATEGORIES
+        ),
+        ARRAY_N
+    );
 
     foreach ( $query_results as $rsrow ) {
-        $cat_ID = $rsrow[0];
+        $cat_id   = $rsrow[0];
         $cat_name = stripslashes(stripslashes($rsrow[1]));
 
         $opstyle = "class=\"dropdownparentcategory\"";
 
-        if($cat_ID == $cat_id) {
-            $maincatoptionitem = "<option $opstyle selected='selected' value='$cat_ID'>$cat_name</option>";
+        if( $cat_id == $cat_id ) {
+            $maincatoptionitem = "<option $opstyle selected='selected' value='$cat_id'>$cat_name</option>";
         } else {
-            $maincatoptionitem = "<option $opstyle value='$cat_ID'>$cat_name</option>";
+            $maincatoptionitem = "<option $opstyle value='$cat_id'>$cat_name</option>";
         }
 
         $optionitem.="$maincatoptionitem";
 
         // While still looping through main categories get any sub categories of the main category
 
-        $maincatid = $cat_ID;
-
-        $query = "SELECT category_id,category_name FROM " . AWPCP_TABLE_CATEGORIES . " ";
-        $query.= "WHERE category_parent_id=%d ";
-        $query.= "ORDER BY category_order, category_name ASC";
-
-        $query = $wpdb->prepare( $query, $maincatid );
-
-        $sub_query_results = $wpdb->get_results( $query, ARRAY_N );
+        $sub_query_results = $wpdb->get_results(
+            $wpdb->prepare(
+                'SELECT category_id,category_name FROM %i ' .
+                'WHERE category_parent_id=%d ' .
+                'ORDER BY category_order, category_name ASC',
+                AWPCP_TABLE_CATEGORIES,
+                $cat_id
+            ),
+            ARRAY_N
+        );
 
         foreach ( $sub_query_results as $rsrow2) {
-            $subcat_ID = $rsrow2[0];
+            $subcat_id   = $rsrow2[0];
             $subcat_name = stripslashes(stripslashes($rsrow2[1]));
 
-            if($subcat_ID == $cat_id) {
-                $subcatoptionitem = "<option selected='selected' value='$subcat_ID'>- $subcat_name</option>";
+            if ( $subcat_id == $cat_id ) {
+                $subcatoptionitem = "<option selected='selected' value='$subcat_id'>- $subcat_name</option>";
             } else {
-                $subcatoptionitem = "<option  value='$subcat_ID'>- $subcat_name</option>";
+                $subcatoptionitem = "<option value='$subcat_id'>- $subcat_name</option>";
             }
 
             $optionitem.="$subcatoptionitem";
@@ -380,12 +388,13 @@ function checkfortable($table) {
 function checkforduplicate($cpagename_awpcp) {
     global $wpdb;
 
-    $awpcppagename = sanitize_title( $cpagename_awpcp );
-
-    $query = "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s AND post_type = %s";
-    $query = $wpdb->prepare( $query, $awpcppagename, 'post' );
-
-    $post_ids = $wpdb->get_col( $query );
+    $post_ids = $wpdb->get_col(
+        $wpdb->prepare(
+            "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s AND post_type = %s",
+            sanitize_title( $cpagename_awpcp ),
+            'post'
+        )
+    );
 
     if ( $post_ids !== false ) {
         return count( $post_ids );
@@ -433,11 +442,11 @@ function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()
 
    foreach ( $show_vector as $k => $v ) {
        if (!in_array($k,$exclusion_vector)) {
-           $myreturn.="<option value=\"".$k."\"";
+           $myreturn .= '<option value="' . $k . '"';
            if ($k==$selected_map_val) {
-               $myreturn.=" selected='selected'";
+               $myreturn .= " selected='selected'";
            }
-           $myreturn.=">".$v."</option>\n";
+           $myreturn .= '>' . $v . "</option>\n";
        }
    }
    return $myreturn;
@@ -456,6 +465,6 @@ function unix2dos($mystring) {
  * @deprecated 4.0.0 This function will be removed in 4.1.0.
  */
 function create_awpcp_random_seed() {
-    list($usec, $sec) = explode(' ', microtime());
-    return (int)$sec+(int)($usec*100000);
+    list( $usec, $sec ) = explode( ' ', microtime() );
+    return (int) $sec + (int) ( $usec * 100000 );
 }

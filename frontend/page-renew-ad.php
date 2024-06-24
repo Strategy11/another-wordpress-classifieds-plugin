@@ -83,8 +83,11 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         if (!is_null($transaction) && $transaction->get('context') != $this->context) {
             $page_name = awpcp_get_page_name('renew-ad-page-name');
             $page_url = awpcp_get_renew_ad_url( $ad->ID );
-            $message = __( 'You are trying to post an Ad using a transaction created for a different purpose. Please go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
-            $message = sprintf($message, $page_url, $page_name, $transaction->id);
+            $message = sprintf(
+                esc_html__( 'You are trying to post an Ad using a transaction created for a different purpose. Please go back to the %1$s page. If you think this is an error please contact the administrator and provide the following transaction ID: %2$s', 'another-wordpress-classifieds-plugin' ),
+                '<a href="' . esc_url( $page_url ) . '">' . esc_html( $page_name ) . '</a>',
+                esc_html( $transaction->id )
+            );
             return $this->render('content', awpcp_print_error($message));
         }
 
@@ -244,6 +247,7 @@ class AWPCP_RenewAdPageImplementation {
         } else {
             $payment_term = $this->payments->get_transaction_payment_term( $transaction );
 
+            // phpcs:ignore WordPress.Security.NonceVerification
             if (!empty($_POST)) {
                 $payment_terms_list->handle_request();
 

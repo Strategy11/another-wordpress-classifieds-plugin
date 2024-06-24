@@ -2,9 +2,6 @@
 <ruleset name="AWPCP">
     <arg value="s" />
 
-    <exclude-pattern>includes/functions/deprecated.php</exclude-pattern>
-    <exclude-pattern>includes/functions/listings.php</exclude-pattern>
-    <exclude-pattern>includes/functions/legacy.php</exclude-pattern>
     <exclude-pattern>vendor/*</exclude-pattern>
     <exclude-pattern>tests/*</exclude-pattern>
     <exclude-pattern>bin/*</exclude-pattern>
@@ -31,11 +28,8 @@
         <exclude name="PEAR.NamingConventions.ValidClassName" />
 
         <!-- Temporary exclusions -->
-        <exclude name="WordPress.Security.NonceVerification.Missing" />
         <exclude name="WordPress.WP.Capabilities.RoleFound" />
-        <exclude name="WordPress.WP.I18n.UnorderedPlaceholdersText" />
         <exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
-        <exclude name="PSR2.Classes.PropertyDeclaration" />
         <exclude name="Squiz.Scope.MethodScope" />
         <exclude name="WordPress.WhiteSpace.ControlStructureSpacing" />
         <exclude name="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket" />
@@ -44,14 +38,11 @@
         <exclude name="NormalizedArrays.Arrays.ArrayBraceSpacing" />
         <exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments" />
         <exclude name="Squiz.ControlStructures.ControlSignature" />
-        <exclude name="Generic.Formatting.MultipleStatementAlignment" />
         <exclude name="WordPress.Arrays.ArrayDeclarationSpacing" />
-        <exclude name="WordPress.Arrays.ArrayIndentation.ItemNotAligned" />
-        <exclude name="WordPress.Arrays.MultipleStatementAlignment" />
-        <exclude name="WordPress.Arrays.ArrayIndentation.CloseBraceNotAligned" />
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceAfterFunction" />
         <exclude name="Squiz.PHP.EmbeddedPhp" />
-        <exclude name="Generic.WhiteSpace.ScopeIndent" />
+        <exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact" />
+        <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect" />
         <exclude name="WordPress.WP.GlobalVariablesOverride.Prohibited" />
         <exclude name="WordPress.WhiteSpace.OperatorSpacing.NoSpaceAfter" />
         <exclude name="WordPress.PHP.DontExtract.extract_extract" />
@@ -63,21 +54,11 @@
         <exclude name="Generic.Files.OneObjectStructurePerFile.MultipleFound" />
         <exclude name="Generic.WhiteSpace.ArbitraryParenthesesSpacing" />
         <exclude name="Generic.Functions.FunctionCallArgumentSpacing" />
-        <exclude name="WordPress.DateTime.RestrictedFunctions.date_date" />
         <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket" />
-        <exclude name="WordPress.Classes.ClassInstantiation.MissingParenthesis" />
         <exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase" />
-        <exclude name="WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase" />
-        <exclude name="WordPress.NamingConventions.ValidVariableName.InterpolatedVariableNotSnakeCase" />
         <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine" />
-        <exclude name="Squiz.PHP.DisallowMultipleAssignments" />
-        <exclude name="Generic.Formatting.DisallowMultipleStatements.SameLine" />
-        <exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid" />
         <exclude name="Squiz.Strings.DoubleQuoteUsage.NotRequired" />
         <exclude name="WordPress.WhiteSpace.OperatorSpacing.SpacingBefore" />
-        <exclude name="PEAR.Functions.FunctionCallSignature.Indent" />
-        <exclude name="Squiz.WhiteSpace.LanguageConstructSpacing.IncorrectSingle" />
-        <exclude name="Generic.CodeAnalysis.EmptyStatement.DetectedCatch" />
         <exclude name="Squiz.Commenting.InlineComment" />
     </rule>
 

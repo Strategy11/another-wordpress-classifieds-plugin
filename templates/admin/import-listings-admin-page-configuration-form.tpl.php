@@ -79,8 +79,9 @@
                                 </p>
 
                                 <p>
-                                    <label for="awpcp-importer-image-separator"><?php echo esc_html( __( 'Category Separator',
-                                            'another-wordpress-classifieds-plugin' ) ); ?></label>
+                                    <label for="awpcp-importer-image-separator">
+                                        <?php esc_html_e( 'Category Separator', 'another-wordpress-classifieds-plugin' ); ?>
+                                    </label>
                                     <input id="awpcp-importer-category-separator" type="text" maxlength="1" size="1" name="category_separator"
                                             value="<?php echo esc_attr( $form_data['category_separator'] ); ?>"/>
                                     <?php awpcp_show_form_error( 'category_separator', $form_errors ); ?>

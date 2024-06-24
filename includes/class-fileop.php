@@ -8,8 +8,9 @@
  */
 class fileop {
 
-	var $op_mode = 'disk'; // 'disk' or 'ftp'
-	var $ftp_id=null;
+	public $op_mode = 'disk'; // 'disk' or 'ftp'
+
+	public $ftp_id = null;
 
 	function __construct() {
 		$ftp_error=false;
@@ -118,7 +119,8 @@ class fileop {
 				}
 			}
 			if ((is_file($myfilename) && is_readable($myfilename) && is_writable($myfilename)) || !is_file($myfilename)) {
-				if ($handle=@fopen($myfilename,'wb')) {
+				$handle = @fopen( $myfilename, 'wb' );
+				if ( $handle ) {
 					if (@fwrite($handle,$mydata)) {
 						$myreturn=true;
 					}
@@ -146,7 +148,8 @@ class fileop {
 		if (function_exists('file_get_contents')) {
 			$myreturn=file_get_contents($file);
 		} else {
-			$myreturn=fread($fp=fopen($file,'rb'),filesize($file));
+			$fp       = fopen( $file,'rb' );
+			$myreturn = fread( $fp, filesize( $file ) );
 			fclose($fp);
 		}
 		return $myreturn;

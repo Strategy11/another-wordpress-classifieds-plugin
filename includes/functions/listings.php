@@ -121,12 +121,12 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
  */
 function awpcp_get_results_per_page( $query_vars = [] ) {
     $pagination_options = get_awpcp_option('pagination-options', 10);
-    $pagination_options = (array)$pagination_options;
+    $pagination_options = (array) $pagination_options;
     $max_results        = max($pagination_options) ? max($pagination_options) : 10;
     $per_page           = awpcp_get_var(
         array(
-            'param' => 'adresultsperpage',
-            'default' => get_awpcp_option( 'adresultsperpage', 10 )
+            'param'   => 'adresultsperpage',
+            'default' => get_awpcp_option( 'adresultsperpage', 10 ),
         )
     );
     $results_per_page   = awpcp_get_var(
@@ -287,7 +287,7 @@ function showad( $adid=null, $omitmenu=false, $preview=false, $send_email=true, 
     $awpcp->js->localize( 'page-show-ad', array(
         'flag-confirmation-message' => __( 'Are you sure you want to flag this ad?', 'another-wordpress-classifieds-plugin' ),
         'flag-success-message' => __( 'This Ad has been flagged.', 'another-wordpress-classifieds-plugin' ),
-        'flag-error-message' => __( 'An error occurred while trying to flag the Ad.', 'another-wordpress-classifieds-plugin' )
+        'flag-error-message'        => __( 'An error occurred while trying to flag the Ad.', 'another-wordpress-classifieds-plugin' ),
     ) );
 
 	$preview = $preview === true || 'preview' == awpcp_array_data('adstatus', '', $_GET);

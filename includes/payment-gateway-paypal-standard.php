@@ -46,12 +46,15 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
 		*/
         $response = null;
         $verified = $transaction->get( 'verified', false );
+        // phpcs:ignore WordPress.Security.NonceVerification
         if ( ! empty( $_POST ) ) {
+            // phpcs:ignore WordPress.Security.NonceVerification
             $response = awpcp_paypal_verify_received_data( $_POST, $errors );
             $verified = strcasecmp( $response, 'VERIFIED' ) === 0;
         }
 
         if ( ! $verified ) {
+            // phpcs:ignore WordPress.Security.NonceVerification
             $variables = count( $_POST );
             $url       = awpcp_current_url();
 
@@ -93,6 +96,7 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         // a POST request in the background. If the transaction was
         // already verified during the POST transaction the result
         // should be stored in the transaction's validated attribute.
+        // phpcs:ignore WordPress.Security.NonceVerification
         if ( empty( $_POST ) ) {
             return $transaction->get( 'validated', false );
         }

@@ -44,7 +44,7 @@ function awpcp_calculate_end_date($increment, $period, $start_date) {
 		$increment = 10;
 	}
 
-	return date('Y-m-d H:i:s', strtotime("+ $increment $period", $start_date));
+	return gmdate( 'Y-m-d H:i:s', strtotime( "+ $increment $period", $start_date ) );
 }
 
 /**

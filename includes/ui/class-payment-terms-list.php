@@ -148,7 +148,7 @@ class AWPCP_Payment_Terms_List {
         $attributes = array(
             'data-id' => "{$payment_term->type}-{$payment_term->id}",
             'data-number-of-categories-allowed' => esc_attr( absint( $number_of_categories_allowed ) ),
-            'data-categories' => esc_attr( json_encode( array_map( 'absint', $payment_term->categories ) ) ),
+            'data-categories' => esc_attr( wp_json_encode( array_map( 'absint', $payment_term->categories ) ) ),
         );
 
         return apply_filters( 'awpcp-payment-terms-list-payment-term-attributes', $attributes, $payment_term );

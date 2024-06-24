@@ -177,7 +177,7 @@ class AWPCP_Payment_Transaction {
 	}
 
     public static function create() {
-        $unique = awpcp_array_data( 'UNIQUE_ID', rand(), $_SERVER );
+        $unique = awpcp_array_data( 'UNIQUE_ID', wp_rand(), $_SERVER );
         $id     = md5( $unique . microtime() . wp_salt() );
 
         return new AWPCP_Payment_Transaction( array( 'id' => $id ) );
@@ -531,7 +531,8 @@ class AWPCP_Payment_Transaction {
 	}
 
 	public function get_totals() {
-		$credits = $money = 0;
+		$credits = 0;
+        $money   = 0;
 
 		foreach ($this->items as $item) {
 			if ($item->payment_type == 'money')

@@ -8,7 +8,7 @@
 
         <?php
         $show_sidebar = isset( $show_sidebar ) ? $show_sidebar : true;
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, Squiz.PHP.DisallowMultipleAssignments
         echo $sidebar = $show_sidebar ? awpcp_admin_sidebar() : '';
         ?>
 

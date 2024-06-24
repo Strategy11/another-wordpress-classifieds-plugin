@@ -148,7 +148,7 @@ class AWPCP_PageTitleBuilder {
     }
 
     private function find_seplocation_using_blog_name( $title, $separator ) {
-        $blog_name = awpcp_get_blog_name( $decode_html = false );
+        $blog_name = awpcp_get_blog_name( false );
 
         $result = $this->find_name_position_in_title( $title, $blog_name, $separator );
 

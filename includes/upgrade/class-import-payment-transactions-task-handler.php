@@ -38,11 +38,10 @@ class AWPCP_Import_Payment_Transactions_Task_Handler {
             $items = awpcp_array_data('__items__', array(), $data);
             $created = awpcp_array_data('__created__', current_time('mysql'), $data);
             $updated = awpcp_array_data('__updated__', current_time('mysql'), $data);
+            $type    = awpcp_array_data( 'payment-term-type', false, $data );
 
-            if ($type = awpcp_array_data('payment-term-type', false, $data)) {
-                if (strcmp($type, 'ad-term-fee') === 0) {
-                    $data['payment-term-type'] = 'fee';
-                }
+            if ( $type && strcmp( $type, 'ad-term-fee' ) === 0 ) {
+                $data['payment-term-type'] = 'fee';
             }
 
             foreach ($data as $name => $value) {
@@ -68,7 +67,8 @@ class AWPCP_Import_Payment_Transactions_Task_Handler {
                 $transaction->_set_status(AWPCP_Payment_Transaction::STATUS_PAYMENT);
             }
 
-            if ($completed = awpcp_array_data('completed', null, $data)) {
+            $completed = awpcp_array_data( 'completed', null, $data );
+            if ( $completed ) {
                 $transaction->completed = $completed;
                 $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED;
                 $transaction->_set_status(AWPCP_Payment_Transaction::STATUS_COMPLETED);

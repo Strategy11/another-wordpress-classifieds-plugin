@@ -18,7 +18,7 @@
             awpcp_html_admin_first_level_heading( $heading_params );
         }
 
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, Squiz.PHP.DisallowMultipleAssignments
         echo $sidebar = $show_sidebar ? awpcp_admin_sidebar() : '';
         ?>
 

@@ -140,6 +140,7 @@ class AWPCP_Request {
      */
     public function all_post_params() {
         _deprecated_function( __METHOD__, '4.3' );
+        // phpcs:ignore WordPress.Security.NonceVerification
         return $_POST;
     }
 

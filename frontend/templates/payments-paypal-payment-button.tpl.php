@@ -25,7 +25,7 @@
 	<?php endif ?>
 
     <?php $text = _x('Return to %s', 'paypal-checkout-form', 'another-wordpress-classifieds-plugin'); ?>
-    <input type="hidden" value="<?php echo esc_attr( sprintf( $text, awpcp_get_blog_name( $decode_html = false ) ) ); ?>" name="cbt">
+    <input type="hidden" value="<?php echo esc_attr( sprintf( $text, awpcp_get_blog_name( false ) ) ); ?>" name="cbt">
 
 	<?php $alt = __("Make payments with PayPal - it's fast, free and secure!", 'another-wordpress-classifieds-plugin'); ?>
 	<input type="image" src="<?php echo esc_attr( $awpcp_imagesurl ); ?>/payments-paypal-checkout-express.gif" border="0" name="submit" alt="<?php echo esc_attr( $alt ); ?>" />

@@ -92,7 +92,7 @@ class AWPCP_Search_Widget extends WP_Widget {
 		echo $args['before_widget'] . $args['before_title'] . esc_html( $title ) . $args['after_title'];
 		echo '<form method="get" action="' . esc_url( url_searchads() ) . '">';
 
-        $url_params = wp_parse_args( parse_url( url_searchads(), PHP_URL_QUERY ) );
+        $url_params = wp_parse_args( wp_parse_url( url_searchads(), PHP_URL_QUERY ) );
         foreach ( $url_params as $param => $value ) {
             echo '<input type="hidden" name="' . esc_attr( $param ) . '" value="' . esc_attr( $value ) . '" />';
         }

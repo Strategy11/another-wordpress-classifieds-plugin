@@ -64,7 +64,8 @@ class AWPCP_Import_Settings_Admin_Page {
      * Executed during admin_init when this page is visited.
      */
     public function on_admin_init() {
-        if ( ! isset( $_FILES['settings_file'] ) ) {
+        $nonce = awpcp_get_var( array( 'param' => '_wpnonce' ), 'post' );
+        if ( ! isset( $_FILES['settings_file'] ) || ! wp_verify_nonce( $nonce, $this->nonce_action ) ) {
             return;
         }
 

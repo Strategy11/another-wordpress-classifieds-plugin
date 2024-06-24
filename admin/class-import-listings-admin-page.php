@@ -81,7 +81,13 @@ class AWPCP_ImportListingsAdminPage {
     }
 
     private function upload_files() {
-        $import_session = $this->import_session = $this->import_sessions_manager->create_import_session();
+        $nonce = awpcp_get_var( array( 'param' => '_wpnonce' ), 'post' );
+        if ( ! wp_verify_nonce( $nonce, 'awpcp-import' ) ) {
+            return $this->show_upload_files_form();
+        }
+
+        $import_session       = $this->import_sessions_manager->create_import_session();
+        $this->import_session = $import_session;
 
         $working_directory = $this->get_working_directory( $import_session->get_id() );
         $images_directory = null;
@@ -162,7 +168,8 @@ class AWPCP_ImportListingsAdminPage {
                     }
 
                     // extract file
-                    if ( $file_handler = @fopen( $path, 'w' ) ) {
+                    $file_handler = @fopen( $path, 'w' );
+                    if ( $file_handler ) {
                         fwrite( $file_handler, $item['content'] );
                         fclose( $file_handler );
                     } else {

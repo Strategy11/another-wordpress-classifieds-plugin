@@ -57,7 +57,7 @@ class AWPCP_SendEmails {
 	 */
 	private static function expiring_body( $listing, $body ) {
 		$renderer   = awpcp_listing_renderer();
-		$start_date = date( 'D M j Y G:i:s', strtotime( $renderer->get_plain_start_date( $listing ) ) );
+		$start_date = gmdate( 'D M j Y G:i:s', strtotime( $renderer->get_plain_start_date( $listing ) ) );
 
 		$body .= "\n\n";
 		$body .= __( 'Listing Details', 'another-wordpress-classifieds-plugin' );

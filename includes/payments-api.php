@@ -350,7 +350,8 @@ class AWPCP_PaymentsAPI {
      * @param array                     &$errors
      */
     private function set_transaction_status($transaction, $status, &$errors) {
-        if ($result = $transaction->set_status($status, $errors)) {
+        $result = $transaction->set_status( $status, $errors );
+        if ( $result ) {
             do_action('awpcp-transaction-status-updated', $transaction, $status, $errors);
         }
 
@@ -551,7 +552,7 @@ class AWPCP_PaymentsAPI {
 
         try {
             $this->process_transaction( $transaction );
-        } catch ( AWPCP_Exception $e ) {
+        } catch ( AWPCP_Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
             // We simply ignore exceptions here because we are currently using them
             // in the Coupons module only for transactions that are doing checkout.
         }
@@ -641,7 +642,7 @@ class AWPCP_PaymentsAPI {
     private function process_payment_for_transaction_processing_payment( $transaction ) {
         try {
             $this->process_transaction( $transaction );
-        } catch ( AWPCP_Exception $e ) {
+        } catch ( AWPCP_Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
             // We simply ignore exceptions here because we are currently using them
             // in the Coupons module only for transactions that are doing checkout.
         }

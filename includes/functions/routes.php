@@ -717,7 +717,7 @@ function awpcp_ajaxurl($overwrite=false) {
         $request = awpcp_request();
 
         $ajaxurl = admin_url( 'admin-ajax.php' );
-        $parts = parse_url( $ajaxurl );
+        $parts   = wp_parse_url( $ajaxurl );
 
         $ajaxurl = str_replace( $parts['host'], $request->domain(), $ajaxurl );
         $ajaxurl = str_replace( $parts['scheme'], $request->scheme(), $ajaxurl );

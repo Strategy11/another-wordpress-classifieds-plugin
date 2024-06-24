@@ -717,7 +717,7 @@ class AWPCP_ListingsAPI {
      * @since 4.0.0
      */
     public function generate_access_key() {
-        return md5( sprintf( '%s%s%d', wp_salt(), uniqid( '', true ), rand( 1, 1000 ) ) );
+        return md5( sprintf( '%s%s%d', wp_salt(), uniqid( '', true ), wp_rand( 1, 1000 ) ) );
     }
 
     /**

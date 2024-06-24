@@ -669,8 +669,13 @@ function checkifclassifiedpage() {
 	global $wpdb;
 
 	$id = awpcp_get_page_id_by_ref( 'main-page-name' );
-	$page_id = intval( $wpdb->get_var(
-        $wpdb->prepare( 'SELECT ID FROM ' . $wpdb->posts . ' WHERE ID = %d', $id ) )
+	$page_id = intval(
+        $wpdb->get_var(
+            $wpdb->prepare(
+                'SELECT ID FROM ' . $wpdb->posts . ' WHERE ID = %d',
+                $id
+            )
+        )
     );
 
 	return $page_id === $id;
@@ -734,10 +739,13 @@ function awpcp_admin_categories_render_category_item($category, $level, $start, 
 	$thecategory_parent_id = $category->parent;
 	$thecategory_parent_name = stripslashes(get_adparentcatname($thecategory_parent_id));
     $thecategory_order       = intval( get_term_meta( $category->term_id, '_awpcp_order', true ) );
-	$thecategory_name = sprintf( '%s%s<a href="%s">%s</a>', str_repeat( '&mdash;&nbsp;', $level ),
-															$thecategoryicon,
-															esc_url( $admin_listings_url ),
-															esc_attr( stripslashes( $category->name ) ) );
+    $thecategory_name        = sprintf(
+        '%s%s<a href="%s">%s</a>',
+        str_repeat( '&mdash;&nbsp;', $level ),
+        $thecategoryicon,
+        esc_url( $admin_listings_url ),
+        esc_html( stripslashes( $category->name ) )
+    );
 
 	$totaladsincat = total_ads_in_cat( $category->term_id );
 
@@ -922,7 +930,7 @@ function awpcp_create_subpage($refname, $name, $shortcode, $awpcp_page_id=null) 
  * @deprecated 4.0.0    Use awpcp_create_page() instead.
  */
 function maketheclassifiedsubpage( $page_name, $parent_page_id, $short_code ) {
-	$post_date = date("Y-m-d");
+	$post_date      = gmdate( 'Y-m-d' );
 	$parent_page_id = intval( $parent_page_id );
 	$post_name = sanitize_title( $page_name );
 	$page_name = add_slashes_recursive( $page_name );

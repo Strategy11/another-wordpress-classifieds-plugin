@@ -8,9 +8,9 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 }
 
 class AWPCP_List_Table extends WP_List_Table {
-	var $_screen;
-	var $_columns;
-    var $_sortable;
+	public $_screen;
+	public $_columns;
+    public $_sortable;
 
 	function __construct( $screen, $columns = array(), $sortable = array()) {
 		if ( is_string( $screen ) )

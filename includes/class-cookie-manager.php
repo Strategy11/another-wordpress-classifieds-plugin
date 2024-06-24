@@ -10,7 +10,7 @@ class AWPCP_CookieManager {
         $serialized_value = maybe_serialize( $value );
         $encoded_value = base64_encode( $serialized_value );
 
-        if ( is_ssl() && 'https' === parse_url( get_option( 'home' ), PHP_URL_SCHEME ) ) {
+        if ( is_ssl() && 'https' === wp_parse_url( get_option( 'home' ), PHP_URL_SCHEME ) ) {
             $secure = true;
         } else {
             $secure = false;

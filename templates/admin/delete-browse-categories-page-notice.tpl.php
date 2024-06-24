@@ -14,7 +14,7 @@
     ?></p>
     <p><?php esc_html_e( 'Click the button below to delete the page.', 'another-wordpress-classifieds-plugin' ); ?></p>
     <p>
-        <a class="button button-primary" href="#" data-action="delete-page" data-action-params="<?php echo esc_attr( json_encode( $action_params ) ); ?>">
+        <a class="button button-primary" href="#" data-action="delete-page" data-action-params="<?php echo esc_attr( wp_json_encode( $action_params ) ); ?>">
             <?php esc_html_e( 'Delete Page', 'another-wordpress-classifieds-plugin' ); ?>
         </a>
     </p>

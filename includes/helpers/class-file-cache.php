@@ -18,8 +18,9 @@ class AWPCP_FileCache {
 
     public function set( $name, $value ) {
         $filename = $this->path( $name );
+        $file     = @fopen( $filename, 'w' );
 
-        if ( $file = @fopen( $filename, 'w' ) ) {
+        if ( $file ) {
             fwrite( $file, $value );
             fclose( $file );
         } else {

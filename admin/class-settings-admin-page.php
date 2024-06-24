@@ -187,11 +187,15 @@ class AWPCP_Facebook_Page_Settings {
 	}
 
 	public function get_current_action() {
-		if ( isset( $_POST['diagnostics'] ) )
+		$nonce = awpcp_get_var( array( 'param' => '_wpnonce' ), 'post' );
+		if ( isset( $_POST['diagnostics'] ) && wp_verify_nonce( $nonce, 'awpcp-facebook-settings' ) ) {
 			return 'diagnostics';
+		}
 
-		if ( isset( $_REQUEST['obtain_user_token'] ) && $_REQUEST['obtain_user_token'] == 1 )
+		$user_token = awpcp_get_var( array( 'param' => 'obtain_user_token' ) );
+		if ( $user_token == 1 ) {
 			return 'obtain_user_token';
+		}
 
 		return 'display_settings';
 	}
