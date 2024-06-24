@@ -6,7 +6,7 @@
         <?php awpcp_render_classifieds_bar( $page->classifieds_bar_components, 'echo' ); ?>
     <?php endif; ?>
 
-	<?php
+    <?php
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo $content;
     ?>

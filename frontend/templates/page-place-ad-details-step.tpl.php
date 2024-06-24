@@ -28,7 +28,7 @@ endif;
 
 <!-- TODO: check where is used $formdisplayvalue -->
 <div>
-	<form class="awpcp-details-form" id="adpostform" name="adpostform" action="<?php echo esc_attr( $page->url() ) ?>" method="post">
+    <form class="awpcp-details-form" id="adpostform" name="adpostform" action="<?php echo esc_attr( $page->url() ) ?>" method="post">
         <?php echo awpcp_html_hidden_fields( $hidden ); ?>
 
         <?php if ($ui['user-dropdown']): ?>
@@ -127,5 +127,5 @@ endif;
         <?php else: ?>
         <input type="submit" class="button" value="<?php echo esc_attr( _x( 'Continue', 'listing details form', 'another-wordpress-classifieds-plugin' ) ); ?>" />
         <?php endif; ?>
-	</form>
+    </form>
 </div>

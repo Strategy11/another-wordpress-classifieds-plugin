@@ -176,7 +176,7 @@ function awpcp_content_placeholders() {
         'contact_url'          => array(),
         'website_link'         => array(),
         'website_url'          => array(),
-		'websiteurl'           => array(),
+        'websiteurl'           => array(),
         'county'               => array(
             'callback' => 'awpcp_do_placeholder_location',
         ),
@@ -539,13 +539,13 @@ function awpcp_do_placeholder_dates( $ad, $placeholder ) {
     $replacements['posted_date_time']  = $listing_renderer->get_posted_date_and_time_formatted( $ad );
     $replacements['last_updated_date'] = $listing_renderer->get_last_updated_date_formatted( $ad );
 
-	$verification_date = $listing_renderer->get_verification_date( $ad );
+    $verification_date = $listing_renderer->get_verification_date( $ad );
 
-	if ( ! empty( $verification_date ) ) {
-	    $replacements['posted_time_elapsed'] = awpcp_datetime( 'time-elapsed', $verification_date );
-	} else {
-	    $replacements['posted_time_elapsed'] = '';
-	}
+    if ( ! empty( $verification_date ) ) {
+        $replacements['posted_time_elapsed'] = awpcp_datetime( 'time-elapsed', $verification_date );
+    } else {
+        $replacements['posted_time_elapsed'] = '';
+    }
 
     $renewed_date = $listing_renderer->get_renewed_date( $ad );
 

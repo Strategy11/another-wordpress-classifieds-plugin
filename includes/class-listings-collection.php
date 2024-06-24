@@ -517,12 +517,12 @@ class AWPCP_ListingsCollection {
      */
 
     private function add_orderby_query_parameters( $query ) {
-		if ( isset( $query['orderby'] ) ) {
+        if ( isset( $query['orderby'] ) ) {
             $query['_orderby'] = $query['orderby'];
-			$orderby           = $query['orderby'];
-		} else {
-			$orderby = null;
-		}
+            $orderby           = $query['orderby'];
+        } else {
+            $orderby = null;
+        }
 
         if ( ! isset( $query['order'] ) ) {
             $query['order'] = 'DESC';

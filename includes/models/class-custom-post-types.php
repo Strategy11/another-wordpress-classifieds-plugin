@@ -51,15 +51,15 @@ class AWPCP_Custom_Post_Types {
         $this->settings                   = $settings;
     }
 
-	/**
-	 * @since 4.1.3
-	 */
-	public function register_custom_post() {
-		$this->register_custom_post_status();
-		$this->register_custom_post_types();
-		$this->register_custom_taxonomies();
-		$this->register_custom_image_sizes();
-	}
+    /**
+     * @since 4.1.3
+     */
+    public function register_custom_post() {
+        $this->register_custom_post_status();
+        $this->register_custom_post_types();
+        $this->register_custom_taxonomies();
+        $this->register_custom_image_sizes();
+    }
 
     /**
      * TODO: Do we really want to do this?

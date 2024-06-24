@@ -108,41 +108,46 @@ class AWPCP_DisplaySettings {
             __( 'Modify as needed to control layout of ad listings page. Maintain code formatted as \$somecodetitle. Changing the code keys will prevent the elements they represent from displaying.', 'another-wordpress-classifieds-plugin' )
         );
         $settings_manager->add_setting( $key, 'displayadlayoutcode-default', '', 'button', __( 'Reset Default', 'another-wordpress-classifieds-plugin' ), '' );
-        $settings_manager->add_setting( $key, 'awpcpshowtheadlayout', __( 'Single Ad page layout', 'another-wordpress-classifieds-plugin' ),
+        $settings_manager->add_setting(
+            $key,
+            'awpcpshowtheadlayout',
+            __( 'Single Ad page layout', 'another-wordpress-classifieds-plugin' ),
             'textarea', '
-							<div id="showawpcpadpage">
-							    $ad_actions
-								<div class="awpcp-title">$ad_title</div><br/>
-								<div class="showawpcpadpage">
-									$featureimg
-									<div class="awpcp-subtitle">' . __( 'Contact Information', 'another-wordpress-classifieds-plugin' ) . '</div>
-									<a href="$codecontact">' . __( 'Contact', 'another-wordpress-classifieds-plugin' ) . ' $adcontact_name</a>
-									$adcontactphone
-									$location
-									$awpcpvisitwebsite
-								</div>
-								$aditemprice
-								$awpcpextrafields
-								<div class="fixfloat"></div>
-								$showadsense1
-								<div class="showawpcpadpage">
-									<div class="awpcp-subtitle">' . __( 'More Information', 'another-wordpress-classifieds-plugin' ) . '</div>
-									$addetails
-								</div>
-								$showadsense2
-								<div class="fixfloat"></div>
-								<div id="displayimagethumbswrapper">
-									<div id="displayimagethumbs">
-										<ul>
-											$awpcpshowadotherimages
-										</ul>
-									</div>
-								</div>
-								<span class="fixfloat">$tweetbtn $sharebtn $flagad</span>
-								$awpcpadviews
-								$showadsense3
-								$edit_listing_link
-							</div>', __( 'Modify as needed to control layout of single ad view page. Maintain code formatted as \$somecodetitle. Changing the code keys will prevent the elements they represent from displaying.', 'another-wordpress-classifieds-plugin' ) );
+                            <div id="showawpcpadpage">
+                                $ad_actions
+                                <div class="awpcp-title">$ad_title</div><br/>
+                                <div class="showawpcpadpage">
+                                    $featureimg
+                                    <div class="awpcp-subtitle">' . __( 'Contact Information', 'another-wordpress-classifieds-plugin' ) . '</div>
+                                    <a href="$codecontact">' . __( 'Contact', 'another-wordpress-classifieds-plugin' ) . ' $adcontact_name</a>
+                                    $adcontactphone
+                                    $location
+                                    $awpcpvisitwebsite
+                                </div>
+                                $aditemprice
+                                $awpcpextrafields
+                                <div class="fixfloat"></div>
+                                $showadsense1
+                                <div class="showawpcpadpage">
+                                    <div class="awpcp-subtitle">' . __( 'More Information', 'another-wordpress-classifieds-plugin' ) . '</div>
+                                    $addetails
+                                </div>
+                                $showadsense2
+                                <div class="fixfloat"></div>
+                                <div id="displayimagethumbswrapper">
+                                    <div id="displayimagethumbs">
+                                        <ul>
+                                            $awpcpshowadotherimages
+                                        </ul>
+                                    </div>
+                                </div>
+                                <span class="fixfloat">$tweetbtn $sharebtn $flagad</span>
+                                $awpcpadviews
+                                $showadsense3
+                                $edit_listing_link
+                            </div>',
+            __( 'Modify as needed to control layout of single ad view page. Maintain code formatted as \$somecodetitle. Changing the code keys will prevent the elements they represent from displaying.', 'another-wordpress-classifieds-plugin' )
+        );
 
         $settings_manager->add_setting( $key, 'awpcpshowtheadlayout-default', '', 'button', __( 'Reset Default', 'another-wordpress-classifieds-plugin' ), '' );
         $settings_manager->add_setting(

@@ -420,20 +420,20 @@ class AWPCP_CSV_Importer_Delegate {
     }
 
     public function parse_date($val, $date_time_format, $deprecated, $time_separator, $format = "Y-m-d H:i:s") {
-		if ( $date_time_format === 'eur_date' ) {
-			// PHP assumes European formats with -.
-			$val = str_replace( '/', '-', $val );
+        if ( $date_time_format === 'eur_date' ) {
+            // PHP assumes European formats with -.
+            $val = str_replace( '/', '-', $val );
 
-		} elseif ( $date_time_format === 'uk_date' ) {
-			// Rearrange UK dates in case of 2-digit year.
-			$val = str_replace( '-', '/', $val );
-			$bits = explode( '/', $val );
-			if ( count( $bits ) === 3 ) {
-				$val = $bits[1] . '/' . $bits[0] . '/' . $bits[2];
-			}
-		}
+        } elseif ( $date_time_format === 'uk_date' ) {
+            // Rearrange UK dates in case of 2-digit year.
+            $val = str_replace( '-', '/', $val );
+            $bits = explode( '/', $val );
+            if ( count( $bits ) === 3 ) {
+                $val = $bits[1] . '/' . $bits[0] . '/' . $bits[2];
+            }
+        }
 
-		return gmdate( $format, strtotime( $val ) );
+        return gmdate( $format, strtotime( $val ) );
     }
 
     private function parse_end_date_column( $end_date, $row_data ) {
@@ -692,14 +692,14 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
             break;
 
         case 'Checkbox':
-			// Process with multiple.
+            // Process with multiple.
         case 'Select Multiple':
             // value can be any combination of items from options list
             $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed values are: %%s", 'another-wordpress-classifieds-plugin' ), $name );
             $values_list = explode( ';', $value );
             $value = explode( ';', $value );
 
-			// Process with single selects too.
+            // Process with single selects too.
         case 'Select':
         case 'Radio Button':
             $values_list = is_array( $values_list ) ? $values_list : array( $value );

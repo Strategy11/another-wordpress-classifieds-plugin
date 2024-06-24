@@ -40,8 +40,8 @@ class AWPCP_FileUploader {
 
         // phpcs:ignore WordPress.Security.NonceVerification
         if ( empty( $filename ) && isset( $_FILES['file']['name'] ) ) {
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.NonceVerification
-			$filename = sanitize_option( 'upload_path', $_FILES['file']['name'] );
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.NonceVerification
+            $filename = sanitize_option( 'upload_path', $_FILES['file']['name'] );
         } elseif ( empty( $filename ) ) {
             throw new AWPCP_Exception( esc_html__( 'Unable to find the uploaded file name.', 'another-wordpress-classifieds-plugin' ) );
         }
@@ -125,13 +125,13 @@ class AWPCP_FileUploader {
         if ( ! empty( $_FILES ) && isset( $_FILES['file'] ) && isset( $_FILES['file']['tmp_name'] ) ) {
             // phpcs:ignore WordPress.Security.NonceVerification
             if ( ! empty( $_FILES['file']['error'] ) ) {
-				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput, WordPress.Security.NonceVerification
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput, WordPress.Security.NonceVerification
                 list( $error_code, $error_message ) = awpcp_uploaded_file_error( $_FILES['file'] );
                 throw new AWPCP_Exception( esc_html( $error_message ) );
             }
 
-			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.NonceVerification
-			$file_name = sanitize_option( 'upload_path', $_FILES['file']['tmp_name'] );
+            // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.NonceVerification
+            $file_name = sanitize_option( 'upload_path', $_FILES['file']['tmp_name'] );
             if ( ! is_uploaded_file( $file_name ) ) {
                 throw new AWPCP_Exception( esc_html__( 'There was an error trying to move the uploaded file to a temporary location.', 'another-wordpress-classifieds-plugin' ) );
             }

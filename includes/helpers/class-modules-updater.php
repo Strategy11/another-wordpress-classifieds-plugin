@@ -138,18 +138,18 @@ class AWPCP_ModulesUpdater {
         return $information;
     }
 
-	public function setup_http_request_args_filter( $bail, $package, $upgrader ) {
-		if ( strpos( $package, 'edd-sl/package_download' ) !== false ) {
-			add_filter( 'http_request_args', array( $this, 'filter_http_request_args' ), 10, 2 );
-		}
+    public function setup_http_request_args_filter( $bail, $package, $upgrader ) {
+        if ( strpos( $package, 'edd-sl/package_download' ) !== false ) {
+            add_filter( 'http_request_args', array( $this, 'filter_http_request_args' ), 10, 2 );
+        }
 
-		return $bail;
-	}
+        return $bail;
+    }
 
     public function filter_http_request_args( $args, $url ) {
-		remove_filter( 'http_request_args', array( $this, 'filter_http_request_args' ) );
+        remove_filter( 'http_request_args', array( $this, 'filter_http_request_args' ) );
 
-		$args['user-agent'] = awpcp_user_agent_header();
+        $args['user-agent'] = awpcp_user_agent_header();
 
         return $args;
     }

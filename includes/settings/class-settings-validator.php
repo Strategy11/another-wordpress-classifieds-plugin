@@ -26,10 +26,10 @@ class AWPCP_SettingsValidator {
         $this->request  = $request;
     }
 
-	/**
-	 * Validates AWPCP settings before being saved.
-	 */
-	public function sanitize_settings( $new_options ) {
+    /**
+     * Validates AWPCP settings before being saved.
+     */
+    public function sanitize_settings( $new_options ) {
         $group    = $this->request->post( 'group', '' );
         $subgroup = $this->request->post( 'subgroup', '' );
 
@@ -66,5 +66,5 @@ class AWPCP_SettingsValidator {
         $this->settings->options = $new_options;
 
         return $this->settings->options;
-	}
+    }
 }

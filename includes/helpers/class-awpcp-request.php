@@ -48,7 +48,7 @@ class AWPCP_Request {
      *
      * @since 3.3
      */
-    function domain( $include_www = true, $www_prefix_replacement = '' ) {
+    public function domain( $include_www = true, $www_prefix_replacement = '' ) {
         $domain = $this->filter_input( 'HTTP_HOST' );
 
         // If the server runs on a port other than 80 then HTTP_HOST contains
@@ -111,7 +111,7 @@ class AWPCP_Request {
      * @deprecated 4.3
      */
     public function get( $name, $default='' ) {
-		// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
         return isset( $_GET[ $name ] ) ? $_GET[ $name ] : $default;
     }
 

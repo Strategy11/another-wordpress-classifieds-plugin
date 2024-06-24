@@ -253,7 +253,7 @@ class AWPCP_SettingsManager {
      * @since 4.0.0
      * @deprecated 4.0.0    Use add_settings_section() instead.
      */
-	public function add_section( $group, $name, $slug, $priority, $callback = null ) {
+    public function add_section( $group, $name, $slug, $priority, $callback = null ) {
         $this->add_settings_section( [
             'id'       => $slug,
             'name'     => $name,
@@ -261,5 +261,5 @@ class AWPCP_SettingsManager {
             'callback' => $callback,
             'subgroup' => $group,
         ] );
-	}
+    }
 }

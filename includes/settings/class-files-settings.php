@@ -100,7 +100,7 @@ class AWPCP_FilesSettings {
     public function register_images_moderation_settings( $settings_manager ) {
         $key = 'images-moderation-settings';
 
-		$settings_manager->add_section( 'listings-moderation', __( 'Images Moderation', 'another-wordpress-classifieds-plugin' ), $key, 20, array( $settings_manager, 'section' ) );
+        $settings_manager->add_section( 'listings-moderation', __( 'Images Moderation', 'another-wordpress-classifieds-plugin' ), $key, 20, array( $settings_manager, 'section' ) );
 
         $settings_manager->add_setting( $key, 'imagesapprove', __( 'Hide images until admin approves them', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '');
 

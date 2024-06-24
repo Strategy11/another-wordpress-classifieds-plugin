@@ -39,11 +39,11 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         $errors = array();
 
         /*
-		PayPal can redirect users using a GET request and issuing
-		a POST request in the background. If the transaction was
-		already verified during the POST request the result
-		should be stored in the transaction's verified attribute.
-		*/
+        PayPal can redirect users using a GET request and issuing
+        a POST request in the background. If the transaction was
+        already verified during the POST request the result
+        should be stored in the transaction's verified attribute.
+        */
         $response = null;
         $verified = $transaction->get( 'verified', false );
         // phpcs:ignore WordPress.Security.NonceVerification

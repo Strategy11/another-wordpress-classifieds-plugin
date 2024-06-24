@@ -281,7 +281,7 @@ function url_browsecategory( $category ) {
     $permalinks = get_option('permalink_structure');
 
     $page_id = awpcp_get_page_id_by_ref( 'browse-ads-page-name' );
-	$cat_id = $category->term_id;
+    $cat_id = $category->term_id;
     $cat_slug = sanitize_title( $category->name );
 
     if ( get_awpcp_option( 'seofriendlyurls' ) && $permalinks ) {
@@ -460,9 +460,9 @@ function awpcp_get_edit_listing_url_with_access_key( $listing ) {
 }
 
 function awpcp_create_edit_listing_access_token( $listing ) {
-	$i = wp_nonce_tick();
+    $i = wp_nonce_tick();
 
-	$nonce = substr( wp_hash( $i . '|' . $listing->ID, 'nonce' ), -12, 10 );
+    $nonce = substr( wp_hash( $i . '|' . $listing->ID, 'nonce' ), -12, 10 );
     $id_hash = substr( wp_hash( $nonce . '|' . $listing->ID, 'nonce' ), -12, 10 );
 
     return $nonce . $id_hash . '-' . $listing->ID;

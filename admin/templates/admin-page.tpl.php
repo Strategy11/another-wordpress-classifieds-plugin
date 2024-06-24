@@ -2,7 +2,7 @@
 
 <div id="<?php echo esc_attr( $page_slug ); ?>" class="<?php echo esc_attr( $page_slug ); ?> awpcp-admin-page awpcp-page wrap">
     <?php if ( version_compare( get_bloginfo('version'), '4.4-beta4', '<' ) ): ?>
-	<div class="page-content">
+    <div class="page-content">
     <?php endif; ?>
 
         <?php
@@ -22,7 +22,7 @@
         echo $sidebar = $show_sidebar ? awpcp_admin_sidebar() : '';
         ?>
 
-		<div class="awpcp-main-content <?php echo empty( $sidebar ) ? 'without-sidebar' : 'with-sidebar'; ?>">
+        <div class="awpcp-main-content <?php echo empty( $sidebar ) ? 'without-sidebar' : 'with-sidebar'; ?>">
             <div class="awpcp-inner-content">
             <?php
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

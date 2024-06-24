@@ -35,7 +35,7 @@ class AWPCP_Show_Ad_Page {
         $this->request                   = $request;
 
         add_filter( 'awpcp-ad-details', array( $this, 'oembed' ) );
-	}
+    }
 
     /**
      * Acts on awpcp-ad-details filter to add oEmbed support
@@ -52,7 +52,7 @@ class AWPCP_Show_Ad_Page {
         return $content;
     }
 
-	public function dispatch() {
+    public function dispatch() {
         $listing_id = $this->request->get_current_listing_id();
 
         if ( ! $listing_id ) {
@@ -82,5 +82,5 @@ class AWPCP_Show_Ad_Page {
             $post->post_content,
             $post
         );
-	}
+    }
 }

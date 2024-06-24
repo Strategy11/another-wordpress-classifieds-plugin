@@ -1210,7 +1210,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         if ($allow_html) {
             $details = force_balance_tags($details);
         }else{
-        	$details = esc_html( $details );
+            $details = esc_html( $details );
         }
 
         return $details;

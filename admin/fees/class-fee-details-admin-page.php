@@ -85,17 +85,17 @@ class AWPCP_Fee_Details_Admin_Page {
             'featured'          => awpcp_get_var( array( 'param' => 'use_for_featured_listings', 'default' => false ), 'post' ),
         );
 
-		$values = array(
-			'title_characters' => 'characters_allowed_in_title',
-			'characters'       => 'characters_allowed_in_description',
-		);
-		foreach ( $values as $name => $value ) {
-			if ( ! awpcp_get_var( array( 'param' => $value . '_enabled' ), 'post' ) ) {
-				$fee_data[ $name ] = 0;
-			} else {
-				$fee_data[ $name ] = awpcp_get_var( array( 'param' => $value ), 'post' );
-			}
-		}
+        $values = array(
+            'title_characters' => 'characters_allowed_in_title',
+            'characters'       => 'characters_allowed_in_description',
+        );
+        foreach ( $values as $name => $value ) {
+            if ( ! awpcp_get_var( array( 'param' => $value . '_enabled' ), 'post' ) ) {
+                $fee_data[ $name ] = 0;
+            } else {
+                $fee_data[ $name ] = awpcp_get_var( array( 'param' => $value ), 'post' );
+            }
+        }
 
         return apply_filters( 'awpcp-fee-details-posted-data', $fee_data );
     }

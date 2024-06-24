@@ -150,7 +150,7 @@ class AWPCP {
         //       Perhaps delaying rewrite rules generation until next request makes
         //       makes more sense.
         $custom_post_types = awpcp_custom_post_types();
-		add_action( 'init', array( $custom_post_types, 'register_custom_post' ), 5 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post' ), 5 );
         add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
 
         $listing_permalinks = $this->container['ListingsPermalinks'];
@@ -577,7 +577,7 @@ class AWPCP {
             flush_rewrite_rules();
 
             update_option( 'awpcp-flush-rewrite-rules', false );
-		}
+        }
     }
 
     private function ajax_setup() {

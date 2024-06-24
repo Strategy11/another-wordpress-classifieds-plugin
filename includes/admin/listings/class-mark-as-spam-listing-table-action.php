@@ -52,12 +52,12 @@ class AWPCP_MarkAsSPAMListingTableAction implements
         return $this->roles->current_user_is_moderator();
     }
 
-	/**
-	 * @since 4.1.6
-	 */
-	public function should_show_as_bulk_action() {
-		return function_exists( 'akismet_init' );
-	}
+    /**
+     * @since 4.1.6
+     */
+    public function should_show_as_bulk_action() {
+        return function_exists( 'akismet_init' );
+    }
 
     /**
      * @param object $post  An instance of WP_Post.

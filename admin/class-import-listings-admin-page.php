@@ -21,11 +21,11 @@ class AWPCP_ImportListingsAdminPage {
         $this->settings = $settings;
     }
 
-	public function enqueue_scripts() {
-		wp_enqueue_style('awpcp-jquery-ui');
-		wp_enqueue_style( 'select2' );
-  		wp_enqueue_script( 'awpcp-admin-import' );
-	}
+    public function enqueue_scripts() {
+        wp_enqueue_style('awpcp-jquery-ui');
+        wp_enqueue_style( 'select2' );
+        wp_enqueue_script( 'awpcp-admin-import' );
+    }
 
     public function dispatch() {
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -118,19 +118,19 @@ class AWPCP_ImportListingsAdminPage {
         if ( $form_data['images_source'] == 'zip' ) {
             $zip_error = isset( $_FILES['zip_file']['error'] ) ? sanitize_text_field( $_FILES['zip_file']['error'] ) : 0;
             if ( ! in_array( $zip_error, array( UPLOAD_ERR_OK, UPLOAD_ERR_NO_FILE ) ) ) {
-				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
                 $file_error              = awpcp_uploaded_file_error( $_FILES['zip_file'] );
                 $form_errors['zip_file'] = $file_error[1];
 
-				// phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif
+                // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif
             } elseif ( $zip_error == UPLOAD_ERR_NO_FILE ) {
                 // all good...
 
-				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
             } elseif ( substr( $_FILES['zip_file']['name'], -4 ) !== '.zip' ) {
                 $form_errors['zip_file'] = __( "The uploaded file doesn't look like a ZIP file. Please upload a valid ZIP file.", 'another-wordpress-classifieds-plugin' );
 
-				// phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+                // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
             } elseif ( ! @move_uploaded_file( $_FILES['zip_file']['tmp_name'], "$working_directory/images.zip" ) ) {
                 $form_errors['zip_file'] = __( 'There was an error moving the uploaded ZIP file to a proper location.', 'another-wordpress-classifieds-plugin' );
             }

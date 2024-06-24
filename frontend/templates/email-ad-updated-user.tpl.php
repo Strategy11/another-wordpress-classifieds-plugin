@@ -17,8 +17,8 @@
 
 <?php
 printf(
-	esc_html__( 'If you have questions about your listing contact %s. Thank you for your business.', 'another-wordpress-classifieds-plugin' ),
-	esc_html( $admin_email )
+    esc_html__( 'If you have questions about your listing contact %s. Thank you for your business.', 'another-wordpress-classifieds-plugin' ),
+    esc_html( $admin_email )
 );
 ?>
 

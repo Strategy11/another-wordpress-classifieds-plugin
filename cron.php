@@ -57,25 +57,25 @@ function awpcp_check_license_status() {
  * See https://github.com/drodenbaugh/awpcp/issues/808#issuecomment-42561940
  */
 function doadexpirations() {
-	$listings_logic = awpcp_listings_api();
+    $listings_logic = awpcp_listings_api();
 
-	$ads = awpcp_listings_collection()->find_valid_listings(array(
-		'post_type'   => AWPCP_LISTING_POST_TYPE,
-		'post_status' => 'publish',
-		'meta_query'  => array(
-			array(
-				'key'     => '_awpcp_end_date',
-				'value'   => current_time( 'mysql' ),
-				'compare' => '<=',
-				'type'    => 'DATETIME',
-			),
-		),
-	));
+    $ads = awpcp_listings_collection()->find_valid_listings(array(
+        'post_type'   => AWPCP_LISTING_POST_TYPE,
+        'post_status' => 'publish',
+        'meta_query'  => array(
+            array(
+                'key'     => '_awpcp_end_date',
+                'value'   => current_time( 'mysql' ),
+                'compare' => '<=',
+                'type'    => 'DATETIME',
+            ),
+        ),
+    ));
 
-	$email_info = AWPCP_SendEmails::get_expiring_email();
-	foreach ( $ads as $ad ) {
-		$listings_logic->expire_listing_with_notice( $ad, $email_info );
-	}
+    $email_info = AWPCP_SendEmails::get_expiring_email();
+    foreach ( $ads as $ad ) {
+        $listings_logic->expire_listing_with_notice( $ad, $email_info );
+    }
 }
 
 /**
@@ -162,13 +162,13 @@ function awpcp_delete_unpaid_listings_older_than_a_month( $listings_logic, $list
  * This functions runs daily.
  */
 function awpcp_ad_renewal_email() {
-	if (!(get_awpcp_option('sent-ad-renew-email') == 1)) {
-		return;
-	}
+    if (!(get_awpcp_option('sent-ad-renew-email') == 1)) {
+        return;
+    }
 
-	foreach ( awpcp_listings_collection()->find_listings_about_to_expire() as $listing ) {
-		AWPCP_SendEmails::send_renewal( $listing );
-	}
+    foreach ( awpcp_listings_collection()->find_listings_about_to_expire() as $listing ) {
+        AWPCP_SendEmails::send_renewal( $listing );
+    }
 }
 
 function awpcp_calculate_end_of_renew_email_date_range_from_now() {

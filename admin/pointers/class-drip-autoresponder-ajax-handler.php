@@ -33,11 +33,11 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     public function user_subscribed() {
-		$posted_data = $this->get_posted_data();
+        $posted_data = $this->get_posted_data();
 
-		if ( ! awpcp_is_valid_email_address( $posted_data['email'] ) ) {
-			return $this->error_response( _x( 'The email address entered is not valid.', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ) );
-		}
+        if ( ! awpcp_is_valid_email_address( $posted_data['email'] ) ) {
+            return $this->error_response( _x( 'The email address entered is not valid.', 'drip-autoresponder', 'another-wordpress-classifieds-plugin' ) );
+        }
 
         $response = wp_remote_post(
             self::DRIP_FORM_URL,
@@ -65,7 +65,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
         }
     }
 
-    function get_posted_data() {
+    public function get_posted_data() {
         $current_user = wp_get_current_user();
         $name_alternatives = array( 'display_name', 'user_login', 'username' );
 
@@ -75,12 +75,12 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
         );
     }
 
-    function was_request_successful( $response ) {
+    private function was_request_successful( $response ) {
         if ( is_wp_error( $response ) ) {
             return false;
         }
 
-		$response = (array) $response;
+        $response = (array) $response;
 
         if ( ! isset( $response['response']['code'] ) || $response['response']['code'] !== 200 ) {
             return false;

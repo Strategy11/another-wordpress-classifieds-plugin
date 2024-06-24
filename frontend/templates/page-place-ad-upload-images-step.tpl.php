@@ -19,20 +19,20 @@
         echo awpcp_print_message($message);
     }
 
-	foreach($errors as $error) {
-		echo awpcp_print_message($error, array('error'));
-	}
+    foreach($errors as $error) {
+        echo awpcp_print_message($error, array('error'));
+    }
 ?>
 
 <?php include( AWPCP_DIR . '/templates/components/media-center.tpl.php' ); ?>
 
 <form class="awpcp-upload-images-form" method="post" enctype="multipart/form-data">
-	<p class="awpcp-form-submit">
-		<input class="button" type="submit" value="<?php echo esc_attr( $next ); ?>" id="submit-no-images" name="submit-no-images">
+    <p class="awpcp-form-submit">
+        <input class="button" type="submit" value="<?php echo esc_attr( $next ); ?>" id="submit-no-images" name="submit-no-images">
 
-		<input type="hidden" name="step" value="upload-images">
-		<?php foreach ($hidden as $name => $value): ?>
-		<input type="hidden" name="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($value) ?>">
-		<?php endforeach ?>
-	</p>
+        <input type="hidden" name="step" value="upload-images">
+        <?php foreach ($hidden as $name => $value): ?>
+        <input type="hidden" name="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($value) ?>">
+        <?php endforeach ?>
+    </p>
 </form>

@@ -364,7 +364,7 @@ class AWPCP_ListingsAPI {
      * @since 3.0.2
      */
     public function consolidate_existing_ad( $ad ) {
-		$should_disable_listing = awpcp_should_disable_existing_listing( $ad );
+        $should_disable_listing = awpcp_should_disable_existing_listing( $ad );
 
         // if Ad is enabled and should be disabled, then disable it, otherwise
         // do not alter the Ad disabled status.
@@ -666,13 +666,13 @@ class AWPCP_ListingsAPI {
         return $this->disable_listing( $listing );
     }
 
-	/**
-	 * @since 4.1.7
-	 */
-	public function expire_listing_with_notice( $listing, $email_info = array() ) {
-		$this->expire_listing( $listing );
-		AWPCP_SendEmails::send_expiring( $listing, $email_info );
-	}
+    /**
+     * @since 4.1.7
+     */
+    public function expire_listing_with_notice( $listing, $email_info = array() ) {
+        $this->expire_listing( $listing );
+        AWPCP_SendEmails::send_expiring( $listing, $email_info );
+    }
 
     public function renew_listing( $listing, $end_date = false ) {
         if ( $end_date === false ) {
@@ -695,7 +695,7 @@ class AWPCP_ListingsAPI {
         }
 
         $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_renew_email_sent' );
-		$this->wordpress->delete_post_meta( $listing->ID, '_awpcp_expired' );
+        $this->wordpress->delete_post_meta( $listing->ID, '_awpcp_expired' );
 
         // Let update_listing_metadata() update the most recent start date if necessary.
         $this->update_listing_metadata(
