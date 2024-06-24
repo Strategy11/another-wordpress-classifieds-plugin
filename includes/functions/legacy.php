@@ -25,8 +25,8 @@ function countlistings( $is_active ) {
 function get_awpcp_setting($column, $option) {
     global $wpdb;
     $tbl_ad_settings = $wpdb->prefix . "awpcp_adsettings";
-    $myreturn=0;
-    $tableexists=checkfortable($tbl_ad_settings);
+    $myreturn        = 0;
+    $tableexists     = awpcp_table_exists( $tbl_ad_settings );
 
     if ( $tableexists ) {
         $res = $wpdb->get_var(

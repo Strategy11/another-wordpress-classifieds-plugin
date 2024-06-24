@@ -5,7 +5,8 @@
  * @package AWPCP\Admin\Pages
  */
 
-?><?php settings_errors(); ?>
+settings_errors();
+?>
 
 <h2 class="nav-tab-wrapper">
 <?php foreach ( $groups as $group ) : ?>
@@ -16,13 +17,13 @@
 </h2>
 
 <?php if ( count( $current_group['subgroups'] ) ) : ?>
-<ul class="awpcp-settings-sub-groups">
-    <?php foreach ( $current_group['subgroups'] as $subgroup_id ) : ?>
-    <li class="<?php echo esc_attr( $current_subgroup['id'] === $subgroup_id ? 'awpcp-current' : '' ); ?>">
-        <a href="<?php echo esc_url( add_query_arg( 'sg', $subgroup_id, $current_url ) ); ?>"><?php echo esc_html( $subgroups[ $subgroup_id ]['name'] ); ?></a>
-    </li>
-    <?php endforeach; ?>
-</ul>
+    <ul class="awpcp-settings-sub-groups">
+        <?php foreach ( $current_group['subgroups'] as $subgroup_id ) : ?>
+        <li class="<?php echo esc_attr( $current_subgroup['id'] === $subgroup_id ? 'awpcp-current' : '' ); ?>">
+            <a href="<?php echo esc_url( add_query_arg( 'sg', $subgroup_id, $current_url ) ); ?>"><?php echo esc_html( $subgroups[ $subgroup_id ]['name'] ); ?></a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
 <?php endif; ?>
 
 <?php
@@ -37,27 +38,25 @@
     <input type="hidden" name="group" value="<?php echo esc_attr( $current_group['id'] ); ?>" />
     <input type="hidden" name="subgroup" value="<?php echo esc_attr( $current_subgroup['id'] ); ?>" />
 
-    <?php $settings->load(); ?>
     <?php
+    $settings->load();
     ob_start();
     do_settings_sections( $current_subgroup['id'] );
     $output = ob_get_contents();
     ob_end_clean();
-    ?>
 
-    <?php if ( $output ) : ?>
-    <p class="submit hidden">
-        <input type="submit" value="<?php esc_attr_e( 'Save Changes', 'another-wordpress-classifieds-plugin' ); ?>" class="button-primary" id="submit-top" name="submit">
-    </p>
-    <?php endif; ?>
+    if ( $output ) :
+        ?>
+        <p class="submit hidden">
+            <input type="submit" value="<?php esc_attr_e( 'Save Changes', 'another-wordpress-classifieds-plugin' ); ?>" class="button-primary" id="submit-top" name="submit">
+        </p>
+        <?php
+    endif;
 
-    <?php
-        // A hidden submit button is necessary so that whenever the user hits enter on an input field,
-        // that one is the button that is triggered, avoiding other submit buttons in the form to trigger
-        // unwanted behaviours.
-    ?>
+    // A hidden submit button is necessary so that whenever the user hits enter on an input field,
+    // that one is the button that is triggered, avoiding other submit buttons in the form to trigger
+    // unwanted behaviours.
 
-    <?php
     // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo $output;
     ?>

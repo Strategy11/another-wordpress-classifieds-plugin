@@ -15,6 +15,8 @@
  * @deprecated  3.4
  */
 function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload' ) {
+    _deprecated_function( __FUNCTION__, '3.4' );
+
     $filename = sanitize_file_name( strtolower( $file['name'] ) );
     $tmpname = $file['tmp_name'];
 
@@ -129,6 +131,8 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
  * @deprecated 3.4
  */
 function awpcp_get_allowed_mime_types() {
+    _deprecated_function( __FUNCTION__, '3.4' );
+
     return awpcp_array_data( 'mime_types', array(), awpcp_get_upload_file_constraints() );
 }
 
@@ -139,6 +143,8 @@ function awpcp_get_allowed_mime_types() {
  * @deprecated 3.4
  */
 function awpcp_get_upload_file_constraints( ) {
+    _deprecated_function( __FUNCTION__, '3.4' );
+
     return apply_filters( 'awpcp-upload-file-constraints', array(
         'mime_types' => awpcp_get_image_mime_types(),
 
@@ -157,6 +163,8 @@ function awpcp_get_upload_file_constraints( ) {
  * @deprecated 3.4
  */
 function awpcp_get_ad_uploaded_files_stats( $ad ) {
+    _deprecated_function( __FUNCTION__, '3.4' );
+
     $payment_term = awpcp_payments_api()->get_ad_payment_term( $ad );
 
     $images_allowed = get_awpcp_option( 'imagesallowedfree', 0 );
@@ -179,6 +187,8 @@ function awpcp_get_ad_uploaded_files_stats( $ad ) {
  * @deprecated 3.4
  */
 function awpcp_get_uploads_directories() {
+    _deprecated_function( __FUNCTION__, '3.4' );
+
     static $uploads_directories = null;
 
     if ( is_null( $uploads_directories ) ) {
@@ -248,6 +258,8 @@ function awpcp_get_uploads_directories() {
  * @deprecated 3.4
  */
 function awpcp_resizer($filename, $dir) {
+    _deprecated_function( __FUNCTION__, '3.4' );
+
     $maxwidth = get_awpcp_option('imgmaxwidth');
     $maxheight = get_awpcp_option('imgmaxheight');
 
@@ -313,6 +325,8 @@ function awpcp_resizer($filename, $dir) {
  * @deprecated 3.4
  */
 function get_categorynameidall($cat_id = 0) {
+    _deprecated_function( __FUNCTION__, '3.4' );
+
     global $wpdb;
 
     $optionitem='';
@@ -330,18 +344,19 @@ function get_categorynameidall($cat_id = 0) {
     );
 
     foreach ( $query_results as $rsrow ) {
-        $cat_id   = $rsrow[0];
-        $cat_name = stripslashes(stripslashes($rsrow[1]));
+        $this_cat_id = $rsrow[0];
+        $cat_name    = stripslashes( stripslashes( $rsrow[1] ) );
 
         $opstyle = "class=\"dropdownparentcategory\"";
 
-        if( $cat_id == $cat_id ) {
-            $maincatoptionitem = "<option $opstyle selected='selected' value='$cat_id'>$cat_name</option>";
+        if( $this_cat_id == $cat_id ) {
+            $maincatoptionitem = "<option $opstyle selected='selected'";
         } else {
-            $maincatoptionitem = "<option $opstyle value='$cat_id'>$cat_name</option>";
+            $maincatoptionitem = "<option $opstyle";
         }
+        $maincatoptionitem .= " value='$this_cat_id'>$cat_name</option>";
 
-        $optionitem.="$maincatoptionitem";
+        $optionitem .= $maincatoptionitem;
 
         // While still looping through main categories get any sub categories of the main category
 
@@ -351,7 +366,7 @@ function get_categorynameidall($cat_id = 0) {
                 'WHERE category_parent_id=%d ' .
                 'ORDER BY category_order, category_name ASC',
                 AWPCP_TABLE_CATEGORIES,
-                $cat_id
+                $this_cat_id
             ),
             ARRAY_N
         );
@@ -377,6 +392,8 @@ function get_categorynameidall($cat_id = 0) {
  * @deprecated since 2.0.7
  */
 function checkfortable($table) {
+    _deprecated_function( __FUNCTION__, '2.0.7', 'awpcp_table_exists' );
+
     return awpcp_table_exists($table);
 }
 
@@ -386,6 +403,8 @@ function checkfortable($table) {
  * @deprecated 4.0.0    This is no longer used.
  */
 function checkforduplicate($cpagename_awpcp) {
+    _deprecated_function( __FUNCTION__, '4.0.0' );
+
     global $wpdb;
 
     $post_ids = $wpdb->get_col(
@@ -438,15 +457,17 @@ function awpcp_region_fields( $context='details', $enabled_fields = null ) {
  * @deprecated 4.0.0 This function will be removed in 4.1.0.
  */
 function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()) {
-   $myreturn='';
+    _deprecated_function( __FUNCTION__, '4.0.0' );
+
+    $myreturn='';
 
    foreach ( $show_vector as $k => $v ) {
        if (!in_array($k,$exclusion_vector)) {
-           $myreturn .= '<option value="' . $k . '"';
+           $myreturn .= '<option value="' . esc_attr( $k ) . '"';
            if ($k==$selected_map_val) {
                $myreturn .= " selected='selected'";
            }
-           $myreturn .= '>' . $v . "</option>\n";
+           $myreturn .= '>' . esc_html( $v ) . "</option>\n";
        }
    }
    return $myreturn;
@@ -456,6 +477,8 @@ function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()
  * @deprecated 4.0.0 This function will be removed in 4.1.0.
  */
 function unix2dos($mystring) {
+    _deprecated_function( __FUNCTION__, '4.0.0' );
+
     $mystring=preg_replace("/\r/m",'',$mystring);
     $mystring=preg_replace("/\n/m","\r\n",$mystring);
     return $mystring;
@@ -465,6 +488,8 @@ function unix2dos($mystring) {
  * @deprecated 4.0.0 This function will be removed in 4.1.0.
  */
 function create_awpcp_random_seed() {
+    _deprecated_function( __FUNCTION__, '4.0.0' );
+
     list( $usec, $sec ) = explode( ' ', microtime() );
     return (int) $sec + (int) ( $usec * 100000 );
 }
