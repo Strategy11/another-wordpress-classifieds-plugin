@@ -101,9 +101,9 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
             return $transaction->get( 'validated', false );
         }
 
-        $mc_gross      = floatval( awpcp_post_param( 'mc_gross' ) );
-        $payment_gross = floatval( awpcp_post_param( 'payment_gross' ) );
-        $tax           = floatval( awpcp_post_param( 'tax' ) );
+        $mc_gross      = awpcp_get_var( array( 'param' => 'mc_gross', 'sanitize' => 'floatval' ), 'post' );
+        $payment_gross = awpcp_get_var( array( 'param' => 'payment_gross', 'sanitize' => 'floatval' ), 'post' );
+        $tax           = awpcp_get_var( array( 'param' => 'tax', 'sanitize' => 'floatval' ), 'post' );
         $txn_id        = awpcp_get_var( array( 'param' => 'txn_id' ), 'post' );
         $txn_type      = awpcp_get_var( array( 'param' => 'txn_type' ), 'post' );
         $custom        = awpcp_get_var( array( 'param' => 'custom' ), 'post' );

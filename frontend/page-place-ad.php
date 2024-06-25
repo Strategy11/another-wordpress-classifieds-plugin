@@ -1322,17 +1322,24 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $transaction->save();
         }
 
-        if ( awpcp_post_param('preview-hash', false) ) {
+        $preview_hash = awpcp_get_var( array( 'param' => 'preview-hash' ), 'post' );
+        if ( $preview_hash ) {
             return $this->preview_step();
-        } elseif ( $this->should_show_upload_files_step( $ad ) ) {
-            return $this->upload_images_step();
-        } elseif ( (bool) get_awpcp_option( 'pay-before-place-ad' ) ) {
-            return $this->finish_step();
-        } elseif ( (bool) get_awpcp_option( 'show-ad-preview-before-payment' ) ) {
-            return $this->preview_step();
-        } else {
-            return $this->checkout_step();
         }
+
+        if ( $this->should_show_upload_files_step( $ad ) ) {
+            return $this->upload_images_step();
+        }
+
+        if ( (bool) get_awpcp_option( 'pay-before-place-ad' ) ) {
+            return $this->finish_step();
+        }
+
+        if ( (bool) get_awpcp_option( 'show-ad-preview-before-payment' ) ) {
+            return $this->preview_step();
+        }
+
+        return $this->checkout_step();
     }
 
     protected function should_show_upload_files_step( $listing ) {
