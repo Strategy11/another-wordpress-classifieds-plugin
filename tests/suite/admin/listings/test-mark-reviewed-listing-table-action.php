@@ -15,7 +15,6 @@ class AWPCP_MarkReviewedListingTableActionTest extends AWPCP_UnitTestCase {
      */
     public function setUp(): void {
         parent::setUp();
-        $this->listing_renderer = null;
         $this->wordpress        = null;
     }
 
@@ -39,7 +38,6 @@ class AWPCP_MarkReviewedListingTableActionTest extends AWPCP_UnitTestCase {
      */
     private function get_test_subject() {
         return new AWPCP_MarkReviewedListingTableAction(
-            $this->listing_renderer,
             null,
             $this->wordpress
         );

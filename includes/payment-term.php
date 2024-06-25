@@ -193,7 +193,7 @@ class AWPCP_PaymentTerm {
      * this payment term. The default behavior always returns true but
      * sub-classes can overwrite the method to support other scenearios.
      * @since   3.0
-     * @param   AWPCP_AD    $ad
+     * @param   WP_Post $ad
      * @return  boolean
      */
     public function ad_can_be_renewed($ad) {
@@ -222,7 +222,7 @@ class AWPCP_PaymentTerm {
      * Calculates a date adding this term's duration to the given
      * start date.
      *
-     * @param  long $start_date     A timestamp
+     * @param  string $start_date     A timestamp
      * @return string               MySQL date string
      */
     public function calculate_end_date($start_date=null) {

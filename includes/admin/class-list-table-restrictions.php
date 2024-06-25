@@ -9,7 +9,7 @@
 class AWPCP_ListTableRestrictions {
 
     /**
-     * @var object
+     * @var string
      */
     private $listing_post_type;
 

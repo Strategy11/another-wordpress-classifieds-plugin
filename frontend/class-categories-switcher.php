@@ -7,11 +7,7 @@
  * Constructor function.
  */
 function awpcp_categories_switcher() {
-    return new AWPCP_Categories_Switcher(
-        awpcp_query(),
-        awpcp()->settings,
-        awpcp_request()
-    );
+    return new AWPCP_Categories_Switcher();
 }
 
 /**
@@ -20,29 +16,18 @@ function awpcp_categories_switcher() {
 class AWPCP_Categories_Switcher {
 
     /**
-     * @var object
+     * @var AWPCP_Query
      */
     private $query;
 
     /**
-     * @var object
-     */
-    private $settings;
-
-    /**
-     * @var object
+     * @var AWPCP_Request
      */
     private $request;
 
-    /**
-     * @param object $query     An instance of Query (Not WP_Query).
-     * @param object $settings  An instance of Settings.
-     * @param object $request   An instance of Request.
-     */
-    public function __construct( $query, $settings, $request ) {
-        $this->query    = $query;
-        $this->settings = $settings;
-        $this->request  = $request;
+    public function __construct() {
+        $this->query   = awpcp_query();
+        $this->request = awpcp_request();
     }
 
     /**

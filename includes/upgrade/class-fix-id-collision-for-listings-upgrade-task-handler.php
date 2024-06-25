@@ -14,17 +14,17 @@
 class AWPCP_FixIDCollisionForListingsUpgradeTaskHandler implements AWPCP_Upgrade_Task_Runner {
 
     /**
-     * @var ListingsRegistry
+     * @var AWPCP_ListingsRegistry
      */
     private $listings_registry;
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 
     /**
-     * @var WordPress
+     * @var AWPCP_WordPress
      */
     private $wordpress;
 

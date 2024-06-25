@@ -78,68 +78,92 @@ function awpcp_ad_renewed_admin_email( $ad, $body ) {
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.3.4
+ */
+function awpcp_payment_transaction_helper_builder() {
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_PaymentTransactionHelperBuilder()' );
+    return new AWPCP_PaymentTransactionHelperBuilder();
+}
+
+/**
+ * @deprecated 4.3.4
+ */
+function awpcp_seo_framework_integration() {
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_SEOFrameworkIntegration()' );
+    return new AWPCP_SEOFrameworkIntegration();
+}
+
+/**
+ * @deprecated 4.3.4
+ */
+function awpcp_form_fields_table_factory() {
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_FormFieldsTableFactory()' );
+    return new AWPCP_FormFieldsTableFactory();
+}
+
+/**
+ * @deprecated 4.3.4
  */
 function awpcp_csv_reader_factory() {
-    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_CSV_Reader_Factory()' );
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_CSV_Reader_Factory()' );
     return new AWPCP_CSV_Reader_Factory();
 }
 
 /**
  * Constructor function for CSV Import Sessions Manager class.
  *
- * @deprecated x.x
+ * @deprecated 4.3.4
  */
 function awpcp_csv_import_sessions_manager() {
-    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_CSV_Import_Sessions_Manager()' );
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_CSV_Import_Sessions_Manager()' );
     return new AWPCP_CSV_Import_Sessions_Manager();
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.3.4
  */
 function awpcp_csv_importer_factory() {
-    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_CSV_Importer_Factory()' );
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_CSV_Importer_Factory()' );
     return new AWPCP_CSV_Importer_Factory();
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.3.4
  */
 function awpcp_import_listings_ajax_handler() {
-    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_Import_Listings_Ajax_Handler()' );
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_Import_Listings_Ajax_Handler()' );
     return new AWPCP_Import_Listings_Ajax_Handler();
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.3.4
  */
 function awpcp_routes() {
-    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_Routes()' );
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_Routes()' );
     return new AWPCP_Routes();
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.3.4
  */
 function awpcp_general_settings() {
-    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_GeneralSettings()' );
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_GeneralSettings()' );
     return new AWPCP_GeneralSettings();
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.3.4
  */
 function awpcp_license_settings_update_handler() {
-    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_License_Settings_Update_Handler()' );
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_License_Settings_Update_Handler()' );
     return new AWPCP_License_Settings_Update_Handler();
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.3.4
  */
 function awpcp_license_settings_actions_request_handler() {
-    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_License_Settings_Actions_Request_Handler()' );
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_License_Settings_Actions_Request_Handler()' );
     return new AWPCP_License_Settings_Actions_Request_Handler();
 }
 
@@ -153,7 +177,7 @@ function awpcp_strptime( $date, $format ) {
 
 /**
  * @since 3.4
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 3.5.3
  */
 function awppc_get_pages_ids() {
@@ -163,7 +187,7 @@ function awppc_get_pages_ids() {
 
 /**
  * @since 3.4
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 3.5.3
  */
 function awpcp_get_pages_ids_from_db() {
@@ -173,7 +197,7 @@ function awpcp_get_pages_ids_from_db() {
 
 /**
  * @since 3.5.3
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
  */
 function awpcp_get_plugin_pages_info() {
@@ -183,7 +207,7 @@ function awpcp_get_plugin_pages_info() {
 
 /**
  * @since 3.5.3
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
  */
 function awpcp_update_plugin_pages_info( $plugin_pages ) {
@@ -193,7 +217,7 @@ function awpcp_update_plugin_pages_info( $plugin_pages ) {
 
 /**
  * @since 3.5.3
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
  */
 function awpcp_get_plugin_pages_refs() {
@@ -208,7 +232,7 @@ function awpcp_get_plugin_pages_refs() {
 }
 
 /**
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0
  */
 function awpcp_modules_manager() {
@@ -217,7 +241,7 @@ function awpcp_modules_manager() {
 }
 
 /**
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0    Use a container.
  */
 function awpcp_csv_importer_delegate_factory() {
@@ -225,7 +249,7 @@ function awpcp_csv_importer_delegate_factory() {
 }
 
 /**
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 2.0.6.
  */
 function url_classifiedspage() {
@@ -257,7 +281,7 @@ function awpcp_get_current_domain( $www = true, $prefix = '' ) {
  * @param $id          Ad ID.
  * @param $transaction Payment Transaction associated to the Ad being posted
  *
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0    This is function is no longer used.
  */
 function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment_status=null) {
@@ -284,7 +308,7 @@ function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment
 }
 
 /**
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0    This function is no longer used.
  */
 function awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) {
@@ -307,7 +331,7 @@ function awpcp_should_disable_new_listing_with_payment_status( $listing, $paymen
 }
 
 /**
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0    This function is no longer used.
  */
 function awpcp_should_enable_new_listing_with_payment_status( $listing, $payment_status ) {
@@ -317,7 +341,7 @@ function awpcp_should_enable_new_listing_with_payment_status( $listing, $payment
 
 /**
  * @since 2.0.7
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0 No longer used by internal code.
  */
 function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
@@ -342,7 +366,7 @@ function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
  * Return an array of Ad Fees.
  *
  * @since 2.0.7
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated  since 3.0
  */
 function awpcp_get_fees() {
@@ -391,7 +415,7 @@ function maketheclassifiedsubpage( $page_name, $parent_page_id, $short_code ) {
 /**
  * Function to create a default category with an ID of  1 in the event a default category with ID 1 does not exist.
  *
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0
  */
 function createdefaultcategory($idtomake,$titletocallit) {
@@ -404,7 +428,7 @@ function createdefaultcategory($idtomake,$titletocallit) {
 }
 
 /**
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0    No longer used.
  */
 function awpcp_attachment_background_color_explanation() {
@@ -438,7 +462,7 @@ function awpcp_module_not_compatible_notice( $module, $installed_version ) {
 /**
  * Use awpcp_html_attributes instead.
  *
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated since 4.0.0
  */
 function awpcp_render_attributes( $attrs ) {
@@ -462,10 +486,11 @@ function awpcp_render_attributes( $attrs ) {
  * @param $action   'upload' if the file was uploaded using an HTML File field.
  *                  'copy' if the file was uploaded using a different method. Images
  *                  extracted from a ZIP file during Ad import.
- * @return          false if an error occurs or an array with the upload file information
+ *
+ * @return false|array if an error occurs or an array with the upload file information
  *                  on success.
  * @since 3.0.2
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated  3.4
  */
 function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload' ) {
@@ -498,7 +523,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
 
     $file_size = filesize( $tmpname );
 
-    if ( empty( $file_size ) || $file_size <= 0 ) {
+    if ( empty( $file_size ) ) {
         $error = _x( 'There was an error trying to find out the file size of the image %s.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
         return false;
@@ -582,7 +607,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
 
 /**
  * @since 3.0.2
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 3.4
  */
 function awpcp_get_allowed_mime_types() {
@@ -595,7 +620,7 @@ function awpcp_get_allowed_mime_types() {
  * File type, size and dimension constraints for uploaded files.
  *
  * @since 3.0.2
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 3.4
  */
 function awpcp_get_upload_file_constraints( ) {
@@ -616,7 +641,7 @@ function awpcp_get_upload_file_constraints( ) {
  * the number of files that can still be added to that same Ad.
  *
  * @since 3.0.2
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 3.4
  */
 function awpcp_get_ad_uploaded_files_stats( $ad ) {
@@ -641,7 +666,7 @@ function awpcp_get_ad_uploaded_files_stats( $ad ) {
  * returns the path to the directories to store raw files and image thumbnails.
  *
  * @since 3.0.2
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 3.4
  */
 function awpcp_get_uploads_directories() {
@@ -713,7 +738,7 @@ function awpcp_get_uploads_directories() {
  * takes place. If the image exceeds either max width or max height then the
  * image is resized proportionally.
  *
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 3.4
  */
 function awpcp_resizer($filename, $dir) {
@@ -781,7 +806,7 @@ function awpcp_resizer($filename, $dir) {
 }
 
 /**
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 3.4
  */
 function get_categorynameidall($cat_id = 0) {
@@ -849,7 +874,7 @@ function get_categorynameidall($cat_id = 0) {
 }
 
 /**
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated since 2.0.7
  */
 function checkfortable($table) {
@@ -861,7 +886,7 @@ function checkfortable($table) {
 /**
  * Return the number of pages with the given post_name.
  *
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0    This is no longer used.
  */
 function checkforduplicate($cpagename_awpcp) {
@@ -916,7 +941,7 @@ function awpcp_region_fields( $context='details', $enabled_fields = null ) {
 }
 
 /**
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0 This function will be removed in 4.1.0.
  */
 function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()) {
@@ -937,7 +962,7 @@ function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()
 }
 
 /**
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0 This function will be removed in 4.1.0.
  */
 function unix2dos($mystring) {
@@ -949,12 +974,12 @@ function unix2dos($mystring) {
 }
 
 /**
- * @since x.x Added deprecated notice.
+ * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0 This function will be removed in 4.1.0.
  */
 function create_awpcp_random_seed() {
     _deprecated_function( __FUNCTION__, '4.0.0' );
 
     list( $usec, $sec ) = explode( ' ', microtime() );
-    return (int) $sec + (int) ( $usec * 100000 );
+    return (int) $sec + ( (int) $usec * 100000 );
 }

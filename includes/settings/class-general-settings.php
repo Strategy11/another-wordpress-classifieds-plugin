@@ -9,7 +9,7 @@
 class AWPCP_GeneralSettings {
 
     /**
-     * @var RolesAndCapabilities
+     * @var AWPCP_RolesAndCapabilities
      */
     private $roles;
 

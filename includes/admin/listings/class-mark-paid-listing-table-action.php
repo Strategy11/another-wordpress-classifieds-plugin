@@ -11,14 +11,9 @@ class AWPCP_MarkPaidListingTableAction implements
     AWPCP_ConditionalListTableActionInterface {
 
     /**
-     * @var ListingsLogic
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
-
-    /**
-     * @var ListingRenderer
-     */
-    private $listing_renderer;
 
     /**
      * @var object
@@ -29,12 +24,10 @@ class AWPCP_MarkPaidListingTableAction implements
      * @since 4.0.0
      *
      * @param object $listings_logic    An instance of Listings API.
-     * @param object $listing_renderer  An instance of Listing Renderer.
      * @param object $roles             An instance of Roles and Capabilities.
      */
-    public function __construct( $listings_logic, $listing_renderer, $roles ) {
+    public function __construct( $listings_logic, $roles ) {
         $this->listings_logic   = $listings_logic;
-        $this->listing_renderer = $listing_renderer;
         $this->roles            = $roles;
     }
 

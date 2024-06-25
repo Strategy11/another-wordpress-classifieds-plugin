@@ -7,13 +7,7 @@
  * Constructor function.
  */
 function awpcp_user_panel() {
-    $container = awpcp()->container;
-
-    return new AWPCP_User_Panel(
-        $container['listing_post_type'],
-        awpcp_upgrade_tasks_manager(),
-        $container['Settings']
-    );
+    return new AWPCP_User_Panel();
 }
 
 /**
@@ -22,29 +16,17 @@ function awpcp_user_panel() {
 class AWPCP_User_Panel {
 
     /**
-     * @var string
-     */
-    private $listing_post_type;
-
-    /**
-     * @var UpgradeTasksManager
+     * @var AWPCP_Upgrade_Tasks_Manager
      */
     private $upgrade_tasks;
-
-    /**
-     * @var Settings
-     */
-    private $settings;
 
     public $account;
 
     /**
      * Constructor.
      */
-    public function __construct( $listing_post_type, $upgrade_tasks, $settings ) {
-        $this->listing_post_type = $listing_post_type;
-        $this->upgrade_tasks     = $upgrade_tasks;
-        $this->settings          = $settings;
+    public function __construct() {
+        $this->upgrade_tasks = awpcp_upgrade_tasks_manager();
 
         $this->account = awpcp_account_balance_page();
     }

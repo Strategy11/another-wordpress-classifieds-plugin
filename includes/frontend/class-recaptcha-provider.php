@@ -22,7 +22,7 @@ class AWPCP_ReCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
     private $secret_key;
 
     /**
-     * @var ReCAPTCHA Delegate
+     * @var AWPCP_ReCAPTCHAv2|AWPCP_ReCAPTCHAv3 Delegate
      */
     private $delegate;
 

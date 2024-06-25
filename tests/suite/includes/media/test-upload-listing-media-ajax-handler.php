@@ -35,14 +35,7 @@ class AWPCP_Test_Upload_Listing_Media_Ajax_Handler extends AWPCP_UnitTestCase {
         Phake::when( $this->file_uploader )->get_uploaded_file->thenReturn( $uploaded_file );
         Phake::when( $this->meida_manager )->add_file->thenReturn( $attachment );
 
-        $handler = new AWPCP_UploadListingMediaAjaxHandler(
-            $this->attachment_properties,
-            $this->listings,
-            $this->file_uploader,
-            $this->meida_manager,
-            $this->request,
-            $this->response
-        );
+        $handler = new AWPCP_UploadListingMediaAjaxHandler();
 
         $handler->ajax();
 

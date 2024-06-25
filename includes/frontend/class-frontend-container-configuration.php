@@ -136,7 +136,6 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
             function( $container ) {
                 return new AWPCP_Show_Ad_Page(
                     $container['ListingsContentRenderer'],
-                    $container['ListingsLogic'],
                     $container['ListingsCollection'],
                     $container['Request']
                 );
@@ -170,7 +169,6 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
 
         $container['SaveListingInformationAjaxHandler'] = $container->service( function( $container ) {
             return new AWPCP_SaveListingInformationAjaxHandler(
-                $container['listing_category_taxonomy'],
                 $container['ListingsLogic'],
                 $container['ListingRenderer'],
                 $container['ListingsCollection'],

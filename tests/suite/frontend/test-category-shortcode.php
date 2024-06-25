@@ -19,10 +19,7 @@ class AWPCP_Test_Category_Shortcode extends AWPCP_UnitTestCase {
             'show_categories_list' => true,
         );
 
-        $shortcode_handler = new AWPCP_CategoryShortcode(
-            $categories_renderer_factory,
-            $categories
-        );
+        $shortcode_handler = new AWPCP_CategoryShortcode();
         $shortcode_handler->render( $shortcode_params );
 
         Phake::verify( $categories_list_renderer )->render( Phake::capture( $categories_list_params ) );

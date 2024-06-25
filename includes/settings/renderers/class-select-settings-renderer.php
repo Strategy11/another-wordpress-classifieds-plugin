@@ -9,7 +9,7 @@
 class AWPCP_SelectSettingsRenderer {
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

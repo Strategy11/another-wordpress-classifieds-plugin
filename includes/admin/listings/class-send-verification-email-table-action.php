@@ -18,7 +18,7 @@ class AWPCP_SendVerificationEmailTableAction implements
     private $listings_logic;
 
     /**
-     * @var ListingRenderer
+     * @var AWPCP_ListingRenderer
      */
     private $listing_renderer;
 

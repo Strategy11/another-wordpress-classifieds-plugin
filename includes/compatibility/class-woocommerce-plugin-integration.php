@@ -1,17 +1,18 @@
 <?php
 
 function awpcp_woocommerce_plugin_integration() {
-    return new AWPCP_WooCommercePluginIntegration( awpcp_query(), awpcp()->settings );
+    return new AWPCP_WooCommercePluginIntegration();
 }
 
 class AWPCP_WooCommercePluginIntegration {
 
+    /**
+     * @var AWPCP_Query
+     */
     private $query;
-    private $settings;
 
-    public function __construct( $query, $settings ) {
-        $this->query = $query;
-        $this->settings = $settings;
+    public function __construct() {
+        $this->query = awpcp_query();
     }
 
     public function filter_prevent_admin_access( $prevent_access ) {

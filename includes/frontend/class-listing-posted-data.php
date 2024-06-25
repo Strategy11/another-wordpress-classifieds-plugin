@@ -14,37 +14,37 @@ class AWPCP_ListingPostedData {
     private $listing_category_taxonomy;
 
     /**
-     * @var FormFieldsData
+     * @var AWPCP_FormFieldsData
      */
     private $form_fields_data;
 
     /**
-     * @var ListingsAPI
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 
     /**
-     * @var ListingRenderer
+     * @var AWPCP_ListingRenderer
      */
     private $listing_renderer;
 
     /**
-     * @var PaymentsAPI
+     * @var AWPCP_PaymentsAPI
      */
     private $payments;
 
     /**
-     * @var ListingAuthorization
+     * @var AWPCP_ListingAuthorization
      */
     private $authorization;
 
     /**
-     * @var RolesAndCapabilities
+     * @var AWPCP_RolesAndCapabilities
      */
     private $roles;
 
     /**
-     * @var Request
+     * @var AWPCP_Request
      */
     private $request;
 

@@ -16,12 +16,12 @@ class AWPCP_ActionsSubmitListingSection {
     private $template = 'frontend/actions-submit-listing-section.tpl.php';
 
     /**
-     * @var ListingsLogic
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 
     /**
-     * @var TemplateRenderer
+     * @var AWPCP_Template_Renderer
      */
     private $template_renderer;
 

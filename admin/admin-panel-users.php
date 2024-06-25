@@ -67,7 +67,7 @@ class AWPCP_AdminUsers {
     public function ajax_edit_balance($user_id, $action) {
         $user = get_user_by('id', $user_id);
 
-        if (is_null($user)) {
+        if ( ! $user ) {
             $message = __("The specified User doesn't exists.", 'another-wordpress-classifieds-plugin');
             $response = array('status' => 'error', 'message' => $message);
         }

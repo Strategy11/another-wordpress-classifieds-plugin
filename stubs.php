@@ -30,8 +30,8 @@ namespace {
 
     define( 'AWPCP_DIR', dirname( __FILE__ ) );
     define( 'AWPCP_FILE', AWPCP_DIR . '/awpcp.php' );
-    define( 'AWPCP_URL', rtrim( plugin_dir_url( AWPCP_FILE ), '/' ) );
-    define( 'AWPCP_BASENAME', plugin_basename( AWPCP_FILE ) );
+    define( 'AWPCP_URL', 'http://example.com/wp-content/plugins/' . basename( AWPCP_DIR ) . '/awpcp.php' );
+    define( 'AWPCP_BASENAME', basename( AWPCP_DIR ) . '/awpcp.php' );
 
     define( 'AWPCP_TABLE_ADFEES', 'wp_awpcp_adfees' );
     define( 'AWPCP_TABLE_ADS',  'wp_awpcp_ads' );
@@ -92,5 +92,30 @@ namespace {
          */
         public static function get_api_key() {
         }
+    }
+
+    class PHPMailer {
+        public function __construct( $exceptions = null ) {
+        }
+    }
+
+    /**
+     * From https://theandystratton.com/2011/shortcode-autoformatting-html-with-paragraphs-and-line-breaks for
+     * old formatting issue. This may not be needed anymore.
+     */
+    function my_formatter( $content ) {
+        $new_content = '';
+        $pattern_full = '{(\[raw\].*?\[/raw\])}is';
+        $pattern_contents = '{\[raw\](.*?)\[/raw\]}is';
+        $pieces = preg_split( $pattern_full, $content, -1, PREG_SPLIT_DELIM_CAPTURE );
+
+        foreach ( $pieces as $piece ) {
+            if ( preg_match( $pattern_contents, $piece, $matches ) ) {
+                $new_content .= $matches[1];
+            } else {
+                $new_content .= wptexturize( wpautop( $piece ) );
+            }
+        }
+        return $new_content;
     }
 }

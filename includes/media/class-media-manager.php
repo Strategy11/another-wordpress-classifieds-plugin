@@ -10,13 +10,7 @@ function awpcp_new_media_manager() {
     static $instance = null;
 
     if ( is_null( $instance ) ) {
-        $container = awpcp()->container;
-
-        $instance = new AWPCP_Media_Manager(
-            $container['FileHandlersManager'],
-            awpcp_uploaded_file_logic_factory(),
-            awpcp()->settings
-        );
+        $instance = new AWPCP_Media_Manager();
     }
 
     return $instance;
@@ -47,20 +41,9 @@ class AWPCP_Media_Manager {
      */
     private $uploaded_file_logic_factory;
 
-    /**
-     * @var object
-     */
-    private $settings;
-
-    /**
-     * @param object $file_handlers                 An instance of File Handlers.
-     * @param object $uploaded_file_logic_factory   An instance of Uploaded File Logic Factory.
-     * @param object $settings                      An instance of Settings.
-     */
-    public function __construct( $file_handlers, $uploaded_file_logic_factory, $settings ) {
-        $this->file_handlers               = $file_handlers;
-        $this->uploaded_file_logic_factory = $uploaded_file_logic_factory;
-        $this->settings                    = $settings;
+    public function __construct() {
+        $this->file_handlers               = awpcp()->container['FileHandlersManager'];
+        $this->uploaded_file_logic_factory = awpcp_uploaded_file_logic_factory();
     }
 
     /**

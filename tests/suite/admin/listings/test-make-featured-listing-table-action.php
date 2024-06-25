@@ -16,7 +16,6 @@ class AWPCP_MakeFeaturedListingTableActionTest extends AWPCP_UnitTestCase {
     public function setUp(): void {
         parent::setUp();
         $this->roles_and_capabilities = null;
-        $this->listing_renderer       = null;
         $this->wordpress              = null;
     }
 
@@ -46,7 +45,6 @@ class AWPCP_MakeFeaturedListingTableActionTest extends AWPCP_UnitTestCase {
     private function get_test_subject() {
         return new AWPCP_MakeFeaturedListingTableAction(
             $this->roles_and_capabilities,
-            $this->listing_renderer,
             $this->wordpress
         );
     }

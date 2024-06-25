@@ -8,12 +8,12 @@ class AWPCP_CSV_Importer_Delegate {
     private $import_session;
 
     /**
-     * @var CSVImporterColumns
+     * @var AWPCP_CSVImporterColumns
      */
     private $columns;
 
     /**
-     * @var ListingsPayments
+     * @var AWPCP_ListingsPayments
      */
     private $listings_payments;
 
@@ -26,12 +26,12 @@ class AWPCP_CSV_Importer_Delegate {
     private $listings_logic;
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 
     /**
-     * @var Payments
+     * @var AWPCP_PaymentsAPI
      */
     private $payments;
 
@@ -201,7 +201,7 @@ class AWPCP_CSV_Importer_Delegate {
      * @since 4.0.0
      * @param $username string  User's username.
      * @param $contact_email    string  User's email address.
-     * @return User info object or false.
+     * @return object|null User info object or false.
      * @throws AWPCP_Exception
      */
     private function get_user_info( $username, $contact_email ) {
@@ -646,35 +646,18 @@ class AWPCP_CSV_Importer_Delegate {
 
         return $this->listings_logic->create_listing( $listing_data );
     }
-
-    private function get_extra_fields() {
-        if ( is_array( $this->extra_fields ) ) {
-            return $this->extra_fields;
-        }
-
-        $this->extra_fields = array();
-
-        if ( function_exists( 'awpcp_get_extra_fields' ) ) {
-            foreach ( awpcp_get_extra_fields() as $field ) {
-                $this->extra_fields[ $field->field_name ] = $field;
-            }
-        }
-
-        return $this->extra_fields;
-    }
 }
 
 /**
  * Validate extra field values and return value.
  *
- * @param name        field name
- * @param value       field value in CSV file
- * @param row         row number in CSV file
- * @param validate    type of validation
- * @param type        type of input field (Input Box, Textarea Input, Checkbox,
+ * @param string $name        field name
+ * @param string $value       field value in CSV file
+ * @param string $validate    type of validation
+ * @param string $type        type of input field (Input Box, Textarea Input, Checkbox,
  *                                         SelectMultiple, Select, Radio Button)
- * @param options     list of options for fields that accept multiple values
- * @param enforce     true if the Ad that's being imported belongs to the same category
+ * @param array  $options     list of options for fields that accept multiple values
+ * @param bool   $enforce     true if the Ad that's being imported belongs to the same category
  *                    that the extra field was assigned to, or if the extra field was
  *                    not assigned to any category.
  *                    required fields may be empty if enforce is false.

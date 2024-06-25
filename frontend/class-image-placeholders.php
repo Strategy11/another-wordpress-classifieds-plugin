@@ -21,14 +21,14 @@ class AWPCP_Image_Placeholders {
     private $attachments;
 
     /**
-     * @var ImageRenderer
+     * @var AWPCP_ImageRenderer
      */
     private $image_renderer;
 
     private $listing_renderer;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

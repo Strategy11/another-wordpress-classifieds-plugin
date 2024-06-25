@@ -64,11 +64,12 @@ class AWPCP_Missing_Pages_Finder {
             $page = isset( $existing_pages[ $page_id ] ) ? $existing_pages[ $page_id ] : null;
 
             if ( is_object( $page ) && isset( $page->status ) && $page->status != 'publish' ) {
-                $page->page = $page_ref;
-                $page->id = $page_id;
-                $page->label = $this->settings->get_option_label( awpcp_translate_page_ref_to_setting_name( $page_ref ) );
+                $page_array          = (array) $page;
+                $page_array['page']  = $page_ref;
+                $page_array['id']    = $page_id;
+                $page_array['label'] = $this->settings->get_option_label( awpcp_translate_page_ref_to_setting_name( $page_ref ) );
 
-                $missing_pages['not-published'][] = $page;
+                $missing_pages['not-published'][] = (object) $page;
             } elseif ( is_null( $page ) ) {
                 $page = new stdClass();
 

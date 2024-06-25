@@ -48,8 +48,6 @@ class AWPCP_RolesAndCapabilities {
     }
 
     /**
-     * @param array $administrator_roles    An array of names of roles that are
-     *                                      have administrator capabilities.
      * @since 4.0.0
      */
     public function get_subscriber_roles_names() {
@@ -121,7 +119,7 @@ class AWPCP_RolesAndCapabilities {
             return;
         }
 
-        if ( ! isset( $roles->role_objects ) || ! is_array( $roles->role_objects ) ) {
+        if ( ! is_array( $roles->role_objects ) ) {
             return;
         }
 

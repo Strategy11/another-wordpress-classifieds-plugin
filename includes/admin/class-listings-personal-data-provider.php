@@ -9,17 +9,17 @@
 class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderInterface {
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 
     /**
-     * @var ListingsLogic
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 
     /**
-     * @var AttachmentsCollection
+     * @var AWPCP_Attachments_Collection
      */
     private $attachments;
 
@@ -29,28 +29,22 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
     private $regions;
 
     /**
-     * @var DataFormatter
+     * @var AWPCP_DataFormatter
      */
     private $data_formatter;
-
-    /**
-     * @var wpdb
-     */
-    private $db;
 
     protected $listing_renderer;
 
     /**
      * @since 3.8.6
      */
-    public function __construct( $listings, $listing_renderer, $listings_logic, $attachments, $null, $data_formatter ) {
+    public function __construct( $listings, $listing_renderer, $listings_logic, $attachments, $data_formatter ) {
         $this->listings         = $listings;
         $this->listing_renderer = $listing_renderer;
         $this->listings_logic   = $listings_logic;
         $this->attachments      = $attachments;
         $this->regions          = awpcp_basic_regions_api();
         $this->data_formatter   = $data_formatter;
-        $this->db               = $GLOBALS['wpdb'];
     }
 
     /**

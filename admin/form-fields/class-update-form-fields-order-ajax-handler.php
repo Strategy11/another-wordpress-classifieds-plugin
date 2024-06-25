@@ -20,12 +20,12 @@ function awpcp_update_form_fields_order_ajax_handler() {
 class AWPCP_UpdateFormFieldsOrderAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
-     * @var ListingFormFields
+     * @var AWPCP_ListingFormFields
      */
     private $form_fields;
 
     /**
-     * @var Request
+     * @var AWPCP_Request
      */
     private $request;
 

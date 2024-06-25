@@ -26,7 +26,7 @@ class AWPCP_File_Handlers_Manager {
      * return an instance by calling a constructor function or loading it from
      * the plugin's container.
      *
-     * @param object AWPCP_UploadedFileLogic $uploaded_file     The uploaded file.
+     * @param AWPCP_UploadedFileLogic $uploaded_file     The uploaded file.
      * @throws AWPCP_Exception  When no handler can be found.
      */
     public function get_handler_for_file( $uploaded_file ) {

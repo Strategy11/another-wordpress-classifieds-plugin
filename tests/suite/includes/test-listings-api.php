@@ -99,10 +99,8 @@ class AWPCP_TestListingsAPI extends AWPCP_UnitTestCase {
             $this->listing_renderer,
             null,
             null,
-            null,
             $this->settings,
-            $this->wordpress,
-            null
+            $this->wordpress
         );
     }
 

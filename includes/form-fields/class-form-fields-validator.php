@@ -14,7 +14,7 @@ class AWPCP_FormFieldsValidator {
     private $authorization;
 
     /**
-     * @var RolesAndCapabilities
+     * @var AWPCP_RolesAndCapabilities
      */
     private $roles;
 

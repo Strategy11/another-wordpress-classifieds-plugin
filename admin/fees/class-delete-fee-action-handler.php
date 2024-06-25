@@ -2,11 +2,7 @@
 
 function awpcp_delete_fee_ajax_handler() {
     return new AWPCP_TableEntryActionAjaxHandler(
-        new AWPCP_Delete_Fee_Action_Handler(
-            awpcp_fees_admin_page(),
-            awpcp_template_renderer(),
-            awpcp_request()
-        ),
+        new AWPCP_Delete_Fee_Action_Handler(),
         awpcp_ajax_response()
     );
 }
@@ -14,13 +10,11 @@ function awpcp_delete_fee_ajax_handler() {
 class AWPCP_Delete_Fee_Action_Handler implements AWPCP_Table_Entry_Action_Handler {
 
     private $page;
-    private $template_renderer;
     private $request;
 
-    public function __construct( $page, $template_renderer, $request ) {
-        $this->page = $page;
-        $this->template_renderer = $template_renderer;
-        $this->request = $request;
+    public function __construct() {
+        $this->page    = awpcp_fees_admin_page();
+        $this->request = awpcp_request();
     }
 
     public function process_entry_action( $ajax_handler ) {

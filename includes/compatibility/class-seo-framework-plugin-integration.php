@@ -8,19 +8,6 @@
  *
  * @since 4.1.0
  */
-function awpcp_seo_framework_integration() {
-    $container             = awpcp()->container;
-    $attachment_properties = awpcp_attachment_properties();
-
-    return new AWPCP_SEOFrameworkIntegration(
-        $container['listing_post_type'],
-        awpcp_query(),
-        $container['AttachmentsCollection'],
-        $container['Request'],
-        $attachment_properties
-    );
-}
-
 class AWPCP_SEOFrameworkIntegration {
 
     private $current_listing;
@@ -31,21 +18,11 @@ class AWPCP_SEOFrameworkIntegration {
     private $listing_post_type;
 
     /**
-     * @var Query
-     */
-    private $query;
-
-    /**
-     * @var AttachmentsCollection
+     * @var AWPCP_Attachments_Collection
      */
     private $attachments;
 
     public $attachment_properties;
-
-    /**
-     * @var Request
-     */
-    private $request;
 
     public $title_builder;
 
@@ -55,12 +32,12 @@ class AWPCP_SEOFrameworkIntegration {
 
     public $attachment;
 
-    public function __construct( $listing_post_type, $query, $attachments, $request, $attachment_properties ) {
-        $this->listing_post_type     = $listing_post_type;
-        $this->query                 = $query;
-        $this->attachments           = $attachments;
-        $this->request               = $request;
-        $this->attachment_properties = $attachment_properties;
+    public function __construct() {
+        $container = awpcp()->container;
+
+        $this->listing_post_type     = $container['listing_post_type'];
+        $this->attachments           = $container['AttachmentsCollection'];
+        $this->attachment_properties = awpcp_attachment_properties();
     }
 
     /**

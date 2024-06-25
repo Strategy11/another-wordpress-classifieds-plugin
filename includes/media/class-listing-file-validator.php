@@ -75,7 +75,7 @@ abstract class AWPCP_ListingFileValidator {
     private function validate_file_size( $file, $upload_limits ) {
         $filesize = filesize( $file->get_path() );
 
-        if ( empty( $filesize ) || $filesize <= 0 ) {
+        if ( empty( $filesize ) ) {
             $message = __( 'There was an error trying to find out the file size of the file <filename>.', 'another-wordpress-classifieds-plugin' );
             $this->throw_file_validation_exception( $file, $message );
         }

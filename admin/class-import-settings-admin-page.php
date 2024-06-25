@@ -7,12 +7,7 @@
  * Constructor function for AWPCP_Import_Settings_Admin_Page class
  */
 function awpcp_import_settings_admin_page() {
-    return new AWPCP_Import_Settings_Admin_Page(
-        awpcp_settings_json_writer(),
-        awpcp_roles_and_capabilities(),
-        awpcp_template_renderer(),
-        awpcp_request()
-    );
+    return new AWPCP_Import_Settings_Admin_Page();
 }
 
 /**
@@ -26,38 +21,27 @@ class AWPCP_Import_Settings_Admin_Page {
     private $nonce_action = 'awpcp-import-settings';
 
     /**
-     * @var object
+     * @var AWPCP_Settings_JSON_Writer
      */
     private $settings_writer;
 
     /**
-     * @var object
-     */
-    private $capabilities;
-
-    /**
-     * @var object
+     * @var AWPCP_Template_Renderer
      */
     private $template_renderer;
 
     /**
-     * @var object
+     * @var AWPCP_Request
      */
     private $request;
 
     /**
      * Constructor.
-     *
-     * @param object $settings_writer   An instance of Settings Writer.
-     * @param object $capabilities      An instance of RolesAndCapabilities.
-     * @param object $template_renderer An instance of Template_Renderer.
-     * @param object $request           An instance of Request.
      */
-    public function __construct( $settings_writer, $capabilities, $template_renderer, $request ) {
-        $this->settings_writer   = $settings_writer;
-        $this->capabilities      = $capabilities;
-        $this->template_renderer = $template_renderer;
-        $this->request           = $request;
+    public function __construct() {
+        $this->settings_writer   = awpcp_settings_json_writer();
+        $this->template_renderer = awpcp_template_renderer();
+        $this->request           = awpcp_request();
     }
 
     /**

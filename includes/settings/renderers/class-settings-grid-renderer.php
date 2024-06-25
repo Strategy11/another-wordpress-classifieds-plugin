@@ -9,17 +9,17 @@
 class AWPCP_SettingsGridRenderer {
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 
     /**
-     * @var SettingsManager
+     * @var AWPCP_SettingsManager
      */
     private $settings_manager;
 
     /**
-     * @var TemplateRenderer
+     * @var AWPCP_Template_Renderer
      */
     private $template_renderer;
 

@@ -486,8 +486,6 @@ function awpcp_get_email_verification_url( $ad_id ) {
 
         return add_query_arg( urlencode_deep( $params ), home_url( 'index.php' ) );
     }
-
-    return user_trailingslashit( $url );
 }
 
 /**

@@ -9,27 +9,27 @@
 class AWPCP_ListingInfromationMetabox {
 
     /**
-     * @var ListingsPayments
+     * @var AWPCP_ListingsPayments
      */
     private $listings_payments;
 
     /**
-     * @var ListingRenderer
+     * @var AWPCP_ListingRenderer
      */
     private $listing_renderer;
 
     /**
-     * @var Payments
+     * @var AWPCP_PaymentsAPI
      */
     private $payments;
 
     /**
-     * @var TemplateRenderer
+     * @var AWPCP_Template_Renderer
      */
     private $template_renderer;
 
     /**
-     * @var Request
+     * @var AWPCP_Request
      */
     private $request;
 

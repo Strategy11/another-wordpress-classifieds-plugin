@@ -24,7 +24,7 @@ class AWPCP_ListingFieldsSubmitListingSection {
     private $form_fields_data;
 
     /**
-     * @var UsersCollection
+     * @var AWPCP_UsersCollection
      */
     private $users;
 

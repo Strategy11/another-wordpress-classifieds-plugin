@@ -9,12 +9,12 @@
 class AWPCP_AddMissingIsPaidMetaUpgradeTaskHandler implements AWPCP_Upgrade_Task_Runner {
 
     /**
-     * @var ListingRenderer
+     * @var AWPCP_ListingRenderer
      */
     private $listing_renderer;
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 

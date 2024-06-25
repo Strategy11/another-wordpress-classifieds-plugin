@@ -34,12 +34,12 @@ class AWPCP_Image_Attachment_Creator {
     private $attachments_logic;
 
     /**
-     * @var object AttachmentsCollection
+     * @var AWPCP_Attachments_Collection
      */
     private $attachments_collection;
 
     /**
-     * @var object ListingsAPI
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 

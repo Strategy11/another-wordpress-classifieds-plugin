@@ -9,12 +9,12 @@
 class AWPCP_LicenseSettingsRenderer {
 
     /**
-     * @var LicensesManager
+     * @var AWPCP_LicensesManager
      */
     private $licenses_manager;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

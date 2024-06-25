@@ -16,7 +16,7 @@ function awpcp_media_uploader_component() {
 class AWPCP_MediaUploaderComponent {
 
     /**
-     * @var JavaScript
+     * @var AWPCP_JavaScript
      */
     private $javascript;
 
@@ -26,7 +26,7 @@ class AWPCP_MediaUploaderComponent {
     private $echo = false;
 
     /**
-     * @param JavaScript $javascript    An instance of JavaScript.
+     * @param AWPCP_JavaScript $javascript    An instance of JavaScript.
      */
     public function __construct( $javascript ) {
         $this->javascript = $javascript;
@@ -62,13 +62,13 @@ class AWPCP_MediaUploaderComponent {
     /**
      * @param array $configuration  An array of configuration options.
      *
-     * @return string|void
+     * @return string
      */
     private function render_component( $configuration ) {
         $file = AWPCP_DIR . '/templates/components/media-uploader.tpl.php';
         if ( $this->echo ) {
             include $file;
-            return;
+            return '';
         }
 
         ob_start();

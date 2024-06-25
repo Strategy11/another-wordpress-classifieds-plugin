@@ -10,22 +10,22 @@
 class AWPCP_FacebookCacheHelper {
 
     /**
-     * @var FacebookIntegration
+     * @var AWPCP_FacebookIntegration
      */
     private $facebook_integration;
 
     /**
-     * @var ListingRenderer
+     * @var AWPCP_ListingRenderer
      */
     private $listing_renderer;
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $ads;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

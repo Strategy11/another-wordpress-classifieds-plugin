@@ -29,28 +29,16 @@ class AWPCP_ListingsCollection {
     /**
      * @var object
      */
-    private $settings;
-
-    /**
-     * @var object
-     */
     private $wordpress;
-
-    /**
-     * @var object
-     */
-    private $db;
 
     /**
      * @var AWPCP_RolesAndCapabilities $roles
      */
     private $roles;
 
-    public function __construct( $listing_post_type, $settings, $wordpress, $db, $roles ) {
+    public function __construct( $listing_post_type, $wordpress, $roles ) {
         $this->listing_post_type = $listing_post_type;
-        $this->settings          = $settings;
         $this->wordpress         = $wordpress;
-        $this->db                = $db;
         $this->roles             = $roles;
     }
 
@@ -820,43 +808,6 @@ class AWPCP_ListingsCollection {
         // TODO: run 'awpcp-ad-order-conditions' and 'awpcp-find-listings-order-conditions' filters?
         // I think is better to remove these filters and let modules filter the query before is executed.
         return $query;
-    }
-
-    /**
-     * @param array $query  An array of query vars.
-     */
-    private function execute_query( $query ) {
-        if ( isset( $query['_meta_order'] ) ) {
-            add_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ), 10, 2 );
-        }
-
-        if ( isset( $query['_custom_order'] ) ) {
-            add_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ), 10, 2 );
-        }
-
-        if ( isset( $query['regions'] ) ) {
-            add_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ), 10, 2 );
-        }
-
-        do_action( 'awpcp-before-execute-listings-query', $query );
-
-        $posts_query = $this->wordpress->create_posts_query( $query );
-
-        do_action( 'awpcp-after-execute-listings-query', $query );
-
-        if ( isset( $query['regions'] ) ) {
-            remove_filter( 'posts_clauses', array( $this, 'add_regions_clauses' ) );
-        }
-
-        if ( isset( $query['_meta_order'] ) ) {
-            remove_filter( 'posts_clauses', array( $this, 'add_orderby_multiple_meta_keys_clause' ) );
-        }
-
-        if ( isset( $query['_custom_order'] ) ) {
-            remove_filter( 'posts_clauses', array( $this, 'add_orderby_unsupported_properties_clause' ) );
-        }
-
-        return $posts_query;
     }
 
     /**

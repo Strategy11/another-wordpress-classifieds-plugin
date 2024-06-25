@@ -9,11 +9,6 @@
 class AWPCP_ListingFieldsMetabox {
 
     /**
-     * @var string
-     */
-    private $post_type;
-
-    /**
      * @var object
      */
     private $listings_logic;
@@ -59,7 +54,6 @@ class AWPCP_ListingFieldsMetabox {
     private $listing_authorization;
 
     /**
-     * @param string $post_type                 The post type associated with this metabox.
      * @param object $listings_logic            An instance of Listings API.
      * @param object $form_fields_data          An instance of Form Fields Data.
      * @param object $form_fields_validator     An instance of Form Fields Validator.
@@ -70,9 +64,7 @@ class AWPCP_ListingFieldsMetabox {
      * @param object $wordpress                 An instance of WordPress.
      * @since 4.0.0
      */
-    public function __construct( $post_type, $listings_logic, $form_fields_data, $form_fields_validator, $form_fields, $date_form_fields, $media_center, $template_renderer, $wordpress, $listing_authorization ) {
-        $this->post_type = $post_type;
-
+    public function __construct( $listings_logic, $form_fields_data, $form_fields_validator, $form_fields, $date_form_fields, $media_center, $template_renderer, $wordpress, $listing_authorization ) {
         $this->listings_logic        = $listings_logic;
         $this->form_fields_data      = $form_fields_data;
         $this->form_fields_validator = $form_fields_validator;

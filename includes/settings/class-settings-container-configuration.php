@@ -165,10 +165,9 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
-        $container['ButtonSettingsRenderer'] = $container->service( function( $container ) {
-            return new AWPCP_ButtonSettingsRenderer(
-                $container['Settings']
-            );
+        $container['ButtonSettingsRenderer'] = $container->service( function() {
+            // Deprecated: 4.3.4.
+            return new AWPCP_ButtonSettingsRenderer();
         } );
 
         $container['ReadingSettingsIntegration'] = $container->service( function( $container ) {

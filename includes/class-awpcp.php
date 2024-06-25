@@ -274,7 +274,7 @@ class AWPCP {
         $renderers['textarea']       = $this->container['TextareaSettingsRenderer'];
         $renderers['radio']          = $this->container['RadioSettingsRenderer'];
         $renderers['textfield']      = $this->container['TextfieldSettingsRenderer'];
-        $renderers['button']         = $this->container['ButtonSettingsRenderer'];
+        $renderers['button']         = new AWPCP_ButtonSettingsRenderer();
         $renderers['password']       = $this->container['TextfieldSettingsRenderer'];
         $renderers['choice']         = $this->container['ChoiceSettingsRenderer'];
         $renderers['categories']     = $this->container['CategoriesSettingsRenderer'];
@@ -489,6 +489,11 @@ class AWPCP {
     /**
      * Make sure disabled posts are returned in the posts array
      * in order to avoid a not found page and display a message instead.
+     *
+     * @param bool     $handle_404
+     * @param WP_Query $wp_query
+     *
+     * @return bool
      */
     public function redirect_deleted_ads( $handle_404, $wp_query ) {
         $classifieds_page_url = awpcp_get_main_page_url();
@@ -520,15 +525,21 @@ class AWPCP {
 
     /**
      * Return expired ad so owner can renew.
+     *
+     * @return bool
      */
     public function expired_ads( $handle_404, $query ) {
         $post_id = $query->get( 'p' );
         $post_type = $query->get('post_type');
+        if ( $post_type !== AWPCP_LISTING_POST_TYPE ) {
+            return false;
+        }
+
         $author_id = get_current_user_id();
         $post    = get_post( $post_id );
         $expired = get_post_meta($post_id, '_awpcp_expired', true);
         // get our post instead and return it as the result...
-        if ( ! empty( $post ) && $post_type === AWPCP_LISTING_POST_TYPE && $expired && $post->post_author === $author_id && $post->post_status === 'disabled') {
+        if ( $post && $expired && absint( $post->post_author ) === $author_id && $post->post_status === 'disabled' ) {
             $query->posts = array($post);
             $query->post = $post;
             $query->post_count = 1;
@@ -1595,7 +1606,6 @@ class AWPCP {
                 $this->container['ListingRenderer'],
                 $this->container['ListingsLogic'],
                 $this->container['AttachmentsCollection'],
-                '',
                 $this->get_data_formatter()
             );
         }
@@ -1775,7 +1785,7 @@ class AWPCP {
 
     public function register_listing_actions( $actions, $listing ) {
         $this->maybe_add_listing_action( $actions, $listing, new AWPCP_DeleteListingAction() );
-        $this->maybe_add_listing_action( $actions, $listing, new AWPCP_RenewListingAction( awpcp_wordpress() ) );
+        $this->maybe_add_listing_action( $actions, $listing, new AWPCP_RenewListingAction() );
         return $actions;
     }
 

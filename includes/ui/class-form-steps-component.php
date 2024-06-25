@@ -6,7 +6,7 @@
 class AWPCP_FormStepsComponent {
 
     /**
-     * @var FormSteps
+     * @var AWPCP_ImporterFormSteps
      */
     private $form_steps;
 
@@ -15,7 +15,7 @@ class AWPCP_FormStepsComponent {
      */
     private $echo = false;
 
-    public function __construct( AWPCP_FormSteps $form_steps ) {
+    public function __construct( $form_steps ) {
         $this->form_steps = $form_steps;
     }
 

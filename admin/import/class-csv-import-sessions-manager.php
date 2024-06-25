@@ -5,20 +5,10 @@
 
 class AWPCP_CSV_Import_Sessions_Manager {
 
-    private $csv_importer_factory;
-    private $csv_importer_delegate_factory;
-    private $csv_reader_factory;
-
     public $settings;
 
-    private $wordpress;
-
     public function __construct() {
-        $this->csv_importer_factory          = new AWPCP_CSV_Importer_Factory();
-        $this->csv_importer_delegate_factory = awpcp()->container['ImporterDelegateFactory'];
-        $this->csv_reader_factory            = new AWPCP_CSV_Reader_Factory();
         $this->settings                      = awpcp()->settings;
-        $this->wordpress                     = new AWPCP_WordPress();
     }
 
     public function get_current_import_session() {
@@ -53,7 +43,7 @@ class AWPCP_CSV_Import_Sessions_Manager {
 
         $settings['working_directory'] = $this->make_absolute_path( $settings['working_directory'] );
 
-        return new AWPCP_CSV_Import_Session( $settings, null );
+        return new AWPCP_CSV_Import_Session( $settings );
     }
 
     private function make_absolute_path( $relative_path ) {

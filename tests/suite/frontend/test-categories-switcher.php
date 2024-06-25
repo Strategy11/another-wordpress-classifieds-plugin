@@ -42,7 +42,7 @@ class AWPCP_Test_Categories_Switcher extends AWPCP_UnitTestCase {
         $browse_listings_page_id = wp_insert_post( $browse_listings_page );
         awpcp_update_plugin_page_id( 'browse-ads-page-name', $browse_listings_page_id );
 
-        $selector = new AWPCP_Categories_Switcher( $this->query, $this->settings, $this->request );
+        $selector = new AWPCP_Categories_Switcher();
         $content = $selector->render( array() );
 
         $this->assertContains( awpcp_get_browse_categories_page_url(), $content );
@@ -55,7 +55,7 @@ class AWPCP_Test_Categories_Switcher extends AWPCP_UnitTestCase {
     public function test_render_in_browse_listings_or_browse_categories_pages() {
         Phake::when( $this->query )->is_browse_listings_page->thenReturn( true );
 
-        $selector = new AWPCP_Categories_Switcher( $this->query, $this->settings, $this->request );
+        $selector = new AWPCP_Categories_Switcher();
         $content = $selector->render( array() );
 
         $this->assertContains( awpcp_current_url(), $content );
@@ -71,7 +71,7 @@ class AWPCP_Test_Categories_Switcher extends AWPCP_UnitTestCase {
         Phake::when( $this->request )->post( 'results' )->thenReturn( $results );
         Phake::when( $this->request )->get( 'results' )->thenReturn( $results );
 
-        $selector = new AWPCP_Categories_Switcher( $this->query, $this->settings, $this->request );
+        $selector = new AWPCP_Categories_Switcher();
         $content = $selector->render( array() );
 
         $this->assertNotContains( sprintf( 'name="offset" value="%d"', $results ), $content );

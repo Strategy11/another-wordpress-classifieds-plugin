@@ -9,7 +9,7 @@
 class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 
     /**
-     * @param object $container     An instance of Container.
+     * @param AWPCP_Container $container     An instance of Container.
      */
     public function modify( $container ) {
         $container['Admin'] = $container->service( function( $container ) {
@@ -187,7 +187,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['MakeFeaturedListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MakeFeaturedListingTableAction(
-                $container['ListingRenderer'],
                 $container['RolesAndCapabilities'],
                 $container['WordPress']
             );
@@ -195,7 +194,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['MakeStandardListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MakeStandardListingTableAction(
-                $container['ListingRenderer'],
                 $container['RolesAndCapabilities'],
                 $container['WordPress']
             );
@@ -203,7 +201,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['MarkReviewedListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MarkReviewedListingTableAction(
-                $container['ListingRenderer'],
                 $container['RolesAndCapabilities'],
                 $container['WordPress']
             );
@@ -212,7 +209,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['MarkPaidListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MarkPaidListingTableAction(
                 $container['ListingsLogic'],
-                $container['ListingRenderer'],
                 $container['RolesAndCapabilities']
             );
         } );
@@ -220,7 +216,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['MarkVerifiedListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_MarkVerifiedListingTableAction(
                 $container['ListingsLogic'],
-                $container['ListingRenderer'],
                 $container['RolesAndCapabilities']
             );
         } );
@@ -236,16 +231,14 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
         $container['SendToFacebookPageListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_SendToFacebookPageListingTableAction(
                 $container['SendListingToFacebookHelper'],
-                $container['RolesAndCapabilities'],
-                $container['WordPress']
+                $container['RolesAndCapabilities']
             );
         } );
 
         $container['SendToFacebookGroupListingTableAction'] = $container->service( function( $container ) {
             return new AWPCP_SendToFacebookGroupListingTableAction(
                 $container['SendListingToFacebookHelper'],
-                $container['RolesAndCapabilities'],
-                $container['WordPress']
+                $container['RolesAndCapabilities']
             );
         } );
 
@@ -322,7 +315,6 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['ListingFieldsMetabox'] = $container->service( function( $container ) {
             return new AWPCP_ListingFieldsMetabox(
-                $container['listing_post_type'],
                 $container['ListingsLogic'],
                 $container['FormFieldsData'],
                 $container['FormFieldsValidator'],

@@ -11,17 +11,17 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
     private $template = 'frontend/form-fields/terms-of-service-form-field.tpl.php';
 
     /**
-     * @var RolesAndCapabilities
+     * @var AWPCP_RolesAndCapabilities
      */
     private $roles;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 
     /**
-     * @var TemplateRenderer
+     * @var AWPCP_Template_Renderer
      */
     private $template_renderer;
 

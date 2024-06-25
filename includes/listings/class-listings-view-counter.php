@@ -8,14 +8,12 @@
  */
 class AWPCP_ListingsViewCounter extends AWPCP_AjaxHandler {
 
-    private $response;
     private $request;
     private $listings_logic;
 
     public function __construct( $response, $request, $listings_login ) {
         parent::__construct( $response );
         $this->request        = $request;
-        $this->response       = $response;
         $this->listings_logic = $listings_login;
     }
 

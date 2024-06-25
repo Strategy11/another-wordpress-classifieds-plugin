@@ -8,14 +8,8 @@
  */
 class AWPCP_FormFieldsTable extends WP_List_Table {
 
-    private $page;
-    private $request;
-
-    public function __construct( $page, $request ) {
+    public function __construct() {
         parent::__construct( array( 'plural' => 'awpcp-form-fields-table' ) );
-
-        $this->page    = $page;
-        $this->request = $request;
     }
 
     public function prepare( $items, $total_items ) {
@@ -41,9 +35,12 @@ class AWPCP_FormFieldsTable extends WP_List_Table {
         return $columns;
     }
 
+    /**
+     * @param object $item
+     */
     public function column_cb( $item ) {
         $handle   = '<div class="awpcp-sortable-handle"><div class="spinner awpcp-spinner awpcp-form-fields-table-spinner"></div></div>';
-        $checkbox = '<input type="checkbox" value="' . $item->get_slug() . '" name="selected[]" />';
+        $checkbox = '<input type="checkbox" value="' . esc_attr( $item->get_slug() ) . '" name="selected[]" />';
 
         return $handle . $checkbox;
     }
@@ -56,6 +53,9 @@ class AWPCP_FormFieldsTable extends WP_List_Table {
         return $item->get_slug();
     }
 
+    /**
+     * @param object $item The current item
+     */
     public function single_row( $item ) {
         static $row_class = '';
         $row_class = $row_class === '' ? 'alternate' : '';
@@ -65,8 +65,7 @@ class AWPCP_FormFieldsTable extends WP_List_Table {
         echo '<tr id="field-' . esc_attr( $item->get_slug() ) . '" data-id="' . esc_attr( $item->get_slug() ) . '"';
         echo ' class="' . esc_attr( $row_class ) . '"';
         echo '>';
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $this->single_row_columns( $item );
+        $this->single_row_columns( $item );
         echo '</tr>';
     }
 }

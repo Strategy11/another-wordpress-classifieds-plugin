@@ -129,7 +129,8 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
                 $message = __( 'All Ads associated to Fee %1$s have been associated with Fee %2$s.', 'another-wordpress-classifieds-plugin' );
                 $message = sprintf( $message, '<strong>' . $fee->name . '</strong>', '<strong>' . $recipient->name . '</strong>' );
                 awpcp_flash( $message );
-            } else {
+                /** @phpstan-ignore-next-line */
+            } elseif ( ! empty( $errors ) ) {
                 foreach ( $errors as $error ) {
                     awpcp_flash( $error, 'error' );
                 }

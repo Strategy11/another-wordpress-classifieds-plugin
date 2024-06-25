@@ -221,6 +221,9 @@ class AWPCP_PaymentsAPI {
         return $this->types[$term_type];
     }
 
+    /**
+     * @return object|null
+     */
     public function get_payment_term($term_id, $term_type) {
         if (!isset($this->types[$term_type]))
             return null;

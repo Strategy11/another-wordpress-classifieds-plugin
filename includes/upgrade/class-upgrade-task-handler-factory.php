@@ -9,7 +9,7 @@
 class AWPCP_Upgrade_Task_Handler_Factory {
 
     /**
-     * @var Container
+     * @var AWPCP_Container
      */
     private $container;
 

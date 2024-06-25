@@ -9,7 +9,7 @@
 class AWPCP_ListTableSearchHandler {
 
     /**
-     * @var object
+     * @var array
      */
     private $search_modes;
 
@@ -29,7 +29,6 @@ class AWPCP_ListTableSearchHandler {
     }
 
     /**
-     * @param object $query     An instance of WP_Query.
      * @since 4.0.14
      */
     public function enqueue_scripts() {

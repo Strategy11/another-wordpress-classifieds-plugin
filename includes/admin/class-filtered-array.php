@@ -14,7 +14,7 @@ class AWPCP_FilteredArray implements ArrayAccess, IteratorAggregate {
     private $filter_name;
 
     /**
-     * @var array
+     * @var array|null
      */
     private $items;
 
@@ -70,7 +70,7 @@ class AWPCP_FilteredArray implements ArrayAccess, IteratorAggregate {
     }
 
     /**
-     * @param mied $offset  Offset to unset.
+     * @param mixed $offset  Offset to unset.
      * @since 4.0.0
      * @return void
      */

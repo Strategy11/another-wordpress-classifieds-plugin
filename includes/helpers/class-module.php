@@ -45,6 +45,7 @@ abstract class AWPCP_Module {
             throw new AWPCP_Exception( esc_html( sprintf( '%s is outdated.', $this->name ) ) );
         }
 
+        // @phpstan-ignore-next-line
         if ( ! $loaded ) {
             $this->load_dependencies();
         }

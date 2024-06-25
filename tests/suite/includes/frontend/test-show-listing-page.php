@@ -17,7 +17,6 @@ class AWPCP_ShowListingPageTest extends AWPCP_UnitTestCase {
         parent::setUp();
 
         $this->listings_content_renderer = Mockery::mock( 'AWPCP_ListingsContentRenderer' );
-        $this->listings_logic            = Mockery::mock( 'AWPCP_ListingsAPI' );
         $this->listings_collection       = Mockery::mock( 'AWPCP_ListingsCollection' );
         $this->request                   = Mockery::mock( 'AWPCP_Request' );
     }
@@ -57,7 +56,6 @@ class AWPCP_ShowListingPageTest extends AWPCP_UnitTestCase {
     private function get_test_subject() {
         return new AWPCP_Show_Ad_Page(
             $this->listings_content_renderer,
-            $this->listings_logic,
             $this->listings_collection,
             $this->request
         );

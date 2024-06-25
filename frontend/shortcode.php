@@ -353,7 +353,7 @@ function awpcpui_process( $awpcppagename ) {
             __( 'Choose pages now', 'another-wordpress-classifieds-plugin' ) .
             '</a>';
 
-    } elseif ( ! $isclassifiedpage && ! $isadmin ) {
+    } elseif ( ! $isclassifiedpage ) {
         $output .= __( 'You currently have no classifieds', 'another-wordpress-classifieds-plugin' );
 
     } elseif ( $layout === 2 ) {

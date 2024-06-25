@@ -75,9 +75,7 @@ class AWPCP_ListingsCollectionTest extends AWPCP_UnitTestCase {
     private function get_test_subject() {
         return new AWPCP_ListingsCollection(
             'awpcp_listing',
-            null,
             $this->wordpress,
-            null,
             $this->roles
         );
     }

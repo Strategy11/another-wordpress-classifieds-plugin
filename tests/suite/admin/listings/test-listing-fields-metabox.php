@@ -22,7 +22,6 @@ class AWPCP_ListingFieldsMetaboxTest extends AWPCP_UnitTestCase {
             'post_status' => 'draft',
         );
 
-        $this->post_type             = 'post_type';
         $this->listings_logic        = Mockery::mock( 'AWPCP_Listings_API' );
         $this->form_fields_data      = Mockery::mock( 'AWPCP_FormFields' );
         $this->form_fields_validator = Mockery::mock( 'AWPCP_FormFieldsValidator' );
@@ -102,7 +101,6 @@ class AWPCP_ListingFieldsMetaboxTest extends AWPCP_UnitTestCase {
      */
     private function get_test_subject() {
         return new AWPCP_ListingFieldsMetabox(
-            $this->post_type,
             $this->listings_logic,
             $this->form_fields_data,
             $this->form_fields_validator,

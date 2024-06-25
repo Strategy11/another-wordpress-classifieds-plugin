@@ -10,7 +10,7 @@
 class AWPCP_ArrayOptions {
 
     /**
-     * @var WordPress
+     * @var AWPCP_WordPress
      */
     private $wordpress;
 

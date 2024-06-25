@@ -9,12 +9,12 @@
 class AWPCP_ListingsTableNavHandler {
 
     /**
-     * @var HTML Renderer
+     * @var AWPCP_HTML_Renderer
      */
     private $html_renderer;
 
     /**
-     * @param HTMLRenderer $html_renderer  An instance of HTML Renderer.
+     * @param AWPCP_HTML_Renderer $html_renderer  An instance of HTML Renderer.
      * @since 4.0.0
      */
     public function __construct( $html_renderer ) {

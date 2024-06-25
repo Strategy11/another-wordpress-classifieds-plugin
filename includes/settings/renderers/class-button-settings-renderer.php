@@ -9,18 +9,6 @@
 class AWPCP_ButtonSettingsRenderer {
 
     /**
-     * @var Settings
-     */
-    private $settings;
-
-    /**
-     * @since 4.0.0
-     */
-    public function __construct( $settings ) {
-        $this->settings = $settings;
-    }
-
-    /**
      * @since 4.0.0
      */
     public function render_setting( $setting, $config ) {

@@ -27,17 +27,17 @@ class AWPCP_DebugAdminPage {
     private $plugin;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 
     /**
-     * @var SettingsManager
+     * @var AWPCP_SettingsManager
      */
     private $settings_manager;
 
     /**
-     * @var TemplateRenderer
+     * @var AWPCP_Template_Renderer
      */
     protected $template_renderer;
 

@@ -9,12 +9,12 @@
 class AWPCP_ExecuteListingActionAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
-     * @var ListingsLogic
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 
     /**
-     * @var Request
+     * @var AWPCP_Request
      */
     private $request;
 

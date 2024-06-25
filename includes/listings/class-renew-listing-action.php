@@ -8,12 +8,6 @@
  */
 class AWPCP_RenewListingAction extends AWPCP_ListingAction {
 
-    private $wordpress;
-
-    public function __construct( $wordpress ) {
-        $this->wordpress = $wordpress;
-    }
-
     public function is_enabled_for_listing( $listing ) {
         if ( awpcp_listing_renderer()->has_expired_or_is_about_to_expire( $listing ) ) {
             return true;

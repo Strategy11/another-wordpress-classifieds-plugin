@@ -9,12 +9,12 @@
 class AWPCP_SettingsValidator {
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 
     /**
-     * @var Request.
+     * @var AWPCP_Request.
      */
     private $request;
 

@@ -14,7 +14,7 @@ class AWPCP_SettingsRenderer {
     private $settings_renderers;
 
     /**
-     * @var SettingsManager
+     * @var AWPCP_SettingsManager
      */
     private $settings_manager;
 

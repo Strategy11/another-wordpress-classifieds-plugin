@@ -11,7 +11,7 @@
 class AWPCP_CategoryPresenter {
 
     /**
-     * @var object CategoriesCollection
+     * @var AWPCP_Categories_Collection
      */
     private $categories_collection;
 

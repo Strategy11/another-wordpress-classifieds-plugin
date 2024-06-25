@@ -151,7 +151,7 @@ class AWPCP_SendEmails {
 
     /**
      * @since 4.1.7
-     * @return string
+     * @return string|float
      */
     private static function days_before_listing_expires( $listing ) {
         $listing_renderer = awpcp_listing_renderer();

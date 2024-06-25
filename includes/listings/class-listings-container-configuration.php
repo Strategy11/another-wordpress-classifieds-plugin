@@ -102,9 +102,7 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
             function( $container ) {
                 return new AWPCP_ListingsCollection(
                     $container['listing_post_type'],
-                    $container['Settings'],
                     $container['WordPress'],
-                    $container['wpdb'],
                     $container['RolesAndCapabilities']
                 );
             }
@@ -122,10 +120,8 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 $container['ListingRenderer'],
                 $container['ListingsCollection'],
                 $container['RolesAndCapabilities'],
-                awpcp_request(),
                 $container['Settings'],
-                $container['WordPress'],
-                $GLOBALS['wpdb']
+                $container['WordPress']
             );
         } );
 

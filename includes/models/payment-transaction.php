@@ -153,6 +153,9 @@ class AWPCP_Payment_Transaction {
         return $results;
     }
 
+    /**
+     * @return AWPCP_Payment_Transaction|null
+     */
     public static function find_by_id($id) {
         global $wpdb;
 
@@ -268,7 +271,7 @@ class AWPCP_Payment_Transaction {
         $money = (float) $totals['money'];
         // $credits = (int) $totals['credits'];
 
-        if ($items > 0 && $money <= 0.0 && $has_enough_credit) {
+        if ( $money <= 0.0 ) {
             $this->payment_status = self::PAYMENT_STATUS_NOT_REQUIRED;
         }
 

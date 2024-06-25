@@ -17,7 +17,6 @@ class AWPCP_SendToFacebookPageListingTableActionTest extends AWPCP_UnitTestCase 
         parent::setUp();
         $this->facebook_helper        = null;
         $this->roles_and_capabilities = Mockery::mock( 'AWPCP_RolesAndCapabilities' );
-        $this->wordpress              = null;
     }
 
     /**
@@ -44,8 +43,7 @@ class AWPCP_SendToFacebookPageListingTableActionTest extends AWPCP_UnitTestCase 
     private function get_test_subject() {
         return new AWPCP_SendToFacebookPageListingTableAction(
             $this->facebook_helper,
-            $this->roles_and_capabilities,
-            $this->wordpress
+            $this->roles_and_capabilities
         );
     }
 

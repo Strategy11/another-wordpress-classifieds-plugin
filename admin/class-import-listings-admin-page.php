@@ -141,7 +141,7 @@ class AWPCP_ImportListingsAdminPage {
                 $images_directory = $this->get_images_directory( $working_directory );
 
                 $zip = new PclZip( "$working_directory/images.zip" );
-                $zip_contents = $zip->extract( PCLZIP_OPT_EXTRACT_AS_STRING );
+                $zip_contents = $zip->extract();
 
                 if ( ! is_array( $zip_contents ) ) {
                     $form_errors['zip_file'] = __( 'Incompatible ZIP Archive', 'another-wordpress-classifieds-plugin' );
@@ -181,7 +181,8 @@ class AWPCP_ImportListingsAdminPage {
         } elseif ( $form_data['images_source'] == 'local' ) {
             $local_directory = realpath( $uploads_dir . DIRECTORY_SEPARATOR . str_replace( '..', '', $form_data['local_path'] ) );
 
-            if ( strpos( $local_directory, $uploads_dir ) !== 0 || strpos( $local_directory, $uploads_dir ) === false ) {
+            $in_uploads = strpos( $local_directory, $uploads_dir );
+            if ( absint( $in_uploads ) > 0 || $in_uploads === false ) {
                 $form_errors['local_path'] = __( 'The specified directory is not a valid path.', 'another-wordpress-classifieds-plugin' );
             } elseif ( ! is_dir( $local_directory ) ) {
                 $form_errors['local_path'] = __( 'The specified directory does not exists.', 'another-wordpress-classifieds-plugin' );

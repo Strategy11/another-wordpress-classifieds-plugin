@@ -14,12 +14,12 @@ class AWPCP_RemoveListingAttachmentsService {
     private $listing_post_type;
 
     /**
-     * @var Attachments_Collection
+     * @var AWPCP_Attachments_Collection
      */
     private $attachments;
 
     /**
-     * @var WordPress
+     * @var AWPCP_WordPress
      */
     private $wordpress;
 

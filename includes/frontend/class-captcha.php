@@ -9,17 +9,17 @@
 class AWPCP_CAPTCHA {
 
     /**
-     * @var CATPCHAProviderInterface
+     * @var AWPCP_ReCAPTCHAProvider|AWPCP_DefaultCAPTCHAProvider
      */
     private $provider;
 
     /**
-     * @var RolesAndCapabilities
+     * @var AWPCP_RolesAndCapabilities
      */
     private $roles;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

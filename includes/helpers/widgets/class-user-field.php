@@ -20,9 +20,7 @@ abstract class AWPCP_UserField {
     protected function find_selected_user( $args ) {
         if ( ! is_null( $args['selected'] ) && empty( $args['selected'] ) ) {
             $current_user = wp_get_current_user();
-            if ( $current_user ) {
-                $args['selected'] = $current_user->ID;
-            }
+            $args['selected'] = $current_user->ID;
         }
 
         return $args['selected'];

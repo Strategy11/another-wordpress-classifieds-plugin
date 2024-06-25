@@ -4,10 +4,7 @@
  * @since 3.5.3
  */
 function awpcp_pages_creator() {
-    return new AWPCP_Pages_Creator(
-        awpcp_missing_pages_finder(),
-        awpcp()->settings
-    );
+    return new AWPCP_Pages_Creator();
 }
 
 /**
@@ -16,19 +13,16 @@ function awpcp_pages_creator() {
 class AWPCP_Pages_Creator {
 
     private $missing_pages_finder;
-    private $settings;
 
-    public function __construct( $missing_pages_finder, $settings ) {
-        $this->missing_pages_finder = $missing_pages_finder;
-        $this->settings = $settings;
+    public function __construct() {
+        $this->missing_pages_finder = awpcp_missing_pages_finder();
     }
 
     public function restore_missing_pages() {
         $shortcodes = awpcp_pages();
         $multiple_pages = array();
 
-        // Attempt to find existing plugin pages that haven't been assigned in the
-        // Page Settings.
+        // Attempt to find existing plugin pages that haven't been assigned in the Page Settings.
         foreach( $shortcodes as $refname => $properties ) {
             if ( awpcp_get_page_id_by_ref( $refname ) ) {
                 continue;

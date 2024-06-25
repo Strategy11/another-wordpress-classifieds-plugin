@@ -8,7 +8,7 @@
  *
  * @since 2.1.1
  *
- * @return VERIFIED, INVALID or ERROR
+ * @return string VERIFIED, INVALID or ERROR
  */
 function awpcp_paypal_verify_received_data_with_curl($postfields='', $cainfo=true, &$errors=array()) {
     if (get_awpcp_option('paylivetestmode') == 1) {
@@ -132,7 +132,7 @@ function awpcp_paypal_verify_received_data_with_fsockopen($content, &$errors=arr
  *
  * @since 2.0.7
  *
- * @return VERIFIED, INVALID or ERROR
+ * @return string VERIFIED, INVALID or ERROR
  */
 function awpcp_paypal_verify_received_data($data=array(), &$errors=array()) {
     $content = 'cmd=_notify-validate';

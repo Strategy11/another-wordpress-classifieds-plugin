@@ -17,24 +17,24 @@ function awpcp_send_to_facebook_helper() {
 class AWPCP_SendToFacebookHelper {
 
     /**
-     * @var Facebook
+     * @var AWPCP_Facebook
      */
     private $facebook;
 
     /**
-     * @var FacebookIntegration
+     * @var AWPCP_FacebookIntegration
      */
     private $facebook_integration;
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 
     public $listing_renderer;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 
@@ -313,36 +313,5 @@ class AWPCP_SendToFacebookHelper {
         );
 
         return true;
-    }
-
-    /**
-     * Users should choose Friends (or something more public), not Only Me, when the application
-     * request the permission, to avoid error:
-     *
-     * OAuthException: (#200) Insufficient permission to post to target on behalf of the viewer.
-     *
-     * http://stackoverflow.com/a/19653226/201354
-     *
-     * @since 3.8.6
-     */
-    private function send_listing_to_facebook_group_using_webhook( $listing ) {
-        $webhooks = $this->get_webhooks_for_facebook_group_integration( $listing );
-
-        if ( empty( $webhooks ) ) {
-            throw new AWPCP_Exception( 'There is no webhook configured to send ads to a Facebook Group.' );
-        }
-
-        return $this->process_webhooks( $webhooks );
-    }
-
-    /**
-     * We expect to add support for sending ads to Facebook Groups using webhooks
-     * in the near future as the corresponding Zapier and IFTTT integrations
-     * get approved.
-     *
-     * @since 3.8.6
-     */
-    private function get_webhooks_for_facebook_group_integration( $listing ) {
-        return array();
     }
 }

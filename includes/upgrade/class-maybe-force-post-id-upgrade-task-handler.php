@@ -12,7 +12,7 @@
 class AWPCP_MaybeForcePostIDUpgradeTaskHandler implements AWPCP_Upgrade_Task_Runner {
 
     /**
-     * @var WordPress
+     * @var AWPCP_WordPress
      */
     private $wordpress;
 

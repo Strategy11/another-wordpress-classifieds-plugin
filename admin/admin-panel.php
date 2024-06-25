@@ -479,10 +479,10 @@ class AWPCP_AdminPanel {
     /**
      * Add settings link on plugins page
      *
-     * @author Aman Saini
      * @since  3.6.5
-     * @param  Array  $links
-     * @param  String $file
+     *
+     * @param array  $links
+     * @param string $file
      */
     public function add_settings_link( $links, $file ) {
         if ( $this->upgrade_tasks->has_pending_tasks( array( 'context' => 'plugin', 'blocking' => true ) ) ) {

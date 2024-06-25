@@ -17,12 +17,15 @@ class AWPCP_ListingsAPI {
     private $listing_renderer;
     private $listings;
     private $roles;
+
+    /**
+     * var AWPCP_Request
+     */
     private $request = null;
     private $settings = null;
     private $wordpress;
-    private $db;
 
-    public function __construct( $attachments_logic, $attachments, $listing_renderer, $listings, $roles, /*AWPCP_Request*/ $request, $settings, $wordpress, $db ) {
+    public function __construct( $attachments_logic, $attachments, $listing_renderer, $listings, $roles, $settings, $wordpress ) {
         $this->attachments_logic = $attachments_logic;
         $this->attachments = $attachments;
         $this->listing_renderer = $listing_renderer;
@@ -30,8 +33,7 @@ class AWPCP_ListingsAPI {
         $this->roles             = $roles;
         $this->settings = $settings;
         $this->wordpress = $wordpress;
-        $this->request = $request;
-        $this->db = $db;
+        $this->request   = awpcp_request();
 
         add_action( 'template_redirect', array( $this, 'dispatch' ) );
     }
@@ -452,8 +454,8 @@ class AWPCP_ListingsAPI {
      *
      * @since 4.0.0
      *
-     * @param object $payment_term The payment term used to calculate the dates.
-     * @param string $start_date   Optional. If given, the end date will be
+     * @param object|false $payment_term The payment term used to calculate the dates.
+     * @param string|null  $start_date   Optional. If given, the end date will be
      *                             calculated adding the duration of the payment
      *                             term to the $start_date.
      *
@@ -597,7 +599,7 @@ class AWPCP_ListingsAPI {
      *
      * @since 4.0.0
      *
-     * @return true if the listing was enabled, false otherwise.
+     * @return bool if the listing was enabled, false otherwise.
      */
     public function enable_listing_without_triggering_actions( $listing ) {
         if ( apply_filters( 'awpcp_before_approve_ad', $this->listing_renderer->is_public( $listing ) ) ) {

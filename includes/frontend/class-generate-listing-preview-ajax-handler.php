@@ -9,17 +9,17 @@
 class AWPCP_GenerateListingPreviewAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
-     * @var ListingsContentRenderer
+     * @var AWPCP_ListingsContentRenderer
      */
     private $listings_content_renderer;
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 
     /**
-     * @var Request
+     * @var AWPCP_Request
      */
     private $request;
 

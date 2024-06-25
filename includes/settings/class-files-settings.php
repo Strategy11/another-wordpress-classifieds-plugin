@@ -12,7 +12,7 @@ class AWPCP_FilesSettings {
     private $file_types;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

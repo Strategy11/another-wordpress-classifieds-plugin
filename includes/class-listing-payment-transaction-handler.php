@@ -20,7 +20,7 @@ class AWPCP_ListingPaymentTransactionHandler {
     private $listings_logic;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

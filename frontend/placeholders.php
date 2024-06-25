@@ -601,6 +601,8 @@ function awpcp_do_placeholder_location( $ad, $placeholder ) {
     $countries = array();
     $places    = array();
 
+    $replacements = array();
+
     if ( get_awpcp_option( 'show-city-field-before-county-field' ) ) {
         $order = array( 'county', 'city', 'state', 'country' );
     } else {

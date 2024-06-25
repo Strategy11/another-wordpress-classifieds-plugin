@@ -9,12 +9,7 @@
 class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
-     * @var string
-     */
-    private $listing_category_taxonomy;
-
-    /**
-     * @var ListingsAPI
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 
@@ -24,17 +19,17 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     public $listing_renderer;
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 
     /**
-     * @var ListingsPaymentTransactions
+     * @var AWPCP_ListingsPaymentTransactions
      */
     private $listings_transactions;
 
     /**
-     * @var FormFieldsValidator
+     * @var AWPCP_FormFieldsValidator
      */
     private $form_fields_validator;
 
@@ -44,7 +39,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     protected $payment_information_validator;
 
     /**
-     * @var ListingPostedData
+     * @var AWPCP_ListingPostedData
      */
     private $posted_data;
 
@@ -54,7 +49,7 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     protected $roles;
 
     /**
-     * @var AWPCP_Settings
+     * @var AWPCP_Settings_API
      */
     public $settings;
 
@@ -62,7 +57,6 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
      * @since 4.0.0
      */
     public function __construct(
-        $listing_category_taxonomy,
         $listings_logic,
         $listing_renderer,
         $listings,
@@ -76,7 +70,6 @@ class AWPCP_SaveListingInformationAjaxHandler extends AWPCP_AjaxHandler {
     ) {
         parent::__construct( $response );
 
-        $this->listing_category_taxonomy     = $listing_category_taxonomy;
         $this->listings_logic                = $listings_logic;
         $this->listing_renderer              = $listing_renderer;
         $this->listings                      = $listings;
