@@ -24,7 +24,7 @@ class AWPCP_Page {
     protected $template = 'frontend/templates/page.tpl.php';
 
     /**
-     * @var string
+     * @var string|bool
      */
     protected $action = false; // I was tempted to change this to '', but don't want to break anything.
 

@@ -462,7 +462,8 @@ function awpcp_render_attributes( $attrs ) {
  * @param $action   'upload' if the file was uploaded using an HTML File field.
  *                  'copy' if the file was uploaded using a different method. Images
  *                  extracted from a ZIP file during Ad import.
- * @return          false if an error occurs or an array with the upload file information
+ *
+ * @return false|array if an error occurs or an array with the upload file information
  *                  on success.
  * @since 3.0.2
  * @since 4.3.4 Added deprecated notice.

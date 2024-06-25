@@ -14,12 +14,12 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     public $show_menu_items = false;
 
     /**
-     * @var object
+     * @var object|bool|null
      */
     private $listing = false;
 
     /**
-     * @var object
+     * @var AWPCP_Payment_Transaction|bool|null
      */
     private $transaction = false;
 

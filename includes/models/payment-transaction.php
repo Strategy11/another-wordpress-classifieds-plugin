@@ -153,6 +153,9 @@ class AWPCP_Payment_Transaction {
         return $results;
     }
 
+    /**
+     * @return AWPCP_Payment_Transaction|null
+     */
     public static function find_by_id($id) {
         global $wpdb;
 

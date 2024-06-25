@@ -30,7 +30,7 @@ class AWPCP_QueryIntegration {
 
     /**
      * @param string $listing_post_type     The identifier for the Listings post type.
-     * @param array  $categories_taxonomy   The identifier for the Listing Category taxonomy.
+     * @param string $categories_taxonomy   The identifier for the Listing Category taxonomy.
      * @param object $settings              An instance of Settings API.
      * @param object $db                    An instance of wpdb.
      * @since 4.0.0

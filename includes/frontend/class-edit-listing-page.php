@@ -14,7 +14,7 @@ class AWPCP_EditListingPage extends AWPCP_Page {
     public $show_menu_items = false;
 
     /**
-     * @var WP_Post
+     * @var WP_Post|null
      */
     private $ad;
 

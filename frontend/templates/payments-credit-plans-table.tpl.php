@@ -47,7 +47,7 @@
         <tfoot>
             <tr class="clear-selection" data-price="0" data-credits="0">
                 <td colspan="4">
-                    <input id="credit-plan-0" type="radio" name="credit_plan" value="0" <?php echo 0 == $selected ? 'checked="checked"' : '' ?> />
+                    <input id="credit-plan-0" type="radio" name="credit_plan" value="0" <?php checked( 0, $selected ); ?> />
                     <label for="credit-plan-0"><?php esc_html_e( 'clear selection', 'another-wordpress-classifieds-plugin' ); ?></label></td>
                 </td>
             </tr>

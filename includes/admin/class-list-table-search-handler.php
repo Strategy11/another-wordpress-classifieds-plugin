@@ -9,7 +9,7 @@
 class AWPCP_ListTableSearchHandler {
 
     /**
-     * @var object
+     * @var array
      */
     private $search_modes;
 

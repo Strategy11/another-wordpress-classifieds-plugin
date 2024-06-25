@@ -597,7 +597,7 @@ class AWPCP_ListingsAPI {
      *
      * @since 4.0.0
      *
-     * @return true if the listing was enabled, false otherwise.
+     * @return bool if the listing was enabled, false otherwise.
      */
     public function enable_listing_without_triggering_actions( $listing ) {
         if ( apply_filters( 'awpcp_before_approve_ad', $this->listing_renderer->is_public( $listing ) ) ) {
