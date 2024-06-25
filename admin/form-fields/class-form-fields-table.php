@@ -36,8 +36,8 @@ class AWPCP_FormFieldsTable extends WP_List_Table {
     }
 
     /**
-	 * @param object $item
-	 */
+     * @param object $item
+     */
     public function column_cb( $item ) {
         $handle   = '<div class="awpcp-sortable-handle"><div class="spinner awpcp-spinner awpcp-form-fields-table-spinner"></div></div>';
         $checkbox = '<input type="checkbox" value="' . esc_attr( $item->get_slug() ) . '" name="selected[]" />';

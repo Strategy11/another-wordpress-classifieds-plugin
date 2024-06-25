@@ -95,9 +95,9 @@ namespace {
     }
 
     class PHPMailer {
-		public function __construct( $exceptions = null ) {
-		}
-	}
+        public function __construct( $exceptions = null ) {
+        }
+    }
 
     /**
      * From https://theandystratton.com/2011/shortcode-autoformatting-html-with-paragraphs-and-line-breaks for
