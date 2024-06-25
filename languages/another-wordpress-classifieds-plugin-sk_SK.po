@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2024-06-25 16:28:21+00:00\n"
+"POT-Creation-Date: 2024-06-25 22:51:48+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Slovak (Slovakia) (http://www.transifex.com/wp-translations/"
@@ -61,7 +61,7 @@ msgstr "Atribúty"
 msgid "Categories"
 msgstr "Kategorií"
 
-#: admin/admin-panel-fees-table.php:127 includes/class-awpcp.php:834
+#: admin/admin-panel-fees-table.php:127 includes/class-awpcp.php:845
 msgid "Featured Ads"
 msgstr "Odporúčané inzeráty"
 
@@ -70,39 +70,39 @@ msgstr "Odporúčané inzeráty"
 msgid "Private"
 msgstr "Súkromné"
 
-#: admin/admin-panel-fees-table.php:192
+#: admin/admin-panel-fees-table.php:195
 msgid "<duration-amount> <duration-interval>"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:197
+#: admin/admin-panel-fees-table.php:200
 #, fuzzy
 msgid "Duration: %s"
 msgstr "Trvanie"
 
-#: admin/admin-panel-fees-table.php:207
+#: admin/admin-panel-fees-table.php:210
 msgid "# of images: %s"
 msgstr ""
 
-#: admin/admin-panel-fees-table.php:219 admin/admin-panel-fees-table.php:235
+#: admin/admin-panel-fees-table.php:222 admin/admin-panel-fees-table.php:238
 msgid "unlimited"
 msgstr "neobmedzene"
 
-#: admin/admin-panel-fees-table.php:223
+#: admin/admin-panel-fees-table.php:226
 #, fuzzy
 msgid "Chars in title: %s"
 msgstr "Znakov v nadpise"
 
-#: admin/admin-panel-fees-table.php:239
+#: admin/admin-panel-fees-table.php:242
 #, fuzzy
 msgid "Chars in description: %s"
 msgstr "Znakov v popise"
 
-#: admin/admin-panel-fees-table.php:265 admin/admin-panel-fees-table.php:269
+#: admin/admin-panel-fees-table.php:268 admin/admin-panel-fees-table.php:272
 #: templates/admin/import/supported-csv-headers.tpl.php:31
 msgid "Yes"
 msgstr "Áno"
 
-#: admin/admin-panel-fees-table.php:265 admin/admin-panel-fees-table.php:269
+#: admin/admin-panel-fees-table.php:268 admin/admin-panel-fees-table.php:272
 #: templates/admin/import/supported-csv-headers.tpl.php:31
 msgid "No"
 msgstr "Nie"
@@ -154,7 +154,7 @@ msgid "Manage Categories"
 msgstr "Spravovať kategórie"
 
 #: admin/admin-panel.php:203 admin/admin-panel.php:204
-#: admin/form-fields/class-form-fields-admin-page.php:12
+#: admin/form-fields/class-form-fields-admin-page.php:28
 #: includes/settings/class-display-settings.php:302
 #: includes/settings/class-display-settings.php:442
 msgid "Form Fields"
@@ -398,7 +398,7 @@ msgstr ""
 #: admin/templates/delete_form.tpl.php:16
 #: frontend/templates/payments-billing-form.tpl.php:123
 #: includes/listings/class-listing-action-with-confirmation.php:8
-#: includes/settings/renderers/class-button-settings-renderer.php:44
+#: includes/settings/renderers/class-button-settings-renderer.php:32
 #: templates/admin/import-listings-admin-page-configuration-form.tpl.php:185
 #: templates/admin/import-listings-admin-page-import-form.tpl.php:47
 msgid "Cancel"
@@ -520,38 +520,38 @@ msgstr "Prázdny ZIP archív"
 msgid "Could not write temporary file %s"
 msgstr "Nebolo možné zapísať dočasný súbor %s"
 
-#: admin/class-import-listings-admin-page.php:185
+#: admin/class-import-listings-admin-page.php:186
 msgid "The specified directory is not a valid path."
 msgstr ""
 
-#: admin/class-import-listings-admin-page.php:187
+#: admin/class-import-listings-admin-page.php:188
 msgid "The specified directory does not exists."
 msgstr ""
 
-#: admin/class-import-listings-admin-page.php:368
+#: admin/class-import-listings-admin-page.php:369
 msgid ""
 "(<percentage>) <number-of-rows-processed> of <number-of-rows> rows "
 "processed. <number-of-rows-imported> rows imported and <number-of-rows-"
 "rejected> rows rejected."
 msgstr ""
 
-#: admin/class-import-settings-admin-page.php:122
+#: admin/class-import-settings-admin-page.php:106
 #, fuzzy
 msgid "Your settings have been successfully imported."
 msgstr "Váš inzerát \"%s\" bol úspešne aktualizovaný"
 
-#: admin/class-settings-admin-page.php:228
+#: admin/class-settings-admin-page.php:227
 msgid ""
 "We could not obtain a valid access token from Facebook. The API returned the "
 "following error: %s"
 msgstr ""
 
-#: admin/class-settings-admin-page.php:233
+#: admin/class-settings-admin-page.php:232
 msgid ""
 "We could not obtain a valid access token from Facebook. Please try again."
 msgstr ""
 
-#: admin/class-settings-admin-page.php:241
+#: admin/class-settings-admin-page.php:240
 msgid "Facebook Config Diagnostics"
 msgstr "Diagonstika nastavenia Facebooku"
 
@@ -565,7 +565,7 @@ msgstr "Všetko vyzerá v poriadku"
 #: functions.php:530
 #: includes/frontend/class-create-empty-listing-ajax-handler.php:104
 #: includes/frontend/class-execute-listing-action-ajax-handler.php:58
-#: includes/frontend/class-save-listing-information-ajax-handler.php:117
+#: includes/frontend/class-save-listing-information-ajax-handler.php:110
 #: includes/frontend/class-update-listing-order-ajax-handler.php:69
 msgid "You are not authorized to perform this action."
 msgstr ""
@@ -588,9 +588,9 @@ msgstr "Upraviť"
 msgid "Delete"
 msgstr "Zmazať"
 
-#: admin/fees/class-delete-fee-action-handler.php:30
+#: admin/fees/class-delete-fee-action-handler.php:24
 #: admin/fees/class-fees-admin-page.php:113
-#: admin/fees/class-fees-admin-page.php:161
+#: admin/fees/class-fees-admin-page.php:162
 msgid "The specified Fee doesn't exists."
 msgstr "Uvedený poplatok neexistuje."
 
@@ -667,11 +667,11 @@ msgstr "Uvedený poplatok neexistuje."
 msgid "All Ads associated to Fee %1$s have been associated with Fee %2$s."
 msgstr ""
 
-#: admin/fees/class-fees-admin-page.php:168
+#: admin/fees/class-fees-admin-page.php:169
 msgid "The Fee was successfully deleted."
 msgstr "Poplatok bol úspešne vymazaný."
 
-#: admin/fees/class-fees-admin-page.php:187
+#: admin/fees/class-fees-admin-page.php:188
 msgid ""
 "The Fee couldn't be deleted because there are active Ads in the system that "
 "are associated with the Fee ID. You need to switch the Ads to a different "
@@ -680,7 +680,7 @@ msgstr ""
 "Poplatok nemôže byť vymazaný, pretože sú aktívne inzeráty priradené k tomuto "
 "ID poplatku. Pred vymazaním plánu musíte týmto inzerátom zmeniť poplatky."
 
-#: admin/fees/class-fees-admin-page.php:203
+#: admin/fees/class-fees-admin-page.php:204
 msgid ""
 "The Fee couldn't be deleted because there are active Ads in the system that "
 "are associated with the Fee ID. Please create a new Fee and try the delete "
@@ -712,11 +712,11 @@ msgid ""
 "defined a local directory?"
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:698
+#: admin/import/class-csv-importer-delegate.php:681
 msgid "The value for Extra Field %s's is not allowed. Allowed values are: %%s"
 msgstr ""
 
-#: admin/import/class-csv-importer-delegate.php:708
+#: admin/import/class-csv-importer-delegate.php:691
 msgid ""
 "The value for Extra Field %s's is not allowed. Allowed value is one of: %%s"
 msgstr ""
@@ -752,17 +752,17 @@ msgstr "Pre obnovenie hesla, prosím skontrolujte si email."
 msgid "An unexpected error ocurred."
 msgstr ""
 
-#: admin/pointers/class-drip-autoresponder.php:62
+#: admin/pointers/class-drip-autoresponder.php:56
 msgid "Want to know the Secrets of Building an Awesome Classifieds Website?"
 msgstr ""
 
-#: admin/pointers/class-drip-autoresponder.php:63
+#: admin/pointers/class-drip-autoresponder.php:57
 msgid ""
 "Find out how to create a compelling, thriving classifieds site from scratch "
 "in this ridiculously actionable (and free) 5-part email course."
 msgstr ""
 
-#: admin/pointers/class-drip-autoresponder.php:67
+#: admin/pointers/class-drip-autoresponder.php:61
 msgid "Email Address"
 msgstr "E-mailová adresa"
 
@@ -1318,7 +1318,7 @@ msgstr ""
 msgid "Upgrade tasks that will run while the plugin continues to work"
 msgstr ""
 
-#: admin/user-panel.php:75 admin/user-panel.php:76
+#: admin/user-panel.php:57 admin/user-panel.php:58
 #: includes/views/admin/account-balance/class-account-balance-page.php:18
 msgid "Account Balance"
 msgstr "Stav účtu"
@@ -1441,35 +1441,35 @@ msgstr ""
 "Nemôžete odoslať inzerát, pretože platba tejto transakcie zlyhala. (Dôvody "
 "sú uvedené nižšie)"
 
-#: frontend/page-place-ad.php:262
+#: frontend/page-place-ad.php:258
 #: includes/listings/class-payment-information-validator.php:88
 msgid "You should select an owner for this Ad."
 msgstr "Vyberte používateľa, ktorý bude vlastníkom inzerátu"
 
-#: frontend/page-place-ad.php:266 frontend/page-renew-ad.php:202
+#: frontend/page-place-ad.php:262 frontend/page-renew-ad.php:195
 #: includes/listings/class-payment-information-validator.php:64
 #: includes/listings/class-payment-information-validator.php:73
 msgid "You should choose one of the available Payment Terms."
 msgstr "Vyberte jednu z dostupných platobných podmienok"
 
-#: frontend/page-place-ad.php:270
+#: frontend/page-place-ad.php:266
 #: includes/listings/class-payment-information-validator.php:75
 msgid ""
 "The Payment Term you selected is not available for non-administrator users."
 msgstr ""
 "Vybrané platobné podmienky nie sú dostupné pre obyčajných používateľov."
 
-#: frontend/page-place-ad.php:286
+#: frontend/page-place-ad.php:282
 #: includes/listings/class-payment-information-validator.php:108
 msgid "Ad Category field is required"
 msgstr "Kategória inzerátu je povinné pole"
 
-#: frontend/page-place-ad.php:291
+#: frontend/page-place-ad.php:287
 #: includes/listings/class-payment-information-validator.php:119
 msgid "You cannot list your Ad in top level categories."
 msgstr ""
 
-#: frontend/page-place-ad.php:297
+#: frontend/page-place-ad.php:293
 #: includes/frontend/class-submit-listing-page.php:190
 msgid ""
 "Hi, You need to be a registered user to post Ads in this website. Please use "
@@ -1478,8 +1478,8 @@ msgstr ""
 "Zdravím, pre uverejnenie inzerátu musíte byť registrovaný používateľ. "
 "Prosím, použite formulár pre prihlásenie alebo odkaz na registráciu."
 
-#: frontend/page-place-ad.php:439 frontend/page-place-ad.php:848
-#: frontend/page-renew-ad.php:301
+#: frontend/page-place-ad.php:435 frontend/page-place-ad.php:844
+#: frontend/page-renew-ad.php:294
 #: includes/frontend/class-order-submit-listing-section.php:119
 msgid ""
 "You are logged in as an administrator. Any payment steps will be skipped."
@@ -1488,7 +1488,7 @@ msgstr "Ste prihlásený ako administrátor. Platby budú vynechané."
 #. translators: %s is an alphanumeric string that identifies a payment
 #. transaction.
 #. translators: %s the transaction id
-#: frontend/page-place-ad.php:521 frontend/page-renew-ad.php:351
+#: frontend/page-place-ad.php:517 frontend/page-renew-ad.php:344
 #: includes/frontend/class-submit-listing-page.php:333
 #: includes/views/class-verify-payment-can-be-processed-step-decorator.php:18
 msgid ""
@@ -1499,7 +1499,7 @@ msgstr ""
 "Práve nemôžeme spracovať platbu pre túto transakciu. Prosím, kontaktujte "
 "administrátora a poskytnite mu ID transakcie:"
 
-#: frontend/page-place-ad.php:846
+#: frontend/page-place-ad.php:842
 msgid ""
 "Your Ad details have been filled out in the form below. Make any changes "
 "needed and then resubmit the Ad to update it."
@@ -1507,11 +1507,11 @@ msgstr ""
 "Podrobnosti inzerátu sú uvedené nižšie. Urobte zmeny a pre odoslanie "
 "inzerátu ho znova odošlite."
 
-#: frontend/page-place-ad.php:850
+#: frontend/page-place-ad.php:846
 msgid "Fill out the form below to post your classified ad."
 msgstr ""
 
-#: frontend/page-place-ad.php:854
+#: frontend/page-place-ad.php:850
 msgid ""
 "We found errors in the details you submitted. A detailed error message is "
 "shown in front or below each invalid field. Please fix the errors and submit "
@@ -1520,11 +1520,11 @@ msgstr ""
 "Našli sme chyby v zadaných údajoch. Typ chyby je vypísaný pod každým chybným "
 "údajom. Prosím opravte chyby a odošlite formulár znova."
 
-#: frontend/page-place-ad.php:873
+#: frontend/page-place-ad.php:869
 msgid "Start & End Date"
 msgstr "Počiatočný a koncový dátum"
 
-#: frontend/page-place-ad.php:875
+#: frontend/page-place-ad.php:871
 #: includes/admin/import/class-csv-importer-columns.php:185
 #: includes/admin/listings/class-listings-table-nav-handler.php:151
 #: includes/form-fields/class-listing-form-fields.php:127
@@ -1532,7 +1532,7 @@ msgstr "Počiatočný a koncový dátum"
 msgid "Start Date"
 msgstr "Počiatočný dátum"
 
-#: frontend/page-place-ad.php:877
+#: frontend/page-place-ad.php:873
 #: includes/admin/import/class-csv-importer-columns.php:196
 #: includes/admin/listings/class-listings-table-nav-handler.php:152
 #: includes/form-fields/class-listing-form-fields.php:131
@@ -1540,48 +1540,48 @@ msgstr "Počiatočný dátum"
 msgid "End Date"
 msgstr "Konečný dátum"
 
-#: frontend/page-place-ad.php:985
+#: frontend/page-place-ad.php:981
 msgid ""
 "Hi, Payment is required for posting Ads in this website and we couldn't find "
 "a Payment Transaction assigned to you. You can't post Ads this time. If you "
 "think this is an error please contact the website Administrator."
 msgstr ""
 
-#: frontend/page-place-ad.php:1012
+#: frontend/page-place-ad.php:1008
 msgid ""
 "You did not select a Payment Term. Please select a Payment Term for this Ad."
 msgstr ""
 "Nevybrali ste platobné podmienky pre váš inzerát. Prosím, vyberte aspoň "
 "jednu z podmienok."
 
-#: frontend/page-place-ad.php:1017
+#: frontend/page-place-ad.php:1013
 msgid "Please enter a start date for the Ad."
 msgstr "Prosím zadajte začiatočný dátum inzerátu."
 
-#: frontend/page-place-ad.php:1022
+#: frontend/page-place-ad.php:1018
 msgid "Please enter an end date for the Ad."
 msgstr "Prosím zadajte koncový dátum inzerátu."
 
-#: frontend/page-place-ad.php:1026
+#: frontend/page-place-ad.php:1022
 #: includes/form-fields/class-form-fields-validator.php:71
 msgid "The start date must occur before the end date."
 msgstr "Začiatočný dátum musí byť skôr ako koncový."
 
-#: frontend/page-place-ad.php:1031
+#: frontend/page-place-ad.php:1027
 msgid "You did not enter a title for your Ad"
 msgstr "Nezadali ste názov inzerátu"
 
-#: frontend/page-place-ad.php:1036
+#: frontend/page-place-ad.php:1032
 msgid ""
 "You did not enter any text for your Ad. Please enter some text for your Ad."
 msgstr "Nezadali ste text inzerátu. Napíšte o ňom niečo."
 
-#: frontend/page-place-ad.php:1049
+#: frontend/page-place-ad.php:1045
 msgid ""
 "You did not enter your website address. Your website address is required."
 msgstr "Nevložili ste webovú adresu. Webová adresa je povinná"
 
-#: frontend/page-place-ad.php:1055
+#: frontend/page-place-ad.php:1051
 msgid ""
 "Your website address is not properly formatted. Please make sure you have "
 "included the http:// part of your website address"
@@ -1589,15 +1589,15 @@ msgstr ""
 "Vaša webová adresa nie je v správnom formáte. Uistite sa, že obsahuje "
 "http:// "
 
-#: frontend/page-place-ad.php:1060
+#: frontend/page-place-ad.php:1056
 msgid "You did not enter your name. Your name is required."
 msgstr "Nezadali ste vaše meno. Toto pole je povinné."
 
-#: frontend/page-place-ad.php:1065
+#: frontend/page-place-ad.php:1061
 msgid "You did not enter your email. Your email is required."
 msgstr "Nevložili ste váš email. Email je povinné pole."
 
-#: frontend/page-place-ad.php:1070 frontend/page-reply-to-ad.php:160
+#: frontend/page-place-ad.php:1066 frontend/page-reply-to-ad.php:160
 msgid ""
 "The email address you entered was not a valid email address. Please check "
 "for errors and try again."
@@ -1605,7 +1605,7 @@ msgstr ""
 "Zadaná e-mailová adresa je zrejme neplatná. Prosím skontrolujte si chyby a "
 "skúste pokus opakovať."
 
-#: frontend/page-place-ad.php:1072
+#: frontend/page-place-ad.php:1068
 msgid ""
 "The email address you entered is not allowed in this website. Please use an "
 "email address from one of the following domains: %s."
@@ -1613,35 +1613,35 @@ msgstr ""
 "Emailová adresa nie je na tejto stránke povolená. Prosím zadajte emailovú "
 "adresu od nasledujúcich poskytovateľov: %s."
 
-#: frontend/page-place-ad.php:1083
+#: frontend/page-place-ad.php:1079
 msgid "You did not enter your phone number. Your phone number is required."
 msgstr "Nevložili ste vaše telefónne číslo. Toto pole je povinné."
 
-#: frontend/page-place-ad.php:1101
+#: frontend/page-place-ad.php:1097
 #: includes/helpers/widgets/multiple-region-selector.php:144
 msgid "You did not enter your country. Your country is required."
 msgstr "Nezadali ste krajinu. Toto pole je povinné."
 
-#: frontend/page-place-ad.php:1110
+#: frontend/page-place-ad.php:1106
 #: includes/helpers/widgets/multiple-region-selector.php:145
 msgid "You did not enter your state. Your state is required."
 msgstr "Nezadali ste štát. Toto pole je povinné."
 
-#: frontend/page-place-ad.php:1119
+#: frontend/page-place-ad.php:1115
 #: includes/helpers/widgets/multiple-region-selector.php:147
 msgid "You did not enter your city. Your city is required."
 msgstr "Nezadali ste vaše mesto. Toto pole je povinné."
 
-#: frontend/page-place-ad.php:1128
+#: frontend/page-place-ad.php:1124
 #: includes/helpers/widgets/multiple-region-selector.php:146
 msgid "You did not enter your county/village. Your county/village is required."
 msgstr "Nezadali ste okres/sídlo. Toto pole je povinné."
 
-#: frontend/page-place-ad.php:1135
+#: frontend/page-place-ad.php:1131
 msgid "You did not enter the price of your item. The item price is required."
 msgstr "Nevložili ste cenu veci. Cena je povinná"
 
-#: frontend/page-place-ad.php:1141
+#: frontend/page-place-ad.php:1137
 msgid ""
 "You have entered an invalid item price. Make sure your price contains "
 "numbers only. Please do not include currency symbols."
@@ -1649,18 +1649,18 @@ msgstr ""
 "Nevložili ste správnu cenu veci. Uistite sa, že obsahuje len číslice. "
 "Prosím, nevkladajte symboly meny."
 
-#: frontend/page-place-ad.php:1159
+#: frontend/page-place-ad.php:1155
 msgid "You did not accept the terms of service"
 msgstr "Nesúhlasili ste s podmienkami používania"
 
-#: frontend/page-place-ad.php:1175
+#: frontend/page-place-ad.php:1171
 msgid ""
 "Your Ad was flagged as spam. Please contact the administrator of this site."
 msgstr ""
 "Váš inzerát bola označený ako SPAM, prosím kontaktujte administrátora tejto "
 "stránky."
 
-#: frontend/page-place-ad.php:1374
+#: frontend/page-place-ad.php:1370
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation. No "
 "images can be added at this time."
@@ -1668,18 +1668,18 @@ msgstr ""
 "Neboli sme schopní nájsť platbu k tejto transakcii. Teraz nemôžte pridať "
 "obrázky."
 
-#: frontend/page-place-ad.php:1381
+#: frontend/page-place-ad.php:1377
 msgid "The specified Ad doesn't exists. No images can be added at this time."
 msgstr "Uvedený inzerát neexistuje. Teraz nemôžete pridať obrázky."
 
-#: frontend/page-place-ad.php:1461 frontend/page-place-ad.php:1523
+#: frontend/page-place-ad.php:1457 frontend/page-place-ad.php:1519
 #: includes/frontend/class-submit-listing-page.php:393
 msgid ""
 "We were unable to find a Payment Transaction assigned to this operation."
 msgstr "Neboli sme schopní nájsť platbu k tejto transakcii."
 
-#: frontend/page-place-ad.php:1468 frontend/page-place-ad.php:1530
-#: frontend/page-renew-ad.php:412
+#: frontend/page-place-ad.php:1464 frontend/page-place-ad.php:1526
+#: frontend/page-renew-ad.php:405
 #: includes/frontend/class-submit-listing-page.php:400
 msgid "The Ad associated with this transaction doesn't exists."
 msgstr "Inzerát patriaci k tejto transakcii neexistuje."
@@ -1713,7 +1713,7 @@ msgstr ""
 "Inzerát bol odoslaný pod zrušenými platobnými podmienkami. Inzerát nemôže "
 "byť obnovený."
 
-#: frontend/page-renew-ad.php:154 includes/functions/deprecated.php:331
+#: frontend/page-renew-ad.php:154 includes/functions/deprecated.php:355
 #: templates/admin/listings/quick-view-listing-admin-page.tpl.php:18
 #: templates/admin/listings-media-center.tpl.php:6
 #: templates/admin/view-listing-admin-page.tpl.php:14
@@ -1724,11 +1724,11 @@ msgstr "Návrat na inzeráty"
 msgid "You can see your Ad here"
 msgstr "Tu môžete vidieť váš inzerát"
 
-#: frontend/page-renew-ad.php:163 includes/functions/deprecated.php:326
+#: frontend/page-renew-ad.php:163 includes/functions/deprecated.php:350
 msgid "The Ad has been successfully renewed. New expiration date is %s."
 msgstr ""
 
-#: frontend/page-renew-ad.php:204
+#: frontend/page-renew-ad.php:197
 msgid ""
 "You are trying to renew your Ad using a different Payment Term. That's not "
 "allowed."
@@ -1819,13 +1819,13 @@ msgstr ""
 msgid "Return to Search"
 msgstr "Návrat na vyhľadávanie"
 
-#: frontend/page-show-ad.php:61
+#: frontend/page-show-ad.php:55
 msgid ""
 "No ad ID was specified. Return to {browse_listings_link}browse all ads{/"
 "browse_listings_link}."
 msgstr ""
 
-#: frontend/page-show-ad.php:73
+#: frontend/page-show-ad.php:67
 msgid ""
 "No ad was found with ID equal to {listing_id}. Return to "
 "{browse_listings_link}browse all ads{/browse_listings_link}."
@@ -1839,12 +1839,12 @@ msgstr "Predajca"
 msgid "Visit Website"
 msgstr "Navštívte stránku"
 
-#: frontend/placeholders.php:655 includes/functions/listings.php:415
+#: frontend/placeholders.php:657 includes/functions/listings.php:415
 msgid "Location"
 msgstr "Poloha"
 
 #. translators: %d is the number of views for this ad.
-#: frontend/placeholders.php:692
+#: frontend/placeholders.php:694
 msgid "This Ad has been viewed %d time."
 msgid_plural "This Ad has been viewed %d times."
 msgstr[0] ""
@@ -1853,23 +1853,23 @@ msgstr[2] ""
 msgstr[3] ""
 
 #. translators: %d is the number of views for this ad.
-#: frontend/placeholders.php:697
+#: frontend/placeholders.php:699
 msgid "Total views: %d"
 msgstr "Prezretí: %d"
 
-#: frontend/placeholders.php:749
+#: frontend/placeholders.php:751
 msgid "Phone"
 msgstr "Telefón"
 
-#: frontend/placeholders.php:812
+#: frontend/placeholders.php:814
 msgid "Flag Ad"
 msgstr "Označiť inzerát"
 
-#: frontend/placeholders.php:826
+#: frontend/placeholders.php:828
 msgid "Tweet This"
 msgstr "Odoslať na Twitter"
 
-#: frontend/placeholders.php:860
+#: frontend/placeholders.php:862
 msgid "Share on Facebook"
 msgstr "Zdieľať na Facebooku"
 
@@ -2277,8 +2277,8 @@ msgid ""
 msgstr "Prosím, vyplňte fakturačné informácie pre dokončenie platby."
 
 #: frontend/templates/payments-billing-form.tpl.php:6 functions.php:791
-#: includes/admin/class-listings-personal-data-provider.php:117
-#: includes/admin/class-listings-personal-data-provider.php:127
+#: includes/admin/class-listings-personal-data-provider.php:111
+#: includes/admin/class-listings-personal-data-provider.php:121
 #: includes/admin/import/class-csv-importer-columns.php:230
 msgid "Country"
 msgstr "Krajina"
@@ -2316,15 +2316,15 @@ msgid "Address Line 2"
 msgstr "Adresa 2. riadok"
 
 #: frontend/templates/payments-billing-form.tpl.php:92
-#: includes/admin/class-listings-personal-data-provider.php:118
-#: includes/admin/class-listings-personal-data-provider.php:128
+#: includes/admin/class-listings-personal-data-provider.php:112
+#: includes/admin/class-listings-personal-data-provider.php:122
 #: includes/admin/import/class-csv-importer-columns.php:238
 msgid "State"
 msgstr "Štát"
 
 #: frontend/templates/payments-billing-form.tpl.php:101 functions.php:811
-#: includes/admin/class-listings-personal-data-provider.php:119
-#: includes/admin/class-listings-personal-data-provider.php:129
+#: includes/admin/class-listings-personal-data-provider.php:113
+#: includes/admin/class-listings-personal-data-provider.php:123
 #: includes/admin/import/class-csv-importer-columns.php:260
 msgid "City"
 msgstr "Mesto"
@@ -2486,11 +2486,11 @@ msgstr "Zobrazí zoznam posledných inzerátov"
 msgid "Latest Ads"
 msgstr "Najnovšie inzeráty"
 
-#: frontend/widget-latest-ads.php:76
+#: frontend/widget-latest-ads.php:77
 msgid "There are currently no ads to show."
 msgstr ""
 
-#: frontend/widget-latest-ads.php:118
+#: frontend/widget-latest-ads.php:119
 msgid "Read more"
 msgstr "Čítaj viac"
 
@@ -2582,66 +2582,66 @@ msgstr "-- Vyberte krajinu --"
 msgid "Free"
 msgstr ""
 
-#: functions.php:2216
+#: functions.php:2214
 msgid "No errors."
 msgstr "Žiadne chyby."
 
-#: functions.php:2217
+#: functions.php:2215
 msgid "The file is larger than upload_max_filesize."
 msgstr "Súbor je väčší než (maximálna dovolená veľkosť) upload_max_filesize."
 
-#: functions.php:2218
+#: functions.php:2216
 msgid "The file is larger than form MAX_FILE_SIZE."
 msgstr "Súbor je väčší než (maximálna dovolená veľkosť) MAX_FILE_SIZE."
 
-#: functions.php:2219
+#: functions.php:2217
 msgid "The file was only partially uploaded."
 msgstr "Súbor bol nahraný iba čiastočne."
 
-#: functions.php:2220
+#: functions.php:2218
 msgid "No file was uploaded."
 msgstr "Súbor nebol nahraný."
 
-#: functions.php:2221
+#: functions.php:2219
 msgid "Missing temporary directory."
 msgstr "Chýba dočasný priečinok."
 
-#: functions.php:2222
+#: functions.php:2220
 msgid "Can't write file to disk."
 msgstr "Nie je možné vykonať zápis súboru na disk."
 
-#: functions.php:2223
+#: functions.php:2221
 msgid "The file upload was stopped by extension."
 msgstr "Nahrávanie súboru bolo prerušené kvôli prípone súbora."
 
-#: functions.php:2466
+#: functions.php:2464
 msgid "Your Ad \"%s\" has been approved"
 msgstr "Váš inzerát \"%s\" bol schválený"
 
-#: functions.php:2489
+#: functions.php:2487
 msgid "Your Ad \"%s\" has been successfully updated"
 msgstr "Váš inzerát \"%s\" bol úspešne aktualizovaný"
 
-#: functions.php:2513
+#: functions.php:2511
 msgid "Images on Ad \"%s\" are awaiting approval"
 msgstr "Obrázky inzerátu \"%s\" čakajú na schválenie"
 
 #. translators: %1$s is the listing title. %2$s is the URL for managing listing
 #. images.
-#: functions.php:2516 includes/functions/notifications.php:149
+#: functions.php:2514 includes/functions/notifications.php:149
 msgid ""
 "Images on Ad \"%1$s\" are awaiting approval. You can approve the images "
 "going to the Manage Images section for that Ad and clicking the \"Enable\" "
 "button below each image. Click here to continue: %2$s."
 msgstr ""
 
-#: functions.php:2521
+#: functions.php:2519
 msgid "The Ad \"%s\" is awaiting approval"
 msgstr "Inzerát \"%s\" čaká na schválenie"
 
 #. translators: %1$s is the listing title. %2$s is the URL for managing
 #. listing.
-#: functions.php:2524 includes/functions/notifications.php:156
+#: functions.php:2522 includes/functions/notifications.php:156
 msgid ""
 "The Ad \"%1$s\" is awaiting approval. You can approve the Ad going to the "
 "Classified edit section and clicking the \"Publish\" button. Click here to "
@@ -2649,34 +2649,34 @@ msgid ""
 msgstr ""
 
 #. translators: %s is the URL for managing listing images.
-#: functions.php:2532 includes/functions/notifications.php:164
+#: functions.php:2530 includes/functions/notifications.php:164
 msgid ""
 "Additionally, You can approve the images going to the Manage Images section "
 "for that Ad and clicking the \"Enable\" button below each image. Click here "
 "to continue: %s."
 msgstr ""
 
-#: functions.php:3055
+#: functions.php:3053
 msgid "Email sent %s."
 msgstr "Odoslaný email %s."
 
-#: functions.php:3186
+#: functions.php:3184
 msgid "Not Installed"
 msgstr "Nie je nainštalované"
 
-#: functions.php:3190
+#: functions.php:3188
 msgid "Installed"
 msgstr "Nainštalované"
 
-#: functions.php:3198
+#: functions.php:3196
 msgid "SSL Support: Yes."
 msgstr ""
 
-#: functions.php:3200
+#: functions.php:3198
 msgid "SSL Support: No."
 msgstr ""
 
-#: functions.php:3203
+#: functions.php:3201
 msgid "OpenSSL version:"
 msgstr ""
 
@@ -2692,62 +2692,62 @@ msgstr ""
 msgid "Classified Fields"
 msgstr ""
 
-#: includes/admin/class-list-table-search-handler.php:97
+#: includes/admin/class-list-table-search-handler.php:96
 msgid "Search for listings matching"
 msgstr ""
 
-#: includes/admin/class-listings-personal-data-provider.php:112
+#: includes/admin/class-listings-personal-data-provider.php:106
 msgid "Classified ID"
 msgstr ""
 
-#: includes/admin/class-listings-personal-data-provider.php:113
+#: includes/admin/class-listings-personal-data-provider.php:107
 msgid "Contact Name"
 msgstr ""
 
-#: includes/admin/class-listings-personal-data-provider.php:114
+#: includes/admin/class-listings-personal-data-provider.php:108
 msgid "Contact Phone Number"
 msgstr ""
 
-#: includes/admin/class-listings-personal-data-provider.php:115
+#: includes/admin/class-listings-personal-data-provider.php:109
 msgid "Contact Phone Number Digits"
 msgstr ""
 
-#: includes/admin/class-listings-personal-data-provider.php:116
+#: includes/admin/class-listings-personal-data-provider.php:110
 msgid "Contact Email"
 msgstr ""
 
-#: includes/admin/class-listings-personal-data-provider.php:120
-#: includes/admin/class-listings-personal-data-provider.php:130
+#: includes/admin/class-listings-personal-data-provider.php:114
+#: includes/admin/class-listings-personal-data-provider.php:124
 #: includes/admin/import/class-csv-importer-columns.php:249
 msgid "County"
 msgstr ""
 
-#: includes/admin/class-listings-personal-data-provider.php:121
+#: includes/admin/class-listings-personal-data-provider.php:115
 msgid "Website URL"
 msgstr "URL adresa stránky"
 
-#: includes/admin/class-listings-personal-data-provider.php:122
+#: includes/admin/class-listings-personal-data-provider.php:116
 #: includes/admin/class-payment-personal-data-provider.php:47
 msgid "Payer Email"
 msgstr "Email"
 
-#: includes/admin/class-listings-personal-data-provider.php:123
+#: includes/admin/class-listings-personal-data-provider.php:117
 msgid "Author IP"
 msgstr ""
 
-#: includes/admin/class-listings-personal-data-provider.php:134
+#: includes/admin/class-listings-personal-data-provider.php:128
 msgid "URL"
 msgstr "URL"
 
-#: includes/admin/class-listings-personal-data-provider.php:148
+#: includes/admin/class-listings-personal-data-provider.php:142
 msgid "Classifieds Listings"
 msgstr ""
 
-#: includes/admin/class-listings-personal-data-provider.php:159
+#: includes/admin/class-listings-personal-data-provider.php:153
 msgid "Classifieds Media"
 msgstr ""
 
-#: includes/admin/class-listings-personal-data-provider.php:220
+#: includes/admin/class-listings-personal-data-provider.php:214
 msgid ""
 "An unknown error occurred while trying to delete information for classified "
 "{listing_id}."
@@ -2980,7 +2980,7 @@ msgstr ""
 msgid "Select date range"
 msgstr ""
 
-#: includes/admin/listings/class-make-featured-listing-table-action.php:127
+#: includes/admin/listings/class-make-featured-listing-table-action.php:120
 msgid "Ad marked as featured."
 msgid_plural "{count} ads marked as featured."
 msgstr[0] ""
@@ -2988,7 +2988,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-make-featured-listing-table-action.php:134
+#: includes/admin/listings/class-make-featured-listing-table-action.php:127
 msgid "An error occurred trying to mark an ad as featured."
 msgid_plural "An error occurred trying to mark {count} ads as featured."
 msgstr[0] ""
@@ -2996,7 +2996,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-make-standard-listing-table-action.php:126
+#: includes/admin/listings/class-make-standard-listing-table-action.php:119
 msgid "Ad marked as standard."
 msgid_plural "{count} ads marked as standard."
 msgstr[0] ""
@@ -3004,7 +3004,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-make-standard-listing-table-action.php:133
+#: includes/admin/listings/class-make-standard-listing-table-action.php:126
 msgid "An error occurred trying to mark an ad as standard."
 msgid_plural "An error occurred trying to mark {count} ads as standard."
 msgstr[0] ""
@@ -3028,7 +3028,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-mark-paid-listing-table-action.php:127
+#: includes/admin/listings/class-mark-paid-listing-table-action.php:120
 msgid "Ad marked as paid."
 msgid_plural "{count} ads marked as paid."
 msgstr[0] ""
@@ -3036,7 +3036,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-mark-paid-listing-table-action.php:134
+#: includes/admin/listings/class-mark-paid-listing-table-action.php:127
 msgid "An error occurred trying to mark an ad as paid."
 msgid_plural "An error occurred trying to mark {count} ads as paid."
 msgstr[0] ""
@@ -3044,7 +3044,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-mark-reviewed-listing-table-action.php:130
+#: includes/admin/listings/class-mark-reviewed-listing-table-action.php:123
 msgid "Ad marked as reviewed."
 msgid_plural "{count} ads marked as reviewed."
 msgstr[0] ""
@@ -3052,7 +3052,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-mark-reviewed-listing-table-action.php:137
+#: includes/admin/listings/class-mark-reviewed-listing-table-action.php:130
 msgid "An error occurred trying to mark an ad as reviewed."
 msgid_plural "An error occurred trying to mark {count} ads as reviewed."
 msgstr[0] ""
@@ -3060,7 +3060,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-mark-verified-listing-table-action.php:107
+#: includes/admin/listings/class-mark-verified-listing-table-action.php:100
 msgid "Ad marked as verified."
 msgid_plural "{count} ads marked as verified."
 msgstr[0] ""
@@ -3068,7 +3068,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-mark-verified-listing-table-action.php:114
+#: includes/admin/listings/class-mark-verified-listing-table-action.php:107
 msgid "An error occurred trying to mark an ad as verified."
 msgid_plural "An error occurred trying to mark {count} ads as verified."
 msgstr[0] ""
@@ -3159,7 +3159,7 @@ msgstr "Obnoviť inzerát navštívením: "
 msgid "less than 1"
 msgstr ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:139
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:132
 msgid "Ad sent to Facebook group."
 msgid_plural "{count} ads sent to Facebook group."
 msgstr[0] ""
@@ -3167,8 +3167,8 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:148
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:145
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:141
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:138
 msgid ""
 "1 ad couldn't be sent to Facebook because there is no integration method "
 "selected on {facebook_settings_link}Facebook Settings{/"
@@ -3182,7 +3182,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:157
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:150
 msgid ""
 "1 ad couldn't be sent to Facebook because sending ads to Facebook groups "
 "using webhooks is not currently supported."
@@ -3194,7 +3194,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:164
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:157
 msgid "1 ad couldn't be sent to Facebook because there is no group selected."
 msgid_plural ""
 "{count} ads couldn't be sent to Facebook because there is no group selected."
@@ -3203,8 +3203,8 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:171
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:161
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:164
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:154
 msgid ""
 "1 ad was not sent to Facebook because it is currenlty disabled. If you share "
 "it, Facebook servers and users won't be able to access it."
@@ -3216,7 +3216,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:178
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:171
 msgid "1 ad was already sent to the Facebook group."
 msgid_plural "{count} ads were already sent to the Facebook group."
 msgstr[0] ""
@@ -3224,7 +3224,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:185
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:178
 msgid "An error occurred trying to sent an ad to the Facebook group."
 msgid_plural ""
 "An error occurred trying to sent {count} ads to the Facebook group."
@@ -3233,7 +3233,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:136
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:129
 msgid "Ad sent to Facebook page."
 msgid_plural "{count} ads sent to Facebook page."
 msgstr[0] ""
@@ -3241,7 +3241,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:154
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:147
 msgid "1 ad couldn't be sent to Facebook because there is no page selected."
 msgid_plural ""
 "{count} ads couldn't be sent to Facebook because there is no page selected."
@@ -3250,7 +3250,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:168
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:161
 msgid "1 ad was already sent to the Facebook page."
 msgid_plural "{count} ads were already sent to the Facebook page."
 msgstr[0] ""
@@ -3258,7 +3258,7 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:175
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:168
 msgid "An error occurred trying to sent an ad to the Facebook page."
 msgid_plural ""
 "An error occurred trying to sent {count} ads to the Facebook page."
@@ -3352,7 +3352,7 @@ msgid ""
 "one of the associated listings: <error-message>"
 msgstr ""
 
-#: includes/class-awpcp.php:761
+#: includes/class-awpcp.php:772
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -3360,88 +3360,88 @@ msgstr ""
 "AWPCP vyžaduje knižnicu GD, ktorá spracúva grafické operácie. Kontaktujte "
 "hosting,pre vyriešenie problému."
 
-#: includes/class-awpcp.php:762
+#: includes/class-awpcp.php:773
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Varovanie"
 
-#: includes/class-awpcp.php:778
+#: includes/class-awpcp.php:789
 msgid "Attachments"
 msgstr "Prílohy"
 
-#: includes/class-awpcp.php:785
+#: includes/class-awpcp.php:796
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:792
+#: includes/class-awpcp.php:803
 msgid "BuddyPress Listings"
 msgstr ""
 
-#: includes/class-awpcp.php:799
+#: includes/class-awpcp.php:810
 msgid "Campaign Manager"
 msgstr ""
 
-#: includes/class-awpcp.php:806
+#: includes/class-awpcp.php:817
 msgid "Category Icons"
 msgstr "Ikonky kategórí"
 
-#: includes/class-awpcp.php:813
+#: includes/class-awpcp.php:824
 msgid "Comments & Ratings"
 msgstr "Komentátre a hotnotenia"
 
-#: includes/class-awpcp.php:820
+#: includes/class-awpcp.php:831
 msgid "Coupons/Discount"
 msgstr "Kupóny/zľavy"
 
-#: includes/class-awpcp.php:827
+#: includes/class-awpcp.php:838
 msgid "Extra Fields"
 msgstr "Extra polia"
 
-#: includes/class-awpcp.php:841
+#: includes/class-awpcp.php:852
 msgid "Fee per Category"
 msgstr "Poplatok na kategóriu"
 
-#: includes/class-awpcp.php:848
+#: includes/class-awpcp.php:859
 msgid "Mark as Sold"
 msgstr ""
 
-#: includes/class-awpcp.php:855
+#: includes/class-awpcp.php:866
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:862
+#: includes/class-awpcp.php:873
 msgid "Regions Control"
 msgstr "Správanie regiónov"
 
-#: includes/class-awpcp.php:869
+#: includes/class-awpcp.php:880
 msgid "RSS"
 msgstr "RSS"
 
-#: includes/class-awpcp.php:876
+#: includes/class-awpcp.php:887
 msgid "Stripe"
 msgstr ""
 
-#: includes/class-awpcp.php:883
+#: includes/class-awpcp.php:894
 msgid "Membership to Post"
 msgstr ""
 
-#: includes/class-awpcp.php:890 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:901 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Videá"
 
-#: includes/class-awpcp.php:898
+#: includes/class-awpcp.php:909
 msgid "XML Sitemap"
 msgstr "XML sitemapa"
 
-#: includes/class-awpcp.php:906
+#: includes/class-awpcp.php:917
 msgid "ZIP Code Search Module"
 msgstr ""
 
-#: includes/class-awpcp.php:1436
+#: includes/class-awpcp.php:1447
 msgid "This field is required."
 msgstr "Toto pole je povinné."
 
-#: includes/class-awpcp.php:1437
+#: includes/class-awpcp.php:1448
 #: includes/form-fields/class-form-fields-validator.php:101
 #: includes/frontend/class-edit-listing-page.php:273
 #: includes/frontend/class-edit-listing-page.php:350
@@ -3449,32 +3449,32 @@ msgstr "Toto pole je povinné."
 msgid "Please enter a valid email address."
 msgstr "Prosím uveďte správnu/funkčnú emailovú adresu."
 
-#: includes/class-awpcp.php:1438 includes/class-awpcp.php:1439
+#: includes/class-awpcp.php:1449 includes/class-awpcp.php:1450
 msgid "Please enter a valid URL."
 msgstr "Prosím zadajte platnú URL adresu."
 
-#: includes/class-awpcp.php:1440
+#: includes/class-awpcp.php:1451
 msgid "Please enter a valid number."
 msgstr "Prosím zadajte platné číslo."
 
-#: includes/class-awpcp.php:1441
+#: includes/class-awpcp.php:1452
 msgid "Please enter a valid amount."
 msgstr "Prosím zadajte platnú sumu."
 
-#: includes/class-awpcp.php:1442
+#: includes/class-awpcp.php:1453
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1461
+#: includes/class-awpcp.php:1472
 msgid "There are files currently being uploaded."
 msgstr ""
 
-#: includes/class-awpcp.php:1462
+#: includes/class-awpcp.php:1473
 msgid "There are files pending to be uploaded."
 msgstr ""
 
-#: includes/class-awpcp.php:1463
+#: includes/class-awpcp.php:1474
 msgid "You haven't uploaded any images or files."
 msgstr ""
 
@@ -3524,23 +3524,23 @@ msgid ""
 "site. Contact <support-link>customer support</a> for further assistance."
 msgstr ""
 
-#: includes/class-listings-api.php:106 includes/class-listings-api.php:310
+#: includes/class-listings-api.php:108 includes/class-listings-api.php:312
 msgid ""
 "There was an unexpected error trying to save the listing details. Please try "
 "again or contact an administrator."
 msgstr ""
 
-#: includes/class-listings-api.php:199
+#: includes/class-listings-api.php:201
 msgid ""
 "To avoid overwritting existing metadata, use fill_default_listing_metadata() "
 "instead."
 msgstr ""
 
-#: includes/class-listings-api.php:306
+#: includes/class-listings-api.php:308
 msgid "There was an error trying to save the listing details:"
 msgstr ""
 
-#: includes/class-listings-api.php:734
+#: includes/class-listings-api.php:736
 msgid ""
 "If you have uploaded images your images will not show up until an admin has "
 "approved them."
@@ -3548,23 +3548,23 @@ msgstr ""
 "Ak ste nahrali obrázky, nebudú zobrazené, pokiaľ ich administrátor neschváli."
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:80
+#: includes/class-listings-collection.php:68
 msgid "The listing ID must be a positive integer, %d was given."
 msgstr ""
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:88
-#: includes/class-listings-collection.php:94
+#: includes/class-listings-collection.php:76
+#: includes/class-listings-collection.php:82
 msgid "No Listing was found with id: %d."
 msgstr ""
 
 #. translators: %d is the ID used to search.
-#: includes/class-listings-collection.php:120
-#: includes/class-listings-collection.php:128
+#: includes/class-listings-collection.php:108
+#: includes/class-listings-collection.php:116
 msgid "No Listing was found with old id: %d."
 msgstr ""
 
-#: includes/class-roles-and-capabilities.php:171
+#: includes/class-roles-and-capabilities.php:169
 msgid "Classifieds Moderator"
 msgstr ""
 
@@ -3860,7 +3860,7 @@ msgid ""
 "There was an error trying to verify the reCAPTCHA answer. <reCAPTCHA-error>"
 msgstr ""
 
-#: includes/frontend/class-save-listing-information-ajax-handler.php:135
+#: includes/frontend/class-save-listing-information-ajax-handler.php:128
 msgid "There is no payment transaction associated with this request. Aborting."
 msgstr ""
 
@@ -3944,7 +3944,7 @@ msgstr ""
 msgid "The ad \"%s\" has been successfully renewed."
 msgstr ""
 
-#: includes/functions/deprecated.php:413
+#: includes/functions/deprecated.php:437
 #: templates/components/media-center.tpl.php:14
 msgid ""
 "The images or files with pale red background have been rejected by an "
@@ -3957,7 +3957,7 @@ msgstr ""
 "Zamietnuté súbory a súbory čakajúce na schválenie nie sú zobrazované na "
 "stránke."
 
-#: includes/functions/deprecated.php:431
+#: includes/functions/deprecated.php:455
 msgid ""
 "This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. "
 "Please get AWPCP %1$s %3$s or newer!"
@@ -3965,12 +3965,12 @@ msgstr ""
 "Verzia tohto modulu AWPCP %1$s nie je kompatibilná s verziou AWPCP %2$s. "
 "Prosím nainštajute si verziu  %1$s %3$s alebo novšiu"
 
-#: includes/functions/deprecated.php:433
+#: includes/functions/deprecated.php:457
 msgid "Error"
 msgstr "Chyba"
 
 #. translators: %1$s the file name, %2$s the size limit
-#: includes/functions/deprecated.php:509 includes/functions/deprecated.php:544
+#: includes/functions/deprecated.php:534 includes/functions/deprecated.php:569
 #: includes/functions/file-upload.php:60
 #, fuzzy
 msgid ""
@@ -3981,7 +3981,7 @@ msgstr ""
 "nahraný."
 
 #. translators: %1$s the file name, %2$s the size limit
-#: includes/functions/deprecated.php:529 includes/functions/file-upload.php:69
+#: includes/functions/deprecated.php:554 includes/functions/file-upload.php:69
 #: includes/media/class-image-file-validator.php:27
 #, fuzzy
 msgid ""
@@ -3990,7 +3990,7 @@ msgid ""
 msgstr "Obrázok %s nespĺňa minimálnu šírku %s pixelov. Súbor nebol nahraný."
 
 #. translators: %1$s the file name, %2$s the size limit
-#: includes/functions/deprecated.php:539 includes/functions/file-upload.php:74
+#: includes/functions/deprecated.php:564 includes/functions/file-upload.php:74
 #: includes/media/class-image-file-validator.php:37
 #, fuzzy
 msgid ""
@@ -4394,25 +4394,25 @@ msgstr ""
 msgid "The ad was already sent to a Facebook Group."
 msgstr ""
 
-#: includes/helpers/facebook.php:36
+#: includes/helpers/facebook.php:41
 msgid "Missing App ID and Secret."
 msgstr ""
 
-#: includes/helpers/facebook.php:41
+#: includes/helpers/facebook.php:46
 msgid "Missing a valid User Access Token."
 msgstr "Chýba token používateľského prístupu"
 
-#: includes/helpers/facebook.php:56
+#: includes/helpers/facebook.php:61
 msgid ""
 "User Access Token is valid but doesn't have the permissions required for "
 "AWPCP integration ({permissions})."
 msgstr ""
 
-#: includes/helpers/facebook.php:65
+#: includes/helpers/facebook.php:70
 msgid "No Facebook page is selected (missing page id or token)."
 msgstr "Nie je vybratá Facebook stránka (chýba id stránky alebo token)"
 
-#: includes/helpers/facebook.php:99
+#: includes/helpers/facebook.php:104
 msgid "Could not validate User Access Token."
 msgstr ""
 
@@ -4425,7 +4425,7 @@ msgstr ""
 "Nastala chyba pri spracovaní platby. Prosím skúste platbu zopakovať alebo "
 "kontaktujte administrátora."
 
-#: includes/helpers/widgets/class-user-field.php:48
+#: includes/helpers/widgets/class-user-field.php:46
 msgid "Select an User"
 msgstr ""
 
@@ -4500,11 +4500,11 @@ msgid ""
 "system. Right now only you (the owner) and administrators users can see it."
 msgstr ""
 
-#: includes/listings/class-renew-listing-action.php:25
+#: includes/listings/class-renew-listing-action.php:19
 msgid "Renew"
 msgstr "Obnoviť"
 
-#: includes/listings/class-renew-listing-action.php:33
+#: includes/listings/class-renew-listing-action.php:27
 msgid "You can use this button to renew your ad."
 msgstr ""
 
@@ -4671,7 +4671,7 @@ msgstr ""
 msgid "No thumbnail data found."
 msgstr ""
 
-#: includes/media/class-upload-listing-media-ajax-handler.php:53
+#: includes/media/class-upload-listing-media-ajax-handler.php:43
 msgid "You are not authorized to upload files."
 msgstr ""
 
@@ -4736,15 +4736,15 @@ msgstr ""
 msgid "General"
 msgstr "Všeobecné"
 
-#: includes/models/payment-transaction.php:232
+#: includes/models/payment-transaction.php:235
 msgid "The transaction must be assigned to a WordPress user."
 msgstr "Transakcia musí byť priradená používateľovi WordPress."
 
-#: includes/models/payment-transaction.php:245
+#: includes/models/payment-transaction.php:248
 msgid "The transaction has no items."
 msgstr "Transakcie neobsahuje položky."
 
-#: includes/models/payment-transaction.php:257
+#: includes/models/payment-transaction.php:260
 msgid ""
 "The amount of credit in your account is not enough to pay for the selected "
 "items. Please choose one of the available Credit Plans in addition to the "
@@ -4756,7 +4756,7 @@ msgstr ""
 "kreditov alebo si dokúpte kredity na stránke vašeho účtu.<br> Počet "
 "chýbajúcich kreditov: %d"
 
-#: includes/models/payment-transaction.php:259
+#: includes/models/payment-transaction.php:262
 msgid ""
 "The selected Credit Plan is not enough to pay for the selected items. Please "
 "choose a bigger Credit Plan or add credit to your account from your Profile "
@@ -4766,11 +4766,11 @@ msgstr ""
 "vyberte si väčsí plán kreditov pod položkou pre pridanie kreditov alebo si "
 "dokúpte kredity na stránke vašeho účtu.<br> Počet chýbajúcich kreditov: %d"
 
-#: includes/models/payment-transaction.php:289
+#: includes/models/payment-transaction.php:292
 msgid "You must select a payment method."
 msgstr "Musíte vybrať platnú metódu platby."
 
-#: includes/models/payment-transaction.php:301
+#: includes/models/payment-transaction.php:304
 msgid "The payment status for this transaction hasn't been defined."
 msgstr "Stav tejto transakcie nebol definovaný."
 
@@ -4925,7 +4925,7 @@ msgstr ""
 "Poplatok nemôže byť vymazaný, pretože sú aktívne inzeráty priradené k tomuto "
 "ID poplatku."
 
-#: includes/payment-term-fee.php:269
+#: includes/payment-term-fee.php:277
 msgid "The recipient Fee doesn't exists."
 msgstr "Uvedený prijímateľ poplatku neexistuje."
 
@@ -4955,11 +4955,11 @@ msgstr "Počet znakov povolených v nadpise musí byť väčší alebo rovný nu
 msgid "The price must be equal or greater than zero."
 msgstr "Cena musí byť väčšia alebo rovná nule."
 
-#: includes/payment-terms-table.php:200 includes/payments-api.php:447
+#: includes/payment-terms-table.php:200 includes/payments-api.php:450
 msgid "The selected payment type can't be used in this kind of transaction."
 msgstr "Vybraný typ platby nie je dostupný pre tento druh transakcie."
 
-#: includes/payment-terms-table.php:205 includes/payments-api.php:452
+#: includes/payment-terms-table.php:205 includes/payments-api.php:455
 msgid "The selected payment term can't be used in this kind of transaction."
 msgstr "Vybrané podmienky platby nie sú dostupné pre tento druh transakcie."
 
@@ -4968,13 +4968,13 @@ msgid ""
 "{credit-plan-name} ({credit-plan-credits} credits for {credit-plan-price})"
 msgstr ""
 
-#: includes/payments-api.php:498
+#: includes/payments-api.php:501
 msgid ""
 "The specified payment transaction doesn't exists. We can't process your "
 "payment."
 msgstr "Uvedená transakcia neexistuje. Nemôžeme spracovať vašu použiadavku."
 
-#: includes/payments-api.php:503
+#: includes/payments-api.php:506
 msgid ""
 "The payment method associated with this transaction is not available at this "
 "time. We can't process your payment."
@@ -4982,7 +4982,7 @@ msgstr ""
 "Uvedená platobná metóda spojená s touto transakciou práve nie je dostupná. "
 "Nemôžeme spracovať vašu použiadavku."
 
-#: includes/payments-api.php:508
+#: includes/payments-api.php:511
 msgid ""
 "Please contact customer service if you are viewing this message after having "
 "made a payment. If you have not tried to make a payment and you are viewing "
@@ -4994,27 +4994,27 @@ msgstr ""
 "chybu."
 
 #. translators: %s link HTML
-#: includes/payments-api.php:512
+#: includes/payments-api.php:515
 #, fuzzy
 msgid "Return to %shome page"
 msgstr "Návrat na %s"
 
-#: includes/payments-api.php:696
+#: includes/payments-api.php:699
 msgid ""
 "You currently have %1$s credits in your account. The balance after this "
 "transaction is completed successfully will be %2$s."
 msgstr ""
 
 #. translators: %s credit balance
-#: includes/payments-api.php:722
+#: includes/payments-api.php:725
 msgid "You currently have %s credits in your account."
 msgstr ""
 
-#: includes/payments-api.php:924 includes/payments-api.php:988
+#: includes/payments-api.php:927 includes/payments-api.php:991
 msgid "Payment Completed"
 msgstr "Platba prebehla úspešne"
 
-#: includes/payments-api.php:927
+#: includes/payments-api.php:930
 msgid ""
 "Your Payment has been processed successfully. Please press the button below "
 "to continue with the process."
@@ -5022,7 +5022,7 @@ msgstr ""
 "Vaša platba prebehla úspešne. Prosím kliknite na tlačidlo nižšie pre "
 "dokončenie procesu."
 
-#: includes/payments-api.php:929
+#: includes/payments-api.php:932
 msgid ""
 "Your Payment has been processed successfully. However is still pending "
 "approvation from the payment gateway. Please press the button below to "
@@ -5031,11 +5031,11 @@ msgstr ""
 "Vaša platba prebehla úspešne. Stále však musíte počkať na potvrdenie z "
 "platobnej brány. Prosím kliknite na tlačidlo nižšie pre dokončenie procesu."
 
-#: includes/payments-api.php:934
+#: includes/payments-api.php:937
 msgid "Payment Not Required"
 msgstr "Nevyžaduje sa platba"
 
-#: includes/payments-api.php:935
+#: includes/payments-api.php:938
 msgid ""
 "No Payment is required for this transaction. Please press the button below "
 "to continue with the process."
@@ -5043,11 +5043,11 @@ msgstr ""
 "Pre túto transakciu sa nevyžaduje platba. Prosím kliknite na tlačidlo nižšie "
 "pre dokončenie procesu."
 
-#: includes/payments-api.php:940 includes/payments-api.php:994
+#: includes/payments-api.php:943 includes/payments-api.php:997
 msgid "Payment Failed"
 msgstr "Platba zlyhala"
 
-#: includes/payments-api.php:941
+#: includes/payments-api.php:944
 msgid ""
 "Your Payment has been processed successfully. However, the payment gateway "
 "didn't return a payment status that allows us to continue with the process. "
@@ -5057,30 +5057,30 @@ msgstr ""
 "brány, nemôžeme tak pokračovať v procese. Prosím kontaktuje administrátora "
 "pre vyriešenie tohto problému."
 
-#: includes/payments-api.php:944 includes/payments-api.php:990
+#: includes/payments-api.php:947 includes/payments-api.php:993
 msgid "Payment Canceled"
 msgstr "Platba bola zrušená"
 
-#: includes/payments-api.php:945
+#: includes/payments-api.php:948
 msgid "The Payment transaction was canceled. You can't post an Ad this time."
 msgstr "Platobná transakcia bola zrušená, Teraz nemôžete odoslať inzerát."
 
-#: includes/payments-api.php:948
+#: includes/payments-api.php:951
 msgid "Waiting on Confirmation"
 msgstr ""
 
-#: includes/payments-api.php:949
+#: includes/payments-api.php:952
 msgid ""
 "The payment gateway is taking a bit longer than expected to confirm your "
 "payment. Please wait a few seconds while we verify the transaction. The page "
 "will reload automatically."
 msgstr ""
 
-#: includes/payments-api.php:951
+#: includes/payments-api.php:954
 msgid "Payment Error"
 msgstr "Chyba počas platby"
 
-#: includes/payments-api.php:952
+#: includes/payments-api.php:955
 msgid ""
 "There was an error processing your payment. The payment status couldn't be "
 "found. Please contact the website admin to solve this issue."
@@ -5088,7 +5088,7 @@ msgstr ""
 "Nastala chyba pri spracovaní platby. Nevidíme stav platby. Prosím "
 "kontaktujte administrátora pre vyriešenie problému."
 
-#: includes/payments-api.php:992
+#: includes/payments-api.php:995
 msgid "Payment Not Verified"
 msgstr ""
 
@@ -7889,13 +7889,13 @@ msgid ""
 "Fee."
 msgstr "Systém kreditov bol vypnutý, pretože ste vypli spoplatnenie inzerátov."
 
-#: includes/settings/renderers/class-button-settings-renderer.php:40
+#: includes/settings/renderers/class-button-settings-renderer.php:28
 msgid ""
 "Resetting to the default layout will cause any custom HTML layout changes "
 "you've made to be lost. Are you sure?"
 msgstr ""
 
-#: includes/settings/renderers/class-button-settings-renderer.php:47
+#: includes/settings/renderers/class-button-settings-renderer.php:35
 msgid "Reset"
 msgstr "Obnoviť"
 
@@ -8220,7 +8220,7 @@ msgstr "Zlyhala platba tejto transakcie (dôvod je uvedený nižšie)"
 msgid "You are not allowed to buy credits."
 msgstr "Nemáte povolený nákup kreditov."
 
-#: includes/views/frontend/class-category-shortcode.php:75
+#: includes/views/frontend/class-category-shortcode.php:70
 msgid ""
 "No category was found with the IDs provided. Please provide at least one "
 "valid category ID."
@@ -8230,23 +8230,23 @@ msgstr ""
 msgid "The instance of WP_Scripts is not ready!"
 msgstr ""
 
-#: installer.php:160
+#: installer.php:145
 msgid "30 Day Listing"
 msgstr "Ponúkať 30 dní"
 
-#: installer.php:307
+#: installer.php:292
 msgid "Response to your AWPCP Demo Ad"
 msgstr "Odpovedajte na AWPCP demo inzerát"
 
-#: installer.php:308
+#: installer.php:293
 msgid "Someone has responded to your AWPCP Demo Ad"
 msgstr "Niekto odpovedal na váš DEMO inzerát"
 
-#: installer.php:333
+#: installer.php:318
 msgid "Verify the email address used for Ad $title"
 msgstr ""
 
-#: installer.php:334
+#: installer.php:319
 msgid ""
 "Hello $author_name \n"
 "\n"
@@ -9117,7 +9117,7 @@ msgstr ""
 msgid "AWP Classifieds Team"
 msgstr "Stránky inzerátov"
 
-#: admin/admin-panel-fees-table.php:254
+#: admin/admin-panel-fees-table.php:257
 msgctxt "all categories"
 msgid "All"
 msgstr "Všetko"
@@ -9301,29 +9301,29 @@ msgctxt "alternate CA info for cURL"
 msgid "Missing"
 msgstr "Chýba"
 
-#: admin/class-import-listings-admin-page.php:369
+#: admin/class-import-listings-admin-page.php:370
 msgctxt ""
 "description for messages used to show feedback for the Import Listings "
 "operation"
 msgid "<message-type> in line <message-line>"
 msgstr ""
 
-#: admin/class-import-listings-admin-page.php:380
+#: admin/class-import-listings-admin-page.php:381
 msgctxt "text for page subtitle and submit button"
 msgid "Test Import"
 msgstr "Test importu"
 
-#: admin/class-import-listings-admin-page.php:382
+#: admin/class-import-listings-admin-page.php:383
 msgctxt "text for page subtitle and submit button"
 msgid "Import"
 msgstr "Import"
 
-#: admin/class-import-settings-admin-page.php:103
+#: admin/class-import-settings-admin-page.php:87
 msgctxt "import settings"
 msgid "Are you sure you want to do this?"
 msgstr "Skutočne to chcete urobiť?"
 
-#: admin/class-import-settings-admin-page.php:116
+#: admin/class-import-settings-admin-page.php:100
 msgctxt "import settings"
 msgid ""
 "There was a problem trying to read the settings file; it appears the file "
@@ -9336,17 +9336,17 @@ msgctxt "credit plans ajax"
 msgid "The specified Credit Plan doesn't exists."
 msgstr "Zvolený plán kreditov neexistuje."
 
-#: admin/form-fields/class-form-fields-admin-page.php:37
+#: admin/form-fields/class-form-fields-admin-page.php:29
 msgctxt "sub menu title"
 msgid "Form Fields"
 msgstr ""
 
-#: admin/form-fields/class-form-fields-table.php:37
+#: admin/form-fields/class-form-fields-table.php:31
 msgctxt "form field name"
 msgid "Name"
 msgstr "Meno"
 
-#: admin/form-fields/class-form-fields-table.php:38
+#: admin/form-fields/class-form-fields-table.php:32
 msgctxt "form field slug"
 msgid "Slug"
 msgstr "Slug"
@@ -9467,12 +9467,12 @@ msgctxt "drip-autoresponder"
 msgid "The email address entered is not valid."
 msgstr ""
 
-#: admin/pointers/class-drip-autoresponder.php:22
+#: admin/pointers/class-drip-autoresponder.php:16
 msgctxt "drip-autoresponder"
 msgid "Yes, I'd like my course, please"
 msgstr ""
 
-#: admin/pointers/class-drip-autoresponder.php:31
+#: admin/pointers/class-drip-autoresponder.php:25
 msgctxt "drip-autoresponder"
 msgid "No, thanks"
 msgstr ""
@@ -9531,7 +9531,7 @@ msgctxt "button text in manual upgrade admin page"
 msgid "Upgrade"
 msgstr "Aktualizácia"
 
-#: frontend/class-categories-switcher.php:59
+#: frontend/class-categories-switcher.php:44
 msgctxt "single dropdown category selector"
 msgid "Category:"
 msgstr ""
@@ -9541,22 +9541,22 @@ msgctxt "404 HTTP status description"
 msgid "Listing not found"
 msgstr ""
 
-#: frontend/page-place-ad.php:1438
+#: frontend/page-place-ad.php:1434
 msgctxt "upload listing images form"
 msgid "Preview Ad"
 msgstr "Náhľad inzerátu"
 
-#: frontend/page-place-ad.php:1440
+#: frontend/page-place-ad.php:1436
 msgctxt "upload listing images form"
 msgid "Place Ad"
 msgstr "Umiestniť inzerát"
 
-#: frontend/page-place-ad.php:1442
+#: frontend/page-place-ad.php:1438
 msgctxt "upload listing images form"
 msgid "Checkout"
 msgstr "Pokladňa"
 
-#: frontend/placeholders.php:890
+#: frontend/placeholders.php:892
 #: includes/admin/listings/trait-renew-listing-table-action.php:34
 msgctxt "listing row action"
 msgid "Renew"
@@ -9577,12 +9577,12 @@ msgctxt "listing row action"
 msgid "Enable"
 msgstr "Povoliť"
 
-#: includes/admin/listings/class-make-featured-listing-table-action.php:68
+#: includes/admin/listings/class-make-featured-listing-table-action.php:61
 msgctxt "listing row action"
 msgid "Make Featured"
 msgstr "Nastaviť ako odporúčané"
 
-#: includes/admin/listings/class-make-standard-listing-table-action.php:67
+#: includes/admin/listings/class-make-standard-listing-table-action.php:60
 msgctxt "listing row action"
 msgid "Make Standard"
 msgstr ""
@@ -9592,17 +9592,17 @@ msgctxt "listing row action"
 msgid "SPAM"
 msgstr ""
 
-#: includes/admin/listings/class-mark-paid-listing-table-action.php:66
+#: includes/admin/listings/class-mark-paid-listing-table-action.php:59
 msgctxt "listing row action"
 msgid "Mark as Paid"
 msgstr "Označiť ako zaplatené"
 
-#: includes/admin/listings/class-mark-reviewed-listing-table-action.php:67
+#: includes/admin/listings/class-mark-reviewed-listing-table-action.php:60
 msgctxt "listing row action"
 msgid "Mark as Reviewed"
 msgstr ""
 
-#: includes/admin/listings/class-mark-verified-listing-table-action.php:68
+#: includes/admin/listings/class-mark-verified-listing-table-action.php:61
 msgctxt "listing row action"
 msgid "Mark as Verified"
 msgstr "Označiť ako overené"
@@ -9612,12 +9612,12 @@ msgctxt "listing row action"
 msgid "Send Access Key"
 msgstr "Odoslať prístupový kľúč"
 
-#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:68
+#: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:61
 msgctxt "listing row action"
 msgid "Send to Facebook Group"
 msgstr ""
 
-#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:67
+#: includes/admin/listings/class-send-to-facebook-page-listing-table-action.php:60
 msgctxt "listing row action"
 msgid "Send to Facebook Page"
 msgstr ""
@@ -9858,7 +9858,7 @@ msgctxt "checkout-payment page"
 msgid "Payment Terms"
 msgstr "Obchodné podmienky"
 
-#: includes/payments-api.php:890
+#: includes/payments-api.php:893
 msgctxt "checkout-payment page"
 msgid "Please use the button below to complete your payment."
 msgstr "Použite tlačidlo nižšie, pre dokončenie platby."
@@ -10143,17 +10143,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr ""
 
-#: includes/class-awpcp.php:1449
+#: includes/class-awpcp.php:1460
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr ""
 
-#: includes/class-awpcp.php:1450
+#: includes/class-awpcp.php:1461
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr ""
 
-#: includes/class-awpcp.php:1456
+#: includes/class-awpcp.php:1467
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "2"
@@ -10333,27 +10333,27 @@ msgctxt "save submit listing section"
 msgid "Clear form"
 msgstr ""
 
-#: includes/functions/deprecated.php:480
+#: includes/functions/deprecated.php:505
 msgctxt "upload files"
 msgid "The type of the uploaded file %s is not allowed."
 msgstr ""
 
-#: includes/functions/deprecated.php:488
+#: includes/functions/deprecated.php:513
 msgctxt "upload files"
 msgid "The specified file does not exists: %s."
 msgstr "Uvedený súbor neexistuje: %s."
 
-#: includes/functions/deprecated.php:494
+#: includes/functions/deprecated.php:519
 msgctxt "upload files"
 msgid "Unknown error encountered while uploading the image."
 msgstr "Nastala neznáma chyba pri nahrávaní obrázka."
 
-#: includes/functions/deprecated.php:502
+#: includes/functions/deprecated.php:527
 msgctxt "upload files"
 msgid "There was an error trying to find out the file size of the image %s."
 msgstr "Nastala chyba pri pokuse o zistení veľkosti obrázka %s."
 
-#: includes/functions/deprecated.php:515
+#: includes/functions/deprecated.php:540
 msgctxt "upload files"
 msgid ""
 "The size of %1$s was too small. The file was not uploaded. File size must be "
@@ -10362,24 +10362,24 @@ msgstr ""
 "Veľkosť súboru %1$s bola veľmi malá. Súbor nebol nahraný. Súbor musí byť "
 "väčší než %2$d bytov."
 
-#: includes/functions/deprecated.php:523
+#: includes/functions/deprecated.php:548
 msgctxt "upload files"
 msgid "The file %s does not appear to be a valid image file."
 msgstr "Zdá sa, že súbor %s nie je obrázkom."
 
-#: includes/functions/deprecated.php:553
+#: includes/functions/deprecated.php:578
 msgctxt "upload files"
 msgid "The file %s could not be moved to the destination directory."
 msgstr "Súbor %s nemohol byť presunutý do cieľového priečinka."
 
 #. translators: %s is the name of the uploaded file.
-#: includes/functions/deprecated.php:557
+#: includes/functions/deprecated.php:582
 #: includes/media/class-uploads-manager.php:39
 msgctxt "upload files"
 msgid "The file %s could not be copied to the destination directory."
 msgstr "Súbor %s nemohol byť skopírovaný do cieľového priečinka."
 
-#: includes/functions/deprecated.php:564
+#: includes/functions/deprecated.php:589
 msgctxt "upload files"
 msgid "Could not create resized versions of image %s."
 msgstr "Nedajú sa vytvoriť orezané verzie obrázku %s."
@@ -10534,22 +10534,22 @@ msgctxt "payment term duration"
 msgid "No Limit"
 msgstr "Bez limitu"
 
-#: includes/payments-api.php:758
+#: includes/payments-api.php:761
 msgctxt "credit plans table"
 msgid "Plan"
 msgstr "Plán"
 
-#: includes/payments-api.php:759
+#: includes/payments-api.php:762
 msgctxt "credit plans table"
 msgid "Description"
 msgstr "Popis"
 
-#: includes/payments-api.php:760
+#: includes/payments-api.php:763
 msgctxt "credit plans table"
 msgid "Credits"
 msgstr "Kredity"
 
-#: includes/payments-api.php:761
+#: includes/payments-api.php:764
 msgctxt "credit plans table"
 msgid "Price"
 msgstr "Cena"
@@ -10602,12 +10602,12 @@ msgid ""
 "{website_url}"
 msgstr ""
 
-#: installer.php:318
+#: installer.php:303
 msgctxt "reply to ad email"
 msgid "{__previous_subject__} regarding: {listing_title}"
 msgstr ""
 
-#: installer.php:319
+#: installer.php:304
 msgctxt "reply to ad email"
 msgid ""
 "{__previous_body__}\n"
