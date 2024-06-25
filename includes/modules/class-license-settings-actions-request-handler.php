@@ -1,23 +1,15 @@
 <?php
 
-function awpcp_license_settings_actions_request_handler() {
-    return new AWPCP_License_Settings_Actions_Request_Handler(
-        awpcp_licenses_manager(),
-        awpcp_modules_manager(),
-        awpcp_request()
-    );
-}
-
 class AWPCP_License_Settings_Actions_Request_Handler {
 
     private $licenses_manager;
     private $modules_manager;
     private $request;
 
-    public function __construct( $licenses_manager, $modules_manager, $request ) {
-        $this->licenses_manager = $licenses_manager;
-        $this->modules_manager = $modules_manager;
-        $this->request = $request;
+    public function __construct() {
+        $this->licenses_manager = awpcp_licenses_manager();
+        $this->modules_manager  = awpcp()->modules_manager;
+        $this->request          = awpcp_request();
     }
 
     public function dispatch( $location ) {

@@ -53,17 +53,17 @@
                             <td>
                                 <?php awpcp_show_form_error( 'date_format', $form_errors ); ?>
 
-								<select name="date_format" id="awpcp-importer-format">
-									<option value="auto">
-										<?php esc_html_e( 'Automatic', 'another-wordpress-classifieds-plugin' ); ?>
-									</option>
-									<option value="uk_date" <?php selected( $form_data['date_format'], 'uk_date' ); ?>>
-										<?php esc_html_e( 'UK (dd/mm/year)', 'another-wordpress-classifieds-plugin' ); ?>
-									</option>
-									<option value="eur_date" <?php selected( $form_data['date_format'], 'eur_date' ); ?>>
-										<?php esc_html_e( 'EUR (year/mm/dd)', 'another-wordpress-classifieds-plugin' ); ?>
-									</option>
-								</select>
+                                <select name="date_format" id="awpcp-importer-format">
+                                    <option value="auto">
+                                        <?php esc_html_e( 'Automatic', 'another-wordpress-classifieds-plugin' ); ?>
+                                    </option>
+                                    <option value="uk_date" <?php selected( $form_data['date_format'], 'uk_date' ); ?>>
+                                        <?php esc_html_e( 'UK (dd/mm/year)', 'another-wordpress-classifieds-plugin' ); ?>
+                                    </option>
+                                    <option value="eur_date" <?php selected( $form_data['date_format'], 'eur_date' ); ?>>
+                                        <?php esc_html_e( 'EUR (year/mm/dd)', 'another-wordpress-classifieds-plugin' ); ?>
+                                    </option>
+                                </select>
                             </td>
                         </tr>
                         <tr class="csv-separators">
@@ -79,8 +79,9 @@
                                 </p>
 
                                 <p>
-                                    <label for="awpcp-importer-image-separator"><?php echo esc_html( __( 'Category Separator',
-                                            'another-wordpress-classifieds-plugin' ) ); ?></label>
+                                    <label for="awpcp-importer-image-separator">
+                                        <?php esc_html_e( 'Category Separator', 'another-wordpress-classifieds-plugin' ); ?>
+                                    </label>
                                     <input id="awpcp-importer-category-separator" type="text" maxlength="1" size="1" name="category_separator"
                                             value="<?php echo esc_attr( $form_data['category_separator'] ); ?>"/>
                                     <?php awpcp_show_form_error( 'category_separator', $form_errors ); ?>

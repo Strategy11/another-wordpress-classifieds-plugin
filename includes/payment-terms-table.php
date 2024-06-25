@@ -95,7 +95,7 @@ class AWPCP_PaymentTermsTable {
             'id' => $this->item_id($item),
             'data-price' => $item->price,
             'data-credits' => $item->credits,
-            'data-categories' => esc_attr( json_encode( array_map( 'absint', $item->categories ) ) ),
+            'data-categories' => esc_attr( wp_json_encode( array_map( 'absint', $item->categories ) ) ),
         );
 
         if ( $this->echo ) {

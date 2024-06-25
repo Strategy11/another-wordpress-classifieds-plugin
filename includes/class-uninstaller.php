@@ -187,7 +187,7 @@ class AWPCP_Uninstaller {
      * @since 4.0.0
      */
     private function delete_options() {
-		$options_to_delete = array(
+        $options_to_delete = array(
             $this->settings->setting_name,
             'awpcp-activated',
             'awpcp-flush-rewrite-rules',

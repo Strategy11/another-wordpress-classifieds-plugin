@@ -138,9 +138,9 @@ class AWPCP_PaymentSettings {
 
         $settings_manager->add_section( $group, __( 'PayPal Settings', 'another-wordpress-classifieds-plugin' ), 'paypal', 20, array( $settings_manager, 'section' ) );
 
-		$settings_manager->add_setting($key, 'activatepaypal', __( 'Activate PayPal?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Activate PayPal?', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting($key, 'activatepaypal', __( 'Activate PayPal?', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Activate PayPal?', 'another-wordpress-classifieds-plugin' ) );
 
-		$settings_manager->add_setting( [
+        $settings_manager->add_setting( [
             'id'          => 'paypalemail',
             'name'        => __( 'PayPal receiver email', 'another-wordpress-classifieds-plugin' ),
             'type'        => 'textfield',
@@ -180,7 +180,7 @@ class AWPCP_PaymentSettings {
         $message = __( 'The PayPal Currency Code must be one of <currency-codes>.', 'another-wordpress-classifieds-plugin' );
         $message = str_replace( '<currency-codes>', implode( ', ', $supported_currencies ), $message );
 
-		$settings_manager->add_setting( [
+        $settings_manager->add_setting( [
             'id'          => 'paypalcurrencycode',
             'name'        => __( 'PayPal currency code', 'another-wordpress-classifieds-plugin' ),
             'type'        => 'textfield',
@@ -215,7 +215,7 @@ class AWPCP_PaymentSettings {
 
         $settings_manager->add_section($group, __( '2Checkout Settings', 'another-wordpress-classifieds-plugin'), '2checkout', 30, array($settings_manager, 'section'));
 
-		$settings_manager->add_setting( $key, 'activate2checkout', __( 'Activate 2Checkout', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Activate 2Checkout?', 'another-wordpress-classifieds-plugin' ) );
+        $settings_manager->add_setting( $key, 'activate2checkout', __( 'Activate 2Checkout', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, __( 'Activate 2Checkout?', 'another-wordpress-classifieds-plugin' ) );
 
         $settings_manager->add_setting( [
             'id'          =>'2checkout',
@@ -246,7 +246,7 @@ class AWPCP_PaymentSettings {
                 ],
             ],
             'behavior'   => [
-		        'enabledIf' => 'activate2checkout',
+                'enabledIf' => 'activate2checkout',
             ],
             'description' => __( 'The currency in which you would like to receive your 2Checkout payments', 'another-wordpress-classifieds-plugin' ),
         ] );

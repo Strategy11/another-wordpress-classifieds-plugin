@@ -150,7 +150,7 @@ class AWPCP {
         //       Perhaps delaying rewrite rules generation until next request makes
         //       makes more sense.
         $custom_post_types = awpcp_custom_post_types();
-		add_action( 'init', array( $custom_post_types, 'register_custom_post' ), 5 );
+        add_action( 'init', array( $custom_post_types, 'register_custom_post' ), 5 );
         add_action( 'awpcp-installed', array( $custom_post_types, 'create_default_category' ) );
 
         $listing_permalinks = $this->container['ListingsPermalinks'];
@@ -227,7 +227,7 @@ class AWPCP {
     }
 
     public function register_settings_handlers() {
-        $general_settings = awpcp_general_settings();
+        $general_settings = new AWPCP_GeneralSettings();
         add_action( 'awpcp_register_settings', array( $general_settings, 'register_settings' ) );
         add_filter( 'awpcp_validate_settings_general-settings', array( $general_settings, 'validate_group_settings' ), 10, 2 );
         add_filter( 'awpcp_validate_settings_general-settings', array( $general_settings, 'validate_general_settings' ), 10, 2 );
@@ -436,10 +436,10 @@ class AWPCP {
                 add_action( 'admin_notices', array( awpcp_missing_paypal_merchant_id_setting_notice(), 'maybe_show_notice' ) );
 
                 // TODO: do we really need to execute this every time the plugin settings are saved?
-                $handler = awpcp_license_settings_update_handler();
+                $handler = new AWPCP_License_Settings_Update_Handler();
                 add_action( 'update_option_' . $this->settings->setting_name, array( $handler, 'process_settings' ), 10, 2 );
 
-                $handler = awpcp_license_settings_actions_request_handler();
+                $handler = new AWPCP_License_Settings_Actions_Request_Handler();
                 add_action( 'wp_redirect', array( $handler, 'dispatch' ) );
             }
         } else {
@@ -577,7 +577,7 @@ class AWPCP {
             flush_rewrite_rules();
 
             update_option( 'awpcp-flush-rewrite-rules', false );
-		}
+        }
     }
 
     private function ajax_setup() {
@@ -680,7 +680,7 @@ class AWPCP {
         $handler = awpcp_default_layout_ajax_handler();
         add_action( 'wp_ajax_awpcp-layout-default', array( $handler, 'ajax' ) );
 
-        $handler = awpcp_import_listings_ajax_handler();
+        $handler = new AWPCP_Import_Listings_Ajax_Handler();
         add_action( 'wp_ajax_awpcp-import-listings', array( $handler, 'ajax' ) );
 
         $handler = awpcp_dismiss_notice_ajax_handler();

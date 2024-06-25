@@ -35,36 +35,36 @@ class AWPCP_Pages {
 
     public $renew_ad_page = null;
 
-	public function __construct( $container ) {
+    public function __construct( $container ) {
         $this->container = $container;
 
-		$this->meta       = $this->container['Meta'];
-		$this->show_ad    = $this->container['ShowListingPage'];
-		$this->browse_ads = awpcp_browse_listings_page();
+        $this->meta       = $this->container['Meta'];
+        $this->show_ad    = $this->container['ShowListingPage'];
+        $this->browse_ads = awpcp_browse_listings_page();
 
-		// fix for theme conflict with ThemeForest themes.
-		new AWPCP_RawShortcode();
+        // fix for theme conflict with ThemeForest themes.
+        new AWPCP_RawShortcode();
 
-		add_action( 'init', array( $this, 'init' ) );
-	}
+        add_action( 'init', array( $this, 'init' ) );
+    }
 
-	public function init() {
+    public function init() {
         // Page shortcodes.
-		add_shortcode( 'AWPCPPLACEAD', array( $this, 'place_ad' ) );
-		add_shortcode( 'AWPCPEDITAD', array( $this, 'edit_ad' ) );
-		add_shortcode( 'AWPCP-RENEW-AD', array( $this, 'renew_ad' ) );
-		add_shortcode( 'AWPCPSEARCHADS', array( $this, 'search_ads' ) );
-		add_shortcode( 'AWPCPREPLYTOAD', array( $this, 'reply_to_ad' ) );
+        add_shortcode( 'AWPCPPLACEAD', array( $this, 'place_ad' ) );
+        add_shortcode( 'AWPCPEDITAD', array( $this, 'edit_ad' ) );
+        add_shortcode( 'AWPCP-RENEW-AD', array( $this, 'renew_ad' ) );
+        add_shortcode( 'AWPCPSEARCHADS', array( $this, 'search_ads' ) );
+        add_shortcode( 'AWPCPREPLYTOAD', array( $this, 'reply_to_ad' ) );
 
         // These shortcodes are no longer used, but kept for backwards compatibility.
-		add_shortcode( 'AWPCPPAYMENTTHANKYOU', array( $this, 'noop' ) );
-		add_shortcode( 'AWPCPCANCELPAYMENT', array( $this, 'noop' ) );
+        add_shortcode( 'AWPCPPAYMENTTHANKYOU', array( $this, 'noop' ) );
+        add_shortcode( 'AWPCPCANCELPAYMENT', array( $this, 'noop' ) );
 
         add_shortcode( 'AWPCPBROWSECATS', array( $this->browse_ads, 'dispatch' ) );
-		add_shortcode( 'AWPCPBROWSEADS', array( $this->browse_ads, 'dispatch' ) );
+        add_shortcode( 'AWPCPBROWSEADS', array( $this->browse_ads, 'dispatch' ) );
 
         add_shortcode( 'AWPCPSHOWAD', array( $this, 'show_ad' ) );
-		add_shortcode( 'AWPCPCLASSIFIEDSUI', 'awpcpui_homescreen' );
+        add_shortcode( 'AWPCPCLASSIFIEDSUI', 'awpcpui_homescreen' );
 
         add_shortcode( 'AWPCPLATESTLISTINGS', array( $this, 'listings_shortcode' ) );
         add_shortcode( 'AWPCPRANDOMLISTINGS', array( $this, 'random_listings_shortcode' ) );
@@ -76,14 +76,14 @@ class AWPCP_Pages {
         add_action( 'wp_ajax_awpcp-flag-ad', array( $this, 'ajax_flag_ad' ) );
         add_action( 'wp_ajax_nopriv_awpcp-flag-ad', array( $this, 'ajax_flag_ad' ) );
 
-		do_action( 'awpcp_setup_shortcode' );
-	}
+        do_action( 'awpcp_setup_shortcode' );
+    }
 
     public function noop() {
         return '';
     }
 
-	public function place_ad() {
+    public function place_ad() {
         awpcp_maybe_add_thickbox();
         wp_enqueue_script( 'awpcp-page-show-ad' );
         if ( ! isset( $this->output['place-ad'] ) ) {
@@ -96,10 +96,10 @@ class AWPCP_Pages {
             $this->output['place-ad'] = $this->place_ad_page->dispatch();
         }
 
-		return $this->output['place-ad'];
-	}
+        return $this->output['place-ad'];
+    }
 
-	public function edit_ad() {
+    public function edit_ad() {
         if ( ! isset( $this->output['edit-ad'] ) ) {
             do_action( 'awpcp-shortcode', 'edit-ad' );
 
@@ -111,15 +111,15 @@ class AWPCP_Pages {
         }
 
         return $this->output['edit-ad'];
-	}
+    }
 
-	public function renew_ad() {
-		if ( is_null( $this->renew_ad_page ) ) {
-			$this->renew_ad_page = awpcp_renew_listing_page();
+    public function renew_ad() {
+        if ( is_null( $this->renew_ad_page ) ) {
+            $this->renew_ad_page = awpcp_renew_listing_page();
         }
 
-		return is_null( $this->renew_ad_page ) ? '' : $this->renew_ad_page->dispatch();
-	}
+        return is_null( $this->renew_ad_page ) ? '' : $this->renew_ad_page->dispatch();
+    }
 
     public function show_ad() {
         if ( ! isset( $this->output['show-ad'] ) ) {
@@ -129,15 +129,15 @@ class AWPCP_Pages {
         return $this->output['show-ad'];
     }
 
-	public function search_ads() {
+    public function search_ads() {
         if ( ! isset( $this->output['search-ads'] ) ) {
             $this->output['search-ads'] = awpcp_search_listings_page()->dispatch();
         }
 
         return $this->output['search-ads'];
-	}
+    }
 
-	public function reply_to_ad() {
+    public function reply_to_ad() {
         if ( ! isset( $this->output['reply-to-ad'] ) ) {
             do_action( 'awpcp-shortcode', 'reply-to-ad' );
 
@@ -146,7 +146,7 @@ class AWPCP_Pages {
         }
 
         return $this->output['reply-to-ad'];
-	}
+    }
 
     /**
      * @since 3.0.2
@@ -318,56 +318,56 @@ class AWPCP_Pages {
 }
 
 function awpcpui_homescreen() {
-	global $classicontent;
+    global $classicontent;
 
-	$awpcppagename = sanitize_title( get_currentpagename() );
+    $awpcppagename = sanitize_title( get_currentpagename() );
 
-	if ( ! isset( $classicontent ) || empty( $classicontent ) ) {
-		$classicontent = awpcpui_process( $awpcppagename );
-	}
-	return $classicontent;
+    if ( ! isset( $classicontent ) || empty( $classicontent ) ) {
+        $classicontent = awpcpui_process( $awpcppagename );
+    }
+    return $classicontent;
 }
 
 function awpcpui_process( $awpcppagename ) {
-	global $hasregionsmodule;
+    global $hasregionsmodule;
 
-	$output = '';
+    $output = '';
 
-	$awpcppage = get_currentpagename();
-	if ( ! isset( $awpcppagename ) || empty( $awpcppagename ) ) {
-		$awpcppagename = sanitize_title( $awpcppage, $post_ID = '' );
-	}
+    $awpcppage = get_currentpagename();
+    if ( ! isset( $awpcppagename ) || empty( $awpcppagename ) ) {
+        $awpcppagename = sanitize_title( $awpcppage, $post_ID = '' );
+    }
 
-	$layout = intval( get_query_var( 'layout' ) );
+    $layout = intval( get_query_var( 'layout' ) );
 
-	$isadmin = awpcp_current_user_is_admin();
+    $isadmin = awpcp_current_user_is_admin();
 
     awpcp_enqueue_main_script();
 
-	$isclassifiedpage = checkifclassifiedpage();
+    $isclassifiedpage = checkifclassifiedpage();
 
     if ( ! $isclassifiedpage && $isadmin ) {
-		$output .= __( 'Hi admin, you need to select the page for your classifieds.', 'another-wordpress-classifieds-plugin' );
-		$settings_link = admin_url( 'admin.php?page=awpcp-admin-settings&g=pages-settings' );
-		$output .= ' <a href="' . esc_url( $settings_link ) . '">' .
-			__( 'Choose pages now', 'another-wordpress-classifieds-plugin' ) .
-			'</a>';
+        $output .= __( 'Hi admin, you need to select the page for your classifieds.', 'another-wordpress-classifieds-plugin' );
+        $settings_link = admin_url( 'admin.php?page=awpcp-admin-settings&g=pages-settings' );
+        $output .= ' <a href="' . esc_url( $settings_link ) . '">' .
+            __( 'Choose pages now', 'another-wordpress-classifieds-plugin' ) .
+            '</a>';
 
     } elseif ( ! $isclassifiedpage && ! $isadmin ) {
-		$output .= __( 'You currently have no classifieds', 'another-wordpress-classifieds-plugin' );
+        $output .= __( 'You currently have no classifieds', 'another-wordpress-classifieds-plugin' );
 
-	} elseif ( $layout === 2 ) {
-		$output .= awpcp_display_the_classifieds_page_body( $awpcppagename );
+    } elseif ( $layout === 2 ) {
+        $output .= awpcp_display_the_classifieds_page_body( $awpcppagename );
 
-	} else {
-		$output .= awpcp_load_classifieds( $awpcppagename );
-	}
+    } else {
+        $output .= awpcp_load_classifieds( $awpcppagename );
+    }
 
-	return $output;
+    return $output;
 }
 
 function awpcp_load_classifieds( $awpcppagename ) {
-	if ( get_awpcp_option( 'main_page_display' ) ) {
+    if ( get_awpcp_option( 'main_page_display' ) ) {
         $query = array(
             'context' => 'public-listings',
             'limit'   => awpcp_get_var(
@@ -388,37 +388,37 @@ function awpcp_load_classifieds( $awpcppagename ) {
         );
 
         $output = awpcp_display_listings_in_page( $query, 'main-page' );
-	} else {
-		$output = awpcp_display_the_classifieds_page_body( $awpcppagename );
-	}
+    } else {
+        $output = awpcp_display_the_classifieds_page_body( $awpcppagename );
+    }
 
-	return $output;
+    return $output;
 }
 
 function awpcp_display_the_classifieds_page_body( $awpcppagename ) {
-	global $hasregionsmodule;
+    global $hasregionsmodule;
 
-	$output = '';
+    $output = '';
 
-	if ( ! isset( $awpcppagename ) || empty( $awpcppagename ) ) {
-		$awpcppage     = get_currentpagename();
-		$awpcppagename = sanitize_title( $awpcppage, $post_ID = '' );
-	}
+    if ( ! isset( $awpcppagename ) || empty( $awpcppagename ) ) {
+        $awpcppage     = get_currentpagename();
+        $awpcppagename = sanitize_title( $awpcppage, $post_ID = '' );
+    }
 
-	$output   .= '<div id="classiwrapper">';
-	$uiwelcome = stripslashes_deep( get_awpcp_option( 'uiwelcome' ) );
-	$output   .= "<div class=\"uiwelcome\">$uiwelcome</div>";
+    $output   .= '<div id="classiwrapper">';
+    $uiwelcome = stripslashes_deep( get_awpcp_option( 'uiwelcome' ) );
+    $output   .= "<div class=\"uiwelcome\">$uiwelcome</div>";
 
-	// Show the menu items.
+    // Show the menu items.
     $output .= awpcp_render_classifieds_bar();
 
-	if ( function_exists( 'awpcp_region_control_selector' ) && get_awpcp_option( 'show-region-selector', true ) ) {
-		$output .= awpcp_region_control_selector();
-	}
+    if ( function_exists( 'awpcp_region_control_selector' ) && get_awpcp_option( 'show-region-selector', true ) ) {
+        $output .= awpcp_region_control_selector();
+    }
 
-	$output .= '<div class="classifiedcats">';
+    $output .= '<div class="classifiedcats">';
 
-	// Display the categories.
+    // Display the categories.
     $params  = array(
         'show_in_columns'          => get_awpcp_option( 'view-categories-columns' ),
         'show_empty_categories'    => ! get_awpcp_option( 'hide-empty-categories' ),
@@ -428,11 +428,11 @@ function awpcp_display_the_classifieds_page_body( $awpcppagename ) {
     );
     $output .= awpcp_categories_renderer_factory()->create_list_renderer()->render( $params );
 
-	$output .= '</div>';
+    $output .= '</div>';
 
-	$output .= '</div>';
+    $output .= '</div>';
 
-	return $output;
+    return $output;
 }
 
 function awpcp_menu_items() {

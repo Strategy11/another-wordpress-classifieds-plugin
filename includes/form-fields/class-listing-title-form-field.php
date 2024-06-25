@@ -74,10 +74,11 @@ class AWPCP_ListingTitleFormField extends AWPCP_FormField {
     }
 
     private function get_characters_limit_for_listing( $listing ) {
+        $transaction = $this->payments ? $this->payments->get_transaction() : false;
         if ( is_object( $listing ) ) {
             $payment_term = $this->listing_renderer->get_payment_term( $listing );
             $characters_used = strlen( $this->listing_renderer->get_listing_title( $listing ) );
-        } elseif ( $transaction = $this->payments->get_transaction() ) {
+        } elseif ( $transaction ) {
             $payment_term = $this->payments->get_transaction_payment_term( $transaction );
             $characters_used = 0;
         } else {
@@ -88,7 +89,8 @@ class AWPCP_ListingTitleFormField extends AWPCP_FormField {
             $characters_allowed = $payment_term->get_characters_allowed_in_title();
             $remaining_characters = max( 0, $characters_allowed - $characters_used );
         } else {
-            $characters_allowed = $remaining_characters = 0;
+            $characters_allowed   = 0;
+            $remaining_characters = 0;
         }
 
         return compact( 'characters_allowed', 'remaining_characters' );

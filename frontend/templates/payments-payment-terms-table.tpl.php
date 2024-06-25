@@ -1,4 +1,7 @@
-<?php $columns = $this->get_columns(); $group = ''; ?>
+<?php
+$columns = $this->get_columns();
+$group   = '';
+?>
 
 <table class="awpcp-payment-terms-table awpcp-table">
     <thead>
@@ -10,9 +13,11 @@
     </thead>
 
     <tbody>
-    <?php foreach ($this->get_items() as $item): ?>
-
-        <?php if (($_group = $this->item_group($item)) != $group): ?>
+    <?php
+    foreach ( $this->get_items() as $item ):
+        $_group = $this->item_group( $item );
+        if ( $_group != $group ):
+            ?>
         <tr class="awpcp-group-header">
             <th colspan="<?php echo count( $columns ); ?>" scope="row"><?php echo esc_html( $this->item_group_name( $item ) ); ?></th>
         </tr>

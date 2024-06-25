@@ -49,13 +49,13 @@ class AWPCP_DebugAdminPage {
     /**
      * Constructor.
      */
-	public function __construct( $plugin, $settings, $settings_manager, $template_renderer ) {
+    public function __construct( $plugin, $settings, $settings_manager, $template_renderer ) {
         $this->plugin            = $plugin;
         $this->settings          = $settings;
         $this->settings_manager  = $settings_manager;
         $this->template_renderer = $template_renderer;
         $this->db                = $GLOBALS['wpdb'];
-	}
+    }
 
     /**
      * @since 4.0.0
@@ -75,12 +75,12 @@ class AWPCP_DebugAdminPage {
         wp_enqueue_script( 'awpcp-admin-debug' );
     }
 
-	/**
-	 * Allow users to download Debug Info as an JSON file.
-	 *
-	 * @since 2.0.7
-	 */
-	public function export_to_json() {
+    /**
+     * Allow users to download Debug Info as an JSON file.
+     *
+     * @since 2.0.7
+     */
+    public function export_to_json() {
         $content = [
             'environment'     => $this->get_environment_data(),
             'plugin-info'     => $this->get_plugin_info_data(),
@@ -89,7 +89,7 @@ class AWPCP_DebugAdminPage {
             'rewrite-rules'   => $this->get_rewrite_rules_data(),
         ];
 
-        $current_date = date( DATE_ATOM, current_time( 'timestamp' ) );
+        $current_date = gmdate( DATE_ATOM, current_time( 'timestamp' ) );
 
         $filename = sprintf( 'awpcp-debug-info-%s.json', $current_date );
         $filename = str_replace( ':', '', $filename );
@@ -102,14 +102,14 @@ class AWPCP_DebugAdminPage {
         echo wp_json_encode( $content, JSON_PRETTY_PRINT );
 
         exit;
-	}
+    }
 
-	/**
-	 * Renders an HTML page with AWPCP informaiton useful for debugging tasks.
-	 *
-	 * @since 2.0.7
-	 */
-	public function dispatch() {
+    /**
+     * Renders an HTML page with AWPCP informaiton useful for debugging tasks.
+     *
+     * @since 2.0.7
+     */
+    public function dispatch() {
         $current_section = $this->get_current_section();
 
         switch ( $current_section ) {
@@ -132,7 +132,7 @@ class AWPCP_DebugAdminPage {
                 $content = '';
         }
 
-		$params = array(
+        $params = array(
             'sections'        => [
                 'plugin-info'     => _x( 'Plugin Info', 'debug page', 'another-wordpress-classifieds-plugin' ),
                 'plugin-pages'    => _x( 'Plugin Pages', 'debug page', 'another-wordpress-classifieds-plugin' ),
@@ -147,8 +147,8 @@ class AWPCP_DebugAdminPage {
 
         $template = 'admin/debug/debug-admin-page.tpl.php';
 
-		return awpcp_render_template( $template, $params );
-	}
+        return awpcp_render_template( $template, $params );
+    }
 
     /**
      * @since 4.0.0
@@ -407,7 +407,7 @@ class AWPCP_DebugAdminPage {
     /**
      * @since 4.0.0     Removed setting name argument.
      */
-	private function sanitize_setting_value( $value ) {
+    private function sanitize_setting_value( $value ) {
         static $hosts_regexp = '';
         static $email_regexp = '';
 
@@ -433,7 +433,7 @@ class AWPCP_DebugAdminPage {
         $sanitized = preg_replace( $email_regexp, '<email>', $sanitized );
 
         return $sanitized;
-	}
+    }
 
     /**
      * @since 4.0.0

@@ -165,8 +165,11 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         if (!is_null($transaction) && $transaction->get('context') != $this->context) {
             $page_name = awpcp_get_page_name('place-ad-page-name');
             $page_url = awpcp_get_page_url('place-ad-page-name');
-            $message = __( 'You are trying to post an Ad using a transaction created for a different purpose. Please go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
-            $message = sprintf($message, $page_url, $page_name, $transaction->id);
+            $message = sprintf(
+                esc_html__( 'You are trying to post an Ad using a transaction created for a different purpose. Please go back to the %1$s page. If you think this is an error please contact the administrator and provide the following transaction ID: %2$s', 'another-wordpress-classifieds-plugin'),
+                '<a href="' . esc_url( $page_url ) . '">' . esc_html( $page_name ) . '</a>',
+                esc_html( $transaction->id )
+            );
             return $this->render('content', awpcp_print_error($message));
         }
 
@@ -314,6 +317,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $available_payment_terms = $payments->get_payment_terms();
 
         // validate submitted data and set relevant transaction attributes
+        // phpcs:ignore WordPress.Security.NonceVerification
         if (!empty($_POST)) {
             $transaction = $this->get_transaction(true);
 
@@ -391,9 +395,12 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             // Ignore errors if category and user parameters were not sent. This
             // happens every time someone tries to place an Ad starting in the
             // Buy Subscription page.
+            // phpcs:ignore WordPress.Security.NonceVerification
             if ( $skip_payment_term_selection && ! isset( $_POST['category'] ) ) {
                 unset( $form_errors['category'] );
             }
+
+            // phpcs:ignore WordPress.Security.NonceVerification
             if ( $skip_payment_term_selection && ! isset( $_POST['user'] ) ) {
                 unset( $form_errors['user'] );
             }
@@ -671,12 +678,14 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         } elseif (!is_null($transaction)) {
             $term = $this->payments->get_transaction_payment_term($transaction);
             if ($term) {
-                $max_characters_in_title = $remaining_characters_in_title = $term->get_characters_allowed_in_title();
-                $max_characters_in_body = $remaining_characters_in_body = $term->get_characters_allowed();
+                $max_characters_in_title = $term->get_characters_allowed_in_title();
+                $max_characters_in_body  = $term->get_characters_allowed();
             } else {
-                $max_characters_in_title = $remaining_characters_in_title = 0;
-                $max_characters_in_body = $remaining_characters_in_body = get_awpcp_option('maxcharactersallowed');
+                $max_characters_in_title = 0;
+                $max_characters_in_body  = get_awpcp_option( 'maxcharactersallowed' );
             }
+            $remaining_characters_in_title = $max_characters_in_title;
+            $remaining_characters_in_body  = $max_characters_in_body;
         }
 
         return array(
@@ -1201,7 +1210,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         if ($allow_html) {
             $details = force_balance_tags($details);
         }else{
-        	$details = esc_html( $details );
+            $details = esc_html( $details );
         }
 
         return $details;
@@ -1210,6 +1219,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     public function save_details_step($transaction, $errors=array()) {
         global $wpdb, $hasextrafieldsmodule;
 
+        // phpcs:ignore WordPress.Security.NonceVerification
         $data = $this->get_posted_details( $_POST, $transaction );
         $characters = $this->get_characters_allowed( $data['ad_id'], $transaction );
         $errors = array();
@@ -1312,17 +1322,24 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             $transaction->save();
         }
 
-        if ( awpcp_post_param('preview-hash', false) ) {
+        $preview_hash = awpcp_get_var( array( 'param' => 'preview-hash' ), 'post' );
+        if ( $preview_hash ) {
             return $this->preview_step();
-        } elseif ( $this->should_show_upload_files_step( $ad ) ) {
-            return $this->upload_images_step();
-        } elseif ( (bool) get_awpcp_option( 'pay-before-place-ad' ) ) {
-            return $this->finish_step();
-        } elseif ( (bool) get_awpcp_option( 'show-ad-preview-before-payment' ) ) {
-            return $this->preview_step();
-        } else {
-            return $this->checkout_step();
         }
+
+        if ( $this->should_show_upload_files_step( $ad ) ) {
+            return $this->upload_images_step();
+        }
+
+        if ( (bool) get_awpcp_option( 'pay-before-place-ad' ) ) {
+            return $this->finish_step();
+        }
+
+        if ( (bool) get_awpcp_option( 'show-ad-preview-before-payment' ) ) {
+            return $this->preview_step();
+        }
+
+        return $this->checkout_step();
     }
 
     protected function should_show_upload_files_step( $listing ) {
@@ -1365,7 +1382,8 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             return $this->render('content', awpcp_print_error($message));
         }
 
-        extract( $params = $this->get_images_config( $ad ) );
+        $params = $this->get_images_config( $ad );
+        extract( $params );
 
         // see if we can move to the next step
         $skip = ! $this->should_show_upload_files_step( $ad );
@@ -1453,36 +1471,46 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
 
         $pay_first = (bool) get_awpcp_option('pay-before-place-ad');
 
+        // phpcs:ignore WordPress.Security.NonceVerification
         if ( isset( $_POST['edit-details'] ) ) {
             return $this->details_step();
-        } elseif ( isset( $_POST['manage-images'] ) ) {
-            return $this->upload_images_step();
-        } elseif ( $pay_first && isset( $_POST['finish'] ) ) {
-            return $this->finish_step();
-        } elseif ( isset( $_POST['finish'] ) ) {
-            return $this->checkout_step();
-        } else {
-            $payment_term = $this->listing_renderer->get_payment_term( $ad );
-            $manage_images = awpcp_are_images_allowed() && $payment_term->images > 0;
-
-            $params = array(
-                'page' => $this,
-                'ad' => $ad,
-                'edit' => false,
-                'messages' => $this->messages,
-                'hidden' => array(
-                    'preview-hash' => $this->get_preview_hash( $ad ),
-                    'transaction_id' => $transaction->id,
-                ),
-                'ui' => array(
-                    'manage-images' => $manage_images,
-                ),
-            );
-
-            $template = AWPCP_DIR . '/frontend/templates/page-place-ad-preview-step.tpl.php';
-
-            return $this->render($template, $params);
         }
+
+        // phpcs:ignore WordPress.Security.NonceVerification
+        if ( isset( $_POST['manage-images'] ) ) {
+            return $this->upload_images_step();
+        }
+
+        // phpcs:ignore WordPress.Security.NonceVerification
+        if ( $pay_first && isset( $_POST['finish'] ) ) {
+            return $this->finish_step();
+        }
+
+        // phpcs:ignore WordPress.Security.NonceVerification
+        if ( isset( $_POST['finish'] ) ) {
+            return $this->checkout_step();
+        }
+
+        $payment_term = $this->listing_renderer->get_payment_term( $ad );
+        $manage_images = awpcp_are_images_allowed() && $payment_term->images > 0;
+
+        $params = array(
+            'page' => $this,
+            'ad' => $ad,
+            'edit' => false,
+            'messages' => $this->messages,
+            'hidden' => array(
+                'preview-hash' => $this->get_preview_hash( $ad ),
+                'transaction_id' => $transaction->id,
+            ),
+            'ui' => array(
+                'manage-images' => $manage_images,
+            ),
+        );
+
+        $template = AWPCP_DIR . '/frontend/templates/page-place-ad-preview-step.tpl.php';
+
+        return $this->render($template, $params);
     }
 
     public function finish_step() {

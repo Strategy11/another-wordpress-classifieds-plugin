@@ -3,20 +3,6 @@
  * @package AWPCP\Admin\Import
  */
 
-/**
- * Constructor function for CSV Import Sessions Manager class.
- */
-function awpcp_csv_import_sessions_manager() {
-    return new AWPCP_CSV_Import_Sessions_Manager(
-        awpcp_csv_importer_factory(),
-        awpcp_csv_importer_delegate_factory(),
-        awpcp_csv_reader_factory(),
-        awpcp()->settings,
-        awpcp_wordpress()
-    );
-}
-
-// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_CSV_Import_Sessions_Manager {
 
     private $csv_importer_factory;
@@ -27,12 +13,12 @@ class AWPCP_CSV_Import_Sessions_Manager {
 
     private $wordpress;
 
-    public function __construct( $csv_importer_factory, $csv_importer_delegate_factory, $csv_reader_factory, $settings, $wordpress ) {
-        $this->csv_importer_factory          = $csv_importer_factory;
-        $this->csv_importer_delegate_factory = $csv_importer_delegate_factory;
-        $this->csv_reader_factory            = $csv_reader_factory;
-        $this->settings                      = $settings;
-        $this->wordpress                     = $wordpress;
+    public function __construct() {
+        $this->csv_importer_factory          = new AWPCP_CSV_Importer_Factory();
+        $this->csv_importer_delegate_factory = awpcp()->container['ImporterDelegateFactory'];
+        $this->csv_reader_factory            = new AWPCP_CSV_Reader_Factory();
+        $this->settings                      = awpcp()->settings;
+        $this->wordpress                     = new AWPCP_WordPress();
     }
 
     public function get_current_import_session() {

@@ -11,7 +11,7 @@
 ?>
 
 <div>
-	<form method="post" action="<?php echo esc_attr( $page->url() ); ?>">
+    <form method="post" action="<?php echo esc_attr( $page->url() ); ?>">
         <?php foreach($hidden as $name => $value): ?>
         <input type="hidden" name="<?php echo esc_attr($name) ?>" value="<?php echo esc_attr($value) ?>" />
         <?php endforeach ?>
@@ -32,5 +32,5 @@
         </p>
 
         <input type="submit" class="button" value="<?php echo esc_attr( _x( "Continue", 'enter email and access key form', 'another-wordpress-classifieds-plugin' ) ); ?>" />
-	</form>
+    </form>
 </div>

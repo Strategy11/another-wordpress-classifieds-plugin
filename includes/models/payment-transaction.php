@@ -5,83 +5,83 @@
 
 class AWPCP_Payment_Transaction {
 
-	// public static $PAYMENT_STATUS_UNKNOWN = 'Unknown';
-	// public static $PAYMENT_STATUS_INVALID = 'Invalid';
-	// // public static $PAYMENT_STATUS_FAILED = 'Failed';
-	// // public static $PAYMENT_STATUS_PENDING = 'Pending';
-	// // public static $PAYMENT_STATUS_COMPLETED = 'Completed';
-	// public static $PAYMENT_STATUS_SUBSCRIPTION_CANCELED = 'Canceled';
+    // public static $PAYMENT_STATUS_UNKNOWN = 'Unknown';
+    // public static $PAYMENT_STATUS_INVALID = 'Invalid';
+    // // public static $PAYMENT_STATUS_FAILED = 'Failed';
+    // // public static $PAYMENT_STATUS_PENDING = 'Pending';
+    // // public static $PAYMENT_STATUS_COMPLETED = 'Completed';
+    // public static $PAYMENT_STATUS_SUBSCRIPTION_CANCELED = 'Canceled';
 
-	const STATUS_NEW = 'New';
-	const STATUS_OPEN = 'Open';
+    const STATUS_NEW = 'New';
+    const STATUS_OPEN = 'Open';
     const STATUS_READY = 'Ready';
-	const STATUS_CHECKOUT = 'Checkout';
-	const STATUS_PAYMENT = 'Payment';
-	const STATUS_PAYMENT_COMPLETED = 'Payment Completed';
-	const STATUS_COMPLETED = 'Completed';
+    const STATUS_CHECKOUT = 'Checkout';
+    const STATUS_PAYMENT = 'Payment';
+    const STATUS_PAYMENT_COMPLETED = 'Payment Completed';
+    const STATUS_COMPLETED = 'Completed';
 
     const PAYMENT_STATUS_CANCELED = 'Canceled';
     const PAYMENT_STATUS_NOT_VERIFIED = 'Not Verified';
     const PAYMENT_STATUS_UNKNOWN = 'Unknown';
     const PAYMENT_STATUS_INVALID = 'Invalid';
-	const PAYMENT_STATUS_FAILED = 'Failed';
-	const PAYMENT_STATUS_PENDING = 'Pending';
-	const PAYMENT_STATUS_COMPLETED = 'Completed';
+    const PAYMENT_STATUS_FAILED = 'Failed';
+    const PAYMENT_STATUS_PENDING = 'Pending';
+    const PAYMENT_STATUS_COMPLETED = 'Completed';
     const PAYMENT_STATUS_NOT_REQUIRED = 'Not Required';
 
     const PAYMENT_TYPE_MONEY = 'money';
     const PAYMENT_TYPE_CREDITS = 'credits';
 
-	public static $defaults;
+    public static $defaults;
 
     private $in_database = false;
 
-	private $status;
-	private $items = array();
-	private $data = array();
+    private $status;
+    private $items = array();
+    private $data = array();
 
-	public $id;
-	public $user_id;
+    public $id;
+    public $user_id;
 
-	public $payment_status;
+    public $payment_status;
     public $payment_gateway;
     public $payer_email;
 
-	public $errors = array();
+    public $errors = array();
 
-	public $created;
-	public $completed;
-	public $updated;
+    public $created;
+    public $completed;
+    public $updated;
 
     public $version;
 
-	public function __construct($args=array(), $in_database=false) {
+    public function __construct($args=array(), $in_database=false) {
         $this->in_database = $in_database;
 
-		if (!is_array(self::$defaults)) {
-			self::$defaults = array(
-				'id' => null,
-				'user_id' => 0,
-				'status' => self::STATUS_NEW,
+        if (!is_array(self::$defaults)) {
+            self::$defaults = array(
+                'id' => null,
+                'user_id' => 0,
+                'status' => self::STATUS_NEW,
                 'payment_status'  => $this->get_default_payment_status(),
                 'payment_gateway' => '',
                 'payer_email' => '',
-				'items' => array(),
-				'data' => array(),
-				'errors' => array(),
-				'created' => null,
-				'updated' => null,
-				'completed' => null,
+                'items' => array(),
+                'data' => array(),
+                'errors' => array(),
+                'created' => null,
+                'updated' => null,
+                'completed' => null,
                 'version' => 2,
-			);
-		}
+            );
+        }
 
-		$args = array_merge(self::$defaults, $args);
+        $args = array_merge(self::$defaults, $args);
 
-		foreach (self::$defaults as $name => $value) {
-			$this->$name = maybe_unserialize($args[$name]);
-		}
-	}
+        foreach (self::$defaults as $name => $value) {
+            $this->$name = maybe_unserialize($args[$name]);
+        }
+    }
 
     /**
      * @since 4.0.0
@@ -153,7 +153,7 @@ class AWPCP_Payment_Transaction {
         return $results;
     }
 
-	public static function find_by_id($id) {
+    public static function find_by_id($id) {
         global $wpdb;
 
         if (!empty($id)) {
@@ -164,39 +164,39 @@ class AWPCP_Payment_Transaction {
         }
 
         return empty($results) ? null : array_shift($results);
-	}
+    }
 
-	public static function find_or_create($id) {
-		$transaction = self::find_by_id($id);
+    public static function find_or_create($id) {
+        $transaction = self::find_by_id($id);
 
-		if (is_null($transaction)) {
+        if (is_null($transaction)) {
             return self::create();
-		}
+        }
 
-		return $transaction;
-	}
+        return $transaction;
+    }
 
     public static function create() {
-        $unique = awpcp_array_data( 'UNIQUE_ID', rand(), $_SERVER );
+        $unique = awpcp_array_data( 'UNIQUE_ID', wp_rand(), $_SERVER );
         $id     = md5( $unique . microtime() . wp_salt() );
 
         return new AWPCP_Payment_Transaction( array( 'id' => $id ) );
     }
 
-	/**
-	 * @since 2.1.4
-	 */
-	public function save() {
-		global $wpdb;
+    /**
+     * @since 2.1.4
+     */
+    public function save() {
+        global $wpdb;
 
-		$now = current_time('mysql');
-		$this->created = $this->created ? $this->created : $now;
-		$this->updated = $now;
+        $now = current_time('mysql');
+        $this->created = $this->created ? $this->created : $now;
+        $this->updated = $now;
 
-		$data = array();
-		foreach (self::$defaults as $name => $value) {
-			$data[$name] = maybe_serialize($this->$name);
-		}
+        $data = array();
+        foreach (self::$defaults as $name => $value) {
+            $data[$name] = maybe_serialize($this->$name);
+        }
 
         // remove empty value for DATE and DATETIME columns to avoid
         // MySQL STRICT mode issues
@@ -206,15 +206,15 @@ class AWPCP_Payment_Transaction {
             }
         }
 
-		if ($this->in_database) {
-			$result = $wpdb->update(AWPCP_TABLE_PAYMENTS, $data, array('id' => $this->id));
-		} else {
-			$result = $wpdb->insert(AWPCP_TABLE_PAYMENTS, $data);
+        if ($this->in_database) {
+            $result = $wpdb->update(AWPCP_TABLE_PAYMENTS, $data, array('id' => $this->id));
+        } else {
+            $result = $wpdb->insert(AWPCP_TABLE_PAYMENTS, $data);
             $this->in_database = (bool) $result;
-		}
+        }
 
-		return $result;
-	}
+        return $result;
+    }
 
     public function delete() {
         global $wpdb;
@@ -222,29 +222,29 @@ class AWPCP_Payment_Transaction {
         return $wpdb->delete( AWPCP_TABLE_PAYMENTS, array( 'id' => $this->id ) );
     }
 
-	/* Transaction Status */
+    /* Transaction Status */
 
     /**
      * @param array &$errors
      */
-	private function verify_open_conditions(&$errors) {
-		if (get_awpcp_option('enable-credit-system') && empty($this->user_id)) {
-			$errors[] = __( 'The transaction must be assigned to a WordPress user.', 'another-wordpress-classifieds-plugin');
-			return false;
-		}
+    private function verify_open_conditions(&$errors) {
+        if (get_awpcp_option('enable-credit-system') && empty($this->user_id)) {
+            $errors[] = __( 'The transaction must be assigned to a WordPress user.', 'another-wordpress-classifieds-plugin');
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
     /**
      * @param array &$errors
      */
     private function verify_ready_to_checkout_conditions(&$errors) {
         $items = count($this->get_items());
-		if ($items === 0) {
-			$errors[] = __( 'The transaction has no items.', 'another-wordpress-classifieds-plugin');
-			return false;
-		}
+        if ($items === 0) {
+            $errors[] = __( 'The transaction has no items.', 'another-wordpress-classifieds-plugin');
+            return false;
+        }
 
         $balance = 0;
         $has_enough_credit = $this->user_has_enough_credit($balance);
@@ -277,7 +277,7 @@ class AWPCP_Payment_Transaction {
 
     private function verify_checkout_conditions() {
         return true;
-	}
+    }
 
     /**
      * @param array &$errors
@@ -336,22 +336,22 @@ class AWPCP_Payment_Transaction {
         switch ($status) {
             case self::STATUS_COMPLETED:
                 $verify[] = self::STATUS_COMPLETED;
-				// Plus below statuses.
+                // Plus below statuses.
             case self::STATUS_PAYMENT_COMPLETED:
                 $verify[] = self::STATUS_PAYMENT_COMPLETED;
-				// Plus below statuses.
+                // Plus below statuses.
             case self::STATUS_PAYMENT:
                 $verify[] = self::STATUS_PAYMENT;
-				// Plus below statuses.
+                // Plus below statuses.
             case self::STATUS_CHECKOUT:
                 $verify[] = self::STATUS_CHECKOUT;
-				// Plus below statuses.
+                // Plus below statuses.
             case self::STATUS_READY:
                 $verify[] = self::STATUS_READY;
-				// Plus below statuses.
+                // Plus below statuses.
             case self::STATUS_OPEN:
                 $verify[] = self::STATUS_OPEN;
-				// Plus below statuses.
+                // Plus below statuses.
             case self::STATUS_NEW:
                 $verify[] = self::STATUS_NEW;
                 break;
@@ -388,20 +388,20 @@ class AWPCP_Payment_Transaction {
     }
 
     public function get_status() {
-    	return $this->status;
+        return $this->status;
     }
 
-	public function is_new() {
-		return $this->status === self::STATUS_NEW;
-	}
+    public function is_new() {
+        return $this->status === self::STATUS_NEW;
+    }
 
     public function is_open() {
         return $this->status === self::STATUS_OPEN;
     }
 
-	public function is_ready_to_checkout() {
-		return $this->status === self::STATUS_READY;
-	}
+    public function is_ready_to_checkout() {
+        return $this->status === self::STATUS_READY;
+    }
 
     public function is_doing_checkout() {
         return $this->status === self::STATUS_CHECKOUT;
@@ -419,11 +419,11 @@ class AWPCP_Payment_Transaction {
         return $this->status === self::STATUS_COMPLETED;
     }
 
-	/* Payment Status */
+    /* Payment Status */
 
-	public function payment_is_not_required() {
-		return $this->payment_status === self::PAYMENT_STATUS_NOT_REQUIRED;
-	}
+    public function payment_is_not_required() {
+        return $this->payment_status === self::PAYMENT_STATUS_NOT_REQUIRED;
+    }
 
     public function payment_is_completed() {
         return $this->payment_status === self::PAYMENT_STATUS_COMPLETED;
@@ -473,35 +473,35 @@ class AWPCP_Payment_Transaction {
         return $this->payment_is_failed() || $this->payment_is_canceled() || $this->payment_is_invalid();
     }
 
-	/* Data */
+    /* Data */
 
-	public function get($name, $default=null) {
-		if (isset($this->data[$name])) {
-			return $this->data[$name];
-		}
-		return $default;
-	}
+    public function get($name, $default=null) {
+        if (isset($this->data[$name])) {
+            return $this->data[$name];
+        }
+        return $default;
+    }
 
-	public function set($name, $value) {
-		$this->data[$name] = $value;
-	}
+    public function set($name, $value) {
+        $this->data[$name] = $value;
+    }
 
-	/* Items */
+    /* Items */
 
-	public function get_items() {
-		return $this->items;
-	}
+    public function get_items() {
+        return $this->items;
+    }
 
-	public function add_item($id, $name, $description, $payment_type, $amount) {
-		$item = new stdClass();
-		$item->id = $id;
-		$item->name = $name;
-		$item->description = $description;
-		$item->payment_type = $payment_type;
-		$item->amount = $amount;
+    public function add_item($id, $name, $description, $payment_type, $amount) {
+        $item = new stdClass();
+        $item->id = $id;
+        $item->name = $name;
+        $item->description = $description;
+        $item->payment_type = $payment_type;
+        $item->amount = $amount;
 
-		$this->items[] = $item;
-	}
+        $this->items[] = $item;
+    }
 
     public function remove_item($id) {
         $index = null;
@@ -519,29 +519,30 @@ class AWPCP_Payment_Transaction {
         return !is_null($index);
     }
 
-	public function remove_all_items() {
-		$this->items = array();
-	}
+    public function remove_all_items() {
+        $this->items = array();
+    }
 
-	public function get_item($index) {
-		if (isset($this->items[$index])) {
-			return $this->items[$index];
-		}
-		return null;
-	}
+    public function get_item($index) {
+        if (isset($this->items[$index])) {
+            return $this->items[$index];
+        }
+        return null;
+    }
 
-	public function get_totals() {
-		$credits = $money = 0;
+    public function get_totals() {
+        $credits = 0;
+        $money   = 0;
 
-		foreach ($this->items as $item) {
-			if ($item->payment_type == 'money')
-				$money += $item->amount;
-			if ($item->payment_type == 'credits')
-				$credits += $item->amount;
-		}
+        foreach ($this->items as $item) {
+            if ($item->payment_type == 'money')
+                $money += $item->amount;
+            if ($item->payment_type == 'credits')
+                $credits += $item->amount;
+        }
 
-		return compact('money', 'credits');
-	}
+        return compact('money', 'credits');
+    }
 
     public function get_total_amount() {
         $totals = $this->get_totals();

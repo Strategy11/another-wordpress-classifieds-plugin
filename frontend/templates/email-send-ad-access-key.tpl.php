@@ -1,11 +1,17 @@
 <?php
-echo esc_html(
-	sprintf( __( 'Hello %s,', 'another-wordpress-classifieds-plugin' ), $contact_name )
+printf(
+    esc_html__( 'Hello %s,', 'another-wordpress-classifieds-plugin' ),
+    esc_html( $contact_name )
 );
 ?>
 
-<?php $message = __( 'Below you will find the access key for your Ad "%s" associated with the email address %s.', 'another-wordpress-classifieds-plugin'); ?>
-<?php echo esc_html( sprintf( $message, $listing_title, $contact_email ) ); ?>
+<?php
+printf(
+    esc_html__( 'Below you will find the access key for your Ad "%1$s" associated with the email address %2$s.', 'another-wordpress-classifieds-plugin' ),
+    esc_html( $listing_title ),
+    esc_html( $contact_email )
+);
+?>
 
 <?php esc_html_e( 'Access Key', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $access_key ); ?>
 <?php esc_html_e( 'Edit Link:', 'another-wordpress-classifieds-plugin' ); ?> <?php echo esc_url_raw( $edit_link ); ?>

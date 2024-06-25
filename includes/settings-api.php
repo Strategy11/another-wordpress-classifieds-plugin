@@ -15,40 +15,40 @@ function awpcp_settings_api() {
  */
 class AWPCP_Settings_API {
 
-	private $runtime_settings = array();
+    private $runtime_settings = array();
 
-	public $setting_name = 'awpcp-options';
-	public $options = array();
+    public $setting_name = 'awpcp-options';
+    public $options = array();
 
     /**
      * @var Settings
      */
     private $settings_manager;
 
-	public function __construct( $settings_manager ) {
+    public function __construct( $settings_manager ) {
         $this->settings_manager = $settings_manager;
 
-		$this->load();
-	}
+        $this->load();
+    }
 
-	public function load() {
-		$options = get_option( $this->setting_name );
+    public function load() {
+        $options = get_option( $this->setting_name );
 
         if ( ! is_array( $options ) ) {
             $options = [];
         }
 
         $this->options = $options;
-	}
+    }
 
-	private function save_settings() {
-		return update_option( $this->setting_name, $this->options );
-	}
+    private function save_settings() {
+        return update_option( $this->setting_name, $this->options );
+    }
 
     /**
      * @since 4.0.0     Updated to use Settings Manager.
      */
-	public function get_option( $name, $default = '', $reload = false ) {
+    public function get_option( $name, $default = '', $reload = false ) {
         if ( $reload ) {
             $this->load();
         }
@@ -64,7 +64,7 @@ class AWPCP_Settings_API {
         }
 
         return $this->prepare_option_value( $name, $default );
-	}
+    }
 
     /**
      * @since 4.0.0
@@ -95,20 +95,20 @@ class AWPCP_Settings_API {
     /**
      * @since 4.0.0     Updated to use Settings Manager.
      */
-	public function get_option_default_value( $name ) {
+    public function get_option_default_value( $name ) {
         $setting = $this->settings_manager->get_setting( $name );
 
         if ( isset( $setting['default'] ) ) {
             return $setting['default'];
-		}
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	/**
-	 * @since 3.0.1
-	 */
-	public function get_option_label( $name ) {
+    /**
+     * @since 3.0.1
+     */
+    public function get_option_label( $name ) {
         $setting = $this->settings_manager->get_setting( $name );
 
         if ( isset( $setting['name'] ) ) {
@@ -118,43 +118,43 @@ class AWPCP_Settings_API {
         return null;
     }
 
-	/**
-	 * @param $force boolean - true to update unregistered options
-	 */
-	public function update_option( $name, $value, $force = false ) {
-		if ( $force || array_key_exists( $name, $this->options ) ) {
-			$this->options[ $name ] = $value;
-			$this->save_settings();
-			return true;
-		}
+    /**
+     * @param $force boolean - true to update unregistered options
+     */
+    public function update_option( $name, $value, $force = false ) {
+        if ( $force || array_key_exists( $name, $this->options ) ) {
+            $this->options[ $name ] = $value;
+            $this->save_settings();
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	/**
-	 * @since 3.2.2
-	 */
-	public function set_or_update_option( $name, $value ) {
-		$this->options[ $name ] = $value;
-		return $this->save_settings();
-	}
+    /**
+     * @since 3.2.2
+     */
+    public function set_or_update_option( $name, $value ) {
+        $this->options[ $name ] = $value;
+        return $this->save_settings();
+    }
 
-	/**
-	 * @since 3.3
-	 */
-	public function option_exists( $name ) {
-		return isset( $this->options[ $name ] );
-	}
+    /**
+     * @since 3.3
+     */
+    public function option_exists( $name ) {
+        return isset( $this->options[ $name ] );
+    }
 
-	public function set_runtime_option( $name, $value ) {
-		$this->runtime_settings[ $name ] = $value;
-	}
+    public function set_runtime_option( $name, $value ) {
+        $this->runtime_settings[ $name ] = $value;
+    }
 
-	public function get_runtime_option( $name, $default = '' ) {
-		if ( isset( $this->runtime_settings[ $name ] ) ) {
-			return $this->runtime_settings[ $name ];
-		}
+    public function get_runtime_option( $name, $default = '' ) {
+        if ( isset( $this->runtime_settings[ $name ] ) ) {
+            return $this->runtime_settings[ $name ];
+        }
 
         return $default;
-	}
+    }
 }

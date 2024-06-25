@@ -1,25 +1,16 @@
 <?php
 
-function awpcp_import_listings_ajax_handler() {
-    return new AWPCP_Import_Listings_Ajax_Handler(
-        awpcp_csv_import_sessions_manager(),
-        awpcp_csv_importer_factory(),
-        awpcp_ajax_response()
-    );
-}
-
-// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_Import_Listings_Ajax_Handler extends AWPCP_AjaxHandler {
 
     private $import_sessions_manager;
 
     protected $csv_importer_factory;
 
-    public function __construct( $import_sessions_manager, $csv_importer_factory, $response ) {
-        parent::__construct( $response );
+    public function __construct() {
+        parent::__construct( awpcp_ajax_response() );
 
-        $this->import_sessions_manager = $import_sessions_manager;
-        $this->csv_importer_factory = $csv_importer_factory;
+        $this->import_sessions_manager = new AWPCP_CSV_Import_Sessions_Manager();
+        $this->csv_importer_factory    = new AWPCP_CSV_Importer_Factory();
     }
 
     public function ajax() {

@@ -14,9 +14,9 @@
         <div style="float:left;width:50%">
             <?php $text = __( 'Yes Please!', 'another-wordpress-classifieds-plugin' ); ?>
             <p class="align-center">
-				<a id="link-no-thanks" class="button button-primary" href="https://awpcp.com/knowledge-base/quick-start-guide/" title="<?php echo esc_attr( $text ); ?>" target="_blank" data-action="disable-quick-start-guide-notice">
-					<?php echo esc_html( $text ); ?>
-				</a><br/>
+                <a id="link-no-thanks" class="button button-primary" href="https://awpcp.com/knowledge-base/quick-start-guide/" title="<?php echo esc_attr( $text ); ?>" target="_blank" data-action="disable-quick-start-guide-notice">
+                    <?php echo esc_html( $text ); ?>
+                </a><br/>
                 <?php esc_html_e( 'Help me get my classifieds running quickly.', 'another-wordpress-classifieds-plugin' ); ?></p>
         </div>
     </div>

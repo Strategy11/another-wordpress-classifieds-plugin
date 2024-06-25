@@ -108,7 +108,7 @@ class AWPCP_SearchAdsPage extends AWPCP_Page {
         $ui['price-field'] = get_awpcp_option( 'display_price_field_on_search_form' );
         $ui['allow-user-to-search-in-multiple-regions'] = get_awpcp_option('allow-user-to-search-in-multiple-regions');
 
-        $url_params = wp_parse_args( parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
+        $url_params = wp_parse_args( wp_parse_url( awpcp_current_url(), PHP_URL_QUERY ) );
 
         foreach ( $form as $name => $value ) {
             if ( isset( $url_params[ $name ] ) ) {

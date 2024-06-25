@@ -32,24 +32,24 @@ abstract class AWPCP_Module {
         awpcp_load_text_domain_with_file_prefix( $this->file, $this->textdomain );
     }
 
-	public function setup() {
-		$loaded = false;
+    public function setup() {
+        $loaded = false;
 
-		if ( ! $this->is_up_to_date() ) {
-			$this->load_dependencies();
-			$this->install_or_upgrade();
-			$loaded = true;
-		}
+        if ( ! $this->is_up_to_date() ) {
+            $this->load_dependencies();
+            $this->install_or_upgrade();
+            $loaded = true;
+        }
 
-		if ( ! $this->is_up_to_date() ) {
-			throw new AWPCP_Exception( esc_html( sprintf( '%s is outdated.', $this->name ) ) );
-		}
+        if ( ! $this->is_up_to_date() ) {
+            throw new AWPCP_Exception( esc_html( sprintf( '%s is outdated.', $this->name ) ) );
+        }
 
-		if ( ! $loaded ) {
-			$this->load_dependencies();
-		}
-		$this->load_module();
-	}
+        if ( ! $loaded ) {
+            $this->load_dependencies();
+        }
+        $this->load_module();
+    }
 
     protected function is_up_to_date() {
         $installed_version = $this->get_installed_version();

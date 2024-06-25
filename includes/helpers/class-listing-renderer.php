@@ -352,15 +352,15 @@ class AWPCP_ListingRenderer {
      * @since 4.0.0
      */
     public function is_expired( $listing ) {
-		$expired     = $this->has_expired( $listing );
-		$is_disabled = in_array( $listing->post_status, array( $this->disabled_status, 'trash' ), true );
+        $expired     = $this->has_expired( $listing );
+        $is_disabled = in_array( $listing->post_status, array( $this->disabled_status, 'trash' ), true );
 
-		if ( $expired && ! $is_disabled ) {
+        if ( $expired && ! $is_disabled ) {
             // This listing has expired, but isn't marked as expired.
-			awpcp_listings_api()->expire_listing_with_notice( $listing );
-		}
+            awpcp_listings_api()->expire_listing_with_notice( $listing );
+        }
 
-		return $expired;
+        return $expired;
     }
 
     public function has_expired( $listing ) {
@@ -379,22 +379,22 @@ class AWPCP_ListingRenderer {
         return $end_date < $timestamp;
     }
 
-	/**
-	 * @since 4.1.7
-	 *
-	 * @return float
-	 */
-	public function days_until_expired( $listing ) {
-		if ( $this->has_expired( $listing ) ) {
-			return 0;
-		}
+    /**
+     * @since 4.1.7
+     *
+     * @return float
+     */
+    public function days_until_expired( $listing ) {
+        if ( $this->has_expired( $listing ) ) {
+            return 0;
+        }
 
-		$end_date          = strtotime( $this->get_plain_end_date( $listing ) );
-		$extended_end_date = awpcp_extend_date_to_end_of_the_day( $end_date );
-		$time_left         = $extended_end_date - current_time( 'timestamp' );
+        $end_date          = strtotime( $this->get_plain_end_date( $listing ) );
+        $extended_end_date = awpcp_extend_date_to_end_of_the_day( $end_date );
+        $time_left         = $extended_end_date - current_time( 'timestamp' );
 
-		return $time_left / ( 24 * 60 * 60 );
-	}
+        return $time_left / ( 24 * 60 * 60 );
+    }
 
     /**
      * @param object $listing   An instance of WP_Post.

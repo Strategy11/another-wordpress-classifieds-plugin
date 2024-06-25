@@ -21,7 +21,8 @@ class AWPCP_Add_Credit_Plan_Action_Handler implements AWPCP_Table_Entry_Action_H
     }
 
     public function process_entry_action( $ajax_handler ) {
-        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+        // The nonce was verified before this method is called.
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput, WordPress.Security.NonceVerification
         $posted = $_POST;
         awpcp_sanitize_value( 'sanitize_textarea_field', $posted );
         $plan   = new AWPCP_CreditPlan( $posted );

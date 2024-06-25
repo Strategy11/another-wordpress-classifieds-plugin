@@ -181,7 +181,11 @@ class AWPCP_CSV_Importer_Delegate {
         }
 
         if ( $user_info->created ) {
-            $message = _x( "A new user '%s' with email address '%s' and password '%s' was created.", 'csv importer', 'another-wordpress-classifieds-plugin' );
+            $message = _x(
+                "A new user '%1\$s' with email address '%2\$s' and password '%3\$s' was created.",
+                'csv importer',
+                'another-wordpress-classifieds-plugin'
+            );
             $message = sprintf( $message, $username, $contact_email, $user_info->password );
 
             $this->messages[] = $message;
@@ -244,7 +248,8 @@ class AWPCP_CSV_Importer_Delegate {
             $user = get_user_by( 'email', $contact_email );
         }
 
-        return $this->users_cache[ $username ] = $user;
+        $this->users_cache[ $username ] = $user;
+        return $user;
     }
 
     /**
@@ -309,7 +314,10 @@ class AWPCP_CSV_Importer_Delegate {
         $is_test_mode_enabled = $this->import_session->is_test_mode_enabled();
 
         if ( is_null( $category ) && $create_missing_categories && $is_test_mode_enabled ) {
-            return (object) array( 'term_id' => rand() + 1, 'parent' => 0 );
+            return (object) array(
+                'term_id' => wp_rand() + 1,
+                'parent'  => 0,
+            );
         } elseif ( is_null( $category ) && $create_missing_categories ) {
             return $this->create_category( $name );
         } elseif ( is_null( $category ) ) {
@@ -412,20 +420,20 @@ class AWPCP_CSV_Importer_Delegate {
     }
 
     public function parse_date($val, $date_time_format, $deprecated, $time_separator, $format = "Y-m-d H:i:s") {
-		if ( $date_time_format === 'eur_date' ) {
-			// PHP assumes European formats with -.
-			$val = str_replace( '/', '-', $val );
+        if ( $date_time_format === 'eur_date' ) {
+            // PHP assumes European formats with -.
+            $val = str_replace( '/', '-', $val );
 
-		} elseif ( $date_time_format === 'uk_date' ) {
-			// Rearrange UK dates in case of 2-digit year.
-			$val = str_replace( '-', '/', $val );
-			$bits = explode( '/', $val );
-			if ( count( $bits ) === 3 ) {
-				$val = $bits[1] . '/' . $bits[0] . '/' . $bits[2];
-			}
-		}
+        } elseif ( $date_time_format === 'uk_date' ) {
+            // Rearrange UK dates in case of 2-digit year.
+            $val = str_replace( '-', '/', $val );
+            $bits = explode( '/', $val );
+            if ( count( $bits ) === 3 ) {
+                $val = $bits[1] . '/' . $bits[0] . '/' . $bits[2];
+            }
+        }
 
-		return date( $format, strtotime( $val ) );
+        return gmdate( $format, strtotime( $val ) );
     }
 
     private function parse_end_date_column( $end_date, $row_data ) {
@@ -684,14 +692,14 @@ function awpcp_validate_extra_field( $name, $value, $validate, $type, $options, 
             break;
 
         case 'Checkbox':
-			// Process with multiple.
+            // Process with multiple.
         case 'Select Multiple':
             // value can be any combination of items from options list
             $msg = sprintf( __( "The value for Extra Field %s's is not allowed. Allowed values are: %%s", 'another-wordpress-classifieds-plugin' ), $name );
             $values_list = explode( ';', $value );
             $value = explode( ';', $value );
 
-			// Process with single selects too.
+            // Process with single selects too.
         case 'Select':
         case 'Radio Button':
             $values_list = is_array( $values_list ) ? $values_list : array( $value );

@@ -25,13 +25,18 @@ function countlistings( $is_active ) {
 function get_awpcp_setting($column, $option) {
     global $wpdb;
     $tbl_ad_settings = $wpdb->prefix . "awpcp_adsettings";
-    $myreturn=0;
-    $tableexists=checkfortable($tbl_ad_settings);
+    $myreturn        = 0;
+    $tableexists     = awpcp_table_exists( $tbl_ad_settings );
 
-    if($tableexists)
-    {
-        $query="SELECT ".$column." FROM  ".$tbl_ad_settings." WHERE config_option='$option'";
-        $res = $wpdb->get_var($query);
+    if ( $tableexists ) {
+        $res = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT %i FROM %i WHERE config_option=%s",
+                $column,
+                $tbl_ad_settings,
+                $option
+            )
+        );
         $myreturn = stripslashes_deep($res);
     }
     return $myreturn;
@@ -53,11 +58,15 @@ function checkifisadmin() {
     return awpcp_current_user_is_admin() ? 1 : 0;
 }
 
-function awpcpistableempty($table){
+function awpcpistableempty( $table ) {
     global $wpdb;
 
-    $query = 'SELECT COUNT(*) FROM ' . $table;
-    $results = $wpdb->get_var( $query );
+    $results = $wpdb->get_var(
+        $wpdb->prepare(
+            'SELECT COUNT(*) FROM %i',
+            $table
+        )
+    );
 
     if ( $results !== false && intval( $results ) === 0 ) {
         return true;
@@ -66,30 +75,22 @@ function awpcpistableempty($table){
     }
 }
 
-function awpcpisqueryempty($table, $where){
-    global $wpdb;
-
-    $query = 'SELECT COUNT(*) FROM ' . $table . ' ' . $where;
-    $count = $wpdb->get_var( $query );
-
-    if ( $count !== false && intval( $count ) === 0 ) {
-        return true;
-    } else {
-        return false;
-    }
+function awpcpisqueryempty( $table, $where ) {
+    _deprecated_function( __FUNCTION__, '' );
+    return null;
 }
 
-function adtermsset(){
+function adtermsset() {
     global $wpdb;
     $myreturn = !awpcpistableempty(AWPCP_TABLE_ADFEES);
     return $myreturn;
 }
 
-function categoriesexist(){
+function categoriesexist() {
     return count( awpcp_categories_collection()->find_categories() ) > 0;
 }
 
-function countcategories(){
+function countcategories() {
     return awpcp_categories_collection()->count_categories();
 }
 
@@ -166,7 +167,7 @@ function get_categorynameid( $cat_id = 0, $cat_parent_id = 0, $exclude = array()
 
     $params = array(
         'current-value' => $cat_parent_id,
-        'options' => $parent_categories
+        'options'       => $parent_categories,
     );
 
     return awpcp_html_options( $params );
@@ -174,9 +175,9 @@ function get_categorynameid( $cat_id = 0, $cat_parent_id = 0, $exclude = array()
 
 // END FUNCTION: create list of top level categories for admin category management
 
-function get_adcatname($cat_ID) {
+function get_adcatname( $cat_id ) {
     try {
-        $category = awpcp_categories_collection()->get( $cat_ID );
+        $category      = awpcp_categories_collection()->get( $cat_id );
         $category_name = stripslashes_deep( $category->name );
     } catch( AWPCP_Exception $e ) {
         $category_name = null;
@@ -185,21 +186,26 @@ function get_adcatname($cat_ID) {
     return $category_name;
 }
 
-function get_adparentcatname( $cat_ID ) {
-    if ( $cat_ID == 0 ) {
+function get_adparentcatname( $cat_id ) {
+    if ( $cat_id == 0 ) {
         return __( 'Top Level Category', 'another-wordpress-classifieds-plugin' );
     }
 
-    return get_adcatname( $cat_ID );
+    return get_adcatname( $cat_id );
 }
 
-function get_cat_parent_ID($cat_ID){ // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
+function get_cat_parent_ID( $cat_id ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
     global $wpdb;
 
-    $query = 'SELECT category_parent_id FROM ' . AWPCP_TABLE_CATEGORIES . ' WHERE category_id = %d';
-    $query = $wpdb->prepare( $query, $cat_ID );
-
-    return intval( $wpdb->get_var( $query ) );
+    return intval(
+        $wpdb->get_var(
+            $wpdb->prepare(
+                'SELECT category_parent_id FROM %i WHERE category_id = %d',
+                AWPCP_TABLE_CATEGORIES,
+                $cat_id
+            )
+        )
+    );
 }
 
 function ads_exist_cat( $catid ) {
@@ -219,8 +225,16 @@ function ads_exist_cat( $catid ) {
 function category_has_children($catid) {
     global $wpdb;
     $tbl_categories = $wpdb->prefix . "awpcp_categories";
-    $myreturn=!awpcpisqueryempty($tbl_categories, " WHERE category_parent_id='$catid'");
-    return $myreturn;
+
+    $count = $wpdb->get_var(
+        $wpdb->prepare(
+            'SELECT COUNT(*) FROM %i WHERE category_parent_id = %d',
+            $tbl_categories,
+            $catid
+        )
+    );
+
+    return $count && intval( $count ) > 0;
 }
 
 /**
@@ -260,7 +274,11 @@ function smart_table2( $array, $table_cols, $opentable, $closetable, $usingtable
 
     foreach ($array as $v) {
 
-        if ($i % 2 == 0) { $awpcpdisplayaditemclass = "displayaditemsodd"; } else { $awpcpdisplayaditemclass = "displayaditemseven"; }
+        if ( $i % 2 == 0 ) {
+            $awpcpdisplayaditemclass = 'displayaditemsodd';
+        } else {
+            $awpcpdisplayaditemclass = 'displayaditemseven';
+        }
 
         $v=str_replace("\$awpcpdisplayaditems",$awpcpdisplayaditemclass,$v);
 
@@ -295,7 +313,7 @@ function smart_table2( $array, $table_cols, $opentable, $closetable, $usingtable
     if ($rest!=0) {
         $colspan=$table_cols-$rest;
 
-        $myreturn.="\t<td".(($colspan==1) ? '' : " colspan=\"$colspan\"")."></td>\n</tr>\n";
+        $myreturn .= "\t<td" . ( $colspan == 1 ? '' : ' colspan="' . esc_attr( $colspan ) . '"' ) . "></td>\n</tr>\n";
     }
     //}
     $myreturn.="$closetable\n";

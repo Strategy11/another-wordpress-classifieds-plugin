@@ -140,7 +140,7 @@ class AWPCP_ListingsSettings {
             ''
         );
 
-		awpcp_files_settings()->register_images_moderation_settings( $settings_manager );
+        awpcp_files_settings()->register_images_moderation_settings( $settings_manager );
     }
 
     /**

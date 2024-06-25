@@ -86,18 +86,18 @@ if ( ! is_readable( $awpcp_autoload_file ) ) {
  * Legacy code that needs to be properly cleaned.
  */
 if ( ! defined( 'AWPCP_REGION_CONTROL_MODULE' ) && file_exists( AWPCP_DIR . '/awpcp_region_control_module.php' ) ) {
-	require_once AWPCP_DIR . '/awpcp_region_control_module.php';
-	$hasregionsmodule = true;
+    require_once AWPCP_DIR . '/awpcp_region_control_module.php';
+    $hasregionsmodule = true;
 }
 
 if ( ! defined( 'AWPCP_EXTRA_FIELDS_MODULE' ) && file_exists( AWPCP_DIR . '/awpcp_extra_fields_module.php' ) ) {
-	require_once AWPCP_DIR . '/awpcp_extra_fields_module.php';
-	$hasextrafieldsmodule = true;
+    require_once AWPCP_DIR . '/awpcp_extra_fields_module.php';
+    $hasextrafieldsmodule = true;
 }
 
 if ( file_exists( AWPCP_DIR . '/awpcp_category_icons_module.php' ) ) {
-	require_once AWPCP_DIR . '/awpcp_category_icons_module.php';
-	$hascaticonsmodule = 1;
+    require_once AWPCP_DIR . '/awpcp_category_icons_module.php';
+    $hascaticonsmodule = 1;
 }
 /* End of legacy code. */
 

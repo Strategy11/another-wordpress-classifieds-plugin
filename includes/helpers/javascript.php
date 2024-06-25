@@ -52,7 +52,7 @@ class AWPCP_JavaScript {
 
     private function print_variable( $property_name, $variable_name, $content ) {
         ?>
-window.<?php echo esc_attr( $variable_name ); ?> = <?php echo json_encode( $this->encode_scalar_values( $content ) ); ?>;
+window.<?php echo esc_attr( $variable_name ); ?> = <?php echo wp_json_encode( $this->encode_scalar_values( $content ) ); ?>;
 if ( typeof $.AWPCP !== 'undefined' ) {
     $.extend( $.AWPCP.<?php echo esc_attr( $property_name ); ?>, <?php echo esc_attr( $variable_name ); ?> );
 }

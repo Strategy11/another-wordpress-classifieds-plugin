@@ -8,31 +8,33 @@
 <div class="awpcp-page-csv-export">
 
     <a name="exporterror"></a>
-    <div class="error" style="display: none;"><p>
-			<?php
-			echo esc_html_x(
-				'An unknown error occurred during the export. Please make sure you have enough free disk space and memory available to PHP. Check your error logs for details.',
-				'listings-csv-export',
-				'another-wordpress-classifieds-plugin'
-			);
-			?>
-        </p></div>
+    <div class="error" style="display: none;">
+        <p>
+            <?php
+            echo esc_html_x(
+                'An unknown error occurred during the export. Please make sure you have enough free disk space and memory available to PHP. Check your error logs for details.',
+                'listings-csv-export',
+                'another-wordpress-classifieds-plugin'
+            );
+            ?>
+        </p>
+    </div>
 
     <div class="awpcp-step-1">
 
         <div class="notice notice-info"><p>
-				<?php
-				printf(
+                <?php
+                printf(
                     /* translators: %1$s: memory_limit link, %2$s: max_execution_time link */
                     esc_html_x(
-					    'Please note that the export process is a resource intensive task. If your export does not succeed try disabling other plugins first and/or increasing the values of the %1$s and %2$s directives in your server php.ini configuration file.',
-					    'listings-csv-export',
-					    'another-wordpress-classifieds-plugin'
+                        'Please note that the export process is a resource intensive task. If your export does not succeed try disabling other plugins first and/or increasing the values of the %1$s and %2$s directives in your server php.ini configuration file.',
+                        'listings-csv-export',
+                        'another-wordpress-classifieds-plugin'
                     ),
                     '<a href="http://www.php.net/manual/en/ini.core.php#ini.memory-limit" target="_blank" rel="noopener">memory_limit</a>',
                     '<a href="http://www.php.net/manual/en/info.configuration.php#ini.max-execution-time" target="_blank" rel="noopener">max_execution_time</a>'
-				);
-				?>
+                );
+                ?>
             </p>
         </div>
 
@@ -60,7 +62,7 @@
                     <td>
                         <label>
                             <input name="settings[export-images]" type="checkbox" value="1"/>
-							<?php echo esc_html_x( 'Export images', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+                            <?php echo esc_html_x( 'Export images', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
                         </label> <br/>
                         <span class="description">
                     <?php echo esc_html_x( 'When checked, instead of just a CSV file a ZIP file will be generated with both a CSV file and listing images.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
@@ -74,7 +76,7 @@
                     <td>
                         <label>
                             <input name="settings[generate-sequence-ids]" type="checkbox" value="1"/>
-							<?php echo esc_html_x( 'Include unique IDs for each listing (sequence_id column).', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+                            <?php echo esc_html_x( 'Include unique IDs for each listing (sequence_id column).', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
                         </label><br/>
                         <span class="description">
                 <strong><?php echo esc_html_x( 'If you plan to re-import the listings into AWPCP and don\'t want new ones created, select this option!', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></strong>
@@ -82,7 +84,7 @@
 
                         <label>
                             <input name="settings[include-users]" type="checkbox" value="1" checked="checked"/>
-							<?php echo esc_html_x( 'Author information (username)', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
+                            <?php echo esc_html_x( 'Author information (username)', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?>
                         </label> <br/>
                     </td>
                 </tr>
@@ -108,9 +110,9 @@
                     </td>
                 </tr>
             </table>
-			<?php wp_nonce_field( 'awpcp-export-csv' ); ?>
+            <?php wp_nonce_field( 'awpcp-export-csv' ); ?>
             <p class="submit">
-				<?php submit_button( _x( 'Export Listings', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ), 'primary', 'do-export', false ); ?>
+                <?php submit_button( _x( 'Export Listings', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ), 'primary', 'do-export', false ); ?>
             </p>
         </form>
     </div>
@@ -138,15 +140,15 @@
         <p><?php echo esc_html_x( 'Your export file has been successfully created and it is now ready for download.', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ); ?></p>
         <div class="download-link">
             <a href="" class="button button-primary">
-				<?php
-				$text = sprintf(
+                <?php
+                $text = sprintf(
                     /* translators: %1$s filename %2$s filesize. */
-					_x( 'Download %1$s (%2$s)', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ),
-					'<span class="filename"></span>',
-					'<span class="filesize"></span>'
-				);
-				echo wp_kses( $text, array( 'span' => array( 'class' => array() ) ) );
-				?>
+                    _x( 'Download %1$s (%2$s)', 'listings-csv-export', 'another-wordpress-classifieds-plugin' ),
+                    '<span class="filename"></span>',
+                    '<span class="filesize"></span>'
+                );
+                echo wp_kses( $text, array( 'span' => array( 'class' => array() ) ) );
+                ?>
             </a>
         </div>
         <div class="cleanup-link awpcp-note">

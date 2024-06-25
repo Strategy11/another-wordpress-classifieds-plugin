@@ -1,21 +1,13 @@
 <?php
 
-function awpcp_csv_importer_factory() {
-    return new AWPCP_CSV_Importer_Factory(
-        awpcp_csv_importer_delegate_factory(),
-        awpcp_csv_reader_factory()
-    );
-}
-
-// phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_CSV_Importer_Factory {
 
     private $importer_delegate_factory;
     private $csv_reader_factory;
 
-    public function __construct( $importer_delegate_factory, $csv_reader_factory ) {
-        $this->importer_delegate_factory = $importer_delegate_factory;
-        $this->csv_reader_factory = $csv_reader_factory;
+    public function __construct() {
+        $this->importer_delegate_factory = awpcp()->container['ImporterDelegateFactory'];
+        $this->csv_reader_factory        = new AWPCP_CSV_Reader_Factory();
     }
 
     public function create_importer( $import_session ) {

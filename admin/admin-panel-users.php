@@ -72,6 +72,8 @@ class AWPCP_AdminUsers {
             $response = array('status' => 'error', 'message' => $message);
         }
 
+        // The nonce was already checked by the AJAX handler.
+        // phpcs:ignore WordPress.Security.NonceVerification
         if (isset($_POST['save'])) {
             $payments = awpcp_payments_api();
             $amount = (int) awpcp_get_var( array( 'param' => 'amount', 'default' => 0 ), 'post' );
@@ -118,7 +120,7 @@ class AWPCP_AdminUsers {
         }
 
         header('Content-Type: application/json');
-        echo json_encode($response);
+        echo wp_json_encode( $response );
         exit();
     }
 }

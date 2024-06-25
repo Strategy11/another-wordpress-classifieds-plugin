@@ -8,8 +8,8 @@
 
 <?php
 printf(
-	/* translators: %s: URL to renew the ad */
-	esc_html__( 'You can renew your Ad visiting this link: %s', 'another-wordpress-classifieds-plugin' ),
-	esc_url_raw( $renew_url )
+    /* translators: %s: URL to renew the ad */
+    esc_html__( 'You can renew your Ad visiting this link: %s', 'another-wordpress-classifieds-plugin' ),
+    esc_url_raw( $renew_url )
 );
 ?>

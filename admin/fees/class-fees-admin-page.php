@@ -121,7 +121,8 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
             return $this->index();
         }
 
-        if ( isset( $_POST['transfer'] ) ) {
+        $nonce = awpcp_get_var( array( 'param' => '_wpnonce' ), 'post' );
+        if ( isset( $_POST['transfer'] ) && wp_verify_nonce( $nonce, 'awpcp-fee-transfer' ) ) {
             $errors = array();
             if ( $fee->transfer_ads_to( $recipient->id, $errors ) ) {
                 /* translators: %1$s is the name of the original Fee and %2$s is the name of the fee that is associated with the ads now. */
@@ -134,10 +135,10 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
                 }
             }
             return $this->index();
-
         }
 
-        if ( isset( $_POST['cancel'] ) ) {
+        $cancel = awpcp_get_var( array( 'param' => 'cancel' ), 'post' );
+        if ( $cancel ) {
             return $this->index();
         }
 

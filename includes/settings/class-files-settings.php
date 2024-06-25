@@ -4,10 +4,7 @@
  */
 
 function awpcp_files_settings() {
-    return new AWPCP_FilesSettings(
-        awpcp_file_types(),
-        awpcp()->container['Settings']
-    );
+    return new AWPCP_FilesSettings();
 }
 
 class AWPCP_FilesSettings {
@@ -19,9 +16,9 @@ class AWPCP_FilesSettings {
      */
     private $settings;
 
-    public function __construct( $file_types, $settings ) {
-        $this->file_types = $file_types;
-        $this->settings   = $settings;
+    public function __construct() {
+        $this->file_types = awpcp_file_types();
+        $this->settings   = awpcp()->container['Settings'];
     }
 
     public function register_settings( $settings_manager ) {
@@ -100,7 +97,7 @@ class AWPCP_FilesSettings {
     public function register_images_moderation_settings( $settings_manager ) {
         $key = 'images-moderation-settings';
 
-		$settings_manager->add_section( 'listings-moderation', __( 'Images Moderation', 'another-wordpress-classifieds-plugin' ), $key, 20, array( $settings_manager, 'section' ) );
+        $settings_manager->add_section( 'listings-moderation', __( 'Images Moderation', 'another-wordpress-classifieds-plugin' ), $key, 20, array( $settings_manager, 'section' ) );
 
         $settings_manager->add_setting( $key, 'imagesapprove', __( 'Hide images until admin approves them', 'another-wordpress-classifieds-plugin' ), 'checkbox', 0, '');
 

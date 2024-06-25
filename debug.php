@@ -1,7 +1,7 @@
 <?php
 
 class WP_Skeleton_Logger {
-    static $instance = null;
+    public static $instance = null;
 
     protected $html;
     protected $from;
@@ -99,7 +99,11 @@ class WP_Skeleton_Logger {
         $file = fopen(AWPCP_DIR . '/debug.log', 'a');
 
         if ( $file !== false ) {
-            $content = sprintf( "[%s] %s", date( 'Y-m-d H:i:s' ), print_r( $entry['var'], true ) . "\n" );
+            $content = sprintf(
+                "[%s] %s",
+                gmdate( 'Y-m-d H:i:s' ),
+                print_r( $entry['var'], true ) . "\n"
+            );
             fwrite( $file, $content );
             fclose( $file );
         }

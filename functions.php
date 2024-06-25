@@ -7,15 +7,15 @@
  * Returns the IDs of the pages used by the AWPCP plugin.
  */
 function exclude_awpcp_child_pages($excluded=array()) {
-	global $wpdb, $table_prefix;
+    global $wpdb, $table_prefix;
 
-	$awpcp_page_id = awpcp_get_page_id_by_ref('main-page-name');
+    $awpcp_page_id = awpcp_get_page_id_by_ref('main-page-name');
 
-	if (empty($awpcp_page_id)) {
-		return array();
-	}
+    if (empty($awpcp_page_id)) {
+        return array();
+    }
 
-	$child_pages = $wpdb->get_col(
+    $child_pages = $wpdb->get_col(
         $wpdb->prepare(
             "SELECT ID FROM %i WHERE post_parent=%d AND post_content LIKE %s",
             $table_prefix . 'posts',
@@ -24,10 +24,10 @@ function exclude_awpcp_child_pages($excluded=array()) {
         )
     );
 
-	if ( is_array( $child_pages ) ) {
-		return array_merge( $child_pages, $excluded );
-	}
-	return $excluded;
+    if ( is_array( $child_pages ) ) {
+        return array_merge( $child_pages, $excluded );
+    }
+    return $excluded;
 }
 
 // PROGRAM FUNCTIONS
@@ -40,72 +40,74 @@ function exclude_awpcp_child_pages($excluded=array()) {
  * @return array Array of page refnames.
  */
 function awpcp_pages_with_rewrite_rules() {
-	return array(
-		'main-page-name',
-		'show-ads-page-name',
-		'reply-to-ad-page-name',
+    return array(
+        'main-page-name',
+        'show-ads-page-name',
+        'reply-to-ad-page-name',
         'edit-ad-page-name',
-		'browse-ads-page-name',
-	);
+        'browse-ads-page-name',
+    );
 }
 
 /**
  * Register AWPCP query vars
  */
 function awpcp_query_vars($query_vars) {
-	$vars = array(
-		// API
-		'awpcpx',
-		'awpcp-module',
-		'awpcp-action',
-		'module',
-		'action',
+    $vars = array(
+        // API
+        'awpcpx',
+        'awpcp-module',
+        'awpcp-action',
+        'module',
+        'action',
 
-		// Payments API
-		'awpcp-txn',
+        // Payments API
+        'awpcp-txn',
 
-		// Listings API
-		'awpcp-ad',
-		'awpcp-hash',
+        // Listings API
+        'awpcp-ad',
+        'awpcp-hash',
 
-		// misc
+        // misc
         'awpcp-custom',
-		"cid",
-		"id",
-		"layout",
-		"regionid",
-	);
+        "cid",
+        "id",
+        "layout",
+        "regionid",
+    );
 
-	return array_merge($query_vars, $vars);
+    return array_merge($query_vars, $vars);
 }
 
 /**
  * @since 3.2.1
  */
 function awpcp_rel_canonical_url() {
-	global $wp_the_query;
+    global $wp_the_query;
 
-	if ( ! is_singular() )
-		return false;
+    if ( ! is_singular() ) {
+        return false;
+    }
 
-	if ( ! $page_id = $wp_the_query->get_queried_object_id() ) {
-		return false;
-	}
+    $page_id = $wp_the_query->get_queried_object_id();
+    if ( ! $page_id ) {
+        return false;
+    }
 
-	if ( $page_id != awpcp_get_page_id_by_ref( 'show-ads-page-name' ) ) {
-		return false;
-	}
+    if ( $page_id != awpcp_get_page_id_by_ref( 'show-ads-page-name' ) ) {
+        return false;
+    }
 
-	$ad_id = intval( awpcp_get_var( array( 'param' => 'id' ) ) );
-	$ad_id = empty( $ad_id ) ? intval( get_query_var( 'id' ) ) : $ad_id;
+    $ad_id = intval( awpcp_get_var( array( 'param' => 'id' ) ) );
+    $ad_id = empty( $ad_id ) ? intval( get_query_var( 'id' ) ) : $ad_id;
 
-	if ( empty( $ad_id ) ) {
-		$url = get_permalink( $page_id );
-	} else {
-		$url = url_showad( $ad_id );
-	}
+    if ( empty( $ad_id ) ) {
+        $url = get_permalink( $page_id );
+    } else {
+        $url = url_showad( $ad_id );
+    }
 
-	return $url;
+    return $url;
 }
 
 /**
@@ -115,13 +117,13 @@ function awpcp_rel_canonical_url() {
  * @since 3.2.1 logic moved to awpcp_rel_canonical_url()
  */
 function awpcp_rel_canonical() {
-	$url = awpcp_rel_canonical_url();
+    $url = awpcp_rel_canonical_url();
 
-	if ( $url ) {
-		echo "<link rel='canonical' href='" . esc_url( $url ) . "' />\n";
-	} else {
-		rel_canonical();
-	}
+    if ( $url ) {
+        echo "<link rel='canonical' href='" . esc_url( $url ) . "' />\n";
+    } else {
+        rel_canonical();
+    }
 }
 
 /**
@@ -135,28 +137,28 @@ function awpcp_rel_canonical() {
  * http://wordpress.stackexchange.com/questions/51530/rewrite-rules-problem-when-rule-includes-homepage-slug
  */
 function awpcp_redirect_canonical($redirect_url, $requested_url) {
-	global $wp_query;
+    global $wp_query;
 
     $awpcp_rewrite = false;
-	$ids = awpcp_get_page_ids_by_ref(awpcp_pages_with_rewrite_rules());
+    $ids = awpcp_get_page_ids_by_ref(awpcp_pages_with_rewrite_rules());
 
-	// do not redirect requests to AWPCP pages with rewrite rules
-	if ( is_page() && in_array( awpcp_get_var( array( 'param' => 'page_id', 'default' => 0 ) ), $ids ) ) {
+    // do not redirect requests to AWPCP pages with rewrite rules
+    if ( is_page() && in_array( awpcp_get_var( array( 'param' => 'page_id', 'default' => 0 ) ), $ids ) ) {
         $awpcp_rewrite = true;
 
-	// do not redirect requests to the front page, if any of the AWPCP pages
-	// with rewrite rules is the front page
-	} elseif (is_page() && !is_feed() && isset($wp_query->queried_object) &&
+        // do not redirect requests to the front page, if any of the AWPCP pages
+        // with rewrite rules is the front page.
+    } elseif (is_page() && !is_feed() && isset($wp_query->queried_object) &&
         'page' == get_option( 'show_on_front' ) && in_array( $wp_query->queried_object->ID, $ids ) &&
         $wp_query->queried_object->ID == get_option( 'page_on_front' )
     ) {
         $awpcp_rewrite = true;
-	}
+    }
 
     if ( $awpcp_rewrite ) {
         // Fix for #943.
-        $requested_host = parse_url( $requested_url, PHP_URL_HOST );
-        $redirect_host = parse_url( $redirect_url, PHP_URL_HOST );
+        $requested_host = wp_parse_url( $requested_url, PHP_URL_HOST );
+        $redirect_host  = wp_parse_url( $redirect_url, PHP_URL_HOST );
 
         if ( $requested_host != $redirect_host ) {
             if ( strtolower( $redirect_host ) == ( 'www.' . $requested_host ) ) {
@@ -169,23 +171,23 @@ function awpcp_redirect_canonical($redirect_url, $requested_url) {
         return $requested_url;
     }
 
-	return $redirect_url;
+    return $redirect_url;
 }
 
 function awpcp_esc_attr($text) {
-	// WP adds slashes to all request variables
-	$text = stripslashes($text);
-	// AWPCP adds more slashes
-	$text = stripslashes($text);
-	$text = esc_attr($text);
-	return $text;
+    // WP adds slashes to all request variables
+    $text = stripslashes($text);
+    // AWPCP adds more slashes
+    $text = stripslashes($text);
+    $text = esc_attr($text);
+    return $text;
 }
 
 function awpcp_esc_textarea($text) {
-	$text = stripslashes($text);
-	$text = stripslashes($text);
-	$text = esc_textarea($text);
-	return $text;
+    $text = stripslashes($text);
+    $text = stripslashes($text);
+    $text = esc_textarea($text);
+    return $text;
 }
 
 /**
@@ -217,15 +219,6 @@ function awpcp_strip_all_tags_deep( $string ) {
 
 /**
  * @since 3.0.2
- * @todo Check if add-ons use this and deprecate.
- */
-function awpcp_strptime( $date, $format ) {
-	_deprecated_function( __FUNCTION__, '4.1.8' );
-	return awpcp_strptime_replacement( $date, $format );
-}
-
-/**
- * @since 3.0.2
  */
 function awpcp_strptime_replacement( $date, $format ) {
     $masks = array(
@@ -247,7 +240,7 @@ function awpcp_strptime_replacement( $date, $format ) {
     $unparsed = preg_replace( $regexp, '', $date );
 
     if ( isset( $out['y'] ) && strlen( $out['y'] ) ) {
-    	$out['Y'] = ( $out['y'] > 69 ? 1900 : 2000 ) + $out['y'];
+        $out['Y'] = ( $out['y'] > 69 ? 1900 : 2000 ) + $out['y'];
     }
 
     $ret = array(
@@ -267,52 +260,52 @@ function awpcp_strptime_replacement( $date, $format ) {
  * @since 3.0
  */
 function awpcp_date_formats() {
-	static $translations;
+    static $translations;
 
-	if ( ! is_array( $translations ) ) {
-		$translations = array(
-			'd' => 'dd',
-			'j' => 'd',
-			's' => null,
-			'l' => 'DD',
-			'D' => 'D',
-			'm' => 'mm',
-			'n' => 'm',
-			'F' => 'MM',
-			'M' => 'M',
-			'Y' => 'yy',
-			'y' => 'y',
-			'c' => 'ISO_8601',
-			'r' => 'RFC_822',
-		);
-	}
+    if ( ! is_array( $translations ) ) {
+        $translations = array(
+            'd' => 'dd',
+            'j' => 'd',
+            's' => null,
+            'l' => 'DD',
+            'D' => 'D',
+            'm' => 'mm',
+            'n' => 'm',
+            'F' => 'MM',
+            'M' => 'M',
+            'Y' => 'yy',
+            'y' => 'y',
+            'c' => 'ISO_8601',
+            'r' => 'RFC_822',
+        );
+    }
 
-	return $translations;
+    return $translations;
 }
 
 /**
  * @since 3.0
  */
 function awpcp_time_formats() {
-	static $translations;
+    static $translations;
 
-	if ( ! is_array( $translations ) ) {
-		$translations = array(
-			'a' => 'p',
-			'A' => 'P',
-			'g' => 'h',
-			'h' => 'hh',
-			'G' => 'H',
-			'H' => 'HH',
-			'i' => 'mm',
-			's' => 'ss',
-			'T' => null,
-			'c' => null,
-			'r' => null,
-		);
-	}
+    if ( ! is_array( $translations ) ) {
+        $translations = array(
+            'a' => 'p',
+            'A' => 'P',
+            'g' => 'h',
+            'h' => 'hh',
+            'G' => 'H',
+            'H' => 'HH',
+            'i' => 'mm',
+            's' => 'ss',
+            'T' => null,
+            'c' => null,
+            'r' => null,
+        );
+    }
 
-	return $translations;
+    return $translations;
 }
 
 /**
@@ -320,7 +313,7 @@ function awpcp_time_formats() {
  * @since 3.0
  */
 function awpcp_datepicker_format($format) {
-	return _awpcp_replace_format($format, awpcp_date_formats());
+    return _awpcp_replace_format($format, awpcp_date_formats());
 }
 
 /**
@@ -328,53 +321,53 @@ function awpcp_datepicker_format($format) {
  * @since 3.0
  */
 function awpcp_timepicker_format($format) {
-	return _awpcp_replace_format($format, awpcp_time_formats());
+    return _awpcp_replace_format($format, awpcp_time_formats());
 }
 
 /**
  * @since 3.0
  */
 function _awpcp_replace_format($format, $translations) {
-	$pattern = join( '|', array_map( 'preg_quote', array_keys( $translations ) ) );
+    $pattern = join( '|', array_map( 'preg_quote', array_keys( $translations ) ) );
 
-	preg_match_all( "/$pattern/s", $format, $matches );
+    preg_match_all( "/$pattern/s", $format, $matches );
 
-	$processed = array();
-	foreach ( $matches[0] as $match ) {
-		if ( ! isset( $processed[ $match ] ) ) {
-			$format = str_replace( $match, $translations[ $match ], $format );
-			$processed[ $match ] = true;
-		}
-	}
+    $processed = array();
+    foreach ( $matches[0] as $match ) {
+        if ( ! isset( $processed[ $match ] ) ) {
+            $format = str_replace( $match, $translations[ $match ], $format );
+            $processed[ $match ] = true;
+        }
+    }
 
-	return $format;
+    return $format;
 }
 
 /**
  * @since 3.0
  */
 function awpcp_get_date_format() {
-	return get_awpcp_option('date-format');
+    return get_awpcp_option('date-format');
 }
 
 /**
  * @since 3.0
  */
 function awpcp_get_time_format() {
-	return get_awpcp_option('time-format');
+    return get_awpcp_option('time-format');
 }
 
 /**
  * @since 3.0
  */
 function awpcp_get_datetime_format() {
-	$format = get_awpcp_option('date-time-format');
-	$format = str_replace('<date>', '******', $format);
-	$format = str_replace('<time>', '*^*^*^', $format);
-	$format = preg_replace('/(\w)/', '\\\\$1', $format);
-	$format = str_replace('******', awpcp_get_date_format(), $format);
-	$format = str_replace('*^*^*^', awpcp_get_time_format(), $format);
-	return $format;
+    $format = get_awpcp_option('date-time-format');
+    $format = str_replace('<date>', '******', $format);
+    $format = str_replace('<time>', '*^*^*^', $format);
+    $format = preg_replace('/(\w)/', '\\\\$1', $format);
+    $format = str_replace('******', awpcp_get_date_format(), $format);
+    $format = str_replace('*^*^*^', awpcp_get_time_format(), $format);
+    return $format;
 }
 
 /**
@@ -413,41 +406,41 @@ function awpcp_get_datetime_formats() {
  *                or first arguemnt for date() function.
  */
 function awpcp_datetime( $format='mysql', $date=null ) {
-	if ( is_null( $date ) || strlen( $date ) === 0 ) {
-		$timestamp = current_time( 'timestamp' );
-	} elseif ( is_string( $date ) ) {
-		$timestamp = strtotime( $date );
-	} else {
+    if ( is_null( $date ) || strlen( $date ) === 0 ) {
+        $timestamp = current_time( 'timestamp' );
+    } elseif ( is_string( $date ) ) {
+        $timestamp = strtotime( $date );
+    } else {
         $timestamp = $date;
     }
 
-	switch ( $format ) {
-		case 'mysql':
-			return date( 'Y-m-d H:i:s', $timestamp );
-		case 'timestamp':
-			return $timestamp;
-		case 'time-elapsed':
+    switch ( $format ) {
+        case 'mysql':
+            return gmdate( 'Y-m-d H:i:s', $timestamp );
+        case 'timestamp':
+            return $timestamp;
+        case 'time-elapsed':
             return sprintf(
                 __( '%s ago', 'another-wordpress-classifieds-plugin' ),
                 human_time_diff( strtotime( $date ) )
             );
-		case 'awpcp':
-			return date_i18n( awpcp_get_datetime_format(), $timestamp );
-		case 'awpcp-date':
-			return date_i18n( awpcp_get_date_format(), $timestamp );
-		case 'awpcp-time':
-			return date_i18n( awpcp_get_time_format(), $timestamp );
-		default:
-			return date_i18n( $format, $timestamp );
-	}
+        case 'awpcp':
+            return date_i18n( awpcp_get_datetime_format(), $timestamp );
+        case 'awpcp-date':
+            return date_i18n( awpcp_get_date_format(), $timestamp );
+        case 'awpcp-time':
+            return date_i18n( awpcp_get_time_format(), $timestamp );
+        default:
+            return date_i18n( $format, $timestamp );
+    }
 }
 
 function awpcp_set_datetime_date( $datetime, $date ) {
     $base_timestamp = strtotime( $datetime );
-    $base_year_month_day_timestamp = strtotime( date( 'Y-m-d', strtotime( $datetime ) ) );
+    $base_year_month_day_timestamp = strtotime( gmdate( 'Y-m-d', strtotime( $datetime ) ) );
     $time_of_the_day_in_seconds = $base_timestamp - $base_year_month_day_timestamp;
 
-    $target_year_month_day_timestamp = strtotime( date( 'Y-m-d', strtotime( $date ) ) );
+    $target_year_month_day_timestamp = strtotime( gmdate( 'Y-m-d', strtotime( $date ) ) );
 
     $new_datetime_timestamp = $target_year_month_day_timestamp + $time_of_the_day_in_seconds;
 
@@ -456,15 +449,15 @@ function awpcp_set_datetime_date( $datetime, $date ) {
 
 function awpcp_extend_date_to_end_of_the_day( $datetime ) {
     $next_day = strtotime( '+ 1 days', $datetime );
-    $zero_hours_next_day = strtotime( date( 'Y-m-d', $next_day ) );
+    $zero_hours_next_day = strtotime( gmdate( 'Y-m-d', $next_day ) );
     $end_of_the_day = $zero_hours_next_day - 1;
 
     return $end_of_the_day;
 }
 
 function awpcp_is_mysql_date( $date ) {
-	$regexp = '/^\d{4}-\d{1,2}-\d{1,2}(\s\d{1,2}:\d{1,2}(:\d{1,2})?)?$/';
-	return preg_match( $regexp, $date ) === 1;
+    $regexp = '/^\d{4}-\d{1,2}-\d{1,2}(\s\d{1,2}:\d{1,2}(:\d{1,2})?)?$/';
+    return preg_match( $regexp, $date ) === 1;
 }
 
 function awpcp_is_array_of_arrays( $array ) {
@@ -539,15 +532,15 @@ function awpcp_check_admin_ajax() {
 }
 
 function awpcp_get_grid_item_css_class($classes, $pos, $columns, $rows) {
-	if ($pos < $columns)
-		$classes[] = 'first-row';
-	if ($pos >= (($rows - 1) * $columns))
-		$classes[] = 'last-row';
-	if ($pos == 0 || $pos % $columns == 0)
-		$classes[] = 'first-column';
-	if (($pos + 1) % $columns == 0)
-		$classes[] = 'last-column';
-	return $classes;
+    if ($pos < $columns)
+        $classes[] = 'first-row';
+    if ($pos >= (($rows - 1) * $columns))
+        $classes[] = 'last-row';
+    if ($pos == 0 || $pos % $columns == 0)
+        $classes[] = 'first-column';
+    if (($pos + 1) % $columns == 0)
+        $classes[] = 'last-column';
+    return $classes;
 }
 
 /**
@@ -596,10 +589,11 @@ function awpcp_pagination($config, $url) {
         'TCM_Cache_Query_2_',
     );
 
-	$params = array_merge($_GET, $_POST);
-	foreach ($blacklist as $param) {
-		unset($params[$param]);
-	}
+    // phpcs:ignore WordPress.Security.NonceVerification
+    $params = array_merge($_GET, $_POST);
+    foreach ($blacklist as $param) {
+        unset($params[$param]);
+    }
 
     extract(shortcode_atts(
         [
@@ -638,15 +632,15 @@ function awpcp_pagination($config, $url) {
         $items[] = awpcp_render_pagination_item( '&laquo;', $page - 1, $results, $params, $url );
     }
 
-	for ($i=1; $i <= $pages; $i++) {
-		$less    = $i < ( $page - $radius );
-		$greater = $i > ( $page + $radius );
+    for ($i=1; $i <= $pages; $i++) {
+        $less    = $i < ( $page - $radius );
+        $greater = $i > ( $page + $radius );
         if ( $page == $i ) {
             $items[] = sprintf( '<span class="awpcp-pagination-links--link">%d</span>', $i );
         } elseif ( ! $less && ! $greater ) {
             $items[] = awpcp_render_pagination_item( $i, $i, $results, $params, $url );
         }
-	}
+    }
 
     if ( $page < ( $pages - 1 ) ) {
         $items[] = awpcp_render_pagination_item( '&raquo;', $page + 1, $results, $params, $url );
@@ -657,15 +651,15 @@ function awpcp_pagination($config, $url) {
     }
 
     $unique_id  = str_replace( [ ' ', '.' ], '-', microtime() );
-	$pagination = implode( '', $items );
-	$options = awpcp_pagination_options( $results );
+    $pagination = implode( '', $items );
+    $options = awpcp_pagination_options( $results );
 
-	ob_start();
-		include(AWPCP_DIR . '/frontend/templates/listings-pagination.tpl.php');
-		$html = ob_get_contents();
-	ob_end_clean();
+    ob_start();
+        include(AWPCP_DIR . '/frontend/templates/listings-pagination.tpl.php');
+        $html = ob_get_contents();
+    ob_end_clean();
 
-	return $html;
+    return $html;
 }
 
 function awpcp_render_pagination_item( $label, $page, $results_per_page, $params, $url ) {
@@ -721,39 +715,39 @@ function awpcp_get_categories() {
 }
 
 function awpcp_get_categories_ids() {
-	static $categories;
+    static $categories;
 
-	if (!is_array($categories)) {
-		$categories = awpcp_get_properties( awpcp_get_categories(), 'term_id' );
-	}
+    if (!is_array($categories)) {
+        $categories = awpcp_get_properties( awpcp_get_categories(), 'term_id' );
+    }
 
-	return $categories;
+    return $categories;
 }
 
 /**
  * @since 3.0
  */
 function awpcp_get_comma_separated_categories_list($categories=array(), $threshold=5) {
-	$names = awpcp_get_properties( $categories, 'name' );
-	return awpcp_get_comma_separated_list( $names, $threshold, __( 'None', 'another-wordpress-classifieds-plugin' ) );
+    $names = awpcp_get_properties( $categories, 'name' );
+    return awpcp_get_comma_separated_list( $names, $threshold, __( 'None', 'another-wordpress-classifieds-plugin' ) );
 }
 
 /**
  * @since 3.0
  */
 function awpcp_get_comma_separated_list($items=array(), $threshold=5, $none='') {
-	$items = array_filter( $items, 'strlen' );
-	$count = count( $items );
+    $items = array_filter( $items, 'strlen' );
+    $count = count( $items );
 
-	if ( $count > $threshold ) {
-		$message = _x( '%s and %d more.', 'comma separated list of things', 'another-wordpress-classifieds-plugin' );
-		$items = array_splice( $items, 0, $threshold - 1 );
-		return sprintf( $message, join( ', ', $items ), $count - $threshold + 1 );
-	} elseif ( $count > 0 ) {
-		return sprintf( '%s.', join( ', ', $items ) );
-	} else {
-		return $none;
-	}
+    if ( $count > $threshold ) {
+        $message = _x( '%1$s and %2$d more.', 'comma separated list of things', 'another-wordpress-classifieds-plugin' );
+        $items = array_splice( $items, 0, $threshold - 1 );
+        return sprintf( $message, join( ', ', $items ), $count - $threshold + 1 );
+    } elseif ( $count > 0 ) {
+        return sprintf( '%s.', join( ', ', $items ) );
+    } else {
+        return $none;
+    }
 }
 
 /**
@@ -791,7 +785,7 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
     $_fields = array();
 
     if ( $enabled_fields['country'] ) {
-    	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaycountryfieldreqop' ) );
+        $required = $can_be_required && ( (bool) get_awpcp_option( 'displaycountryfieldreqop' ) );
         $_fields['country'] = array(
             'type' => 'country',
             'label' => __( 'Country', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
@@ -801,7 +795,7 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
         );
     }
     if ( $enabled_fields['state'] ) {
-    	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaystatefieldreqop' ) );
+        $required = $can_be_required && ( (bool) get_awpcp_option( 'displaystatefieldreqop' ) );
         $_fields['state'] = array(
             'type' => 'state',
             'label' => __( 'State/Province', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
@@ -811,7 +805,7 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
         );
     }
     if ( $enabled_fields['city'] ) {
-    	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaycityfieldreqop' ) );
+        $required = $can_be_required && ( (bool) get_awpcp_option( 'displaycityfieldreqop' ) );
         $_fields['city'] = array(
             'type' => 'city',
             'label' => __( 'City', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
@@ -821,7 +815,7 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
         );
     }
     if ( $enabled_fields['county'] ) {
-    	$required = $can_be_required && ( (bool) get_awpcp_option( 'displaycountyvillagefieldreqop' ) );
+        $required = $can_be_required && ( (bool) get_awpcp_option( 'displaycountyvillagefieldreqop' ) );
         $_fields['county'] = array(
             'type' => 'county',
             'label' => __( 'County/Village/Other', 'another-wordpress-classifieds-plugin') . ( $required ? '*' : '' ),
@@ -853,204 +847,204 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
  * @return string|void
  */
 function awpcp_country_list_options( $value = false, $use_names = true, $show = false ) {
-	$countries = array(
-	    'US' => 'United States',
-	    'AL' => 'Albania',
-	    'DZ' => 'Algeria',
-	    'AD' => 'Andorra',
-	    'AO' => 'Angola',
-	    'AI' => 'Anguilla',
-	    'AG' => 'Antigua and Barbuda',
-	    'AR' => 'Argentina',
-	    'AM' => 'Armenia',
-	    'AW' => 'Aruba',
-	    'AU' => 'Australia',
-	    'AT' => 'Austria',
-	    'AZ' => 'Azerbaijan Republic',
-	    'BS' => 'Bahamas',
-	    'BH' => 'Bahrain',
-	    'BB' => 'Barbados',
-	    'BE' => 'Belgium',
-	    'BZ' => 'Belize',
-	    'BJ' => 'Benin',
-	    'BM' => 'Bermuda',
-	    'BT' => 'Bhutan',
-	    'BO' => 'Bolivia',
-	    'BA' => 'Bosnia and Herzegovina',
-	    'BW' => 'Botswana',
-	    'BR' => 'Brazil',
-	    'BN' => 'Brunei',
-	    'BG' => 'Bulgaria',
-	    'BF' => 'Burkina Faso',
-	    'BI' => 'Burundi',
-	    'KH' => 'Cambodia',
-	    'CA' => 'Canada',
-	    'CV' => 'Cape Verde',
-	    'KY' => 'Cayman Islands',
-	    'TD' => 'Chad',
-	    'CL' => 'Chile',
-	    'C2' => 'China',
-	    'CO' => 'Colombia',
-	    'KM' => 'Comoros',
-	    'CK' => 'Cook Islands',
-	    'CR' => 'Costa Rica',
-	    'HR' => 'Croatia',
-	    'CY' => 'Cyprus',
-	    'CZ' => 'Czech Republic',
-	    'CD' => 'Democratic Republic of the Congo',
-	    'DK' => 'Denmark',
-	    'DJ' => 'Djibouti',
-	    'DM' => 'Dominica',
-	    'DO' => 'Dominican Republic',
-	    'EC' => 'Ecuador',
-	    'SV' => 'El Salvador',
-	    'ER' => 'Eritrea',
-	    'EE' => 'Estonia',
-	    'ET' => 'Ethiopia',
-	    'FK' => 'Falkland Islands',
-	    'FO' => 'Faroe Islands',
-	    'FJ' => 'Fiji',
-	    'FI' => 'Finland',
-	    'FR' => 'France',
-	    'GF' => 'French Guiana',
-	    'PF' => 'French Polynesia',
-	    'GA' => 'Gabon Republic',
-	    'GM' => 'Gambia',
-	    'DE' => 'Germany',
-	    'GI' => 'Gibraltar',
-	    'GR' => 'Greece',
-	    'GL' => 'Greenland',
-	    'GD' => 'Grenada',
-	    'GP' => 'Guadeloupe',
-	    'GT' => 'Guatemala',
-	    'GN' => 'Guinea',
-	    'GW' => 'Guinea Bissau',
-	    'GY' => 'Guyana',
-	    'HN' => 'Honduras',
-	    'HK' => 'Hong Kong',
-	    'HU' => 'Hungary',
-	    'IS' => 'Iceland',
-	    'IN' => 'India',
-	    'ID' => 'Indonesia',
-	    'IE' => 'Ireland',
-	    'IL' => 'Israel',
-	    'IT' => 'Italy',
-	    'JM' => 'Jamaica',
-	    'JP' => 'Japan',
-	    'JO' => 'Jordan',
-	    'KZ' => 'Kazakhstan',
-	    'KE' => 'Kenya',
-	    'KI' => 'Kiribati',
-	    'KW' => 'Kuwait',
-	    'KG' => 'Kyrgyzstan',
-	    'LA' => 'Laos',
-	    'LV' => 'Latvia',
-	    'LS' => 'Lesotho',
-	    'LI' => 'Liechtenstein',
-	    'LT' => 'Lithuania',
-	    'LU' => 'Luxembourg',
-	    'MG' => 'Madagascar',
-	    'MW' => 'Malawi',
-	    'MY' => 'Malaysia',
-	    'MV' => 'Maldives',
-	    'ML' => 'Mali',
-	    'MT' => 'Malta',
-	    'MH' => 'Marshall Islands',
-	    'MQ' => 'Martinique',
-	    'MR' => 'Mauritania',
-	    'MU' => 'Mauritius',
-	    'YT' => 'Mayotte',
-	    'MX' => 'Mexico',
-	    'FM' => 'Micronesia',
-	    'MN' => 'Mongolia',
-	    'MS' => 'Montserrat',
-	    'MA' => 'Morocco',
-	    'MZ' => 'Mozambique',
-	    'NA' => 'Namibia',
-	    'NR' => 'Nauru',
-	    'NP' => 'Nepal',
-	    'NL' => 'Netherlands',
-	    'AN' => 'Netherlands Antilles',
-	    'NC' => 'New Caledonia',
-	    'NZ' => 'New Zealand',
-	    'NI' => 'Nicaragua',
-	    'NE' => 'Niger',
-	    'NU' => 'Niue',
-	    'NF' => 'Norfolk Island',
-	    'NO' => 'Norway',
-	    'OM' => 'Oman',
-	    'PW' => 'Palau',
-	    'PA' => 'Panama',
-	    'PG' => 'Papua New Guinea',
-	    'PE' => 'Peru',
-	    'PH' => 'Philippines',
-	    'PN' => 'Pitcairn Islands',
-	    'PL' => 'Poland',
-	    'PT' => 'Portugal',
-	    'QA' => 'Qatar',
-	    'CG' => 'Republic of the Congo',
-	    'RE' => 'Reunion',
-	    'RO' => 'Romania',
-	    'RU' => 'Russia',
-	    'RW' => 'Rwanda',
-	    'KN' => 'Saint Kitts and Nevis Anguilla',
-	    'PM' => 'Saint Pierre and Miquelon',
-	    'VC' => 'Saint Vincent and Grenadines',
-	    'WS' => 'Samoa',
-	    'SM' => 'San Marino',
-	    'ST' => 'São Tomé and Príncipe',
-	    'SA' => 'Saudi Arabia',
-	    'SN' => 'Senegal',
-	    'SC' => 'Seychelles',
-	    'SL' => 'Sierra Leone',
-	    'SG' => 'Singapore',
-	    'SK' => 'Slovakia',
-	    'SI' => 'Slovenia',
-	    'SB' => 'Solomon Islands',
-	    'SO' => 'Somalia',
-	    'ZA' => 'South Africa',
-	    'KR' => 'South Korea',
-	    'ES' => 'Spain',
-	    'LK' => 'Sri Lanka',
-	    'SH' => 'St. Helena',
-	    'LC' => 'St. Lucia',
-	    'SR' => 'Suriname',
-	    'SJ' => 'Svalbard and Jan Mayen Islands',
-	    'SZ' => 'Swaziland',
-	    'SE' => 'Sweden',
-	    'CH' => 'Switzerland',
-	    'TW' => 'Taiwan',
-	    'TJ' => 'Tajikistan',
-	    'TZ' => 'Tanzania',
-	    'TH' => 'Thailand',
-	    'TG' => 'Togo',
-	    'TO' => 'Tonga',
-	    'TT' => 'Trinidad and Tobago',
-	    'TN' => 'Tunisia',
-	    'TR' => 'Turkey',
-	    'TM' => 'Turkmenistan',
-	    'TC' => 'Turks and Caicos Islands',
-	    'TV' => 'Tuvalu',
-	    'UG' => 'Uganda',
-	    'UA' => 'Ukraine',
-	    'AE' => 'United Arab Emirates',
-	    'GB' => 'United Kingdom',
-	    'UY' => 'Uruguay',
-	    'VU' => 'Vanuatu',
-	    'VA' => 'Vatican City State',
-	    'VE' => 'Venezuela',
-	    'VN' => 'Vietnam',
-	    'VG' => 'Virgin Islands (British)',
-	    'WF' => 'Wallis and Futuna Islands',
-	    'YE' => 'Yemen',
-	    'ZM' => 'Zambia',
-	);
+    $countries = array(
+        'US' => 'United States',
+        'AL' => 'Albania',
+        'DZ' => 'Algeria',
+        'AD' => 'Andorra',
+        'AO' => 'Angola',
+        'AI' => 'Anguilla',
+        'AG' => 'Antigua and Barbuda',
+        'AR' => 'Argentina',
+        'AM' => 'Armenia',
+        'AW' => 'Aruba',
+        'AU' => 'Australia',
+        'AT' => 'Austria',
+        'AZ' => 'Azerbaijan Republic',
+        'BS' => 'Bahamas',
+        'BH' => 'Bahrain',
+        'BB' => 'Barbados',
+        'BE' => 'Belgium',
+        'BZ' => 'Belize',
+        'BJ' => 'Benin',
+        'BM' => 'Bermuda',
+        'BT' => 'Bhutan',
+        'BO' => 'Bolivia',
+        'BA' => 'Bosnia and Herzegovina',
+        'BW' => 'Botswana',
+        'BR' => 'Brazil',
+        'BN' => 'Brunei',
+        'BG' => 'Bulgaria',
+        'BF' => 'Burkina Faso',
+        'BI' => 'Burundi',
+        'KH' => 'Cambodia',
+        'CA' => 'Canada',
+        'CV' => 'Cape Verde',
+        'KY' => 'Cayman Islands',
+        'TD' => 'Chad',
+        'CL' => 'Chile',
+        'C2' => 'China',
+        'CO' => 'Colombia',
+        'KM' => 'Comoros',
+        'CK' => 'Cook Islands',
+        'CR' => 'Costa Rica',
+        'HR' => 'Croatia',
+        'CY' => 'Cyprus',
+        'CZ' => 'Czech Republic',
+        'CD' => 'Democratic Republic of the Congo',
+        'DK' => 'Denmark',
+        'DJ' => 'Djibouti',
+        'DM' => 'Dominica',
+        'DO' => 'Dominican Republic',
+        'EC' => 'Ecuador',
+        'SV' => 'El Salvador',
+        'ER' => 'Eritrea',
+        'EE' => 'Estonia',
+        'ET' => 'Ethiopia',
+        'FK' => 'Falkland Islands',
+        'FO' => 'Faroe Islands',
+        'FJ' => 'Fiji',
+        'FI' => 'Finland',
+        'FR' => 'France',
+        'GF' => 'French Guiana',
+        'PF' => 'French Polynesia',
+        'GA' => 'Gabon Republic',
+        'GM' => 'Gambia',
+        'DE' => 'Germany',
+        'GI' => 'Gibraltar',
+        'GR' => 'Greece',
+        'GL' => 'Greenland',
+        'GD' => 'Grenada',
+        'GP' => 'Guadeloupe',
+        'GT' => 'Guatemala',
+        'GN' => 'Guinea',
+        'GW' => 'Guinea Bissau',
+        'GY' => 'Guyana',
+        'HN' => 'Honduras',
+        'HK' => 'Hong Kong',
+        'HU' => 'Hungary',
+        'IS' => 'Iceland',
+        'IN' => 'India',
+        'ID' => 'Indonesia',
+        'IE' => 'Ireland',
+        'IL' => 'Israel',
+        'IT' => 'Italy',
+        'JM' => 'Jamaica',
+        'JP' => 'Japan',
+        'JO' => 'Jordan',
+        'KZ' => 'Kazakhstan',
+        'KE' => 'Kenya',
+        'KI' => 'Kiribati',
+        'KW' => 'Kuwait',
+        'KG' => 'Kyrgyzstan',
+        'LA' => 'Laos',
+        'LV' => 'Latvia',
+        'LS' => 'Lesotho',
+        'LI' => 'Liechtenstein',
+        'LT' => 'Lithuania',
+        'LU' => 'Luxembourg',
+        'MG' => 'Madagascar',
+        'MW' => 'Malawi',
+        'MY' => 'Malaysia',
+        'MV' => 'Maldives',
+        'ML' => 'Mali',
+        'MT' => 'Malta',
+        'MH' => 'Marshall Islands',
+        'MQ' => 'Martinique',
+        'MR' => 'Mauritania',
+        'MU' => 'Mauritius',
+        'YT' => 'Mayotte',
+        'MX' => 'Mexico',
+        'FM' => 'Micronesia',
+        'MN' => 'Mongolia',
+        'MS' => 'Montserrat',
+        'MA' => 'Morocco',
+        'MZ' => 'Mozambique',
+        'NA' => 'Namibia',
+        'NR' => 'Nauru',
+        'NP' => 'Nepal',
+        'NL' => 'Netherlands',
+        'AN' => 'Netherlands Antilles',
+        'NC' => 'New Caledonia',
+        'NZ' => 'New Zealand',
+        'NI' => 'Nicaragua',
+        'NE' => 'Niger',
+        'NU' => 'Niue',
+        'NF' => 'Norfolk Island',
+        'NO' => 'Norway',
+        'OM' => 'Oman',
+        'PW' => 'Palau',
+        'PA' => 'Panama',
+        'PG' => 'Papua New Guinea',
+        'PE' => 'Peru',
+        'PH' => 'Philippines',
+        'PN' => 'Pitcairn Islands',
+        'PL' => 'Poland',
+        'PT' => 'Portugal',
+        'QA' => 'Qatar',
+        'CG' => 'Republic of the Congo',
+        'RE' => 'Reunion',
+        'RO' => 'Romania',
+        'RU' => 'Russia',
+        'RW' => 'Rwanda',
+        'KN' => 'Saint Kitts and Nevis Anguilla',
+        'PM' => 'Saint Pierre and Miquelon',
+        'VC' => 'Saint Vincent and Grenadines',
+        'WS' => 'Samoa',
+        'SM' => 'San Marino',
+        'ST' => 'São Tomé and Príncipe',
+        'SA' => 'Saudi Arabia',
+        'SN' => 'Senegal',
+        'SC' => 'Seychelles',
+        'SL' => 'Sierra Leone',
+        'SG' => 'Singapore',
+        'SK' => 'Slovakia',
+        'SI' => 'Slovenia',
+        'SB' => 'Solomon Islands',
+        'SO' => 'Somalia',
+        'ZA' => 'South Africa',
+        'KR' => 'South Korea',
+        'ES' => 'Spain',
+        'LK' => 'Sri Lanka',
+        'SH' => 'St. Helena',
+        'LC' => 'St. Lucia',
+        'SR' => 'Suriname',
+        'SJ' => 'Svalbard and Jan Mayen Islands',
+        'SZ' => 'Swaziland',
+        'SE' => 'Sweden',
+        'CH' => 'Switzerland',
+        'TW' => 'Taiwan',
+        'TJ' => 'Tajikistan',
+        'TZ' => 'Tanzania',
+        'TH' => 'Thailand',
+        'TG' => 'Togo',
+        'TO' => 'Tonga',
+        'TT' => 'Trinidad and Tobago',
+        'TN' => 'Tunisia',
+        'TR' => 'Turkey',
+        'TM' => 'Turkmenistan',
+        'TC' => 'Turks and Caicos Islands',
+        'TV' => 'Tuvalu',
+        'UG' => 'Uganda',
+        'UA' => 'Ukraine',
+        'AE' => 'United Arab Emirates',
+        'GB' => 'United Kingdom',
+        'UY' => 'Uruguay',
+        'VU' => 'Vanuatu',
+        'VA' => 'Vatican City State',
+        'VE' => 'Venezuela',
+        'VN' => 'Vietnam',
+        'VG' => 'Virgin Islands (British)',
+        'WF' => 'Wallis and Futuna Islands',
+        'YE' => 'Yemen',
+        'ZM' => 'Zambia',
+    );
 
-	$options = '<option value="">' .
+    $options = '<option value="">' .
         esc_html__( '-- Choose a Country --', 'another-wordpress-classifieds-plugin') .
         '</option>';
 
-	foreach ( apply_filters( 'awpcp_country_list_options_countries', $countries ) as $code => $name) {
+    foreach ( apply_filters( 'awpcp_country_list_options_countries', $countries ) as $code => $name) {
         $option_value = $use_names ? $name : $code;
 
         $options .= sprintf(
@@ -1059,7 +1053,7 @@ function awpcp_country_list_options( $value = false, $use_names = true, $show = 
             selected( $value, $option_value, false ),
             esc_html( $name )
         );
-	}
+    }
 
     if ( $show ) {
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -1067,7 +1061,7 @@ function awpcp_country_list_options( $value = false, $use_names = true, $show = 
         return;
     }
 
-	return $options;
+    return $options;
 }
 
 /**
@@ -1075,35 +1069,35 @@ function awpcp_country_list_options( $value = false, $use_names = true, $show = 
  */
 
 function awpcp_array_insert($array, $index, $key, $item, $where='before') {
-	$all = array_merge($array, array($key => $item));
-	$keys = array_keys($array);
-	$p = array_search( $index, $keys, true );
+    $all = array_merge($array, array($key => $item));
+    $keys = array_keys($array);
+    $p = array_search( $index, $keys, true );
 
-	if ( $p !== false ) {
-		if ($where === 'before')
-			array_splice($keys, max($p, 0), 0, $key);
-		elseif ($where === 'after')
-			array_splice($keys, min($p+1, count($keys)), 0, $key);
+    if ( $p !== false ) {
+        if ($where === 'before')
+            array_splice($keys, max($p, 0), 0, $key);
+        elseif ($where === 'after')
+            array_splice($keys, min($p+1, count($keys)), 0, $key);
 
-		$array = array();
+        $array = array();
         // Create items array in proper order. The code below was the only
         // way I found to insert an item in an arbitrary position of an
         // array preserving keys. array_splice dropped the key of the inserted
         // value.
-		foreach($keys as $key) {
-			$array[$key] = $all[$key];
-		}
-	}
+        foreach($keys as $key) {
+            $array[$key] = $all[$key];
+        }
+    }
 
-	return $array;
+    return $array;
 }
 
 function awpcp_array_insert_before($array, $index, $key, $item) {
-	return awpcp_array_insert($array, $index, $key, $item, 'before');
+    return awpcp_array_insert($array, $index, $key, $item, 'before');
 }
 
 function awpcp_array_insert_after($array, $index, $key, $item) {
-	return awpcp_array_insert($array, $index, $key, $item, 'after');
+    return awpcp_array_insert($array, $index, $key, $item, 'after');
 }
 
 /**
@@ -1128,7 +1122,7 @@ function awpcp_array_insert_first( $array, $item_key, $item ) {
  * @param $item  array  New item's description
  */
 function awpcp_insert_menu_item($items, $after, $key, $item) {
-	return awpcp_array_insert_after($items, $after, $key, $item);
+    return awpcp_array_insert_after($items, $after, $key, $item);
 }
 
 /**
@@ -1145,7 +1139,8 @@ function awpcp_insert_submenu_item_after($menu, $slug, $after) {
     global $submenu;
 
     $items = isset($submenu[$menu]) ? $submenu[$menu] : array();
-    $to = -1; $from = -1;
+    $to    = -1;
+    $from  = -1;
 
     foreach ($items as $k => $item) {
         // insert after Fees
@@ -1188,45 +1183,45 @@ function awpcp_get_page_name( $page_ref ) {
  * @since 3.0.2
  */
 function awpcp_get_renew_ad_hash( $ad_id ) {
-	return md5( sprintf( 'renew-ad-%d-%s', $ad_id, wp_salt() ) );
+    return md5( sprintf( 'renew-ad-%d-%s', $ad_id, wp_salt() ) );
 }
 
 /**
  * @since 3.0.2
  */
 function awpcp_verify_renew_ad_hash( $ad_id, $hash ) {
-	return strcmp( awpcp_get_renew_ad_hash( $ad_id ), $hash ) === 0;
+    return strcmp( awpcp_get_renew_ad_hash( $ad_id ), $hash ) === 0;
 }
 
 /**
  * @since 3.0.2
  */
 function awpcp_get_email_verification_hash( $ad_id ) {
-	return wp_hash( sprintf( 'verify-%d', $ad_id ) );
+    return wp_hash( sprintf( 'verify-%d', $ad_id ) );
 }
 
 /**
  * @since 3.0.2
  */
 function awpcp_verify_email_verification_hash( $ad_id, $hash ) {
-	return strcmp( awpcp_get_email_verification_hash( $ad_id ) , $hash ) === 0;
+    return strcmp( awpcp_get_email_verification_hash( $ad_id ) , $hash ) === 0;
 }
 
 /**
  * @since 3.0-beta
  */
 function awpcp_get_blog_name($decode_html=true) {
-	$blog_name = get_option('blogname');
+    $blog_name = get_option('blogname');
 
-	if (empty($blog_name)) {
-		$blog_name = _x('Classifieds Website', 'default blog title', 'another-wordpress-classifieds-plugin');
-	}
+    if (empty($blog_name)) {
+        $blog_name = _x('Classifieds Website', 'default blog title', 'another-wordpress-classifieds-plugin');
+    }
 
-	if ( $decode_html ) {
-		$blog_name = html_entity_decode( $blog_name, ENT_QUOTES, 'UTF-8' );
-	}
+    if ( $decode_html ) {
+        $blog_name = html_entity_decode( $blog_name, ENT_QUOTES, 'UTF-8' );
+    }
 
-	return $blog_name;
+    return $blog_name;
 }
 
 /**
@@ -1247,7 +1242,7 @@ function awpcp_get_var( $args, $type = 'request' ) {
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
         $value = isset( $_GET[ $args['param'] ] ) ? wp_unslash( $_GET[ $args['param'] ] ) : $value;
     } elseif ( $type === 'post' ) {
-        // phpcs:ignore Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        // phpcs:ignore Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification
         $value = isset( $_POST[ $args['param'] ] ) ? wp_unslash( $_POST[ $args['param'] ] ) : $value;
     } else {
         // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -1285,37 +1280,19 @@ function awpcp_sanitize_value( $sanitize, &$value ) {
  * @param string $value
  */
 function awpcp_get_server_value( $value ) {
-	return isset( $_SERVER[ $value ] ) ? wp_strip_all_tags( wp_unslash( $_SERVER[ $value ] ) ) : '';
-}
-
-/**
- * Use awpcp_get_var().
- *
- * @deprecated 4.3
- */
-function awpcp_post_param($name, $default='') {
-	return awpcp_array_data($name, $default, $_POST);
-}
-
-/**
- * Use awpcp_get_var().
- *
- * @deprecated 4.3
- */
-function awpcp_request_param($name, $default='', $from=null) {
-	return awpcp_array_data($name, $default, is_null($from) ? $_REQUEST : $from);
+    return isset( $_SERVER[ $value ] ) ? wp_strip_all_tags( wp_unslash( $_SERVER[ $value ] ) ) : '';
 }
 
 function awpcp_array_data($name, $default, $from=array()) {
-	$value = isset($from[$name]) ? $from[$name] : null;
+    $value = isset($from[$name]) ? $from[$name] : null;
 
-	if (is_array($value) && count($value) > 0) {
-		return $value;
-	} elseif (!empty($value)) {
-		return $value;
-	}
+    if (is_array($value) && count($value) > 0) {
+        return $value;
+    } elseif (!empty($value)) {
+        return $value;
+    }
 
-	return $default;
+    return $default;
 }
 
 /**
@@ -1364,11 +1341,11 @@ function awpcp_get_property($object, $property, $default='') {
 }
 
 function awpcp_get_properties($objects, $property, $default='') {
-	$results = array();
-	foreach ($objects as $object) {
-		$results[] = awpcp_get_property($object, $property, $default);
-	}
-	return $results;
+    $results = array();
+    foreach ($objects as $object) {
+        $results[] = awpcp_get_property($object, $property, $default);
+    }
+    return $results;
 }
 
 function awpcp_get_object_property_from_alternatives( $object, $alternatives, $default = '' ) {
@@ -1453,31 +1430,31 @@ function awpcp_get_object_property_from_alternatives( $object, $alternatives, $d
  * @since 3.0.2
  */
 function awpcp_flatten_array($array) {
-	if ( is_array( $array ) ) {
-		$flat = array();
-		_awpcp_flatten_array( $array, array(), $flat );
-		return $flat;
-	} else {
-		return $array;
-	}
+    if ( is_array( $array ) ) {
+        $flat = array();
+        _awpcp_flatten_array( $array, array(), $flat );
+        return $flat;
+    } else {
+        return $array;
+    }
 }
 
 /**
  * @since 3.0.2
  */
 function _awpcp_flatten_array($array, $path=array(), &$return=array()) {
-	if ( is_array( $array ) ) {
-		foreach ( $array as $key => $value) {
-			_awpcp_flatten_array( $value, array_merge( $path, array( $key ) ), $return );
-		}
-	} elseif ( count( $path ) > 0 ){
-		$first = $path[0];
-		if ( count( $path ) > 1 ) {
-			$return[ $first . '[' . join('][', array_slice( $path, 1 ) ) . ']'] = $array;
-		} else {
-			$return[ $first ] = $array;
-		}
-	}
+    if ( is_array( $array ) ) {
+        foreach ( $array as $key => $value) {
+            _awpcp_flatten_array( $value, array_merge( $path, array( $key ) ), $return );
+        }
+    } elseif ( count( $path ) > 0 ){
+        $first = $path[0];
+        if ( count( $path ) > 1 ) {
+            $return[ $first . '[' . join('][', array_slice( $path, 1 ) ) . ']'] = $array;
+        } else {
+            $return[ $first ] = $array;
+        }
+    }
 }
 
 /**
@@ -1488,12 +1465,12 @@ function _awpcp_flatten_array($array, $path=array(), &$return=array()) {
  * @return bool
  */
 function awpcp_parse_bool($value) {
-	$lower = strtolower($value);
-	if ($lower === 'true' || $lower === 'yes')
-		return true;
-	if ($lower === 'false' || $lower === 'no')
-		return false;
-	return $value ? true : false;
+    $lower = strtolower($value);
+    if ($lower === 'true' || $lower === 'yes')
+        return true;
+    if ($lower === 'false' || $lower === 'no')
+        return false;
+    return $value ? true : false;
 }
 
 function awpcp_get_currency_code() {
@@ -1682,29 +1659,26 @@ function awpcp_parse_money($value, $decimal_separator=false, $thousands_separato
  * @since 2.1.4
  */
 function awpcp_get_flash_messages() {
-	if ( ! is_user_logged_in() ) {
+    if ( ! is_user_logged_in() ) {
         global $awp_messages;
         return $awp_messages ? $awp_messages : array();
     }
 
-    if ( $messages = get_user_option( 'awpcp-messages', get_current_user_id() ) ) {
-        return $messages;
-    }
-
-    return array();
+    $messages = get_user_option( 'awpcp-messages', get_current_user_id() );
+    return $messages ? $messages : array();
 }
 
 /**
  * @since 2.1.4
  */
 function awpcp_update_flash_messages($messages) {
-	if (is_user_logged_in()) {
-		return update_user_option(get_current_user_id(), 'awpcp-messages', $messages);
-	} else {
+    if (is_user_logged_in()) {
+        return update_user_option(get_current_user_id(), 'awpcp-messages', $messages);
+    } else {
         global $awp_messages;
         $awp_messages = $messages;
         return true;
-	}
+    }
 }
 
 /**
@@ -1721,7 +1695,7 @@ function awpcp_clear_flash_messages() {
 }
 
 function awpcp_flash( $message, $class = array( 'awpcp-updated', 'notice', 'notice-info', 'updated') ) {
-	$messages = awpcp_get_flash_messages();
+    $messages = awpcp_get_flash_messages();
 
     if ( ! awpcp_is_duplicated_flash_message( $messages, $message, $class ) ) {
         $messages[] = array( 'message' => $message, 'class' => (array) $class );
@@ -1756,20 +1730,20 @@ function awpcp_is_duplicated_flash_message( $messages, $message, $class ) {
 /**
  */
 function awpcp_print_messages() {
- 	// The function is expected to be called only once per request. However,
- 	// due to special circumstances it is possible that the function is called
- 	// twice or more, usually with the results from the last call being the ones
- 	// shown to the user. In those cases, the messages would be lost unless we
- 	// cache the messages during the request. That's why we use a static $messages
- 	// variable.
-	static $messages = null;
-	$messages = is_null($messages) ? awpcp_get_flash_messages() : $messages;
+    // The function is expected to be called only once per request. However,
+    // due to special circumstances it is possible that the function is called
+    // twice or more, usually with the results from the last call being the ones
+    // shown to the user. In those cases, the messages would be lost unless we
+    // cache the messages during the request. That's why we use a static $messages
+    // variable.
+    static $messages = null;
+    $messages = is_null($messages) ? awpcp_get_flash_messages() : $messages;
 
-	foreach ($messages as $message) {
-		echo awpcp_print_message($message['message'], $message['class']);
-	}
+    foreach ($messages as $message) {
+        echo awpcp_print_message($message['message'], $message['class']);
+    }
 
-	awpcp_clear_flash_messages();
+    awpcp_clear_flash_messages();
 }
 
 function awpcp_print_form_errors( $errors ) {
@@ -1791,14 +1765,14 @@ function awpcp_print_message( $message, $class = array( 'awpcp-updated', 'notice
         $class = array();
     }
 
-	$class = array_merge(array('awpcp-message'), $class);
-	return '<div class="' . esc_attr( join( ' ', $class ) ) . '">' .
+    $class = array_merge(array('awpcp-message'), $class);
+    return '<div class="' . esc_attr( join( ' ', $class ) ) . '">' .
         '<p>' . wp_kses_post( $message ) . '</p>' .
         '</div>';
 }
 
 function awpcp_print_error($message) {
-	return awpcp_print_message( $message, array( 'awpcp-error', 'notice', 'notice-error', 'error' ) );
+    return awpcp_print_message( $message, array( 'awpcp-error', 'notice', 'notice-error', 'error' ) );
 }
 
 /**
@@ -1850,10 +1824,10 @@ function awpcp_render_warning( $message ) {
 }
 
 function awpcp_validate_error($field, $errors) {
-	$error = awpcp_array_data($field, '', $errors);
-	if (empty($error))
-		return '';
-	return '<label for="' . $field . '" generated="true" class="error" style="">' . $error . '</label>';
+    $error = awpcp_array_data($field, '', $errors);
+    if (empty($error))
+        return '';
+    return '<label for="' . $field . '" generated="true" class="error" style="">' . $error . '</label>';
 }
 
 /**
@@ -1866,8 +1840,8 @@ function awpcp_show_form_error( $field, $errors ) {
 }
 
 function awpcp_form_error( $field, $errors ) {
-	$error = awpcp_array_data($field, '', $errors);
-	return empty($error) ? '' : '<span class="awpcp-error">' . $error . '</span>';
+    $error = awpcp_array_data($field, '', $errors);
+    return empty($error) ? '' : '<span class="awpcp-error">' . $error . '</span>';
 }
 
 function awpcp_form_help_text( $field_id, $help_text ) {
@@ -1884,52 +1858,6 @@ function awpcp_form_help_text( $field_id, $help_text ) {
     );
 
     return awpcp_html_label( $params );
-}
-
-/**
- * @deprecated 4.0.0    No longer used.
- */
-function awpcp_attachment_background_color_explanation() {
-	if ( get_awpcp_option( 'imagesapprove' ) ) {
-		return '<p>' . __( 'The images or files with pale red background have been rejected by an administrator user. Likewise, files with a pale yellow background are awaiting approval. Files that are awaiting approval and rejected files, cannot be shown in the frontend.', 'another-wordpress-classifieds-plugin' ) . '</p>';
-	} else {
-		return '';
-	}
-}
-
-/**
- * @since 3.0.2
- * @deprecated since 3.2.3
- */
-function awpcp_module_not_compatible_notice( $module, $installed_version ) {
-    _deprecated_function( __FUNCTION__, '3.2.3', 'ModulesManager::show_module_not_compatible_notice()' );
-	global $awpcp_db_version;
-
-	$modules = awpcp()->get_premium_modules_information();
-
-	$name = $modules[ $module ][ 'name' ];
-	$required_version = $modules[ $module ][ 'required' ];
-
-	$message = __( 'This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'another-wordpress-classifieds-plugin' );
-	$message = sprintf( $message, '<strong>' . $name . '</strong>', $awpcp_db_version, '<strong>' . $required_version . '</strong>' );
-    $message = sprintf( '<strong>%s:</strong> %s', __( 'Error', 'another-wordpress-classifieds-plugin' ), $message );
-
-    return awpcp_print_error( $message );
-}
-
-/**
- * Use awpcp_html_attributes instead.
- *
- * @deprecated since 4.0.0
- */
-function awpcp_render_attributes($attrs) {
-    $attributes = array();
-    foreach ($attrs as $name => $value) {
-        if (is_array($value))
-            $value = join(' ', array_filter($value, 'strlen'));
-        $attributes[] = sprintf('%s="%s"', $name, esc_attr($value));
-    }
-    return join(' ', $attributes);
 }
 
 /**
@@ -2284,22 +2212,22 @@ function awpcp_html_heading( $params ) {
 }
 
 function awpcp_uploaded_file_error($file) {
-	$upload_errors = array(
-		UPLOAD_ERR_OK           => __("No errors.", 'another-wordpress-classifieds-plugin'),
-		UPLOAD_ERR_INI_SIZE     => __("The file is larger than upload_max_filesize.", 'another-wordpress-classifieds-plugin'),
-		UPLOAD_ERR_FORM_SIZE    => __("The file is larger than form MAX_FILE_SIZE.", 'another-wordpress-classifieds-plugin'),
-		UPLOAD_ERR_PARTIAL      => __("The file was only partially uploaded.", 'another-wordpress-classifieds-plugin'),
-		UPLOAD_ERR_NO_FILE      => __("No file was uploaded.", 'another-wordpress-classifieds-plugin'),
-		UPLOAD_ERR_NO_TMP_DIR   => __("Missing temporary directory.", 'another-wordpress-classifieds-plugin'),
-		UPLOAD_ERR_CANT_WRITE   => __("Can't write file to disk.", 'another-wordpress-classifieds-plugin'),
-		UPLOAD_ERR_EXTENSION    => __( 'The file upload was stopped by extension.', 'another-wordpress-classifieds-plugin' ),
-	);
-	$error = sanitize_text_field( wp_unslash( $file['error'] ) );
-	return array( $error, $upload_errors[ $error ] );
+    $upload_errors = array(
+        UPLOAD_ERR_OK           => __("No errors.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_INI_SIZE     => __("The file is larger than upload_max_filesize.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_FORM_SIZE    => __("The file is larger than form MAX_FILE_SIZE.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_PARTIAL      => __("The file was only partially uploaded.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_NO_FILE      => __("No file was uploaded.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_NO_TMP_DIR   => __("Missing temporary directory.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_CANT_WRITE   => __("Can't write file to disk.", 'another-wordpress-classifieds-plugin'),
+        UPLOAD_ERR_EXTENSION    => __( 'The file upload was stopped by extension.', 'another-wordpress-classifieds-plugin' ),
+    );
+    $error = sanitize_text_field( wp_unslash( $file['error'] ) );
+    return array( $error, $upload_errors[ $error ] );
 }
 
 function awpcp_get_file_extension( $filename ) {
-	return strtolower( awpcp_utf8_pathinfo( $filename, PATHINFO_EXTENSION ) );
+    return strtolower( awpcp_utf8_pathinfo( $filename, PATHINFO_EXTENSION ) );
 }
 
 /**
@@ -2307,27 +2235,27 @@ function awpcp_get_file_extension( $filename ) {
  * @since 3.0.2
  */
 function awpcp_rmdir($dir) {
-	if ( is_dir( $dir ) ) {
-		$objects = scandir( $dir );
-		foreach ( $objects as $object ) {
-			if ( $object != "." && $object != ".." ) {
-				if ( filetype( $dir . "/" . $object ) == "dir" ) {
-					awpcp_rmdir( $dir . "/" . $object );
-				} else {
-					unlink( $dir . "/" . $object );
-				}
-			}
-		}
-		reset( $objects );
-		rmdir( $dir );
-	}
+    if ( is_dir( $dir ) ) {
+        $objects = scandir( $dir );
+        foreach ( $objects as $object ) {
+            if ( $object != "." && $object != ".." ) {
+                if ( filetype( $dir . "/" . $object ) == "dir" ) {
+                    awpcp_rmdir( $dir . "/" . $object );
+                } else {
+                    unlink( $dir . "/" . $object );
+                }
+            }
+        }
+        reset( $objects );
+        rmdir( $dir );
+    }
 }
 
 /**
  * @since 3.0.2
  */
 function awpcp_directory_permissions() {
-	return intval( get_awpcp_option( 'upload-directory-permissions', '0755' ), 8 );
+    return intval( get_awpcp_option( 'upload-directory-permissions', '0755' ), 8 );
 }
 
 /**
@@ -2411,6 +2339,7 @@ function awpcp_phpmailer() {
         $phpmailer = new PHPMailer( true );
     }
 
+    // phpcs:ignore WordPress.NamingConventions.ValidVariableName
     $phpmailer->CharSet = apply_filters( 'wp_mail_charset', get_bloginfo( 'charset' ) );
 
     return $phpmailer;
@@ -2420,7 +2349,7 @@ function awpcp_phpmailer() {
  * @since 3.0.2
  */
 function awpcp_format_email_address($address, $name) {
-	return awpcp_encode_address_name( $name ) . " <" . $address . ">";
+    return awpcp_encode_address_name( $name ) . " <" . $address . ">";
 }
 
 /**
@@ -2442,12 +2371,12 @@ function awpcp_format_recipient_address( $email_address, $name = false ) {
  * @return string email address
  */
 function awpcp_admin_recipient_email_address() {
-	$email_address = get_awpcp_option( 'admin-recipient-email' );
-	if ( empty( $email_address ) ) {
-		$email_address = get_option( 'admin_email' );
-	}
+    $email_address = get_awpcp_option( 'admin-recipient-email' );
+    if ( empty( $email_address ) ) {
+        $email_address = get_option( 'admin_email' );
+    }
 
-	return $email_address;
+    return $email_address;
 }
 
 /**
@@ -2465,7 +2394,7 @@ function awpcp_admin_sender_email_address($include_contact_name=false) {
         $email_address = get_option( 'admin_email' );
     }
 
-	return $email_address;
+    return $email_address;
 }
 
 /**
@@ -2503,7 +2432,7 @@ function awpcp_admin_email_from() {
  * @return string name <email@address>
  */
 function awpcp_admin_email_to() {
-	return awpcp_format_recipient_address( awpcp_admin_recipient_email_address(), awpcp_get_blog_name() );
+    return awpcp_format_recipient_address( awpcp_admin_recipient_email_address(), awpcp_get_blog_name() );
 }
 
 function awpcp_moderators_email_to() {
@@ -2531,22 +2460,22 @@ function awpcp_ad_enabled_email( $listing ) {
     $contact_name = $listing_renderer->get_contact_name( $listing );
     $contact_email = $listing_renderer->get_contact_email( $listing );
 
-	// user email
-	$mail = new AWPCP_Email();
-	$mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
-	$mail->subject = sprintf( __( 'Your Ad "%s" has been approved', 'another-wordpress-classifieds-plugin'), $listing_title );
+    // user email
+    $mail = new AWPCP_Email();
+    $mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
+    $mail->subject = sprintf( __( 'Your Ad "%s" has been approved', 'another-wordpress-classifieds-plugin'), $listing_title );
 
-	$template = AWPCP_DIR . '/frontend/templates/email-ad-enabled-user.tpl.php';
-	$mail->prepare( $template, compact( 'listing', 'listing_title', 'contact_name' ) );
+    $template = AWPCP_DIR . '/frontend/templates/email-ad-enabled-user.tpl.php';
+    $mail->prepare( $template, compact( 'listing', 'listing_title', 'contact_name' ) );
 
-	$mail->send();
+    $mail->send();
 }
 
 /**
  * @since 3.0.2
  */
 function awpcp_ad_updated_user_email( $ad, $message ) {
-	$admin_email = awpcp_admin_recipient_email_address();
+    $admin_email = awpcp_admin_recipient_email_address();
 
     $listing_renderer = awpcp_listing_renderer();
 
@@ -2555,69 +2484,76 @@ function awpcp_ad_updated_user_email( $ad, $message ) {
     $contact_name = $listing_renderer->get_contact_name( $ad );
     $contact_email = $listing_renderer->get_contact_email( $ad );
 
-	$mail = new AWPCP_Email();
-	$mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
-	$mail->subject = sprintf( __( 'Your Ad "%s" has been successfully updated', 'another-wordpress-classifieds-plugin' ), $listing_title );
+    $mail = new AWPCP_Email();
+    $mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
+    $mail->subject = sprintf( __( 'Your Ad "%s" has been successfully updated', 'another-wordpress-classifieds-plugin' ), $listing_title );
 
-	$template = AWPCP_DIR . '/frontend/templates/email-ad-updated-user.tpl.php';
-	$mail->prepare( $template, compact( 'ad', 'listing_title', 'access_key', 'contact_email', 'admin_email', 'message' ) );
+    $template = AWPCP_DIR . '/frontend/templates/email-ad-updated-user.tpl.php';
+    $mail->prepare( $template, compact( 'ad', 'listing_title', 'access_key', 'contact_email', 'admin_email', 'message' ) );
 
-	return $mail;
+    return $mail;
 }
 
 function awpcp_ad_updated_email( $ad, $message ) {
-	// user email
-	$mail = awpcp_ad_updated_user_email( $ad, $message );
-	return $mail->send();
+    // user email
+    $mail = awpcp_ad_updated_user_email( $ad, $message );
+    return $mail->send();
 }
 
 function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
     $listing_renderer = awpcp_listing_renderer();
 
-	// admin email
-	$params = array( 'action' => 'edit', 'post' => $ad->ID );
+    // admin email
+    $params = array( 'action' => 'edit', 'post' => $ad->ID );
     $manage_images_url = add_query_arg( urlencode_deep( $params ), admin_url( 'post.php' ) );
 
-	if ( false == $ad_approve && $images_approve ) {
-		$subject = __( 'Images on Ad "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
+    $messages = array();
 
-		$message = __( 'Images on Ad "%s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin');
-		$messages = array( sprintf( $message, $listing_renderer->get_listing_title( $ad ), $manage_images_url ) );
-	} else {
-		$subject = __( 'The Ad "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
+    if ( false == $ad_approve && $images_approve ) {
+        $subject = __( 'Images on Ad "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
+
+        $messages[] = sprintf(
+            __( 'Images on Ad "%1$s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %2$s.', 'another-wordpress-classifieds-plugin' ),
+            $listing_renderer->get_listing_title( $ad ),
+            $manage_images_url
+        );
+    } else {
+        $subject = __( 'The Ad "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
         /* translators: %1$s is the listing title. %2$s is the URL for managing listing.*/
-		$message = __( 'The Ad "%1$s" is awaiting approval. You can approve the Ad going to the Classified edit section and clicking the "Publish" button. Click here to continue: %2$s.', 'another-wordpress-classifieds-plugin');
+        $message = __( 'The Ad "%1$s" is awaiting approval. You can approve the Ad going to the Classified edit section and clicking the "Publish" button. Click here to continue: %2$s.', 'another-wordpress-classifieds-plugin');
 
         $url = awpcp_get_quick_view_listing_url( $ad );
 
-	    $messages[] = sprintf( $message, $listing_renderer->get_listing_title( $ad ), $url );
+        $messages[] = sprintf( $message, $listing_renderer->get_listing_title( $ad ), $url );
 
-	    if ( $images_approve ) {
-		    $message = __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin' );
-		    $messages[] = sprintf( $message, $manage_images_url );
-		}
-	}
+        if ( $images_approve ) {
+            $messages[] = sprintf(
+                __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin' ),
+                $manage_images_url
+            );
+        }
+    }
 
-	$mail = new AWPCP_Email();
-	$mail->to[] = awpcp_admin_email_to();
-	$mail->subject = sprintf( $subject, $listing_renderer->get_listing_title( $ad ) );
+    $mail = new AWPCP_Email();
+    $mail->to[] = awpcp_admin_email_to();
+    $mail->subject = sprintf( $subject, $listing_renderer->get_listing_title( $ad ) );
 
-	$template = AWPCP_DIR . '/frontend/templates/email-ad-awaiting-approval-admin.tpl.php';
-	$mail->prepare( $template, compact( 'messages' ) );
+    $template = AWPCP_DIR . '/frontend/templates/email-ad-awaiting-approval-admin.tpl.php';
+    $mail->prepare( $template, compact( 'messages' ) );
 
-	$mail->send();
+    $mail->send();
 }
 
 /** Table Helper related functions */
 
 function awpcp_register_column_headers($screen, $columns, $sortable=array()) {
-	$wp_list_table = new AWPCP_List_Table($screen, $columns, $sortable);
+    $wp_list_table = new AWPCP_List_Table($screen, $columns, $sortable);
 }
 
 function awpcp_print_column_headers($screen, $id = true, $sortable=array()) {
-	$wp_list_table = new AWPCP_List_Table($screen, array(), $sortable);
-	$wp_list_table->print_column_headers($id);
+    $wp_list_table = new AWPCP_List_Table($screen, array(), $sortable);
+    $wp_list_table->print_column_headers($id);
 }
 
 /**
@@ -2734,31 +2670,31 @@ function awpcp_is_textdomain_loaded( $text_domain ) {
 }
 
 function awpcp_utf8_strlen( $string ) {
-	if ( function_exists( 'mb_strlen' ) ) {
-		return mb_strlen( $string, 'UTF-8' );
-	} else {
-		return preg_match_all( '(.)su', $string, $matches );
-	}
+    if ( function_exists( 'mb_strlen' ) ) {
+        return mb_strlen( $string, 'UTF-8' );
+    } else {
+        return preg_match_all( '(.)su', $string, $matches );
+    }
 }
 
 function awpcp_utf8_substr( $string, $start, $length=null ) {
-	if ( function_exists( 'mb_substr' ) ) {
-		return mb_substr( $string, $start, $length, 'UTF-8' );
-	} else {
-		return awpcp_utf8_substr_pcre( $string, $start, $length );
-	}
+    if ( function_exists( 'mb_substr' ) ) {
+        return mb_substr( $string, $start, $length, 'UTF-8' );
+    } else {
+        return awpcp_utf8_substr_pcre( $string, $start, $length );
+    }
 }
 
 function awpcp_utf8_substr_pcre( $string, $start, $length=null ) {
-	if ( is_null( $length ) ) {
-		$length = awpcp_utf8_strlen( $string ) - $start;
-	}
+    if ( is_null( $length ) ) {
+        $length = awpcp_utf8_strlen( $string ) - $start;
+    }
 
-	if ( preg_match_all( '/.{' . $start . '}(.{' . $length . '})/su', $string, $matches ) ) {
-		return $matches[1][0];
-	} else {
-		return '';
-	}
+    if ( preg_match_all( '/.{' . $start . '}(.{' . $length . '})/su', $string, $matches ) ) {
+        return $matches[1][0];
+    } else {
+        return '';
+    }
 }
 
 function awpcp_remove_utf8_non_characters( $content ) {
@@ -3042,18 +2978,6 @@ function awpcp_is_email_address_allowed( $email_address ) {
     return false;
 }
 
-/**
- * Function to create a default category with an ID of  1 in the event a default category with ID 1 does not exist.
- *
- * @deprecated 4.0.0
- */
-function createdefaultcategory($idtomake,$titletocallit) {
-    global $wpdb;
-
-    $wpdb->insert( AWPCP_TABLE_CATEGORIES, array( 'category_name' => $titletocallit, 'category_parent_id' => 0 ) );
-    $wpdb->update( AWPCP_TABLE_CATEGORIES, array( 'category_id' => 1 ), array( 'category_id' => $wpdb->insert_id ) );
-}
-
 function create_ad_postedby_list($name) {
     $names = awpcp_listings_meta()->get_meta_values( 'contact_name' );
     return awpcp_html_options( array( 'current-value' => $name, 'options' => array_combine( $names, $names ) ) );
@@ -3062,7 +2986,7 @@ function create_ad_postedby_list($name) {
 function awpcp_strip_html_tags( $text ) {
     // Remove invisible content
     $text = preg_replace(
-		array(
+        array(
             '@<head[^>]*?>.*?</head>@siu',
             '@<style[^>]*?>.*?</style>@siu',
             '@<script[^>]*?.*?</script>@siu',
@@ -3072,7 +2996,7 @@ function awpcp_strip_html_tags( $text ) {
             '@<noframes[^>]*?.*?</noframes>@siu',
             '@<noscript[^>]*?.*?</noscript>@siu',
             '@<noembed[^>]*?.*?</noembed>@siu',
-			// Add line breaks before and after blocks
+            // Add line breaks before and after blocks
             '@</?((address)|(blockquote)|(center)|(del))@iu',
             '@</?((div)|(h[1-9])|(ins)|(isindex)|(p)|(pre))@iu',
             '@</?((dir)|(dl)|(dt)|(dd)|(li)|(menu)|(ol)|(ul))@iu',
@@ -3080,14 +3004,14 @@ function awpcp_strip_html_tags( $text ) {
             '@</?((form)|(button)|(fieldset)|(legend)|(input))@iu',
             '@</?((label)|(select)|(optgroup)|(option)|(textarea))@iu',
             '@</?((frameset)|(frame)|(iframe))@iu',
-		),
-		array(
+        ),
+        array(
             ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
             "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0", "\n\$0",
             "\n\$0", "\n\$0",
-		),
-		$text
-	);
+        ),
+        $text
+    );
     return strip_tags( $text );
 }
 // END FUNCTION
@@ -3107,13 +3031,20 @@ function awpcp_phpmailer_init_smtp( $phpmailer ) {
     // still got defaults set? can't use those.
     if ( 'mail.example.com' == trim( $hostname ) ) return;
     if ( 'smtp_username' == trim( $username ) ) return;
+
+    // phpcs:ignore WordPress.NamingConventions.ValidVariableName
     $phpmailer->Mailer = 'smtp';
+    // phpcs:ignore WordPress.NamingConventions.ValidVariableName
     $phpmailer->Host = $hostname;
+    // phpcs:ignore WordPress.NamingConventions.ValidVariableName
     $phpmailer->Port = $port;
     // If there's a username and password then assume SMTP Auth is necessary and set the vars:
     if ( '' != trim( $username )  && '' != trim( $password ) ) {
+        // phpcs:ignore WordPress.NamingConventions.ValidVariableName
         $phpmailer->SMTPAuth = true;
+        // phpcs:ignore WordPress.NamingConventions.ValidVariableName
         $phpmailer->Username = $username;
+        // phpcs:ignore WordPress.NamingConventions.ValidVariableName
         $phpmailer->Password = $password;
     }
     // that's it!
@@ -3131,16 +3062,16 @@ function awpcp_validip($ip) {
 
     if (!empty($ip) && ip2long($ip)!=-1) {
 
-		$reserved_ips = array(
-			array( '0.0.0.0', '2.255.255.255' ),
-			array( '10.0.0.0', '10.255.255.255' ),
-			array( '127.0.0.0', '127.255.255.255' ),
-			array( '169.254.0.0', '169.254.255.255' ),
-			array( '172.16.0.0', '172.31.255.255' ),
-			array( '192.0.2.0', '192.0.2.255' ),
-			array( '192.168.0.0', '192.168.255.255' ),
-			array( '255.255.255.0', '255.255.255.255' ),
-		);
+        $reserved_ips = array(
+            array( '0.0.0.0', '2.255.255.255' ),
+            array( '10.0.0.0', '10.255.255.255' ),
+            array( '127.0.0.0', '127.255.255.255' ),
+            array( '169.254.0.0', '169.254.255.255' ),
+            array( '172.16.0.0', '172.31.255.255' ),
+            array( '192.0.2.0', '192.0.2.255' ),
+            array( '192.168.0.0', '192.168.255.255' ),
+            array( '255.255.255.0', '255.255.255.255' ),
+        );
 
         foreach ($reserved_ips as $r) {
             $min = ip2long($r[0]);

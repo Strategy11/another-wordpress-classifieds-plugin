@@ -14,8 +14,9 @@ class AWPCP_AccountBalancePage extends AWPCP_BuyCreditsPage {
     public function __construct( $steps, $request ) {
         parent::__construct( $steps, $request );
 
-        $this->page = 'awpcp-user-account';
-        $this->menu = $this->title = __( 'Account Balance', 'another-wordpress-classifieds-plugin' );
+        $this->page  = 'awpcp-user-account';
+        $this->menu  = __( 'Account Balance', 'another-wordpress-classifieds-plugin' );
+        $this->title = $this->menu;
     }
 
     public function enqueue_scripts() {

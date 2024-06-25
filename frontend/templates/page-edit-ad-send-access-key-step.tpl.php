@@ -11,7 +11,7 @@
 ?>
 
 <div>
-	<form method="post" action="<?php echo esc_attr( $send_access_key_url ); ?>">
+    <form method="post" action="<?php echo esc_attr( $send_access_key_url ); ?>">
         <?php foreach( $hidden as $name => $value ): ?>
         <input type="hidden" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $value ); ?>" />
         <?php endforeach; ?>
@@ -25,5 +25,5 @@
         </p>
 
         <input type="submit" class="button" value="<?php echo esc_html( _x(  "Continue", 'send ad access key form', 'another-wordpress-classifieds-plugin' ) ); ?>" />
-	</form>
+    </form>
 </div>

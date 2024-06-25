@@ -41,13 +41,13 @@ class AWPCP_User_Panel {
     /**
      * Constructor.
      */
-	public function __construct( $listing_post_type, $upgrade_tasks, $settings ) {
+    public function __construct( $listing_post_type, $upgrade_tasks, $settings ) {
         $this->listing_post_type = $listing_post_type;
         $this->upgrade_tasks     = $upgrade_tasks;
         $this->settings          = $settings;
 
         $this->account = awpcp_account_balance_page();
-	}
+    }
 
     /**
      * Handler for the awpcp-configure-routes action.

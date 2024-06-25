@@ -35,7 +35,7 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
     protected function get_panel_url() {
         if ( awpcp_current_user_is_moderator() ) {
             return awpcp_get_admin_listings_url();
-		}
+        }
         return awpcp_get_user_panel_url();
     }
 
@@ -63,17 +63,17 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         $action = $this->get_current_action( $default );
         $ad = $this->get_ad();
 
-		if ( is_null( $ad ) ) {
-			$content = do_shortcode( '[AWPCPUSERLISTINGS] ' );
-			return $this->render('content', $content );
-		}
+        if ( is_null( $ad ) ) {
+            $content = do_shortcode( '[AWPCPUSERLISTINGS] ' );
+            return $this->render('content', $content );
+        }
 
-		if ( ! in_array( $action, array( 'payment-completed', 'finish', true ) ) && ! $this->listing_renderer->is_about_to_expire( $ad ) && ! $this->listing_renderer->has_expired( $ad ) ) {
-			$message = __( 'That Ad doesn\'t need to be renewed.', 'another-wordpress-classifieds-plugin');
+        if ( ! in_array( $action, array( 'payment-completed', 'finish', true ) ) && ! $this->listing_renderer->is_about_to_expire( $ad ) && ! $this->listing_renderer->has_expired( $ad ) ) {
+            $message = __( 'That Ad doesn\'t need to be renewed.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
-		}
+        }
 
-		if ( ! $this->verify_renew_ad_hash( $ad ) ) {
+        if ( ! $this->verify_renew_ad_hash( $ad ) ) {
             $message = __("There was an error trying to renew your Ad. The URL is not valid. Please contact the Administrator of this site for further assistance.", 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
@@ -83,8 +83,11 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         if (!is_null($transaction) && $transaction->get('context') != $this->context) {
             $page_name = awpcp_get_page_name('renew-ad-page-name');
             $page_url = awpcp_get_renew_ad_url( $ad->ID );
-            $message = __( 'You are trying to post an Ad using a transaction created for a different purpose. Please go back to the <a href="%s">%s</a> page.<br>If you think this is an error please contact the administrator and provide the following transaction ID: %s', 'another-wordpress-classifieds-plugin');
-            $message = sprintf($message, $page_url, $page_name, $transaction->id);
+            $message = sprintf(
+                esc_html__( 'You are trying to post an Ad using a transaction created for a different purpose. Please go back to the %1$s page. If you think this is an error please contact the administrator and provide the following transaction ID: %2$s', 'another-wordpress-classifieds-plugin' ),
+                '<a href="' . esc_url( $page_url ) . '">' . esc_html( $page_name ) . '</a>',
+                esc_html( $transaction->id )
+            );
             return $this->render('content', awpcp_print_error($message));
         }
 
@@ -244,6 +247,7 @@ class AWPCP_RenewAdPageImplementation {
         } else {
             $payment_term = $this->payments->get_transaction_payment_term( $transaction );
 
+            // phpcs:ignore WordPress.Security.NonceVerification
             if (!empty($_POST)) {
                 $payment_terms_list->handle_request();
 

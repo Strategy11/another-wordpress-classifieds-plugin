@@ -46,7 +46,7 @@ class AWPCP_HTML_Admin_Form_Checkbox_Textfield_Renderer implements AWPCP_HTML_El
                         ),
                     ),
                 ),
-				array(
+                array(
                     '#type' => 'input',
                     '#attributes' => array(
                         'id' => $form_field_id,

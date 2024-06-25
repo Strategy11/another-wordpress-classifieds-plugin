@@ -187,7 +187,7 @@ class AWPCP_ListingPostedData {
         if ( $allow_html ) {
             $content = force_balance_tags( $content );
         } else {
-        	$content = esc_html( $content );
+            $content = esc_html( $content );
         }
 
         return $content;

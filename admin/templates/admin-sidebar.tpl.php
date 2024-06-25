@@ -94,7 +94,7 @@
                             ?>
                         </li>
                         <li>
-	                        <a href="https://awpcp.com/get-help/" target="_blank">
+                            <a href="https://awpcp.com/get-help/" target="_blank">
                                 <?php esc_html_e( 'Get Help', 'another-wordpress-classifieds-plugin' ); ?>
                             </a>
                         </li>
