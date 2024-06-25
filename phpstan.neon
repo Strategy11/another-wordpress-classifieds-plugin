@@ -1,5 +1,5 @@
 parameters:
-	level: 3
+	level: 4
 	reportUnmatchedIgnoredErrors: false
 	bootstrapFiles:
 		- vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
@@ -15,6 +15,7 @@ parameters:
 		- */includes/class-fileop.php
 		- */bin/*
 		- */build/*
+		- */node_modules/*
 	ignoreErrors:
 		- '#no (typehint|value type|return type)+ specified.#'
 		- '#might not be defined.#'

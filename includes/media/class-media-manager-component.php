@@ -94,14 +94,14 @@ class AWPCP_MediaManagerComponent {
     /**
      * @param array $options    An array of options.
      *
-     * @return string|void
+     * @return string
      */
     private function render_component( $options ) {
         $thumbnails_width = $this->settings->get_option( 'imgthumbwidth' );
         $file             = AWPCP_DIR . '/templates/components/media-manager.tpl.php';
         if ( $this->echo ) {
             include $file;
-            return;
+            return '';
         }
 
         ob_start();

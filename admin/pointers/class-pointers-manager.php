@@ -4,7 +4,7 @@
  * @since 3.4
  */
 function awpcp_pointers_manager() {
-    return new AWPCP_PointersManager( awpcp()->js, awpcp()->settings, awpcp_request() );
+    return new AWPCP_PointersManager();
 }
 
 /**
@@ -14,13 +14,12 @@ class AWPCP_PointersManager {
 
     private $javascript;
     private $settings;
-    private $request;
 
-    public function __construct( $javascript, $settings, $request ) {
-        $this->javascript = $javascript;
-        $this->settings = $settings;
-        $this->request = $request;
+    public function __construct() {
+        $this->javascript = awpcp()->js;
+        $this->settings   = awpcp()->settings;
     }
+
     public function register_pointers() {
         if ( $this->settings->get_option( 'show-drip-autoresponder' ) ) {
             $drip_autoresponder = awpcp_drip_autoresponder();

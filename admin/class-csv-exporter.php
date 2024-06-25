@@ -259,7 +259,7 @@ class AWPCP_CSVExporter {
     }
 
     /**
-     * @return bool|string
+     * @return string
      */
     private function header() {
         $out     = '';

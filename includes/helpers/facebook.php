@@ -21,6 +21,11 @@ class AWPCP_Facebook {
         $this->settings = $settings;
     }
 
+    /**
+     * @param array &$errors
+     *
+     * @return void
+     */
     public function validate_config( &$errors ) {
         $errors = !$errors ? array() : $errors;
 

@@ -213,7 +213,7 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         $data['private']                = absint( $_data['private'] );
         $data['is_featured_ad_pricing'] = absint( $_data['featured'] );
 
-        if ( $data['adterm_id'] === 0 || is_null( $data['adterm_id'] ) || strlen( $data['adterm_id'] ) === 0 ) {
+        if ( empty( $data['adterm_id'] ) ) {
             unset( $data['adterm_id'] );
         }
 
@@ -262,6 +262,14 @@ class AWPCP_Fee extends AWPCP_PaymentTerm {
         return $result !== false;
     }
 
+    /**
+     * Transfer ads from this fee to another fee.
+     *
+     * @param int   $id      The ID of the fee to transfer the ads to.
+     * @param array &$errors An array of errors.
+     *
+     * @return bool True if the ads were transferred successfully, false otherwise.
+     */
     public function transfer_ads_to( $id, &$errors ) {
         $recipient = self::find_by_id( $id );
 

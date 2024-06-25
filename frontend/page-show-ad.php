@@ -14,11 +14,6 @@ class AWPCP_Show_Ad_Page {
     private $listings_content_renderer;
 
     /**
-     * @var AWPCP_ListingsAPI
-     */
-    private $listings_logic;
-
-    /**
      * @var AWPCP_ListingsCollection
      */
     private $listings_collection;
@@ -28,9 +23,8 @@ class AWPCP_Show_Ad_Page {
      */
     private $request;
 
-    public function __construct( $listings_content_renderer, $listings_logic, $listings_collection, $request ) {
+    public function __construct( $listings_content_renderer, $listings_collection, $request ) {
         $this->listings_content_renderer = $listings_content_renderer;
-        $this->listings_logic            = $listings_logic;
         $this->listings_collection       = $listings_collection;
         $this->request                   = $request;
 

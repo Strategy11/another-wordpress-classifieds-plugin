@@ -7,15 +7,7 @@
  * Constructor function for AWPCP_UploadListingMediaAjaxHandler.
  */
 function awpcp_upload_listing_media_ajax_handler() {
-    return new AWPCP_UploadListingMediaAjaxHandler(
-        awpcp_attachment_properties(),
-        awpcp_listings_collection(),
-        awpcp_file_uploader(),
-        awpcp_new_media_manager(),
-        awpcp_request(),
-        awpcp_ajax_response(),
-        awpcp()->container['ListingInformationMetabox']
-    );
+    return new AWPCP_UploadListingMediaAjaxHandler( );
 }
 
 class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
@@ -25,17 +17,15 @@ class AWPCP_UploadListingMediaAjaxHandler extends AWPCP_AjaxHandler {
     private $uploader;
     private $media_manager;
     private $request;
-    private $metabox;
 
-    public function __construct( $attachment_properties, $listings, $uploader, $media_manager, $request, $response, $metabox ) {
-        parent::__construct( $response );
+    public function __construct() {
+        parent::__construct( awpcp_ajax_response() );
 
-        $this->attachment_properties = $attachment_properties;
-        $this->listings              = $listings;
-        $this->media_manager         = $media_manager;
-        $this->uploader              = $uploader;
-        $this->request               = $request;
-        $this->metabox               = $metabox;
+        $this->attachment_properties = awpcp_attachment_properties();
+        $this->listings              = awpcp_listings_collection();
+        $this->media_manager         = awpcp_new_media_manager();
+        $this->uploader              = awpcp_file_uploader();
+        $this->request               = awpcp_request();
     }
 
     public function ajax() {

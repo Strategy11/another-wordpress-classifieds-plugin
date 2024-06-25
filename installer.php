@@ -29,14 +29,7 @@ function awpcp_installer() {
     static $instance = null;
 
     if ( is_null( $instance ) ) {
-        $instance = new AWPCP_Installer(
-            awpcp_upgrade_tasks_manager(),
-            awpcp_database_tables(),
-            awpcp_database_helper(),
-            awpcp_database_column_creator(),
-            awpcp_settings_api(),
-            $GLOBALS['wpdb']
-        );
+        $instance = new AWPCP_Installer();
     }
 
     return $instance;
@@ -45,22 +38,14 @@ function awpcp_installer() {
 // phpcs:ignore Universal.Files.SeparateFunctionsFromOO.Mixed
 class AWPCP_Installer {
 
-    private static $instance = null;
-
     private $upgrade_tasks;
     private $plugin_tables;
-    private $database_helper;
-    private $columns;
     private $settings;
-    private $db;
 
-    public function __construct( $upgrade_tasks, $plugin_tables, $database_helper, $columns, $settings, $db ) {
-        $this->upgrade_tasks = $upgrade_tasks;
-        $this->plugin_tables = $plugin_tables;
-        $this->database_helper = $database_helper;
-        $this->columns = $columns;
-        $this->settings = $settings;
-        $this->db = $db;
+    public function __construct() {
+        $this->upgrade_tasks = awpcp_upgrade_tasks_manager();
+        $this->plugin_tables = awpcp_database_tables();
+        $this->settings      = awpcp_settings_api();
     }
 
     public function activate() {
@@ -536,7 +521,8 @@ class AWPCP_Installer {
      * @since 4.0.0
      */
     private function fix_old_listing_id_metadata() {
-        $this->db->query( "UPDATE {$this->db->postmeta} SET meta_key = CONCAT('_awpcp_old_id_', meta_value) WHERE meta_key = '_awpcp_old_id'" );
+        global $wpdb;
+        $wpdb->query( "UPDATE {$wpdb->postmeta} SET meta_key = CONCAT('_awpcp_old_id_', meta_value) WHERE meta_key = '_awpcp_old_id'" );
     }
 
     /**
@@ -573,7 +559,8 @@ class AWPCP_Installer {
      * @since 4.0.0
      */
     private function delete_settings_table() {
-        $this->db->query( "DROP TABLE IF EXISTS {$this->db->prefix}awpcp_adsettings" );
+        global $wpdb;
+        $wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}awpcp_adsettings" );
     }
 
     /**
@@ -592,7 +579,8 @@ class AWPCP_Installer {
      * @see https://github.com/drodenbaugh/awpcp/issues/2557
      */
     private function remove_invalid_admin_editor_metadata() {
-        $results = $this->db->get_results( "SELECT * FROM {$this->db->postmeta} WHERE meta_key = '__awpcp_admin_editor_pending_data'" );
+        global $wpdb;
+        $results = $wpdb->get_results( "SELECT * FROM {$wpdb->postmeta} WHERE meta_key = '__awpcp_admin_editor_pending_data'" );
 
         foreach ( $results as $postmeta ) {
             $meta_value = maybe_unserialize( $postmeta->meta_value );

@@ -14,7 +14,7 @@ class AWPCP_FilteredArray implements ArrayAccess, IteratorAggregate {
     private $filter_name;
 
     /**
-     * @var array
+     * @var array|null
      */
     private $items;
 

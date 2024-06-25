@@ -80,6 +80,30 @@ function awpcp_ad_renewed_admin_email( $ad, $body ) {
 /**
  * @deprecated 4.3.4
  */
+function awpcp_payment_transaction_helper_builder() {
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_PaymentTransactionHelperBuilder()' );
+    return new AWPCP_PaymentTransactionHelperBuilder();
+}
+
+/**
+ * @deprecated 4.3.4
+ */
+function awpcp_seo_framework_integration() {
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_SEOFrameworkIntegration()' );
+    return new AWPCP_SEOFrameworkIntegration();
+}
+
+/**
+ * @deprecated 4.3.4
+ */
+function awpcp_form_fields_table_factory() {
+    _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_FormFieldsTableFactory()' );
+    return new AWPCP_FormFieldsTableFactory();
+}
+
+/**
+ * @deprecated 4.3.4
+ */
 function awpcp_csv_reader_factory() {
     _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_CSV_Reader_Factory()' );
     return new AWPCP_CSV_Reader_Factory();
@@ -499,7 +523,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
 
     $file_size = filesize( $tmpname );
 
-    if ( empty( $file_size ) || $file_size <= 0 ) {
+    if ( empty( $file_size ) ) {
         $error = _x( 'There was an error trying to find out the file size of the image %s.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
         return false;

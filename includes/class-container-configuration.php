@@ -142,8 +142,7 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
         $container['UserSelector'] = $container->service( function( $container ) {
             return new AWPCP_UserSelector(
                 $container['UsersCollection'],
-                $container['TemplateRenderer'],
-                $container['Request']
+                $container['TemplateRenderer']
             );
         } );
 

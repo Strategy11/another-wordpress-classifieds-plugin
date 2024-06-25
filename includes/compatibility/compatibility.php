@@ -45,7 +45,7 @@ class AWPCP_Compatibility {
         $integration = awpcp_facebook_button_plugin_integration();
         $integration->setup();
 
-        $integration = awpcp_seo_framework_integration();
+        $integration = new AWPCP_SEOFrameworkIntegration();
         $integration->setup();
 
         $integration = awpcp_navxt_plugin_integration();

@@ -8,14 +8,8 @@
  */
 class AWPCP_FormFieldsTable extends WP_List_Table {
 
-    private $page;
-    private $request;
-
-    public function __construct( $page, $request ) {
+    public function __construct() {
         parent::__construct( array( 'plural' => 'awpcp-form-fields-table' ) );
-
-        $this->page    = $page;
-        $this->request = $request;
     }
 
     public function prepare( $items, $total_items ) {

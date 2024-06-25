@@ -24,20 +24,13 @@ class AWPCP_UserSelector {
     private $template_renderer;
 
     /**
-     * @var object
-     */
-    private $request;
-
-    /**
      * @param object $users                 An instance of Users Collection.
      * @param object $template_renderer     An instance of Template Renderer.
-     * @param object $request               An instance of Request.
      * @since 4.0.0
      */
-    public function __construct( $users, $template_renderer, $request ) {
+    public function __construct( $users, $template_renderer ) {
         $this->users             = $users;
         $this->template_renderer = $template_renderer;
-        $this->request           = $request;
     }
 
     /**
@@ -96,7 +89,7 @@ class AWPCP_UserSelector {
 
         $users_count = count_users();
 
-        if ( isset( $users_count['total_users'] ) && $users_count['total_users'] > 100 ) {
+        if ( $users_count['total_users'] > 100 ) {
             return 'ajax';
         }
 

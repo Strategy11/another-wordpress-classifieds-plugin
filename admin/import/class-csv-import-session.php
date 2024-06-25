@@ -3,11 +3,9 @@
 class AWPCP_CSV_Import_Session {
 
     private $settings = array();
-    private $csv_importer = null;
 
-    public function __construct( $settings, $csv_importer ) {
+    public function __construct( $settings ) {
         $this->settings = $settings;
-        $this->csv_importer = $csv_importer;
     }
 
     public function get_settings() {

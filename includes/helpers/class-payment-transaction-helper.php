@@ -1,9 +1,5 @@
 <?php
 
-function awpcp_payment_transaction_helper_builder() {
-    return new AWPCP_PaymentTransactionHelperBuilder();
-}
-
 class AWPCP_PaymentTransactionHelper {
 
     private $transaction_attributes;
@@ -13,6 +9,9 @@ class AWPCP_PaymentTransactionHelper {
 
     public function __construct( $transaction_attributes ) {
         $this->transaction_attributes = $transaction_attributes;
+
+        // Added for phpstan, but this class doesn't look like it's being used.
+        $this->transaction_context = 'todo';
     }
 
     public function get_transaction_context() {

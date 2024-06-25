@@ -63,6 +63,9 @@ class AWPCP_BasicRegionsAPI {
         return $result !== false;
     }
 
+    /**
+     * @return object|null
+     */
     public function find_by_ad_id($ad_id) {
         $sql = 'SELECT * FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id = %d ';
         $sql.= 'ORDER BY id ASC';

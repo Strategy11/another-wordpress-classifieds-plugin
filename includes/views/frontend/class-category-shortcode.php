@@ -7,22 +7,17 @@
  * Constructor for Category Shortcode class.
  */
 function awpcp_category_shortcode() {
-    return new AWPCP_CategoryShortcode(
-        awpcp_categories_renderer_factory(),
-        awpcp_categories_collection()
-    );
+    return new AWPCP_CategoryShortcode();
 }
 
 class AWPCP_CategoryShortcode {
 
     private $categories_renderer_factory;
     private $categories;
-    private $db;
 
-    public function __construct( $categories_renderer_factory, $categories ) {
-        $this->categories_renderer_factory = $categories_renderer_factory;
-        $this->categories                  = $categories;
-        $this->db                          = $GLOBALS['wpdb'];
+    public function __construct() {
+        $this->categories_renderer_factory = awpcp_categories_renderer_factory();
+        $this->categories                  = awpcp_categories_collection();
     }
 
     public function render( $attrs ) {

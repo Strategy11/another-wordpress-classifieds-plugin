@@ -71,10 +71,8 @@ function awpcp_listings_api() {
             awpcp_listing_renderer(),
             awpcp_listings_collection(),
             awpcp_roles_and_capabilities(),
-            awpcp_request(),
             awpcp()->settings,
-            awpcp_wordpress(),
-            $GLOBALS['wpdb']
+            awpcp_wordpress()
         );
     }
 

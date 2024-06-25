@@ -7,12 +7,7 @@
  * Constructor function for AWPCP_FormFieldsAdminPage.
  */
 function awpcp_form_fields_admin_page() {
-    return new AWPCP_FormFieldsAdminPage(
-        'awpcp-form-fields',
-        awpcp_admin_page_title( __( 'Form Fields', 'another-wordpress-classifieds-plugin' ) ),
-        awpcp_listing_form_fields(),
-        awpcp_form_fields_table_factory()
-    );
+    return new AWPCP_FormFieldsAdminPage();
 }
 
 /**
@@ -26,26 +21,22 @@ class AWPCP_FormFieldsAdminPage extends AWPCP_AdminPageWithTable {
     private $form_fields;
 
     /**
-     * @var AWPCP_FormFieldsTableFactory
-     */
-    private $table_factory;
-
-    /**
      * Constructor.
      */
-    public function __construct( $page, $title, $form_fields, $table_factory ) {
+    public function __construct() {
+        $page  = 'awpcp-form-fields';
+        $title = awpcp_admin_page_title( __( 'Form Fields', 'another-wordpress-classifieds-plugin' ) );
         parent::__construct( $page, $title, _x( 'Form Fields', 'sub menu title', 'another-wordpress-classifieds-plugin' ) );
 
-        $this->form_fields   = $form_fields;
-        $this->table_factory = $table_factory;
+        $this->form_fields = awpcp_listing_form_fields();
     }
 
     /**
      * Creates an instance of table used to render form fields rows.
      */
     public function get_table() {
-        if ( ! isset( $this->table ) || is_null( $this->table ) ) {
-            $this->table = $this->table_factory->create_table( $this );
+        if ( empty( $this->table ) ) {
+            $this->table = new AWPCP_FormFieldsTable();
         }
 
         return $this->table;

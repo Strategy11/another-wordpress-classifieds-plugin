@@ -62,13 +62,13 @@ class AWPCP_MediaUploaderComponent {
     /**
      * @param array $configuration  An array of configuration options.
      *
-     * @return string|void
+     * @return string
      */
     private function render_component( $configuration ) {
         $file = AWPCP_DIR . '/templates/components/media-uploader.tpl.php';
         if ( $this->echo ) {
             include $file;
-            return;
+            return '';
         }
 
         ob_start();

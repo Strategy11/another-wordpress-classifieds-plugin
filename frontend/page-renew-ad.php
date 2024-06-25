@@ -173,12 +173,7 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
 }
 
 function awpcp_renew_listing_page_implementation( $page ) {
-    return new AWPCP_RenewAdPageImplementation(
-        $page,
-        awpcp_listings_api(),
-        awpcp_listing_renderer(),
-        awpcp_payments_api()
-    );
+    return new AWPCP_RenewAdPageImplementation( $page );
 }
 
 class AWPCP_RenewAdPageImplementation {
@@ -186,15 +181,13 @@ class AWPCP_RenewAdPageImplementation {
     public $messages = array();
 
     private $page;
-    private $listings_logic;
     private $listing_renderer;
     private $payments;
 
-    public function __construct( $page, $listings_logic, $listing_renderer, $payments ) {
+    public function __construct( $page ) {
         $this->page = $page;
-        $this->listings_logic = $listings_logic;
-        $this->listing_renderer = $listing_renderer;
-        $this->payments = $payments;
+        $this->listing_renderer = awpcp_listing_renderer();
+        $this->payments         = awpcp_payments_api();
     }
 
     protected function validate_order($data, &$errors=array()) {

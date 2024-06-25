@@ -207,16 +207,12 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
             case 'details':
             case 'save-details':
                 return $this->details_step();
-                break;
             case 'upload-images':
                 return $this->upload_images_step();
-                break;
             case 'preview-ad':
                 return $this->preview_step();
-                break;
             case 'finish':
                 return $this->finish_step();
-                break;
             default:
                 return $this->place_ad();
         }

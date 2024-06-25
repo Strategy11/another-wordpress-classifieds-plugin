@@ -221,6 +221,9 @@ class AWPCP_ListingRenderer {
         return $this->wordpress->get_post_meta( $listing->ID, '_awpcp_disabled_date', true );
     }
 
+    /**
+     * @return array
+     */
     public function get_regions( $listing ) {
         $regions = array();
 

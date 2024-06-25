@@ -40,7 +40,7 @@ function awpcp_upload_image_file($directory, $filename, $tmpname, $min_size, $ma
         return __( 'Unknown error encountered while uploading the image.', 'another-wordpress-classifieds-plugin');
     }
 
-    if (empty($size) || $size <= 0) {
+    if ( empty( $size ) ) {
         /* translators: %s the file name */
         $message = __( 'There was an error trying to find out the file size of the image %s.', 'another-wordpress-classifieds-plugin' );
         return sprintf( $message, $filename );

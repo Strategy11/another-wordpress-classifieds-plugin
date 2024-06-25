@@ -7,25 +7,13 @@
  * Constructor function for Image File Processor.
  */
 function awpcp_image_file_processor() {
-    return new AWPCP_ImageFileProcessor( awpcp()->settings );
+    return new AWPCP_ImageFileProcessor();
 }
 
 /**
  * Process uploaded image files before they are associated with listings.
  */
 class AWPCP_ImageFileProcessor {
-
-    /**
-     * @var AWPCP_Settings_API
-     */
-    private $settings;
-
-    /**
-     * Constructor.
-     */
-    public function __construct( $settings ) {
-        $this->settings = $settings;
-    }
 
     /**
      * Entry point.

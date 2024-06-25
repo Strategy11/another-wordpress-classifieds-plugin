@@ -119,7 +119,7 @@ class AWPCP_RolesAndCapabilities {
             return;
         }
 
-        if ( ! isset( $roles->role_objects ) || ! is_array( $roles->role_objects ) ) {
+        if ( ! is_array( $roles->role_objects ) ) {
             return;
         }
 

@@ -36,8 +36,8 @@ class AWPCP_MultipleRegionSelector {
     private $echo = false;
 
     /**
-     * @param array $regions    An array of already selected regions.
-     * @param array $options    An array of options.
+     * @param array|string $regions    An array of already selected regions.
+     * @param array        $options    An array of options.
      */
     public function __construct( $regions, $options ) {
         $this->options = wp_parse_args(

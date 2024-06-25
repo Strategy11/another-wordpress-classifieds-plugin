@@ -215,7 +215,6 @@ class AWPCP_Facebook_Page_Settings {
             case 'display_settings':
             default:
                 return $this->display_settings();
-                break;
         }
     }
 
@@ -240,6 +239,7 @@ class AWPCP_Facebook_Page_Settings {
             $error_msg  = '';
             $error_msg .= '<strong>' . __( 'Facebook Config Diagnostics', 'another-wordpress-classifieds-plugin' ) . '</strong><br />';
 
+            // @phpstan-ignore-next-line
             if ( $diagnostics_errors ) {
                 foreach ( $diagnostics_errors as &$e ) {
                     $error_msg .= '&#149; ' . $e . '<br />';

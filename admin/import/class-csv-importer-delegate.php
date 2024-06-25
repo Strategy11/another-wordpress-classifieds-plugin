@@ -646,22 +646,6 @@ class AWPCP_CSV_Importer_Delegate {
 
         return $this->listings_logic->create_listing( $listing_data );
     }
-
-    private function get_extra_fields() {
-        if ( is_array( $this->extra_fields ) ) {
-            return $this->extra_fields;
-        }
-
-        $this->extra_fields = array();
-
-        if ( function_exists( 'awpcp_get_extra_fields' ) ) {
-            foreach ( awpcp_get_extra_fields() as $field ) {
-                $this->extra_fields[ $field->field_name ] = $field;
-            }
-        }
-
-        return $this->extra_fields;
-    }
 }
 
 /**

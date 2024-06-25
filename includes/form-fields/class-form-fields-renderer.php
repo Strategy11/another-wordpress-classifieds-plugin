@@ -9,7 +9,7 @@
 class AWPCP_FormFieldsRenderer {
 
     /**
-     * @var array
+     * @var array|null
      */
     private $fields;
 

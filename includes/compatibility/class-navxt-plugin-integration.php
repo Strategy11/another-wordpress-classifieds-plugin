@@ -15,9 +15,9 @@ function awpcp_navxt_plugin_integration() {
 class AWPCP_NavXTPluginIntegration {
 
     /**
-     * @var object
+     * @var object|false
      */
-    private $current_listing;
+    private $current_listing = false;
 
     /**
      * @var string
@@ -75,12 +75,10 @@ class AWPCP_NavXTPluginIntegration {
         $this->is_page          = $wp_query->is_page;
         $this->is_singular_post = $wp_query->is_singular;
         $this->queried_object   = $wp_query->queried_object;
-        if ( ! $this->current_listing ) {
+        if ( ! $this->current_listing || $this->is_singular ) {
             return false;
         }
-        if ( $this->is_singular ) {
-            return false;
-        }
+
         // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
         $post                     = $this->current_listing;
         $wp_query->queried_object = $post;

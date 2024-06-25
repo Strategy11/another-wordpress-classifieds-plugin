@@ -13,11 +13,6 @@ class AWPCP_MakeFeaturedListingTableAction implements
     /**
      * @var object
      */
-    private $listing_renderer;
-
-    /**
-     * @var object
-     */
     private $wordpress;
 
     /**
@@ -28,12 +23,10 @@ class AWPCP_MakeFeaturedListingTableAction implements
     /**
      * @since 4.0.0
      *
-     * @param object $listing_renderer An instance of Listing Renderer.
      * @param object $roles            An instance of Roles and Capabilities.
      * @param object $wordpress        An instance of WordPress.
      */
-    public function __construct( $listing_renderer, $roles, $wordpress ) {
-        $this->listing_renderer = $listing_renderer;
+    public function __construct( $roles, $wordpress ) {
         $this->roles            = $roles;
         $this->wordpress        = $wordpress;
     }

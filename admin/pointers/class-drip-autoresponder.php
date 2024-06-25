@@ -1,16 +1,10 @@
 <?php
 
 function awpcp_drip_autoresponder() {
-    return new AWPCP_DripAutoresponder( awpcp()->settings );
+    return new AWPCP_DripAutoresponder();
 }
 
 class AWPCP_DripAutoresponder {
-
-    private $settings;
-
-    public function __construct( $settings ) {
-        $this->settings = $settings;
-    }
 
     public function register_pointer( $pointers ) {
         $nonce = wp_create_nonce( 'drip-autoresponder' );

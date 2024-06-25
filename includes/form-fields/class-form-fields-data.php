@@ -131,13 +131,13 @@ class AWPCP_FormFieldsData {
 
         if ( ! $can_edit_start_date || empty( $data['metadata']['_awpcp_start_date'] ) ) {
             $data['metadata']['_awpcp_start_date'] = $this->listing_renderer->get_plain_start_date( $post );
-        } elseif ( ! empty( $data['metadata']['_awpcp_start_date'] ) ) {
+        } else {
             $data['metadata']['_awpcp_start_date'] = awpcp_set_datetime_date( current_time( 'mysql' ), $data['metadata']['_awpcp_start_date'] );
         }
 
         if ( ! $can_edit_end_date || empty( $data['metadata']['_awpcp_end_date'] ) ) {
             $data['metadata']['_awpcp_end_date'] = $this->listing_renderer->get_plain_end_date( $post );
-        } elseif ( ! empty( $data['metadata']['_awpcp_end_date'] ) ) {
+        } else {
             $data['metadata']['_awpcp_end_date'] = awpcp_set_datetime_date( current_time( 'mysql' ), $data['metadata']['_awpcp_end_date'] );
         }
 
