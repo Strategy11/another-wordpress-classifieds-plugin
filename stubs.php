@@ -30,7 +30,7 @@ namespace {
 
     define( 'AWPCP_DIR', dirname( __FILE__ ) );
     define( 'AWPCP_FILE', AWPCP_DIR . '/awpcp.php' );
-    define( 'AWPCP_URL', rtrim( plugin_dir_url( AWPCP_FILE ), '/' ) );
+    define( 'AWPCP_URL', 'http://example.com/wp-content/plugins/' . basename( AWPCP_DIR ) . '/awpcp.php' );
     define( 'AWPCP_BASENAME', basename( AWPCP_DIR ) . '/awpcp.php' );
 
     define( 'AWPCP_TABLE_ADFEES', 'wp_awpcp_adfees' );
