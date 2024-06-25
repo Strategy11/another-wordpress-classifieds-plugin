@@ -4,25 +4,6 @@
  */
 
 /**
- * Return an array of Ad Fees.
- *
- * @since 2.0.7
- * @deprecated  since 3.0
- */
-function awpcp_get_fees() {
-    global $wpdb;
-
-    $results = $wpdb->get_results(
-        $wpdb->prepare(
-            'SELECT * FROM %i ORDER BY adterm_name ASC',
-            AWPCP_TABLE_ADFEES
-        )
-    );
-
-    return is_array($results) ? $results : array();
-}
-
-/**
  * Generic function to calculate an date relative to a given start date.
  *
  * @since 2.0.7
@@ -47,68 +28,6 @@ function awpcp_calculate_end_date($increment, $period, $start_date) {
     return gmdate( 'Y-m-d H:i:s', strtotime( "+ $increment $period", $start_date ) );
 }
 
-/**
- * It must be possible to have more than one transaction associated to a single
- * Ad, for example, when an Ad has been posted AND renewed one or more times.
- *
- * This can be moved into the Ad class. We actually don't need a transaction,
- * because the payment_status is stored in the Ad object. We need, however, to update
- * the payment_status when the Ad is placed AND renewed. ~2012-09-19
- *
- * @param $id          Ad ID.
- * @param $transaction Payment Transaction associated to the Ad being posted
- * @deprecated 4.0.0    This is function is no longer used.
- */
-function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment_status=null) {
-    if ( is_null( $payment_status ) && ! is_null( $transaction ) ) {
-        $payment_status = $transaction->payment_status;
-    }
-
-    $payment_is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
-
-    if ( awpcp_current_user_is_moderator() ) {
-        $disabled = 0;
-    } elseif ( get_awpcp_option( 'adapprove' ) == 1 ) {
-        $disabled = 1;
-    } elseif ( $payment_is_pending && get_awpcp_option( 'enable-ads-pending-payment' ) == 1 ) {
-        $disabled = 0;
-    } elseif ( $payment_is_pending ) {
-        $disabled = 1;
-    } else {
-        $disabled = 0;
-    }
-
-    return $disabled;
-}
-
-/**
- * @deprecated 4.0.0    This function is no longer used.
- */
-function awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) {
-    $payment_is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
-
-    if ( awpcp_current_user_is_moderator() ) {
-        $should_disable = false;
-    } elseif ( get_awpcp_option( 'adapprove' ) == 1 ) {
-        $should_disable = true;
-    } elseif ( $payment_is_pending && get_awpcp_option( 'enable-ads-pending-payment' ) == 1 ) {
-        $should_disable = false;
-    } elseif ( $payment_is_pending ) {
-        $should_disable = true;
-    } else {
-        $should_disable = false;
-    }
-
-    return $should_disable;
-}
-
-/**
- * @deprecated 4.0.0    This function is no longer used.
- */
-function awpcp_should_enable_new_listing_with_payment_status( $listing, $payment_status ) {
-    return awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) ? false : true;
-}
-
 function awpcp_should_disable_existing_listing( $listing ) {
     if ( awpcp_current_user_is_moderator() ) {
         $should_disable = false;
@@ -126,50 +45,6 @@ function awpcp_should_enable_existing_listing( $listing ) {
 }
 
 /**
- * @since 3.0.2
- * @deprecated 4.0.0    Use ListingRenewedEmailNotifications::send_user_notification().
- */
-function awpcp_ad_renewed_user_email( $ad ) {
-    $listing_renderer = awpcp_listing_renderer();
-
-    $introduction = get_awpcp_option( 'ad-renewed-email-body' );
-    $listing_title = $listing_renderer->get_listing_title( $ad );
-    $contact_name = $listing_renderer->get_contact_name( $ad );
-    $contact_email = $listing_renderer->get_contact_email( $ad );
-    $access_key = $listing_renderer->get_access_key( $ad );
-    $end_date = $listing_renderer->get_end_date( $ad );
-
-    $mail = new AWPCP_Email();
-    $mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
-    $mail->subject = sprintf( get_awpcp_option( 'ad-renewed-email-subject' ), $listing_title );
-
-    $template = AWPCP_DIR . '/frontend/templates/email-ad-renewed-success-user.tpl.php';
-    $params = compact( 'ad', 'listing_title', 'contact_name', 'contact_email', 'access_key', 'end_date', 'introduction' );
-
-    $mail->prepare( $template, $params );
-
-    return $mail;
-}
-
-/**
- * @since 3.0.2
- * @deprecated 4.0.0    Use ListingRenewedEmailNotifications::send_admin_notification().
- */
-function awpcp_ad_renewed_admin_email( $ad, $body ) {
-    $subject = __( 'The ad "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' );
-    $subject = sprintf( $subject, awpcp_listing_renderer()->get_listing_title( $ad ) );
-
-    $mail = new AWPCP_Email();
-    $mail->to[] = awpcp_admin_email_to();
-    $mail->subject = $subject;
-
-    $template = AWPCP_DIR . '/frontend/templates/email-ad-renewed-success-admin.tpl.php';
-    $mail->prepare( $template, compact( 'body' ) );
-
-    return $mail;
-}
-
-/**
  * @since 2.1.2
  */
 function awpcp_send_ad_renewed_email($ad) {
@@ -182,27 +57,6 @@ function awpcp_send_ad_renewed_email($ad) {
         $admin_email = awpcp_ad_renewed_admin_email( $ad, $user_email->body );
         $admin_email->send();
     }
-}
-
-/**
- * @since 2.0.7
- * @deprecated 4.0.0 No longer used by internal code.
- */
-function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
-    if (is_null($text)) {
-        $text = __( 'The Ad has been successfully renewed. New expiration date is %s.', 'another-wordpress-classifieds-plugin' );
-    }
-
-    $return = '';
-    if (is_admin()) {
-        $return = sprintf('<a href="%1$s">%2$s</a>', awpcp_get_user_panel_url(), __( 'Return to Listings', 'another-wordpress-classifieds-plugin'));
-    }
-
-    if ($send_email) {
-        awpcp_send_ad_renewed_email($ad);
-    }
-
-    return sprintf("%s %s", sprintf($text, $ad->get_end_date()), $return);
 }
 
 function deletead($adid, $adkey, $editemail, $force=false, &$errors=array()) {

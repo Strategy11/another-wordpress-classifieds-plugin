@@ -219,15 +219,6 @@ function awpcp_strip_all_tags_deep( $string ) {
 
 /**
  * @since 3.0.2
- * @todo Check if add-ons use this and deprecate.
- */
-function awpcp_strptime( $date, $format ) {
-    _deprecated_function( __FUNCTION__, '4.1.8' );
-    return awpcp_strptime_replacement( $date, $format );
-}
-
-/**
- * @since 3.0.2
  */
 function awpcp_strptime_replacement( $date, $format ) {
     $masks = array(
@@ -1292,25 +1283,6 @@ function awpcp_get_server_value( $value ) {
     return isset( $_SERVER[ $value ] ) ? wp_strip_all_tags( wp_unslash( $_SERVER[ $value ] ) ) : '';
 }
 
-/**
- * Use awpcp_get_var().
- *
- * @deprecated 4.3
- */
-function awpcp_post_param($name, $default='') {
-    // phpcs:ignore WordPress.Security.NonceVerification
-    return awpcp_array_data($name, $default, $_POST);
-}
-
-/**
- * Use awpcp_get_var().
- *
- * @deprecated 4.3
- */
-function awpcp_request_param($name, $default='', $from=null) {
-    return awpcp_array_data($name, $default, is_null($from) ? $_REQUEST : $from);
-}
-
 function awpcp_array_data($name, $default, $from=array()) {
     $value = isset($from[$name]) ? $from[$name] : null;
 
@@ -1886,52 +1858,6 @@ function awpcp_form_help_text( $field_id, $help_text ) {
     );
 
     return awpcp_html_label( $params );
-}
-
-/**
- * @deprecated 4.0.0    No longer used.
- */
-function awpcp_attachment_background_color_explanation() {
-    if ( get_awpcp_option( 'imagesapprove' ) ) {
-        return '<p>' . __( 'The images or files with pale red background have been rejected by an administrator user. Likewise, files with a pale yellow background are awaiting approval. Files that are awaiting approval and rejected files, cannot be shown in the frontend.', 'another-wordpress-classifieds-plugin' ) . '</p>';
-    } else {
-        return '';
-    }
-}
-
-/**
- * @since 3.0.2
- * @deprecated since 3.2.3
- */
-function awpcp_module_not_compatible_notice( $module, $installed_version ) {
-    _deprecated_function( __FUNCTION__, '3.2.3', 'ModulesManager::show_module_not_compatible_notice()' );
-    global $awpcp_db_version;
-
-    $modules = awpcp()->get_premium_modules_information();
-
-    $name = $modules[ $module ][ 'name' ];
-    $required_version = $modules[ $module ][ 'required' ];
-
-    $message = __( 'This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'another-wordpress-classifieds-plugin' );
-    $message = sprintf( $message, '<strong>' . $name . '</strong>', $awpcp_db_version, '<strong>' . $required_version . '</strong>' );
-    $message = sprintf( '<strong>%s:</strong> %s', __( 'Error', 'another-wordpress-classifieds-plugin' ), $message );
-
-    return awpcp_print_error( $message );
-}
-
-/**
- * Use awpcp_html_attributes instead.
- *
- * @deprecated since 4.0.0
- */
-function awpcp_render_attributes($attrs) {
-    $attributes = array();
-    foreach ($attrs as $name => $value) {
-        if (is_array($value))
-            $value = join(' ', array_filter($value, 'strlen'));
-        $attributes[] = sprintf('%s="%s"', $name, esc_attr($value));
-    }
-    return join(' ', $attributes);
 }
 
 /**
@@ -3050,18 +2976,6 @@ function awpcp_is_email_address_allowed( $email_address ) {
     }
 
     return false;
-}
-
-/**
- * Function to create a default category with an ID of  1 in the event a default category with ID 1 does not exist.
- *
- * @deprecated 4.0.0
- */
-function createdefaultcategory($idtomake,$titletocallit) {
-    global $wpdb;
-
-    $wpdb->insert( AWPCP_TABLE_CATEGORIES, array( 'category_name' => $titletocallit, 'category_parent_id' => 0 ) );
-    $wpdb->update( AWPCP_TABLE_CATEGORIES, array( 'category_id' => 1 ), array( 'category_id' => $wpdb->insert_id ) );
 }
 
 function create_ad_postedby_list($name) {

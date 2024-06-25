@@ -13,11 +13,11 @@ class AWPCP_ImportListingsAdminPage {
     private $javascript;
     private $settings;
 
-    public function __construct( $import_sessions_manager, $csv_importer_factory, $form_steps, $javascript, $settings ) {
-        $this->import_sessions_manager = $import_sessions_manager;
-        $this->csv_importer_factory = $csv_importer_factory;
+    public function __construct( $form_steps, $settings ) {
+        $this->import_sessions_manager = new AWPCP_CSV_Import_Sessions_Manager();
+        $this->csv_importer_factory    = new AWPCP_CSV_Importer_Factory();
         $this->form_steps              = $form_steps;
-        $this->javascript = $javascript;
+        $this->javascript = awpcp()->js;
         $this->settings = $settings;
     }
 

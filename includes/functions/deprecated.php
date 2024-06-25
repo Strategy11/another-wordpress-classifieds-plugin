@@ -1,6 +1,459 @@
 <?php
 
 /**
+ * Use awpcp_get_var().
+ *
+ * @deprecated 4.3
+ */
+function awpcp_post_param($name, $default='') {
+    // phpcs:ignore WordPress.Security.NonceVerification
+    return awpcp_array_data($name, $default, $_POST);
+}
+
+/**
+ * Use awpcp_get_var().
+ *
+ * @deprecated 4.3
+ */
+function awpcp_request_param($name, $default='', $from=null) {
+    return awpcp_array_data($name, $default, is_null($from) ? $_REQUEST : $from);
+}
+
+/**
+ * @since 4.0.0         Modified to use Listing_Renderer::get_view_listing_url().
+ * @deprecated 4.0.0    Use Listing_Renderer::get_view_listing_url() or get_permalink().
+ */
+function url_showad( $ad_id ) {
+    try {
+        $ad = awpcp_listings_collection()->get( $ad_id );
+    } catch( AWPCP_Exception $e ) {
+        return false;
+    }
+
+    return awpcp_listing_renderer()->get_view_listing_url( $ad );
+}
+
+/**
+ * @since 3.0.2
+ * @deprecated 4.0.0    Use ListingRenewedEmailNotifications::send_user_notification().
+ */
+function awpcp_ad_renewed_user_email( $ad ) {
+    $listing_renderer = awpcp_listing_renderer();
+
+    $introduction = get_awpcp_option( 'ad-renewed-email-body' );
+    $listing_title = $listing_renderer->get_listing_title( $ad );
+    $contact_name = $listing_renderer->get_contact_name( $ad );
+    $contact_email = $listing_renderer->get_contact_email( $ad );
+    $access_key = $listing_renderer->get_access_key( $ad );
+    $end_date = $listing_renderer->get_end_date( $ad );
+
+    $mail = new AWPCP_Email();
+    $mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
+    $mail->subject = sprintf( get_awpcp_option( 'ad-renewed-email-subject' ), $listing_title );
+
+    $template = AWPCP_DIR . '/frontend/templates/email-ad-renewed-success-user.tpl.php';
+    $params = compact( 'ad', 'listing_title', 'contact_name', 'contact_email', 'access_key', 'end_date', 'introduction' );
+
+    $mail->prepare( $template, $params );
+
+    return $mail;
+}
+
+/**
+ * @since 3.0.2
+ * @deprecated 4.0.0    Use ListingRenewedEmailNotifications::send_admin_notification().
+ */
+function awpcp_ad_renewed_admin_email( $ad, $body ) {
+    $subject = __( 'The ad "%s" has been successfully renewed.', 'another-wordpress-classifieds-plugin' );
+    $subject = sprintf( $subject, awpcp_listing_renderer()->get_listing_title( $ad ) );
+
+    $mail = new AWPCP_Email();
+    $mail->to[] = awpcp_admin_email_to();
+    $mail->subject = $subject;
+
+    $template = AWPCP_DIR . '/frontend/templates/email-ad-renewed-success-admin.tpl.php';
+    $mail->prepare( $template, compact( 'body' ) );
+
+    return $mail;
+}
+
+/**
+ * @deprecated x.x
+ */
+function awpcp_csv_reader_factory() {
+    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_CSV_Reader_Factory()' );
+    return new AWPCP_CSV_Reader_Factory();
+}
+
+/**
+ * Constructor function for CSV Import Sessions Manager class.
+ *
+ * @deprecated x.x
+ */
+function awpcp_csv_import_sessions_manager() {
+    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_CSV_Import_Sessions_Manager()' );
+    return new AWPCP_CSV_Import_Sessions_Manager();
+}
+
+/**
+ * @deprecated x.x
+ */
+function awpcp_csv_importer_factory() {
+    deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_CSV_Importer_Factory()' );
+    return new AWPCP_CSV_Importer_Factory();
+}
+
+/**
+ * @deprecated x.x
+ */
+function awpcp_import_listings_ajax_handler() {
+    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_Import_Listings_Ajax_Handler()' );
+    return new AWPCP_Import_Listings_Ajax_Handler();
+}
+
+/**
+ * @deprecated x.x
+ */
+function awpcp_routes() {
+    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_Routes()' );
+    return new AWPCP_Routes();
+}
+
+/**
+ * @deprecated x.x
+ */
+function awpcp_general_settings() {
+    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_GeneralSettings()' );
+    return new AWPCP_GeneralSettings();
+}
+
+/**
+ * @deprecated x.x
+ */
+function awpcp_license_settings_update_handler() {
+    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_License_Settings_Update_Handler()' );
+    return new AWPCP_License_Settings_Update_Handler();
+}
+
+/**
+ * @deprecated x.x
+ */
+function awpcp_license_settings_actions_request_handler() {
+    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_License_Settings_Actions_Request_Handler()' );
+    return new AWPCP_License_Settings_Actions_Request_Handler();
+}
+
+/**
+ * @since 3.0.2
+ */
+function awpcp_strptime( $date, $format ) {
+    _deprecated_function( __FUNCTION__, '4.1.8' );
+    return awpcp_strptime_replacement( $date, $format );
+}
+
+/**
+ * @since 3.4
+ * @since x.x Added deprecated notice.
+ * @deprecated 3.5.3
+ */
+function awppc_get_pages_ids() {
+    _deprecated_function( __FUNCTION__, '3.5.3', 'awpcp_get_plugin_pages_ids()' );
+    return awpcp_get_plugin_pages_ids();
+}
+
+/**
+ * @since 3.4
+ * @since x.x Added deprecated notice.
+ * @deprecated 3.5.3
+ */
+function awpcp_get_pages_ids_from_db() {
+    _deprecated_function( __FUNCTION__, '3.5.3', 'awpcp_get_plugin_pages_ids()' );
+    return awpcp_get_plugin_pages_ids();
+}
+
+/**
+ * @since 3.5.3
+ * @since x.x Added deprecated notice.
+ * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
+ */
+function awpcp_get_plugin_pages_info() {
+    _deprecated_function( __FUNCTION__, '4.0.0', 'get_option( awpcp-plugin-pages )' );
+    return get_option( 'awpcp-plugin-pages', array() );
+}
+
+/**
+ * @since 3.5.3
+ * @since x.x Added deprecated notice.
+ * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
+ */
+function awpcp_update_plugin_pages_info( $plugin_pages ) {
+    _deprecated_function( __FUNCTION__, '4.0.0', 'update_option( awpcp-plugin-pages )' );
+    return update_option( 'awpcp-plugin-pages', $plugin_pages );
+}
+
+/**
+ * @since 3.5.3
+ * @since x.x Added deprecated notice.
+ * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
+ */
+function awpcp_get_plugin_pages_refs() {
+    _deprecated_function( __FUNCTION__, '4.0.0' );
+    $plugin_pages = array();
+
+    foreach ( awpcp_get_plugin_pages_ids() as $page_ref => $page_id ) {
+        $plugin_pages[ $page_id ] = $page_ref;
+    }
+
+    return $plugin_pages;
+}
+
+/**
+ * @since x.x Added deprecated notice.
+ * @deprecated 4.0.0
+ */
+function awpcp_modules_manager() {
+    _deprecated_function( __FUNCTION__, '4.0.0', 'awpcp()->modules_manager' );
+    return awpcp()->container['ModulesManager'];
+}
+
+/**
+ * @since x.x Added deprecated notice.
+ * @deprecated 4.0.0    Use a container.
+ */
+function awpcp_csv_importer_delegate_factory() {
+    return awpcp()->container['ImporterDelegateFactory'];
+}
+
+/**
+ * @since x.x Added deprecated notice.
+ * @deprecated 2.0.6.
+ */
+function url_classifiedspage() {
+    _deprecated_function( __FUNCTION__, '2.0.6', 'awpcp_get_main_page_url()' );
+    return awpcp_get_main_page_url();
+}
+
+/**
+ * Returns the domain used in the current request, optionally stripping
+ * the www part of the domain.
+ *
+ * @since 2.0.6
+ * @param $www  boolean     true to include the 'www' part,
+ *                          false to attempt to strip it.
+ */
+function awpcp_get_current_domain( $www = true, $prefix = '' ) {
+    _deprecated_function( __FUNCTION__, '3.2.3', 'awpcp_request()->domain( $include_www, $www_prefix_replacement )' );
+    return awpcp_request()->domain( $www, $prefix );
+}
+
+/**
+ * It must be possible to have more than one transaction associated to a single
+ * Ad, for example, when an Ad has been posted AND renewed one or more times.
+ *
+ * This can be moved into the Ad class. We actually don't need a transaction,
+ * because the payment_status is stored in the Ad object. We need, however, to update
+ * the payment_status when the Ad is placed AND renewed. ~2012-09-19
+ *
+ * @param $id          Ad ID.
+ * @param $transaction Payment Transaction associated to the Ad being posted
+ *
+ * @since x.x Added deprecated notice.
+ * @deprecated 4.0.0    This is function is no longer used.
+ */
+function awpcp_calculate_ad_disabled_state($id=null, $transaction=null, $payment_status=null) {
+    _deprecated_function( __FUNCTION__, '4.0' );
+    if ( is_null( $payment_status ) && ! is_null( $transaction ) ) {
+        $payment_status = $transaction->payment_status;
+    }
+
+    $payment_is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
+
+    if ( awpcp_current_user_is_moderator() ) {
+        $disabled = 0;
+    } elseif ( get_awpcp_option( 'adapprove' ) == 1 ) {
+        $disabled = 1;
+    } elseif ( $payment_is_pending && get_awpcp_option( 'enable-ads-pending-payment' ) == 1 ) {
+        $disabled = 0;
+    } elseif ( $payment_is_pending ) {
+        $disabled = 1;
+    } else {
+        $disabled = 0;
+    }
+
+    return $disabled;
+}
+
+/**
+ * @since x.x Added deprecated notice.
+ * @deprecated 4.0.0    This function is no longer used.
+ */
+function awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) {
+    _deprecated_function( __FUNCTION__, '4.0' );
+    $payment_is_pending = $payment_status == AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
+
+    if ( awpcp_current_user_is_moderator() ) {
+        $should_disable = false;
+    } elseif ( get_awpcp_option( 'adapprove' ) == 1 ) {
+        $should_disable = true;
+    } elseif ( $payment_is_pending && get_awpcp_option( 'enable-ads-pending-payment' ) == 1 ) {
+        $should_disable = false;
+    } elseif ( $payment_is_pending ) {
+        $should_disable = true;
+    } else {
+        $should_disable = false;
+    }
+
+    return $should_disable;
+}
+
+/**
+ * @since x.x Added deprecated notice.
+ * @deprecated 4.0.0    This function is no longer used.
+ */
+function awpcp_should_enable_new_listing_with_payment_status( $listing, $payment_status ) {
+    _deprecated_function( __FUNCTION__, '4.0' );
+    return awpcp_should_disable_new_listing_with_payment_status( $listing, $payment_status ) ? false : true;
+}
+
+/**
+ * @since 2.0.7
+ * @since x.x Added deprecated notice.
+ * @deprecated 4.0.0 No longer used by internal code.
+ */
+function awpcp_renew_ad_success_message($ad, $text=null, $send_email=true) {
+    _deprecated_function( __FUNCTION__, '4.0' );
+    if (is_null($text)) {
+        $text = __( 'The Ad has been successfully renewed. New expiration date is %s.', 'another-wordpress-classifieds-plugin' );
+    }
+
+    $return = '';
+    if (is_admin()) {
+        $return = sprintf('<a href="%1$s">%2$s</a>', awpcp_get_user_panel_url(), __( 'Return to Listings', 'another-wordpress-classifieds-plugin'));
+    }
+
+    if ($send_email) {
+        awpcp_send_ad_renewed_email($ad);
+    }
+
+    return sprintf("%s %s", sprintf($text, $ad->get_end_date()), $return);
+}
+
+/**
+ * Return an array of Ad Fees.
+ *
+ * @since 2.0.7
+ * @since x.x Added deprecated notice.
+ * @deprecated  since 3.0
+ */
+function awpcp_get_fees() {
+    _deprecated_function( __FUNCTION__, '3.0' );
+
+    global $wpdb;
+
+    $results = $wpdb->get_results(
+        $wpdb->prepare(
+            'SELECT * FROM %i ORDER BY adterm_name ASC',
+            AWPCP_TABLE_ADFEES
+        )
+    );
+
+    return is_array($results) ? $results : array();
+}
+
+/**
+ * @deprecated 4.0.0    Use awpcp_create_page() instead.
+ */
+function maketheclassifiedsubpage( $page_name, $parent_page_id, $short_code ) {
+    _deprecated_function( __FUNCTION__, '4.0.0', 'awpcp_create_page()' );
+    $post_date      = gmdate( 'Y-m-d' );
+    $parent_page_id = intval( $parent_page_id );
+    $post_name = sanitize_title( $page_name );
+    $page_name = add_slashes_recursive( $page_name );
+
+    $page_id = wp_insert_post( array(
+        'post_date' => $post_date,
+        'post_date_gmt' => $post_date,
+        'post_title' => $page_name,
+        'post_content' => $short_code,
+        'post_status' => 'publish',
+        'comment_status' => 'closed',
+        'post_name' => $post_name,
+        'post_modified' => $post_date,
+        'post_modified_gmt' => $post_date,
+        'post_content_filtered' => $short_code,
+        'post_parent' => $parent_page_id,
+        'post_type' => 'page',
+    ) );
+
+    return $page_id;
+}
+
+/**
+ * Function to create a default category with an ID of  1 in the event a default category with ID 1 does not exist.
+ *
+ * @since x.x Added deprecated notice.
+ * @deprecated 4.0.0
+ */
+function createdefaultcategory($idtomake,$titletocallit) {
+    _deprecated_function( __FUNCTION__, '4.0.0' );
+
+    global $wpdb;
+
+    $wpdb->insert( AWPCP_TABLE_CATEGORIES, array( 'category_name' => $titletocallit, 'category_parent_id' => 0 ) );
+    $wpdb->update( AWPCP_TABLE_CATEGORIES, array( 'category_id' => 1 ), array( 'category_id' => $wpdb->insert_id ) );
+}
+
+/**
+ * @since x.x Added deprecated notice.
+ * @deprecated 4.0.0    No longer used.
+ */
+function awpcp_attachment_background_color_explanation() {
+    _deprecated_function( __FUNCTION__, '4.0.0' );
+    if ( get_awpcp_option( 'imagesapprove' ) ) {
+        return '<p>' . __( 'The images or files with pale red background have been rejected by an administrator user. Likewise, files with a pale yellow background are awaiting approval. Files that are awaiting approval and rejected files, cannot be shown in the frontend.', 'another-wordpress-classifieds-plugin' ) . '</p>';
+    }
+    return '';
+}
+
+/**
+ * @since 3.0.2
+ * @deprecated since 3.2.3
+ */
+function awpcp_module_not_compatible_notice( $module, $installed_version ) {
+    _deprecated_function( __FUNCTION__, '3.2.3', 'ModulesManager::show_module_not_compatible_notice()' );
+    global $awpcp_db_version;
+
+    $modules = awpcp()->get_premium_modules_information();
+
+    $name = $modules[ $module ][ 'name' ];
+    $required_version = $modules[ $module ][ 'required' ];
+
+    $message = __( 'This version of AWPCP %1$s module is not compatible with AWPCP version %2$s. Please get AWPCP %1$s %3$s or newer!', 'another-wordpress-classifieds-plugin' );
+    $message = sprintf( $message, '<strong>' . $name . '</strong>', $awpcp_db_version, '<strong>' . $required_version . '</strong>' );
+    $message = sprintf( '<strong>%s:</strong> %s', __( 'Error', 'another-wordpress-classifieds-plugin' ), $message );
+
+    return awpcp_print_error( $message );
+}
+
+/**
+ * Use awpcp_html_attributes instead.
+ *
+ * @since x.x Added deprecated notice.
+ * @deprecated since 4.0.0
+ */
+function awpcp_render_attributes( $attrs ) {
+    _deprecated_function( __FUNCTION__, '4.0', 'awpcp_html_attributes()' );
+
+    $attributes = array();
+    foreach ($attrs as $name => $value) {
+        if (is_array($value))
+            $value = join(' ', array_filter($value, 'strlen'));
+        $attributes[] = sprintf('%s="%s"', $name, esc_attr($value));
+    }
+    return join(' ', $attributes);
+}
+
+/**
  * Check that the given file meets the file size, dimensions and file type
  * constraints and moves the file to the AWPCP Uploads directory.
  *
@@ -12,6 +465,7 @@
  * @return          false if an error occurs or an array with the upload file information
  *                  on success.
  * @since 3.0.2
+ * @since x.x Added deprecated notice.
  * @deprecated  3.4
  */
 function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload' ) {
@@ -128,6 +582,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
 
 /**
  * @since 3.0.2
+ * @since x.x Added deprecated notice.
  * @deprecated 3.4
  */
 function awpcp_get_allowed_mime_types() {
@@ -140,6 +595,7 @@ function awpcp_get_allowed_mime_types() {
  * File type, size and dimension constraints for uploaded files.
  *
  * @since 3.0.2
+ * @since x.x Added deprecated notice.
  * @deprecated 3.4
  */
 function awpcp_get_upload_file_constraints( ) {
@@ -160,6 +616,7 @@ function awpcp_get_upload_file_constraints( ) {
  * the number of files that can still be added to that same Ad.
  *
  * @since 3.0.2
+ * @since x.x Added deprecated notice.
  * @deprecated 3.4
  */
 function awpcp_get_ad_uploaded_files_stats( $ad ) {
@@ -184,6 +641,7 @@ function awpcp_get_ad_uploaded_files_stats( $ad ) {
  * returns the path to the directories to store raw files and image thumbnails.
  *
  * @since 3.0.2
+ * @since x.x Added deprecated notice.
  * @deprecated 3.4
  */
 function awpcp_get_uploads_directories() {
@@ -255,6 +713,7 @@ function awpcp_get_uploads_directories() {
  * takes place. If the image exceeds either max width or max height then the
  * image is resized proportionally.
  *
+ * @since x.x Added deprecated notice.
  * @deprecated 3.4
  */
 function awpcp_resizer($filename, $dir) {
@@ -322,6 +781,7 @@ function awpcp_resizer($filename, $dir) {
 }
 
 /**
+ * @since x.x Added deprecated notice.
  * @deprecated 3.4
  */
 function get_categorynameidall($cat_id = 0) {
@@ -389,6 +849,7 @@ function get_categorynameidall($cat_id = 0) {
 }
 
 /**
+ * @since x.x Added deprecated notice.
  * @deprecated since 2.0.7
  */
 function checkfortable($table) {
@@ -400,6 +861,7 @@ function checkfortable($table) {
 /**
  * Return the number of pages with the given post_name.
  *
+ * @since x.x Added deprecated notice.
  * @deprecated 4.0.0    This is no longer used.
  */
 function checkforduplicate($cpagename_awpcp) {
@@ -454,6 +916,7 @@ function awpcp_region_fields( $context='details', $enabled_fields = null ) {
 }
 
 /**
+ * @since x.x Added deprecated notice.
  * @deprecated 4.0.0 This function will be removed in 4.1.0.
  */
 function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()) {
@@ -474,6 +937,7 @@ function vector2options($show_vector,$selected_map_val,$exclusion_vector=array()
 }
 
 /**
+ * @since x.x Added deprecated notice.
  * @deprecated 4.0.0 This function will be removed in 4.1.0.
  */
 function unix2dos($mystring) {
@@ -485,6 +949,7 @@ function unix2dos($mystring) {
 }
 
 /**
+ * @since x.x Added deprecated notice.
  * @deprecated 4.0.0 This function will be removed in 4.1.0.
  */
 function create_awpcp_random_seed() {

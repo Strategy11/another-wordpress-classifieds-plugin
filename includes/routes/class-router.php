@@ -10,11 +10,7 @@ function awpcp_router() {
     static $instance = null;
 
     if ( is_null( $instance ) ) {
-        $instance = new AWPCP_Router(
-            awpcp_routes(),
-            awpcp_template_renderer(),
-            awpcp_request()
-        );
+        $instance = new AWPCP_Router();
     }
 
     return $instance;
@@ -33,10 +29,10 @@ class AWPCP_Router {
 
     public $routes;
 
-    public function __construct( $routes, $template_renderer, $request ) {
-        $this->routes = $routes;
-        $this->template_renderer = $template_renderer;
-        $this->request = $request;
+    public function __construct() {
+        $this->routes            = new AWPCP_Routes();
+        $this->template_renderer = awpcp_template_renderer();
+        $this->request           = awpcp_request();
     }
 
     public function get_routes() {

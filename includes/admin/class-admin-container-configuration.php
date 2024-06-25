@@ -384,10 +384,7 @@ class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationI
 
         $container['ImportListingsAdminPage'] = $container->service( function( $container ) {
             return new AWPCP_ImportListingsAdminPage(
-                awpcp_csv_import_sessions_manager(),
-                awpcp_csv_importer_factory(),
                 $container['ImporterFormStepsComponent'],
-                awpcp()->js,
                 $container['Settings']
             );
         } );

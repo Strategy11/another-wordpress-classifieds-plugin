@@ -82,20 +82,6 @@ function awpcp_listings_api() {
 }
 
 /**
- * @deprecated 4.0.0
- */
-function awpcp_modules_manager() {
-    return awpcp()->container['ModulesManager'];
-}
-
-/**
- * @deprecated 4.0.0    Use a container.
- */
-function awpcp_csv_importer_delegate_factory() {
-    return awpcp()->container['ImporterDelegateFactory'];
-}
-
-/**
  * @since 4.0.0     Extracted from class file.
  */
 function awpcp_import_listings_admin_page() {

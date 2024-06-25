@@ -40,8 +40,9 @@ function awpcp_check_license_status() {
     }
 
     $licenses_manager = awpcp_licenses_manager();
+    $modules_manager  = awpcp()->container['ModulesManager'];
 
-    foreach ( awpcp_modules_manager()->get_modules() as $module ) {
+    foreach ( $modules_manager->get_modules() as $module ) {
         $licenses_manager->check_license_status( $module->name, $module->slug );
     }
 

@@ -4,10 +4,7 @@
  */
 
 function awpcp_files_settings() {
-    return new AWPCP_FilesSettings(
-        awpcp_file_types(),
-        awpcp()->container['Settings']
-    );
+    return new AWPCP_FilesSettings();
 }
 
 class AWPCP_FilesSettings {
@@ -19,9 +16,9 @@ class AWPCP_FilesSettings {
      */
     private $settings;
 
-    public function __construct( $file_types, $settings ) {
-        $this->file_types = $file_types;
-        $this->settings   = $settings;
+    public function __construct() {
+        $this->file_types = awpcp_file_types();
+        $this->settings   = awpcp()->container['Settings'];
     }
 
     public function register_settings( $settings_manager ) {

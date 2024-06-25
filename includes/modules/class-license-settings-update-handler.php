@@ -1,20 +1,13 @@
 <?php
 
-function awpcp_license_settings_update_handler() {
-    return new AWPCP_License_Settings_Update_Handler(
-        awpcp_licenses_manager(),
-        awpcp_modules_manager()
-    );
-}
-
 class AWPCP_License_Settings_Update_Handler {
 
     private $licenses_manager;
     private $modules_manager;
 
-    public function __construct( $licenses_manager, $modules_manager ) {
-        $this->licenses_manager = $licenses_manager;
-        $this->modules_manager = $modules_manager;
+    public function __construct() {
+        $this->licenses_manager = awpcp_licenses_manager();
+        $this->modules_manager  = awpcp()->modules_manager;
     }
 
     public function process_settings( $old_settings, $new_settings ) {

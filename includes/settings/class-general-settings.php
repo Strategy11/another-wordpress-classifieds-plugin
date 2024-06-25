@@ -4,16 +4,6 @@
  */
 
 /**
- * Constructor function.
- */
-function awpcp_general_settings() {
-    return new AWPCP_GeneralSettings(
-        awpcp_roles_and_capabilities(),
-        awpcp()->container['Settings']
-    );
-}
-
-/**
  * Register general plugin settings.
  */
 class AWPCP_GeneralSettings {
@@ -28,9 +18,9 @@ class AWPCP_GeneralSettings {
     /**
      * Constructor.
      */
-    public function __construct( $roles, $settings ) {
-        $this->roles    = $roles;
-        $this->settings = $settings;
+    public function __construct() {
+        $this->roles    = awpcp_roles_and_capabilities();
+        $this->settings = awpcp()->container['Settings'];
     }
 
     /**

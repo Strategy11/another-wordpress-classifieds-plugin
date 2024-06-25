@@ -94,52 +94,6 @@ function awpcp_get_page_ids_by_ref( $refnames ) {
 }
 
 /**
- * @since 3.4
- * @deprecated 3.5.3
- */
-function awppc_get_pages_ids() {
-    return awpcp_get_plugin_pages_ids();
-}
-
-/**
- * @since 3.4
- * @deprecated 3.5.3
- */
-function awpcp_get_pages_ids_from_db() {
-    return awpcp_get_plugin_pages_ids();
-}
-
-/**
- * @since 3.5.3
- * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
- */
-function awpcp_get_plugin_pages_info() {
-    return get_option( 'awpcp-plugin-pages', array() );
-}
-
-/**
- * @since 3.5.3
- * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
- */
-function awpcp_update_plugin_pages_info( $plugin_pages ) {
-    return update_option( 'awpcp-plugin-pages', $plugin_pages );
-}
-
-/**
- * @since 3.5.3
- * @deprecated 4.0.0    Page IDs are now available through Settings->get_option().
- */
-function awpcp_get_plugin_pages_refs() {
-    $plugin_pages = array();
-
-    foreach ( awpcp_get_plugin_pages_ids() as $page_ref => $page_id ) {
-        $plugin_pages[ $page_id ] = $page_ref;
-    }
-
-    return $plugin_pages;
-}
-
-/**
  * @since 3.5.3
  * @since 4.0.0     Uses Settings to get Page IDs.
  */
@@ -245,20 +199,6 @@ function is_awpcp_browse_categories_page() {
     return awpcp_query()->is_browse_categories_page();
 }
 
-/**
- * @since 4.0.0         Modified to use Listing_Renderer::get_view_listing_url().
- * @deprecated 4.0.0    Use Listing_Renderer::get_view_listing_url() or get_permalink().
- */
-function url_showad($ad_id) {
-    try {
-        $ad = awpcp_listings_collection()->get( $ad_id );
-    } catch( AWPCP_Exception $e ) {
-        return false;
-    }
-
-    return awpcp_listing_renderer()->get_view_listing_url( $ad );
-}
-
 function awpcp_get_browse_categories_page_url() {
     return awpcp_get_page_url( 'browse-ads-page-name' );
 }
@@ -302,13 +242,6 @@ function url_browsecategory( $category ) {
 
 function url_placead() {
     return user_trailingslashit(awpcp_get_page_url('place-ad-page-name'));
-}
-
-/**
- * @deprecated deprecated since 2.0.6.
- */
-function url_classifiedspage() {
-    return awpcp_get_main_page_url();
 }
 
 function url_searchads() {
@@ -690,19 +623,6 @@ function awpcp_get_user_panel_url( $params=array() ) {
 
 function awpcp_current_url() {
     return ( is_ssl() ? 'https://' : 'http://' ) . awpcp_get_server_value( 'HTTP_HOST' ) . awpcp_get_server_value( 'REQUEST_URI' );
-}
-
-/**
- * Returns the domain used in the current request, optionally stripping
- * the www part of the domain.
- *
- * @since 2.0.6
- * @param $www  boolean     true to include the 'www' part,
- *                          false to attempt to strip it.
- */
-function awpcp_get_current_domain($www=true, $prefix='') {
-    _deprecated_function( __FUNCTION__, '3.2.3', 'awpcp_request()->domain( $include_www, $www_prefix_replacement )' );
-    return awpcp_request()->domain( $www, $prefix );
 }
 
 /**

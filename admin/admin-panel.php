@@ -927,33 +927,6 @@ function awpcp_create_subpage($refname, $name, $shortcode, $awpcp_page_id=null) 
 }
 
 /**
- * @deprecated 4.0.0    Use awpcp_create_page() instead.
- */
-function maketheclassifiedsubpage( $page_name, $parent_page_id, $short_code ) {
-    $post_date      = gmdate( 'Y-m-d' );
-    $parent_page_id = intval( $parent_page_id );
-    $post_name = sanitize_title( $page_name );
-    $page_name = add_slashes_recursive( $page_name );
-
-    $page_id = wp_insert_post( array(
-        'post_date' => $post_date,
-        'post_date_gmt' => $post_date,
-        'post_title' => $page_name,
-        'post_content' => $short_code,
-        'post_status' => 'publish',
-        'comment_status' => 'closed',
-        'post_name' => $post_name,
-        'post_modified' => $post_date,
-        'post_modified_gmt' => $post_date,
-        'post_content_filtered' => $short_code,
-        'post_parent' => $parent_page_id,
-        'post_type' => 'page',
-    ) );
-
-    return $page_id;
-}
-
-/**
  * Calls awpcp-admin-sidebar filter to output Admin panel sidebar.
  *
  * To remove Admin panel sidebar remove the mentioned filter on init.

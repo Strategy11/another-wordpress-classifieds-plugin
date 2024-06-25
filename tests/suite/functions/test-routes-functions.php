@@ -146,7 +146,7 @@ class AWPCP_TestRouteFunctions extends AWPCP_UnitTestCase {
             'post_date_gmt' => '2017-03-01 00:00:00',
         ) );
 
-        awpcp_update_plugin_pages_info( array( 'browse-ads-page-name' => array( 'page_id' => $sub_page ) ) );
+        update_option( 'awpcp-plugin-pages', array( 'browse-ads-page-name' => array( 'page_id' => $sub_page ) ) );
         awpcp()->settings->set_or_update_option( 'seofriendlyurls', true );
 
         $wp_rewrite->set_permalink_structure( '/%year%/%monthnum%/%postname%/' );
@@ -181,7 +181,7 @@ class AWPCP_TestRouteFunctions extends AWPCP_UnitTestCase {
             'post_date_gmt' => '2017-03-01 00:00:00',
         ) );
 
-        awpcp_update_plugin_pages_info( array( 'browse-ads-page-name' => array( 'page_id' => $sub_page ) ) );
+        update_option( 'awpcp-plugin-pages', array( 'browse-ads-page-name' => array( 'page_id' => $sub_page ) ) );
         awpcp()->settings->set_or_update_option( 'seofriendlyurls', false );
 
         $wp_rewrite->set_permalink_structure( '' );
@@ -216,7 +216,7 @@ class AWPCP_TestRouteFunctions extends AWPCP_UnitTestCase {
             'post_date_gmt' => '2017-03-01 00:00:00',
         ) );
 
-        awpcp_update_plugin_pages_info( array( 'browse-ads-page-name' => array( 'page_id' => $sub_page ) ) );
+        update_option( 'awpcp-plugin-pages', array( 'browse-ads-page-name' => array( 'page_id' => $sub_page ) ) );
         awpcp()->settings->set_or_update_option( 'seofriendlyurls', true );
 
         $wp_rewrite->set_permalink_structure( '/%year%/%monthnum%/%postname%/' );

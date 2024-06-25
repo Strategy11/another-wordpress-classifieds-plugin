@@ -2,6 +2,9 @@
 
 class AWPCP_TestAdFunctions extends AWPCP_UnitTestCase {
 
+    /**
+     * @expectedDeprecated awpcp_calculate_ad_disabled_state
+     */
     public function test_calculate_ad_disabled_state_when_ad_approve_is_on() {
         awpcp()->settings->set_or_update_option( 'adapprove', true );
 
@@ -10,6 +13,9 @@ class AWPCP_TestAdFunctions extends AWPCP_UnitTestCase {
         $this->assertTrue( (bool) $disabled );
     }
 
+    /**
+     * @expectedDeprecated awpcp_calculate_ad_disabled_state
+     */
     public function test_calculate_ad_disabled_state_when_ad_approve_is_off_and_enable_ads_pending_payment_is_on() {
         awpcp()->settings->set_or_update_option( 'adapprove', false );
         awpcp()->settings->set_or_update_option( 'enable-ads-pending-payment', true );
@@ -22,6 +28,9 @@ class AWPCP_TestAdFunctions extends AWPCP_UnitTestCase {
         $this->assertFalse( (bool) $disabled );
     }
 
+    /**
+     * @expectedDeprecated awpcp_calculate_ad_disabled_state
+     */
     public function test_calculate_ad_disabled_state_when_ad_approve_is_off_and_enable_ads_pending_payment_is_off() {
         awpcp()->settings->set_or_update_option( 'adapprove', false );
         awpcp()->settings->set_or_update_option( 'enable-ads-pending-payment', false );

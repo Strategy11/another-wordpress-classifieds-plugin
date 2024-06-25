@@ -3,10 +3,6 @@
  * @package AWPCP
  */
 
-function awpcp_routes() {
-    return new AWPCP_Routes();
-}
-
 class AWPCP_Routes {
 
     private $admin_pages = array();
