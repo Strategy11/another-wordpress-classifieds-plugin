@@ -14,12 +14,12 @@ class AWPCP_SupportedCSVHeadersAdminPage {
     private $template = '/admin/import/supported-csv-headers.tpl.php';
 
     /**
-     * @var CSVImporterColumns
+     * @var AWPCP_CSVImporterColumns
      */
     private $columns;
 
     /**
-     * @var TemplateRenderer
+     * @var AWPCP_Template_Renderer
      */
     private $template_renderer;
 

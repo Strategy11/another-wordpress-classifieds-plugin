@@ -11,12 +11,12 @@ class AWPCP_MarkPaidListingTableAction implements
     AWPCP_ConditionalListTableActionInterface {
 
     /**
-     * @var ListingsLogic
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 
     /**
-     * @var ListingRenderer
+     * @var AWPCP_ListingRenderer
      */
     private $listing_renderer;
 

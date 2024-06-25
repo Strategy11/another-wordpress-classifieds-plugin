@@ -16,7 +16,7 @@ function awpcp_image_file_processor() {
 class AWPCP_ImageFileProcessor {
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

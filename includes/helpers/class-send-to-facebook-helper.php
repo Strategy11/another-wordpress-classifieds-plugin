@@ -17,24 +17,24 @@ function awpcp_send_to_facebook_helper() {
 class AWPCP_SendToFacebookHelper {
 
     /**
-     * @var Facebook
+     * @var AWPCP_Facebook
      */
     private $facebook;
 
     /**
-     * @var FacebookIntegration
+     * @var AWPCP_FacebookIntegration
      */
     private $facebook_integration;
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 
     public $listing_renderer;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

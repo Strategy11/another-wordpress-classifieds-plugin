@@ -10,12 +10,12 @@
 class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
-     * @var AWPCP_Listings_API
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 
     /**
-     * @var ListingsPaymentTransactions
+     * @var AWPCP_ListingsPaymentTransactions
      */
     private $listings_transactions;
 
@@ -25,17 +25,17 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
     private $payment_information_validator;
 
     /**
-     * @var PaymentsAPI
+     * @var AWPCP_PaymentsAPI
      */
     private $payments;
 
     /**
-     * @var CAPTCHA
+     * @var AWPCP_CAPTCHA
      */
     private $captcha;
 
     /**
-     * @var ListingOrderPostedData
+     * @var AWPCP_ListingOrderPostedData
      */
     private $posted_data;
 
@@ -50,7 +50,7 @@ class AWPCP_CreateEmptyListingAjaxHandler extends AWPCP_AjaxHandler {
     protected $roles;
 
     /**
-     * @var AWPCP_Settings
+     * @var AWPCP_Settings_API
      */
     public $settings;
 

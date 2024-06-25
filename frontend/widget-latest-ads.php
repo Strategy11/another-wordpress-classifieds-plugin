@@ -55,12 +55,13 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     }
 
     /**
-     * [render description]
-     * @param  [type] $items      [description]
-     * @param  [type] $instance   [description]
-     * @param  string $html_class CSS class for each LI element.
-     * @since  3.0-beta
-     * @return string             HTML
+     * @since 3.0
+     *
+     * @param array $items
+     * @param array $instance
+     * @param string $html_class CSS class for each LI element.
+     *
+     * @return string
      */
     protected function render($items, $instance, $html_class='') {
         $instance = array_merge( $this->defaults(), $instance );

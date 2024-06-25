@@ -14,22 +14,22 @@ class AWPCP_ListingDatesSubmitListingSection {
     private $template = 'frontend/listing-dates-submit-listing-section.tpl.php';
 
     /**
-     * @var FormFieldsRenderer
+     * @var AWPCP_FormFieldsRenderer
      */
     private $form_fields;
 
     /**
-     * @var FormFieldsData
+     * @var AWPCP_FormFieldsData
      */
     private $form_fields_data;
 
     /**
-     * @var ListingAuthorization
+     * @var AWPCP_ListingAuthorization
      */
     private $authorization;
 
     /**
-     * @var TemplateRenderer
+     * @var AWPCP_Template_Renderer
      */
     private $template_renderer;
 

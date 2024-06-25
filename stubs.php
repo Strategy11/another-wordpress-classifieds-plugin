@@ -93,4 +93,9 @@ namespace {
         public static function get_api_key() {
         }
     }
+
+    class PHPMailer {
+		public function __construct( $exceptions = null ) {
+		}
+	}
 }

@@ -19,7 +19,7 @@ class AWPCP_Categories_Collection {
     private $taxonomy;
 
     /**
-     * @var Categories Registry
+     * @var AWPCP_Categories_Registry
      */
     private $categories_registry;
 

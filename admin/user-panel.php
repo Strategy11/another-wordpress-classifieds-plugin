@@ -27,12 +27,12 @@ class AWPCP_User_Panel {
     private $listing_post_type;
 
     /**
-     * @var UpgradeTasksManager
+     * @var AWPCP_Upgrade_Tasks_Manager
      */
     private $upgrade_tasks;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

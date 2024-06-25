@@ -97,9 +97,9 @@ class AWPCP_Container implements ArrayAccess {
      * Returns a closure that creates a service object using the given constructor
      * function.
      *
-     * @param Closur $closure   A constructor function for the object.
+     * @param Closure $closure   A constructor function for the object.
      *
-     * @return Closue   A constructor function for the service object.
+     * @return Closure   A constructor function for the service object.
      */
     public function service( Closure $closure ) {
         return function ( $container ) use ( $closure ) {

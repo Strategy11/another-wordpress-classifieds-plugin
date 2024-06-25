@@ -15,12 +15,12 @@ abstract class AWPCP_Update_Categories_Task_Runner implements AWPCP_Upgrade_Task
     protected $delegate;
 
     /**
-     * @var Categories Registry
+     * @var AWPCP_Categories_Registry
      */
     protected $categories;
 
     /**
-     * @var WordPress
+     * @var AWPCP_WordPress
      */
     protected $wordpress;
 

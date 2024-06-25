@@ -9,17 +9,17 @@
 class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderInterface {
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 
     /**
-     * @var ListingsLogic
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 
     /**
-     * @var AttachmentsCollection
+     * @var AWPCP_Attachments_Collection
      */
     private $attachments;
 
@@ -29,7 +29,7 @@ class AWPCP_ListingsPersonalDataProvider implements AWPCP_PersonalDataProviderIn
     private $regions;
 
     /**
-     * @var DataFormatter
+     * @var AWPCP_DataFormatter
      */
     private $data_formatter;
 

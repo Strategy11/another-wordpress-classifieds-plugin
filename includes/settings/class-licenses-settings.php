@@ -9,7 +9,7 @@
 class AWPCP_LicensesSettings {
 
     /**
-     * @var SettingsManager
+     * @var AWPCP_SettingsManager
      */
     private $settings_manager;
 

@@ -11,7 +11,7 @@ class AWPCP_AdminMenuBuilder {
     private $listing_post_type;
 
     /**
-     * @var Router
+     * @var AWPCP_Router
      */
     private $router;
 

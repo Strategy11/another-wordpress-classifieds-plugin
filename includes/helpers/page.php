@@ -39,7 +39,7 @@ class AWPCP_Page {
     public $title;
 
     /**
-     * @var TemplateRenderer
+     * @var AWPCP_Template_Renderer
      */
     protected $template_renderer;
 

@@ -16,7 +16,7 @@ function awpcp_complete_open_grap_plugin_integration() {
 class AWPCP_CompleteOpenGraphPluginIntegration {
 
     /**
-     * @var Meta
+     * @var AWPCP_Meta
      */
     private $meta;
 

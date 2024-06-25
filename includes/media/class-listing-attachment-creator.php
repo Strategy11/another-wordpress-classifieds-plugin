@@ -16,7 +16,7 @@ function awpcp_listing_attachment_creator() {
 class AWPCP_Listing_Attachment_Creator {
 
     /**
-     * @var WordPress
+     * @var AWPCP_WordPress
      */
     private $wordpress;
 

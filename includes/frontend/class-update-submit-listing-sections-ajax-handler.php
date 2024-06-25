@@ -10,17 +10,17 @@
 class AWPCP_UpdateSubmitListingSectionsAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
-     * @var SubmitListingSectionsGenerator
+     * @var AWPCP_SubmitLisitngSectionsGenerator
      */
     private $sections_generator;
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 
     /**
-     * @var Payments
+     * @var AWPCP_PaymentsAPI
      */
     private $payments;
 

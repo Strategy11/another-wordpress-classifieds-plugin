@@ -9,7 +9,7 @@
 class AWPCP_ListingsPaymentTransactions {
 
     /**
-     * @var PaymentsAPI
+     * @var AWPCP_PaymentsAPI
      */
     private $payments;
 

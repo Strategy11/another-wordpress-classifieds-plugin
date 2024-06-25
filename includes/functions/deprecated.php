@@ -956,5 +956,5 @@ function create_awpcp_random_seed() {
     _deprecated_function( __FUNCTION__, '4.0.0' );
 
     list( $usec, $sec ) = explode( ' ', microtime() );
-    return (int) $sec + (int) ( $usec * 100000 );
+    return (int) $sec + ( (int) $usec * 100000 );
 }

@@ -21,7 +21,7 @@ class AWPCP_Settings_API {
     public $options = array();
 
     /**
-     * @var Settings
+     * @var AWPCP_SettingsManager
      */
     private $settings_manager;
 

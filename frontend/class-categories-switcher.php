@@ -35,9 +35,9 @@ class AWPCP_Categories_Switcher {
     private $request;
 
     /**
-     * @param object $query     An instance of Query (Not WP_Query).
-     * @param object $settings  An instance of Settings.
-     * @param object $request   An instance of Request.
+     * @param AWPCP_Query        $query    An instance of Query (Not WP_Query).
+     * @param AWPCP_Settings_API $settings An instance of Settings.
+     * @param AWPCP_Request      $request  An instance of Request.
      */
     public function __construct( $query, $settings, $request ) {
         $this->query    = $query;

@@ -15,7 +15,7 @@ class AWPCP_PaymentInformationValidator {
     private $listing_category_taxonomy;
 
     /**
-     * @var AWPCP_CategoriesCollection
+     * @var AWPCP_Categories_Collection
      */
     private $categories;
 

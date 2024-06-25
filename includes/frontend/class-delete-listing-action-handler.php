@@ -9,7 +9,7 @@
 class AWPCP_DeleteListingActionHandler {
 
     /**
-     * @var ListingsLogic
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 

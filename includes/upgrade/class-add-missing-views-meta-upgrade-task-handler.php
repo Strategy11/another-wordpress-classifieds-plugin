@@ -9,7 +9,7 @@
 class AWPCP_AddMissingViewsMetaUpgradeTaskHandler implements AWPCP_Upgrade_Task_Runner {
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 

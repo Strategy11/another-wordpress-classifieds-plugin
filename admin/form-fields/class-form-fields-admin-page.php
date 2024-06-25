@@ -21,12 +21,12 @@ function awpcp_form_fields_admin_page() {
 class AWPCP_FormFieldsAdminPage extends AWPCP_AdminPageWithTable {
 
     /**
-     * @var ListingFormFields
+     * @var AWPCP_ListingFormFields
      */
     private $form_fields;
 
     /**
-     * @var FormFieldsTableFactory
+     * @var AWPCP_FormFieldsTableFactory
      */
     private $table_factory;
 

@@ -9,27 +9,27 @@
 class AWPCP_UpdateListingOrderAjaxHandler extends AWPCP_AjaxHandler {
 
     /**
-     * @var ListingsAPI
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 
     /**
-     * @var PaymentInformationValidator
+     * @var AWPCP_PaymentInformationValidator
      */
     private $payment_information_validator;
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 
     /**
-     * @var ListingsPaymentTransactions
+     * @var AWPCP_ListingsPaymentTransactions
      */
     private $listings_transactions;
 
     /**
-     * @var ListingOrderPostedData
+     * @var AWPCP_ListingOrderPostedData
      */
     private $posted_data;
 

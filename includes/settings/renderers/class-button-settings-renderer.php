@@ -9,7 +9,7 @@
 class AWPCP_ButtonSettingsRenderer {
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

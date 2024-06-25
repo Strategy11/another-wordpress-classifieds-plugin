@@ -22,7 +22,7 @@ class AWPCP_FixIDCollisionForListingCategoriesUpgradeTaskHandler implements AWPC
     private $listing_category_taxonomy;
 
     /**
-     * @var CategoriesRegistry
+     * @var AWPCP_Categories_Registry
      */
     private $categories_registry;
 

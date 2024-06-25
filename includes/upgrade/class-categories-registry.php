@@ -11,7 +11,7 @@
 class AWPCP_Categories_Registry {
 
     /**
-     * @var WordPress
+     * @var AWPCP_ArrayOptions
      */
     private $array_options;
 

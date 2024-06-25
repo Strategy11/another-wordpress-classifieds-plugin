@@ -19,7 +19,7 @@ function awpcp_listing_form_fields() {
 class AWPCP_ListingFormFields {
 
     /**
-     * @var ListingAuthorization
+     * @var AWPCP_ListingAuthorization
      */
     private $authorization;
 

@@ -70,7 +70,7 @@ class AWPCP_FilteredArray implements ArrayAccess, IteratorAggregate {
     }
 
     /**
-     * @param mied $offset  Offset to unset.
+     * @param mixed $offset  Offset to unset.
      * @since 4.0.0
      * @return void
      */

@@ -13,7 +13,7 @@ class AWPCP_Facebook {
     private $last_error = null;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 
@@ -91,7 +91,7 @@ class AWPCP_Facebook {
 
         $response = $this->api_request( '/me/permissions', 'GET', array() );
 
-        if ( ! $response && is_object( $response->last_error ) ) {
+        if ( ! $response && is_object( $this->last_error ) ) {
             throw new AWPCP_Exception( esc_html( $this->last_error->message ) );
         }
 
@@ -336,7 +336,7 @@ class AWPCP_Facebook {
 
         $page_token = $this->settings->get_option( 'facebook-page-access-token' );
 
-        if ( empty( $page_id ) ) {
+        if ( empty( $page_token ) ) {
             return false;
         }
 

@@ -14,7 +14,7 @@ class AWPCP_UploadMediaSubmitListingSection {
     private $template = 'frontend/upload-media-submit-listing-section.tpl.php';
 
     /**
-     * @var AWPCP_AttachmentsCollection
+     * @var AWPCP_Attachments_Collection
      */
     private $attachments;
 
@@ -29,7 +29,7 @@ class AWPCP_UploadMediaSubmitListingSection {
     private $roles;
 
     /**
-     * @var AWPCP_TemplateRenderer
+     * @var AWPCP_Template_Renderer
      */
     private $template_renderer;
 

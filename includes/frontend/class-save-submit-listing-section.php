@@ -14,12 +14,12 @@ class AWPCP_SaveSubmitListingSection {
     private $template = 'frontend/save-submit-listing-section.tpl.php';
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 
     /**
-     * @var TemplateRenderer
+     * @var AWPCP_Template_Renderer
      */
     private $template_renderer;
 

@@ -29,12 +29,12 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
     public $messages = array();
 
     /**
-     * @var EmailHelper
+     * @var AWPCP_EmailHelper
      */
     private $email_helper;
 
     /**
-     * @var Request
+     * @var AWPCP_Request
      */
     private $request;
 

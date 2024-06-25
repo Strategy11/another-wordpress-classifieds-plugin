@@ -150,7 +150,7 @@ class AWPCP_Classified_Pages_Settings {
 class AWPCP_Facebook_Page_Settings {
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

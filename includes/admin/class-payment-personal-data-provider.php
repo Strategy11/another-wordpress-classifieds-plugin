@@ -9,7 +9,7 @@
 class AWPCP_PaymentPersonalDataProvider implements AWPCP_PersonalDataProviderInterface {
 
     /**
-     * @var
+     * @var AWPCP_DataFormatter
      */
     private $data_formatter;
 

@@ -20,17 +20,17 @@ function awpcp_listings_media_uploader_component() {
 class AWPCP_Listings_Media_Uploader_Component {
 
     /**
-     * @var MediaUploaderComponent
+     * @var AWPCP_MediaUploaderComponent
      */
     private $media_uploader_component;
 
     /**
-     * @var FileValidationErrors
+     * @var AWPCP_FileValidationErrors
      */
     private $validation_errors;
 
     /**
-     * @var JavaScript
+     * @var AWPCP_JavaScript
      */
     private $javascript;
 
@@ -69,7 +69,8 @@ class AWPCP_Listings_Media_Uploader_Component {
         $configuration['l10n'] = $strings;
 
         if ( $this->echo ) {
-            return $this->media_uploader_component->show( $configuration );
+            $this->media_uploader_component->show( $configuration );
+            return;
         }
 
         return $this->media_uploader_component->render( $configuration );

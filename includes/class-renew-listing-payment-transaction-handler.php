@@ -22,17 +22,17 @@ function awpcp_renew_listing_payment_transaction_handler() {
 class AWPCP_Renew_Listing_Payment_Transaction_Handler {
 
     /**
-     * @var ListingRenderer
+     * @var AWPCP_ListingRenderer
      */
     private $listing_renderer;
 
     /**
-     * @var ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings;
 
     /**
-     * @var ListingsLogic
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 

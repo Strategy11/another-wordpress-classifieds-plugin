@@ -240,7 +240,7 @@ function awpcp_strptime_replacement( $date, $format ) {
     $unparsed = preg_replace( $regexp, '', $date );
 
     if ( isset( $out['y'] ) && strlen( $out['y'] ) ) {
-        $out['Y'] = ( $out['y'] > 69 ? 1900 : 2000 ) + $out['y'];
+        $out['Y'] = ( $out['y'] > 69 ? 1900 : 2000 ) + absint( $out['y'] );
     }
 
     $ret = array(
@@ -545,7 +545,7 @@ function awpcp_get_grid_item_css_class($classes, $pos, $columns, $rows) {
 
 /**
  * @since 3.0
- * @param array  $params
+ * @param array  $config
  * @param string $url
  * @return string HTML
  */
@@ -846,7 +846,7 @@ function awpcp_default_region_fields( $context='details', $enabled_fields = null
  *
  * @return string|void
  */
-function awpcp_country_list_options( $value = false, $use_names = true, $show = false ) {
+function awpcp_country_list_options( $value = '', $use_names = true, $show = false ) {
     $countries = array(
         'US' => 'United States',
         'AL' => 'Albania',
@@ -2180,8 +2180,6 @@ function awpcp_html_admin_third_level_heading_tag() {
 }
 
 /**
- * @param string $content The already escaped content of the heading tag.
- *
  * @access private
  * @since 3.6
  *

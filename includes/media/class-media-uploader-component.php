@@ -16,7 +16,7 @@ function awpcp_media_uploader_component() {
 class AWPCP_MediaUploaderComponent {
 
     /**
-     * @var JavaScript
+     * @var AWPCP_JavaScript
      */
     private $javascript;
 
@@ -26,7 +26,7 @@ class AWPCP_MediaUploaderComponent {
     private $echo = false;
 
     /**
-     * @param JavaScript $javascript    An instance of JavaScript.
+     * @param AWPCP_JavaScript $javascript    An instance of JavaScript.
      */
     public function __construct( $javascript ) {
         $this->javascript = $javascript;

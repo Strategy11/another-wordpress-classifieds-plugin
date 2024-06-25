@@ -9,7 +9,7 @@
 class AWPCP_EmailSettings {
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

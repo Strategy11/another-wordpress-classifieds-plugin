@@ -14,22 +14,22 @@ class AWPCP_SettingsIntegration {
     private $page_hooks;
 
     /**
-     * @var SettingsManager
+     * @var AWPCP_SettingsManager
      */
     private $settings_manager;
 
     /**
-     * @var SettingsValidator
+     * @var AWPCP_SettingsValidator
      */
     private $settings_validator;
 
     /**
-     * @var SettingsRenderer
+     * @var AWPCP_SettingsRenderer
      */
     private $settings_renderer;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

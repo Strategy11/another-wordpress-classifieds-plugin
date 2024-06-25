@@ -31,19 +31,19 @@ class AWPCP_SEOFrameworkIntegration {
     private $listing_post_type;
 
     /**
-     * @var Query
+     * @var AWPCP_Query
      */
     private $query;
 
     /**
-     * @var AttachmentsCollection
+     * @var AWPCP_Attachments_Collection
      */
     private $attachments;
 
     public $attachment_properties;
 
     /**
-     * @var Request
+     * @var AWPCP_Request
      */
     private $request;
 

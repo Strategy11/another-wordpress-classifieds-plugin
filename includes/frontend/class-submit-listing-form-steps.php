@@ -9,12 +9,12 @@
 class AWPCP_SubmitListingFormSteps implements AWPCP_FormSteps {
 
     /**
-     * @var PaymentsAPI
+     * @var AWPCP_PaymentsAPI
      */
     private $payments;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

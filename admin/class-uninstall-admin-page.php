@@ -24,7 +24,7 @@ class AWPCP_UninstallAdminPage {
     private $uninstaller;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

@@ -6,7 +6,7 @@
 class AWPCP_Migrate_Media_Information_Task_Handler {
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

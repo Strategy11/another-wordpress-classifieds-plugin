@@ -39,12 +39,12 @@ class AWPCP_Export_Settings_Admin_Page {
     private $settings_reader;
 
     /**
-     * @var TemplateRenderer
+     * @var AWPCP_Template_Renderer
      */
     private $template_renderer;
 
     /**
-     * @var Request
+     * @var AWPCP_Request
      */
     private $request;
 

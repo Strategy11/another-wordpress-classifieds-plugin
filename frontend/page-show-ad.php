@@ -14,17 +14,17 @@ class AWPCP_Show_Ad_Page {
     private $listings_content_renderer;
 
     /**
-     * @var object ListingsLogic
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 
     /**
-     * @var object ListingsCollection
+     * @var AWPCP_ListingsCollection
      */
     private $listings_collection;
 
     /**
-     * @var object Request
+     * @var AWPCP_Request
      */
     private $request;
 

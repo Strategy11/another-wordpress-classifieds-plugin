@@ -20,17 +20,17 @@ function awpcp_media_manager_component() {
 class AWPCP_MediaManagerComponent {
 
     /**
-     * @var AttachmentProperties
+     * @var AWPCP_Attachment_Properties
      */
     private $attachment_properties;
 
     /**
-     * @var JavaScript
+     * @var AWPCP_JavaScript
      */
     private $javascript;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

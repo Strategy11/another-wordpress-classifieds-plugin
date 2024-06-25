@@ -24,12 +24,12 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     private $transaction = false;
 
     /**
-     * @var SubmitListingSectionsGenerator
+     * @var AWPCP_SubmitLisitngSectionsGenerator
      */
     private $sections_generator;
 
     /**
-     * @var ListingRenderer
+     * @var AWPCP_ListingRenderer
      */
     private $listing_renderer;
 
@@ -44,7 +44,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     protected $listings;
 
     /**
-     * @var ListingAuthorization
+     * @var AWPCP_ListingAuthorization
      */
     private $authorization;
 
@@ -54,7 +54,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     private $payments;
 
     /**
-     * @var AWPCP_Settings
+     * @var AWPCP_Settings_API
      */
     protected $settings;
 

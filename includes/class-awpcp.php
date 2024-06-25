@@ -489,6 +489,11 @@ class AWPCP {
     /**
      * Make sure disabled posts are returned in the posts array
      * in order to avoid a not found page and display a message instead.
+     *
+     * @param bool     $handle_404
+     * @param WP_Query $wp_query
+     *
+     * @return bool
      */
     public function redirect_deleted_ads( $handle_404, $wp_query ) {
         $classifieds_page_url = awpcp_get_main_page_url();

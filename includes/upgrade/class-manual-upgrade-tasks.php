@@ -24,7 +24,7 @@ function awpcp_manual_upgrade_tasks() {
 class AWPCP_Manual_Upgrade_Tasks {
 
     /**
-     * @var UpgradeTasksManager
+     * @var AWPCP_Upgrade_Tasks_Manager
      */
     private $upgrade_tasks;
 

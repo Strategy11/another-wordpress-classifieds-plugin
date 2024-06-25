@@ -10,17 +10,17 @@
 class AWPCP_StoreCategoriesOrderAsTermMetaTaskHandler implements AWPCP_Upgrade_Task_Runner {
 
     /**
-     * @var CategoriesCollection
+     * @var AWPCP_Categories_Collection
      */
     private $categories;
 
     /**
-     * @var CategoriesRegistry
+     * @var AWPCP_Categories_Registry
      */
     private $categories_registry;
 
     /**
-     * @var WordPress
+     * @var AWPCP_WordPress
      */
     private $wordpress;
 

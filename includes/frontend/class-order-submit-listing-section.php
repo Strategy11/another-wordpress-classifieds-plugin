@@ -16,12 +16,12 @@ class AWPCP_OrderSubmitListingSection {
     private $template = 'frontend/order-submit-listing-section.tpl.php';
 
     /**
-     * @var ListingsAPI
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 
     /**
-     * @var ListingRenderer
+     * @var AWPCP_ListingRenderer
      */
     private $listing_renderer;
 
@@ -36,7 +36,7 @@ class AWPCP_OrderSubmitListingSection {
     private $roles;
 
     /**
-     * @var CAPTCHA
+     * @var AWPCP_CAPTCHA
      */
     private $captcha;
 
@@ -46,7 +46,7 @@ class AWPCP_OrderSubmitListingSection {
     private $template_renderer;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 

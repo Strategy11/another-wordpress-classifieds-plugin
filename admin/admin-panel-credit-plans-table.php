@@ -101,8 +101,11 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
         return '...';
     }
 
+    /**
+     * @param object $item
+     */
     public function column_cb($item) {
-        return '<input type="checkbox" value="' . $item->id . '" name="selected[]" />';
+        return '<input type="checkbox" value="' . esc_attr( $item->id ) . '" name="selected[]" />';
     }
 
     public function column_name($item) {
@@ -121,6 +124,9 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
         return $item->get_formatted_price();
     }
 
+    /**
+     * @param object $item
+     */
     public function single_row($item) {
         static $row_class = '';
         $row_class = $row_class === '' ? 'alternate' : '';
@@ -128,8 +134,7 @@ class AWPCP_CreditPlansTable extends WP_List_Table {
         echo '<tr id="credit-plan-' . esc_attr( $item->id ) . '" data-id="' . esc_attr( $item->id ) . '"';
         echo ' class="' . esc_attr( $row_class ) . '"';
         echo '>';
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo $this->single_row_columns( $item );
+        $this->single_row_columns( $item );
         echo '</tr>';
     }
 }

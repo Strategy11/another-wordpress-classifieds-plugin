@@ -9,7 +9,7 @@
 class AWPCP_AdminContainerConfiguration implements AWPCP_ContainerConfigurationInterface {
 
     /**
-     * @param object $container     An instance of Container.
+     * @param AWPCP_Container $container     An instance of Container.
      */
     public function modify( $container ) {
         $container['Admin'] = $container->service( function( $container ) {

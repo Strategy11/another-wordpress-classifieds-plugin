@@ -9,7 +9,7 @@
 class AWPCP_Attachment_Properties {
 
     /**
-     * @var WordPress
+     * @var AWPCP_WordPress
      */
     private $wordpress;
 

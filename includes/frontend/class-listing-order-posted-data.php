@@ -14,17 +14,17 @@ class AWPCP_ListingOrderPostedData {
     private $listing_category_taxonomy;
 
     /**
-     * @var PaymentsAPI
+     * @var AWPCP_PaymentsAPI
      */
     private $payments;
 
     /**
-     * @var RolesAndCapabilities
+     * @var AWPCP_RolesAndCapabilities
      */
     private $roles;
 
     /**
-     * @var Request
+     * @var AWPCP_Request
      */
     private $request;
 

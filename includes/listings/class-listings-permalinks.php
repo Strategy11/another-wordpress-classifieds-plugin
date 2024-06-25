@@ -18,7 +18,7 @@ class AWPCP_ListingsPermalinks {
     private $category_taxonomy;
 
     /**
-     * @var RewriteRulesHelper
+     * @var AWPCP_Rewrite_Rules_Helper
      */
     private $rewrite_rules_helper;
 
@@ -42,8 +42,8 @@ class AWPCP_ListingsPermalinks {
     /**
      * TODO: move to a Custom Post Types Rewrite Rules class.
      *
-     * @param string $post_type     A post type identifier.
-     * @param string $post_type_object  An instance of WP_Post_Type.
+     * @param string       $post_type     A post type identifier.
+     * @param WP_Post_Type $post_type_object  An instance of WP_Post_Type.
      * @since 4.0.0
      */
     public function update_post_type_permastruct( $post_type, $post_type_object ) {
@@ -312,7 +312,7 @@ class AWPCP_ListingsPermalinks {
     }
 
     /**
-     * @param arary  $rewrite_tags  An array of rewrite tags with their replacements.
+     * @param array  $rewrite_tags  An array of rewrite tags with their replacements.
      * @param string $post_link     The post link.
      * @since 4.0.0
      */

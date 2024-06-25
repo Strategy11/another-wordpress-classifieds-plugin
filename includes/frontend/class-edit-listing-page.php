@@ -24,12 +24,12 @@ class AWPCP_EditListingPage extends AWPCP_Page {
     private $sections_generator;
 
     /**
-     * @var ListingRenderer
+     * @var AWPCP_ListingRenderer
      */
     private $listing_renderer;
 
     /**
-     * @var ListingsLogic
+     * @var AWPCP_ListingsAPI
      */
     private $listings_logic;
 
@@ -39,12 +39,12 @@ class AWPCP_EditListingPage extends AWPCP_Page {
     private $listings;
 
     /**
-     * @var Settings
+     * @var AWPCP_Settings_API
      */
     private $settings;
 
     /**
-     * @var ListingAuthorization
+     * @var AWPCP_ListingAuthorization
      */
     private $authorization;
 

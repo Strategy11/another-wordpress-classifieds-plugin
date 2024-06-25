@@ -12,17 +12,17 @@
 class AWPCP_ListingOwnerMetabox {
 
     /**
-     * @var UserSelector
+     * @var AWPCP_UserSelector
      */
     private $user_selector;
 
     /**
-     * @var UsersCollection
+     * @var AWPCP_UsersCollection
      */
     private $users;
 
     /**
-     * @var RolesAndCapabilities
+     * @var AWPCP_RolesAndCapabilities
      */
     private $roles;
 

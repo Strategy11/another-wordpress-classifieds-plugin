@@ -9,7 +9,7 @@
 class AWPCP_ReCAPTCHAv3 implements AWPCP_ReCAPTCHADelegate {
 
     /**
-     * @var Request
+     * @var AWPCP_Request
      */
     private $request;
 
