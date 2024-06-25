@@ -99,7 +99,7 @@ function awpcp_csv_import_sessions_manager() {
  * @deprecated x.x
  */
 function awpcp_csv_importer_factory() {
-    deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_CSV_Importer_Factory()' );
+    _deprecated_function( __FUNCTION__, 'x.x', 'new AWPCP_CSV_Importer_Factory()' );
     return new AWPCP_CSV_Importer_Factory();
 }
 
