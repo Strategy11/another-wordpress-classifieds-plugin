@@ -20,3 +20,4 @@ bin/vvv-nginx.conf
 !/vendor/composer
 *.css.map
 .phpunit.result.cache
+.idea
