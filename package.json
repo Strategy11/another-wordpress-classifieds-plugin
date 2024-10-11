@@ -1,29 +1,29 @@
 {
-  "name": "another-wordpress-classifieds-plugin",
-  "description": "A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog.",
-  "directories": {
-    "test": "tests"
-  },
-  "scripts": {
-    "preinstall": "npx npm-force-resolutions",
-    "watch": "grunt watch",
-    "test": "phpunit"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/Strategy11/another-wordpress-classifieds-plugin.git"
-  },
-  "keywords": [
-    "wordpress",
-    "classifieds"
-  ],
-  "resolutions": {
-    "braces": "^3.0.3",
-    "shelljs": "^0.8.5"
-  },
-  "author": "Strategy11",
-  "license": "GPL-2.0",
-  "devDependencies": {
+	"name": "another-wordpress-classifieds-plugin",
+	"description": "A plugin that provides the ability to run a free or paid classified ads service on your wordpress blog.",
+	"directories": {
+		"test": "tests"
+	},
+	"scripts": {
+		"preinstall": "npx npm-force-resolutions",
+		"watch": "grunt watch",
+		"test": "phpunit"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/Strategy11/another-wordpress-classifieds-plugin.git"
+	},
+	"keywords": [
+		"wordpress",
+		"classifieds"
+	],
+	"resolutions": {
+		"braces": "^3.0.3",
+		"shelljs": "^0.8.5"
+	},
+	"author": "Strategy11",
+	"license": "GPL-2.0",
+	"devDependencies": {
 		"grunt": "^1.6.1",
 		"grunt-contrib-clean": "^2.0.1",
 		"grunt-contrib-compress": "^2.0.0",
@@ -36,6 +36,6 @@
 		"grunt-text-replace": "^0.4.0",
 		"grunt-wp-i18n": "^1.0.3",
 		"underscore": "^1.13.6",
-    "npm-force-resolutions": "^0.0.10"
-  }
+		"npm-force-resolutions": "^0.0.10"
+	}
 }
