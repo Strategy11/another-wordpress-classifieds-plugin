@@ -5,6 +5,7 @@
     "test": "tests"
   },
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "watch": "grunt watch",
     "test": "phpunit"
   },
@@ -16,6 +17,10 @@
     "wordpress",
     "classifieds"
   ],
+  "resolutions": {
+    "braces": "^3.0.3",
+    "shelljs": "^0.8.5"
+  },
   "author": "Strategy11",
   "license": "GPL-2.0",
   "devDependencies": {
@@ -23,13 +28,14 @@
 		"grunt-contrib-clean": "^2.0.1",
 		"grunt-contrib-compress": "^2.0.0",
 		"grunt-contrib-concat": "~1",
-		"grunt-contrib-jshint": "^1",
+		"grunt-contrib-jshint": "^3.2.0",
 		"grunt-contrib-less": "^3.0.0",
 		"grunt-contrib-uglify": "^5.2.2",
 		"grunt-contrib-watch": "^1.1.0",
 		"grunt-potomo": "^3.5.0",
 		"grunt-text-replace": "^0.4.0",
 		"grunt-wp-i18n": "^1.0.3",
-		"underscore": "^1.13.6"
+		"underscore": "^1.13.6",
+    "npm-force-resolutions": "^0.0.10"
   }
 }
