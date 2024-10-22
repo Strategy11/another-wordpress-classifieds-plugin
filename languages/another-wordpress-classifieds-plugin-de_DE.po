@@ -9915,7 +9915,7 @@ msgstr "Wer ist der Ersteller dieser Anzeige?"
 #: templates/frontend/order-submit-listing-section.tpl.php:86
 #, fuzzy
 msgid "Your ad will be posted on the following categories: %s."
-msgstr "Deine Anzeige wird in den folgenden Kategorien gepostet: {categories}."
+msgstr "Deine Anzeige wird in den folgenden Kategorien gepostet: %s."
 
 #: templates/privacy-policy.tpl.php:10
 msgid "Suggested text:"
