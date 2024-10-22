@@ -142,7 +142,6 @@ class AWPCP_ImportListingsAdminPage {
 
                 $zip = new PclZip( "$working_directory/images.zip" );
 
-                // phpcs:ignore SlevomatCodingStandard.Functions.UnusedParameter
                 // @phpstan-ignore-next-line - PclZip::extract() doesn't require a parameter but it looks for optional parameters.
                 $zip_contents = $zip->extract( PCLZIP_OPT_EXTRACT_AS_STRING );
 
