@@ -186,13 +186,13 @@ final class AWPCP_Onboarding_Wizard {
             return;
         }
 
-        $label = __( 'Onboarding Wizard', 'business-directory-plugin' );
+        $label = __( 'Onboarding Wizard', 'another-wordpress-classifieds-plugin' );
 
         add_submenu_page(
             'wpbdp_admin',
-            __( 'Business Directory', 'business-directory-plugin' ) . ' | ' . $label,
+            awpcp_admin_page_title( $label ),
             $label,
-            wpbdp_backend_minimim_role(),
+            awpcp_admin_capability(),
             self::PAGE_SLUG,
             array( $this, 'render' )
         );
