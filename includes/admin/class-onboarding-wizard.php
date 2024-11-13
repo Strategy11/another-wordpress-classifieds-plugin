@@ -22,14 +22,14 @@ final class AWPCP_Onboarding_Wizard {
      *
      * @var string
      */
-    const PAGE_SLUG = 'wpbdp-onboarding-wizard';
+    const PAGE_SLUG = 'awpcp-onboarding-wizard';
 
     /**
      * Transient name used for managing redirection to the Onboarding Wizard page.
      *
      * @var string
      */
-    const TRANSIENT_NAME = 'wpbdp_activation_redirect';
+    const TRANSIENT_NAME = 'awpcp_activation_redirect';
 
     /**
      * Transient value associated with the redirection to the Onboarding Wizard page.
@@ -37,7 +37,7 @@ final class AWPCP_Onboarding_Wizard {
      *
      * @var string
      */
-    const TRANSIENT_VALUE = 'wpbdp-welcome';
+    const TRANSIENT_VALUE = 'awpcp-welcome';
 
     /**
      * Transient value associated with the redirection to the Onboarding Wizard page.
@@ -45,21 +45,21 @@ final class AWPCP_Onboarding_Wizard {
      *
      * @var string
      */
-    const TRANSIENT_MULTI_VALUE = 'wpbdp-welcome-multi';
+    const TRANSIENT_MULTI_VALUE = 'awpcp-welcome-multi';
 
     /**
      * Option name for storing the redirect status for the Onboarding Wizard page.
      *
      * @var string
      */
-    const REDIRECT_STATUS_OPTION = 'wpbdp_welcome_redirect';
+    const REDIRECT_STATUS_OPTION = 'awpcp_welcome_redirect';
 
     /**
      * Option name for tracking if the onboarding wizard was skipped.
      *
      * @var string
      */
-    const ONBOARDING_SKIPPED_OPTION = 'wpbdp_onboarding_skipped';
+    const ONBOARDING_SKIPPED_OPTION = 'awpcp_onboarding_skipped';
 
     /**
      * Defines the initial step for redirection within the application flow.
@@ -104,12 +104,7 @@ final class AWPCP_Onboarding_Wizard {
      * @return void
      */
     public function do_admin_redirects() {
-        $current_page = wpbdp_get_var(
-            array(
-                'param'    => 'page',
-                'sanitize' => 'sanitize_title',
-            )
-        );
+        $current_page = awpcp_get_var( array( 'param' => 'page' ) );
 
         // Prevent endless loop.
         if ( $current_page === self::PAGE_SLUG ) {
@@ -122,7 +117,7 @@ final class AWPCP_Onboarding_Wizard {
             return;
         }
 
-        if ( $this->has_onboarding_been_skipped() || WPBDP_Admin_Education::is_installed( 'premium' ) ) {
+        if ( $this->has_onboarding_been_skipped() ) {
             return;
         }
 
@@ -140,7 +135,7 @@ final class AWPCP_Onboarding_Wizard {
             return;
         }
 
-        if ( self::TRANSIENT_MULTI_VALUE === $transient_value && ! WPBDP_App_Helper::is_bd_page() ) {
+        if ( self::TRANSIENT_MULTI_VALUE === $transient_value && ! awpcp()->container['Admin']::is_awpcp_post_page() ) {
             // For multi-activations we want to only redirect when a user loads a BD page.
             return;
         }
