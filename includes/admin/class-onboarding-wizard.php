@@ -162,17 +162,15 @@ final class AWPCP_Onboarding_Wizard {
      * @return void
      */
     public function maybe_load_page() {
-        add_action( 'wp_ajax_wpbdp_onboarding_consent_tracking', array( $this, 'ajax_consent_tracking' ) );
+        add_action( 'wp_ajax_awpcp_onboarding_consent_tracking', array( $this, 'ajax_consent_tracking' ) );
 
         if ( $this->is_onboarding_wizard_page() ) {
-            $this->view_path = WPBDP_PATH . 'includes/admin/views/onboarding-wizard/';
+            $this->view_path = AWPCP_DIR . '/includes/admin/views/onboarding-wizard/';
 
             add_action( 'admin_menu', array( $this, 'menu' ), 99 );
-            add_action( 'wpbdp_enqueue_admin_scripts', array( $this, 'enqueue_assets' ), 15 );
-            add_action( 'admin_head', array( $this, 'remove_menu' ) );
+            add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ), 15 );
 
             add_filter( 'admin_body_class', array( $this, 'add_admin_body_classes' ), 999 );
-            add_filter( 'wpbdp_enqueue_floating_links', '__return_false' );
         }
     }
 
