@@ -3242,3 +3242,40 @@ function awpcp_get_server_ip_address_from_httpbin() {
 
     return $body->origin;
 }
+
+/**
+ * Outputs or retrieves sanitized inline SVG content.
+ *
+ * @since x.x
+ * @param string $path       Relative or absolute path to the SVG file.
+ * @param bool   $use_images Whether to prepend the images directory to the path. Default true.
+ * @param bool   $echo       Whether to echo the output or return it. Default true.
+ * @return string|void
+ */
+function awpcp_inline_svg( $path, $use_images = true, $echo = true ) {
+    if ( $use_images ) {
+        $path = AWPCP_URL . '/resources/images/' . $path;
+    }
+
+    if ( ! is_readable( $path ) ) {
+        return '';
+    }
+
+    // Ensure it's an SVG file.
+    $file_info = pathinfo( $path );
+    if ( 'svg' !== strtolower( $file_info['extension'] ) ) {
+        return '';
+    }
+
+    $content = wp_kses_post( file_get_contents( $path ) );
+
+    if ( false === $content ) {
+        return '';
+    }
+
+    if ( $echo ) {
+        echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    } else {
+        return $content;
+    }
+}
