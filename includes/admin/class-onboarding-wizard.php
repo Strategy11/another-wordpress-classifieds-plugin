@@ -324,19 +324,12 @@ final class AWPCP_Onboarding_Wizard {
      * @return void
      */
     public function enqueue_assets() {
-        wp_enqueue_style( self::PAGE_SLUG, WPBDP_ASSETS_URL . '/css/onboarding-wizard.min.css', array(), AWPCP_VERSION );
+        wp_enqueue_style( self::PAGE_SLUG, AWPCP_URL . '/resources/css/onboarding-wizard.css', array(), AWPCP_VERSION );
 
         // Register and enqueue Onboarding Wizard script.
-        wp_register_script( self::PAGE_SLUG, WPBDP_ASSETS_URL . '/js/onboarding-wizard.js', array( 'wp-i18n' ), AWPCP_VERSION, true );
+        wp_register_script( self::PAGE_SLUG, AWPCP_URL . '/resources/js/onboarding-wizard.js', array( 'wp-i18n' ), AWPCP_VERSION, true );
         wp_localize_script( self::PAGE_SLUG, 'wpbdpOnboardingWizardVars', $this->get_js_variables() );
         wp_enqueue_script( self::PAGE_SLUG );
-
-        /**
-         * Fires after the Onboarding Wizard enqueue assets.
-         *
-         * @since x.x
-         */
-        do_action( 'wpbdp_onboarding_wizard_enqueue_assets' );
     }
 
     /**
