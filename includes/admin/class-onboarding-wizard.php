@@ -6,10 +6,6 @@
  * @package AWPCP\Admin
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-    die( 'You are not allowed to call this page directly.' );
-}
-
 /**
  * Handles the Onboarding Wizard page in the admin area.
  *
@@ -135,7 +131,7 @@ class AWPCP_OnboardingWizard {
             return;
         }
 
-        if ( self::TRANSIENT_MULTI_VALUE === $transient_value && ! awpcp()->container['Admin']::is_awpcp_post_page() ) {
+        if ( self::TRANSIENT_MULTI_VALUE === $transient_value && ! awpcp()->container['Admin']->is_awpcp_post_page() ) {
             // For multi-activations we want to only redirect when a user loads a BD page.
             return;
         }
@@ -217,8 +213,8 @@ class AWPCP_OnboardingWizard {
             'view_path' => $view_path,
             // Note: Add step parts in order.
             'step_parts' => array(
-                'consent-tracking' => 'steps/consent-tracking-step.php',
-                'success'          => 'steps/success-step.php',
+                'consent-tracking' => 'steps/consent-tracking-step.tpl.php',
+                'success'          => 'steps/success-step.tpl.php',
             ),
         ) );
     }
@@ -387,7 +383,7 @@ class AWPCP_OnboardingWizard {
      * @return bool True if the current page is the Onboarding Wizard page, false otherwise.
      */
     public function is_onboarding_wizard_page() {
-        return WPBDP_App_Helper::is_admin_page( self::PAGE_SLUG );
+        return awpcp()->container['Admin']->is_admin_page( self::PAGE_SLUG );
     }
 
     /**
