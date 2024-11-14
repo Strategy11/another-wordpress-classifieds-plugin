@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since x.x
  */
-final class AWPCP_Onboarding_Wizard {
+class AWPCP_OnboardingWizard {
 
     /**
      * The slug of the Onboarding Wizard page.
