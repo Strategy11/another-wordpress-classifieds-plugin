@@ -346,18 +346,6 @@ final class AWPCP_Onboarding_Wizard {
     }
 
     /**
-     * Remove the Onboarding Wizard submenu page from the bD parent menu
-     * since it is not necessary to show that link there.
-     *
-     * @since x.x
-     *
-     * @return void
-     */
-    public function remove_menu() {
-        remove_submenu_page( 'wpbdp_admin', self::PAGE_SLUG );
-    }
-
-    /**
      * Adds custom classes to the existing string of admin body classes.
      *
      * The function appends a custom class to the existing admin body classes, enabling full-screen mode for the admin interface.
