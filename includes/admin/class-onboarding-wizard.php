@@ -287,6 +287,36 @@ final class AWPCP_Onboarding_Wizard {
     }
 
     /**
+     * Try to skip any fake emails.
+     *
+     * @since x.x
+     *
+     * @param string $email The user email.
+     *
+     * @return bool
+     */
+    private static function should_send_email_to_active_campaign( $email ) {
+        $substrings = array(
+            '@wpengine.local',
+            '@example.com',
+            '@localhost',
+            '@local.dev',
+            '@local.test',
+            'test@gmail.com',
+            'admin@gmail.com',
+
+        );
+
+        foreach ( $substrings as $substring ) {
+            if ( false !== strpos( $email, $substring ) ) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * Enqueues the Onboarding Wizard page scripts and styles.
      *
      * @since x.x
