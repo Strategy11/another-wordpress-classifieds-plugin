@@ -232,11 +232,12 @@ final class AWPCP_Onboarding_Wizard {
      */
     public function ajax_consent_tracking() {
         // Check permission and nonce.
-        WPBDP_App_Helper::permission_check();
-        check_ajax_referer( 'wpbdp_ajax', 'nonce' );
+        check_ajax_referer( 'awpcp_ajax', 'nonce' );
+        if ( ! awpcp_current_user_is_admin() ) {
+            wp_send_json_error();
+        }
 
-        update_option( 'awpcp-show-tracking-pointer', 0, 'no' );
-        wpbdp_set_option( 'tracking-on', true );
+        // TODO: Enable tracking setting here after adding tracking setting
 
         $this->subscribe_to_active_campaign();
 
