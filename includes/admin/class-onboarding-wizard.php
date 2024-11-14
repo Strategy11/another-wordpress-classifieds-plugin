@@ -165,7 +165,7 @@ final class AWPCP_Onboarding_Wizard {
         add_action( 'wp_ajax_awpcp_onboarding_consent_tracking', array( $this, 'ajax_consent_tracking' ) );
 
         if ( $this->is_onboarding_wizard_page() ) {
-            $this->view_path = AWPCP_DIR . '/includes/admin/views/onboarding-wizard/';
+            $this->view_path = AWPCP_DIR . '/templates/admin/onboarding-wizard/';
 
             add_action( 'admin_menu', array( $this, 'menu' ), 99 );
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ), 15 );
@@ -211,18 +211,16 @@ final class AWPCP_Onboarding_Wizard {
             $this->has_already_redirected();
         }
 
-        // Include SVG images for icons.
-        WPBDP_App_Helper::include_svg();
+        $view_path = $this->get_view_path();
 
-        $view_path        = $this->get_view_path();
-
+        return awpcp_render_template( $view_path . 'index.tpl.php', array(
+            'view_path' => $view_path,
         // Note: Add step parts in order.
-        $step_parts = array(
+            'step_parts' => array(
             'consent-tracking' => 'steps/consent-tracking-step.php',
             'success'          => 'steps/success-step.php',
-        );
-
-        include $view_path . 'index.php';
+            ),
+        ) );
     }
 
     /**
