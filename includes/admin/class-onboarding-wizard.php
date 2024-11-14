@@ -215,10 +215,10 @@ final class AWPCP_Onboarding_Wizard {
 
         return awpcp_render_template( $view_path . 'index.tpl.php', array(
             'view_path' => $view_path,
-        // Note: Add step parts in order.
+            // Note: Add step parts in order.
             'step_parts' => array(
-            'consent-tracking' => 'steps/consent-tracking-step.php',
-            'success'          => 'steps/success-step.php',
+                'consent-tracking' => 'steps/consent-tracking-step.php',
+                'success'          => 'steps/success-step.php',
             ),
         ) );
     }
@@ -376,7 +376,7 @@ final class AWPCP_Onboarding_Wizard {
      * @return void
      */
     public function mark_onboarding_as_skipped() {
-        update_option( self::ONBOARDING_SKIPPED_OPTION, true, 'no' );
+        update_option( self::ONBOARDING_SKIPPED_OPTION, true );
     }
 
     /**
@@ -400,7 +400,7 @@ final class AWPCP_Onboarding_Wizard {
             return true;
         }
 
-        update_option( self::REDIRECT_STATUS_OPTION, AWPCP_VERSION, 'no' );
+        update_option( self::REDIRECT_STATUS_OPTION, AWPCP_VERSION );
         return false;
     }
 
