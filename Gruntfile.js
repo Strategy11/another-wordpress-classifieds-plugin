@@ -210,7 +210,7 @@ module.exports = function( grunt ) {
 
 			grunt.config.set( 'less.' + config.slug, config.less );
 			grunt.config.set( 'watch.' + config.name + '-css', {
-				files: [ folder + '/less/**/*.less' ],
+				files: [ folder + 'resources/less/**/*.less' ],
 				tasks: [ 'less:' + config.slug ]
 			} );
 		},
