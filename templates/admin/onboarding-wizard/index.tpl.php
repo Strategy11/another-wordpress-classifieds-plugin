@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         <?php
         foreach ( $step_parts as $step => $file ) {
-            // require AWPCP_DIR . '/templates/admin/onboarding-wizard/' . $file;
+            require AWPCP_DIR . '/templates/admin/onboarding-wizard/' . $file;
         }
         ?>
 

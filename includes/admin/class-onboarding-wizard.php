@@ -167,6 +167,7 @@ class AWPCP_OnboardingWizard {
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ), 15 );
 
             add_filter( 'admin_body_class', array( $this, 'add_admin_body_classes' ), 999 );
+            add_filter( 'awpcp-show-quick-start-guide-notice', '__return_false' );
         }
     }
 
@@ -209,7 +210,7 @@ class AWPCP_OnboardingWizard {
 
         $view_path = $this->get_view_path();
 
-        return awpcp_render_template( $view_path . 'index.tpl.php', array(
+        echo awpcp_render_template( $view_path . 'index.tpl.php', array(
             'view_path' => $view_path,
             // Note: Add step parts in order.
             'step_parts' => array(
@@ -320,12 +321,12 @@ class AWPCP_OnboardingWizard {
      * @return void
      */
     public function enqueue_assets() {
-        wp_enqueue_style( self::PAGE_SLUG, AWPCP_URL . '/resources/css/onboarding-wizard.css', array(), AWPCP_VERSION );
+        wp_enqueue_style( self::PAGE_SLUG, AWPCP_URL . '/resources/css/awpcp-onboarding-wizard.css', array(), AWPCP_VERSION );
 
         // Register and enqueue Onboarding Wizard script.
-        wp_register_script( self::PAGE_SLUG, AWPCP_URL . '/resources/js/onboarding-wizard.js', array( 'wp-i18n' ), AWPCP_VERSION, true );
-        wp_localize_script( self::PAGE_SLUG, 'wpbdpOnboardingWizardVars', $this->get_js_variables() );
-        wp_enqueue_script( self::PAGE_SLUG );
+        // wp_register_script( self::PAGE_SLUG, AWPCP_URL . '/resources/js/onboarding-wizard.js', array( 'wp-i18n' ), AWPCP_VERSION, true );
+        // wp_localize_script( self::PAGE_SLUG, 'wpbdpOnboardingWizardVars', $this->get_js_variables() );
+        // wp_enqueue_script( self::PAGE_SLUG );
     }
 
     /**
