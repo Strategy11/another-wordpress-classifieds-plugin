@@ -3254,7 +3254,7 @@ function awpcp_get_server_ip_address_from_httpbin() {
  */
 function awpcp_inline_svg( $path, $use_images = true, $echo = true ) {
     if ( $use_images ) {
-        $path = AWPCP_URL . '/resources/images/' . $path;
+        $path = AWPCP_DIR . '/resources/images/' . $path;
     }
 
     if ( ! is_readable( $path ) ) {
@@ -3267,7 +3267,7 @@ function awpcp_inline_svg( $path, $use_images = true, $echo = true ) {
         return '';
     }
 
-    $content = wp_kses_post( file_get_contents( $path ) );
+    $content = file_get_contents( $path );
 
     if ( false === $content ) {
         return '';
