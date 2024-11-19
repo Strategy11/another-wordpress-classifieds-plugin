@@ -264,19 +264,19 @@ class AWPCP_OnboardingWizard {
         $last_name  = get_user_meta( $user_id, 'last_name', true );
 
         wp_remote_post(
-            'https://feedback.strategy11.com/wp-admin/admin-ajax.php?action=frm_forms_preview&form=tasty-onboarding',
+            'https://feedback.strategy11.com/wp-admin/admin-ajax.php?action=frm_forms_preview&form=awp-onboarding',
             array(
                 'body' => http_build_query(
                     array(
-                        'form_key'       => 'subscribe-onboarding',
+                        'form_key'       => 'awp-onboarding',
                         'frm_action'     => 'create',
-                        'form_id'        => 21,
+                        'form_id'        => 22,
                         'item_key'       => '',
                         'item_meta[0]'   => '',
-                        'item_meta[228]' => $user->user_email,
-                        'item_meta[231]' => 'Source - WPT Plugin Onboarding',
-                        'item_meta[229]' => is_string( $first_name ) ? $first_name : '',
-                        'item_meta[230]' => is_string( $last_name ) ? $last_name : '',
+                        'item_meta[233]' => $user->user_email,
+                        'item_meta[231]' => 'Source - AWP Plugin Onboarding',
+                        'item_meta[234]' => is_string( $first_name ) ? $first_name : '',
+                        'item_meta[235]' => is_string( $last_name ) ? $last_name : '',
                     )
                 ),
             )
