@@ -11,12 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 <section id="awpcp-onboarding-consent-tracking-step" class="awpcp-onboarding-step awpcp-card-box awpcp-current" data-step-name="<?php echo esc_attr( $step ); ?>">
-    <div class="awpcp-card-box-header">
-        <?php awpcp_inline_svg( 'logo.svg' ); ?>
-    </div>
+    <div class="awpcp-card-box-header"><?php awpcp_inline_svg( 'logo.svg' ); ?></div>
 
     <div class="awpcp-card-box-content">
         <h2 class="awpcp-card-box-title"><?php esc_html_e( 'Never miss an important update', 'another-wordpress-classifieds-plugin' ); ?></h2>
+
         <p class="awpcp-card-box-text">
             <?php esc_html_e( 'Get key updates, tips, and occasional offers to enhance your WordPress experience. Opt in and help us improve compatibility with your site!', 'another-wordpress-classifieds-plugin' ); ?>
         </p>
