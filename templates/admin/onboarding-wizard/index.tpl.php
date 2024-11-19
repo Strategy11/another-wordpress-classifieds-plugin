@@ -13,10 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div id="awpcp-onboarding-wizard-page" class="awpcp-hide-js" data-current-step="consent-tracking">
     <div id="awpcp-onboarding-container">
         <ul id="awpcp-onboarding-rootline" class="awpcp-onboarding-rootline">
-            <li class="awpcp-onboarding-rootline-item" data-step="consent-tracking">
+            <li class="awpcp-onboarding-rootline-item awpcp-completed-step" data-step="consent-tracking">
                 <?php awpcp_inline_svg( 'icon-check.svg' ); ?>
             </li>
-            <li class="awpcp-onboarding-rootline-item" data-step="success">
+            <li class="awpcp-onboarding-rootline-item awpcp-current" data-step="success">
                 <?php awpcp_inline_svg( 'icon-check.svg' ); ?>
             </li>
         </ul>
@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         }
         ?>
 
-        <a id="awpcp-onboarding-return-dashboard" href="<?php echo esc_url( admin_url( 'admin.php?page=awpcp-admin-settings' ) ); ?>">
+        <a id="awpcp-onboarding-return-dashboard" href="<?php echo esc_url( admin_url( 'admin.php?page=awpcp.php' ) ); ?>">
             <?php esc_html_e( 'Exit Onboarding', 'another-wordpress-classifieds-plugin' ); ?>
         </a>
     </div>
