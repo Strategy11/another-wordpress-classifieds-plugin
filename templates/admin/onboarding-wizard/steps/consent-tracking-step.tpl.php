@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <section id="awpcp-onboarding-consent-tracking-step" class="awpcp-onboarding-step awpcp-card-box awpcp-current" data-step-name="<?php echo esc_attr( $step ); ?>">
     <div class="awpcp-card-box-header">
-        <?php // awpcp_inline_svg( 'icon-check.svg' ); ?>
+        <?php awpcp_inline_svg( 'logo.svg' ); ?>
     </div>
 
     <div class="awpcp-card-box-content">
@@ -23,11 +23,11 @@ if ( ! defined( 'ABSPATH' ) ) {
     </div>
 
     <div class="awpcp-card-box-footer">
-        <a href="#" class="tasty-button tasty-highlight awpcp-onboarding-skip-step">
+        <a href="#" class="button button-secondary awpcp-onboarding-skip-step">
             <?php esc_html_e( 'Skip', 'another-wordpress-classifieds-plugin' ); ?>
         </a>
 
-        <a href="#" id="awpcp-onboarding-consent-tracking" class="tasty-button tasty-button-pink">
+        <a href="#" id="awpcp-onboarding-consent-tracking" class="button button-primary">
             <?php
             esc_html_e( 'Allow & Continue', 'another-wordpress-classifieds-plugin' );
             awpcp_inline_svg( 'arrow-right-icon.svg' );
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     <div class="awpcp-card-box-permission">
         <span class="awpcp-collapsible">
             <?php
-            esc_html_e( 'Allow Tasty Recipes Plugin to', 'another-wordpress-classifieds-plugin' );
+            esc_html_e( 'Allow AWP Classifieds Plugin to', 'another-wordpress-classifieds-plugin' );
             awpcp_inline_svg( 'arrow-bottom-icon.svg' );
             ?>
         </span>
