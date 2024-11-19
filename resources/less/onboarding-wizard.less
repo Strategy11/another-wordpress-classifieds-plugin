@@ -46,7 +46,7 @@ html.wp-toolbar {
 	background-color: var(--grey-50);
 	margin: 0;
 	overflow: hidden;
-	color: var(--grey-700);
+	color: var(--grey-600);
 
 	&,
 	&:before,
@@ -58,7 +58,7 @@ html.wp-toolbar {
 	}
 
 	h2 {
-	  color: var(--grey-800);
+		color: var(--grey-900);
 	}
 
 	#awpcp-onboarding-container {
@@ -105,22 +105,19 @@ html.wp-toolbar {
 		z-index: 2;
 
 		&.awpcp-completed-step {
-		  background-color: var(--grey-700);
-		  border-color: var(--grey-700);
+				background-color: var(--grey-500);
+				border-color: var(--grey-500);
 		}
 
 		&.awpcp-current {
 		  background-color: #fff;
-		  border-color: var(--pink);
+				border-color: var(--primary-color-600);
 		}
 
 		svg {
 		  width: 11px;
 		  height: 11px;
-
-		  path {
-			fill: #fff;
-		  }
+				color: #fff;
 		}
 
 		&:not(.awpcp-completed-step) svg {
@@ -137,7 +134,7 @@ html.wp-toolbar {
 	  text-decoration: none;
 
 	  &:hover {
-		color: var(--grey-700);
+			color: var(--grey-500);
 	  }
 	}
 
@@ -213,6 +210,7 @@ html.wp-toolbar {
 		}
 
 		.awpcp-collapsible {
+				color: var(--grey-500);
 		  cursor: pointer;
 
 		  &.awpcp-open svg {
