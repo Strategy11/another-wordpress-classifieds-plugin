@@ -186,7 +186,7 @@ class AWPCP_OnboardingWizard {
         $label = __( 'Onboarding Wizard', 'another-wordpress-classifieds-plugin' );
 
         add_submenu_page(
-            'wpbdp_admin',
+            'awpcp.php',
             awpcp_admin_page_title( $label ),
             $label,
             awpcp_admin_capability(),
@@ -229,7 +229,7 @@ class AWPCP_OnboardingWizard {
      */
     public function ajax_consent_tracking() {
         // Check permission and nonce.
-        check_ajax_referer( 'awpcp_ajax', 'nonce' );
+        check_ajax_referer( 'awpcp_onboarding_nonce', 'nonce' );
         if ( ! awpcp_current_user_is_admin() ) {
             wp_send_json_error();
         }
@@ -324,9 +324,9 @@ class AWPCP_OnboardingWizard {
         wp_enqueue_style( self::PAGE_SLUG, AWPCP_URL . '/resources/css/awpcp-onboarding-wizard.css', array(), AWPCP_VERSION );
 
         // Register and enqueue Onboarding Wizard script.
-        // wp_register_script( self::PAGE_SLUG, AWPCP_URL . '/resources/js/onboarding-wizard.js', array( 'wp-i18n' ), AWPCP_VERSION, true );
-        // wp_localize_script( self::PAGE_SLUG, 'wpbdpOnboardingWizardVars', $this->get_js_variables() );
-        // wp_enqueue_script( self::PAGE_SLUG );
+        wp_register_script( self::PAGE_SLUG, AWPCP_URL . '/resources/js/onboarding-wizard.js', array( 'wp-i18n' ), AWPCP_VERSION, true );
+        wp_localize_script( self::PAGE_SLUG, 'awpcpOnboardingWizardVars', $this->get_js_variables() );
+        wp_enqueue_script( self::PAGE_SLUG );
     }
 
     /**
@@ -338,6 +338,7 @@ class AWPCP_OnboardingWizard {
      */
     private function get_js_variables() {
         return array(
+            'NONCE'        => wp_create_nonce( 'awpcp_onboarding_nonce' ),
             'INITIAL_STEP' => self::INITIAL_STEP,
         );
     }
