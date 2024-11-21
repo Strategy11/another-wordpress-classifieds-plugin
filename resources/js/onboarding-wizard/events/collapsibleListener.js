@@ -5,7 +5,7 @@ import { getElements } from '../elements';
 import { HIDDEN_CLASS, OPEN_CLASS } from '../shared';
 
 /**
- * Manages event handling for the "Skip" step button.
+ * Manages event handling for collapsible sections in the onboarding wizard.
  *
  * @return {void}
  */
