@@ -82,6 +82,7 @@ module.exports = function(grunt) {
 				'<%= path.awpcp %>resources/css/awpcpstyle.css': '<%= path.awpcp %>resources/less/frontend.less',
 				'<%= path.awpcp %>resources/css/awpcp-admin.css': '<%= path.awpcp %>resources/less/admin.less',
 				'<%= path.awpcp %>resources/css/awpcp-admin-menu.css': '<%= path.awpcp %>resources/less/admin-menu.less',
+        '<%= path.awpcp %>resources/css/awpcp-onboarding-wizard.css': '<%= path.awpcp %>resources/less/onboarding-wizard.less',
 			}
 		},
 		i18n: {

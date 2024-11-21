@@ -117,6 +117,8 @@ class AWPCP {
 
         $this->register_settings_handlers();
 
+        $this->container['OnboardingWizard']->load_admin_hooks();
+
         // register rewrite rules when the plugin file is loaded.
         // generate_rewrite_rules or rewrite_rules_array hooks are
         // too late to add rules using add_rewrite_rule function
