@@ -17,8 +17,7 @@ export default function setupInitialView() {
 }
 
 /**
- * Determines the initial step in the onboarding process and navigates to it, considering the installation
- * status of Formidable Pro and specific query parameters.
+ * Determines the initial step in the onboarding process and navigates to it.
  *
  * @private
  * @return {void}
@@ -31,8 +30,7 @@ function navigateToInitialStep() {
 }
 
 /**
- * Determines the initial step based on the current state, such as whether Formidable Pro is installed
- * and the presence of specific query parameters. Also handles the removal of unnecessary steps.
+ * Determines the initial step based on the current state.
  *
  * @private
  * @return {string} The name of the initial step to navigate to.

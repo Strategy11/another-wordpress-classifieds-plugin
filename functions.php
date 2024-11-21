@@ -3244,7 +3244,7 @@ function awpcp_get_server_ip_address_from_httpbin() {
 }
 
 /**
- * Outputs or retrieves sanitized inline SVG content.
+ * Outputs or retrieves SVG content.
  *
  * @since x.x
  * @param string $path       Relative or absolute path to the SVG file.

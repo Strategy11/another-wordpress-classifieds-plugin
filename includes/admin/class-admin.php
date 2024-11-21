@@ -163,7 +163,7 @@ class AWPCP_Admin {
     }
 
     /**
-     * Check for certain page in Formidable settings
+     * Determine if the current page is a specific AWP Classifieds admin page.
      *
      * @since x.x
      * @param string $page The name of the page to check.
