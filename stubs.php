@@ -1,6 +1,7 @@
 <?php
 
 namespace {
+    global $awpcp_db_version;
 
     define( 'OBJECT', 'OBJECT' );
     define( 'OBJECT_K', 'OBJECT_K' );
@@ -28,6 +29,7 @@ namespace {
     define( 'COOKIEPATH', '' );
     define( 'SITECOOKIEPATH', '' );
 
+    define( 'AWPCP_VERSION', $awpcp_db_version );
     define( 'AWPCP_DIR', dirname( __FILE__ ) );
     define( 'AWPCP_FILE', AWPCP_DIR . '/awpcp.php' );
     define( 'AWPCP_URL', 'http://example.com/wp-content/plugins/' . basename( AWPCP_DIR ) . '/awpcp.php' );
