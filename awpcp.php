@@ -101,6 +101,11 @@ if ( file_exists( AWPCP_DIR . '/awpcp_category_icons_module.php' ) ) {
 }
 /* End of legacy code. */
 
+// Load text domain in init to match the changes in WP 6.7.
+add_action( 'init', function () {
+    awpcp_load_plugin_textdomain( AWPCP_FILE );
+} );
+
 /**
  * BuddyPress normally attaches bp_loaded to plugins_loaded with priority 10.
  * When changing the priorities below, please make sure that modules are
