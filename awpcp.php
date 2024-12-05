@@ -238,3 +238,14 @@ function awpcp() {
 
     return $awpcp;
 }
+
+// TODO: Remove this code after resolving the plugin activation issue. It's duplicated in AWPCP_Installer->activate().
+register_activation_hook( __FILE__, function () {
+    if ( get_transient( AWPCP_OnboardingWizard::TRANSIENT_NAME ) !== 'no' ) {
+        set_transient(
+            AWPCP_OnboardingWizard::TRANSIENT_NAME,
+            AWPCP_OnboardingWizard::TRANSIENT_VALUE,
+            60
+        );
+    }
+} );
