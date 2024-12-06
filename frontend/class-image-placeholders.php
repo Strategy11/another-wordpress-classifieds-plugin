@@ -190,7 +190,6 @@ class AWPCP_Image_Placeholders {
                     'alt' => awpcp_esc_attr( $this->listing_renderer->get_listing_title( $ad ) ),
                     'src' => esc_attr( $thumbnail ),
                     'width' => esc_attr( $thumbnail_width ),
-                    'style' => 'width: 80px !important;',
                 ),
             );
 
