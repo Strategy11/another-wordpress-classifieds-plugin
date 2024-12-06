@@ -2597,8 +2597,8 @@ function awpcp_maybe_include_lightbox_style() {
  * @since 3.9.2     Modified to use load_plugin_textdomain() in preparation for
  *                  adding support for Language Packs.
  */
-function awpcp_load_plugin_textdomain( $__file__ ) {
-    $basename = dirname( plugin_basename( $__file__ ) );
+function awpcp_load_plugin_textdomain() {
+    $basename = dirname( plugin_basename( AWPCP_FILE ) );
 
     $locale = function_exists( 'determine_locale' ) ? determine_locale() : get_locale();
     $locale = apply_filters( 'plugin_locale', $locale, 'another-wordpress-classifieds-plugin' );
