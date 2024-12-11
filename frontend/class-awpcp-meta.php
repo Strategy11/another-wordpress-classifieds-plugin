@@ -246,12 +246,20 @@ class AWPCP_Meta {
             $format = get_option( 'date_format' );
         }
 
+        if ( empty( $this->properties['published-time'] ) ) {
+            return $the_date;
+        }
+
         return mysql2date( $format, $this->properties['published-time'] );
     }
 
     public function get_the_modified_date( $the_date, $format ) {
         if ( ! $format ) {
             $format = get_option( 'date_format' );
+        }
+
+        if ( empty( $this->properties['modified-time'] ) ) {
+            return $the_date;
         }
 
         return mysql2date( $format, $this->properties['modified-time'] );
