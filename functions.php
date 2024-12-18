@@ -3246,7 +3246,7 @@ function awpcp_get_server_ip_address_from_httpbin() {
 /**
  * Outputs or retrieves SVG content.
  *
- * @since x.x
+ * @since 4.3.5
  * @param string $path       Relative or absolute path to the SVG file.
  * @param bool   $use_images Whether to prepend the images directory to the path. Default true.
  * @param bool   $echo       Whether to echo the output or return it. Default true.

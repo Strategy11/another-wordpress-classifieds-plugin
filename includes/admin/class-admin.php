@@ -165,7 +165,7 @@ class AWPCP_Admin {
     /**
      * Determine if the current page is a specific AWP Classifieds admin page.
      *
-     * @since x.x
+     * @since 4.3.5
      * @param string $page The name of the page to check.
      * @return bool
      */

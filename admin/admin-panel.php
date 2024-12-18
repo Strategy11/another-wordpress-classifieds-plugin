@@ -406,7 +406,7 @@ class AWPCP_AdminPanel {
         /**
          * Filters whether to show the quick start guide notice in the admin area.
          *
-         * @since x.x
+         * @since 4.3.5
          *
          * @param bool $show_quick_start_quide_notice Whether to show the quick start guide notice.
          */

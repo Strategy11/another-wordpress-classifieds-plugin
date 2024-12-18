@@ -9,7 +9,7 @@
 /**
  * Handles the Onboarding Wizard page in the admin area.
  *
- * @since x.x
+ * @since 4.3.5
  */
 class AWPCP_OnboardingWizard {
 
@@ -81,7 +81,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Initialize hooks for template page only.
      *
-     * @since x.x
+     * @since 4.3.5
      */
     public function load_admin_hooks() {
         $this->set_page_url();
@@ -153,7 +153,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Initializes the Onboarding Wizard setup if on its designated admin page.
      *
-     * @since x.x
+     * @since 4.3.5
      *
      * @return void
      */
@@ -174,7 +174,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Add Onboarding Wizard menu item to sidebar and define index page.
      *
-     * @since x.x
+     * @since 4.3.5
      *
      * @return void
      */
@@ -198,7 +198,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Renders the Onboarding Wizard page in the WordPress admin area.
      *
-     * @since x.x
+     * @since 4.3.5
      *
      * @return void
      */
@@ -223,7 +223,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Handle AJAX request to setup the "Never miss an important update" step.
      *
-     * @since x.x
+     * @since 4.3.5
      *
      * @return void
      */
@@ -245,7 +245,7 @@ class AWPCP_OnboardingWizard {
     /**
      * When the user consents to receiving news of updates, subscribe their email to ActiveCampaign.
      *
-     * @since x.x
+     * @since 4.3.5
      *
      * @return void
      */
@@ -286,7 +286,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Try to skip any fake emails.
      *
-     * @since x.x
+     * @since 4.3.5
      *
      * @param string $email The user email.
      *
@@ -316,7 +316,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Enqueues the Onboarding Wizard page scripts and styles.
      *
-     * @since x.x
+     * @since 4.3.5
      *
      * @return void
      */
@@ -332,7 +332,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Get the Onboarding Wizard JS variables as an array.
      *
-     * @since x.x
+     * @since 4.3.5
      *
      * @return array
      */
@@ -348,7 +348,7 @@ class AWPCP_OnboardingWizard {
      *
      * The function appends a custom class to the existing admin body classes, enabling full-screen mode for the admin interface.
      *
-     * @since x.x
+     * @since 4.3.5
      *
      * @param string $classes Existing body classes.
      * @return string Updated list of body classes, including the newly added classes.
@@ -360,7 +360,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Checks if the Onboarding Wizard was skipped during the plugin's installation.
      *
-     * @since x.x
+     * @since 4.3.5
      * @return bool True if the Onboarding Wizard was skipped, false otherwise.
      */
     public function has_onboarding_been_skipped() {
@@ -370,7 +370,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Marks the Onboarding Wizard as skipped to prevent automatic redirects to the wizard.
      *
-     * @since x.x
+     * @since 4.3.5
      * @return void
      */
     public function mark_onboarding_as_skipped() {
@@ -380,7 +380,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Check if the current page is the Onboarding Wizard page.
      *
-     * @since x.x
+     * @since 4.3.5
      *
      * @return bool True if the current page is the Onboarding Wizard page, false otherwise.
      */
@@ -405,7 +405,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Get the path to the Onboarding Wizard views.
      *
-     * @since x.x
+     * @since 4.3.5
      *
      * @return string Path to views.
      */
@@ -425,7 +425,7 @@ class AWPCP_OnboardingWizard {
     /**
      * Get the path to the Onboarding Wizard views.
      *
-     * @since x.x
+     * @since 4.3.5
      *
      * @return string Path to views.
      */
