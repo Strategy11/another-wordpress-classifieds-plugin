@@ -466,6 +466,9 @@ class AWPCP {
             add_filter( 'pre_handle_404', [$this, 'expired_ads'], 10, 2 );
             add_filter( 'the_content', array( $listings_content, 'filter_content' ) );
 
+            // Remove shortcodes from listing content
+            add_filter( 'the_content', array( $listings_content, 'filter_content_with_shortcodes' ), 7 );
+
             add_filter( 'awpcp-content-before-listing-page', 'awpcp_insert_classifieds_bar_before_listing_page' );
         }
 
