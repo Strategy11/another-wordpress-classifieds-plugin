@@ -75,7 +75,7 @@ class AWPCP_ListingsContent {
      *
      * @since x.x
      *
-     * @param object $post An instance of WP_Post.
+     * @param WP_Post|boolean $post An instance of WP_Post or false.
      *
      * @return boolean
      */
