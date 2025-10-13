@@ -4,8 +4,8 @@ Contributors: awpcp, sswells, srwells
 Tags: listings, classified ads, classified, classifieds, directory plugin, classifieds script, classified theme, wp classified, ads
 Requires at least: 6.2.0
 Requires PHP: 5.6
-Tested up to: 6.7.1
-Stable tag: 4.3.5
+Tested up to: 6.8.3
+Stable tag: 4.3.6
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -166,6 +166,9 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+= 4.3.6 =
+* Fix: Minor security vulnerability
+
 = 4.3.5 =
 * New: Added an onboarding wizard
 * Fix: Updated one of the dependencies to fix an NPM vulnerability
@@ -226,8 +229,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fix: When ad content was clickable, it was adding p tags to the link.
 * Fix: The ad exporter was missing column headings.
 * Fix: The option to mark as spam was showing in the bulk options when Akismet was disabled.
-
-= 4.1.5 =
-* New: Allow more field placeholders based on the slug (like ad_contact_email and more)
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>

@@ -54,7 +54,7 @@ class AWPCP_ListingsContent {
     /**
      * Remove shortcodes from listings content.
      *
-     * @since x.x
+     * @since 4.3.6
      *
      * @param string $content The content of the current post.
      *
@@ -73,7 +73,7 @@ class AWPCP_ListingsContent {
     /**
      * Check if the current post is a single listing page.
      *
-     * @since x.x
+     * @since 4.3.6
      *
      * @param WP_Post|boolean $post An instance of WP_Post or false.
      *

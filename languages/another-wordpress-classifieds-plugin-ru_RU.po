@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2024-12-18 11:50:36+00:00\n"
+"POT-Creation-Date: 2025-10-13 11:29:48+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Russian (Russia) (http://www.transifex.com/wp-translations/"
@@ -68,7 +68,7 @@ msgstr "Аттрибуты"
 msgid "Categories"
 msgstr "Категории"
 
-#: admin/admin-panel-fees-table.php:127 includes/class-awpcp.php:845
+#: admin/admin-panel-fees-table.php:127 includes/class-awpcp.php:848
 msgid "Featured Ads"
 msgstr "Избранные объявления"
 
@@ -3472,7 +3472,7 @@ msgid ""
 "one of the associated listings: <error-message>"
 msgstr ""
 
-#: includes/class-awpcp.php:772
+#: includes/class-awpcp.php:775
 msgid ""
 "AWPCP requires the graphics processing library GD and it is not installed. "
 "Contact your web host to fix this."
@@ -3480,88 +3480,88 @@ msgstr ""
 "AWPCP требуется библиотека обработки графики GD которая не установлена. "
 "Обратитесь поддержку веб-хостинга, чтобы это исправить."
 
-#: includes/class-awpcp.php:773
+#: includes/class-awpcp.php:776
 #: includes/placeholders/class-placeholders-installation-verifier.php:63
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: includes/class-awpcp.php:789
+#: includes/class-awpcp.php:792
 msgid "Attachments"
 msgstr "Вложения"
 
-#: includes/class-awpcp.php:796
+#: includes/class-awpcp.php:799
 msgid "Authorize.Net"
 msgstr "Authorize.Net"
 
-#: includes/class-awpcp.php:803
+#: includes/class-awpcp.php:806
 msgid "BuddyPress Listings"
 msgstr "Объявления BuddyPress"
 
-#: includes/class-awpcp.php:810
+#: includes/class-awpcp.php:813
 msgid "Campaign Manager"
 msgstr "Менеджер кампаний"
 
-#: includes/class-awpcp.php:817
+#: includes/class-awpcp.php:820
 msgid "Category Icons"
 msgstr "Иконки категорий"
 
-#: includes/class-awpcp.php:824
+#: includes/class-awpcp.php:827
 msgid "Comments & Ratings"
 msgstr "Комментарии и рейтинги"
 
-#: includes/class-awpcp.php:831
+#: includes/class-awpcp.php:834
 msgid "Coupons/Discount"
 msgstr "Купоны/Скидки"
 
-#: includes/class-awpcp.php:838
+#: includes/class-awpcp.php:841
 msgid "Extra Fields"
 msgstr "Дополнительные поля"
 
-#: includes/class-awpcp.php:852
+#: includes/class-awpcp.php:855
 msgid "Fee per Category"
 msgstr "Тариф для категории"
 
-#: includes/class-awpcp.php:859
+#: includes/class-awpcp.php:862
 msgid "Mark as Sold"
 msgstr "Пометить как Продано"
 
-#: includes/class-awpcp.php:866
+#: includes/class-awpcp.php:869
 msgid "PayPal Pro"
 msgstr "PayPal Pro"
 
-#: includes/class-awpcp.php:873
+#: includes/class-awpcp.php:876
 msgid "Regions Control"
 msgstr "Управление Регионами"
 
-#: includes/class-awpcp.php:880
+#: includes/class-awpcp.php:883
 msgid "RSS"
 msgstr "RSS"
 
-#: includes/class-awpcp.php:887
+#: includes/class-awpcp.php:890
 msgid "Stripe"
 msgstr "Stripe"
 
-#: includes/class-awpcp.php:894
+#: includes/class-awpcp.php:897
 msgid "Membership to Post"
 msgstr ""
 
-#: includes/class-awpcp.php:901 templates/components/media-manager.tpl.php:50
+#: includes/class-awpcp.php:904 templates/components/media-manager.tpl.php:50
 msgid "Videos"
 msgstr "Видео"
 
-#: includes/class-awpcp.php:909
+#: includes/class-awpcp.php:912
 msgid "XML Sitemap"
 msgstr "Карта сайта XML "
 
-#: includes/class-awpcp.php:917
+#: includes/class-awpcp.php:920
 msgid "ZIP Code Search Module"
 msgstr "Модуль поиска по почтовому индексу"
 
-#: includes/class-awpcp.php:1447
+#: includes/class-awpcp.php:1450
 msgid "This field is required."
 msgstr "Это поле является обязательным."
 
-#: includes/class-awpcp.php:1448
+#: includes/class-awpcp.php:1451
 #: includes/form-fields/class-form-fields-validator.php:101
 #: includes/frontend/class-edit-listing-page.php:273
 #: includes/frontend/class-edit-listing-page.php:350
@@ -3569,32 +3569,32 @@ msgstr "Это поле является обязательным."
 msgid "Please enter a valid email address."
 msgstr "Пожалуйста, введите действующий адрес электронной почты."
 
-#: includes/class-awpcp.php:1449 includes/class-awpcp.php:1450
+#: includes/class-awpcp.php:1452 includes/class-awpcp.php:1453
 msgid "Please enter a valid URL."
 msgstr "Пожалуйста, введите правильный URL."
 
-#: includes/class-awpcp.php:1451
+#: includes/class-awpcp.php:1454
 msgid "Please enter a valid number."
 msgstr "Пожалуйста, введите правильный номер."
 
-#: includes/class-awpcp.php:1452
+#: includes/class-awpcp.php:1455
 msgid "Please enter a valid amount."
 msgstr "Пожалуйста, введите корректное количество."
 
-#: includes/class-awpcp.php:1453
+#: includes/class-awpcp.php:1456
 msgid ""
 "You have reached the maximum allowed categories for the selected fee plan."
 msgstr ""
 
-#: includes/class-awpcp.php:1472
+#: includes/class-awpcp.php:1475
 msgid "There are files currently being uploaded."
 msgstr "Несколько файлов загружаются."
 
-#: includes/class-awpcp.php:1473
+#: includes/class-awpcp.php:1476
 msgid "There are files pending to be uploaded."
 msgstr "Несколько файлов ожидают загрузки."
 
-#: includes/class-awpcp.php:1474
+#: includes/class-awpcp.php:1477
 msgid "You haven't uploaded any images or files."
 msgstr "Вы не загрузили ни одного файла."
 
@@ -10794,17 +10794,17 @@ msgctxt "listings row action"
 msgid "Quick View"
 msgstr "Быстрый обзор"
 
-#: includes/class-awpcp.php:1460
+#: includes/class-awpcp.php:1463
 msgctxt "[UI Datepicker] Display text for previous month link"
 msgid "&#x3c;Prev"
 msgstr "&#x3c; Пред."
 
-#: includes/class-awpcp.php:1461
+#: includes/class-awpcp.php:1464
 msgctxt "[UI Datepicker] Display text for next month link"
 msgid "Next&#x3e;"
 msgstr "След. &#x3e;"
 
-#: includes/class-awpcp.php:1467
+#: includes/class-awpcp.php:1470
 msgctxt "[UI Datepicker] The first day of the week, Sun = 0, Mon = 1, ..."
 msgid "0"
 msgstr "0"
