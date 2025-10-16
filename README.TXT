@@ -1,11 +1,11 @@
-=== WordPress Classifieds Plugin - Ad Directory & Listings by AWP Classifieds ===
-Plugin Name: WordPress Classifieds Plugin - Ad Directory & Listings by AWP Classifieds
+=== AWP Classifieds ===
+Plugin Name: AWP Classifieds
 Contributors: awpcp, sswells, srwells
 Tags: listings, classified ads, classified, classifieds, directory plugin, classifieds script, classified theme, wp classified, ads
 Requires at least: 6.2.0
 Requires PHP: 5.6
-Tested up to: 6.8.3
-Stable tag: 4.3.6
+Tested up to: 6.8.2
+Stable tag: 4.3.7
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
