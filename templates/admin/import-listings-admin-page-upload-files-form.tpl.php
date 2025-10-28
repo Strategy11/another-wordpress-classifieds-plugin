@@ -61,6 +61,7 @@
                                 <p class="awpcp-helptext">
                                     <?php
                                     printf(
+                                        // translators: %s is the uploads directory path
                                         esc_html__( 'The relative path to a directory inside %s.', 'another-wordpress-classifieds-plugin' ),
                                         '<code>' . esc_html( awpcp()->settings->get_runtime_option( 'awpcp-uploads-dir' ) ) . '</code>'
                                     );

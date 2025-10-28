@@ -83,6 +83,7 @@
             <p class="awpcp-order-submit-listing-section--selected-categories-container">
                 <?php
                 printf(
+                    // translators: %s is the list of selected categories
                     esc_html__( 'Your ad will be posted on the following categories: %s.', 'another-wordpress-classifieds-plugin' ),
                     '<span class="awpcp-order-submit-listing-section--selected-categories"></span>'
                 );
