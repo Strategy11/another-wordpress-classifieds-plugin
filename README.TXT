@@ -154,6 +154,12 @@ This plugin connects to the following external services to provide its functiona
 * Data transmitted: User email, name, and plugin usage information
 * Required for: Onboarding wizard feedback collection (optional)
 
+**HTTPBin (httpbin.org)**
+* Used for determining the server's external IP address
+* Domains: httpbin.org
+* Data transmitted: Server IP address detection requests
+* Required for: Server IP address identification functionality
+
 **Additional Payment Gateways**
 * **Authorize.Net (authorize.net)** - Payment processing gateway
 * **Stripe (stripe.com)** - Payment processing and subscription management
