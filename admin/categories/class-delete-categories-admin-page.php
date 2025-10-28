@@ -62,7 +62,7 @@ class AWPCP_Delete_Categories_Admin_Page {
             } catch ( AWPCP_Exception $e ) {
                 $message = sprintf(
                     // translators: %s is the error message
-                    __( "The categories couldn't be deleted because there was an error trying to load the categoery that you selected to become the new category associated to affected ads. %s", 'another-wordpress-classifieds-plugin' ),
+                    __( "The categories couldn't be deleted because there was an error trying to load the category that you selected to become the new category associated to affected ads. %s", 'another-wordpress-classifieds-plugin' ),
                     $e->getMessage()
                 );
 
