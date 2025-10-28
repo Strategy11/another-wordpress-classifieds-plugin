@@ -12,13 +12,19 @@ class AWPCP_ImportListingsAdminPage {
     private $form_steps;
     private $javascript;
     private $settings;
+    private $wp_filesystem;
 
     public function __construct( $form_steps, $settings ) {
         $this->import_sessions_manager = new AWPCP_CSV_Import_Sessions_Manager();
         $this->csv_importer_factory    = new AWPCP_CSV_Importer_Factory();
         $this->form_steps              = $form_steps;
-        $this->javascript = awpcp()->js;
-        $this->settings = $settings;
+        $this->javascript              = awpcp()->js;
+        $this->settings                = $settings;
+        $this->wp_filesystem           = awpcp_get_wp_filesystem();
+
+        if ( ! $this->wp_filesystem ) {
+            throw new AWPCP_Exception( esc_html__( 'Unable to initialize WordPress file system.', 'another-wordpress-classifieds-plugin' ) );
+        }
     }
 
     public function enqueue_scripts() {
@@ -47,17 +53,20 @@ class AWPCP_ImportListingsAdminPage {
             $step = awpcp_get_var( array( 'param' => 'step', 'default' => 'upload-files' ), 'get' );
         }
 
-        if ( $step == 'upload-files' ) {
+        if ( $step === 'upload-files' ) {
             return $this->do_upload_files_step();
-        } elseif ( $step == 'configure' ) {
+        } elseif ( $step === 'configure' ) {
             return $this->do_configuration_step();
-        } elseif ( $step == 'execute' ) {
+        } elseif ( $step === 'execute' ) {
             return $this->do_execute_step();
         }
     }
 
     private function delete_current_import_session() {
-        awpcp_rmdir( $this->get_import_session()->get_working_directory() );
+        $working_directory = $this->get_import_session()->get_working_directory();
+        if ( $this->wp_filesystem->is_dir( $working_directory ) ) {
+            $this->wp_filesystem->rmdir( $working_directory, true );
+        }
 
         $this->import_sessions_manager->delete_current_import_session();
 
@@ -99,7 +108,7 @@ class AWPCP_ImportListingsAdminPage {
 
         if ( isset( $_FILES['csv_file'] ) ) {
             $csv_error = isset( $_FILES['csv_file']['error'] ) ? sanitize_text_field( $_FILES['csv_file']['error'] ) : 0;
-            if ( $csv_error != UPLOAD_ERR_OK ) {
+            if ( $csv_error !== UPLOAD_ERR_OK ) {
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
                 $file_error              = awpcp_uploaded_file_error( $_FILES['csv_file'] );
                 $form_errors['csv_file'] = $file_error[1];
@@ -108,22 +117,22 @@ class AWPCP_ImportListingsAdminPage {
                 $form_errors['csv_file'] = __( "The uploaded file doesn't look like a CSV file. Please upload a valid CSV file.", 'another-wordpress-classifieds-plugin' );
 
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-            } elseif ( ! @move_uploaded_file( $_FILES['csv_file']['tmp_name'], "$working_directory/source.csv" ) ) {
+            } elseif ( ! $this->wp_filesystem->move( $_FILES['csv_file']['tmp_name'], "$working_directory/source.csv" ) ) {
                 $form_errors['csv_file'] = __( 'There was an error moving the uploaded CSV file to a proper location.', 'another-wordpress-classifieds-plugin' );
             }
         }
 
         $uploads_dir = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
 
-        if ( $form_data['images_source'] == 'zip' ) {
+        if ( $form_data['images_source'] === 'zip' ) {
             $zip_error = isset( $_FILES['zip_file']['error'] ) ? sanitize_text_field( $_FILES['zip_file']['error'] ) : 0;
-            if ( ! in_array( $zip_error, array( UPLOAD_ERR_OK, UPLOAD_ERR_NO_FILE ) ) ) {
+            if ( ! in_array( $zip_error, array( UPLOAD_ERR_OK, UPLOAD_ERR_NO_FILE ), true ) ) {
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
                 $file_error              = awpcp_uploaded_file_error( $_FILES['zip_file'] );
                 $form_errors['zip_file'] = $file_error[1];
 
                 // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedElseif
-            } elseif ( $zip_error == UPLOAD_ERR_NO_FILE ) {
+            } elseif ( $zip_error === UPLOAD_ERR_NO_FILE ) {
                 // all good...
 
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
@@ -131,7 +140,7 @@ class AWPCP_ImportListingsAdminPage {
                 $form_errors['zip_file'] = __( "The uploaded file doesn't look like a ZIP file. Please upload a valid ZIP file.", 'another-wordpress-classifieds-plugin' );
 
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-            } elseif ( ! @move_uploaded_file( $_FILES['zip_file']['tmp_name'], "$working_directory/images.zip" ) ) {
+            } elseif ( ! $this->wp_filesystem->move( $_FILES['zip_file']['tmp_name'], "$working_directory/images.zip" ) ) {
                 $form_errors['zip_file'] = __( 'There was an error moving the uploaded ZIP file to a proper location.', 'another-wordpress-classifieds-plugin' );
             }
 
@@ -166,28 +175,24 @@ class AWPCP_ImportListingsAdminPage {
 
                     // if file is inside a directory, create it first
                     if ( dirname( $item['filename'] ) !== '.' ) {
-                        wp_mkdir_p( dirname( $path ) );
+                        $this->wp_filesystem->mkdir( dirname( $path ), FS_CHMOD_DIR, true );
                     }
 
                     // extract file
-                    $file_handler = @fopen( $path, 'w' );
-                    if ( $file_handler ) {
-                        fwrite( $file_handler, $item['content'] );
-                        fclose( $file_handler );
-                    } else {
+                    if ( ! $this->wp_filesystem->put_contents( $path, $item['content'], FS_CHMOD_FILE ) ) {
                         // translators: %s is the file name
                         $message = __( 'Could not write temporary file %s', 'another-wordpress-classifieds-plugin' );
                         $form_errors['unzip'][] = sprintf( $message, $path );
                     }
                 }
             }
-        } elseif ( $form_data['images_source'] == 'local' ) {
+        } elseif ( $form_data['images_source'] === 'local' ) {
             $local_directory = realpath( $uploads_dir . DIRECTORY_SEPARATOR . str_replace( '..', '', $form_data['local_path'] ) );
 
             $in_uploads = strpos( $local_directory, $uploads_dir );
             if ( absint( $in_uploads ) > 0 || $in_uploads === false ) {
                 $form_errors['local_path'] = __( 'The specified directory is not a valid path.', 'another-wordpress-classifieds-plugin' );
-            } elseif ( ! is_dir( $local_directory ) ) {
+            } elseif ( ! $this->wp_filesystem->is_dir( $local_directory ) ) {
                 $form_errors['local_path'] = __( 'The specified directory does not exists.', 'another-wordpress-classifieds-plugin' );
             } else {
                 $images_directory = $local_directory;
@@ -225,15 +230,13 @@ class AWPCP_ImportListingsAdminPage {
     }
 
     private function create_directory( $directory ) {
-        list( $images_dir ) = awpcp_setup_uploads_dir();
-
-        if ( ! is_dir( $directory ) ) {
-            umask( 0 );
-            wp_mkdir_p( $directory );
-            @chown( $directory, fileowner( $images_dir ) );
+        if ( ! $this->wp_filesystem->is_dir( $directory ) ) {
+            $previous_umask = umask( 0 );
+            $this->wp_filesystem->mkdir( $directory, FS_CHMOD_DIR, true );
+            umask( $previous_umask );
         }
 
-        return file_exists( $directory );
+        return $this->wp_filesystem->exists( $directory );
     }
 
     private function get_images_directory( $working_directory ) {
