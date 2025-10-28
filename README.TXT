@@ -2,7 +2,7 @@
 Plugin Name: AWP Classifieds
 Contributors: awpcp, sswells, srwells
 Tags: listings, classified ads, classified, classifieds, directory plugin, classifieds script, classified theme, wp classified, ads
-Requires at least: 6.2.0
+Requires at least: 6.2
 Requires PHP: 5.6
 Tested up to: 6.8
 Stable tag: 4.3.7
