@@ -107,7 +107,7 @@ class AWPCP_ImportListingsAdminPage {
         );
 
         if ( isset( $_FILES['csv_file'] ) ) {
-            $csv_error = isset( $_FILES['csv_file']['error'] ) ? sanitize_text_field( $_FILES['csv_file']['error'] ) : 0;
+            $csv_error = isset( $_FILES['csv_file']['error'] ) ? (int) $_FILES['csv_file']['error'] : 0;
             if ( $csv_error !== UPLOAD_ERR_OK ) {
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
                 $file_error              = awpcp_uploaded_file_error( $_FILES['csv_file'] );
@@ -125,7 +125,7 @@ class AWPCP_ImportListingsAdminPage {
         $uploads_dir = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
 
         if ( $form_data['images_source'] === 'zip' ) {
-            $zip_error = isset( $_FILES['zip_file']['error'] ) ? sanitize_text_field( $_FILES['zip_file']['error'] ) : 0;
+            $zip_error = isset( $_FILES['zip_file']['error'] ) ? (int) $_FILES['zip_file']['error'] : 0;
             if ( ! in_array( $zip_error, array( UPLOAD_ERR_OK, UPLOAD_ERR_NO_FILE ), true ) ) {
                 // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
                 $file_error              = awpcp_uploaded_file_error( $_FILES['zip_file'] );

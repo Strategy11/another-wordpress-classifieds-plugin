@@ -7,6 +7,8 @@ namespace {
     define( 'OBJECT_K', 'OBJECT_K' );
     define( 'ARRAY_A', 'ARRAY_A' );
     define( 'ARRAY_N', 'ARRAY_N' );
+    define( 'FS_CHMOD_DIR', ( 0777 | 0755 ) );
+    define( 'FS_CHMOD_FILE', ( 0777 | 0644 ) );
 
     define( 'MINUTE_IN_SECONDS', 60 );
     define( 'HOUR_IN_SECONDS', 60 * MINUTE_IN_SECONDS );

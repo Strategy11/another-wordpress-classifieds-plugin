@@ -460,15 +460,7 @@ class AWPCP_Installer {
             return;
         }
 
-        // Initialize WordPress filesystem
-        if ( ! function_exists( 'WP_Filesystem' ) ) {
-            require_once ABSPATH . 'wp-admin/includes/file.php';
-        }
-
-        $filesystem = WP_Filesystem();
-        if ( ! $filesystem ) {
-            return;
-        }
+        $filesystem = awpcp_get_wp_filesystem();
 
         // Ensure the target directory exists
         $target_dir = WP_LANG_DIR . '/another-wordpress-classifieds-plugin';
