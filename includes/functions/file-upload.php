@@ -136,7 +136,6 @@ function awpcp_setup_uploads_dir() {
     require_once( AWPCP_DIR . '/includes/class-fileop.php' );
 
     $fileop = new fileop();
-    $owner = fileowner(WP_CONTENT_DIR);
 
     if (!$wp_filesystem->is_dir($upload_dir) && $wp_filesystem->is_writable(WP_CONTENT_DIR)) {
         umask(0);

@@ -116,8 +116,13 @@ class AWPCP_FileUploader {
 
     private function write_uploaded_data_to_file( $file_path ) {
         $base_dir = dirname( $file_path );
+        $wp_filesystem = awpcp_get_wp_filesystem();
 
-        if ( ! file_exists( $base_dir ) && ! wp_mkdir_p( $base_dir ) ) {
+        if ( ! $wp_filesystem ) {
+            throw new AWPCP_Exception( esc_html__( 'Unable to initialize WordPress file system.', 'another-wordpress-classifieds-plugin' ) );
+        }
+
+        if ( ! $wp_filesystem->exists( $base_dir ) && ! wp_mkdir_p( $base_dir ) ) {
             throw new AWPCP_Exception( esc_html__( "Temporary directory doesn't exists and couldn't be created.", 'another-wordpress-classifieds-plugin' ) );
         }
 
@@ -136,24 +141,24 @@ class AWPCP_FileUploader {
                 throw new AWPCP_Exception( esc_html__( 'There was an error trying to move the uploaded file to a temporary location.', 'another-wordpress-classifieds-plugin' ) );
             }
 
-            move_uploaded_file( $file_name, $file_path );
+            if ( ! $wp_filesystem->move( $file_name, $file_path ) ) {
+                throw new AWPCP_Exception( esc_html__( 'There was an error trying to move the uploaded file to a temporary location.', 'another-wordpress-classifieds-plugin' ) );
+            }
         } else {
             $input = fopen( 'php://input', 'rb' );
             if ( ! $input ) {
                 throw new AWPCP_Exception( esc_html__( "There was an error trying to open PHP's input stream.", 'another-wordpress-classifieds-plugin' ) );
             }
 
-            $output = fopen( $file_path, 'wb' );
-            if ( ! $output ) {
+            $content = '';
+            while ( $buffer = fread( $input, 4096 ) ) {
+                $content .= $buffer;
+            }
+            fclose( $input );
+
+            if ( ! $wp_filesystem->put_contents( $file_path, $content ) ) {
                 throw new AWPCP_Exception( esc_html( $this->get_failed_to_open_output_stream_error_message( $file_path ) ) );
             }
-
-            while ( $buffer = fread( $input, 4096 ) ) {
-                fwrite( $output, $buffer );
-            }
-
-            fclose( $output );
-            fclose( $input );
         }
     }
 
@@ -170,32 +175,31 @@ class AWPCP_FileUploader {
     }
 
     private function write_uploaded_chunks_to_file( $chunks_count, $file_path ) {
-        $output = fopen( $file_path, 'wb' );
-        if ( ! $output ) {
-            throw new AWPCP_Exception( esc_html( $this->get_failed_to_open_output_stream_error_message( $file_path ) ) );
+        $wp_filesystem = awpcp_get_wp_filesystem();
+        if ( ! $wp_filesystem ) {
+            throw new AWPCP_Exception( esc_html__( 'Unable to initialize WordPress file system.', 'another-wordpress-classifieds-plugin' ) );
         }
 
+        $content = '';
         for ( $i = 0; $i < $chunks_count; ++$i ) {
             $chunk_path = "$file_path.part$i";
 
-            if ( ! file_exists( $chunk_path ) ) {
+            if ( ! $wp_filesystem->exists( $chunk_path ) ) {
                 throw new AWPCP_Exception( esc_html__( 'Missing chunk.', 'another-wordpress-classifieds-plugin' ) );
             }
 
-            $input = fopen( $chunk_path, 'rb' );
-            if ( ! $input ) {
-                throw new AWPCP_Exception( esc_html__( 'There was an error trying to open the input stream.', 'another-wordpress-classifieds-plugin' ) );
+            $chunk_content = $wp_filesystem->get_contents( $chunk_path );
+            if ( false === $chunk_content ) {
+                throw new AWPCP_Exception( esc_html__( 'There was an error trying to read the chunk file.', 'another-wordpress-classifieds-plugin' ) );
             }
 
-            while ( $buffer = fread( $input, 4096 ) ) {
-                fwrite( $output, $buffer );
-            }
-
-            fclose( $input );
-            unlink( $chunk_path );
+            $content .= $chunk_content;
+            $wp_filesystem->delete( $chunk_path );
         }
 
-        fclose( $output );
+        if ( ! $wp_filesystem->put_contents( $file_path, $content ) ) {
+            throw new AWPCP_Exception( esc_html( $this->get_failed_to_open_output_stream_error_message( $file_path ) ) );
+        }
     }
 
     private function get_uploaded_file_info( $realname, $file_path, $progress='incomplete' ) {

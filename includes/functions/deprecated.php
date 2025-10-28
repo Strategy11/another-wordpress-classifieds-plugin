@@ -512,8 +512,9 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
     }
 
     $paths = awpcp_get_uploads_directories();
+    $wp_filesystem = awpcp_get_wp_filesystem();
 
-    if ( ! file_exists( $tmpname ) ) {
+    if ( ! $wp_filesystem || ! $wp_filesystem->exists( $tmpname ) ) {
         // translators: %s is the file name
         $error = _x( 'The specified file does not exists: %s.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
@@ -526,7 +527,7 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
         return false;
     }
 
-    $file_size = filesize( $tmpname );
+    $file_size = $wp_filesystem->size( $tmpname );
 
     if ( empty( $file_size ) ) {
         // translators: %s is the file name
@@ -586,12 +587,12 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
     $newname = awpcp_unique_filename( $tmpname, $filename, array( $paths['files_dir'], $paths['thumbnails_dir'] ) );
     $newpath = trailingslashit( $paths['files_dir'] ) . $newname;
 
-    if ( $action == 'upload' && ! @move_uploaded_file( $tmpname, $newpath ) ) {
+    if ( $action == 'upload' && ! $wp_filesystem->move( $tmpname, $newpath ) ) {
         // translators: %s is the file name
         $error = _x( 'The file %s could not be moved to the destination directory.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
         return false;
-    } else if ( $action == 'copy' && ! @copy( $tmpname, $newpath ) ) {
+    } else if ( $action == 'copy' && ! $wp_filesystem->copy( $tmpname, $newpath ) ) {
         // translators: %s is the file name
         $error = _x( 'The file %s could not be copied to the destination directory.', 'upload files', 'another-wordpress-classifieds-plugin' );
         $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
@@ -604,13 +605,13 @@ function awpcp_upload_file( $file, $constraints, &$error=false, $action='upload'
             $error = _x( 'Could not create resized versions of image %s.', 'upload files', 'another-wordpress-classifieds-plugin' );
             $error = sprintf( $error, '<strong>' . $filename . '</strong>' );
 
-            @unlink( $newpath );
+            $wp_filesystem->delete( $newpath );
 
             return false;
         }
     }
 
-    @chmod( $newpath, 0644 );
+    $wp_filesystem->chmod( $newpath, 0644 );
 
     return array(
         'original' => $filename,
@@ -700,43 +701,37 @@ function awpcp_get_uploads_directories() {
         require_once(AWPCP_DIR . '/includes/class-fileop.php');
 
         $fileop = new fileop();
-        $owner = fileowner( WP_CONTENT_DIR );
+        $wp_filesystem = awpcp_get_wp_filesystem();
 
-        if ( ! is_dir( $upload_dir ) && is_writable( WP_CONTENT_DIR ) ) {
+        if ( ! $wp_filesystem ) {
+            return array(
+                'files_dir' => '',
+                'thumbnails_dir' => '',
+            );
+        }
+
+        if ( ! $wp_filesystem->is_dir( $upload_dir ) && $wp_filesystem->is_writable( WP_CONTENT_DIR ) ) {
             umask( 0 );
             wp_mkdir_p( $upload_dir );
-            chown( $upload_dir, $owner );
         }
 
-        // TODO: It is a waste of resources to check this on every request.
-        if ( ! is_writable( $upload_dir ) ) {
-            $fileop->set_permission( $upload_dir, $permissions );
-        }
+        $wp_filesystem->chmod( $upload_dir, $permissions );
 
         $files_dir = $upload_dir . 'awpcp/';
         $thumbs_dir = $upload_dir . 'awpcp/thumbs/';
 
-        if ( ! is_dir( $files_dir ) && is_writable( $upload_dir ) ) {
+        if ( ! $wp_filesystem->is_dir( $files_dir ) && $wp_filesystem->is_writable( $upload_dir ) ) {
             umask( 0 );
             wp_mkdir_p( $files_dir );
-            @chown( $files_dir, $owner );
         }
 
-        if ( ! is_dir( $thumbs_dir ) && is_writable( $upload_dir ) ) {
+        if ( ! $wp_filesystem->is_dir( $thumbs_dir ) && $wp_filesystem->is_writable( $upload_dir ) ) {
             umask( 0 );
             wp_mkdir_p( $thumbs_dir );
-            @chown( $thumbs_dir, $owner );
         }
 
-        // TODO: It is a waste of resources to check this on every request.
-        if ( ! is_writable( $files_dir ) ) {
-            $fileop->set_permission( $files_dir, $permissions );
-        }
-
-        // TODO: It is a waste of resources to check this on every request.
-        if ( ! is_writable( $thumbs_dir ) ) {
-            $fileop->set_permission( $thumbs_dir, $permissions );
-        }
+        $wp_filesystem->chmod( $files_dir, $permissions );
+        $wp_filesystem->chmod( $thumbs_dir, $permissions );
 
         $uploads_directories = array(
             'files_dir' => $files_dir,
