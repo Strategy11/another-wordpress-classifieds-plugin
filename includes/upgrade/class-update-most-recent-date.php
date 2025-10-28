@@ -24,15 +24,20 @@ class AWPCP_UpdateMostRecentDate implements AWPCP_Upgrade_Task_Runner {
      * @since 4.0.5
      */
     public function count_pending_items( $last_item_id ) {
-        $sql    = <<<SQL
-SELECT COUNT(p.ID) AS COUNT
-FROM {$this->db->posts} AS p
-         INNER JOIN {$this->db->postmeta}  AS pm ON p.ID = pm.post_id
-         INNER JOIN {$this->db->postmeta} AS pm2 ON p.ID = pm2.post_id
-WHERE pm.meta_key = '_awpcp_renewed_date'
-  AND pm2.meta_key = '_awpcp_most_recent_start_date'
-  AND CAST(pm2.meta_value AS DATETIME) < CAST(pm.meta_value AS DATETIME)
-SQL;
+        $sql    = $this->db->prepare(
+            "SELECT COUNT(p.ID) AS COUNT
+            FROM %1s AS p
+            INNER JOIN %1s AS pm ON p.ID = pm.post_id
+            INNER JOIN %1s AS pm2 ON p.ID = pm2.post_id
+            WHERE pm.meta_key = %2s
+            AND pm2.meta_key = %3s
+            AND CAST(pm2.meta_value AS DATETIME) < CAST(pm.meta_value AS DATETIME)",
+            $this->db->posts,
+            $this->db->postmeta,
+            $this->db->postmeta,
+            '_awpcp_renewed_date',
+            '_awpcp_most_recent_start_date'
+        );
         $result = $this->db->get_results( $sql );
 
         return (int) $result[0]->COUNT;
@@ -42,16 +47,21 @@ SQL;
      * @since 4.0.5
      */
     public function get_pending_items( $last_item_id ) {
-        $sql    = <<<SQL
-SELECT p.ID, pm.meta_value AS renewed, pm2.meta_value AS start
-FROM {$this->db->posts} AS p
-         INNER JOIN {$this->db->postmeta} AS pm ON p.ID = pm.post_id
-         INNER JOIN {$this->db->postmeta} AS pm2 ON p.ID = pm2.post_id
-WHERE pm.meta_key = '_awpcp_renewed_date'
-  AND pm2.meta_key = '_awpcp_most_recent_start_date'
-  AND CAST(pm2.meta_value AS DATETIME) < CAST(pm.meta_value AS DATETIME)
-lIMIT 50
-SQL;
+        $sql    = $this->db->prepare(
+            "SELECT p.ID, pm.meta_value AS renewed, pm2.meta_value AS start
+            FROM %1s AS p
+            INNER JOIN %1s AS pm ON p.ID = pm.post_id
+            INNER JOIN %1s AS pm2 ON p.ID = pm2.post_id
+            WHERE pm.meta_key = %2s
+            AND pm2.meta_key = %3s
+            AND CAST(pm2.meta_value AS DATETIME) < CAST(pm.meta_value AS DATETIME)
+            LIMIT 50",
+            $this->db->posts,
+            $this->db->postmeta,
+            $this->db->postmeta,
+            '_awpcp_renewed_date',
+            '_awpcp_most_recent_start_date'
+        );
         $result = $this->db->get_results( $sql );
 
         return $result;
