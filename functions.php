@@ -2945,7 +2945,7 @@ function awpcp_strip_html_tags( $text ) {
         ),
         $text
     );
-    return strip_tags( $text );
+    return wp_strip_all_tags( $text );
 }
 // END FUNCTION
 
