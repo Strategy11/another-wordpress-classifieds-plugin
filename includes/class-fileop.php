@@ -104,9 +104,9 @@ class fileop {
                 }
             }
             $d->close();
-            $myreturn=@rmdir($source);
+            $myreturn=$this->wp_filesystem->rmdir($source);
         } elseif (is_file($source)) {
-            $myreturn=@unlink($source);
+            $myreturn=$this->wp_filesystem->delete($source);
         }
 
         return $myreturn;
