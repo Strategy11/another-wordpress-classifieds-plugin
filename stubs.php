@@ -64,7 +64,10 @@ namespace {
     function awpcp_activation_failed_notice( $content ) {
     }
 
-    function awpcp_payfast_verify_received_data_with_fsockopen( $content ) {
+    function awpcp_payfast_verify_received_data_with_wp_http( $content ) {
+    }
+
+    function awpcp_paypal_verify_received_data_with_wp_http( $postfields, &$errors ) {
     }
 
     /** Add-ons */
