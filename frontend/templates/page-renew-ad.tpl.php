@@ -10,6 +10,7 @@
 
     <p><?php
     printf(
+        // translators: %s is the amount
         esc_html__( 'Please click the payment button below to proceed with Payment for your Ad renewal. You will be asked to pay %s.', 'another-wordpress-classifieds-plugin'),
         wp_kses_post( $amount )
     );

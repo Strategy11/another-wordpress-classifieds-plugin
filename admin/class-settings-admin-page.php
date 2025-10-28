@@ -224,6 +224,7 @@ class AWPCP_Facebook_Page_Settings {
         $redirect_uri = add_query_arg( 'obtain_user_token', 1, admin_url( '/admin.php?page=awpcp-admin-settings&g=facebook-settings' ) );
 
         if ( isset( $_GET['code_error'] ) && isset( $_GET['error_message'] )  ) {
+            // translators: %s is the error message
             $error_message = __( 'We could not obtain a valid access token from Facebook. The API returned the following error: %s', 'another-wordpress-classifieds-plugin' );
             $error_message = sprintf( $error_message, urldecode_deep( sanitize_text_field( wp_unslash( $_GET['error_message'] ) ) ) );
 

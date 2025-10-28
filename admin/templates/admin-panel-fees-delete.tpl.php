@@ -1,4 +1,7 @@
-<?php $message = __( 'Associate Ads currently associated with Fee plan %s to one of the following fees:', 'another-wordpress-classifieds-plugin' ); ?>
+<?php
+// translators: %s is the fee name
+$message = __( 'Associate Ads currently associated with Fee plan %s to one of the following fees:', 'another-wordpress-classifieds-plugin' );
+?>
 <p><?php printf( esc_html( $message ), '<strong>' . esc_html( $fee->name ) . '</strong>' ); ?></p>
 
 <form method="post" action="<?php echo esc_attr( $this->url() ); ?>">

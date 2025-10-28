@@ -54,6 +54,7 @@ class AWPCP_Attachment_Action_Ajax_Handler extends AWPCP_AjaxHandler {
         }
 
         if ( $file->post_parent != $listing->ID ) {
+            // translators: %d is the listing ID
             $message = __( "The specified file is not associated with Listing with ID %d.", 'another-wordpress-classifieds-plugin' );
             throw new AWPCP_Exception( esc_html( sprintf( $message, $listing->ID ) ) );
         }

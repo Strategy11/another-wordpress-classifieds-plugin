@@ -551,6 +551,7 @@ class AWPCP_AdminPanel {
             $view_categories_label = awpcp()->settings->get_option_label( $view_categories_option );
             $view_categories_label = sprintf( '<strong>%s</strong>', ucwords( $view_categories_label ) );
 
+            // translators: %1$s is the page name, %2$s is the view categories page name
             $first_line = _n(
                 'Page %1$s has the same URL as the %2$s from AWPCP. The WordPress page %1$s is going to be unreachable until this changes.',
                 'Pages %1$s have the same URL as the %2$s from AWPCP. The WordPress pages %1$s is going to be unreachable until this changes.',
@@ -559,6 +560,7 @@ class AWPCP_AdminPanel {
             );
             $first_line = sprintf( $first_line, $duplicated_pages, $view_categories_label );
 
+            // translators: %1$s is the page name
             $second_line = _n(
                 'The %1$s is dynamic; you don\'t need to create a real WordPress page to show the list of categories, the plugin will generate it for you. If the WordPress page was created to show the default list of AWPCP categories, you can delete it and this error message will go away. Otherwise, please make sure you don\'t have duplicate page names.',
                 'The %1$s is dynamic; you don\'t need to create a real WordPress page to show the list of categories, the plugin will generate it for you. If the WordPress pages were created to show the default list of AWPCP categories, you can delete them and this error message will go away. Otherwise, please make sure you don\'t have duplicate page names.',

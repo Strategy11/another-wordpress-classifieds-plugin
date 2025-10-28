@@ -27,6 +27,7 @@ awpcp_html_admin_second_level_heading(
 <p>
 <?php
 printf(
+    // translators: %s is the Facebook changes URL
     esc_html__( 'You can read more about Facebook changes here: %s', 'another-wordpress-classifieds-plugin' ),
     '<a href="https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes/">' .
         'https://developers.facebook.com/blog/post/2018/04/04/facebook-api-platform-product-changes/' .

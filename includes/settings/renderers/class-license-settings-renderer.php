@@ -81,6 +81,7 @@ class AWPCP_LicenseSettingsRenderer {
         $classes = [ 'inactive', 'valid', 'expired' ];
         $class   = in_array( $status, $classes, true ) ? $status : 'invalid';
         printf(
+            // translators: %s is the license status
             esc_html__( 'Status: %s', 'another-wordpress-classifieds-plugin' ),
             '<span class="awpcp-license-status awpcp-license-' . esc_attr( $status ) . '">' .
                 esc_html( $labels[ $status ] ) .

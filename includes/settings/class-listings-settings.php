@@ -470,6 +470,7 @@ class AWPCP_ListingsSettings {
         }
 
         $description = sprintf(
+            // translators: %s is the show listings page link
             __( "Enable this setting to display each listing on its own page, instead of showing the listing's content inside the %s page.", 'another-wordpress-classifieds-plugin' ),
             $show_listings_link
         );
