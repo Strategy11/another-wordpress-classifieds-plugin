@@ -126,6 +126,42 @@ You need to check your database to make sure old data does not exist. Delete all
 4. Create some categories and sub categories for your ads.
 5. Set up your payment fees if you are going to be running in pay mode.
 
+== External Services and Domains ==
+
+This plugin connects to the following external services to provide its functionality:
+
+**Google reCAPTCHA (www.google.com)**
+* Used for spam protection and form validation
+* Domains: www.google.com/recaptcha/api.js, www.google.com/recaptcha/api/siteverify, www.google.com/recaptcha/admin
+* Data transmitted: reCAPTCHA responses and site verification tokens
+* Required for: Anti-spam protection features
+
+**PayPal (paypal.com)**
+* Used for payment processing and IPN (Instant Payment Notification) verification
+* Domains: ipnpb.paypal.com, ipnpb.sandbox.paypal.com
+* Data transmitted: Payment verification data, transaction details
+* Required for: PayPal payment gateway functionality
+
+**Facebook (facebook.com)**
+* Used for posting ads to Facebook and cache management
+* Domains: graph.facebook.com
+* Data transmitted: Ad content, user access tokens (if Facebook integration is enabled)
+* Required for: Facebook posting features (optional)
+
+**Strategy11 (strategy11.com)**
+* Used for collecting anonymous onboarding feedback and usage analytics
+* Domains: feedback.strategy11.com
+* Data transmitted: User email, name, and plugin usage information
+* Required for: Onboarding wizard feedback collection (optional)
+
+**Additional Payment Gateways**
+* **Authorize.Net (authorize.net)** - Payment processing gateway
+* **Stripe (stripe.com)** - Payment processing and subscription management
+* **2Checkout (2checkout.com)** - International payment processing
+* Domains: www.authorize.net, stripe.com, www2.2checkout.com
+* Data transmitted: Payment information, transaction details, customer data
+* Required for: Premium payment gateway modules (optional)
+
 == Screenshots ==
 
 [Visit the main site for screenshots]( https://awpcp.com/features/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion)
