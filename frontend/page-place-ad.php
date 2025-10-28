@@ -1067,6 +1067,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         if ( ! awpcp_is_valid_email_address( $data['ad_contact_email'] ) ) {
             $errors['ad_contact_email'] = __("The email address you entered was not a valid email address. Please check for errors and try again.", 'another-wordpress-classifieds-plugin');
         } elseif ( ! awpcp_is_email_address_allowed( $data['ad_contact_email'] ) ) {
+            $domains_whitelist = explode( "\n", get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
             // translators: %s is a comma separated list of domain names.
             $message = sprintf( __( 'The email address you entered is not allowed in this website. Please use an email address from one of the following domains: %s.', 'another-wordpress-classifieds-plugin'), implode( ', ', $domains_whitelist ) );
             $domains_whitelist = explode( "\n", get_awpcp_option( 'ad-poster-email-address-whitelist' ) );
