@@ -989,6 +989,20 @@ function unix2dos($mystring) {
 }
 
 /**
+ * @deprecated x.x
+ */
+function awpcp_load_text_domain_with_file_prefix() {
+    _deprecated_function( __FUNCTION__, 'x.x' );
+}
+
+/**
+ * @deprecated x.x
+ */
+function awpcp_load_plugin_textdomain() {
+    _deprecated_function( __FUNCTION__, 'x.x' );
+}
+
+/**
  * @since 4.3.4 Added deprecated notice.
  * @deprecated 4.0.0 This function will be removed in 4.1.0.
  */
