@@ -1118,22 +1118,10 @@ class AWPCP {
             );
         }
 
-        // TODO: If we ever have to load Moment.js on the frontend, we need to load
-        // only the required locale, using BP's logic to enqueue just the necessary files.
-        //
-        // https://plugins.svn.wordpress.org/buddypress/tags/3.1.0/bp-core/bp-core-cssjs.php
-        wp_register_script(
-            'awpcp-moment-with-locales',
-            $vendors . '/moment-2.22.2/moment-with-locales' . $min . '.js',
-            [],
-            '2.22.2',
-            true
-        );
-
         wp_register_script(
             'daterangepicker',
             'https://cdn.jsdelivr.net/npm/daterangepicker@3.0.3/daterangepicker.min.js',
-            [ 'jquery', 'awpcp-moment-with-locales' ],
+            [ 'jquery', 'moment' ],
             '3.0.3',
             true
         );
@@ -1260,7 +1248,7 @@ class AWPCP {
             array(
                 'awpcp',
                 'awpcp-knockout-progress',
-                'awpcp-moment-with-locales',
+                'moment',
             ),
             $awpcp_db_version,
             true
