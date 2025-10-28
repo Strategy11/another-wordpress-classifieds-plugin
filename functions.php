@@ -2242,12 +2242,19 @@ function awpcp_rmdir($dir) {
                 if ( filetype( $dir . "/" . $object ) == "dir" ) {
                     awpcp_rmdir( $dir . "/" . $object );
                 } else {
-                    unlink( $dir . "/" . $object );
+                    wp_delete_file( $dir . "/" . $object );
                 }
             }
         }
         reset( $objects );
-        rmdir( $dir );
+
+        // Use WordPress filesystem functions instead of native PHP rmdir()
+        if ( ! function_exists( 'WP_Filesystem' ) ) {
+            require_once ABSPATH . 'wp-admin/includes/file.php';
+        }
+
+        $filesystem = WP_Filesystem();
+        $filesystem->rmdir( $dir );
     }
 }
 
