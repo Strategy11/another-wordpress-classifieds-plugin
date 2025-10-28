@@ -13,6 +13,7 @@
 
 <?php endif; ?>
 <?php if ($transaction): ?>
+<?php // translators: %s is the blog name ?>
 <?php printf( esc_html__( '%s Transaction', 'another-wordpress-classifieds-plugin' ), esc_html( $blog_name ) ); ?>: <?php echo esc_html( $transaction->id ); ?>
 
 <?php   if ($transaction->get('txn-id')): ?>
@@ -44,6 +45,7 @@
 <?php endif ?>
 <?php
 printf(
+    // translators: %s is the admin email
     esc_html__( 'If you have questions about your listing contact %s. Thank you for your business.', 'another-wordpress-classifieds-plugin' ),
     esc_html( $admin_email )
 );

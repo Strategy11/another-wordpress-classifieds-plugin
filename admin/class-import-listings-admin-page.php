@@ -175,6 +175,7 @@ class AWPCP_ImportListingsAdminPage {
                         fwrite( $file_handler, $item['content'] );
                         fclose( $file_handler );
                     } else {
+                        // translators: %s is the file name
                         $message = __( 'Could not write temporary file %s', 'another-wordpress-classifieds-plugin' );
                         $form_errors['unzip'][] = sprintf( $message, $path );
                     }

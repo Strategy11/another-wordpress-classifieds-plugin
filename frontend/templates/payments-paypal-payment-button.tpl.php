@@ -24,7 +24,10 @@
     <input type="hidden" name="test_ipn" value="1" />
     <?php endif ?>
 
-    <?php $text = _x('Return to %s', 'paypal-checkout-form', 'another-wordpress-classifieds-plugin'); ?>
+    <?php
+    // translators: %s is the blog name
+    $text = _x('Return to %s', 'paypal-checkout-form', 'another-wordpress-classifieds-plugin');
+    ?>
     <input type="hidden" value="<?php echo esc_attr( sprintf( $text, awpcp_get_blog_name( false ) ) ); ?>" name="cbt">
 
     <?php $alt = __("Make payments with PayPal - it's fast, free and secure!", 'another-wordpress-classifieds-plugin'); ?>

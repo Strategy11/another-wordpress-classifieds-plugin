@@ -92,6 +92,7 @@ class AWPCP_CSVExporter {
                 throw new Exception(
                     esc_html(
                         sprintf(
+                            // translators: %s is the error message
                             _x( 'Error while creating a temporary directory for CSV export: %s', 'admin csv-export', 'another-wordpress-classifieds-plugin' ),
                             $direrror
                         )

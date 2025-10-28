@@ -79,6 +79,7 @@ class AWPCP_LicensesSettings {
         }
 
         $description = sprintf(
+            // translators: %s is the IP address of the server
             __( 'The IP address of your server is %s. Please make sure to include that information if you need to contact support about problems trying to activate your licenses.', 'another-wordpress-classifieds-plugin' ),
             $ip_address
         );
