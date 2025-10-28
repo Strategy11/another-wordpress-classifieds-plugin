@@ -1052,7 +1052,7 @@ class AWPCP {
         wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
         wp_register_script(
             'awpcp-knockout',
-            "$js/knockout-min.js",
+            "$vendors/knockout-min.js",
             array(),
             '3.5.0',
             true
