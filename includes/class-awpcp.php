@@ -1028,8 +1028,8 @@ class AWPCP {
 
         global $awpcp_db_version;
 
-        $js = AWPCP_URL . '/resources/js';
-        $css = AWPCP_URL . '/resources/css';
+        $js      = AWPCP_URL . '/resources/js';
+        $css     = AWPCP_URL . '/resources/css';
         $vendors = AWPCP_URL . '/resources/vendors';
 
         $min = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
@@ -1042,14 +1042,25 @@ class AWPCP {
             $ui_version = '1.9.2';
         }
 
-        wp_register_style('awpcp-jquery-ui', "//ajax.googleapis.com/ajax/libs/jqueryui/$ui_version/themes/smoothness/jquery-ui.css", array(), $ui_version);
+        wp_register_style(
+            'awpcp-jquery-ui',
+            "$vendors/jquery-ui.css",
+            array(),
+            $ui_version
+        );
 
         wp_register_script('awpcp-jquery-validate', "{$js}/jquery-validate/all.js", array('jquery'), '1.10.0', true);
-        wp_register_script( 'awpcp-knockout', "//ajax.aspnetcdn.com/ajax/knockout/knockout-3.5.0.js", array(), '3.5.0', true );
+        wp_register_script(
+            'awpcp-knockout',
+            "$vendors/knockout-min.js",
+            array(),
+            '3.5.0',
+            true
+        );
 
         wp_register_script(
             'awpcp-lightgallery',
-            "{$vendors}/lightgallery/js/lightgallery.min.js",
+            "$vendors/lightgallery/js/lightgallery.min.js",
             array( 'jquery' ),
             '1.2.22',
             true
@@ -1057,16 +1068,14 @@ class AWPCP {
 
         wp_register_style(
             'awpcp-lightgallery',
-            "{$vendors}/lightgallery/css/lightgallery.min.css",
+            "$vendors/lightgallery/css/lightgallery.min.css",
             array(),
             '1.2.22'
         );
 
-        // Please update the name of the enqueue-font-awesome-style setting everytime
-        // you change the registered version of the stylesheet below.
         wp_register_style(
             'awpcp-font-awesome',
-            'https://use.fontawesome.com/releases/v5.2.0/css/all.css',
+            "$vendors/fontawesome/css/all.min.css",
             array(),
             '5.2.0'
         );
@@ -1118,29 +1127,17 @@ class AWPCP {
             );
         }
 
-        // TODO: If we ever have to load Moment.js on the frontend, we need to load
-        // only the required locale, using BP's logic to enqueue just the necessary files.
-        //
-        // https://plugins.svn.wordpress.org/buddypress/tags/3.1.0/bp-core/bp-core-cssjs.php
-        wp_register_script(
-            'awpcp-moment-with-locales',
-            $vendors . '/moment-2.22.2/moment-with-locales' . $min . '.js',
-            [],
-            '2.22.2',
-            true
-        );
-
         wp_register_script(
             'daterangepicker',
-            'https://cdn.jsdelivr.net/npm/daterangepicker@3.0.3/daterangepicker.min.js',
-            [ 'jquery', 'awpcp-moment-with-locales' ],
+            "$vendors/daterangepicker/daterangepicker.min.js",
+            [ 'jquery', 'moment' ],
             '3.0.3',
             true
         );
 
         wp_register_style(
             'daterangepicker',
-            'https://cdn.jsdelivr.net/npm/daterangepicker@3.0.3/daterangepicker.min.css',
+            "$vendors/daterangepicker.min.css",
             [],
             '3.0.3'
         );
@@ -1260,7 +1257,7 @@ class AWPCP {
             array(
                 'awpcp',
                 'awpcp-knockout-progress',
-                'awpcp-moment-with-locales',
+                'moment',
             ),
             $awpcp_db_version,
             true
