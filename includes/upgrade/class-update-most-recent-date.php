@@ -26,11 +26,11 @@ class AWPCP_UpdateMostRecentDate implements AWPCP_Upgrade_Task_Runner {
     public function count_pending_items( $last_item_id ) {
         $sql    = $this->db->prepare(
             "SELECT COUNT(p.ID) AS COUNT
-            FROM %1s AS p
-            INNER JOIN %1s AS pm ON p.ID = pm.post_id
-            INNER JOIN %1s AS pm2 ON p.ID = pm2.post_id
-            WHERE pm.meta_key = %2s
-            AND pm2.meta_key = %3s
+            FROM %i AS p
+            INNER JOIN %i AS pm ON p.ID = pm.post_id
+            INNER JOIN %i AS pm2 ON p.ID = pm2.post_id
+            WHERE pm.meta_key = %s
+            AND pm2.meta_key = %s
             AND CAST(pm2.meta_value AS DATETIME) < CAST(pm.meta_value AS DATETIME)",
             $this->db->posts,
             $this->db->postmeta,
@@ -49,11 +49,11 @@ class AWPCP_UpdateMostRecentDate implements AWPCP_Upgrade_Task_Runner {
     public function get_pending_items( $last_item_id ) {
         $sql    = $this->db->prepare(
             "SELECT p.ID, pm.meta_value AS renewed, pm2.meta_value AS start
-            FROM %1s AS p
-            INNER JOIN %1s AS pm ON p.ID = pm.post_id
-            INNER JOIN %1s AS pm2 ON p.ID = pm2.post_id
-            WHERE pm.meta_key = %2s
-            AND pm2.meta_key = %3s
+            FROM %i AS p
+            INNER JOIN %i AS pm ON p.ID = pm.post_id
+            INNER JOIN %i AS pm2 ON p.ID = pm2.post_id
+            WHERE pm.meta_key = %s
+            AND pm2.meta_key = %s
             AND CAST(pm2.meta_value AS DATETIME) < CAST(pm.meta_value AS DATETIME)
             LIMIT 50",
             $this->db->posts,
