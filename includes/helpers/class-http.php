@@ -54,7 +54,6 @@ class AWPCP_HTTP {
             'timeout'     => 30,
             'redirection' => 5,
             'httpversion' => '1.1',
-            'sslverify'   => false, // Try without SSL verification as fallback
             'headers'     => array_merge(
                 isset( $args['headers'] ) ? $args['headers'] : array(),
                 array(
