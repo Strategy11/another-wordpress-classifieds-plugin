@@ -728,11 +728,11 @@ class AWPCP_PaymentsAPI {
 
         if ( $this->echo ) {
             // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            echo awpcp_print_message( esc_html( $text ) );
+            echo awpcp_print_message( $text );
             return;
         }
 
-        return awpcp_print_message( esc_html( $text ) );
+        return awpcp_print_message( $text );
     }
 
     /**
