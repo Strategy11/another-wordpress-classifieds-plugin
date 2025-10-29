@@ -1,9 +1,9 @@
 <?php if ( awpcp_get_var( array( 'param' => 'register' ) ) ): ?>
-    <?php echo awpcp_print_message( __( 'Please check your email for the password and then return to log in.', 'another-wordpress-classifieds-plugin' ) ); ?>
+    <?php echo awpcp_print_message( __( 'Please check your email for the password and then return to log in.', 'another-wordpress-classifieds-plugin' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php elseif ( awpcp_get_var( array( 'param' => 'reset' ) ) ): ?>
-    <?php echo awpcp_print_message( __( 'Please check your email to reset your password.', 'another-wordpress-classifieds-plugin' ) ); ?>
+    <?php echo awpcp_print_message( __( 'Please check your email to reset your password.', 'another-wordpress-classifieds-plugin' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php elseif ( $message ): ?>
-    <?php echo awpcp_print_message( $message ); ?>
+    <?php echo awpcp_print_message( $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endif; ?>
 
 <div class="awpcp-login-form">

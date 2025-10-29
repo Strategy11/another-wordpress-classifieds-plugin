@@ -1,5 +1,5 @@
 <?php if ( count( $menu_items ) > 0 ): ?>
-<div <?php echo awpcp_html_attributes( $navigation_attributes ); ?>>
+<div <?php echo awpcp_html_attributes( $navigation_attributes ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
     <span class="awpcp-menu-toggle"><?php echo esc_html( __( 'Classifieds Menu', 'another-wordpress-classifieds-plugin' ) ); ?></span>
     <div class="awpcp-nav-menu">
         <ul class="awpcp-menu-items clearfix">

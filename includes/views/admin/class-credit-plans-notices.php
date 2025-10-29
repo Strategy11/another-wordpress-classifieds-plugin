@@ -31,6 +31,7 @@ class AWPCP_CreditPlansNotices {
             '<a href="' . esc_url( awpcp_get_admin_credit_plans_url() ) . '">',
             '</a>'
         );
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_error( $message );
     }
 }

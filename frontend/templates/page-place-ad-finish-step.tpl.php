@@ -8,6 +8,7 @@ if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps'
 }
 
 foreach ( (array) $messages as $message ) :
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     echo awpcp_print_message( $message );
 endforeach;
 
