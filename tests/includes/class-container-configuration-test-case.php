@@ -48,7 +48,7 @@ abstract class AWPCP_ContainerConfigurationTestCase extends AWPCP_UnitTestCase i
      * @param mixed $offset     The name of the offset to check.
      * @since 4.0.0
      */
-    public function offsetExists( $offset ) {
+    public function offsetExists( $offset ): bool {
         return true;
     }
 
@@ -56,7 +56,7 @@ abstract class AWPCP_ContainerConfigurationTestCase extends AWPCP_UnitTestCase i
      * @param mixed $offset     The name of the offset to get.
      * @since 4.0.0
      */
-    public function offsetGet( $offset ) {
+    public function offsetGet( $offset ): mixed {
         return null;
     }
 
@@ -65,7 +65,7 @@ abstract class AWPCP_ContainerConfigurationTestCase extends AWPCP_UnitTestCase i
      * @param mixed $value      The value to store.
      * @since 4.0.0
      */
-    public function offsetSet( $offset, $value ) {
+    public function offsetSet( $offset, $value ): void {
         $this->definitions[ $offset ] = $value;
     }
 
@@ -73,6 +73,6 @@ abstract class AWPCP_ContainerConfigurationTestCase extends AWPCP_UnitTestCase i
      * @param mixed $offset     The name of the offset to unset.
      * @since 4.0.0
      */
-    public function offsetUnset( $offset ) {
+    public function offsetUnset( $offset ): void {
     }
 }

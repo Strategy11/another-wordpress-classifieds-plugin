@@ -22,6 +22,16 @@ class AWPCP_FormFieldsDataValidatorTest extends AWPCP_UnitTestCase {
     public $data;
 
     /**
+     * @var \Mockery\MockInterface
+     */
+    public $authorization;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $settings;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {
