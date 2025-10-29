@@ -234,13 +234,11 @@ class AWPCP_ImportListingsAdminPage {
     }
 
     private function create_directory( $directory ) {
-        if ( ! $this->wp_filesystem->is_dir( $directory ) ) {
-            $previous_umask = umask( 0 );
-            $this->wp_filesystem->mkdir( $directory, FS_CHMOD_DIR, true );
-            umask( $previous_umask );
+        if ( ! is_dir( $directory ) ) {
+            wp_mkdir_p( $directory );
         }
 
-        return $this->wp_filesystem->exists( $directory );
+        return is_dir( $directory );
     }
 
     private function get_images_directory( $working_directory ) {
