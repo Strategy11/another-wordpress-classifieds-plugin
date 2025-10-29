@@ -1,5 +1,6 @@
 <?php
     foreach ($messages as $message) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_message($message);
     }
 ?>
