@@ -18,11 +18,6 @@ class WP_Skeleton_Logger {
         $this->root          = realpath(getenv('DOCUMENT_ROOT'));
         $this->wp_filesystem = awpcp_get_wp_filesystem();
 
-        if ( ! $this->wp_filesystem ) {
-            // Fallback to direct file operations if wp_filesystem is not available
-            $this->wp_filesystem = null;
-        }
-
         $this->log = array();
 
         if ( is_admin() ) {
