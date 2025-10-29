@@ -91,7 +91,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     private function process_request() {
         if ( ! $this->authorization->is_current_user_allowed_to_submit_listing() ) {
             $message = __( 'Users are not allowed to publish ads at this time.', 'another-wordpress-classifieds-plugin' );
-            
+
             // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
             throw new AWPCP_Exception( awpcp_print_error( $message ) );
         }
