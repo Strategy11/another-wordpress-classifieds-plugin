@@ -437,8 +437,8 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 }
 
 function awpcp_set_datetime_date( $datetime, $date ) {
-    $base_timestamp = strtotime( $datetime );
-    $base_year_month_day_timestamp = strtotime( gmdate( 'Y-m-d', strtotime( $datetime ) ) );
+    $base_timestamp = strtotime( $datetime ? $datetime : '' );
+    $base_year_month_day_timestamp = strtotime( gmdate( 'Y-m-d', strtotime( $datetime ? $datetime : '' ) ) );
     $time_of_the_day_in_seconds = $base_timestamp - $base_year_month_day_timestamp;
 
     $target_year_month_day_timestamp = strtotime( gmdate( 'Y-m-d', strtotime( $date ) ) );

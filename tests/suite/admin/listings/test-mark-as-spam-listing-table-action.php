@@ -11,6 +11,21 @@ use Brain\Monkey\Functions;
 class AWPCP_MarkAsSPAMListingTableActionTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $spam_submitter;
+
+    /**
+     * @var mixed
+     */
+    public $listings_logic;
+
+    /**
+     * @var mixed
+     */
+    public $wordpress;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

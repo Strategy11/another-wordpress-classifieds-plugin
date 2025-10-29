@@ -11,6 +11,11 @@ use Brain\Monkey\Functions;
 class AWPCP_IndeedMemebershipProPluginIntegrationTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $query;
+
+    /**
      * @since 4.0.4
      */
     public function setUp(): void {
