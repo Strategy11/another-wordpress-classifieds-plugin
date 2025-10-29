@@ -9,6 +9,26 @@
 class AWPCP_SendToFacebookHelperTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $facebook;
+
+    /**
+     * @var mixed
+     */
+    public $listing_renderer;
+
+    /**
+     * @var mixed
+     */
+    public $settings;
+
+    /**
+     * @var mixed
+     */
+    public $wordpress;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

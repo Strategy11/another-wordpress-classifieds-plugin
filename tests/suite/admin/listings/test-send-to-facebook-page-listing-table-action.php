@@ -11,6 +11,16 @@ use Brain\Monkey\Functions;
 class AWPCP_SendToFacebookPageListingTableActionTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $facebook_helper;
+
+    /**
+     * @var mixed
+     */
+    public $roles_and_capabilities;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

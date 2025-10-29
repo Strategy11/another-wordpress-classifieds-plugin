@@ -11,6 +11,16 @@ use Brain\Monkey\Functions;
 class AWPCP_ExpiredListingTableViewTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $table_view_test_helper;
+
+    /**
+     * @var mixed
+     */
+    public $listings_collection;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {
