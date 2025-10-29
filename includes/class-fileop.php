@@ -82,31 +82,18 @@ class fileop {
     protected function _disk_delete( $source ) {
         $myreturn = false;
 
-        if ( $this->wp_filesystem ) {
-            if ($this->wp_filesystem->is_dir($source)) {
-                $files = $this->wp_filesystem->dirlist($source);
-                if ( $files ) {
-                    foreach ( $files as $file => $fileinfo ) {
-                        if ($file!='.' && $file!='..') {
-                            $myreturn = $this->_disk_delete( $source . '/' . $file );
-                        }
+        if ($this->wp_filesystem->is_dir($source)) {
+            $files = $this->wp_filesystem->dirlist($source);
+            if ( $files ) {
+                foreach ( $files as $file => $fileinfo ) {
+                    if ($file!='.' && $file!='..') {
+                        $myreturn = $this->_disk_delete( $source . '/' . $file );
                     }
                 }
-                $myreturn = $this->wp_filesystem->rmdir($source);
-            } elseif ($this->wp_filesystem->is_file($source)) {
-                $myreturn = $this->wp_filesystem->delete($source);
             }
-        } elseif (is_dir($source)) {
-            $d=dir($source);
-            while ($file=$d->read()) {
-                if ($file!='.' && $file!='..') {
-                    $myreturn = $this->_disk_delete( $source . '/' . $file );
-                }
-            }
-            $d->close();
-            $myreturn=$this->wp_filesystem->rmdir($source);
-        } elseif (is_file($source)) {
-            $myreturn=$this->wp_filesystem->delete($source);
+            $myreturn = $this->wp_filesystem->rmdir($source);
+        } elseif ($this->wp_filesystem->is_file($source)) {
+            $myreturn = $this->wp_filesystem->delete($source);
         }
 
         return $myreturn;
