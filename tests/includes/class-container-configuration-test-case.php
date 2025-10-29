@@ -54,9 +54,10 @@ abstract class AWPCP_ContainerConfigurationTestCase extends AWPCP_UnitTestCase i
 
     /**
      * @param mixed $offset     The name of the offset to get.
+     * @return mixed
      * @since 4.0.0
      */
-    public function offsetGet( $offset ): mixed {
+    public function offsetGet( $offset ) {
         return null;
     }
 
