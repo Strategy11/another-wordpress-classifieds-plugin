@@ -8,6 +8,21 @@
  */
 class AWPCP_RemoveListingAttachmentsServiceTest extends AWPCP_UnitTestCase {
 
+    /**
+     * @var string
+     */
+    public $listing_post_type;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $attachments;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $wordpress;
+
     public function setUp(): void {
         parent::setUp();
 
