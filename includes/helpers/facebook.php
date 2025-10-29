@@ -323,7 +323,7 @@ class AWPCP_Facebook {
         // Check if response is valid
         if ( empty( $res ) ) {
             $this->last_error          = new stdClass();
-            $this->last_error->message = 'Empty response from Facebook API';
+            $this->last_error->message = __( 'Empty response from Facebook API', 'another-wordpress-classifieds-plugin' );
             return false;
         }
 
