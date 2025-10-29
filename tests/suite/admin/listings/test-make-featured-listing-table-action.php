@@ -11,6 +11,16 @@ use Brain\Monkey\Functions;
 class AWPCP_MakeFeaturedListingTableActionTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $roles_and_capabilities;
+
+    /**
+     * @var mixed
+     */
+    public $wordpress;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

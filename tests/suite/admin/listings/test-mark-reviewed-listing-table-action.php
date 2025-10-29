@@ -11,6 +11,11 @@ use Brain\Monkey\Functions;
 class AWPCP_MarkReviewedListingTableActionTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $wordpress;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

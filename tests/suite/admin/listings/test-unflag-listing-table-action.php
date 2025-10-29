@@ -11,6 +11,16 @@ use Brain\Monkey\Functions;
 class AWPCP_UnflagListingTableActionTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $listings_logic;
+
+    /**
+     * @var mixed
+     */
+    public $listing_renderer;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

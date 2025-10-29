@@ -12,6 +12,26 @@ use Brain\Monkey\Functions;
 class AWPCP_QueryIntegrationTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $settings;
+
+    /**
+     * @var mixed
+     */
+    public $db;
+
+    /**
+     * @var mixed
+     */
+    public $post_type;
+
+    /**
+     * @var mixed
+     */
+    public $query_vars;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

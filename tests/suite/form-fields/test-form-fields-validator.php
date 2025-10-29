@@ -12,6 +12,16 @@ use Brain\Monkey\Functions;
 class AWPCP_FormFieldsDataValidatorTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $roles;
+
+    /**
+     * @var mixed
+     */
+    public $data;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

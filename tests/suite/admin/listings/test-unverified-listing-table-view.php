@@ -9,6 +9,16 @@
 class AWPCP_UniverifiedListingTableViewTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $test_helper;
+
+    /**
+     * @var mixed
+     */
+    public $listings_collection;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {
