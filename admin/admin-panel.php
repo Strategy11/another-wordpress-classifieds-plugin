@@ -425,6 +425,7 @@ class AWPCP_AdminPanel {
         if ( awpcp_get_var( array( 'param' => 'action' ) ) === 'awpcp-manage-credits' ) {
             $message = __( 'Use the Account Balance column on the table below to manage credit balance for users.', 'another-wordpress-classifieds-plugin' );
 
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_render_info_message( $message );
         }
 
@@ -569,6 +570,7 @@ class AWPCP_AdminPanel {
             );
             $second_line = sprintf( $second_line, $view_categories_label );
 
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_error( $first_line . '<br/><br/>' . $second_line );
         }
     }

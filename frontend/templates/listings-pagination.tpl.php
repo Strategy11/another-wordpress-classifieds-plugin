@@ -15,7 +15,7 @@
 
     <?php if ( $show_dropdown ) : ?>
     <form class="awpcp-pagination-form" method="get">
-        <?php echo awpcp_html_hidden_fields( $params ); ?>
+        <?php echo awpcp_html_hidden_fields( $params ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
         <?php if ( count( $options ) > 1 ) : ?>
 

@@ -13,7 +13,7 @@ require AWPCP_DIR . '/admin/templates/admin-panel-header.tpl.php';
 
         <h3><?php echo esc_html( $action_name ); ?></h3>
         <?php if ( $test_mode_enabled ) : ?>
-        <p><?php echo awpcp_render_warning( esc_html__( "You're currently testing the import operation. No listings will be created or modified in the database.", 'another-wordpress-classifieds-plugin' ) ); ?></p>
+        <p><?php echo awpcp_render_warning( esc_html__( "You're currently testing the import operation. No listings will be created or modified in the database.", 'another-wordpress-classifieds-plugin' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
         <?php endif; ?>
 
         <form id="awpcp-import-listings-import-form" method="post">

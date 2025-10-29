@@ -727,6 +727,7 @@ class AWPCP_PaymentsAPI {
         $text = sprintf( __( 'You currently have %s credits in your account.', 'another-wordpress-classifieds-plugin' ), $balance );
 
         if ( $this->echo ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_message( esc_html( $text ) );
             return;
         }

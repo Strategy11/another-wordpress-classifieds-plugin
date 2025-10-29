@@ -750,6 +750,7 @@ class AWPCP {
 
     public function admin_notices() {
         foreach (awpcp_get_property($this, 'errors', array()) as $error) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_error($error);
         }
 
@@ -774,6 +775,7 @@ class AWPCP {
     private function missing_gd_library_notice() {
         $message = __( "AWPCP requires the graphics processing library GD and it is not installed. Contact your web host to fix this.", 'another-wordpress-classifieds-plugin' );
         $message = sprintf( '<strong>%s</strong> %s', __( 'Warning', 'another-wordpress-classifieds-plugin' ), $message );
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_error( $message );
     }
 

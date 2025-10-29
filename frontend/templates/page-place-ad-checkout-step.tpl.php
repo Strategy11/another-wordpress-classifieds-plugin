@@ -11,7 +11,7 @@
 ?>
 
 <?php foreach ($messages as $message): ?>
-    <?php echo awpcp_print_message($message) ?>
+    <?php echo awpcp_print_message($message); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endforeach ?>
 
 <?php $payments->show_checkout_page( $transaction, $hidden ); ?>

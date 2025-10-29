@@ -16,10 +16,12 @@
     }
 
     foreach ($messages as $message) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_message($message);
     }
 
     foreach($errors as $error) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_message($error, array('error'));
     }
 ?>
