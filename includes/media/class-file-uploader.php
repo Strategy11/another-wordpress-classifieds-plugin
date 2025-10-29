@@ -146,16 +146,10 @@ class AWPCP_FileUploader {
                 throw new AWPCP_Exception( esc_html__( 'There was an error trying to move the uploaded file to a temporary location.', 'another-wordpress-classifieds-plugin' ) );
             }
         } else {
-            $input = fopen( 'php://input', 'rb' );
-            if ( ! $input ) {
-                throw new AWPCP_Exception( esc_html__( "There was an error trying to open PHP's input stream.", 'another-wordpress-classifieds-plugin' ) );
+            $content = file_get_contents( 'php://input' );
+            if ( false === $content ) {
+                throw new AWPCP_Exception( esc_html__( "There was an error trying to read PHP's input stream.", 'another-wordpress-classifieds-plugin' ) );
             }
-
-            $content = '';
-            while ( $buffer = fread( $input, 4096 ) ) {
-                $content .= $buffer;
-            }
-            fclose( $input );
 
             if ( ! $this->wp_filesystem->put_contents( $file_path, $content ) ) {
                 throw new AWPCP_Exception( esc_html( $this->get_failed_to_open_output_stream_error_message( $file_path ) ) );
