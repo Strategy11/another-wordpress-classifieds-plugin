@@ -48,10 +48,8 @@ class AWPCP_ListingRenewedEmailNotifications {
         );
 
         $subject_template = $this->settings->get_option( 'ad-renewed-email-subject' );
-        $mail->subject    = sprintf(
-            $subject_template ?: '%s',
-            $this->listing_renderer->get_listing_title( $listing )
-        );
+        $listing_title    = $this->listing_renderer->get_listing_title( $listing );
+        $mail->subject    = $subject_template ? $subject_template : $listing_title;
 
         $mail->body = $this->get_user_notification_body( $listing );
 
