@@ -81,6 +81,16 @@ class AWPCP_UninstallerTest extends AWPCP_UnitTestCase {
         Functions\when( 'get_option' )->justReturn( [] );
         Functions\when( 'deactivate_plugins' )->justReturn( null );
 
+        $wp_filesystem_mock = Mockery::mock( \WP_Filesystem_Direct::class );
+        $wp_filesystem_mock->shouldReceive( 'chmod' )->andReturn( true );
+        $wp_filesystem_mock->shouldReceive( 'is_dir' )->andReturn( false );
+        $wp_filesystem_mock->shouldReceive( 'dirlist' )->andReturn( [] );
+        $wp_filesystem_mock->shouldReceive( 'rmdir' )->andReturn( true );
+        $wp_filesystem_mock->shouldReceive( 'is_file' )->andReturn( false );
+        $wp_filesystem_mock->shouldReceive( 'delete' )->andReturn( true );
+
+        Functions\when( 'awpcp_get_wp_filesystem' )->justReturn( $wp_filesystem_mock );
+
         $this->categories_collection->shouldReceive( 'find_categories' )
             ->andReturn( $categories );
 
