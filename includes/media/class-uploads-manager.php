@@ -29,7 +29,7 @@ class AWPCP_UploadsManager {
             throw new AWPCP_Exception( esc_html__( 'Unable to initialize WordPress file system.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        if ( ! $wp_filesystem->exists( $destination_dir ) && ! $wp_filesystem->mkdir( $destination_dir, awpcp_directory_permissions(), true ) ) {
+        if ( ! is_dir( $destination_dir ) && ! wp_mkdir_p( $destination_dir ) ) {
             throw new AWPCP_Exception( esc_html__( "Destination directory doesn't exists and couldn't be created.", 'another-wordpress-classifieds-plugin' ) );
         }
 
