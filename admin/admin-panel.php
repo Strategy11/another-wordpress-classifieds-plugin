@@ -372,7 +372,7 @@ class AWPCP_AdminPanel {
      * @since 4.01
      */
     private function maybe_redirect_quick_page() {
-        $listing_id = isset( $_GET['post'] ) ? absint( wp_unslash( $_GET['post'] ) ) : 0;
+        $listing_id = isset( $_GET['post'] ) ? absint( wp_unslash( $_GET['post'] ) ) : 0; // phpcs:ignore WordPress.Security.NonceVerification
         if ( $listing_id ) {
             wp_safe_redirect( get_permalink( $listing_id ) );
             exit();
@@ -382,7 +382,7 @@ class AWPCP_AdminPanel {
     private function configure_regular_routes( $parent_menu, $router ) {
         $parent_page = $this->configure_route_for_main_classifieds_admin_page( $parent_menu, $router );
 
-        if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] == 'awpcp-admin-upgrade' ) {
+        if ( isset( $_REQUEST['page'] ) && $_REQUEST['page'] === 'awpcp-admin-upgrade' ) { // phpcs:ignore WordPress.Security.NonceVerification
             $this->configure_route_for_manual_upgrade_admin_page( $parent_page, $router );
         }
 
