@@ -19,7 +19,6 @@ $message = __( 'Associate Ads currently associated with Fee plan %s to one of th
 
     <?php wp_nonce_field( 'awpcp-fee-transfer' ); ?>
     <input class="button" type="submit" value="<?php esc_attr_e( 'Cancel', 'another-wordpress-classifieds-plugin' ); ?>" id="submit" name="cancel">
-    <input class="button button-primary" type="submit" value="<?php echo esc_attr( __( 'Switch', 'another-wordpress-classifieds-plugin' ) ); ?>" id="submit" name="transfer">
     <input type="hidden" value="<?php echo esc_attr( $fee->id ); ?>" name="id">
     <input type="hidden" value="transfer" name="action">
 </form>
