@@ -92,8 +92,6 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
         switch ( $action ) {
             case 'delete':
                 return $this->delete();
-            case 'transfer':
-                return $this->transfer();
             case 'index':
                 return $this->index();
             default:

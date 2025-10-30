@@ -23,6 +23,8 @@ class AWPCP_License_Settings_Actions_Request_Handler {
         }
 
         $this->process_settings_actions_for_modules( $this->modules_manager->get_modules() );
+
+        return $location;
     }
 
     private function process_settings_actions_for_modules( $modules ) {
