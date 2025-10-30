@@ -1,5 +1,10 @@
 <ul class="awpcp-payment-methods-list" data-breakpoints-class-prefix="awpcp-payment-methods-list" data-breakpoints='{"480": [0,480]}'>
-<?php if ( empty( $payment_methods ) ): ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ if ( empty( $payment_methods ) ): ?>
     <li><?php esc_html_e( 'No payment methods available.', 'another-wordpress-classifieds-plugin') ?></li>
 <?php endif ?>
 <?php foreach ( $payment_methods as $payment_method ): ?>

@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_licenses_manager() {
     static $instance = null;

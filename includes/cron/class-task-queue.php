@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_task_queue() {
     static $instance = null;
 

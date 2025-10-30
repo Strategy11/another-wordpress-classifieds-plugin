@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_file_cache() {
     return new AWPCP_FileCache( WP_CONTENT_DIR . '/uploads/awpcp/cache/' );

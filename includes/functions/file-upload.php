@@ -1,10 +1,14 @@
 <?php
-
 /**
  * Return mime types associated with image files.
  *
  * @since 3.0.2
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_get_image_mime_types() {
     return array(
         'image/png',

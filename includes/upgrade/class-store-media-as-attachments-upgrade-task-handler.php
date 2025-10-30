@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Upgrade routine to store media records as attachments.
  */

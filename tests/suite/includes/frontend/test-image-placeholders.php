@@ -13,6 +13,31 @@ use Brain\Monkey\Functions;
 class AWPCP_Image_Placeholders_Test extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $attachment_properties;
+
+    /**
+     * @var mixed
+     */
+    public $attachments_collection;
+
+    /**
+     * @var mixed
+     */
+    public $image_renderer;
+
+    /**
+     * @var mixed
+     */
+    public $listing_renderer;
+
+    /**
+     * @var mixed
+     */
+    public $settings;
+
+    /**
      * @since 4.0.1
      */
     public function setUp(): void {

@@ -3,6 +3,10 @@
  * @package AWPCP\Settings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Register constructor for classes necessary to support plugin settings.
  */

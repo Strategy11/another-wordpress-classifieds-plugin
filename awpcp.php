@@ -27,6 +27,10 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+ if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 if ( ! function_exists( 'add_filter' ) ) {
     header( 'Status: 403 Forbidden' );
     header( 'HTTP/1.1 403 Forbidden' );
@@ -100,9 +104,6 @@ if ( file_exists( AWPCP_DIR . '/awpcp_category_icons_module.php' ) ) {
     $hascaticonsmodule = 1;
 }
 /* End of legacy code. */
-
-// Load text domain in init to match the changes in WP 6.7.
-add_action( 'init', 'awpcp_load_plugin_textdomain' );
 
 /**
  * BuddyPress normally attaches bp_loaded to plugins_loaded with priority 10.

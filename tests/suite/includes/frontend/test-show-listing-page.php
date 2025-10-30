@@ -11,6 +11,21 @@ use Brain\Monkey\Functions;
 class AWPCP_ShowListingPageTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $listings_content_renderer;
+
+    /**
+     * @var mixed
+     */
+    public $listings_collection;
+
+    /**
+     * @var mixed
+     */
+    public $request;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

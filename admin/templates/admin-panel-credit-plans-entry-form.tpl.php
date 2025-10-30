@@ -1,6 +1,11 @@
 <tr style="" class="inline-edit-row quick-edit-row alternate inline-editor" id="edit-1">
     <td class="colspanchange" colspan="5">
-        <?php $id = awpcp_get_property( $entry, 'id', false ); ?>
+        <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ $id = awpcp_get_property( $entry, 'id', false ); ?>
         <form action="<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>" method="post">
         <fieldset class="inline-edit-col-left"><div class="inline-edit-col">
                 <h4><?php echo esc_html( $id ? _x( 'Edit Credit Plan Details', 'credit plans form', 'another-wordpress-classifieds-plugin' ) : _x( 'New Credit Plan Details', 'credit plans form', 'another-wordpress-classifieds-plugin' ) ); ?></h4>

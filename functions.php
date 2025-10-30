@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+ if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Returns the IDs of the pages used by the AWPCP plugin.
  */
@@ -421,6 +425,7 @@ function awpcp_datetime( $format='mysql', $date=null ) {
             return $timestamp;
         case 'time-elapsed':
             return sprintf(
+                // translators: %s is the human-readable time difference (e.g., "2 hours", "3 days")
                 __( '%s ago', 'another-wordpress-classifieds-plugin' ),
                 human_time_diff( strtotime( $date ) )
             );
@@ -436,8 +441,8 @@ function awpcp_datetime( $format='mysql', $date=null ) {
 }
 
 function awpcp_set_datetime_date( $datetime, $date ) {
-    $base_timestamp = strtotime( $datetime );
-    $base_year_month_day_timestamp = strtotime( gmdate( 'Y-m-d', strtotime( $datetime ) ) );
+    $base_timestamp = strtotime( $datetime ? $datetime : '' );
+    $base_year_month_day_timestamp = strtotime( gmdate( 'Y-m-d', strtotime( $datetime ? $datetime : '' ) ) );
     $time_of_the_day_in_seconds = $base_timestamp - $base_year_month_day_timestamp;
 
     $target_year_month_day_timestamp = strtotime( gmdate( 'Y-m-d', strtotime( $date ) ) );
@@ -740,6 +745,7 @@ function awpcp_get_comma_separated_list($items=array(), $threshold=5, $none='') 
     $count = count( $items );
 
     if ( $count > $threshold ) {
+        // translators: %1$s is a comma-separated list of items, %2$d is the number of additional items
         $message = _x( '%1$s and %2$d more.', 'comma separated list of things', 'another-wordpress-classifieds-plugin' );
         $items = array_splice( $items, 0, $threshold - 1 );
         return sprintf( $message, join( ', ', $items ), $count - $threshold + 1 );
@@ -1239,13 +1245,13 @@ function awpcp_get_var( $args, $type = 'request' ) {
     $args     = wp_parse_args( $args, $defaults );
     $value    = $args['default'];
     if ( $type === 'get' ) {
-        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification
         $value = isset( $_GET[ $args['param'] ] ) ? wp_unslash( $_GET[ $args['param'] ] ) : $value;
     } elseif ( $type === 'post' ) {
         // phpcs:ignore Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification
         $value = isset( $_POST[ $args['param'] ] ) ? wp_unslash( $_POST[ $args['param'] ] ) : $value;
     } else {
-        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification
         $value = isset( $_REQUEST[ $args['param'] ] ) ? wp_unslash( $_REQUEST[ $args['param'] ] ) : $value;
     }
 
@@ -1740,6 +1746,7 @@ function awpcp_print_messages() {
     $messages = is_null($messages) ? awpcp_get_flash_messages() : $messages;
 
     foreach ($messages as $message) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_message($message['message'], $message['class']);
     }
 
@@ -1749,8 +1756,10 @@ function awpcp_print_messages() {
 function awpcp_print_form_errors( $errors ) {
     foreach ( $errors as $index => $error ) {
         if ( is_numeric( $index ) ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_message( $error, array( 'awpcp-error', 'notice', 'notice-error' ) );
         } else {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_message( $error, array( 'awpcp-error', 'notice', 'notice-error', 'ghost' ) );
         }
     }
@@ -2461,6 +2470,7 @@ function awpcp_ad_enabled_email( $listing ) {
     // user email
     $mail = new AWPCP_Email();
     $mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
+    /* translators: %s is the listing title */
     $mail->subject = sprintf( __( 'Your Ad "%s" has been approved', 'another-wordpress-classifieds-plugin'), $listing_title );
 
     $template = AWPCP_DIR . '/frontend/templates/email-ad-enabled-user.tpl.php';
@@ -2484,6 +2494,7 @@ function awpcp_ad_updated_user_email( $ad, $message ) {
 
     $mail = new AWPCP_Email();
     $mail->to[] = awpcp_format_recipient_address( $contact_email, $contact_name );
+    // translators: %s is the listing title
     $mail->subject = sprintf( __( 'Your Ad "%s" has been successfully updated', 'another-wordpress-classifieds-plugin' ), $listing_title );
 
     $template = AWPCP_DIR . '/frontend/templates/email-ad-updated-user.tpl.php';
@@ -2508,17 +2519,20 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
     $messages = array();
 
     if ( false == $ad_approve && $images_approve ) {
+        // translators: %s is the listing title
         $subject = __( 'Images on Ad "%s" are awaiting approval', 'another-wordpress-classifieds-plugin' );
 
         $messages[] = sprintf(
+            // translators: %1$s is the listing title, %2$s is the URL to manage images
             __( 'Images on Ad "%1$s" are awaiting approval. You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %2$s.', 'another-wordpress-classifieds-plugin' ),
             $listing_renderer->get_listing_title( $ad ),
             $manage_images_url
         );
     } else {
+        // translators: %s is the listing title
         $subject = __( 'The Ad "%s" is awaiting approval', 'another-wordpress-classifieds-plugin' );
 
-        /* translators: %1$s is the listing title. %2$s is the URL for managing listing.*/
+        // translators: %1$s is the listing title, %2$s is the URL for managing listing
         $message = __( 'The Ad "%1$s" is awaiting approval. You can approve the Ad going to the Classified edit section and clicking the "Publish" button. Click here to continue: %2$s.', 'another-wordpress-classifieds-plugin');
 
         $url = awpcp_get_quick_view_listing_url( $ad );
@@ -2527,6 +2541,7 @@ function awpcp_ad_awaiting_approval_email($ad, $ad_approve, $images_approve) {
 
         if ( $images_approve ) {
             $messages[] = sprintf(
+                // translators: %s is the URL to manage images
                 __( 'Additionally, You can approve the images going to the Manage Images section for that Ad and clicking the "Enable" button below each image. Click here to continue: %s.', 'another-wordpress-classifieds-plugin' ),
                 $manage_images_url
             );
@@ -2585,79 +2600,6 @@ function awpcp_maybe_include_lightbox_style() {
     if ( ! get_awpcp_option( 'awpcp_thickbox_disabled' ) ) {
         wp_enqueue_style( 'awpcp-lightgallery' );
     }
-}
-
-/**
- * This function is a specific case of awpcp_load_text_domain_with_file_prefix().
- * However, before trying to remove it, confirm that support for Language Packs
- * is still enabled even if load_plugin_textdomain() is not called with the slug
- * for core plugin hardcoded.
- *
- * @since 3.2.1
- * @since 3.9.2     Modified to use load_plugin_textdomain() in preparation for
- *                  adding support for Language Packs.
- */
-function awpcp_load_plugin_textdomain() {
-    $basename = dirname( plugin_basename( AWPCP_FILE ) );
-
-    $locale = function_exists( 'determine_locale' ) ? determine_locale() : get_locale();
-    $locale = apply_filters( 'plugin_locale', $locale, 'another-wordpress-classifieds-plugin' );
-
-    // Try to load translations from WP_LANG_DIR /<plugin-slug>/another-wordpress-classifieds-plugin-$locale.mo.
-    $mofile = WP_LANG_DIR . "/$basename/another-wordpress-classifieds-plugin-$locale.mo";
-    load_textdomain( 'another-wordpress-classifieds-plugin', $mofile );
-
-    /**
-     * Try to load translations from the following locations:
-     *
-     * - WP_LANG_DIR /plugins/another-wordpress-classifieds-plugin-$locale.mo
-     * - WP_PLUGIN_DIR /<plugin-slug>/languages/another-wordpress-classifieds-plugin-$locale.mo
-     */
-    load_plugin_textdomain( 'another-wordpress-classifieds-plugin', false, "$basename/languages/" );
-
-    // Try to load translations from WP_PLUGIN_DIR /<plugin-slug>/another-wordpress-classifieds-plugin-$locale.mo.
-    $mofile = WP_PLUGIN_DIR . "/$basename/another-wordpress-classifieds-plugin-$locale.mo";
-    load_textdomain( 'another-wordpress-classifieds-plugin', $mofile );
-}
-
-/**
- * Attempts to load translations from the following locations:
- *
- * - WP_LANG_DIR /<plugin-slug>/$file_prefix-$locale.mo
- * - WP_LANG_DIR /plugins/$file_prefix-$locale.mo
- * - WP_PLUGIN_DIR /<plugin-slug>/languages/$file_prefix-$locale.mo
- * - WP_PLUGIN_DIR /<plugin-slug>/$file_prefix-$locale.mo
- *
- * TODO: Do we really need to load files from all those locations? Isn't all that verifications too exepensive?
- * TODO: Having all that options is confusing. We should support the standard ones only.
- *
- * @since 3.5.3.2
- * @since 4.0.0 $file_prefix parameter was deprecated.
- *
- * @param string $__file__    Absolute path to the plugin's main file.
- * @param string $text_domain Plugin's text domain.
- */
-function awpcp_load_text_domain_with_file_prefix( $__file__, $text_domain, $file_prefix = null ) {
-    $basename = dirname( plugin_basename( $__file__ ) );
-
-    $locale = function_exists( 'determined_locale' ) ? determined_locale() : get_locale();
-    $locale = apply_filters( 'plugin_locale', $locale, $text_domain );
-
-    // Try to load translations from WP_LANG_DIR/$basename/$domain-$locale.mo.
-    $mofile = WP_LANG_DIR . "/$basename/$text_domain-$locale.mo";
-    load_textdomain( $text_domain, $mofile );
-
-    /**
-     * Try to load translations from the following locations:
-     *
-     * - WP_LANG_DIR /plugins/$basename-$locale.mo
-     * - WP_PLUGIN_DIR /<plugin-slug>/languages/$basename-$locale.mo
-     */
-    load_plugin_textdomain( $text_domain, false, "$basename/languages/" );
-
-    // Try loading the translations from the plugin's root directory.
-    $mofile = WP_PLUGIN_DIR . "/$basename/$text_domain-$locale.mo";
-    load_textdomain( $text_domain, $mofile );
 }
 
 /**
@@ -3010,7 +2952,7 @@ function awpcp_strip_html_tags( $text ) {
         ),
         $text
     );
-    return strip_tags( $text );
+    return wp_strip_all_tags( $text );
 }
 // END FUNCTION
 
@@ -3050,6 +2992,7 @@ function awpcp_phpmailer_init_smtp( $phpmailer ) {
 
 function awpcp_format_email_sent_datetime() {
     $time = date_i18n( awpcp_get_datetime_format(), current_time( 'timestamp' ) );
+    // translators: %s is the formatted date and time
     return sprintf( __( 'Email sent %s.', 'another-wordpress-classifieds-plugin' ), $time );
 }
 
@@ -3171,6 +3114,7 @@ function awpcp_get_ad_share_info( $id ) {
  * @since 3.6.6
  */
 function awpcp_user_agent_header() {
+    // translators: %1$s is WordPress version, %2$s is plugin version
     $user_agent = 'WordPress %s / Another WordPress Classifieds Plugin %s';
     $user_agent = sprintf( $user_agent, get_bloginfo( 'version' ), $GLOBALS['awpcp_db_version'] );
     return $user_agent;

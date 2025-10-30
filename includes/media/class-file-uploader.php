@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_file_uploader() {
     return new AWPCP_FileUploader(

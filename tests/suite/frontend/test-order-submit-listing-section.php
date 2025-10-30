@@ -9,6 +9,41 @@
 class AWPCP_OrderSubmitListingSectionTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $payments;
+
+    /**
+     * @var mixed
+     */
+    public $listings_logic;
+
+    /**
+     * @var mixed
+     */
+    public $listing_renderer;
+
+    /**
+     * @var mixed
+     */
+    public $roles;
+
+    /**
+     * @var mixed
+     */
+    public $captcha;
+
+    /**
+     * @var mixed
+     */
+    public $template_renderer;
+
+    /**
+     * @var mixed
+     */
+    public $settings;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

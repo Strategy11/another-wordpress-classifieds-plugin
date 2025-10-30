@@ -11,6 +11,21 @@ use Brain\Monkey\Functions;
 class AWPCP_ListTableSearchHandlerTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var array
+     */
+    public $search;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $html_renderer;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $request;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

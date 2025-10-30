@@ -9,6 +9,11 @@
 class AWPCP_ListingFormFieldsTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $authorization;
+
+    /**
      * @since 4.0.2
      */
     public function setUp(): void {

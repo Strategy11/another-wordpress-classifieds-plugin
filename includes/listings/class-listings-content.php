@@ -3,6 +3,10 @@
  * @package AWPCP\Listings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Integrates with WordPress to render full listings.
  */

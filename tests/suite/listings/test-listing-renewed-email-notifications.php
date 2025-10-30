@@ -11,6 +11,21 @@ use Brain\Monkey\Functions;
 class AWPCP_ListingRenewedEmailNotificationTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var \Mockery\MockInterface
+     */
+    public $listing_renderer;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $template_renderer;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $settings;
+
+    /**
      * @since 4.0.0
      */
     public function test_send_user_notification() {

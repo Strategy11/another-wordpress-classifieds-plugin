@@ -12,6 +12,22 @@ use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 class AWPCP_ListingsCollectionTest extends AWPCP_UnitTestCase {
 
     use ArraySubsetAsserts;
+
+    /**
+     * @var object
+     */
+    public $query;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $wordpress;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $roles;
+
     /**
      * @since 4.0.0
      */

@@ -11,6 +11,16 @@ use Brain\Monkey\Functions;
 class AWPCP_CompleteListingTableViewTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var AWPCP_ListingTableViewTestHelper
+     */
+    public $test_helper;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $listings_collection;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

@@ -11,6 +11,31 @@ use Brain\Monkey\Functions;
 class AWPCP_ListingInformationMetaboxTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $listings_logic;
+
+    /**
+     * @var mixed
+     */
+    public $listing_renderer;
+
+    /**
+     * @var mixed
+     */
+    public $payments;
+
+    /**
+     * @var mixed
+     */
+    public $template_renderer;
+
+    /**
+     * @var mixed
+     */
+    public $request;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

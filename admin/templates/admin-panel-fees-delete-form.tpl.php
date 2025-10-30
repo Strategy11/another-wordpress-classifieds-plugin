@@ -1,5 +1,10 @@
 <tr class="inline-edit-row quick-edit-row alternate inline-editor delete" id="delete-1">
-    <td class="colspanchange" colspan="<?php echo esc_attr( $columns ); ?>">
+    <td class="colspanchange" colspan="<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ echo esc_attr( $columns ); ?>">
         <form action="" method="post">
         <fieldset class="inline-edit-col-left"><div class="inline-edit-col">
                 <label>

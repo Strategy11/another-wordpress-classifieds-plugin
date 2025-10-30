@@ -12,6 +12,11 @@ use Brain\Monkey\Filters;
 class AWPCP_ListingsContentRendererTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $listing_renderer;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

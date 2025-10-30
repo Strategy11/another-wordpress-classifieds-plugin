@@ -11,6 +11,41 @@ use Brain\Monkey\Functions;
 class AWPCP_UninstallerTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var \Mockery\MockInterface
+     */
+    public $listings_logic;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $listings_collection;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $categories_logic;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $categories_collection;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $roles_and_capabilities;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $settings;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $db;
+
+    /**
      * @since 4.0.0
      */
     public function test_uninstall() {

@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_image_resizer() {
     return new AWPCP_ImageResizer( awpcp_filesystem(), awpcp()->settings );

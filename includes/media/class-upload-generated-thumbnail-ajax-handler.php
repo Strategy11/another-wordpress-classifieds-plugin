@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_upload_generated_thumbnail_ajax_handler() {
     return new AWPCP_UploadGeneratedThumbnailAjaxHandler(
