@@ -134,16 +134,6 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
                     $message = __( "The Fee couldn't be deleted because there are active Ads in the system that are associated with the Fee ID. You need to switch the Ads to a different Fee before you can delete the plan.", 'another-wordpress-classifieds-plugin' );
                     awpcp_flash( $message, 'error' );
 
-                    $params = array(
-                        'fee'  => $fee,
-                        'fees' => $fees,
-                    );
-
-                    $template = AWPCP_DIR . '/admin/templates/admin-panel-fees-delete.tpl.php';
-
-                    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-                    echo $this->render( $template, $params );
-
                     return;
                 }
 
