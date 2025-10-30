@@ -3,6 +3,10 @@
  * @package AWPCP\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * @since 4.1.0
  */

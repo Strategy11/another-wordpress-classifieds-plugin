@@ -1,10 +1,14 @@
 <?php
-
 /**
  * Use awpcp_get_var().
  *
  * @deprecated 4.3
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_post_param($name, $default='') {
     // phpcs:ignore WordPress.Security.NonceVerification
     return awpcp_array_data($name, $default, $_POST);

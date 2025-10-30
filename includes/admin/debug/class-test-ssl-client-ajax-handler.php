@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Debug
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Ajax handler for the Test SSL Client action.
  */

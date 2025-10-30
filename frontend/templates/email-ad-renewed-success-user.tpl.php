@@ -1,4 +1,9 @@
-<?php // emails are sent in plain text, blank lines in templates are required ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ // emails are sent in plain text, blank lines in templates are required ?>
 <?php echo wp_kses_post( $introduction ); ?>
 
 

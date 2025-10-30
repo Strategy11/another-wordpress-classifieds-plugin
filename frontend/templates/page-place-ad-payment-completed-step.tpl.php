@@ -1,4 +1,9 @@
-<h2><?php $payments->show_payment_completed_page_title( $transaction ); ?></h2>
+<h2><?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ $payments->show_payment_completed_page_title( $transaction ); ?></h2>
 
 <?php
     if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {

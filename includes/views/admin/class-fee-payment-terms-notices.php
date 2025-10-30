@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_fee_payment_terms_notices() {
     return new AWPCP_FeePaymentTermsNotices( awpcp()->settings, awpcp_payments_api() );

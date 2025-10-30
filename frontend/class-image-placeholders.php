@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_image_placeholders() {
     $container = awpcp()->container;
 

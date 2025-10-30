@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 // Include all plugin functions.
 require_once AWPCP_DIR . '/debug.php';
 require_once AWPCP_DIR . '/cron.php';

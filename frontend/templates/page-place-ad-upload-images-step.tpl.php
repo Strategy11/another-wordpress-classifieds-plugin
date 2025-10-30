@@ -1,4 +1,9 @@
-<h2><?php esc_html_e( 'Upload Files', 'another-wordpress-classifieds-plugin' ); ?></h2>
+<h2><?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ esc_html_e( 'Upload Files', 'another-wordpress-classifieds-plugin' ); ?></h2>
 
 <?php
     if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {

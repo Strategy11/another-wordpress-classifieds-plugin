@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Importer
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_ImportListingsAdminPage {
 
     private $import_session = false;

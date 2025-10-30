@@ -1,7 +1,12 @@
             <div class="metabox-holder">
                 <div class="postbox">
                     <h3 class="hndle">
-                        <span><?php esc_html_e('Restore AWPCP Pages', 'another-wordpress-classifieds-plugin') ?></span>
+                        <span><?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ esc_html_e('Restore AWPCP Pages', 'another-wordpress-classifieds-plugin') ?></span>
                     </h3>
                     <div class="inside">
 

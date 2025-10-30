@@ -3,6 +3,10 @@
  * @package AWPCP\Widgets
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_Search_Widget extends WP_Widget {
 
     public function __construct() {

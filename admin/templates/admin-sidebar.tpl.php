@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?>
 <div class="awpcp-admin-sidebar awpcp-postbox-container postbox-container" style="<?php echo esc_attr( $float ); ?>">
     <div class="metabox-holder">

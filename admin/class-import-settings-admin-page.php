@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Pages
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for AWPCP_Import_Settings_Admin_Page class
  */

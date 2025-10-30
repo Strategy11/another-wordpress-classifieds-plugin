@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="awpcp-listing-fields-metabox awpcp-master-detail-tabs">
     <input type="hidden" name="awpcp_listing_fields_nonce" value="<?php echo esc_attr( $nonce ); ?>" />
 

@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 if ( awpcp_get_option( 'freepay' ) !== '1' ) :
         printf(
             // translators: %1$s is a line break, %2$s is the payment settings page URL

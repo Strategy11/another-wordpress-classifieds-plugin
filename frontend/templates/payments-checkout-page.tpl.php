@@ -3,6 +3,10 @@
  * @package AWPCP/Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 if ( $attempts > 0 ) {
     foreach ( $transaction_errors as $error_message ) {
         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_credit_plans_notices() {
     return new AWPCP_CreditPlansNotices( awpcp()->settings, awpcp_payments_api() );

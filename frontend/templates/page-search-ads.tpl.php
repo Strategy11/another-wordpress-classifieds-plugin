@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><?php
     foreach ($errors as $index => $error) {
         if (is_numeric($index)) {

@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Admin\Settings
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 if ( isset( $errors ) && $errors ) {
     foreach ( $errors as $err ) {
         echo awpcp_print_error( $err ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

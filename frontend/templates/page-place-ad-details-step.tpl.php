@@ -3,6 +3,10 @@
  * @package AWPCP\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 // TODO: Remove this file.
 
 ?><h2><?php echo esc_html( __( 'Enter Ad Details', 'another-wordpress-classifieds-plugin' ) ); ?></h2>

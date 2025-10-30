@@ -3,6 +3,10 @@
  * @package AWPCP\Upgrade
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Upgrade routine to update `_awpcp_most_recent_start_date` to match renewal date.
  */

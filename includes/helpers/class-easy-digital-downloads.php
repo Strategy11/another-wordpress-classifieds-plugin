@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_easy_digital_downloads() {
     return new AWPCP_EasyDigitalDownloads(

@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="awpcp-pagination pager">
     <?php if ( $pages > 1 ) : ?>
     <div class="awpcp-pagination-links">

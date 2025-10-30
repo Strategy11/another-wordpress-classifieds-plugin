@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><h2><?php esc_html_e( 'Select Payment Term', 'another-wordpress-classifieds-plugin' ); ?></h2>
 
 <?php foreach ($messages as $message): ?>

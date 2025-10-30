@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 esc_html_e( 'Hello,', 'another-wordpress-classifieds-plugin' );
 echo PHP_EOL;
 ?>

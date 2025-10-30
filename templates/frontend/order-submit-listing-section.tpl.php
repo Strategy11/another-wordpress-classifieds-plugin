@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="awpcp-order-submit-listing-section awpcp-submit-listing-section">
     <h2 class="awpcp-submit-listing-section-title js-handler"><?php echo esc_html( $section_title ); ?><span></span></h2>
 

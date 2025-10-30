@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 // ensure we get the expiration hooks scheduled properly:
 function awpcp_schedule_activation() {
     $cron_jobs = array(

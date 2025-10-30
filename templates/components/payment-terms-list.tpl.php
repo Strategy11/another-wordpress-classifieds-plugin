@@ -5,6 +5,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><?php if ( $show_payment_terms ) : ?>
 <ul class="awpcp-payment-terms-list">
     <?php

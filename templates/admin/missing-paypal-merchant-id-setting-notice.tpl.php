@@ -1,5 +1,10 @@
 <div id="missing-paypal-merchant-id-setting-notice" class="notice notice-warning is-dismissible awpcp-notice">
     <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
     awpcp_html_admin_second_level_heading(
         array(
             'content' => esc_html__( "What's your PayPal Merchant ID?", 'another-wordpress-classifieds-plugin' ),
