@@ -26,10 +26,12 @@ class AWPCP_PaymentTermAjaxHandler extends AWPCP_AjaxHandler {
 
     public function ajax() {
         $listing = $this->listings->get( $this->request->post( 'listing' ) );
-        if ( wp_verify_nonce( $this->request->post( 'nonce' ), 'awpcp-upload-media-for-listing-' . $listing->ID ) ) {
-            $this->metabox->save( $listing->ID, $listing );
+
+        if ( ! wp_verify_nonce( $this->request->post( 'nonce' ), 'awpcp-upload-media-for-listing-' . $listing->ID ) ) {
+            return false;
         }
-        return false;
+
+        $this->metabox->save( $listing->ID, $listing );
     }
 
     /**
