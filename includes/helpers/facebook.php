@@ -1,9 +1,13 @@
 <?php
-
 /**
  * Helper class used to handle API calls & configuration for Facebook integration.
  * @since 3.0.2
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_Facebook {
 
     const GRAPH_API_VERSION = 'v2.12';

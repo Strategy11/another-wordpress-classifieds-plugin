@@ -1,4 +1,9 @@
-<form method="post" action="<?php echo esc_attr( $page->url( array( 'action' => false ) ) ); ?>">
+<form method="post" action="<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ echo esc_attr( $page->url( array( 'action' => false ) ) ); ?>">
     <?php echo awpcp_html_hidden_fields( $page->params ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
     <?php $url = $page->url( array( 'action' => 'place-ad' ) ); ?>

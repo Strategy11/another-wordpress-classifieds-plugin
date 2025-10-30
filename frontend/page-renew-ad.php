@@ -3,6 +3,10 @@
  * @package AWPCP\Frontend
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 require_once AWPCP_DIR . '/frontend/page-place-ad.php';
 
 function awpcp_renew_listing_page() {

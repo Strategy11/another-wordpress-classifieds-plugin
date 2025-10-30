@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 printf(
     // translators: %s is the contact name
     esc_html__( 'Hello %s,', 'another-wordpress-classifieds-plugin' ),

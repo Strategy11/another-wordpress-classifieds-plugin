@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_image_file_validator() {
     return new AWPCP_Image_File_Validator( awpcp_listing_upload_limits(), awpcp_file_validation_errors() );

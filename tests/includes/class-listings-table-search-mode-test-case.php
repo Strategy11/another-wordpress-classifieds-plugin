@@ -3,6 +3,10 @@
  * @package AWPCP\Tests
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Unit tests for Listings Table Search Modes.
  */

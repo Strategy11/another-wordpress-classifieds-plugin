@@ -1,10 +1,13 @@
 <?php
-
 /**
  * Onboarding Wizard Controller class.
  *
  * @package AWPCP\Admin
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /**
  * Handles the Onboarding Wizard page in the admin area.

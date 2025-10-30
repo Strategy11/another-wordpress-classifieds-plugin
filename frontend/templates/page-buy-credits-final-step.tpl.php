@@ -1,4 +1,9 @@
-<?php foreach ( $messages as $message ): ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ foreach ( $messages as $message ): ?>
     <?php echo awpcp_print_message( $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 <?php endforeach; ?>
 

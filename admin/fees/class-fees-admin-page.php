@@ -5,6 +5,10 @@
  * @package AWPCP\Admin\Fees
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor function for AWPCP_AdminFees class.
  */

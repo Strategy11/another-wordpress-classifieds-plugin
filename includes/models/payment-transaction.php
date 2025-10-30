@@ -3,6 +3,10 @@
  * @package AWPCP\Payments
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_Payment_Transaction {
 
     // public static $PAYMENT_STATUS_UNKNOWN = 'Unknown';

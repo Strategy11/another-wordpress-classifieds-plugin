@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 if ( isset( $transaction ) && get_awpcp_option( 'show-create-listing-form-steps' ) ) {
     awpcp_listing_form_steps_componponent()->show( 'finish', compact( 'transaction' ) );
 }

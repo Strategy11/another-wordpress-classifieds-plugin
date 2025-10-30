@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 if ( $argc <= 1 || $argc > 4 )
 {
 	showUsage();

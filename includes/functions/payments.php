@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Verify data received from PayPal IPN notifications using cURL and
  * returns PayPal's response.
@@ -10,6 +9,11 @@
  *
  * @return string VERIFIED, INVALID or ERROR
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_paypal_verify_received_data_with_curl($postfields='', $cainfo=true, &$errors=array()) {
     if (get_awpcp_option('paylivetestmode') == 1) {
         $paypal_url = 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr';

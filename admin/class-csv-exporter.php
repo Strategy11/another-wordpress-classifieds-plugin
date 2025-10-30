@@ -5,6 +5,10 @@
  * @package Includes/Admin/CSV Exporter
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * CSV export.
  *

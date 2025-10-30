@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><?php echo awpcp_print_message( $message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 <p><?php echo esc_html_x( 'You are about to pay for the following items.', 'checkout-payment page', 'another-wordpress-classifieds-plugin' ); ?></p>

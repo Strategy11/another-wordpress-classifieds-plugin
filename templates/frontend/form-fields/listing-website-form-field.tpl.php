@@ -3,6 +3,10 @@
  * @package AWPCP\Templates\FormFields
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><p class="awpcp-form-field awpcp-clearfix   awpcp-form-spacer">
     <?php $validator = $required ? 'required classifiedsurl' : 'classifiedsurl'; ?>
     <label class="awpcp-form-field__label" for="<?php echo esc_attr( $html['id'] ); ?>"><?php echo esc_html( $label ); ?><?php echo $required ? '<span class="required">*</span>' : ''; ?></label>

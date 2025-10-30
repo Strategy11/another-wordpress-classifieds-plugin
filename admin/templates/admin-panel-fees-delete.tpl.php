@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 // translators: %s is the fee name
 $message = __( 'Associate Ads currently associated with Fee plan %s to one of the following fees:', 'another-wordpress-classifieds-plugin' );
 ?>

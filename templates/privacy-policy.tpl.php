@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?><div class="wp-suggested-text">
 
     <h3><?php esc_html_e( 'AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ); ?></h3>

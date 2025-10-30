@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+ if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Returns the IDs of the pages used by the AWPCP plugin.
  */
