@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 function awpcp_tasks_collection() {
     return new AWPCP_TasksCollection( awpcp_task_logic_factory(), $GLOBALS['wpdb'] );

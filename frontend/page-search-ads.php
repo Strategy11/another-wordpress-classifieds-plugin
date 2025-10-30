@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_search_listings_page() {
     return new AWPCP_SearchAdsPage(
         'awpcp-search-ads',

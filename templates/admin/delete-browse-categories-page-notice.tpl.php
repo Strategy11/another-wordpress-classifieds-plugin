@@ -1,5 +1,10 @@
 <div id="delete-browse-categories-page-notice" class="notice notice-info is-dismissible awpcp-notice">
     <p><?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
         printf(
             // translators: %1$s is the browse categories page name, %2$s is the browse listings page name
             esc_html__( 'The %1$s page is no longer necessary. From now on, all listings will be displayed in the %2$s page, even when they are filtered by a particular category.', 'another-wordpress-classifieds-plugin' ),

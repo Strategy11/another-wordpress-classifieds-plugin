@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 // emails are sent in plain text, trailing whitespace are required for proper formatting
 // translators: %s is the contact name
 printf( esc_html__( 'Hello %s,', 'another-wordpress-classifieds-plugin'), esc_html( $contact_name ) );

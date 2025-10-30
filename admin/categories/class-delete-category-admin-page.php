@@ -5,6 +5,10 @@
  * @package AWPCP\Admin\Categories
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor for Delete_Category_Admin_Page.
  */

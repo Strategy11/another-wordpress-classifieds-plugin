@@ -3,6 +3,10 @@
  * @package AWPCP\Helpers
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_Request {
 
     /**

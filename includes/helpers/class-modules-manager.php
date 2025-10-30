@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_ModulesManager {
 
     private $plugin;
@@ -185,6 +189,7 @@ class AWPCP_ModulesManager {
         $message = _n( 'Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <module-name>, or you need a newer version of AWPCP to use that module. Please contact customer support and ask for an update. Please also include a reference to this error in your message.', 'Yikes, there has been a mistake. It looks like you have an outdated version of AWPCP <modules-names>, or you need a newer version of AWPCP to use those modules. Please contact customer support and ask for an update. Please also include a reference to this error in your message.', count( $modules ), 'another-wordpress-classifieds-plugin' );
         $message = $this->replace_modules_names_in_message( $message, $modules );
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_error( $message );
     }
 
@@ -231,6 +236,7 @@ class AWPCP_ModulesManager {
         $message = str_replace( '{awpcp_version}', '<strong>' . $this->plugin->version . '</strong>', $message );
         $message = str_replace( '{required_modules_versions}', awpcp_string_with_names( $strings['required_versions'] ), $message );
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_error( $message );
     }
 
@@ -266,6 +272,7 @@ class AWPCP_ModulesManager {
         $message = $this->replace_modules_names_in_message( $message, $modules );
         $message = str_replace( '<licenses-settings-link>', $link, $message );
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_error( $message );
     }
 
@@ -300,6 +307,7 @@ class AWPCP_ModulesManager {
         $message = $this->replace_modules_names_in_message( $message, $modules );
         $message = str_replace( '<upgrade-link>', sprintf( '<a href="%s">', $upgrade_url ), $message );
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_error( $message );
     }
 

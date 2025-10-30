@@ -3,6 +3,10 @@
  * @package AWPCP\Templates
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 ?>
 <?php if ( 'confirm' === $action ) : ?>
 
@@ -26,7 +30,7 @@
 </ol>
 
 <p>
-    <a class="button button-primary" href="<?php echo wp_nonce_url( add_query_arg( array( 'action' => 'uninstall' ), $url ), 'awpcp-uninstall' ); ?>">
+    <a class="button button-primary" href="<?php echo esc_attr( wp_nonce_url( add_query_arg( array( 'action' => 'uninstall' ), $url ), 'awpcp-uninstall' ) ); ?>">
         <?php esc_html_e( 'Proceed with Uninstalling AWP Classifieds Plugin', 'another-wordpress-classifieds-plugin' ); ?>
     </a>
 </p>

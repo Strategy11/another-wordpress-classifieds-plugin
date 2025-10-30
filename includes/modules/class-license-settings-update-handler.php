@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 class AWPCP_License_Settings_Update_Handler {
 

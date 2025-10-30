@@ -3,6 +3,10 @@
  * @package AWPCP\Media
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Updates the payment term of a listing.
  */

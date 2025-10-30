@@ -3,6 +3,10 @@
  * @package AWPCP\Payments
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_PaymentsAPI {
 
     private $request = null;
@@ -727,11 +731,12 @@ class AWPCP_PaymentsAPI {
         $text = sprintf( __( 'You currently have %s credits in your account.', 'another-wordpress-classifieds-plugin' ), $balance );
 
         if ( $this->echo ) {
-            echo awpcp_print_message( esc_html( $text ) );
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+            echo awpcp_print_message( $text );
             return;
         }
 
-        return awpcp_print_message( esc_html( $text ) );
+        return awpcp_print_message( $text );
     }
 
     /**

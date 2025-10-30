@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Import
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class AWPCP_CSV_Importer_Delegate {
 
     private $import_session;

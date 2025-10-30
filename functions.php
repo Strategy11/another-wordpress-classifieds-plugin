@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+ if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Returns the IDs of the pages used by the AWPCP plugin.
  */
@@ -1742,6 +1746,7 @@ function awpcp_print_messages() {
     $messages = is_null($messages) ? awpcp_get_flash_messages() : $messages;
 
     foreach ($messages as $message) {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo awpcp_print_message($message['message'], $message['class']);
     }
 
@@ -1751,8 +1756,10 @@ function awpcp_print_messages() {
 function awpcp_print_form_errors( $errors ) {
     foreach ( $errors as $index => $error ) {
         if ( is_numeric( $index ) ) {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_message( $error, array( 'awpcp-error', 'notice', 'notice-error' ) );
         } else {
+            // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             echo awpcp_print_message( $error, array( 'awpcp-error', 'notice', 'notice-error', 'ghost' ) );
         }
     }

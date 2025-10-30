@@ -1,4 +1,9 @@
-<?php echo wp_kses_post( get_awpcp_option( 'listingaddedbody' ) ); ?>
+<?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ echo wp_kses_post( get_awpcp_option( 'listingaddedbody' ) ); ?>
 
 <?php esc_html_e( 'Listing Title', 'another-wordpress-classifieds-plugin' ); ?>: <?php echo esc_html( $listing_title ); ?>
 

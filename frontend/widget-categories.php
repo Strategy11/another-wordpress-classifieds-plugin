@@ -1,4 +1,9 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+
 
 class AWPCP_CategoriesWidget extends WP_Widget {
 

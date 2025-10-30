@@ -1,8 +1,12 @@
 <?php
-
 /**
  * @since 3.4
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_display_listings( $query_vars, $context, $options ) {
     $options = wp_parse_args( $options, array(
         'page' => false,

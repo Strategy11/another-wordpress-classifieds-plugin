@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
 
 /**
  * This function was added to replace the legacy functions awpcp_paypal_verify_received_data_with_curl() and awpcp_paypal_verify_received_data_with_fsockopen().
@@ -7,8 +10,8 @@
  *
  * @return string 'VERIFIED', 'INVALID' or 'ERROR'
  */
-function awpcp_paypal_verify_received_data_with_wp_http( $postfields='', &$errors = array() ) {
-    if ( get_awpcp_option( 'paylivetestmode' ) === 1 ) {
+function awpcp_paypal_verify_received_data_with_curl($postfields='', $cainfo=true, &$errors=array()) {
+    if (get_awpcp_option('paylivetestmode') == 1) {
         $paypal_url = 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr';
     } else {
         $paypal_url = 'https://ipnpb.paypal.com/cgi-bin/webscr';

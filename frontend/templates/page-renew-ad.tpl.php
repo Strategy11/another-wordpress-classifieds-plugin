@@ -1,6 +1,11 @@
 <div id="classiwrapper">
 
-    <h2><?php esc_html_e( 'Renew Ad', 'another-wordpress-classifieds-plugin' ); ?></h2>
+    <h2><?php
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
+ esc_html_e( 'Renew Ad', 'another-wordpress-classifieds-plugin' ); ?></h2>
 
 <?php if ( $step == 'checkout' ): ?>
 

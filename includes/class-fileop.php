@@ -6,6 +6,11 @@
  * @author Dan Caragea
  * http://datemill.com
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 class fileop {
 
     public $op_mode = 'disk'; // 'disk' or 'ftp'

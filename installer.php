@@ -5,6 +5,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 global $wpdb;
 
 define('AWPCP_TABLE_ADFEES', $wpdb->prefix . "awpcp_adfees");

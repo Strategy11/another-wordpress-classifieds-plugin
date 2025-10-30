@@ -3,6 +3,10 @@
  * @package AWPCP\Admin\Categories
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 /**
  * Constructor for Update Category Admin Page.
  */
