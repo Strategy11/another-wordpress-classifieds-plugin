@@ -7,6 +7,8 @@ namespace {
     define( 'OBJECT_K', 'OBJECT_K' );
     define( 'ARRAY_A', 'ARRAY_A' );
     define( 'ARRAY_N', 'ARRAY_N' );
+    define( 'FS_CHMOD_DIR', 0755 );
+    define( 'FS_CHMOD_FILE', 0644 );
 
     define( 'MINUTE_IN_SECONDS', 60 );
     define( 'HOUR_IN_SECONDS', 60 * MINUTE_IN_SECONDS );
@@ -64,7 +66,10 @@ namespace {
     function awpcp_activation_failed_notice( $content ) {
     }
 
-    function awpcp_payfast_verify_received_data_with_fsockopen( $content ) {
+    function awpcp_payfast_verify_received_data_with_wp_http( $content ) {
+    }
+
+    function awpcp_paypal_verify_received_data_with_wp_http( $postfields, &$errors ) {
     }
 
     /** Add-ons */

@@ -2242,19 +2242,27 @@ function awpcp_get_file_extension( $filename ) {
  * @since 3.0.2
  */
 function awpcp_rmdir($dir) {
-    if ( is_dir( $dir ) ) {
-        $objects = scandir( $dir );
-        foreach ( $objects as $object ) {
-            if ( $object != "." && $object != ".." ) {
-                if ( filetype( $dir . "/" . $object ) == "dir" ) {
-                    awpcp_rmdir( $dir . "/" . $object );
-                } else {
-                    unlink( $dir . "/" . $object );
+    $wp_filesystem = awpcp_get_wp_filesystem();
+    if ( ! $wp_filesystem ) {
+        return false;
+    }
+
+    if ( $wp_filesystem->is_dir( $dir ) ) {
+        $objects = $wp_filesystem->dirlist( $dir );
+        if ( $objects ) {
+            foreach ( $objects as $object => $object_info ) {
+                if ( $object != "." && $object != ".." ) {
+                    $object_path = $dir . "/" . $object;
+                    if ( $wp_filesystem->is_dir( $object_path ) ) {
+                        awpcp_rmdir( $object_path );
+                    } else {
+                        $wp_filesystem->delete( $object_path );
+                    }
                 }
             }
         }
-        reset( $objects );
-        rmdir( $dir );
+
+        $wp_filesystem->rmdir( $dir );
     }
 }
 
@@ -2757,7 +2765,8 @@ function awpcp_unique_filename( $path, $filename, $directories ) {
 
     $name = awpcp_sanitize_file_name( $pathinfo['filename'] );
     $extension = $pathinfo['extension'];
-    $file_size = file_exists( $path ) ? filesize( $path ) : 0;
+    $wp_filesystem = awpcp_get_wp_filesystem();
+    $file_size = ( $wp_filesystem && $wp_filesystem->exists( $path ) ) ? $wp_filesystem->size( $path ) : 0;
     $timestamp = microtime();
     $salt = wp_salt();
     $counter = 0;
@@ -2789,8 +2798,13 @@ function awpcp_sanitize_file_name( $filename ) {
  * @since 3.4
  */
 function awpcp_is_filename_already_used( $filename, $directories ) {
+    $wp_filesystem = awpcp_get_wp_filesystem();
+    if ( ! $wp_filesystem ) {
+        return false;
+    }
+
     foreach ( $directories as $directory ) {
-        if ( file_exists( "$directory/$filename" ) ) {
+        if ( $wp_filesystem->exists( "$directory/$filename" ) ) {
             return true;
         }
     }
