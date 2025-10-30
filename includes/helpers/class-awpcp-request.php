@@ -95,7 +95,7 @@ class AWPCP_Request {
      * @deprecated 4.3
      */
     public function param( $name, $default = '' ) {
-        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput, WordPress.Security.NonceVerification
         return isset( $_REQUEST[ $name ] ) ? wp_unslash( $_REQUEST[ $name ] ) : $default; // Input var okay.
     }
 
@@ -115,7 +115,7 @@ class AWPCP_Request {
      * @deprecated 4.3
      */
     public function get( $name, $default='' ) {
-        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+        // phpcs:ignore WordPress.Security.ValidatedSanitizedInput, WordPress.Security.NonceVerification
         return isset( $_GET[ $name ] ) ? $_GET[ $name ] : $default;
     }
 
@@ -135,6 +135,7 @@ class AWPCP_Request {
      */
     public function all_request_params() {
         _deprecated_function( __METHOD__, '4.3' );
+        // phpcs:ignore WordPress.Security.NonceVerification
         return $_REQUEST;
     }
 
