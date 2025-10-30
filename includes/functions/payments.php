@@ -3,58 +3,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-/**
- * This function was added to replace the legacy functions awpcp_paypal_verify_received_data_with_curl() and awpcp_paypal_verify_received_data_with_fsockopen().
- *
- * @since x.x
- *
- * @return string 'VERIFIED', 'INVALID' or 'ERROR'
- */
-function awpcp_paypal_verify_received_data_with_curl($postfields='', $cainfo=true, &$errors=array()) {
-    if (get_awpcp_option('paylivetestmode') == 1) {
-        $paypal_url = 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr';
-    } else {
-        $paypal_url = 'https://ipnpb.paypal.com/cgi-bin/webscr';
-    }
-
-    $args = array(
-        'method'      => 'POST',
-        'timeout'     => 30,
-        'redirection' => 5,
-        'httpversion' => '1.1',
-        'blocking'    => true,
-        'headers'     => array(
-            'Content-Type' => 'application/x-www-form-urlencoded',
-            'Connection'   => 'close',
-        ),
-        'body'        => $postfields,
-        'cookies'     => array(),
-        'sslverify'   => true,
-    );
-
-    $response = wp_remote_post( $paypal_url, $args );
-
-    if ( is_wp_error( $response ) ) {
-        $errors = array_merge( $errors, $response->get_error_messages() );
-        return 'ERROR';
-    }
-
-    $response_code = wp_remote_retrieve_response_code( $response );
-    if ( 200 !== $response_code ) {
-        $errors[] = sprintf( 'HTTP %d: %s', $response_code, wp_remote_retrieve_response_message( $response ) );
-        return 'ERROR';
-    }
-
-    $response_body = wp_remote_retrieve_body( $response );
-    $response_body = trim( $response_body );
-
-    if ( in_array( $response_body, array( 'VERIFIED', 'INVALID' ), true ) ) {
-        return $response_body;
-    } else {
-        return 'ERROR';
-    }
-}
-
 
 /**
  * Verify data received from PayPal IPN notifications and returns PayPal's
