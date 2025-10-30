@@ -53,7 +53,7 @@ class AWPCP_Import_Settings_Admin_Page {
      */
     public function on_admin_init() {
         $nonce = awpcp_get_var( array( 'param' => '_wpnonce' ), 'post' );
-        if ( ! isset( $_FILES['settings_file'] ) || ! wp_verify_nonce( $nonce, $this->nonce_action ) ) {
+        if ( ! wp_verify_nonce( $nonce, $this->nonce_action ) || ! isset( $_FILES['settings_file'] ) ) {
             return;
         }
 

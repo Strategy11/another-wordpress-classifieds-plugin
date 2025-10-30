@@ -147,7 +147,7 @@ class AWPCP_Classified_Pages_Settings {
         $nonce   = awpcp_get_var( array( 'param' => '_wpnonce' ), 'post' );
         $restore = awpcp_get_var( array( 'param' => 'restore-pages', 'default' => false ), 'post' );
 
-        return $restore && wp_verify_nonce( $nonce, 'awpcp-restore-pages' );
+        return wp_verify_nonce( $nonce, 'awpcp-restore-pages' ) && $restore;
     }
 }
 

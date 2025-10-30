@@ -18,11 +18,11 @@ class AWPCP_License_Settings_Actions_Request_Handler {
     }
 
     public function dispatch( $location ) {
-        if ( wp_verify_nonce( $this->request->post( 'awpcp-update-license-status-nonce' ), 'awpcp-update-license-status-nonce' ) ) {
-            $this->process_settings_actions_for_modules( $this->modules_manager->get_modules() );
+        if ( ! wp_verify_nonce( $this->request->post( 'awpcp-update-license-status-nonce' ), 'awpcp-update-license-status-nonce' ) ) {
+            return $location;
         }
 
-        return $location;
+        $this->process_settings_actions_for_modules( $this->modules_manager->get_modules() );
     }
 
     private function process_settings_actions_for_modules( $modules ) {
