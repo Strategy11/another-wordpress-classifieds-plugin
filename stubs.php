@@ -1,9 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
-
 
 namespace {
     global $awpcp_db_version;
