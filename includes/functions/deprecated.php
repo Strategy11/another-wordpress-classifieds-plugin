@@ -20,6 +20,7 @@ function awpcp_post_param($name, $default='') {
  * @deprecated 4.3
  */
 function awpcp_request_param($name, $default='', $from=null) {
+    // phpcs:ignore WordPress.Security.NonceVerification
     return awpcp_array_data($name, $default, is_null($from) ? $_REQUEST : $from);
 }
 

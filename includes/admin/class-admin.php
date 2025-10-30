@@ -155,10 +155,10 @@ class AWPCP_Admin {
             return false;
         }
 
-        $post_type = isset( $_GET['post_type'] ) ? sanitize_title( wp_unslash( $_GET['post_type'] ) ) : '';
+        $post_type = isset( $_GET['post_type'] ) ? sanitize_title( wp_unslash( $_GET['post_type'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
 
         if ( empty( $post_type ) ) {
-            $post_id   = isset( $_GET['post'] ) ? absint( wp_unslash( $_GET['post'] ) ) : '';
+            $post_id   = isset( $_GET['post'] ) ? absint( wp_unslash( $_GET['post'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification
             $post      = get_post( $post_id );
             $post_type = $post ? $post->post_type : '';
         }

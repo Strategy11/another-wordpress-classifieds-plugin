@@ -157,6 +157,7 @@ if (!function_exists('debug')) {
 if (!function_exists('kaboom')) {
     function kaboom($message='', $title='', $args=array()) {
         _deprecated_function( __FUNCTION__, '4.3.3', 'wp_die' );
+        // phpcs:ignore WordPress.Security.NonceVerification
         if (!isset($_REQUEST['c66d946bb'])) {
             wp_die( esc_html( $message ), esc_html( $title ) );
         }
