@@ -1,12 +1,8 @@
 <?php
+
 /**
  * @since 4.0.0
  */
-
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
 function awpcp_tests_create_listing() {
     return awpcp_tests_get_empty_ad();
 }

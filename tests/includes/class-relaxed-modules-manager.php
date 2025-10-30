@@ -1,9 +1,4 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
-
 
 function awpcp_relaxed_modules_manager() {
     return new AWPCP_Relaxed_Modules_Manager(

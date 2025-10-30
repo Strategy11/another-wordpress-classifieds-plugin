@@ -3,10 +3,6 @@
  * @package AWPCP\Tests
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
 /**
  * Tests for main Container Configuration class.
  */

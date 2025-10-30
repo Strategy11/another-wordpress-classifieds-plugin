@@ -3,10 +3,6 @@
  * @package AWPCP\Tests\Admin\Listings
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
-
 /**
  * Test helper for Listing Table View.
  */
