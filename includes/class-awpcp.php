@@ -93,9 +93,7 @@ class AWPCP {
         $this->upgrade_tasks   = $this->container['UpgradeTasksManager'];
         $this->manual_upgrades = $this->container['ManualUpgradeTasks'];
 
-        $this->modules_manager = null;
-        $this->modules_updater = null;
-        $this->router = awpcp_router();
+        $this->router   = awpcp_router();
         $this->payments = awpcp_payments_api();
         $this->listings = awpcp_listings_api();
 
