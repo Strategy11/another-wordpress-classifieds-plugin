@@ -464,6 +464,14 @@ class AWPCP_Installer {
             return;
         }
 
+        $filesystem = awpcp_get_wp_filesystem();
+
+        // Ensure the target directory exists
+        $target_dir = WP_LANG_DIR . '/another-wordpress-classifieds-plugin';
+        if ( ! $filesystem->is_dir( $target_dir ) ) {
+            $filesystem->mkdir( $target_dir, FS_CHMOD_DIR );
+        }
+
         $basename = dirname( plugin_basename( AWPCP_FILE ) );
 
         // Historically we have loaded custom and official translation files from these directories.
@@ -488,12 +496,13 @@ class AWPCP_Installer {
 
             $path = WP_LANG_DIR . "/another-wordpress-classifieds-plugin/$filename";
 
-            if ( file_exists( $path ) ) {
+            if ( $filesystem->exists( $path ) ) {
                 $files_not_moved[] = $file;
                 continue;
             }
 
-            if ( ! rename( $file, $path ) ) {
+            $result = $filesystem->move( $file, $path, true );
+            if ( ! $result ) {
                 $files_not_moved[] = $file;
                 continue;
             }
