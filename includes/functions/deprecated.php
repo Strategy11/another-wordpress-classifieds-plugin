@@ -162,6 +162,10 @@ function awpcp_general_settings() {
  */
 function awpcp_license_settings_update_handler() {
     _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_License_Settings_Update_Handler()' );
+    if ( ! class_exists( 'AWPCP_License_Settings_Update_Handler' ) ) {
+        return null;
+    }
+
     return new AWPCP_License_Settings_Update_Handler();
 }
 
@@ -170,6 +174,10 @@ function awpcp_license_settings_update_handler() {
  */
 function awpcp_license_settings_actions_request_handler() {
     _deprecated_function( __FUNCTION__, '4.3.4', 'new AWPCP_License_Settings_Actions_Request_Handler()' );
+    if ( ! class_exists( 'AWPCP_License_Settings_Actions_Request_Handler' ) ) {
+        return null;
+    }
+
     return new AWPCP_License_Settings_Actions_Request_Handler();
 }
 
@@ -243,7 +251,13 @@ function awpcp_get_plugin_pages_refs() {
  */
 function awpcp_modules_manager() {
     _deprecated_function( __FUNCTION__, '4.0.0', 'awpcp()->modules_manager' );
-    return awpcp()->container['ModulesManager'];
+    $container = awpcp()->container;
+
+    if ( ! method_exists( $container, 'offsetExists' ) || ! $container->offsetExists( 'ModulesManager' ) ) {
+        return null;
+    }
+
+    return $container['ModulesManager'];
 }
 
 /**

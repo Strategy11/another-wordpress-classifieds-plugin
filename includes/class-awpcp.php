@@ -92,8 +92,9 @@ class AWPCP {
 
         $this->upgrade_tasks   = $this->container['UpgradeTasksManager'];
         $this->manual_upgrades = $this->container['ManualUpgradeTasks'];
-        $this->modules_manager = $this->container['ModulesManager'];
-        $this->modules_updater = awpcp_modules_updater();
+
+        $this->modules_manager = null;
+        $this->modules_updater = null;
         $this->router = awpcp_router();
         $this->payments = awpcp_payments_api();
         $this->listings = awpcp_listings_api();
@@ -179,15 +180,10 @@ class AWPCP {
         add_action( 'init', array( $this, 'first_time_verifications' ), 5 );
 
         add_action('admin_notices', array($this, 'admin_notices'));
-        add_action( 'admin_notices', array( $this->modules_manager, 'show_admin_notices' ) );
 
         add_action('awpcp_register_settings', array($this, 'register_settings'));
         add_action( 'awpcp-register-payment-term-types', array( $this, 'register_payment_term_types' ) );
         add_action( 'awpcp-register-payment-methods', array( $this, 'register_payment_methods' ) );
-
-        add_filter( 'pre_set_site_transient_update_plugins', array( $this->modules_updater, 'filter_plugins_version_information' ) );
-        add_filter( 'plugins_api', array( $this->modules_updater, 'filter_detailed_plugin_information' ), 10, 3 );
-        add_filter( 'upgrader_pre_download', array( $this->modules_updater, 'setup_http_request_args_filter' ), 10, 3 );
 
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
         add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ), 1000 );
@@ -226,7 +222,6 @@ class AWPCP {
 
             awpcp_schedule_activation();
 
-            $this->modules_manager->load_modules( $this->container );
         }
     }
 
@@ -282,7 +277,9 @@ class AWPCP {
         $renderers['password']       = $this->container['TextfieldSettingsRenderer'];
         $renderers['choice']         = $this->container['ChoiceSettingsRenderer'];
         $renderers['categories']     = $this->container['CategoriesSettingsRenderer'];
-        $renderers['license']        = $this->container['LicenseSettingsRenderer'];
+        if ( method_exists( $this->container, 'offsetExists' ) && $this->container->offsetExists( 'LicenseSettingsRenderer' ) ) {
+            $renderers['license'] = $this->container['LicenseSettingsRenderer'];
+        }
         $renderers['wordpress-page'] = $this->container['WordPressPageSettingsRenderer'];
         $renderers['settings-grid']  = $this->container['SettingsGridRenderer'];
         $renderers['email-template'] = $this->container['EmailTemplateSettingsRenderer'];
@@ -440,11 +437,15 @@ class AWPCP {
                 add_action( 'admin_notices', array( awpcp_missing_paypal_merchant_id_setting_notice(), 'maybe_show_notice' ) );
 
                 // TODO: do we really need to execute this every time the plugin settings are saved?
-                $handler = new AWPCP_License_Settings_Update_Handler();
-                add_action( 'update_option_' . $this->settings->setting_name, array( $handler, 'process_settings' ), 10, 2 );
+                if ( class_exists( 'AWPCP_License_Settings_Update_Handler' ) ) {
+                    $handler = new AWPCP_License_Settings_Update_Handler();
+                    add_action( 'update_option_' . $this->settings->setting_name, array( $handler, 'process_settings' ), 10, 2 );
+                }
 
-                $handler = new AWPCP_License_Settings_Actions_Request_Handler();
-                add_action( 'wp_redirect', array( $handler, 'dispatch' ) );
+                if ( class_exists( 'AWPCP_License_Settings_Actions_Request_Handler' ) ) {
+                    $handler = new AWPCP_License_Settings_Actions_Request_Handler();
+                    add_action( 'wp_redirect', array( $handler, 'dispatch' ) );
+                }
             }
         } else {
             // load resources required in frontend screens only.
