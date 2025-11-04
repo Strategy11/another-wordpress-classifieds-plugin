@@ -82,12 +82,6 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
             );
         } );
 
-        $container['LicensesSettings'] = $container->service( function( $container ) {
-            return new AWPCP_LicensesSettings(
-                $container['SettingsManager']
-            );
-        } );
-
         $this->define_settings_renderers( $container );
     }
 
@@ -137,13 +131,6 @@ class AWPCP_SettingsContainerConfiguration implements AWPCP_ContainerConfigurati
 
         $container['CategoriesSettingsRenderer'] = $container->service( function( $container ) {
             return new AWPCP_CategoriesSettingsRenderer(
-                $container['Settings']
-            );
-        } );
-
-        $container['LicenseSettingsRenderer'] = $container->service( function( $container ) {
-            return new AWPCP_LicenseSettingsRenderer(
-                awpcp_licenses_manager(),
                 $container['Settings']
             );
         } );

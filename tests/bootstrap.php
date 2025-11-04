@@ -43,15 +43,6 @@ function _remove_plugin_tables() {
     awpcp()->installer->uninstall();
 }
 
-/**
- * TODO: We probably won't need this if we stop using WordPress testing framework.
- */
-function _replace_modules_manager() {
-    require dirname( __FILE__ ) . '/includes/class-relaxed-modules-manager.php';
-    require dirname( __FILE__ ) . '/includes/class-upgrade-task-handler-tester.php';
-    awpcp()->modules_manager = awpcp_relaxed_modules_manager();
-}
-
 if ( ! defined( 'OBJECT' ) ) {
     define( 'OBJECT', 'OBJECT' );
 }

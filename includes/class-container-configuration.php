@@ -36,16 +36,6 @@ class AWPCP_ContainerConfiguration implements AWPCP_ContainerConfigurationInterf
             );
         } );
 
-        $container['ModulesManager'] = $container->service( function( $container ) {
-            return new AWPCP_ModulesManager(
-                $container['Plugin'],
-                awpcp_upgrade_tasks_manager(),
-                awpcp_licenses_manager(),
-                awpcp_modules_updater(),
-                $container['LicensesSettings']
-            );
-        } );
-
         $container['Request'] = $container->service( function( $container ) {
             return new AWPCP_Request();
         } );
