@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
- awpcp_print_messages(); ?>
+awpcp_print_messages(); ?>
 
 <div id="<?php echo esc_attr( $page_slug ); ?>" class="<?php echo esc_attr( $page_slug ); ?> awpcp-admin-page awpcp-page wrap">
     <?php if ( version_compare( get_bloginfo('version'), '4.4-beta4', '<' ) ): ?>

@@ -3,8 +3,6 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-
-
 class AWPCP_CreditPlansTable extends WP_List_Table {
 
     private $page;

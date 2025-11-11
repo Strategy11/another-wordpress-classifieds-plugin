@@ -1,10 +1,11 @@
-<div class="awpcp-classifieds-search-bar" data-breakpoints='{"tiny": [0,450]}' data-breakpoints-class-prefix="awpcp-classifieds-search-bar">
-    <form action="<?php
+<?php
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+?>
 
- echo esc_url( $action_url ); ?>" method="get">
+<div class="awpcp-classifieds-search-bar" data-breakpoints='{"tiny": [0,450]}' data-breakpoints-class-prefix="awpcp-classifieds-search-bar">
+    <form action="<?php echo esc_url( $action_url ); ?>" method="get">
         <?php if( ! empty( $page_id ) ) : ?>
             <input type="hidden" name="page_id" value="<?php echo esc_attr( $page_id ); ?>" />
         <?php endif; ?>

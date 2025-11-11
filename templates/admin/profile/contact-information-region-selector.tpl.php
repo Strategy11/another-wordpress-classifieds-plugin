@@ -1,9 +1,10 @@
-<div id="awpcp-multiple-region-selector-<?php
+<?php
 if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
+?>
 
- echo esc_attr( $uuid ); ?>" class="awpcp-multiple-region-selector awpcp-multiple-region-selector-form-table" uuid="<?php echo esc_attr( $uuid ); ?>">
+<div id="awpcp-multiple-region-selector-<?php echo esc_attr( $uuid ); ?>" class="awpcp-multiple-region-selector awpcp-multiple-region-selector-form-table" uuid="<?php echo esc_attr( $uuid ); ?>">
     <div data-bind="foreach: regions">
         <table class="awpcp-region-selector form-table">
             <tbody class="awpcp-region-selector-partials" data-bind="foreach: partials">
