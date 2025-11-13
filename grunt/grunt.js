@@ -107,4 +107,14 @@ module.exports = function(grunt) {
 			textDomain: pluginName
 		}
 	} );
+
+	pluginName = 'awp-module-updater';
+	grunt.wpbdp.registerModule( {
+		name: 'module-updater',
+		slug: 'module-updater',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
 };
