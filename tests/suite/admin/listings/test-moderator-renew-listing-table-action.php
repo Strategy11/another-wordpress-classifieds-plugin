@@ -11,6 +11,26 @@ use Brain\Monkey\Functions;
 class AWPCP_ModeratorRenewListingTableActionTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $listings_logic;
+
+    /**
+     * @var mixed
+     */
+    public $listing_renderer;
+
+    /**
+     * @var mixed
+     */
+    public $email_notifications;
+
+    /**
+     * @var mixed
+     */
+    public $settings;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

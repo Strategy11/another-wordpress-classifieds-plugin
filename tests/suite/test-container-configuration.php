@@ -19,11 +19,6 @@ class AWPCP_ContainerConfigurationTest extends AWPCP_ContainerConfigurationTestC
         // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
         $GLOBALS['wpdb'] = (object) [];
 
-        // Required by ModulesManager.
-        Functions\when( 'awpcp_upgrade_tasks_manager' )->justReturn( null );
-        Functions\when( 'awpcp_licenses_manager' )->justReturn( null );
-        Functions\when( 'awpcp_modules_updater' )->justReturn( null );
-
         // Used by AWPCP_PaymentsAPI's constructor.
         Functions\when( 'is_admin' )->justReturn( false );
     }
@@ -36,7 +31,6 @@ class AWPCP_ContainerConfigurationTest extends AWPCP_ContainerConfigurationTestC
             [ 'wpdb' ],
 
             [ 'Uninstaller' ],
-            [ 'ModulesManager' ],
 
             [ 'Request' ],
             [ 'Payments' ],

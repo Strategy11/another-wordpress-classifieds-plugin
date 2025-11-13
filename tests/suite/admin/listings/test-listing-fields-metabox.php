@@ -11,6 +11,56 @@ use Brain\Monkey\Functions;
 class AWPCP_ListingFieldsMetaboxTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var object
+     */
+    public $post;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $listings_logic;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $form_fields_data;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $form_fields_validator;
+
+    /**
+     * @var mixed
+     */
+    public $form_fields;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $date_form_fields;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $media_center;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $template_renderer;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $wordpress;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $listing_authorization;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

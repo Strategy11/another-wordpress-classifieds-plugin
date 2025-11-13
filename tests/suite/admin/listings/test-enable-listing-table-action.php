@@ -9,6 +9,16 @@
 class AWPCP_EnableListingTableActionTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var \Mockery\MockInterface
+     */
+    public $listings_logic;
+
+    /**
+     * @var \Mockery\MockInterface
+     */
+    public $listing_renderer;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

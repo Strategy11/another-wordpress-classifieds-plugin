@@ -25,9 +25,7 @@ module.exports = function(grunt) {
 				'<%= path.awpcp %>resources/js/awpcp.src.js': [
 					'<%= path.awpcp %>resources/js/legacy.js',
 					'<%= path.awpcp %>resources/js/awpcp.js',
-					'<%= path.awpcp %>resources/js/jquery.js',
 					'<%= path.awpcp %>resources/js/knockout.js',
-					'<%= path.awpcp %>resources/js/moment.js',
 					'<%= path.awpcp %>resources/js/components/categories-selector/*.js',
 					'<%= path.awpcp %>resources/js/components/category-dropdown/*.js',
 					'<%= path.awpcp %>resources/js/components/credit-plans-list/*.js',
@@ -104,6 +102,16 @@ module.exports = function(grunt) {
 	grunt.wpbdp.registerModule( {
 		name: 'stripe',
 		slug: 'stripe',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awp-module-updater';
+	grunt.wpbdp.registerModule( {
+		name: 'module-updater',
+		slug: 'module-updater',
 		folder: '../' + pluginName,
 		i18n: {
 			textDomain: pluginName

@@ -12,6 +12,11 @@ use Brain\Monkey\Functions;
 class AWPCP_ImageRendererTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $settings;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

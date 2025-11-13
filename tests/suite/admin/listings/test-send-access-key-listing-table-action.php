@@ -11,6 +11,16 @@ use Brain\Monkey\Functions;
 class AWPCP_SendAccessKeyListingTableActionTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $email_factory;
+
+    /**
+     * @var mixed
+     */
+    public $listing_renderer;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

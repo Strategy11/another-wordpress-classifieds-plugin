@@ -11,6 +11,51 @@
 class AWPCP_AdminTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $post_type;
+
+    /**
+     * @var mixed
+     */
+    public $container;
+
+    /**
+     * @var mixed
+     */
+    public $views;
+
+    /**
+     * @var mixed
+     */
+    public $actions;
+
+    /**
+     * @var mixed
+     */
+    public $tablenav;
+
+    /**
+     * @var mixed
+     */
+    public $search;
+
+    /**
+     * @var mixed
+     */
+    public $columns;
+
+    /**
+     * @var mixed
+     */
+    public $restrictions;
+
+    /**
+     * @var mixed
+     */
+    public $post;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

@@ -9,6 +9,11 @@
 abstract class AWPCP_ListingsTableSearchModeTestCase extends AWPCP_UnitTestCase {
 
     /**
+     * @var object
+     */
+    public $query;
+
+    /**
      * @since 4.0.0
      */
     public function test_get_name() {

@@ -3,6 +3,10 @@
  * @package AWPCP
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 function awpcp_task_queue() {
     static $instance = null;
 
@@ -17,10 +21,16 @@ class AWPCP_TaskQueue {
 
     private $tasks;
     private $settings;
+    private $wp_filesystem;
 
     public function __construct( $tasks, $settings ) {
-        $this->tasks    = $tasks;
-        $this->settings = $settings;
+        $this->tasks         = $tasks;
+        $this->settings      = $settings;
+        $this->wp_filesystem = awpcp_get_wp_filesystem();
+
+        if ( ! $this->wp_filesystem ) {
+            throw new AWPCP_Exception( esc_html__( 'Unable to initialize WordPress file system.', 'another-wordpress-classifieds-plugin' ) );
+        }
     }
 
     public function add_task( $name, $metadata ) {
@@ -90,21 +100,21 @@ class AWPCP_TaskQueue {
     private function get_lock() {
         $lockfile = $this->get_lock_file();
 
-        if ( ! file_exists( $lockfile ) ) {
-            if ( file_exists( dirname( $lockfile ) ) ) {
-                return touch( $lockfile );
+        if ( ! $this->wp_filesystem->exists( $lockfile ) ) {
+            if ( $this->wp_filesystem->is_dir( dirname( $lockfile ) ) ) {
+                return $this->wp_filesystem->put_contents( $lockfile, '', FS_CHMOD_FILE );
             }
 
-            if ( wp_mkdir_p( dirname( $lockfile ) ) ) {
-                return touch( $lockfile );
+            if ( $this->wp_filesystem->mkdir( dirname( $lockfile ), FS_CHMOD_DIR, true ) ) {
+                return $this->wp_filesystem->put_contents( $lockfile, '', FS_CHMOD_FILE );
             }
 
             return false;
         }
 
-        if ( time() - filectime( $lockfile ) > 30 * 60 ) {
-            unlink( $lockfile );
-            return touch( $lockfile );
+        if ( time() - $this->wp_filesystem->mtime( $lockfile ) > 30 * 60 ) {
+            $this->wp_filesystem->delete( $lockfile );
+            return $this->wp_filesystem->put_contents( $lockfile, '', FS_CHMOD_FILE );
         }
 
         return false;
@@ -151,8 +161,8 @@ class AWPCP_TaskQueue {
     private function release_lock() {
         $lockfile = $this->get_lock_file();
 
-        if ( file_exists( $lockfile ) ) {
-            return unlink( $this->get_lock_file() );
+        if ( $this->wp_filesystem->exists( $lockfile ) ) {
+            return $this->wp_filesystem->delete( $lockfile );
         }
 
         return false;

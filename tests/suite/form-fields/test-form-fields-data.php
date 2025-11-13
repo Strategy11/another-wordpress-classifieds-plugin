@@ -12,9 +12,23 @@ use Brain\Monkey\Functions;
 class AWPCP_FormFieldsDataTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $authorization;
+
+    /**
+     * @var mixed
+     */
+    public $listing_renderer;
+
+    /**
+     * @var mixed
+     */
+    public $request;
+
+    /**
      * @since 4.0.0
      */
-    protected $request;
     public function setUp(): void {
         parent::setUp();
         $this->authorization    = Mockery::mock( 'AWPCP_ListingAuthorization' );

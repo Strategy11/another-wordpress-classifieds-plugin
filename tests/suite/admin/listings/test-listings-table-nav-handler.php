@@ -11,6 +11,16 @@ use Brain\Monkey\Functions;
 class AWPCP_ListingsTableNavHandlerTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $html_renderer;
+
+    /**
+     * @var mixed
+     */
+    public $request;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

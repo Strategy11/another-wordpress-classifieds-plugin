@@ -9,6 +9,16 @@
 class AWPCP_ListingsTableColumnsHandlerTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $listing_renderer;
+
+    /**
+     * @var mixed
+     */
+    public $listings_collection;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {
