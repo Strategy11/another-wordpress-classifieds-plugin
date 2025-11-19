@@ -27,6 +27,10 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
+ if ( ! defined( 'ABSPATH' ) ) {
+    exit;
+}
+
 if ( ! function_exists( 'add_filter' ) ) {
     header( 'Status: 403 Forbidden' );
     header( 'HTTP/1.1 403 Forbidden' );
@@ -101,9 +105,6 @@ if ( file_exists( AWPCP_DIR . '/awpcp_category_icons_module.php' ) ) {
 }
 /* End of legacy code. */
 
-// Load text domain in init to match the changes in WP 6.7.
-add_action( 'init', 'awpcp_load_plugin_textdomain' );
-
 /**
  * BuddyPress normally attaches bp_loaded to plugins_loaded with priority 10.
  * When changing the priorities below, please make sure that modules are
@@ -139,6 +140,43 @@ function awpcp_outdated_php_version() {
  */
 function awpcp_render_plugin_required_php_version_notice() {
     awpcp_required_php_version_notice( 'AWP Classifieds Plugin' );
+}
+
+/**
+ * Renders a notice if the Module Updater plugin is needed.
+ *
+ * @since x.x
+ */
+function awpcp_maybe_render_module_updater_notice() {
+    if ( ! awpcp_is_module_updater_needed() ) {
+        return;
+    }
+
+    $message = __( 'The AWP Module Updater plugin is needed to for your premium modules to work properly. You can download it from the <a href="https://awpcp.com/account/downloads/">downloads page</a>.', 'another-wordpress-classifieds-plugin' );
+    echo '<div class="notice notice-error"><p>' . wp_kses_post( $message ) . '</p></div>';
+}
+
+add_action( 'admin_notices', 'awpcp_maybe_render_module_updater_notice' );
+
+/**
+ * Check if the user has any premium licenses.
+ *
+ * @since x.x
+ */
+function awpcp_is_module_updater_needed() {
+    if ( defined( 'AWP_MODULE_UPDATER_VERSION' ) ) {
+        return false;
+    }
+
+    $options = get_option( 'awpcp-options' );
+
+    foreach ( $options as $option_key => $option_value ) {
+        if ( str_contains( $option_key, '-license-status' ) ) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 /**

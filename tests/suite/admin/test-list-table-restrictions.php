@@ -9,6 +9,16 @@
 class AWPCP_ListTableRestrictionsTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $roles_and_capabilities;
+
+    /**
+     * @var mixed
+     */
+    public $request;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {

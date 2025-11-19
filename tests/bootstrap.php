@@ -17,6 +17,10 @@ define( 'WP_TESTS_DATA_DIR', dirname( __FILE__ ) . '/data' );
 define( 'AWPCP_DIR', dirname( __DIR__ ) );
 define( 'AWPCP_URL', 'https://example.org/wp-content/plugins/another-wordpress-classifieds-plugin' );
 
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', AWPCP_DIR . '/' );
+}
+
 $patchwork = AWPCP_DIR . '/vendor/antecedent/patchwork/Patchwork.php';
 
 if ( file_exists( $patchwork ) ) {
@@ -37,15 +41,6 @@ require_once AWPCP_DIR . '/includes/functions/format.php';
  */
 function _remove_plugin_tables() {
     awpcp()->installer->uninstall();
-}
-
-/**
- * TODO: We probably won't need this if we stop using WordPress testing framework.
- */
-function _replace_modules_manager() {
-    require dirname( __FILE__ ) . '/includes/class-relaxed-modules-manager.php';
-    require dirname( __FILE__ ) . '/includes/class-upgrade-task-handler-tester.php';
-    awpcp()->modules_manager = awpcp_relaxed_modules_manager();
 }
 
 if ( ! defined( 'OBJECT' ) ) {

@@ -11,6 +11,11 @@ use Brain\Monkey\Functions;
 class AWPCP_CategoryPresenterTest extends AWPCP_UnitTestCase {
 
     /**
+     * @var mixed
+     */
+    public $categories_collection;
+
+    /**
      * @since 4.0.0
      */
     public function setUp(): void {
