@@ -1003,49 +1003,49 @@ function unix2dos($mystring) {
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.4
  */
 function awpcp_payfast_verify_received_data_with_curl() {
     _deprecated_function( __FUNCTION__, 'x.x' );
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.4
  */
 function awpcp_payfast_verify_received_data_with_fsockopen() {
     _deprecated_function( __FUNCTION__, 'x.x' );
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.4
  */
 function awpcp_paypal_verify_received_data_with_curl() {
     _deprecated_function( __FUNCTION__, 'x.x' );
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.4
  */
 function awpcp_paypal_verify_received_data_with_fsockopen() {
     _deprecated_function( __FUNCTION__, 'x.x' );
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.4
  */
 function awpcp_paypal_verify_received_data_wp_remote() {
     _deprecated_function( __FUNCTION__, 'x.x' );
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.4
  */
 function awpcp_load_text_domain_with_file_prefix() {
     _deprecated_function( __FUNCTION__, 'x.x' );
 }
 
 /**
- * @deprecated x.x
+ * @deprecated 4.4
  */
 function awpcp_load_plugin_textdomain() {
     _deprecated_function( __FUNCTION__, 'x.x' );

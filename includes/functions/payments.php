@@ -48,7 +48,7 @@ function awpcp_payfast_verify_received_data( $data = array() ) {
 /**
  * This function was added to replace the legacy functions awpcp_payfast_verify_received_data_with_curl() and awpcp_payfast_verify_received_data_with_fsockopen().
  *
- * @since x.x
+ * @since 4.4
  *
  * @return string 'VALID', 'INVALID' or 'ERROR'
  */

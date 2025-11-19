@@ -5,7 +5,7 @@
  * Plugin Name: AWP Classifieds
  * Plugin URI: https://awpcp.com/
  * Description: Run a free or paid classified ads service on your WordPress site.
- * Version: 4.3.7
+ * Version: 4.4
  * Author: AWP Classifieds Team
  * Author URI: https://awpcp.com/
  * License: GPLv2 or later
@@ -60,7 +60,7 @@ global $hascaticonsmodule;
 global $hasregionsmodule;
 global $hasextrafieldsmodule;
 
-$awpcp_db_version = '4.3.7';
+$awpcp_db_version = '4.4';
 
 $awpcp_imagesurl      = AWPCP_URL . '/resources/images';
 $hascaticonsmodule    = 0;
@@ -145,7 +145,7 @@ function awpcp_render_plugin_required_php_version_notice() {
 /**
  * Renders a notice if the Module Updater plugin is needed.
  *
- * @since x.x
+ * @since 4.4
  */
 function awpcp_maybe_render_module_updater_notice() {
     if ( ! awpcp_is_module_updater_needed() ) {
@@ -161,7 +161,7 @@ add_action( 'admin_notices', 'awpcp_maybe_render_module_updater_notice' );
 /**
  * Check if the user has any premium licenses.
  *
- * @since x.x
+ * @since 4.4
  */
 function awpcp_is_module_updater_needed() {
     if ( defined( 'AWP_MODULE_UPDATER_VERSION' ) ) {
