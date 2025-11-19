@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: AWP Classifieds 4.3.7\n"
+"Project-Id-Version: AWP Classifieds 4.4\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/another-wordpress-classifieds-plugin\n"
-"POT-Creation-Date: 2025-11-13 12:42:55+00:00\n"
+"POT-Creation-Date: 2025-11-19 18:38:26+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1276,32 +1276,39 @@ msgstr ""
 msgid "Account Balance"
 msgstr ""
 
-#: awpcp.php:151
+#: awpcp.php:155
+msgid ""
+"The AWP Module Updater plugin is needed to for your premium modules to work "
+"properly. You can download it from the <a "
+"href=\"https://awpcp.com/account/downloads/\">downloads page</a>."
+msgstr ""
+
+#: awpcp.php:188
 msgid "{product_name} was deactivated because it requires PHP 5.6 or newer."
 msgstr ""
 
-#: awpcp.php:154
+#: awpcp.php:191
 msgid ""
 "Hi, we noticed that your site is running on an outdated version of PHP. New "
 "versions of PHP are faster, more secure and include the features our "
 "product requires."
 msgstr ""
 
-#: awpcp.php:157
+#: awpcp.php:194
 msgid ""
 "You should upgrade to <strong>PHP 5.6</strong>, but if you want your site "
 "to also be considerable faster and even more secure, we recommend going up "
 "to <strong>PHP 7.2</strong>."
 msgstr ""
 
-#: awpcp.php:160
+#: awpcp.php:197
 msgid ""
 "Please read <a "
 "href=\"https://wordpress.org/support/upgrade-php/\">Upgrading PHP</a> to "
 "understand more about PHP and how to upgrade."
 msgstr ""
 
-#: awpcp.php:202
+#: awpcp.php:239
 msgid ""
 "AWP Classifieds Plugin installation is incomplete. Please "
 "{support_link}contact support{/support_link}."

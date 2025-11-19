@@ -2,7 +2,7 @@
 /**
  * Initialize WordPress file system.
  *
- * @since x.x
+ * @since 4.4
  * @return WP_Filesystem_Base|false WP_Filesystem instance or false on failure
  */
 function awpcp_get_wp_filesystem() {

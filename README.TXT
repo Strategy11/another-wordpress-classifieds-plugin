@@ -5,7 +5,7 @@ Tags: listings, classified ads, classified, classifieds, directory plugin, class
 Requires at least: 6.2
 Requires PHP: 5.6
 Tested up to: 6.8
-Stable tag: 4.3.7
+Stable tag: 4.4
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -208,6 +208,13 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+= 4.4 =
+* Enhancement: Improved security
+* Enhancement: Changed some external assets to local files
+* Enhancement: Refactored old default PHP functions to newer WordPress alternatives
+* Enhancement: Moved add-on licensing and update management to AWP Module Updater
+* Fix: PHP 8.2 notices
+
 = 4.3.6 =
 * Fix: Minor security vulnerability
 
@@ -263,13 +270,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fix: Allow ads to expire more than once.
 * Fix: EU dates were showing the wrong expiration dates in emails.
 * Fix: When used with featured ads, they weren't always showing at the top on the main page.
-
-= 4.1.6 =
-* New: Simplify importing dates. It's smarter now with fewer settings.
-* New: Use a more global date format in the CSV export. This can be changed with the new awpcp_export_date_format hook.
-* Fix: Some servers were looking for the privacy policy file in the wrong location.
-* Fix: When ad content was clickable, it was adding p tags to the link.
-* Fix: The ad exporter was missing column headings.
-* Fix: The option to mark as spam was showing in the bulk options when Akismet was disabled.
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>
