@@ -143,6 +143,43 @@ function awpcp_render_plugin_required_php_version_notice() {
 }
 
 /**
+ * Renders a notice if the Module Updater plugin is needed.
+ *
+ * @since x.x
+ */
+function awpcp_maybe_render_module_updater_notice() {
+    if ( ! awpcp_is_module_updater_needed() ) {
+        return;
+    }
+
+    $message = __( 'The AWP Module Updater plugin is needed to for your premium modules to work properly. You can download it from the <a href="https://awpcp.com/account/downloads/">downloads page</a>.', 'another-wordpress-classifieds-plugin' );
+    echo '<div class="notice notice-error"><p>' . wp_kses_post( $message ) . '</p></div>';
+}
+
+add_action( 'admin_notices', 'awpcp_maybe_render_module_updater_notice' );
+
+/**
+ * Check if the user has any premium licenses.
+ *
+ * @since x.x
+ */
+function awpcp_is_module_updater_needed() {
+    if ( defined( 'AWP_MODULE_UPDATER_VERSION' ) ) {
+        return false;
+    }
+
+    $options = get_option( 'awpcp-options' );
+
+    foreach ( $options as $option_key => $option_value ) {
+        if ( str_contains( $option_key, '-license-status' ) ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
  * @since 4.0.0
  */
 function awpcp_required_php_version_notice( $product_name ) {
