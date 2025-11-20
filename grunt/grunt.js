@@ -127,4 +127,84 @@ module.exports = function(grunt) {
 			textDomain: pluginName
 		}
 	} );
+
+	pluginName = 'awpcp-category-icons';
+	grunt.wpbdp.registerModule( {
+		name: 'category-icons',
+		slug: 'category-icons',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-comments-ratings';
+	grunt.wpbdp.registerModule( {
+		name: 'comments-ratings',
+		slug: 'comments-ratings',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-coupons';
+	grunt.wpbdp.registerModule( {
+		name: 'coupons',
+		slug: 'coupons',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-featured-ads';
+	grunt.wpbdp.registerModule( {
+		name: 'featured-ads',
+		slug: 'featured-ads',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-paypal-pro';
+	grunt.wpbdp.registerModule( {
+		name: 'paypal-pro',
+		slug: 'paypal-pro',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-rss-module';
+	grunt.wpbdp.registerModule( {
+		name: 'rss-module',
+		slug: 'rss-module',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-subscriptions';
+	grunt.wpbdp.registerModule( {
+		name: 'subscriptions',
+		slug: 'subscriptions',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-zip-code-search';
+	grunt.wpbdp.registerModule( {
+		name: 'zip-code-search',
+		slug: 'zip-code-search',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
 };
