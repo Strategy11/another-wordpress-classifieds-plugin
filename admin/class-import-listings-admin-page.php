@@ -179,11 +179,11 @@ class AWPCP_ImportListingsAdminPage {
 
                     // if file is inside a directory, create it first
                     if ( dirname( $item['filename'] ) !== '.' ) {
-                        $this->wp_filesystem->mkdir( dirname( $path ), FS_CHMOD_DIR, true );
+                        $this->wp_filesystem->mkdir( dirname( $path ), awpcp_get_dir_chmod(), true );
                     }
 
                     // extract file
-                    if ( ! $this->wp_filesystem->put_contents( $path, $item['content'], FS_CHMOD_FILE ) ) {
+                    if ( ! $this->wp_filesystem->put_contents( $path, $item['content'], awpcp_get_file_chmod() ) ) {
                         // translators: %s is the file name
                         $message = __( 'Could not write temporary file %s', 'another-wordpress-classifieds-plugin' );
                         $form_errors['unzip'][] = sprintf( $message, $path );

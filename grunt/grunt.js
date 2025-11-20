@@ -117,4 +117,14 @@ module.exports = function(grunt) {
 			textDomain: pluginName
 		}
 	} );
+
+	pluginName = 'awpcp-buddypress-listings';
+	grunt.wpbdp.registerModule( {
+		name: 'buddypress-listings',
+		slug: 'buddypress-listings',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
 };

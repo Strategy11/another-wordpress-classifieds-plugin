@@ -60,7 +60,7 @@ class AWPCP_ImageResizer {
             $result = $this->wp_filesystem->copy( $source, $generated_image_path );
         }
 
-        $this->wp_filesystem->chmod( $generated_image_path, FS_CHMOD_FILE );
+        $this->wp_filesystem->chmod( $generated_image_path, awpcp_get_file_chmod() );
 
         return $result;
     }

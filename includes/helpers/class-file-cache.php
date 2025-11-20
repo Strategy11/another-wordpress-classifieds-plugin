@@ -23,7 +23,7 @@ class AWPCP_FileCache {
         }
 
         if ( ! $this->wp_filesystem->is_dir( $this->location ) ) {
-            if ( ! $this->wp_filesystem->mkdir( $this->location, FS_CHMOD_DIR ) ) {
+            if ( ! $this->wp_filesystem->mkdir( $this->location, awpcp_get_dir_chmod() ) ) {
                 throw new AWPCP_IOError( esc_html( sprintf( "Can't create cache directory: %s", $this->location ) ) );
             }
         }
@@ -32,7 +32,7 @@ class AWPCP_FileCache {
     public function set( $name, $value ) {
         $filename = $this->path( $name );
 
-        if ( ! $this->wp_filesystem->put_contents( $filename, $value, FS_CHMOD_FILE ) ) {
+        if ( ! $this->wp_filesystem->put_contents( $filename, $value, awpcp_get_file_chmod() ) ) {
             throw new AWPCP_IOError( esc_html( sprintf( "Can't write to file %s for cache entry '%s'.", $filename, $name ) ) );
         }
     }

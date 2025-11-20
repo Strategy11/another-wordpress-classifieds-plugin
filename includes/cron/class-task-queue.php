@@ -99,14 +99,17 @@ class AWPCP_TaskQueue {
 
     private function get_lock() {
         $lockfile = $this->get_lock_file();
+        
+        $file_chmod = awpcp_get_file_chmod();
+        $dir_chmod  = awpcp_get_dir_chmod();
 
         if ( ! $this->wp_filesystem->exists( $lockfile ) ) {
             if ( $this->wp_filesystem->is_dir( dirname( $lockfile ) ) ) {
-                return $this->wp_filesystem->put_contents( $lockfile, '', FS_CHMOD_FILE );
+                return $this->wp_filesystem->put_contents( $lockfile, '', $file_chmod );
             }
 
-            if ( $this->wp_filesystem->mkdir( dirname( $lockfile ), FS_CHMOD_DIR, true ) ) {
-                return $this->wp_filesystem->put_contents( $lockfile, '', FS_CHMOD_FILE );
+            if ( $this->wp_filesystem->mkdir( dirname( $lockfile ), $dir_chmod, true ) ) {
+                return $this->wp_filesystem->put_contents( $lockfile, '', $file_chmod );
             }
 
             return false;
@@ -114,7 +117,7 @@ class AWPCP_TaskQueue {
 
         if ( time() - $this->wp_filesystem->mtime( $lockfile ) > 30 * 60 ) {
             $this->wp_filesystem->delete( $lockfile );
-            return $this->wp_filesystem->put_contents( $lockfile, '', FS_CHMOD_FILE );
+            return $this->wp_filesystem->put_contents( $lockfile, '', $file_chmod );
         }
 
         return false;

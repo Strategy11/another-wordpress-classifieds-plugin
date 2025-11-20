@@ -469,7 +469,7 @@ class AWPCP_Installer {
         // Ensure the target directory exists
         $target_dir = WP_LANG_DIR . '/another-wordpress-classifieds-plugin';
         if ( ! $filesystem->is_dir( $target_dir ) ) {
-            $filesystem->mkdir( $target_dir, FS_CHMOD_DIR );
+            $filesystem->mkdir( $target_dir, awpcp_get_dir_chmod() );
         }
 
         $basename = dirname( plugin_basename( AWPCP_FILE ) );
