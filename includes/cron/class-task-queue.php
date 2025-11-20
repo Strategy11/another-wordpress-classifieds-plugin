@@ -98,8 +98,7 @@ class AWPCP_TaskQueue {
     }
 
     private function get_lock() {
-        $lockfile = $this->get_lock_file();
-        
+        $lockfile   = $this->get_lock_file();
         $file_chmod = awpcp_get_file_chmod();
         $dir_chmod  = awpcp_get_dir_chmod();
 
