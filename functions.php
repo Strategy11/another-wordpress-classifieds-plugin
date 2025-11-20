@@ -3240,7 +3240,7 @@ function awpcp_inline_svg( $path, $use_images = true, $echo = true ) {
 /**
  * Get the file chmod.
  * 
- * @since x.x
+ * @since 4.4.2
  * 
  * @return int
  */
@@ -3251,7 +3251,7 @@ function awpcp_get_file_chmod() {
 /**
  * Get the directory chmod.
  * 
- * @since x.x
+ * @since 4.4.2
  * 
  * @return int
  */
