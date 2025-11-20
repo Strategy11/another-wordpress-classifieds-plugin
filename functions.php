@@ -3236,3 +3236,25 @@ function awpcp_inline_svg( $path, $use_images = true, $echo = true ) {
         return $content;
     }
 }
+
+/**
+ * Get the file chmod.
+ * 
+ * @since x.x
+ * 
+ * @return int
+ */
+function awpcp_get_file_chmod() {
+    return defined( 'FS_CHMOD_FILE' ) ? FS_CHMOD_FILE : 0644;
+}
+
+/**
+ * Get the directory chmod.
+ * 
+ * @since x.x
+ * 
+ * @return int
+ */
+function awpcp_get_dir_chmod() {
+    return defined( 'FS_CHMOD_DIR' ) ? FS_CHMOD_DIR : 0755;
+}

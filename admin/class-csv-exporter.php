@@ -86,10 +86,10 @@ class AWPCP_CSVExporter {
 
             if ( ! $upload_dir['error'] ) {
                 $csvexportsdir = rtrim( $upload_dir['basedir'], DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR . 'awpcp-csv-exports';
-                if ( $this->wp_filesystem->is_dir( $csvexportsdir ) || $this->wp_filesystem->mkdir( $csvexportsdir, FS_CHMOD_DIR ) ) {
+                if ( $this->wp_filesystem->is_dir( $csvexportsdir ) || $this->wp_filesystem->mkdir( $csvexportsdir, awpcp_get_dir_chmod() ) ) {
                     $this->workingdir = rtrim( $csvexportsdir . DIRECTORY_SEPARATOR . uniqid(), DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR;
 
-                    if ( ! $this->wp_filesystem->mkdir( $this->workingdir, FS_CHMOD_DIR ) ) {
+                    if ( ! $this->wp_filesystem->mkdir( $this->workingdir, awpcp_get_dir_chmod() ) ) {
                         $direrror = _x( 'Could not create a temporary directory for handling this CSV export.', 'admin csv-export', 'another-wordpress-classifieds-plugin' );
                     }
                 } else {
@@ -209,7 +209,7 @@ class AWPCP_CSVExporter {
         }
 
         // Write all content to file
-        $this->wp_filesystem->put_contents( $csv_file_path, $csv_content, FS_CHMOD_FILE );
+        $this->wp_filesystem->put_contents( $csv_file_path, $csv_content, awpcp_get_file_chmod() );
 
         if ( $this->is_done() ) {
             if ( $this->wp_filesystem->exists( $this->workingdir . 'images.zip' ) ) {
