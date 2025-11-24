@@ -5,7 +5,7 @@ Tags: listings, classified ads, classified, classifieds, directory plugin, class
 Requires at least: 6.2
 Requires PHP: 5.6
 Tested up to: 6.8
-Stable tag: 4.4.2
+Stable tag: 4.4.3
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -208,6 +208,9 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+= 4.4.3 =
+* Fix: jQuery loading issue
+
 = 4.4.2 =
 * Fix: Error when running WP CRON for certain events
 
@@ -270,11 +273,5 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fix: Deleting an ad wasn't decreasing category ad count.
 * Fix: The "Clear form" button wasn't allowing the category to be set again.
 * A lot of code cleanup.
-
-= 4.1.7 =
-* Set listings to expired more frequently. Instead of only doing this on the cron, do it when we check if the listing is expired.
-* Fix: Allow ads to expire more than once.
-* Fix: EU dates were showing the wrong expiration dates in emails.
-* Fix: When used with featured ads, they weren't always showing at the top on the main page.
 
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>
