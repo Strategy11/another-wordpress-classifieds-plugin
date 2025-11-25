@@ -71,6 +71,15 @@ class AWPCP_ListingsContent {
             return $content;
         }
 
+        /**
+         * Allow disabling the rendering of shortcodes in listings content.
+         * 
+         * @since x.x
+         */
+        if ( apply_filters( 'awpcp-disable-listings-shortcode-rendering', false ) ) {
+            return $content;
+        }
+
         return strip_shortcodes($content);
     }
 
