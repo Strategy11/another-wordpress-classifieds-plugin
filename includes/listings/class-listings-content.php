@@ -74,7 +74,7 @@ class AWPCP_ListingsContent {
         /**
          * Allow disabling the rendering of shortcodes in listings content.
          * We run it after the single listing check to avoid unnecessary callbacks.
-         * 
+         *
          * @since x.x
          */
         if ( apply_filters( 'awpcp_disable_listing_shortcode_stripping', false ) ) {
