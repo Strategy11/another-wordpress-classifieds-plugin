@@ -1142,7 +1142,7 @@ class AWPCP {
 
         wp_register_style(
             'daterangepicker',
-            "$vendors/daterangepicker.min.css",
+            "$vendors/daterangepicker/daterangepicker.min.css",
             [],
             '3.0.3'
         );
