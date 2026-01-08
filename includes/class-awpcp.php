@@ -1133,6 +1133,14 @@ class AWPCP {
         }
 
         wp_register_script(
+            'moment',
+            "$vendors/moment-2.22.2/moment-with-locales.min.js",
+            [],
+            '2.22.2',
+            true
+        );
+
+        wp_register_script(
             'daterangepicker',
             "$vendors/daterangepicker/daterangepicker.min.js",
             [ 'jquery', 'moment' ],
