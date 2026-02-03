@@ -26,6 +26,64 @@ function awpcp_paypal_verify_received_data($data=array(), &$errors=array()) {
 }
 
 /**
+ * Verify data received from PayPal IPN using the WordPress HTTP API.
+ *
+ * This function was added to replace the legacy functions
+ * awpcp_paypal_verify_received_data_with_curl() and
+ * awpcp_paypal_verify_received_data_with_fsockopen().
+ *
+ * @since x.x
+ *
+ * @param string $postfields IPN request payload.
+ * @param array  $errors     Request errors, returned by reference.
+ * @return string VERIFIED, INVALID or ERROR.
+ */
+function awpcp_paypal_verify_received_data_with_wp_http( $postfields = '', &$errors = array() ) {
+    $is_test_mode_enabled = intval( get_awpcp_option( 'paylivetestmode' ) ) === 1;
+
+    $paypal_url = $is_test_mode_enabled
+        ? 'https://ipnpb.sandbox.paypal.com/cgi-bin/webscr'
+        : 'https://ipnpb.paypal.com/cgi-bin/webscr';
+
+    $args = array(
+        'method'      => 'POST',
+        'timeout'     => 30,
+        'redirection' => 5,
+        'httpversion' => '1.1',
+        'blocking'    => true,
+        'headers'     => array(
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Connection'   => 'close',
+        ),
+        'body'        => $postfields,
+        'cookies'     => array(),
+        'sslverify'   => true,
+    );
+
+    $response = wp_remote_post( $paypal_url, $args );
+
+    if ( is_wp_error( $response ) ) {
+        $errors = array_merge( $errors, $response->get_error_messages() );
+        return 'ERROR';
+    }
+
+    $response_code = wp_remote_retrieve_response_code( $response );
+    if ( 200 !== $response_code ) {
+        $errors[] = sprintf( 'HTTP %d: %s', $response_code, wp_remote_retrieve_response_message( $response ) );
+        return 'ERROR';
+    }
+
+    $response_body = wp_remote_retrieve_body( $response );
+    $response_body = trim( $response_body );
+
+    if ( in_array( $response_body, array( 'VERIFIED', 'INVALID' ), true ) ) {
+        return $response_body;
+    }
+
+    return 'ERROR';
+}
+
+/**
  * Validate the data received from PayFast.
  *
  * @since 3.7.8
