@@ -18,9 +18,9 @@ class AWPCP_LatestAdsWidget extends WP_Widget {
     protected $attachments;
 
     public function __construct( $id = null, $name = null, $description = null ) {
-        $id          = $id ?? 'awpcp-latest-ads';
-        $name        = $name ?? 'AWPCP Latest Ads';
-        $description = $description ?? 'Displays a list of latest Ads';
+        $id          = is_null( $id ) ? 'awpcp-latest-ads' : $id;
+        $name        = is_null( $name ) ? 'AWPCP Latest Ads' : $name;
+        $description = is_null( $description ) ? 'Displays a list of latest Ads' : $description;
 
         parent::__construct(
             $id,
