@@ -216,7 +216,7 @@ class AWPCP {
             // actions and filters from functions_awpcp.php
             add_action('phpmailer_init','awpcp_phpmailer_init_smtp');
 
-            add_action('widgets_init', array($this, 'register_widgets'));
+            add_action( 'init', array( $this, 'register_widgets' ), 8 );
 
             awpcp_schedule_activation();
 
