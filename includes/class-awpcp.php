@@ -216,7 +216,7 @@ class AWPCP {
             // actions and filters from functions_awpcp.php
             add_action('phpmailer_init','awpcp_phpmailer_init_smtp');
 
-            add_action('widgets_init', array($this, 'register_widgets'));
+            add_action( 'widgets_init', array( $this, 'register_widgets' ) );
 
             awpcp_schedule_activation();
 
@@ -1131,6 +1131,14 @@ class AWPCP {
                 true
             );
         }
+
+        wp_register_script(
+            'moment',
+            "$vendors/moment-2.22.2/moment-with-locales.min.js",
+            [],
+            '2.22.2',
+            true
+        );
 
         wp_register_script(
             'daterangepicker',
