@@ -52,8 +52,8 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         $verified = $transaction->get( 'verified', false );
         // phpcs:ignore WordPress.Security.NonceVerification
         if ( ! empty( $_POST ) ) {
-            // phpcs:ignore WordPress.Security.NonceVerification
-            $response = awpcp_paypal_verify_received_data( $_POST, $errors );
+            // Verification reads raw body from php://input for byte-for-byte accuracy.
+            $response = awpcp_paypal_verify_received_data( array(), $errors );
             $verified = strcasecmp( $response, 'VERIFIED' ) === 0;
         }
 

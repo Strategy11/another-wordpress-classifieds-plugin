@@ -950,6 +950,9 @@ class AWPCP_PaymentsAPI {
 
             $success = true;
 
+            // Clear the refresh counter since verification completed.
+            add_action( 'wp_footer', array( $this, 'add_clear_pending_verification_script' ) );
+
         } elseif ($transaction->payment_is_not_required()) {
             $title = __( 'Payment Not Required', 'another-wordpress-classifieds-plugin');
             $text = __( 'No Payment is required for this transaction. Please press the button below to continue with the process.', 'another-wordpress-classifieds-plugin');
@@ -1028,18 +1031,45 @@ class AWPCP_PaymentsAPI {
         ?>
         <script>
         (function() {
-            let refreshCount = 0;
+            const storageKey = 'awpcp_pending_verification_refresh_count';
             const maxRefreshes = 6;
             const refreshInterval = 5000; // 5 seconds
 
+            // Get the current count from sessionStorage, defaulting to 0.
+            let refreshCount = parseInt( sessionStorage.getItem( storageKey ) || '0', 10 );
+
             function refreshPage() {
                 refreshCount++;
-                if (refreshCount <= maxRefreshes) {
+
+                if ( refreshCount <= maxRefreshes ) {
+                    // Save the incremented count before reloading.
+                    sessionStorage.setItem( storageKey, refreshCount.toString() );
                     window.location.reload();
+                } else {
+                    // Max refreshes reached, clear the counter.
+                    sessionStorage.removeItem( storageKey );
                 }
             }
 
-            setTimeout(refreshPage, refreshInterval);
+            setTimeout( refreshPage, refreshInterval );
+        })();
+        </script>
+        <?php
+    }
+
+    /**
+     * Output JavaScript to clear the pending verification refresh counter.
+     *
+     * Called when payment verification completes successfully to stop any
+     * further auto-refreshes.
+     *
+     * @since x.x
+     */
+    public function add_clear_pending_verification_script() {
+        ?>
+        <script>
+        (function() {
+            sessionStorage.removeItem( 'awpcp_pending_verification_refresh_count' );
         })();
         </script>
         <?php

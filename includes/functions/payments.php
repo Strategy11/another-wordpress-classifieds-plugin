@@ -8,20 +8,51 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Verify data received from PayPal IPN notifications and returns PayPal's
  * response.
  *
+ * PayPal requires byte-for-byte verification, so we read the raw POST body
+ * from php://input and send it back exactly as received, prepended with
+ * cmd=_notify-validate.
+ *
  * Request errors, if any, are returned by reference.
  *
  * @since 2.0.7
  *
- * @return string VERIFIED, INVALID or ERROR
+ * @param array $data   Deprecated. No longer used. Raw body is read from php://input.
+ * @param array $errors Request errors, returned by reference.
+ * @return string VERIFIED, INVALID or ERROR.
  */
-function awpcp_paypal_verify_received_data($data=array(), &$errors=array()) {
-    $content = 'cmd=_notify-validate';
-    foreach ($data as $key => $value) {
-        $value    = urlencode( stripslashes( $value ) );
-        $content .= "&$key=$value";
+function awpcp_paypal_verify_received_data( $data = array(), &$errors = array() ) {
+    // Read the raw POST body exactly as PayPal sent it.
+    // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+    $raw_post_body = file_get_contents( 'php://input' );
+
+    // If no raw body, this might be a connectivity test from the debug page.
+    if ( empty( $raw_post_body ) ) {
+        return awpcp_paypal_test_connection( $errors );
     }
 
-    // Use WordPress HTTP API for all verification requests.
+    // Prepend the validation command to the exact bytes received.
+    $content = 'cmd=_notify-validate&' . $raw_post_body;
+
+    // Use WordPress HTTP API for verification requests.
+    return awpcp_paypal_verify_received_data_with_wp_http( $content, $errors );
+}
+
+/**
+ * Test PayPal IPN endpoint connectivity.
+ *
+ * Sends a minimal request to PayPal's IPN endpoint to verify the server
+ * can communicate with PayPal. Used by the debug page.
+ *
+ * @since x.x
+ *
+ * @param array $errors Request errors, returned by reference.
+ * @return string INVALID if connection works (expected response), ERROR otherwise.
+ */
+function awpcp_paypal_test_connection( &$errors = array() ) {
+    // Send a minimal validation request to test connectivity.
+    // PayPal will return INVALID since there's no real transaction, but that confirms connectivity.
+    $content = 'cmd=_notify-validate';
+
     return awpcp_paypal_verify_received_data_with_wp_http( $content, $errors );
 }
 
