@@ -65,11 +65,17 @@ class AWPCP_Plugin_Integrations {
     public function discover_supported_plugin_integrations() {
         delete_option( 'awpcp_plugin_integrations' );
 
-        foreach ( get_option( 'active_plugins', array() ) as $plugin ) {
+        $active_plugins = get_option( 'active_plugins', array() );
+        $active_plugins = is_array( $active_plugins ) ? $active_plugins : array();
+
+        foreach ( $active_plugins as $plugin ) {
             $this->maybe_enable_plugin_integration( $plugin, false );
         }
 
-        foreach ( get_option( 'active_sitewide_plugins', array() ) as $plugin ) {
+        $sitewide_plugins = get_option( 'active_sitewide_plugins', array() );
+        $sitewide_plugins = is_array( $sitewide_plugins ) ? $sitewide_plugins : array();
+
+        foreach ( $sitewide_plugins as $plugin ) {
             $this->maybe_enable_plugin_integration( $plugin, true );
         }
     }
