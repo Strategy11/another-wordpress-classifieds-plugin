@@ -17,11 +17,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 function awpcp_paypal_verify_received_data($data=array(), &$errors=array()) {
     $content = 'cmd=_notify-validate';
     foreach ($data as $key => $value) {
-        $value    = rawurlencode(stripslashes($value));
+        $value    = urlencode( stripslashes( $value ) );
         $content .= "&$key=$value";
     }
 
-    // Use WordPress HTTP API for all verification requests
+    // Use WordPress HTTP API for all verification requests.
     return awpcp_paypal_verify_received_data_with_wp_http( $content, $errors );
 }
 
@@ -96,7 +96,7 @@ function awpcp_payfast_verify_received_data( $data = array() ) {
             continue;
         }
 
-        $content .= $key . '=' . rawurlencode( stripslashes( $value ) ) . '&';
+        $content .= $key . '=' . urlencode( stripslashes( $value ) ) . '&';
     }
 
     $content = rtrim( $content, '&' );

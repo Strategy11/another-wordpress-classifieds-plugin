@@ -927,10 +927,20 @@ class AWPCP_PaymentsAPI {
     }
 
     public function render_payment_completed_page($transaction, $action='', $hidden=array()) {
-        $success = false;
-        $text    = '';
+        $success              = false;
+        $text                 = '';
+        $pending_verification = $transaction->get( 'pending_verification', false );
 
-        if ($transaction->payment_is_completed() || $transaction->payment_is_pending()) {
+        if ( $pending_verification && $transaction->payment_is_pending() ) {
+            // Payment verification returned INVALID on user return - likely a timing issue.
+            // Show a friendly pending message and auto-refresh to wait for IPN.
+            $title   = __( 'Verifying Your Payment', 'another-wordpress-classifieds-plugin' );
+            $text    = __( 'Your payment is being verified with PayPal. This usually takes just a few seconds. The page will refresh automatically.', 'another-wordpress-classifieds-plugin' );
+            $success = true;
+
+            // Add auto-refresh script.
+            add_action( 'wp_footer', array( $this, 'add_pending_verification_refresh_script' ) );
+        } elseif ( $transaction->payment_is_completed() || $transaction->payment_is_pending() ) {
             $title = __( 'Payment Completed', 'another-wordpress-classifieds-plugin');
 
             if ($transaction->payment_is_completed())
@@ -994,7 +1004,11 @@ class AWPCP_PaymentsAPI {
     }
 
     public function render_payment_completed_page_title($transaction) {
-        if ($transaction->was_payment_successful()) {
+        $pending_verification = $transaction->get( 'pending_verification', false );
+
+        if ( $pending_verification && $transaction->payment_is_pending() ) {
+            return __( 'Verifying Your Payment', 'another-wordpress-classifieds-plugin' );
+        } elseif ($transaction->was_payment_successful()) {
             return __( 'Payment Completed', 'another-wordpress-classifieds-plugin');
         } elseif ($transaction->payment_is_canceled()) {
             return __( 'Payment Canceled', 'another-wordpress-classifieds-plugin');
@@ -1003,5 +1017,31 @@ class AWPCP_PaymentsAPI {
         } else {
             return __( 'Payment Failed', 'another-wordpress-classifieds-plugin');
         }
+    }
+
+    /**
+     * Output JavaScript to auto-refresh the page while waiting for payment verification.
+     *
+     * @since x.x
+     */
+    public function add_pending_verification_refresh_script() {
+        ?>
+        <script>
+        (function() {
+            let refreshCount = 0;
+            const maxRefreshes = 6;
+            const refreshInterval = 5000; // 5 seconds
+
+            function refreshPage() {
+                refreshCount++;
+                if (refreshCount <= maxRefreshes) {
+                    window.location.reload();
+                }
+            }
+
+            setTimeout(refreshPage, refreshInterval);
+        })();
+        </script>
+        <?php
     }
 }
