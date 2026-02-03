@@ -33,7 +33,9 @@ class AWPCP_Plugin_Integrations {
     }
 
     public function get_enabled_plugin_integrations() {
-        return get_option( 'awpcp_plugin_integrations', array() );
+        $integrations = get_option( 'awpcp_plugin_integrations', array() );
+
+        return is_array( $integrations ) ? $integrations : array();
     }
 
     public function maybe_disable_plugin_integration( $plugin ) {
