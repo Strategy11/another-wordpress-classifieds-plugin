@@ -81,6 +81,9 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
                 $errors[] = __( 'If you have any further questions, please contact this site administrator.', 'another-wordpress-classifieds-plugin' );
 
                 $transaction->errors['verification-post'] = $errors;
+
+                // Clear pending verification flag to avoid stale state.
+                $transaction->set( 'pending_verification', false );
             }
         } else {
             // Clean up previous errors and pending state.
@@ -318,6 +321,12 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
                 $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
                 $transaction->set( 'pending_verification', true );
             }
+        } elseif ( 'ERROR' === $response ) {
+            // ERROR means the verification request itself failed (network, server issue, etc.).
+            // Clear pending verification to avoid showing stale pending UI.
+            $transaction->set( 'pending_verification', false );
+
+            // Keep status as UNKNOWN - user can retry by refreshing.
         }
     }
 
