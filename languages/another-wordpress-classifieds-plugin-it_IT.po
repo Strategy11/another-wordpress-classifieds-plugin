@@ -4996,7 +4996,7 @@ msgstr ""
 
 #: includes/payments-api.php:961
 msgid "Payment Error"
-msgstr "<strong>ERRORE PAGAMENTO</strong>: %s"
+msgstr "Errore di pagamento"
 
 #: includes/payments-api.php:962
 msgid ""
@@ -10251,7 +10251,7 @@ msgstr "Il tipo di file caricato %s non è permesso."
 #: includes/functions/deprecated.php:538
 msgctxt "upload files"
 msgid "The specified file does not exists: %s."
-msgstr "Il file specificato non esiste."
+msgstr "Il file specificato non esiste: %s."
 
 #: includes/functions/deprecated.php:544
 msgctxt "upload files"

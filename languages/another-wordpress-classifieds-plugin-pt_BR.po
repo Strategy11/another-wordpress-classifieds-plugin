@@ -8634,7 +8634,7 @@ msgid ""
 "({replacement_post_id}) for post with ID equal to {post_id}. {error_message}"
 msgstr ""
 "Ocorreu um erro ao tentar atualizar a postagem de substituição "
-"({replace_post_id}) da postagem com o ID igual a {post_id}. {error_message}"
+"({replacement_post_id}) da postagem com o ID igual a {post_id}. {error_message}"
 
 #: includes/upgrade/class-manual-upgrade-tasks.php:49
 msgid "Import Payment Transactions"
@@ -8718,7 +8718,7 @@ msgid ""
 "{post_id}. {error_message}"
 msgstr ""
 "Houve um erro ao tentar forçar o próximo post_id a ser maior que {post_id}. "
-"{mensagem de erro}"
+"{error_message}"
 
 #: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:106
 msgid "The file {filepath} doesn't exist."
@@ -9827,7 +9827,7 @@ msgstr "Quem é o proprietário deste anúncio?"
 #: templates/frontend/order-submit-listing-section.tpl.php:91
 #, fuzzy
 msgid "Your ad will be posted on the following categories: %s."
-msgstr "Seu anúncio será postado nas seguintes categorias: {categories}."
+msgstr "Seu anúncio será postado nas seguintes categorias: %s."
 
 #: templates/privacy-policy.tpl.php:14
 msgid "Suggested text:"

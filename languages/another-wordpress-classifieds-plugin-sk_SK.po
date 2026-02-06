@@ -1515,7 +1515,7 @@ msgid ""
 "%s"
 msgstr ""
 "Práve nemôžeme spracovať platbu pre túto transakciu. Prosím, kontaktujte "
-"administrátora a poskytnite mu ID transakcie:"
+"administrátora a poskytnite mu ID transakcie: %s"
 
 #: frontend/page-place-ad.php:848
 msgid ""

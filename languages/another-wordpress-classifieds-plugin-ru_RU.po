@@ -4248,7 +4248,7 @@ msgstr "Файл %s не является допустимым файлом из
 #: includes/functions/file-upload.php:106
 #: includes/functions/file-upload.php:111
 msgid "The file %s could not be moved to the destination directory."
-msgstr "Файл не может быть перенесен в данную папку"
+msgstr "Файл %s не может быть перенесен в данную папку."
 
 #. translators: %s the file name
 #: includes/functions/file-upload.php:117
@@ -4639,7 +4639,7 @@ msgstr "Невозможно определить имя загруженног�
 
 #: includes/media/class-file-uploader.php:65
 msgid "File extension not allowed."
-msgstr "Расширение файла %s не допускается."
+msgstr "Расширение файла не допускается."
 
 #: includes/media/class-file-uploader.php:132
 msgid "Temporary directory doesn't exists and couldn't be created."
@@ -10872,7 +10872,7 @@ msgstr ""
 #: includes/functions/deprecated.php:577
 msgctxt "upload files"
 msgid "The file %s does not appear to be a valid image file."
-msgstr "Файл % s не является допустимым файлом изображения."
+msgstr "Файл %s не является допустимым файлом изображения."
 
 #. translators: %s is the file name
 #: includes/functions/deprecated.php:611

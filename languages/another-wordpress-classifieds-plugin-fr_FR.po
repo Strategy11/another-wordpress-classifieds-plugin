@@ -1594,7 +1594,7 @@ msgstr ""
 
 #: awpcp.php:188
 msgid "{product_name} was deactivated because it requires PHP 5.6 or newer."
-msgstr "{nom_produit} a été désactivé car il nécessite PHP 5.6 ou plus récent."
+msgstr "{product_name} a été désactivé car il nécessite PHP 5.6 ou plus récent."
 
 #: awpcp.php:191
 msgid ""
@@ -1632,7 +1632,7 @@ msgid ""
 "contact support{/support_link}."
 msgstr ""
 "L'installation du plugin Another WordPress Classifieds est incomplète. "
-"Veuillez {support_link} contacter le support {/ support_link}."
+"Veuillez {support_link}contacter le support{/support_link}."
 
 #: frontend/ad-functions.php:74 frontend/page-place-ad.php:158
 msgid ""
@@ -2129,8 +2129,8 @@ msgid ""
 "No ad ID was specified. Return to {browse_listings_link}browse all ads{/"
 "browse_listings_link}."
 msgstr ""
-"Aucun ID d'annonce n'a été spécifié. Retournez à {browse_listings_link}, "
-"parcourez toutes les annonces {/ browse_listings_link}."
+"Aucun ID d'annonce n'a été spécifié. Retournez à {browse_listings_link}"
+"parcourez toutes les annonces{/browse_listings_link}."
 
 #: frontend/page-show-ad.php:71
 msgid ""
@@ -2138,7 +2138,7 @@ msgid ""
 "{browse_listings_link}browse all ads{/browse_listings_link}."
 msgstr ""
 "Aucune annonce n'a été trouvée avec un ID égal à {listing_id}. Retournez à "
-"{browse_listings_link}, parcourez toutes les annonces {/ "
+"{browse_listings_link}parcourez toutes les annonces{/"
 "browse_listings_link}."
 
 #: frontend/placeholders.php:454
@@ -3123,7 +3123,7 @@ msgid ""
 "information for transaction {transaction_id}."
 msgstr ""
 "Une erreur inconnue s'est produite lors de la tentative de suppression des "
-"informations relatives à {listing_id}."
+"informations relatives à la transaction {transaction_id}."
 
 #: includes/admin/class-user-personal-data-provider.php:58
 msgid "Contact Address"
@@ -3536,12 +3536,12 @@ msgid_plural ""
 "facebook_settings_link}."
 msgstr[0] ""
 "Une annonce n'a pas pu être envoyée à Facebook car aucune méthode "
-"d'intégration n'a été sélectionnée dans les {facebook_settings_link} "
-"paramètres Facebook {/ facebook_settings_link}."
+"d'intégration n'a été sélectionnée dans les {facebook_settings_link}"
+"paramètres Facebook{/facebook_settings_link}."
 msgstr[1] ""
 "Une annonce n'a pas pu être envoyée à Facebook car aucune méthode "
-"d'intégration n'a été sélectionnée dans les {facebook_settings_link} "
-"paramètres Facebook {/ facebook_settings_link}."
+"d'intégration n'a été sélectionnée dans les {facebook_settings_link}"
+"paramètres Facebook{/facebook_settings_link}."
 
 #: includes/admin/listings/class-send-to-facebook-group-listing-table-action.php:154
 msgid ""
@@ -4792,7 +4792,7 @@ msgid ""
 "AWPCP integration ({permissions})."
 msgstr ""
 "Le jeton d'accès utilisateur est valide mais ne dispose pas des "
-"autorisations requises pour l'intégration AWPCP ({autorisations})."
+"autorisations requises pour l'intégration AWPCP ({permissions})."
 
 #: includes/helpers/facebook.php:74
 msgid "No Facebook page is selected (missing page id or token)."
@@ -5442,7 +5442,7 @@ msgstr ""
 msgid ""
 "{credit-plan-name} ({credit-plan-credits} credits for {credit-plan-price})"
 msgstr ""
-"{nom-plan-crédit} ({crédits-plan-crédit} crédits pour {prix-plan-crédit})"
+"{credit-plan-name} ({credit-plan-credits} crédits pour {credit-plan-price})"
 
 #: includes/payments-api.php:505
 msgid ""
@@ -7384,7 +7384,7 @@ msgstr ""
 "peu de temps après la mise en œuvre peuvent différer de ceux de la "
 "production. Vous pouvez commencer à utiliser un seuil de 0,5 et trouver une "
 "meilleure valeur en examinant ultérieurement votre trafic dans la "
-"{console_link} console d'administrateur {/ console_link}."
+"{console_link}console d'administrateur{/console_link}."
 
 #: includes/settings/class-general-settings.php:484
 msgid "reCAPTCHA score threshold (v3 only)"
@@ -8775,8 +8775,8 @@ msgid ""
 "{payment-term-name} &ndash; {payment-term-duration} ({payment-term-price} "
 "credits)"
 msgstr ""
-"{payment-term-name} & ndash; {durée-paiement-durée} (crédits {paiement-terme-"
-"prix})"
+"{payment-term-name} &ndash; {payment-term-duration} (crédits {payment-term-"
+"price})"
 
 #: includes/ui/class-payment-terms-list.php:173
 msgid "<number-of-listings> listing allowed."
@@ -8843,8 +8843,7 @@ msgid ""
 "equal to {post_id}. {error_message}"
 msgstr ""
 "Une erreur s'est produite lors de la tentative de création d'un poste de "
-"remplacement pour un article dont l'ID est égal à {post_id}. {Message "
-"d'erreur}"
+"remplacement pour un article dont l'ID est égal à {post_id}. {error_message}"
 
 #: includes/upgrade/class-fix-id-collision-for-listings-upgrade-task-handler.php:163
 msgid ""
@@ -8853,7 +8852,7 @@ msgid ""
 msgstr ""
 "Une erreur s'est produite lors de la tentative de mise à jour du message de "
 "remplacement ({replacement_post_id}) pour un message dont l'ID est égal à "
-"{post_id}. {Message d'erreur}"
+"{post_id}. {error_message}"
 
 #: includes/upgrade/class-manual-upgrade-tasks.php:49
 msgid "Import Payment Transactions"
@@ -8939,11 +8938,11 @@ msgid ""
 "{post_id}. {error_message}"
 msgstr ""
 "Une erreur s'est produite lors de la tentative de forcer le prochain post_id "
-"à être supérieur à {post_id}. {Message d'erreur}"
+"à être supérieur à {post_id}. {error_message}"
 
 #: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:106
 msgid "The file {filepath} doesn't exist."
-msgstr "Le fichier {chemin du fichier} n'existe pas."
+msgstr "Le fichier {filepath} n'existe pas."
 
 #: includes/upgrade/class-store-media-as-attachments-upgrade-task-handler.php:148
 msgid "An attachment couldn't be created for media item with id {media_id}."
@@ -10063,7 +10062,7 @@ msgstr "Qui est le propriétaire de cette annonce?"
 #: templates/frontend/order-submit-listing-section.tpl.php:91
 #, fuzzy
 msgid "Your ad will be posted on the following categories: %s."
-msgstr "Votre annonce sera publiée dans la catégorie suivante: {categories}."
+msgstr "Votre annonce sera publiée dans la catégorie suivante: %s."
 
 #: templates/privacy-policy.tpl.php:14
 msgid "Suggested text:"

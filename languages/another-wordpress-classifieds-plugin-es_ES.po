@@ -3858,7 +3858,7 @@ msgstr ""
 #. translators: %s the submitted value
 #: includes/class-categories-collection.php:131
 msgid "The category name must be a non empty string, %s was given."
-msgstr "El nombre de la categoría no pude ser una cadena vacía."
+msgstr "El nombre de la categoría no pude ser una cadena vacía, %s fue dado."
 
 #. translators: %s is the category name
 #: includes/class-categories-collection.php:141
@@ -10104,7 +10104,7 @@ msgstr "¿Quién es el propietario de este anuncio?"
 #: templates/frontend/order-submit-listing-section.tpl.php:91
 #, fuzzy
 msgid "Your ad will be posted on the following categories: %s."
-msgstr "Tu anuncio será publicado en las siguientes categorías: {categories}."
+msgstr "Tu anuncio será publicado en las siguientes categorías: %s."
 
 #: templates/privacy-policy.tpl.php:14
 msgid "Suggested text:"
@@ -11584,7 +11584,7 @@ msgstr ""
 #: includes/functions/deprecated.php:577
 msgctxt "upload files"
 msgid "The file %s does not appear to be a valid image file."
-msgstr "El archivo no parece ser un archivo de imagen válido."
+msgstr "El archivo %s no parece ser un archivo de imagen válido."
 
 #. translators: %s is the file name
 #: includes/functions/deprecated.php:611
