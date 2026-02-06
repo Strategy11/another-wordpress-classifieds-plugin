@@ -1515,7 +1515,7 @@ msgid ""
 "%s"
 msgstr ""
 "Práve nemôžeme spracovať platbu pre túto transakciu. Prosím, kontaktujte "
-"administrátora a poskytnite mu ID transakcie:"
+"administrátora a poskytnite mu ID transakcie: %s"
 
 #: frontend/page-place-ad.php:848
 msgid ""
@@ -6622,7 +6622,7 @@ msgstr "Najvyššie číslo použité v matematickej operácii"
 #. translators: %s is the link to Google reCAPTCHA admin panel.
 #: includes/settings/class-general-settings.php:472
 msgid "You can get an API key from %s."
-msgstr "Získajte API kľúč z: %S"
+msgstr "Získajte API kľúč z: %s"
 
 #: includes/settings/class-general-settings.php:474
 msgid "reCAPTCHA Site Key"
