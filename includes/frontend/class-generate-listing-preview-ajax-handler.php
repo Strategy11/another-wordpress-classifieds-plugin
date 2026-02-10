@@ -61,7 +61,7 @@ class AWPCP_GenerateListingPreviewAjaxHandler extends AWPCP_AjaxHandler {
     /**
      * Generates the listing preview after verifying authorization.
      *
-     * @since x.x
+     * @since 4.4.4
      * @throws AWPCP_Exception If authorization fails.
      */
     private function try_to_generate_listing_preview() {
@@ -86,7 +86,7 @@ class AWPCP_GenerateListingPreviewAjaxHandler extends AWPCP_AjaxHandler {
     /**
      * Checks whether the current user is allowed to preview the listing.
      *
-     * @since x.x
+     * @since 4.4.4
      *
      * @param WP_Post $listing The listing post object.
      *

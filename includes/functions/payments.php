@@ -43,7 +43,7 @@ function awpcp_paypal_verify_received_data( $data = array(), &$errors = array() 
  * Sends a minimal request to PayPal's IPN endpoint to verify the server
  * can communicate with PayPal. Used by the debug page.
  *
- * @since x.x
+ * @since 4.4.4
  *
  * @param array $errors Request errors, returned by reference.
  * @return string INVALID if connection works (expected response), ERROR otherwise.
@@ -63,7 +63,7 @@ function awpcp_paypal_test_connection( &$errors = array() ) {
  * awpcp_paypal_verify_received_data_with_curl() and
  * awpcp_paypal_verify_received_data_with_fsockopen().
  *
- * @since x.x
+ * @since 4.4.4
  *
  * @param string $postfields IPN request payload.
  * @param array  $errors     Request errors, returned by reference.
