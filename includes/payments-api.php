@@ -1025,7 +1025,7 @@ class AWPCP_PaymentsAPI {
     /**
      * Output JavaScript to auto-refresh the page while waiting for payment verification.
      *
-     * @since x.x
+     * @since 4.4.4
      */
     public function add_pending_verification_refresh_script() {
         ?>
@@ -1063,7 +1063,7 @@ class AWPCP_PaymentsAPI {
      * Called when payment verification completes successfully to stop any
      * further auto-refreshes.
      *
-     * @since x.x
+     * @since 4.4.4
      */
     public function add_clear_pending_verification_script() {
         ?>

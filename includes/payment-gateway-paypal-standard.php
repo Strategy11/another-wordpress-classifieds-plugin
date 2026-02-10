@@ -289,7 +289,7 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
     /**
      * Process the payment verification.
      *
-     * @since x.x
+     * @since 4.4.4
      *
      * @param AWPCP_Payment_Transaction $transaction The payment transaction.
      * @param bool                      $is_ipn      Whether this is an IPN notification.

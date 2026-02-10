@@ -24,7 +24,7 @@ class AWPCP_CategoriesWidget extends WP_Widget {
     /**
      * Sets translated widget name and description after translations are loaded.
      *
-     * @since x.x
+     * @since 4.4.4
      *
      * @return void
      */
