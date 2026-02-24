@@ -10,6 +10,7 @@ function awpcp_upload_generated_thumbnail_ajax_handler() {
         awpcp_image_resizer(),
         awpcp_attachments_collection(),
         awpcp_listings_collection(),
+        awpcp_listing_authorization(),
         awpcp()->settings,
         awpcp_request(),
         awpcp_ajax_response()
@@ -21,15 +22,17 @@ class AWPCP_UploadGeneratedThumbnailAjaxHandler extends AWPCP_AjaxHandler {
     private $image_resizer;
     private $attachments;
     private $listings;
+    private $authorization;
     private $settings;
     private $request;
 
-    public function __construct( $image_resizer, $attachments, $listings, $settings, $request, $response ) {
+    public function __construct( $image_resizer, $attachments, $listings, $authorization, $settings, $request, $response ) {
         parent::__construct( $response );
 
         $this->image_resizer = $image_resizer;
         $this->listings      = $listings;
         $this->attachments   = $attachments;
+        $this->authorization = $authorization;
         $this->settings      = $settings;
         $this->request       = $request;
     }
@@ -65,7 +68,7 @@ class AWPCP_UploadGeneratedThumbnailAjaxHandler extends AWPCP_AjaxHandler {
             return false;
         }
 
-        return true;
+        return $this->authorization->is_current_user_allowed_to_manage_listing( $listing );
     }
 
     private function process_uploaded_thumbnail( $listing, $media ) {

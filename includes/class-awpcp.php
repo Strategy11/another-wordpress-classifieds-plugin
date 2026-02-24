@@ -644,7 +644,6 @@ class AWPCP {
 
         $handler = awpcp_users_autocomplete_ajax_handler();
         add_action( 'wp_ajax_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
-        add_action( 'wp_ajax_nopriv_awpcp-autocomplete-users', array( $handler, 'ajax' ) );
 
         $handler = awpcp_set_attachment_as_featured_ajax_handler();
         add_action( 'wp_ajax_awpcp-set-file-as-primary', array( $handler, 'ajax' ) );
