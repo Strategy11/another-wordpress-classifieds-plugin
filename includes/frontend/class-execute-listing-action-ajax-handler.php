@@ -18,18 +18,29 @@ class AWPCP_ExecuteListingActionAjaxHandler extends AWPCP_AjaxHandler {
     private $listings;
 
     /**
+     * @var AWPCP_ListingAuthorization
+     */
+    private $authorization;
+
+    /**
      * @var AWPCP_Request
      */
     private $request;
 
     /**
      * @since 4.0.0
+     *
+     * @param AWPCP_ListingsCollection   $listings      Listings collection.
+     * @param AWPCP_ListingAuthorization $authorization Listing authorization.
+     * @param object                     $response      Ajax response object.
+     * @param AWPCP_Request              $request       Request object.
      */
-    public function __construct( $listings, $response, $request ) {
+    public function __construct( $listings, $authorization, $response, $request ) {
         parent::__construct( $response );
 
-        $this->listings = $listings;
-        $this->request  = $request;
+        $this->listings      = $listings;
+        $this->authorization = $authorization;
+        $this->request       = $request;
     }
     /**
      * @since 4.0.0
@@ -62,6 +73,10 @@ class AWPCP_ExecuteListingActionAjaxHandler extends AWPCP_AjaxHandler {
             throw new AWPCP_Exception( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 
+        if ( ! $this->authorization->is_current_user_allowed_to_manage_listing( $listing ) ) {
+            throw new AWPCP_Exception( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+        }
+
         if ( ! has_filter( "awpcp-custom-listing-action-$action" ) ) {
             throw new AWPCP_Exception( esc_html( str_replace( '{action}', $action, __( 'Unknown action: {action}', 'another-wordpress-classifieds-plugin' ) ) ) );
         }
@@ -74,4 +89,5 @@ class AWPCP_ExecuteListingActionAjaxHandler extends AWPCP_AjaxHandler {
 
         return $this->success( $response );
     }
+
 }
