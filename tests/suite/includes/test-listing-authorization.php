@@ -46,6 +46,42 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
     }
 
     /**
+     * @since x.x
+     */
+    public function test_is_current_user_allowed_to_manage_listing_for_anonymous_users_with_auto_draft_listing() {
+        $listing = (object) array(
+            'ID'          => wp_rand() + 1,
+            'post_author' => 0,
+            'post_status' => 'auto-draft',
+        );
+
+        Functions\when( 'is_user_logged_in' )->justReturn( false );
+
+        $this->assertTrue( $this->get_test_subject()->is_current_user_allowed_to_manage_listing( $listing ) );
+    }
+
+    /**
+     * @since x.x
+     */
+    public function test_is_current_user_allowed_to_manage_listing_for_anonymous_users_with_valid_edit_nonce() {
+        $listing = (object) array(
+            'ID'          => wp_rand() + 1,
+            'post_author' => 0,
+            'post_status' => 'publish',
+        );
+
+        Functions\when( 'is_user_logged_in' )->justReturn( false );
+        Functions\when( 'awpcp_get_var' )->justReturn( null );
+        Functions\when( 'wp_verify_nonce' )->justReturn( true );
+
+        $this->request->shouldReceive( 'post' )
+            ->with( 'edit_nonce', null )
+            ->andReturn( 'valid-edit-nonce' );
+
+        $this->assertTrue( $this->get_test_subject()->is_current_user_allowed_to_manage_listing( $listing ) );
+    }
+
+    /**
      * @since 4.0.0
      */
     public function get_test_subject() {

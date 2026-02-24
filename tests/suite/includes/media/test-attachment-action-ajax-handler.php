@@ -8,6 +8,7 @@ class AWPCP_Test_Attachment_Action_Ajax_Handler extends AWPCP_UnitTestCase {
         $this->attachment_action = Phake::mock( 'AWPCP_Attachment_Ajax_Action' );
         $this->attachments = Phake::mock( 'AWPCP_Attachments_Collection' );
         $this->listings = Phake::mock( 'AWPCP_ListingsCollection' );
+        $this->authorization = Phake::mock( 'AWPCP_ListingAuthorization' );
         $this->request = Phake::mock( 'AWPCP_Request' );
         $this->response = Phake::mock( 'AWPCP_AjaxResponse' );
     }
@@ -27,12 +28,14 @@ class AWPCP_Test_Attachment_Action_Ajax_Handler extends AWPCP_UnitTestCase {
 
         Phake::when( $this->listings )->get->thenReturn( $listing );
         Phake::when( $this->attachments )->get->thenReturn( $attachment );
+        Phake::when( $this->authorization )->is_current_user_allowed_to_manage_listing->thenReturn( true );
         Phake::when( $this->request )->post( 'nonce' )->thenReturn( $nonce );
 
         $handler = new AWPCP_Attachment_Action_Ajax_Handler(
             $this->attachment_action,
             $this->attachments,
             $this->listings,
+            $this->authorization,
             $this->request,
             $this->response
         );
