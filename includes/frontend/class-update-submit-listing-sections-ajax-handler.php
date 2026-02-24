@@ -80,5 +80,4 @@ class AWPCP_UpdateSubmitListingSectionsAjaxHandler extends AWPCP_AjaxHandler {
 
         return $this->success( $response );
     }
-
 }

@@ -82,5 +82,4 @@ class AWPCP_GenerateListingPreviewAjaxHandler extends AWPCP_AjaxHandler {
 
         return $this->success( [ 'preview' => $preview ] );
     }
-
 }

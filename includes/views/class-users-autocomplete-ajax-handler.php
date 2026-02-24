@@ -23,7 +23,7 @@ class AWPCP_UsersAutocompleteAjaxHandler extends AWPCP_AjaxHandler {
         $users = $this->users->find( array(
             'fields' => array( 'ID', 'public_name' ),
             'like'   => awpcp_get_var( array( 'param' => 'term' ) ),
-            'limit' => 100,
+            'limit'  => 100,
         ) );
 
         return $this->success( array( 'items' => array_values( $users ) ) );

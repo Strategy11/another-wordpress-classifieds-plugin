@@ -89,5 +89,4 @@ class AWPCP_ExecuteListingActionAjaxHandler extends AWPCP_AjaxHandler {
 
         return $this->success( $response );
     }
-
 }

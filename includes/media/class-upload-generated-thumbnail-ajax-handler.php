@@ -28,10 +28,10 @@ class AWPCP_UploadGeneratedThumbnailAjaxHandler extends AWPCP_AjaxHandler {
         parent::__construct( $response );
 
         $this->image_resizer = $image_resizer;
-        $this->listings = $listings;
-        $this->attachments = $attachments;
-        $this->settings = $settings;
-        $this->request = $request;
+        $this->listings      = $listings;
+        $this->attachments   = $attachments;
+        $this->settings      = $settings;
+        $this->request       = $request;
     }
 
     public function ajax() {
@@ -70,7 +70,7 @@ class AWPCP_UploadGeneratedThumbnailAjaxHandler extends AWPCP_AjaxHandler {
 
     private function process_uploaded_thumbnail( $listing, $media ) {
         $temporary_thumbnail_file = $this->get_uploaded_thumbnail_path();
-        $was_thumbnail_created = $this->image_resizer->create_thumbnail_for_media( $media, $temporary_thumbnail_file );
+        $was_thumbnail_created    = $this->image_resizer->create_thumbnail_for_media( $media, $temporary_thumbnail_file );
         wp_delete_file( $temporary_thumbnail_file );
 
         if ( $was_thumbnail_created ) {
@@ -89,8 +89,8 @@ class AWPCP_UploadGeneratedThumbnailAjaxHandler extends AWPCP_AjaxHandler {
             throw new AWPCP_Exception( esc_html__( 'No thumbnail data found.', 'another-wordpress-classifieds-plugin' ) );
         }
 
-        $uploads_dir = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
-        $filename = wp_unique_filename( $uploads_dir, 'uploaded-thumbnail.png' );
+        $uploads_dir             = $this->settings->get_runtime_option( 'awpcp-uploads-dir' );
+        $filename                = wp_unique_filename( $uploads_dir, 'uploaded-thumbnail.png' );
         $uploaded_thumbnail_path = $uploads_dir . DIRECTORY_SEPARATOR . $filename;
 
         file_put_contents( $uploaded_thumbnail_path, base64_decode( $matches[2] ) );

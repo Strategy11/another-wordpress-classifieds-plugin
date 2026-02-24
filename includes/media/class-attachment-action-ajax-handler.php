@@ -91,5 +91,4 @@ class AWPCP_Attachment_Action_Ajax_Handler extends AWPCP_AjaxHandler {
 
         return true;
     }
-
 }
