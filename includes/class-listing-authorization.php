@@ -86,7 +86,7 @@ class AWPCP_ListingAuthorization {
      * Non-logged-in users can manage listings while creating one (auto-draft)
      * or while editing one using a valid edit nonce.
      *
-     * @since x.x
+     * @since 4.4.5
      *
      * @param object $listing An instance of WP_Post.
      *
@@ -107,7 +107,7 @@ class AWPCP_ListingAuthorization {
     /**
      * Checks whether the current request includes a valid edit nonce.
      *
-     * @since x.x
+     * @since 4.4.5
      *
      * @param object $listing An instance of WP_Post.
      *
