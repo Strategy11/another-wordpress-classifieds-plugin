@@ -8,7 +8,8 @@
 		"preinstall": "npx npm-force-resolutions",
 		"watch": "grunt watch",
 		"test": "phpunit",
-		"dev": "cross-env NODE_ENV=default webpack --watch"
+		"dev": "cross-env NODE_ENV=default webpack --watch",
+		"build": "cross-env NODE_ENV=production webpack"
 	},
 	"repository": {
 		"type": "git",
