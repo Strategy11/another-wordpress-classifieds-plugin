@@ -46,7 +46,7 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.5
      */
     public function test_is_current_user_allowed_to_manage_listing_for_anonymous_users_with_auto_draft_listing() {
         $listing = (object) array(
@@ -61,7 +61,7 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.5
      */
     public function test_is_current_user_allowed_to_manage_listing_for_anonymous_users_with_valid_edit_nonce() {
         $listing = (object) array(

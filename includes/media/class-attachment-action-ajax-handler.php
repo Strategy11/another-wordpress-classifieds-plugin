@@ -32,7 +32,7 @@ class AWPCP_Attachment_Action_Ajax_Handler extends AWPCP_AjaxHandler {
     protected $request;
 
     /**
-     * @since x.x
+     * @since 4.4.5
      *
      * @param AWPCP_Attachment_Ajax_Action $attachment_action The attachment action.
      * @param object                       $files             Attachments collection.
