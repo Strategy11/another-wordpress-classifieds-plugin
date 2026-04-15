@@ -20,6 +20,7 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
         $this->roles_and_capabilities = Mockery::mock( 'AWPCP_RolesAndCapabilities' );
         $this->settings               = Mockery::mock( 'AWPCP_Settings' );
         $this->request                = Mockery::mock( 'AWPCP_Request' );
+        $this->payments               = null;
     }
 
     /**
@@ -48,12 +49,53 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
     /**
      * @since 4.4.5
      */
-    public function test_is_current_user_allowed_to_manage_listing_for_anonymous_users_with_auto_draft_listing() {
+    public function test_is_current_user_allowed_to_manage_listing_rejects_auto_draft_without_transaction() {
         $listing = (object) array(
             'ID'          => wp_rand() + 1,
             'post_author' => 0,
             'post_status' => 'auto-draft',
         );
+
+        Functions\when( 'is_user_logged_in' )->justReturn( false );
+
+        $this->assertFalse( $this->get_test_subject()->is_current_user_allowed_to_manage_listing( $listing ) );
+    }
+
+    /**
+     * @since x.x
+     */
+    public function test_is_current_user_allowed_to_manage_listing_rejects_auto_draft_with_no_matching_transaction() {
+        $listing = (object) array(
+            'ID'          => wp_rand() + 1,
+            'post_author' => 0,
+            'post_status' => 'auto-draft',
+        );
+
+        $this->payments = Mockery::mock( 'AWPCP_PaymentsAPI' );
+        $this->payments->shouldReceive( 'get_transaction' )->andReturn( null );
+
+        Functions\when( 'is_user_logged_in' )->justReturn( false );
+
+        $this->assertFalse( $this->get_test_subject()->is_current_user_allowed_to_manage_listing( $listing ) );
+    }
+
+    /**
+     * @since x.x
+     */
+    public function test_is_current_user_allowed_to_manage_listing_allows_auto_draft_with_valid_transaction() {
+        $listing_id = wp_rand() + 1;
+
+        $listing = (object) array(
+            'ID'          => $listing_id,
+            'post_author' => 0,
+            'post_status' => 'auto-draft',
+        );
+
+        $transaction = Mockery::mock( 'AWPCP_Payment_Transaction' );
+        $transaction->shouldReceive( 'get' )->with( 'ad-id' )->andReturn( $listing_id );
+
+        $this->payments = Mockery::mock( 'AWPCP_PaymentsAPI' );
+        $this->payments->shouldReceive( 'get_transaction' )->andReturn( $transaction );
 
         Functions\when( 'is_user_logged_in' )->justReturn( false );
 
@@ -89,7 +131,8 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
             $this->listing_renderer,
             $this->roles_and_capabilities,
             $this->settings,
-            $this->request
+            $this->request,
+            $this->payments
         );
     }
 
