@@ -33,7 +33,7 @@ class AWPCP_ListingAuthorization {
     private $request;
 
     /**
-     * @var AWPCP_PaymentsAPI
+     * @var AWPCP_PaymentsAPI|null
      */
     private $payments;
 
@@ -42,7 +42,7 @@ class AWPCP_ListingAuthorization {
      * @param object            $roles            An instance of Roles And Capabilities.
      * @param object            $settings         An instance of SettingsAPI.
      * @param object            $request          An instance of Request.
-     * @param AWPCP_PaymentsAPI $payments         An instance of PaymentsAPI.
+     * @param AWPCP_PaymentsAPI|null $payments     An instance of PaymentsAPI.
      *
      * @since x.x Added $payments parameter.
      */
