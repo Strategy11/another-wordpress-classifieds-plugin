@@ -332,7 +332,8 @@ class AWPCP {
 
     public function init() {
         global $wpdb;
-        $wpdb->query('SET SQL_BIG_SELECTS=1');
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Session-level MySQL setting; not a data query and not cacheable.
+        $wpdb->query( 'SET SQL_BIG_SELECTS=1' );
         $query_integration = $this->container['QueryIntegration'];
 
         // Execute later to allow Listing Table Views to add query parameters.

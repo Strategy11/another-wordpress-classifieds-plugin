@@ -49,12 +49,8 @@ function awpcp_get_page_id( $name ) {
     global $wpdb;
 
     if ( ! empty( $name ) ) {
-        return $wpdb->get_var(
-            $wpdb->prepare(
-                "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s",
-                $name
-            )
-        );
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct lookup against wp_posts by post_name; results are short-lived and not safe to cache because plugin pages are renamed/deleted by site admins outside our control.
+        return $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE post_name = %s", $name ) );
     }
 
     return 0;
