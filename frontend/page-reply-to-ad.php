@@ -278,7 +278,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             );
 
             $email->body                = awpcp_replace_placeholders( $placeholders, $ad, $email->body, 'reply-to-listing' );
-            $email->to                  = awpcp_format_recipient_address( get_adposteremail( $ad->ID ) );
+            $email->to                  = awpcp_format_recipient_address( awpcp_listing_renderer()->get_contact_email( $ad ) );
             $email->from                = awpcp_format_email_address( $from, $sender );
             $email->headers['Reply-To'] = awpcp_format_email_address( $sender_email, $sender_name );
 
