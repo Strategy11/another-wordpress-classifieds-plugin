@@ -82,7 +82,9 @@ function awpcp_throttle( $bucket, $limit, $window_seconds ) {
  *
  * @since x.x
  *
- * @param string $url Candidate redirect URL.
+ * @param mixed $url Candidate redirect URL. Accepts any type because callers
+ *                   typically forward raw request data; non-strings collapse
+ *                   to the fallback URL.
  *
  * @return string A safe, same-host URL.
  */
