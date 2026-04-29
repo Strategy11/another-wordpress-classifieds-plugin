@@ -162,15 +162,14 @@ if ( ! function_exists( 'awpcp_is_page' ) ) {
     /**
      * Check if the current page is one of the AWPCP pages.
      *
-     *
      * @param int|null $page_id Optional page ID to test. Defaults to the queried object.
-     * @return bool|null True if the page belongs to AWPCP, null when no query is available.
+     * @return bool True if the page belongs to AWPCP, false otherwise (including when no query is available).
      */
     function awpcp_is_page( $page_id = null ) {
         global $wp_the_query;
 
         if ( is_null( $page_id ) && ! $wp_the_query ) {
-            return;
+            return false;
         }
 
         if ( is_null( $page_id ) ) {
