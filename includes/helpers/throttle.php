@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Returns the remote IP address used for throttle bucket keys.
  *
- * @since x.x
+ * @since 4.4.6.1
  *
  * @return string
  */
@@ -31,7 +31,7 @@ function awpcp_throttle_get_client_ip() {
  * Increments a per-IP counter for the given bucket and reports whether the
  * request exceeds the configured limit.
  *
- * @since x.x
+ * @since 4.4.6.1
  *
  * @param string $bucket         Logical bucket name (for example, `reply_email`).
  *                               Passed through `sanitize_key()` and used in the
@@ -80,7 +80,7 @@ function awpcp_throttle( $bucket, $limit, $window_seconds ) {
  * Validates a user-supplied redirect URL and falls back to the AWPCP main page
  * when the destination is not on the same host.
  *
- * @since x.x
+ * @since 4.4.6.1
  *
  * @param mixed $url Candidate redirect URL. Accepts any type because callers
  *                   typically forward raw request data; non-strings collapse
