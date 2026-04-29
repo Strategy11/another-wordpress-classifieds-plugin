@@ -695,7 +695,7 @@ function awpcp_is_classifieds_page_present() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_is_classifieds_page_present()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_is_classifieds_page_present()} instead.
  *
  * @return bool
  */

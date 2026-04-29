@@ -29,7 +29,7 @@ function awpcp_build_categories_hierarchy( &$categories, $filter = null, $callba
 /**
  * Internal helper that builds the parent => children category map.
  *
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_build_categories_hierarchy_internal( $categories, $filter = null, $callback = null ) {
     $hierarchy = array( 'root' => array() );
@@ -207,7 +207,7 @@ function awpcp_total_ads_in_category( $category_id ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_total_ads_in_category()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_total_ads_in_category()} instead.
  *
  * TODO: Re-enable _deprecated_function() once first-party add-ons stop
  *       calling this wrapper directly. The runtime notice was suppressed

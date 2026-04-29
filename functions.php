@@ -37,7 +37,7 @@ function awpcp_exclude_child_pages( $excluded = array() ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_exclude_child_pages()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_exclude_child_pages()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function exclude_awpcp_child_pages( $excluded = array() ) {
@@ -339,7 +339,7 @@ function awpcp_timepicker_format($format) {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  *
  * @param string $format       Format string with placeholders.
  * @param array  $translations Map of placeholder to replacement.
@@ -363,7 +363,7 @@ function awpcp_replace_format_translations( $format, $translations ) {
 
 /**
  * @since 3.0
- * @deprecated x.x Use {@see awpcp_replace_format_translations()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_replace_format_translations()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function _awpcp_replace_format( $format, $translations ) {
@@ -1488,7 +1488,7 @@ function awpcp_flatten_array_recursive( $array, $path = array(), &$return = arra
 
 /**
  * @since 3.0.2
- * @deprecated x.x Use {@see awpcp_flatten_array_recursive()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_flatten_array_recursive()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function _awpcp_flatten_array( $array, $path = array(), &$return = array() ) {
@@ -2887,7 +2887,7 @@ function awpcp_are_images_allowed() {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  *
  * @param mixed $variable Value to escape.
  * @return mixed
@@ -2906,7 +2906,7 @@ function awpcp_add_slashes_recursive( $variable ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_add_slashes_recursive()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_add_slashes_recursive()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function add_slashes_recursive( $variable ) {
@@ -2914,7 +2914,7 @@ function add_slashes_recursive( $variable ) {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_string_contains_at_position( $haystack, $needle, $pos = 0, $case = true ) {
     if ( $case ) {
@@ -2926,7 +2926,7 @@ function awpcp_string_contains_at_position( $haystack, $needle, $pos = 0, $case 
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_string_contains_at_position()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_string_contains_at_position()} instead.
  *
  * TODO: Re-enable _deprecated_function() once first-party add-ons stop
  *       calling this wrapper directly. The runtime notice was suppressed
@@ -2938,7 +2938,7 @@ function string_contains_string_at_position( $haystack, $needle, $pos = 0, $case
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_string_starts_with( $haystack, $needle, $case = true ) {
     return awpcp_string_contains_at_position( $haystack, $needle, 0, $case );
@@ -2946,7 +2946,7 @@ function awpcp_string_starts_with( $haystack, $needle, $case = true ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_string_starts_with()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_string_starts_with()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function string_starts_with( $haystack, $needle, $case = true ) {
@@ -2954,7 +2954,7 @@ function string_starts_with( $haystack, $needle, $case = true ) {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_string_ends_with( $haystack, $needle, $case = true ) {
     return awpcp_string_contains_at_position( $haystack, $needle, ( strlen( $haystack ) - strlen( $needle ) ), $case );
@@ -2962,7 +2962,7 @@ function awpcp_string_ends_with( $haystack, $needle, $case = true ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_string_ends_with()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_string_ends_with()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function string_ends_with( $haystack, $needle, $case = true ) {
@@ -2981,7 +2981,7 @@ function awpcp_get_option( $option, $default = '', $reload = false ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_get_option()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_get_option()} instead.
  *
  * Note: deprecation notice intentionally omitted because this helper is
  * invoked hundreds of times per request from legacy code paths and
@@ -2995,7 +2995,7 @@ function get_awpcp_option( $option, $default = '', $reload = false ) {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_clean_field( $foo ) {
     return awpcp_add_slashes_recursive( $foo );
@@ -3003,7 +3003,7 @@ function awpcp_clean_field( $foo ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_clean_field()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_clean_field()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function clean_field( $foo ) {
@@ -3011,7 +3011,7 @@ function clean_field( $foo ) {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_is_valid_url( $url ) {
     return preg_match( '|^http(s)?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $url );
@@ -3019,7 +3019,7 @@ function awpcp_is_valid_url( $url ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_is_valid_url()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_is_valid_url()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound,WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid -- Deprecated alias kept for backwards compatibility.
 function isValidURL( $url ) {
@@ -3063,7 +3063,7 @@ function awpcp_is_email_address_allowed( $email_address ) {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_create_ad_postedby_list( $name ) {
     $names = awpcp_listings_meta()->get_meta_values( 'contact_name' );
@@ -3072,7 +3072,7 @@ function awpcp_create_ad_postedby_list( $name ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_create_ad_postedby_list()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_create_ad_postedby_list()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function create_ad_postedby_list( $name ) {

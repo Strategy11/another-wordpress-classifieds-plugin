@@ -44,7 +44,7 @@ class AWPCP_ListingAuthorization {
      * @param object            $request          An instance of Request.
      * @param AWPCP_PaymentsAPI|null $payments     An instance of PaymentsAPI.
      *
-     * @since x.x Added $payments parameter.
+     * @since 4.4.6 Added $payments parameter.
      */
     public function __construct( $listing_renderer, $roles, $settings, $request, $payments = null ) {
         $this->listing_renderer = $listing_renderer;
@@ -118,7 +118,7 @@ class AWPCP_ListingAuthorization {
      * Checks whether the request includes a transaction ID that is associated
      * with the given listing.
      *
-     * @since x.x
+     * @since 4.4.6
      *
      * @param object $listing An instance of WP_Post.
      *

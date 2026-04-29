@@ -113,7 +113,7 @@ function awpcp_delete_ad( $adid, $adkey, $editemail, $force = false, &$errors = 
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_delete_ad()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_delete_ad()} instead.
  *
  * TODO: Re-enable _deprecated_function() once first-party add-ons stop
  *       calling this wrapper directly. The runtime notice was suppressed

@@ -66,7 +66,7 @@ function awpcp_cron_expire_listings() {
 /**
  * Function run once per month to cleanup incomplete and expired ads.
  *
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_cron_cleanup_listings() {
     $listings_logic = awpcp_listings_api();
@@ -82,7 +82,7 @@ function awpcp_cron_cleanup_listings() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_cron_expire_listings()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_cron_expire_listings()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function doadexpirations() {
@@ -91,7 +91,7 @@ function doadexpirations() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_cron_cleanup_listings()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_cron_cleanup_listings()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function doadcleanup() {
