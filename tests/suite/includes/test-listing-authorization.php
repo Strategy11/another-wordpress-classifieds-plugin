@@ -62,7 +62,7 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.6
      */
     public function test_is_current_user_allowed_to_manage_listing_rejects_auto_draft_with_no_matching_transaction() {
         $listing = (object) array(
@@ -80,7 +80,7 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.6
      */
     public function test_is_current_user_allowed_to_manage_listing_allows_auto_draft_with_valid_transaction() {
         $listing_id = wp_rand() + 1;

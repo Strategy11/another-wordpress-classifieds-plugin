@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Disk / FTP file operations helper used by the legacy uploader pipeline.
  *
- * @since x.x
+ * @since 4.4.6
  */
 class AWPCP_FileOp {
 

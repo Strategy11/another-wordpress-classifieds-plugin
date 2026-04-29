@@ -16,7 +16,7 @@ function awpcp_get_current_page_name() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_get_current_page_name()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_get_current_page_name()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function get_currentpagename() {
@@ -185,7 +185,7 @@ if ( ! function_exists( 'awpcp_is_page' ) ) {
 if ( ! function_exists( 'is_awpcp_page' ) ) {
     /**
      * @since 3.4
-     * @deprecated x.x Use {@see awpcp_is_page()} instead.
+     * @deprecated 4.4.6 Use {@see awpcp_is_page()} instead.
      *
      * @param int|null $page_id Optional page ID to test.
      * @return bool
@@ -197,7 +197,7 @@ if ( ! function_exists( 'is_awpcp_page' ) ) {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_is_admin_page() {
     if ( ! is_admin() ) {
@@ -217,7 +217,7 @@ function awpcp_is_admin_page() {
 
 /**
  * @since 3.4
- * @deprecated x.x Use {@see awpcp_is_admin_page()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_is_admin_page()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function is_awpcp_admin_page() {
@@ -225,7 +225,7 @@ function is_awpcp_admin_page() {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_is_browse_listings_page() {
     return awpcp_query()->is_browse_listings_page();
@@ -233,7 +233,7 @@ function awpcp_is_browse_listings_page() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_is_browse_listings_page()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_is_browse_listings_page()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function is_awpcp_browse_listings_page() {
@@ -241,7 +241,7 @@ function is_awpcp_browse_listings_page() {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_is_browse_categories_page() {
     return awpcp_query()->is_browse_categories_page();
@@ -249,7 +249,7 @@ function awpcp_is_browse_categories_page() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_is_browse_categories_page()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_is_browse_categories_page()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function is_awpcp_browse_categories_page() {
@@ -275,7 +275,7 @@ function awpcp_get_browse_category_url_from_id( $category_id ) {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_url_browse_category( $category ) {
     $permalinks = get_option( 'permalink_structure' );
@@ -302,7 +302,7 @@ function awpcp_url_browse_category( $category ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_url_browse_category()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_url_browse_category()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function url_browsecategory( $category ) {
@@ -310,7 +310,7 @@ function url_browsecategory( $category ) {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_url_place_ad() {
     return user_trailingslashit( awpcp_get_page_url( 'place-ad-page-name' ) );
@@ -318,7 +318,7 @@ function awpcp_url_place_ad() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_url_place_ad()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_url_place_ad()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function url_placead() {
@@ -326,7 +326,7 @@ function url_placead() {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_url_search_ads() {
     return user_trailingslashit( awpcp_get_page_url( 'search-ads-page-name' ) );
@@ -334,7 +334,7 @@ function awpcp_url_search_ads() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_url_search_ads()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_url_search_ads()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function url_searchads() {
@@ -342,7 +342,7 @@ function url_searchads() {
 }
 
 /**
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_url_edit_ad() {
     return user_trailingslashit( awpcp_get_page_url( 'edit-ad-page-name' ) );
@@ -350,7 +350,7 @@ function awpcp_url_edit_ad() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_url_edit_ad()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_url_edit_ad()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function url_editad() {

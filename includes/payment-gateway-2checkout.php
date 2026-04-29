@@ -57,7 +57,7 @@ class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
      * Hash = MD5( secret_word + seller_id + order_number + total )
      * In demo/test mode, order_number is always "1".
      *
-     * @since x.x
+     * @since 4.4.6
      *
      * @param AWPCP_Payment_Transaction $transaction The payment transaction.
      *

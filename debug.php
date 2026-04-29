@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Lightweight backtrace + variable logger used for local debugging.
  *
- * @since x.x
+ * @since 4.4.6
  */
 class AWPCP_Debug_Logger {
 
@@ -154,7 +154,7 @@ class AWPCP_Debug_Logger {
  * Deprecated alias for {@see AWPCP_Debug_Logger}.
  *
  * @since 4.3.3
- * @deprecated x.x Use {@see AWPCP_Debug_Logger} instead.
+ * @deprecated 4.4.6 Use {@see AWPCP_Debug_Logger} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound -- Deprecated alias kept for backwards compatibility.
 class_alias( 'AWPCP_Debug_Logger', 'WP_Skeleton_Logger' );
@@ -162,7 +162,7 @@ class_alias( 'AWPCP_Debug_Logger', 'WP_Skeleton_Logger' );
 /**
  * Render and echo the debug entries.
  *
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_debugp( $var = false ) {
     $args = func_get_args();
@@ -172,7 +172,7 @@ function awpcp_debugp( $var = false ) {
 /**
  * Append the debug entries to debug.log.
  *
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_debugf( $var = false ) {
     $args = func_get_args();
@@ -182,7 +182,7 @@ function awpcp_debugf( $var = false ) {
 /**
  * Queue debug entries to be displayed in the page footer.
  *
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_debug( $var = false ) {
     $args = func_get_args();
@@ -193,7 +193,7 @@ function awpcp_debug( $var = false ) {
 if ( ! function_exists( 'debug' ) ) {
     /**
      * @since 4.3.3
-     * @deprecated x.x Use {@see awpcp_debugp()} instead.
+     * @deprecated 4.4.6 Use {@see awpcp_debugp()} instead.
      *
      * TODO: Re-enable _deprecated_function() once first-party add-ons stop
      *       calling this wrapper directly. The runtime notice was suppressed
@@ -207,7 +207,7 @@ if ( ! function_exists( 'debug' ) ) {
 
     /**
      * @since 4.3.3
-     * @deprecated x.x Use {@see awpcp_debugf()} instead.
+     * @deprecated 4.4.6 Use {@see awpcp_debugf()} instead.
      *
      * TODO: Re-enable _deprecated_function() once first-party add-ons stop
      *       calling this wrapper directly. The runtime notice was suppressed
@@ -221,7 +221,7 @@ if ( ! function_exists( 'debug' ) ) {
 
     /**
      * @since 4.3.3
-     * @deprecated x.x Use {@see awpcp_debug()} instead.
+     * @deprecated 4.4.6 Use {@see awpcp_debug()} instead.
      *
      * TODO: Re-enable _deprecated_function() once first-party add-ons stop
      *       calling this wrapper directly. The runtime notice was suppressed

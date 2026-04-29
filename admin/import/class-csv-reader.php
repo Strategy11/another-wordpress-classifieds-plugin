@@ -120,7 +120,7 @@ class AWPCP_CSV_Reader {
      * their own once they are paired with READ_CSV / DROP_NEW_LINE /
      * READ_AHEAD / SKIP_EMPTY.
      *
-     * @since x.x
+     * @since 4.4.6
      *
      * @return string|null Previous value to pass back to restore(), or null when no change was made.
      */
@@ -139,7 +139,7 @@ class AWPCP_CSV_Reader {
     /**
      * Restore the previous auto_detect_line_endings ini value.
      *
-     * @since x.x
+     * @since 4.4.6
      *
      * @param string|null $previous Value returned by enable_auto_detect_line_endings().
      */

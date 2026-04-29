@@ -32,7 +32,7 @@ function countlistings( $is_active ) {
 /**
  * Read a single column from the legacy awpcp_adsettings table.
  *
- * @since x.x
+ * @since 4.4.6
  *
  * @param string $column Column name to read.
  * @param string $option Option key.
@@ -61,7 +61,7 @@ function awpcp_get_legacy_setting( $column, $option ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_get_legacy_setting()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_get_legacy_setting()} instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function get_awpcp_setting( $column, $option ) {
@@ -70,7 +70,7 @@ function get_awpcp_setting( $column, $option ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_get_legacy_setting()} with `config_group_id` instead.
+ * @deprecated 4.4.6 Use {@see awpcp_get_legacy_setting()} with `config_group_id` instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function get_awpcp_option_group_id( $option ) {
@@ -79,7 +79,7 @@ function get_awpcp_option_group_id( $option ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_get_legacy_setting()} with `option_type` instead.
+ * @deprecated 4.4.6 Use {@see awpcp_get_legacy_setting()} with `option_type` instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function get_awpcp_option_type( $option ) {
@@ -88,7 +88,7 @@ function get_awpcp_option_type( $option ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_get_legacy_setting()} with `config_diz` instead.
+ * @deprecated 4.4.6 Use {@see awpcp_get_legacy_setting()} with `config_diz` instead.
  */
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
 function get_awpcp_option_config_diz( $option ) {
@@ -97,7 +97,7 @@ function get_awpcp_option_config_diz( $option ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_current_user_is_admin()} instead. Runtime
+ * @deprecated 4.4.6 Use {@see awpcp_current_user_is_admin()} instead. Runtime
  *             deprecation notice intentionally omitted to avoid flooding
  *             the debug log from legacy templates that still depend on it.
  */
@@ -109,7 +109,7 @@ function checkifisadmin() {
 /**
  * Returns true when the given table contains zero rows.
  *
- * @since x.x
+ * @since 4.4.6
  *
  * @param string $table Fully qualified table name.
  * @return bool
@@ -129,7 +129,7 @@ function awpcp_is_table_empty( $table ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_is_table_empty()} instead. Runtime
+ * @deprecated 4.4.6 Use {@see awpcp_is_table_empty()} instead. Runtime
  *             deprecation notice intentionally omitted to avoid
  *             flooding the debug log from legacy callers.
  */
@@ -153,7 +153,7 @@ function awpcpisqueryempty( $table, $where ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_is_table_empty()} on AWPCP_TABLE_ADFEES
+ * @deprecated 4.4.6 Use {@see awpcp_is_table_empty()} on AWPCP_TABLE_ADFEES
  *             instead. Runtime deprecation notice intentionally omitted
  *             to avoid flooding the debug log from legacy templates that
  *             still depend on it.
@@ -165,7 +165,7 @@ function adtermsset() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_categories_collection()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_categories_collection()} instead.
  *             Runtime deprecation notice intentionally omitted to avoid
  *             flooding the debug log from legacy templates that still
  *             depend on it.
@@ -177,7 +177,7 @@ function categoriesexist() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_categories_collection()->count_categories()}
+ * @deprecated 4.4.6 Use {@see awpcp_categories_collection()->count_categories()}
  *             instead. Runtime deprecation notice intentionally omitted
  *             to avoid flooding the debug log from legacy templates that
  *             still depend on it.
@@ -189,7 +189,7 @@ function countcategories() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_categories_collection()->count_categories()}
+ * @deprecated 4.4.6 Use {@see awpcp_categories_collection()->count_categories()}
  *             instead. Runtime deprecation notice intentionally omitted
  *             to avoid flooding the debug log from legacy templates that
  *             still depend on it.
@@ -208,7 +208,7 @@ function countcategoriesparents() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_categories_collection()->count_categories()}
+ * @deprecated 4.4.6 Use {@see awpcp_categories_collection()->count_categories()}
  *             instead. Runtime deprecation notice intentionally omitted
  *             to avoid flooding the debug log from legacy templates that
  *             still depend on it.
@@ -226,7 +226,7 @@ function countcategorieschildren() {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_listing_renderer()->get_contact_email()}
+ * @deprecated 4.4.6 Use {@see awpcp_listing_renderer()->get_contact_email()}
  *             instead. Runtime deprecation notice intentionally omitted
  *             to avoid flooding the debug log from legacy templates.
  */
@@ -243,7 +243,7 @@ function get_adposteremail( $adid ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_listing_renderer()->get_plain_start_date()}
+ * @deprecated 4.4.6 Use {@see awpcp_listing_renderer()->get_plain_start_date()}
  *             instead. Runtime deprecation notice intentionally omitted
  *             to avoid flooding the debug log; first-party add-ons still
  *             call this wrapper. TODO: Re-enable _deprecated_function()
@@ -262,7 +262,7 @@ function get_adstartdate( $adid ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_listing_renderer()->get_views_count()}
+ * @deprecated 4.4.6 Use {@see awpcp_listing_renderer()->get_views_count()}
  *             instead. Runtime deprecation notice intentionally omitted
  *             to avoid flooding the debug log from legacy templates.
  */
@@ -279,7 +279,7 @@ function get_numtimesadviewd( $adid ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_listing_renderer()->get_listing_title()}
+ * @deprecated 4.4.6 Use {@see awpcp_listing_renderer()->get_listing_title()}
  *             instead. Runtime deprecation notice intentionally omitted
  *             to avoid flooding the debug log; first-party add-ons still
  *             call this wrapper. TODO: Re-enable _deprecated_function()
@@ -298,7 +298,7 @@ function get_adtitle( $adid ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_categories_collection()->find_categories()}
+ * @deprecated 4.4.6 Use {@see awpcp_categories_collection()->find_categories()}
  *             instead. Runtime deprecation notice intentionally omitted
  *             to avoid flooding the debug log from legacy templates.
  */
@@ -322,7 +322,7 @@ function get_categorynameid( $cat_id = 0, $cat_parent_id = 0, $exclude = array()
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_categories_collection()->get()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_categories_collection()->get()} instead.
  *             Runtime deprecation notice intentionally omitted to avoid
  *             flooding the debug log from legacy templates.
  */
@@ -338,7 +338,7 @@ function get_adcatname( $cat_id ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_categories_collection()->get()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_categories_collection()->get()} instead.
  *             Runtime deprecation notice intentionally omitted to avoid
  *             flooding the debug log from legacy templates.
  */
@@ -358,7 +358,7 @@ function get_adparentcatname( $cat_id ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_categories_collection()->get()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_categories_collection()->get()} instead.
  *             Runtime deprecation notice intentionally omitted to avoid
  *             flooding the debug log; first-party add-ons still call
  *             this wrapper. TODO: Re-enable _deprecated_function() once
@@ -381,7 +381,7 @@ function get_cat_parent_ID( $cat_id ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_listings_collection()->find_listings()}
+ * @deprecated 4.4.6 Use {@see awpcp_listings_collection()->find_listings()}
  *             instead. Runtime deprecation notice intentionally omitted
  *             to avoid flooding the debug log from legacy templates.
  */
@@ -402,7 +402,7 @@ function ads_exist_cat( $catid ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_categories_collection()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_categories_collection()} instead.
  *             Runtime deprecation notice intentionally omitted to avoid
  *             flooding the debug log from legacy templates.
  */
@@ -425,7 +425,7 @@ function category_has_children( $catid ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_categories_collection()->get()} instead.
+ * @deprecated 4.4.6 Use {@see awpcp_categories_collection()->get()} instead.
  *             Runtime deprecation notice intentionally omitted to avoid
  *             flooding the debug log from legacy templates.
  */
@@ -448,7 +448,7 @@ function category_is_child( $catid ) {
  * @link http://datemill.com
  *
  * @since 1.0
- * @deprecated x.x No replacement; templating handled by the modern Listings layer.
+ * @deprecated 4.4.6 No replacement; templating handled by the modern Listings layer.
  *             Runtime deprecation notice intentionally omitted to avoid
  *             flooding the debug log; first-party add-ons still call
  *             this wrapper. TODO: Re-enable _deprecated_function() once
@@ -463,7 +463,7 @@ function smart_table( $array, $table_cols, $opentable, $closetable ) {
 
 /**
  * @since 1.0
- * @deprecated x.x Use {@see awpcp_legacy_smart_table()} instead. Runtime
+ * @deprecated 4.4.6 Use {@see awpcp_legacy_smart_table()} instead. Runtime
  *             deprecation notice intentionally omitted to avoid flooding
  *             the debug log from legacy admin templates.
  */
@@ -478,7 +478,7 @@ function smart_table2( $array, $table_cols, $opentable, $closetable, $usingtable
  * Preserved verbatim from the original smart_table2() implementation
  * because legacy templates may still rely on its exact markup.
  *
- * @since x.x
+ * @since 4.4.6
  */
 function awpcp_legacy_smart_table( $array, $table_cols, $opentable, $closetable, $usingtable ) {
     $myreturn                = "$opentable\n";
