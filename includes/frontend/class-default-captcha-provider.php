@@ -81,11 +81,33 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
             throw new AWPCP_Exception( esc_html( $error ) );
         }
 
+        $generic_error = __( 'Your solution to the math problem was incorrect. Please try again.', 'another-wordpress-classifieds-plugin' );
+
         if ( ! wp_verify_nonce( $expected, "captcha-answer-$answer" ) ) {
-            $error = __( 'Your solution to the math problem was incorrect. Please try again.', 'another-wordpress-classifieds-plugin' );
-            throw new AWPCP_Exception( esc_html( $error ) );
+            throw new AWPCP_Exception( esc_html( $generic_error ) );
         }
 
+        $consumed_key = $this->get_consumed_transient_key( $expected );
+
+        if ( false !== get_transient( $consumed_key ) ) {
+            throw new AWPCP_Exception( esc_html( $generic_error ) );
+        }
+
+        set_transient( $consumed_key, 1, DAY_IN_SECONDS );
+
         return true;
+    }
+
+    /**
+     * Builds the transient key used to mark a captcha hash as consumed.
+     *
+     * @since x.x
+     *
+     * @param string $captcha_hash The hash submitted by the visitor.
+     *
+     * @return string
+     */
+    private function get_consumed_transient_key( $captcha_hash ) {
+        return 'awpcp_captcha_used_' . sha1( (string) $captcha_hash );
     }
 }
