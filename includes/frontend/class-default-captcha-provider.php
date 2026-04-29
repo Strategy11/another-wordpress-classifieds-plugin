@@ -63,14 +63,22 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
     }
 
     /**
-     * Creates a nonce based on the expected answer to the challenge.
-     */
-    private function hash( $number ) {
-        return wp_create_nonce( "captcha-answer-$number" );
-    }
-
-    /**
+     * Validates the visitor's answer to the math challenge.
+     *
+     * Each challenge is bound to a per-render random token stored in a
+     * transient. The token is consumed on every validation attempt
+     * (correct or not) so a single token cannot be replayed or
+     * brute-forced, and unlike the previous nonce-based scheme two
+     * visitors never share the same token, so consuming one cannot lock
+     * anyone else out of the form.
+     *
+     * @since 4.3.3
+     * @since x.x Replaced the shared nonce hash with a per-challenge transient
+     *            token to prevent replay and DoS against the math captcha.
+     *
      * @throws AWPCP_Exception  If the answer to the challenge is not valid.
+     *
+     * @return bool
      */
     public function validate() {
         $answer = awpcp_get_var( array( 'param' => 'captcha' ), 'post' );
