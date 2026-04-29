@@ -12,7 +12,6 @@ parameters:
 		- */languages/*
 		- */tests/*
 		- stubs.php
-		- */includes/class-fileop.php
 		- */bin/*
 		- */build/*
 		- */node_modules/*
@@ -20,3 +19,6 @@ parameters:
 		- '#no (typehint|value type|return type)+ specified.#'
 		- '#might not be defined.#'
 		- '#has an unused parameter \$null#'
+		-
+			message: '#Constant _(BASEPATH|FTPPATH|FILEOP_MODE|FTPHOST|FTPUSER|FTPPASS)_ not found#'
+			path: includes/class-fileop.php

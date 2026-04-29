@@ -188,7 +188,7 @@ if ( ! function_exists( 'is_awpcp_page' ) ) {
      * @deprecated x.x Use {@see awpcp_is_page()} instead.
      *
      * @param int|null $page_id Optional page ID to test.
-     * @return bool|null
+     * @return bool
      */
     // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound -- Deprecated alias kept for backwards compatibility.
     function is_awpcp_page( $page_id = null ) {
