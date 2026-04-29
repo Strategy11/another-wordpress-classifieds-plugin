@@ -73,7 +73,7 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
      * anyone else out of the form.
      *
      * @since 4.3.3
-     * @since x.x Replaced the shared nonce hash with a per-challenge transient
+     * @since 4.4.6.1 Replaced the shared nonce hash with a per-challenge transient
      *            token to prevent replay and DoS against the math captcha.
      *
      * @throws AWPCP_Exception  If the answer to the challenge is not valid.
@@ -116,7 +116,7 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
     /**
      * Issues a fresh per-challenge token bound to the expected answer.
      *
-     * @since x.x
+     * @since 4.4.6.1
      *
      * @param int $expected_answer The correct answer to the rendered math problem.
      *
@@ -137,7 +137,7 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
     /**
      * Builds the transient key used to store and look up a challenge answer.
      *
-     * @since x.x
+     * @since 4.4.6.1
      *
      * @param string $token The opaque per-challenge token.
      *

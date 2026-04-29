@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: Another WordPress Classifieds Plugin\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/another-wordpress-"
 "classifieds-plugin\n"
-"POT-Creation-Date: 2026-04-29 08:51:16+00:00\n"
+"POT-Creation-Date: 2026-04-29 16:46:06+00:00\n"
 "PO-Revision-Date: 2020-10-15 19:51+0000\n"
 "Last-Translator: Diego Giraldo <diego.dgiraldo36@gmail.com>\n"
 "Language-Team: Italian (Italy) (http://www.transifex.com/wp-translations/"
@@ -1652,7 +1652,7 @@ msgstr "Non hai inserito il tuo nome. Il nome è obbligatorio."
 msgid "You did not enter your email. Your email is required."
 msgstr "Non hai inserito una email. La mail è obbligatoria."
 
-#: frontend/page-place-ad.php:1072 frontend/page-reply-to-ad.php:164
+#: frontend/page-place-ad.php:1072 frontend/page-reply-to-ad.php:166
 msgid ""
 "The email address you entered was not a valid email address. Please check "
 "for errors and try again."
@@ -1826,16 +1826,21 @@ msgstr ""
 msgid "The specified Ad does not exist."
 msgstr "L'annuncio non esiste."
 
-#: frontend/page-reply-to-ad.php:162
+#: frontend/page-reply-to-ad.php:160
+#, fuzzy
+msgid "Please enter a valid name."
+msgstr "Inserisci un numero valido."
+
+#: frontend/page-reply-to-ad.php:164
 msgid "Please enter your email."
 msgstr "Inserisci il tuo indirizzo email"
 
-#: frontend/page-reply-to-ad.php:168
+#: frontend/page-reply-to-ad.php:170
 msgid "There was no text in your message. Please enter a message."
 msgstr ""
 "Non è presente testo nel tuo messaggio. Si prega di inserire un messaggio."
 
-#: frontend/page-reply-to-ad.php:175
+#: frontend/page-reply-to-ad.php:177 frontend/page-reply-to-ad.php:237
 msgid ""
 "Your message was flagged as spam. Please contact the administrator of this "
 "site."
@@ -1843,7 +1848,7 @@ msgstr ""
 "Il tuo messaggio è stato segnalato come spam. Contatta l'amministratore del "
 "sito."
 
-#: frontend/page-reply-to-ad.php:289
+#: frontend/page-reply-to-ad.php:297
 msgid ""
 "There was a problem encountered during the attempt to send your message. "
 "Please try again and if the problem persists, please contact the system "
@@ -1852,7 +1857,7 @@ msgstr ""
 "Errore durante l'invio del messaggio. Riprovare e, se il problema persiste, "
 "contattare l'amministratore."
 
-#: frontend/page-reply-to-ad.php:295
+#: frontend/page-reply-to-ad.php:303
 msgid "Your message has been sent. Return to <view-listing-link>."
 msgstr ""
 
@@ -2573,7 +2578,7 @@ msgstr "Annunci Recenti"
 msgid "There are currently no ads to show."
 msgstr ""
 
-#: frontend/widget-latest-ads.php:146
+#: frontend/widget-latest-ads.php:153
 msgid "Read more"
 msgstr "Leggi tutto"
 
@@ -3728,14 +3733,14 @@ msgid ""
 "allowed to submit classifieds."
 msgstr ""
 
-#: includes/frontend/class-default-captcha-provider.php:80
+#: includes/frontend/class-default-captcha-provider.php:88
 msgid ""
 "You did not solve the math problem. Please solve the math problem to proceed."
 msgstr ""
 "Non hai risolto il problema matematico. Si prega di risolverlo per poter "
 "procedere."
 
-#: includes/frontend/class-default-captcha-provider.php:85
+#: includes/frontend/class-default-captcha-provider.php:92
 msgid "Your solution to the math problem was incorrect. Please try again."
 msgstr "Soluzione al problema matematico non corretta. Si prega di riprovare."
 

@@ -310,7 +310,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
      * Determines whether the visitor-supplied email address may be used as the
      * From address for outgoing notifications.
      *
-     * @since x.x
+     * @since 4.4.6.1
      *
      * @param string $sender_email The email address submitted in the form.
      *
@@ -334,7 +334,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
     /**
      * Extracts and normalises the host portion of an email address.
      *
-     * @since x.x
+     * @since 4.4.6.1
      *
      * @param string $email The email address to inspect.
      *
@@ -354,7 +354,7 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
      * Detects characters commonly used to inject extra mail headers via the
      * sender name or email address.
      *
-     * @since x.x
+     * @since 4.4.6.1
      *
      * @param string $value The value submitted by the visitor.
      *
