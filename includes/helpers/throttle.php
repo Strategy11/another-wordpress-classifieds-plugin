@@ -102,5 +102,21 @@ function awpcp_validate_internal_redirect_url( $url ) {
 
     $validated = wp_validate_redirect( $url, '' );
 
-    return $validated ? $validated : $fallback;
+    if ( '' === $validated ) {
+        return $fallback;
+    }
+
+    $validated_host = wp_parse_url( $validated, PHP_URL_HOST );
+
+    if ( null === $validated_host || '' === $validated_host ) {
+        return $validated;
+    }
+
+    $site_host = wp_parse_url( home_url(), PHP_URL_HOST );
+
+    if ( strtolower( (string) $validated_host ) === strtolower( (string) $site_host ) ) {
+        return $validated;
+    }
+
+    return $fallback;
 }

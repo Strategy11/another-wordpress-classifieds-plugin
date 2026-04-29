@@ -41,7 +41,7 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
         $left  = wp_rand( 1, $this->max_number );
         $right = wp_rand( 1, $this->max_number );
 
-        $hash   = $this->hash( $left + $right );
+        $token  = $this->issue_challenge_token( $left + $right );
         $answer = awpcp_get_var( array( 'param' => 'captcha' ), 'post' );
 
         $label = sprintf(
@@ -55,7 +55,7 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
             esc_html( $label ) .
             '<span class="required">*</span>' .
             '</span></label>';
-        $html .= '<input type="hidden" name="captcha-hash" value="' . esc_attr( $hash ) . '" />';
+        $html .= '<input type="hidden" name="captcha-hash" value="' . esc_attr( $token ) . '" />';
         $html .= '<input id="captcha" class="awpcp-textfield inputbox required" type="text" ' .
             'name="captcha" value="' . esc_attr( $answer ) . '" size="5" autocomplete="off"/>';
 
@@ -73,8 +73,8 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
      * @throws AWPCP_Exception  If the answer to the challenge is not valid.
      */
     public function validate() {
-        $answer   = awpcp_get_var( array( 'param' => 'captcha' ), 'post' );
-        $expected = awpcp_get_var( array( 'param' => 'captcha-hash' ), 'post' );
+        $answer = awpcp_get_var( array( 'param' => 'captcha' ), 'post' );
+        $token  = awpcp_get_var( array( 'param' => 'captcha-hash' ), 'post' );
 
         if ( empty( $answer ) ) {
             $error = __( 'You did not solve the math problem. Please solve the math problem to proceed.', 'another-wordpress-classifieds-plugin' );
@@ -83,31 +83,59 @@ class AWPCP_DefaultCAPTCHAProvider implements AWPCP_CAPTCHAProviderInterface {
 
         $generic_error = __( 'Your solution to the math problem was incorrect. Please try again.', 'another-wordpress-classifieds-plugin' );
 
-        if ( ! wp_verify_nonce( $expected, "captcha-answer-$answer" ) ) {
+        if ( empty( $token ) ) {
             throw new AWPCP_Exception( esc_html( $generic_error ) );
         }
 
-        $consumed_key = $this->get_consumed_transient_key( $expected );
+        $transient_key   = $this->get_challenge_transient_key( $token );
+        $expected_answer = get_transient( $transient_key );
 
-        if ( false !== get_transient( $consumed_key ) ) {
+        if ( false === $expected_answer ) {
             throw new AWPCP_Exception( esc_html( $generic_error ) );
         }
 
-        set_transient( $consumed_key, 1, DAY_IN_SECONDS );
+        // Burn the token on every attempt so a wrong guess cannot be
+        // brute-forced against the same challenge.
+        delete_transient( $transient_key );
+
+        if ( (string) $answer !== (string) $expected_answer ) {
+            throw new AWPCP_Exception( esc_html( $generic_error ) );
+        }
 
         return true;
     }
 
     /**
-     * Builds the transient key used to mark a captcha hash as consumed.
+     * Issues a fresh per-challenge token bound to the expected answer.
      *
      * @since x.x
      *
-     * @param string $captcha_hash The hash submitted by the visitor.
+     * @param int $expected_answer The correct answer to the rendered math problem.
+     *
+     * @return string The opaque token to embed in the form.
+     */
+    private function issue_challenge_token( $expected_answer ) {
+        $token = wp_generate_password( 32, false );
+
+        set_transient(
+            $this->get_challenge_transient_key( $token ),
+            (string) (int) $expected_answer,
+            DAY_IN_SECONDS
+        );
+
+        return $token;
+    }
+
+    /**
+     * Builds the transient key used to store and look up a challenge answer.
+     *
+     * @since x.x
+     *
+     * @param string $token The opaque per-challenge token.
      *
      * @return string
      */
-    private function get_consumed_transient_key( $captcha_hash ) {
-        return 'awpcp_captcha_used_' . sha1( (string) $captcha_hash );
+    private function get_challenge_transient_key( $token ) {
+        return 'awpcp_captcha_' . sha1( (string) $token );
     }
 }
