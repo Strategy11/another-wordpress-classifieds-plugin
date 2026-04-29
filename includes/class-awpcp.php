@@ -783,7 +783,7 @@ class AWPCP {
         $this->setup_javascript_data();
 
         if ( (int) $this->settings->get_option( 'awpcppagefilterswitch' ) === 1 ) {
-            add_filter( 'wp_list_pages_excludes', 'exclude_awpcp_child_pages' );
+            add_filter( 'wp_list_pages_excludes', 'awpcp_exclude_child_pages' );
         }
     }
 
@@ -1011,7 +1011,7 @@ class AWPCP {
             return;
         }
 
-        if ( ! string_ends_with( $page_info['page_uri'], '__trashed' ) ) {
+        if ( ! awpcp_string_ends_with( $page_info['page_uri'], '__trashed' ) ) {
             delete_option( 'awpcp-maybe-fix-browse-categories-page-information' );
             return;
         }
@@ -1438,7 +1438,7 @@ class AWPCP {
             wp_enqueue_style( 'awpcp-admin-menu' );
         }
 
-        if ( is_awpcp_admin_page() ) {
+        if ( awpcp_is_admin_page() ) {
             wp_enqueue_style( 'awpcp-admin-style' );
             wp_enqueue_script('awpcp-admin-general');
             wp_enqueue_script('awpcp-toggle-checkboxes');
@@ -1784,6 +1784,7 @@ class AWPCP {
             'buyer_email' => $email,
         );
 
+        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Third-party integration hook fired for the WP Affiliate Platform plugin.
         do_action( 'wp_affiliate_process_cart_commission', $data );
     }
 

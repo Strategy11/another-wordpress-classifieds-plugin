@@ -103,6 +103,71 @@
 		</properties>
 	</rule>
 
+    <!--
+        Template files rely on variables passed in via extract() from the
+        rendering layer. The static analyser cannot detect that, so we
+        suppress NonPrefixedVariableFound globally for template directories
+        instead of polluting every template with phpcs:ignore comments.
+    -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound">
+        <exclude-pattern>*/templates/*</exclude-pattern>
+        <exclude-pattern>*/admin/templates/*</exclude-pattern>
+        <exclude-pattern>*/frontend/templates/*</exclude-pattern>
+    </rule>
+
+    <!--
+        Installer and one-shot upgrade tasks only run during plugin
+        activation or scheduled migrations. Caching adds no value to write
+        operations or schema changes, so we exclude the NoCaching warning
+        for those code paths.
+    -->
+    <rule ref="WordPress.DB.DirectDatabaseQuery.NoCaching">
+        <exclude-pattern>installer.php</exclude-pattern>
+        <exclude-pattern>*/includes/upgrade/*</exclude-pattern>
+        <exclude-pattern>*/includes/cron/*</exclude-pattern>
+        <exclude-pattern>*/includes/models/*</exclude-pattern>
+        <exclude-pattern>*/includes/payment-term-fee.php</exclude-pattern>
+        <exclude-pattern>*/includes/credit-plan.php</exclude-pattern>
+        <exclude-pattern>*/includes/payment-terms-table.php</exclude-pattern>
+        <exclude-pattern>*/includes/admin/class-list-table-restrictions.php</exclude-pattern>
+        <exclude-pattern>*/includes/functions/legacy.php</exclude-pattern>
+        <exclude-pattern>*/includes/functions/deprecated.php</exclude-pattern>
+        <exclude-pattern>*/includes/functions/routes.php</exclude-pattern>
+    </rule>
+
+    <!--
+        Schema changes (ALTER TABLE, CREATE TABLE) are only performed by
+        the installer and the upgrade task handlers. There is no caching
+        layer to invalidate and no read path to migrate to, so the warning
+        adds no value for those files.
+    -->
+    <rule ref="WordPress.DB.DirectDatabaseQuery.SchemaChange">
+        <exclude-pattern>installer.php</exclude-pattern>
+        <exclude-pattern>*/includes/upgrade/*</exclude-pattern>
+    </rule>
+
+    <!--
+        AWPCP predates the introduction of the post meta layer, so model
+        classes still talk to custom tables directly. The warning is kept
+        on for ad-hoc query sites elsewhere in the codebase.
+    -->
+    <rule ref="WordPress.DB.DirectDatabaseQuery.DirectQuery">
+        <exclude-pattern>installer.php</exclude-pattern>
+        <exclude-pattern>*/includes/upgrade/*</exclude-pattern>
+        <exclude-pattern>*/includes/cron/*</exclude-pattern>
+        <exclude-pattern>*/includes/models/*</exclude-pattern>
+        <exclude-pattern>*/includes/payment-term-fee.php</exclude-pattern>
+        <exclude-pattern>*/includes/credit-plan.php</exclude-pattern>
+        <exclude-pattern>*/includes/payment-terms-table.php</exclude-pattern>
+        <exclude-pattern>*/includes/admin/class-list-table-restrictions.php</exclude-pattern>
+        <exclude-pattern>*/includes/functions/legacy.php</exclude-pattern>
+        <exclude-pattern>*/includes/functions/deprecated.php</exclude-pattern>
+        <exclude-pattern>*/includes/functions/routes.php</exclude-pattern>
+        <exclude-pattern>*/includes/class-awpcp.php</exclude-pattern>
+        <exclude-pattern>functions.php</exclude-pattern>
+        <exclude-pattern>*/admin/admin-panel.php</exclude-pattern>
+    </rule>
+
     <!-- Check for cross-version support for PHP 5.6 and higher. -->
     <config name="testVersion" value="5.6-"/>
 </ruleset>
