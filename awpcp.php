@@ -5,7 +5,7 @@
  * Plugin Name: AWP Classifieds
  * Plugin URI: https://awpcp.com/
  * Description: Run a free or paid classified ads service on your WordPress site.
- * Version: 4.4.7.1
+ * Version: 4.4.7
  * Author: AWP Classifieds Team
  * Author URI: https://awpcp.com/
  * License: GPLv2 or later
