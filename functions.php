@@ -207,7 +207,7 @@ function awpcp_esc_textarea($text) {
 /**
  * Escape a string for use in plain text email output.
  *
- * @since x.x
+ * @since 4.4.7
  *
  * @param string $text Text to escape.
  * @return string
