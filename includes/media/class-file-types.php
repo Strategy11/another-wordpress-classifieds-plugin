@@ -43,6 +43,11 @@ class AWPCP_FileTypes {
                     'extensions' => array( 'gif' ),
                     'mime_types' => array( 'image/gif' ),
                 ),
+                'webp' => array(
+                    'name'       => 'WebP',
+                    'extensions' => array( 'webp' ),
+                    'mime_types' => array( 'image/webp' ),
+                ),
             ),
         );
     }
