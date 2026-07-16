@@ -50,12 +50,13 @@ class AWPCP_BasicRegionsAPI {
     public function save( $region ) {
         $region = $this->filter_region_columns( stripslashes_deep( $region ) );
 
-        if ( ! isset( $region['ad_id'] ) || empty( $region['ad_id'] ) ) {
+        $region['ad_id'] = absint( isset( $region['ad_id'] ) ? $region['ad_id'] : 0 );
+
+        if ( empty( $region['ad_id'] ) ) {
             return false;
         }
 
-        $region['ad_id'] = absint( $region['ad_id'] );
-        $region_id       = absint( awpcp_array_data( 'id', 0, $region ) );
+        $region_id = intval( awpcp_array_data( 'id', 0, $region ) );
 
         unset( $region['id'] );
 
@@ -66,6 +67,47 @@ class AWPCP_BasicRegionsAPI {
         }
 
         return $result !== false;
+    }
+
+    /**
+     * Allowlist region array keys to valid DB columns only.
+     *
+     * @since x.x
+     *
+     * @param mixed $region Region data.
+     *
+     * @return array
+     */
+    private function filter_region_columns( $region ) {
+        if ( ! is_array( $region ) ) {
+            return array();
+        }
+
+        $allowed = array( 'id', 'ad_id', 'country', 'county', 'state', 'city', 'region_id' );
+
+        return array_intersect_key( $region, array_flip( $allowed ) );
+    }
+
+    /**
+     * Sanitise a user-submitted region to editable fields only.
+     *
+     * @since x.x
+     *
+     * @param mixed $region Region data.
+     *
+     * @return array
+     */
+    private function prepare_submitted_region( $region ) {
+        if ( ! is_array( $region ) ) {
+            return array();
+        }
+
+        $allowed = array( 'country', 'county', 'state', 'city', 'region_id' );
+        $region  = array_intersect_key( $region, array_flip( $allowed ) );
+
+        $region = array_filter( $region, 'is_scalar' );
+
+        return array_map( 'trim', $region );
     }
 
     public function delete_by_ad_id($ad_id) {
@@ -84,10 +126,10 @@ class AWPCP_BasicRegionsAPI {
     }
 
     public function update_ad_regions( $ad, $regions, $max_regions = 1 ) {
-        // remove existing regions before adding the new ones
         $this->delete_by_ad_id( $ad->ID );
 
         $count = 0;
+
         foreach ( $regions as $region ) {
             $data = $this->prepare_submitted_region( $region );
 
@@ -101,51 +143,5 @@ class AWPCP_BasicRegionsAPI {
 
             ++$count;
         }
-    }
-
-    /**
-     * Keep only columns defined by the regions table.
-     *
-     * @since x.x
-     *
-     * @param array $region Region data.
-     * @return array Filtered region data.
-     */
-    private function filter_region_columns( $region ) {
-        if ( ! is_array( $region ) ) {
-            return array();
-        }
-
-        $allowed_columns = array(
-            'id',
-            'ad_id',
-            'country',
-            'county',
-            'state',
-            'city',
-            'region_id',
-        );
-
-        return array_intersect_key( $region, array_flip( $allowed_columns ) );
-    }
-
-    /**
-     * Prepare user-editable region fields for storage.
-     *
-     * @since x.x
-     *
-     * @param array $region Submitted region data.
-     * @return array Filtered and normalized region data.
-     */
-    private function prepare_submitted_region( $region ) {
-        if ( ! is_array( $region ) ) {
-            return array();
-        }
-
-        $allowed_fields = array_flip( array( 'country', 'county', 'state', 'city' ) );
-        $region         = array_intersect_key( $region, $allowed_fields );
-        $region         = array_filter( $region, 'is_scalar' );
-
-        return array_map( 'trim', $region );
     }
 }
