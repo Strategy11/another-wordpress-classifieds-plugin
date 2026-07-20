@@ -45,9 +45,19 @@ class AWPCP_TestPaymentTransaction extends AWPCP_UnitTestCase {
      * @return AWPCP_Payment_Transaction
      */
     private function create_transaction() {
-        Functions\when( 'awpcp_current_user_is_admin' )->justReturn( false );
-        Functions\when( 'maybe_unserialize' )->returnArg();
+        $payments = Mockery::mock( 'AWPCP_PaymentsAPI' );
+        $payments->shouldReceive( 'get_transaction_payment_method' )
+            ->andReturn( (object) array( 'slug' => 'paypal-standard' ) );
 
-        return new AWPCP_Payment_Transaction( array( 'id' => 'transaction-id' ) );
+        Functions\when( 'awpcp_current_user_is_admin' )->justReturn( false );
+        Functions\when( 'awpcp_user_is_admin' )->justReturn( false );
+        Functions\when( 'maybe_unserialize' )->returnArg();
+        Functions\when( 'get_awpcp_option' )->justReturn( false );
+        Functions\when( 'awpcp_payments_api' )->justReturn( $payments );
+
+        $transaction = new AWPCP_Payment_Transaction( array( 'id' => 'transaction-id' ) );
+        $transaction->add_item( 1, 'Listing', 'Listing fee', AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY, 9.99 );
+
+        return $transaction;
     }
 }
