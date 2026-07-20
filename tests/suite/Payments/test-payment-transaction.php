@@ -46,6 +46,7 @@ class AWPCP_TestPaymentTransaction extends AWPCP_UnitTestCase {
      */
     private function create_transaction() {
         Functions\when( 'awpcp_current_user_is_admin' )->justReturn( false );
+        Functions\when( 'maybe_unserialize' )->returnArg();
 
         return new AWPCP_Payment_Transaction( array( 'id' => 'transaction-id' ) );
     }
