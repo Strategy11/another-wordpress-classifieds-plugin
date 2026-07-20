@@ -18,11 +18,6 @@ class AWPCP_FormFieldsValidator {
     private $authorization;
 
     /**
-     * @var AWPCP_RolesAndCapabilities
-     */
-    private $roles;
-
-    /**
      * @var object
      */
     private $settings;
@@ -30,13 +25,11 @@ class AWPCP_FormFieldsValidator {
     /**
      * @since 4.0.0
      *
-     * @param object $authorization     An instance of Listing Authorization.
-     * @param object $roles             An instance of Roles and Capabilities.
-     * @param object $settings          An instance of Settings API.
+     * @param object $authorization An instance of Listing Authorization.
+     * @param object $settings      An instance of Settings API.
      */
-    public function __construct( $authorization, $roles, $settings ) {
+    public function __construct( $authorization, $settings ) {
         $this->authorization = $authorization;
-        $this->roles         = $roles;
         $this->settings      = $settings;
     }
 

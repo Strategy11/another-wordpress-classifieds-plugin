@@ -15,11 +15,6 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
     private $template = 'frontend/form-fields/terms-of-service-form-field.tpl.php';
 
     /**
-     * @var AWPCP_RolesAndCapabilities
-     */
-    private $roles;
-
-    /**
      * @var AWPCP_Settings_API
      */
     private $settings;
@@ -32,10 +27,9 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
     /**
      * @since 4.0.2
      */
-    public function __construct( $slug, $roles, $settings, $template_renderer ) {
+    public function __construct( $slug, $settings, $template_renderer ) {
         parent::__construct( $slug );
 
-        $this->roles             = $roles;
         $this->settings          = $settings;
         $this->template_renderer = $template_renderer;
     }
