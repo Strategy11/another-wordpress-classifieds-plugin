@@ -14,11 +14,6 @@ class AWPCP_FormFieldsDataValidatorTest extends AWPCP_UnitTestCase {
     /**
      * @var mixed
      */
-    public $roles;
-
-    /**
-     * @var mixed
-     */
     public $data;
 
     /**
@@ -36,8 +31,6 @@ class AWPCP_FormFieldsDataValidatorTest extends AWPCP_UnitTestCase {
      */
     public function setUp(): void {
         parent::setUp();
-
-        $this->roles = Mockery::mock( 'AWPCP_RolesAndCapabilities' );
 
         $this->data = array(
             'post_fields'      => array(
@@ -95,8 +88,6 @@ class AWPCP_FormFieldsDataValidatorTest extends AWPCP_UnitTestCase {
         $this->authorization->shouldReceive( 'is_current_user_allowed_to_edit_listing_end_date' )
             ->andReturn( true );
 
-        $this->roles->shouldReceive( 'current_user_is_moderator' )->andReturn( false );
-
         $this->settings->shouldReceive( 'get_option' )->andReturnUsing(
             function( $name ) {
                 $options = array(
@@ -126,7 +117,6 @@ class AWPCP_FormFieldsDataValidatorTest extends AWPCP_UnitTestCase {
     private function get_test_subject() {
         return new AWPCP_FormFieldsValidator(
             $this->authorization,
-            $this->roles,
             $this->settings
         );
     }
