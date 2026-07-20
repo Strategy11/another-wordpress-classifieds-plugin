@@ -136,7 +136,7 @@ class AWPCP_FormFieldsValidator {
             }
         }
 
-        if ( $this->settings->get_option( 'requiredtos' ) && ! $this->roles->current_user_is_moderator() ) {
+        if ( $this->settings->get_option( 'requiredtos' ) ) {
             if ( $data['terms_of_service'] !== 'accepted' ) {
                 $errors['terms_of_service'] = __( 'Please read and accept the Terms of Service.', 'another-wordpress-classifieds-plugin' );
             }

@@ -67,10 +67,6 @@ class AWPCP_TermsOfServiceFormField extends AWPCP_FormField {
             return false;
         }
 
-        if ( $this->roles->current_user_is_moderator() ) {
-            return false;
-        }
-
         return true;
     }
 
