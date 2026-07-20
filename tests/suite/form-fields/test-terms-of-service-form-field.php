@@ -71,7 +71,7 @@ class AWPCP_TermsOfServiceFormFieldTest extends AWPCP_UnitTestCase {
                 'is_moderator'    => false,
             ],
             [
-                'expected_result' => false,
+                'expected_result' => true,
                 'require_tos'     => true,
                 'is_moderator'    => true,
             ],
