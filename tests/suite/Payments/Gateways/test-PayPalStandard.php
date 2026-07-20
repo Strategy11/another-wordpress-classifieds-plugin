@@ -117,6 +117,7 @@ class PayPalStandardTest extends AWPCP_UnitTestCase {
      */
     private function create_transaction() {
         Functions\when( 'awpcp_current_user_is_admin' )->justReturn( false );
+        Functions\when( 'maybe_unserialize' )->returnArg();
 
         $transaction = new AWPCP_Payment_Transaction( array( 'id' => 'transaction-id' ) );
         $transaction->add_item( 1, 'Listing', 'Listing fee', AWPCP_Payment_Transaction::PAYMENT_TYPE_MONEY, 9.99 );
