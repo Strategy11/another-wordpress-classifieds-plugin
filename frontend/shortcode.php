@@ -146,7 +146,7 @@ class AWPCP_Pages {
      *
      * Previously aliased to Browse Ads for backwards compatibility.
      *
-     * @since x.x
+     * @since 4.4.8
      *
      * @return string
      */

@@ -11,7 +11,7 @@ use Brain\Monkey\Functions;
 class AWPCP_TestPaymentTransaction extends AWPCP_UnitTestCase {
 
     /**
-     * @since x.x
+     * @since 4.4.8
      */
     public function test_unverified_payment_cannot_complete_transaction() {
         $transaction = $this->create_transaction();
@@ -26,7 +26,7 @@ class AWPCP_TestPaymentTransaction extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.8
      */
     public function test_pending_payment_can_complete_transaction() {
         $transaction = $this->create_transaction();
@@ -40,7 +40,7 @@ class AWPCP_TestPaymentTransaction extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.8
      *
      * @return AWPCP_Payment_Transaction
      */

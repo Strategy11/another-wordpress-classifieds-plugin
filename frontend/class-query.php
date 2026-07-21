@@ -51,7 +51,7 @@ class AWPCP_Query {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.8
      */
     public function is_user_listings_page() {
         return $this->is_page_that_has_shortcode( 'AWPCPUSERLISTINGS' );

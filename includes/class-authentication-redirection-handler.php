@@ -52,7 +52,7 @@ class AWPCP_Authentication_Redirection_Handler {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.8
      */
     private function user_listings_page_requires_authentication() {
         return $this->settings->get_option( 'requireuserregistration' );

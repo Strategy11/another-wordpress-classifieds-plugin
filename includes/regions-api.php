@@ -72,7 +72,7 @@ class AWPCP_BasicRegionsAPI {
     /**
      * Allowlist region array keys to valid DB columns only.
      *
-     * @since x.x
+     * @since 4.4.8
      *
      * @param mixed $region Region data.
      *
@@ -91,7 +91,7 @@ class AWPCP_BasicRegionsAPI {
     /**
      * Sanitise a user-submitted region to editable fields only.
      *
-     * @since x.x
+     * @since 4.4.8
      *
      * @param mixed $region Region data.
      *
