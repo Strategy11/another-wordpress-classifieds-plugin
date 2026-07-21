@@ -307,7 +307,7 @@ class AWPCP_Payment_Transaction {
     /**
      * Verify that the payment can be marked as completed.
      *
-     * @since x.x
+     * @since 4.4.8
      *
      * @param array &$errors
      * @return bool

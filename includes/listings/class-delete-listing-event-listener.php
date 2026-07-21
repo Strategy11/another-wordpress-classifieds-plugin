@@ -104,7 +104,7 @@ class AWPCP_DeleteListingEventListener {
      * null after the post row has been removed.
      *
      * @since 4.0.0
-     * @since x.x Accepts the deleted WP_Post from after_delete_post.
+     * @since 4.4.8 Accepts the deleted WP_Post from after_delete_post.
      *
      * @param int          $post_id Post ID.
      * @param WP_Post|null $post    Deleted post object (available since WP 5.5).

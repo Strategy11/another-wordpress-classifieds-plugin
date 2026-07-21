@@ -5,7 +5,7 @@ Tags: listings, classified ads, classified, classifieds, directory plugin, class
 Requires at least: 6.2
 Requires PHP: 5.6
 Tested up to: 7.0
-Stable tag: 4.4.7
+Stable tag: 4.4.8
 License: GPLv2 or later
 
 Create a classified listings directory, from auto listings to yard sales with AWP Classifieds plugin.
@@ -208,6 +208,15 @@ Yes it can. Our Classifieds directory plugin comes with many user-provided trans
 Yes it is. However, you cannot "network-activate" the plugin (as this will share the database). Activate it on only the subsites on which you need a directory. This can be done under Plugins->Add New as the Administrator user. Do not "network activate" AWPCP as the "super admin".
 
 == Changelog ==
+= 4.4.8 =
+* Fix: Category counts not updating after deleting a listing from the front end.
+* Fix: User Listings page not redirecting guests to the custom login URL.
+* Fix: Image approval alert still showing when listing images are disabled.
+* Fix: Terms of Service not shown or required for admins on Place Ad.
+* Fix: AWPCPBROWSECATS shortcode not rendering the categories list.
+* Fix: Missing space between access keys in notification emails.
+* Fix: Plain text formatting in the ad approved user email.
+
 = 4.4.7 =
 * New: WebP support for listing images.
 * Enhancement: Social share updated from Twitter to X.

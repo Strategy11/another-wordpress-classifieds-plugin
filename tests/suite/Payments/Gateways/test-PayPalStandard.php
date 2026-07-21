@@ -11,7 +11,7 @@ use Brain\Monkey\Functions;
 class PayPalStandardTest extends AWPCP_UnitTestCase {
 
     /**
-     * @since x.x
+     * @since 4.4.8
      *
      * @return void
      */
@@ -22,7 +22,7 @@ class PayPalStandardTest extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.8
      */
     public function test_invalid_user_return_waits_for_ipn_verification() {
         $request     = Phake::mock( 'AWPCP_Request' );
@@ -39,7 +39,7 @@ class PayPalStandardTest extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.8
      */
     public function test_invalid_ipn_marks_payment_as_invalid() {
         $request     = Phake::mock( 'AWPCP_Request' );
@@ -58,7 +58,7 @@ class PayPalStandardTest extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.8
      */
     public function test_verified_paypal_pending_payment_remains_pending() {
         $_POST = array(
@@ -85,7 +85,7 @@ class PayPalStandardTest extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.8
      */
     public function test_verified_payment_with_mismatched_transaction_id_is_invalid() {
         $_POST = array(
@@ -111,7 +111,7 @@ class PayPalStandardTest extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.8
      *
      * @return AWPCP_Payment_Transaction
      */
