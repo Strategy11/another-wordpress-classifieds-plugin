@@ -1,0 +1,199 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version (e.g. 4.5.0)'
+        required: true
+        type: string
+      tested_up_to:
+        description: 'WP "Tested up to" version (blank = keep current)'
+        required: false
+        type: string
+      phase:
+        description: 'Release phase'
+        required: true
+        type: choice
+        options:
+          - prepare
+          - publish
+
+  pull_request:
+    types: [closed]
+    branches: [master]
+
+concurrency:
+  group: release-another-wordpress-classifieds-plugin
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    if: github.event_name == 'workflow_dispatch' && inputs.phase == 'prepare'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          token: ${{ secrets.GH_TOKEN }}
+          fetch-depth: 0
+
+      - name: Create release branch
+        run: git checkout -b release/${{ inputs.version }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate changelog via Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            You are generating a changelog entry for a WordPress plugin release.
+            Version: ${{ inputs.version }}
+
+            Steps:
+            1. Find the last git tag: run `git describe --tags --abbrev=0` (if no tags exist, use the last 50 commits)
+            2. Read the full diff since that tag: run `git diff <tag>..HEAD` to understand what actually changed in the code
+            3. Read the existing changelog in README.TXT to understand the format (look at the first 3-4 entries after `== Changelog ==`)
+            4. Based on the actual code changes (not just commit messages), write a changelog entry and insert it into README.TXT right after the `== Changelog ==` line
+
+            Changelog format rules:
+            - First line: = ${{ inputs.version }} =
+            - Each subsequent line: * New: , * Enhancement: , or * Fix: followed by a concise user-facing description
+            - Group related changes into single entries
+            - Skip merge commits, CI/tooling changes, dependency updates, and non-user-facing changes
+            - Omit any security-related fixes entirely (auth bypasses, XSS, CSRF, privilege escalation, sanitization/escaping hardening for vulnerabilities, CVEs, etc.). Do not describe them and do not add vague placeholders like "* Fix: Security improvements" or "* Fix: Security Vulnerabilities". If a change mixes security and non-security work, include only the non-security user-facing parts.
+            - Match the exact formatting style of the existing entries in README.TXT
+            - End the entry with an empty line before the next entry
+
+            Only modify README.TXT. Do not touch any other files, especially vendor/.
+          claude_args: |
+            --model claude-sonnet-4-6
+            --max-turns 10
+            --allowedTools "Read,Edit,Bash(git diff:*),Bash(git describe:*),Bash(git log:*),Bash(git tag:*),Bash(date:*)"
+
+      - name: Bump version and update assets
+        run: |
+          pnpm run build
+          pnpm exec grunt setversion:awpcp:${{ inputs.version }}
+          pnpm exec grunt less:awpcp
+
+      - name: Update Tested up to
+        if: inputs.tested_up_to != ''
+        run: |
+          sed -i "s/^Tested up to: .*/Tested up to: ${{ inputs.tested_up_to }}/" README.TXT
+
+      - name: Commit and push
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Keep committed vendor/ exactly as on the branch; never ship runner-generated vendor trees.
+          git restore --source=HEAD --worktree --staged -- vendor || true
+          git add -A
+          git reset HEAD -- vendor
+          git add --force -- vendor/autoload.php vendor/composer
+          git commit -m "Prepare release ${{ inputs.version }}"
+          git push -u origin release/${{ inputs.version }}
+
+      - name: Create pull request
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          gh pr create \
+            --title "Release ${{ inputs.version }}" \
+            --body "$(cat <<'EOF'
+          ## Release ${{ inputs.version }}
+
+          Automated release preparation:
+          - Version bumped in awpcp.php, README.TXT, and related version constants
+          - Assets rebuilt (webpack, LESS)
+          - Changelog generated
+          - vendor/ left unchanged (shipped from git)
+
+          **Next steps:**
+          1. Review the changes
+          2. Merge this PR to create the release
+          EOF
+          )" \
+            --base master
+
+  publish-manual:
+    if: github.event_name == 'workflow_dispatch' && inputs.phase == 'publish'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Create tag and release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+          git tag v${{ inputs.version }}
+          git push origin v${{ inputs.version }}
+          gh release create v${{ inputs.version }} \
+            --title "v${{ inputs.version }}" \
+            --generate-notes
+
+  extract-version:
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/')
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.parse.outputs.version }}
+    steps:
+      - name: Extract version from branch name
+        id: parse
+        run: |
+          BRANCH="${{ github.event.pull_request.head.ref }}"
+          echo "version=${BRANCH#release/}" >> "$GITHUB_OUTPUT"
+
+  publish-on-merge:
+    needs: extract-version
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          token: ${{ secrets.GH_TOKEN }}
+
+      - name: Create tag and release
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
+          git tag v${{ needs.extract-version.outputs.version }}
+          git push origin v${{ needs.extract-version.outputs.version }}
+          gh release create v${{ needs.extract-version.outputs.version }} \
+            --title "v${{ needs.extract-version.outputs.version }}" \
+            --generate-notes
