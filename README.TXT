@@ -272,13 +272,4 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 * Fix: Bug with broken thumbnail images after WordPress 6.7
 * Fix: PHP warning when OpenGraph metadata is loaded
 
-= 4.3.3 =
-* New: Updates for better PHP 8 support.
-* Security: Add more nonce and user role protection for uninstalling and other ajax functions.
-* Security: Hardening for escaping output and SQL queries.
-* Update SelectWoo script version.
-* Fix: Fallback to native dropdowns if there is a conflict with Select2.
-* Fix: SEO Framework updatesfor outdated code.
-* Code: Update to phpcs 3 standards.
-
 <a href="https://awpcp.com/plugins/awp-classifieds/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion">See changelog for all versions</a>
