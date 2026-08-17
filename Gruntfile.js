@@ -15,7 +15,8 @@ module.exports = function( grunt ) {
 			var basedir = config.path;
 			var id      = config.name || path.basename(basedir).replace(prefix, '');
 			config.id   = id;
-			config.version = 'AWPCP_' + id.replace( '-', '_' ).toUpperCase() + '_MODULE_DB_VERSION';
+			// String#replace with a string only swaps the first hyphen.
+			config.version = 'AWPCP_' + id.replace( /-/g, '_' ).toUpperCase() + '_MODULE_DB_VERSION';
 
 			this.registered[ id ] = config;
 
@@ -66,14 +67,20 @@ module.exports = function( grunt ) {
 			grunt.wpbdp.registerStableTag( config );
 			grunt.wpbdp.registerCommentVersion( config );
 
+			var underscored = ( prefix + config.id ).replace( /-/g, '_' );
+
 			grunt.config.set( 'replace.setversion-' + config.id, {
 				src: [
+					// Root PHP files cover inconsistent bootstrap names
+					// (awpcp-comments.php, awpcp_featured_ads.php, etc.).
+					config.pluginPath + '*.php',
 					config.pluginPath + prefix + config.id + '.php',
 					config.pluginPath + prefix + config.id + '-module.php',
-					// Replace - with _
-					config.pluginPath + ( prefix + config.id ).replace('-', '_') + '_module.php',
+					config.pluginPath + underscored + '.php',
+					config.pluginPath + underscored + '_module.php',
 					config.pluginPath + config.slug + '.php',
-					config.pluginPath + 'includes/class-' + config.id + '.php'
+					config.pluginPath + 'includes/class-' + config.id + '.php',
+					config.pluginPath + 'includes/class-' + config.id + '-module.php'
 				],
 				overwrite: true,
 				replacements: [
@@ -112,6 +119,10 @@ module.exports = function( grunt ) {
 					{
 						from: new RegExp("define\\( '" + config.version + "', '(\\d+\\.)(\\d+\\.)?(\\*|\\d+)?([\\da-z-A-Z-]+(?:\\.[\\da-z-A-Z-]+)*)?'", "g"),
 						to: 'define( \'' + config.version + '\', \'<%= compress.version %>\''
+					},
+					{
+						from: /define\( '(AWPCP_VERSION|AWPCP_[A-Z0-9_]+_MODULE_(?:DB_)?VERSION)', '(\d+\.)(\d+\.)?(\*|\d+)?([\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?'/g,
+						to: 'define( \'$1\', \'<%= compress.version %>\''
 					}
 				]
 			});
