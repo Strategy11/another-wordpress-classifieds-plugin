@@ -107,7 +107,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         $listing     = $this->get_listing();
         $transaction = $this->get_transaction();
 
-        if ( is_object( $listing ) && ! is_object( $transaction ) && ! $this->authorization->is_current_user_allowed_to_edit_listing( $listing ) ) {
+        if ( is_object( $listing ) && ! $this->is_current_user_allowed_to_access_listing( $listing, $transaction ) ) {
             $message = __( 'You are not allowed to edit the specified ad.', 'another-wordpress-classifieds-plugin' );
             return $this->render( 'content', awpcp_print_error( $message ) );
         }
@@ -163,6 +163,23 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
         }
 
         return $this->transaction;
+    }
+
+    /**
+     * Whether the current user may continue with the given listing.
+     *
+     * @since x.x
+     *
+     * @param object                         $listing     Listing being requested.
+     * @param AWPCP_Payment_Transaction|null $transaction Transaction supplied with the request, when present.
+     * @return bool
+     */
+    private function is_current_user_allowed_to_access_listing( $listing, $transaction ) {
+        if ( is_object( $transaction ) && absint( $transaction->get( 'ad-id' ) ) === absint( $listing->ID ) ) {
+            return true;
+        }
+
+        return $this->authorization->is_current_user_allowed_to_edit_listing( $listing );
     }
 
     /**
@@ -231,16 +248,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
 
         $this->verify_payment_transaction_was_successful( $transaction );
 
-        $listing_id = awpcp_get_var( array( 'param' => 'listing_id' ) );
-        $listing    = null;
-
-        if ( ! $listing_id && $transaction ) {
-            $listing_id = $transaction->get( 'ad-id' );
-        }
-
-        if ( $listing_id ) {
-            $listing = $this->listings->get( $listing_id );
-        }
+        $listing = $this->get_listing();
 
         do_action( 'awpcp-before-post-listing-page' );
 
