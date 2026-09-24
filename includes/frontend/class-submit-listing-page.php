@@ -175,11 +175,30 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
      * @return bool
      */
     private function is_current_user_allowed_to_access_listing( $listing, $transaction ) {
-        if ( is_object( $transaction ) && absint( $transaction->get( 'ad-id' ) ) === absint( $listing->ID ) ) {
+        if ( $this->transaction_grants_access_to_listing( $transaction, $listing ) ) {
             return true;
         }
 
         return $this->authorization->is_current_user_allowed_to_edit_listing( $listing );
+    }
+
+    /**
+     * Whether the transaction was created for the listing by the current requester.
+     *
+     * @since x.x
+     *
+     * @param AWPCP_Payment_Transaction|null $transaction Transaction supplied with the request, when present.
+     * @param object                         $listing     Listing being requested.
+     * @return bool
+     */
+    private function transaction_grants_access_to_listing( $transaction, $listing ) {
+        if ( ! is_object( $transaction ) || absint( $transaction->get( 'ad-id' ) ) !== absint( $listing->ID ) ) {
+            return false;
+        }
+
+        $transaction_user_id = absint( $transaction->user_id );
+
+        return 0 === $transaction_user_id || get_current_user_id() === $transaction_user_id;
     }
 
     /**

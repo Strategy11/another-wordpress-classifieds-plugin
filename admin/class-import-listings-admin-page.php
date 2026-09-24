@@ -249,7 +249,7 @@ class AWPCP_ImportListingsAdminPage {
         $path = $images_directory . DIRECTORY_SEPARATOR . $filename;
 
         if ( dirname( $filename ) !== '.' ) {
-            $this->wp_filesystem->mkdir( dirname( $path ), awpcp_get_dir_chmod(), true );
+            wp_mkdir_p( dirname( $path ) );
         }
 
         if ( ! $this->is_zip_entry_inside_directory( $filename, $images_directory ) ) {
