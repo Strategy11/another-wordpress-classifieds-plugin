@@ -21,5 +21,9 @@ class AWPCP_Test_Listings_Media_Uploader_Component extends AWPCP_UnitTestCase {
         $rendered_content = $component->render( $configuration );
 
         $this->assertEquals( $rendered_content, $content );
+
+        Phake::verify( $media_uploader_component )->render( Phake::capture( $passed_configuration ) );
+
+        $this->assertArrayHasKey( 'upload-restrictions-image-dimensions', $passed_configuration['l10n'] );
     }
 }
