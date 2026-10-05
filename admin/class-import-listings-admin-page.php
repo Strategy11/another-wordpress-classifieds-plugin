@@ -211,7 +211,7 @@ class AWPCP_ImportListingsAdminPage {
     /**
      * Writes one archive entry when its type is allowed and its path stays inside the images directory.
      *
-     * @since x.x
+     * @since 4.4.9
      *
      * @param array  $item             Archive entry returned by PclZip.
      * @param string $images_directory Destination directory.
@@ -274,7 +274,7 @@ class AWPCP_ImportListingsAdminPage {
     /**
      * Whether the file extension is one the site already allows for uploads.
      *
-     * @since x.x
+     * @since 4.4.9
      *
      * @param string $filename File name from the archive.
      * @return bool
@@ -294,7 +294,7 @@ class AWPCP_ImportListingsAdminPage {
     /**
      * Whether an archive entry name has no absolute or parent-directory segments.
      *
-     * @since x.x
+     * @since 4.4.9
      *
      * @param string $filename Entry name from the archive.
      * @return bool
@@ -320,7 +320,7 @@ class AWPCP_ImportListingsAdminPage {
      *
      * Call this after the parent directory has been created.
      *
-     * @since x.x
+     * @since 4.4.9
      *
      * @param string $filename         Entry name from the archive.
      * @param string $images_directory Destination directory.
@@ -340,7 +340,7 @@ class AWPCP_ImportListingsAdminPage {
     /**
      * Whether a path is the directory itself or a descendant of it.
      *
-     * @since x.x
+     * @since 4.4.9
      *
      * @param string $path      Path to test.
      * @param string $directory Directory that must contain the path.
@@ -358,7 +358,7 @@ class AWPCP_ImportListingsAdminPage {
     }
 
     /**
-     * @since x.x Import files are stored under the current site's uploads directory.
+     * @since 4.4.9 Import files are stored under the current site's uploads directory.
      */
     private function get_working_directory( $session_id ) {
         $uploads = wp_upload_dir();
