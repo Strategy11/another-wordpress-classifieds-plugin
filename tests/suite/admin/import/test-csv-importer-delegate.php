@@ -118,7 +118,7 @@ class AWPCP_Test_CSV_Importer_Delegate extends AWPCP_UnitTestCase {
      * Test new listings are created with the imported title so that WordPress
      * generates the slug from it.
      *
-     * @since x.x
+     * @since 4.4.9
      */
     public function test_import_row_creates_listing_with_imported_title() {
         Phake::when( $this->import_session )->get_params->thenReturn( [ 'listing_status' => 'publish' ] );

@@ -83,7 +83,7 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
     /**
      * Renders the heading with the name of the category being browsed.
      *
-     * @since x.x
+     * @since 4.4.9
      *
      * @param int $category_id The ID of the category being browsed.
      *
@@ -102,7 +102,7 @@ class AWPCP_BrowseAdsPage extends AWPCP_Page {
     /**
      * Renders the listings page for the given query.
      *
-     * @since x.x
+     * @since 4.4.9
      *
      * @param array $query   Query arguments used to load listings.
      * @param array $options Display options merged with the page identifier.

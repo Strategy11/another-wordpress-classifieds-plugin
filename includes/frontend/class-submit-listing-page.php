@@ -168,7 +168,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     /**
      * Whether the current user may continue with the given listing.
      *
-     * @since x.x
+     * @since 4.4.9
      *
      * @param object                         $listing     Listing being requested.
      * @param AWPCP_Payment_Transaction|null $transaction Transaction supplied with the request, when present.
@@ -185,7 +185,7 @@ class AWPCP_SubmitListingPage extends AWPCP_Page {
     /**
      * Whether the transaction was created for the listing by the current requester.
      *
-     * @since x.x
+     * @since 4.4.9
      *
      * @param AWPCP_Payment_Transaction|null $transaction Transaction supplied with the request, when present.
      * @param object                         $listing     Listing being requested.
