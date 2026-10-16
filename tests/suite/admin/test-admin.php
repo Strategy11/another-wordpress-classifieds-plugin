@@ -81,6 +81,15 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
     }
 
     /**
+     * @since x.x
+     */
+    public function tearDown(): void {
+        unset( $_POST['action'], $_POST['post_type'] );
+
+        parent::tearDown();
+    }
+
+    /**
      * @since 4.0.0
      */
     public function test_admin_init_configures_necessary_handlers() {
@@ -154,6 +163,75 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
         $this->assertEquals( false, has_action( 'admin_head-edit.php', array( $this->actions, 'admin_head' ) ) );
         $this->assertEquals( false, has_action( 'post_row_actions', array( $this->actions, 'row_actions' ) ) );
         $this->assertEquals( false, has_filter( 'handle_bulk_actions-edit-post_type', array( $this->actions, 'handle_action' ) ) );
+    }
+
+    /**
+     * @since x.x
+     */
+    public function test_ajax_admin_init_configures_row_handlers_for_inline_save() {
+        $_POST['action']    = 'inline-save';
+        $_POST['post_type'] = $this->post_type;
+
+        $this->actions = Mockery::mock( 'AWPCP_ListTableActionsHandler' );
+        $this->columns = Mockery::mock( 'AWPCP_ListingsTableColumnsHandler' );
+
+        $admin = $this->get_test_subject();
+
+        // Execution.
+        $admin->ajax_admin_init();
+
+        // Verification.
+        $this->assertEquals( 10, has_filter( 'post_type_row_actions', array( $this->actions, 'row_actions_buttons' ) ) );
+        $this->assertEquals( 10, has_filter( 'manage_' . $this->post_type . '_posts_columns', [ $this->columns, 'manage_posts_columns' ] ) );
+        $this->assertEquals( 10, has_action( 'manage_' . $this->post_type . '_posts_custom_column', [ $this->columns, 'manage_posts_custom_column' ] ) );
+        $this->assertEquals( 10, has_filter( 'awpcp_list_table_actions_listings', array( $admin, 'register_listings_table_actions' ) ) );
+        $this->assertEquals( 99, has_filter( 'awpcp_list_table_actions_listings', array( $admin, 'filter_listings_table_actions' ) ) );
+
+        $this->assertFalse( has_action( 'pre_get_posts', [ $this->restrictions, 'pre_get_posts' ] ) );
+        $this->assertFalse( has_action( 'save_post_' . $this->post_type, [ $admin, 'save_classifieds_meta_boxes' ] ) );
+    }
+
+    /**
+     * @since x.x
+     */
+    public function test_ajax_admin_init_configures_no_handler_for_the_wrong_post_type() {
+        $_POST['action']    = 'inline-save';
+        $_POST['post_type'] = 'another_post_type';
+
+        $this->actions = Mockery::mock( 'AWPCP_ListTableActionsHandler' );
+        $this->columns = Mockery::mock( 'AWPCP_ListingsTableColumnsHandler' );
+
+        $admin = $this->get_test_subject();
+
+        // Execution.
+        $admin->ajax_admin_init();
+
+        // Verification.
+        $this->assertFalse( has_filter( 'post_type_row_actions', array( $this->actions, 'row_actions_buttons' ) ) );
+        $this->assertFalse( has_filter( 'manage_' . $this->post_type . '_posts_columns', [ $this->columns, 'manage_posts_columns' ] ) );
+        $this->assertFalse( has_filter( 'awpcp_list_table_actions_listings', array( $admin, 'register_listings_table_actions' ) ) );
+    }
+
+    /**
+     * @since x.x
+     */
+    public function test_ajax_admin_init_configures_no_handler_for_other_ajax_actions() {
+        $_POST['action']    = 'another-action';
+        $_POST['post_type'] = $this->post_type;
+
+        $this->actions = Mockery::mock( 'AWPCP_ListTableActionsHandler' );
+        $this->columns = Mockery::mock( 'AWPCP_ListingsTableColumnsHandler' );
+
+        $admin = $this->get_test_subject();
+
+        // Execution.
+        $admin->ajax_admin_init();
+
+        // Verification.
+        $this->assertFalse( has_filter( 'post_type_row_actions', array( $this->actions, 'row_actions_buttons' ) ) );
+        $this->assertFalse( has_filter( 'manage_' . $this->post_type . '_posts_columns', [ $this->columns, 'manage_posts_columns' ] ) );
+        $this->assertFalse( has_action( 'manage_' . $this->post_type . '_posts_custom_column', [ $this->columns, 'manage_posts_custom_column' ] ) );
+        $this->assertFalse( has_filter( 'awpcp_list_table_actions_listings', array( $admin, 'register_listings_table_actions' ) ) );
     }
 
     /**
