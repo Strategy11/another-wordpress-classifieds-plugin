@@ -825,11 +825,14 @@ class AWPCP_ListingsAPI {
     public function flag_listing( $listing ) {
         $meta_updated = (bool) $this->wordpress->update_post_meta( $listing->ID, '_awpcp_flagged', true );
 
-        if ( $meta_updated ) {
-            awpcp_send_listing_was_flagged_notification( $listing );
+        if ( ! $meta_updated ) {
+            // update_post_meta() returns false when the listing is already flagged.
+            return $this->listing_renderer->is_flagged( $listing );
         }
 
-        return $meta_updated;
+        awpcp_send_listing_was_flagged_notification( $listing );
+
+        return true;
     }
 
     /**

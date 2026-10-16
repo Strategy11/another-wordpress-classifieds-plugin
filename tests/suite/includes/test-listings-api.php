@@ -439,6 +439,54 @@ class AWPCP_TestListingsAPI extends AWPCP_UnitTestCase {
         $this->assertTrue( $listing_flagged );
     }
 
+    public function test_flag_listing_already_flagged() {
+        $post = (object) array(
+            'ID' => wp_rand() + 1,
+        );
+
+        $this->wordpress = Mockery::mock( 'AWPCP_WordPress' );
+
+        $this->wordpress->shouldReceive( 'update_post_meta' )
+            ->once()
+            ->with( $post->ID, '_awpcp_flagged', true )
+            ->andReturn( false );
+
+        $this->listing_renderer->shouldReceive( 'is_flagged' )
+            ->once()
+            ->with( $post )
+            ->andReturn( true );
+
+        Functions\expect( 'awpcp_send_listing_was_flagged_notification' )->never();
+
+        $listings_logic = $this->get_test_subject();
+
+        $this->assertTrue( $listings_logic->flag_listing( $post ) );
+    }
+
+    public function test_flag_listing_fails_when_meta_not_saved() {
+        $post = (object) array(
+            'ID' => wp_rand() + 1,
+        );
+
+        $this->wordpress = Mockery::mock( 'AWPCP_WordPress' );
+
+        $this->wordpress->shouldReceive( 'update_post_meta' )
+            ->once()
+            ->with( $post->ID, '_awpcp_flagged', true )
+            ->andReturn( false );
+
+        $this->listing_renderer->shouldReceive( 'is_flagged' )
+            ->once()
+            ->with( $post )
+            ->andReturn( false );
+
+        Functions\expect( 'awpcp_send_listing_was_flagged_notification' )->never();
+
+        $listings_logic = $this->get_test_subject();
+
+        $this->assertFalse( $listings_logic->flag_listing( $post ) );
+    }
+
     /**
      * @since 4.0.0
      */
