@@ -91,6 +91,7 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         );
         $current_url = 'https://example.org';
 
+        Functions\when( 'wp_doing_ajax' )->justReturn( false );
         Functions\expect( 'add_query_arg' )
             ->once()
             ->with( [] )
@@ -103,6 +104,63 @@ class AWPCP_ListTableActionsHandlerTest extends AWPCP_UnitTestCase {
         // Verification.
         $this->assertContains( 'custom-action', array_keys( $actions ) );
         $this->assertStringContainsString( 'Label', $actions['custom-action'] );
+    }
+
+    /**
+     * During AJAX requests, like Quick Edit, action links are built from the referer.
+     */
+    public function test_row_actions_links_uses_referer_during_ajax() {
+        $referer     = 'https://example.org/wp-admin/edit.php?post_type=awpcp_listing&paged=2&awpcp-action=disable&awpcp-result=1';
+        $current_url = 'https://example.org/wp-admin/edit.php?post_type=awpcp_listing&paged=2';
+
+        Functions\when( 'wp_doing_ajax' )->justReturn( true );
+        Functions\when( 'wp_get_referer' )->justReturn( $referer );
+        Functions\expect( 'remove_query_arg' )
+            ->once()
+            ->with( array( 'awpcp-action', 'awpcp-result' ), $referer )
+            ->andReturn( $current_url );
+
+        $this->assert_row_action_built_from( $current_url );
+    }
+
+    /**
+     * Without a referer, action links fall back to the listings table URL.
+     */
+    public function test_row_actions_links_falls_back_to_listings_table_during_ajax() {
+        if ( ! defined( 'AWPCP_LISTING_POST_TYPE' ) ) {
+            define( 'AWPCP_LISTING_POST_TYPE', 'awpcp_listing' );
+        }
+
+        $current_url = 'https://example.org/wp-admin/edit.php?post_type=' . AWPCP_LISTING_POST_TYPE;
+
+        Functions\when( 'wp_doing_ajax' )->justReturn( true );
+        Functions\when( 'wp_get_referer' )->justReturn( false );
+        Functions\expect( 'admin_url' )
+            ->once()
+            ->with( 'edit.php?post_type=' . AWPCP_LISTING_POST_TYPE )
+            ->andReturn( $current_url );
+
+        $this->assert_row_action_built_from( $current_url );
+    }
+
+    /**
+     * @param string $current_url The URL the action link should be built from.
+     */
+    private function assert_row_action_built_from( $current_url ) {
+        $post           = (object) array();
+        $action_handler = Mockery::mock( 'AWPCP_ListTableAction' );
+
+        $action_handler->shouldReceive( 'should_show_action_for' )->once()->with( $post )->andReturn( true );
+        $action_handler->shouldReceive( 'get_label' )->once()->with( $post )->andReturn( 'Label' );
+        $action_handler->shouldReceive( 'get_url' )->once()->with( $post, $current_url )->andReturn( 'URL' );
+
+        Functions\expect( 'add_query_arg' )->never();
+        Functions\when( 'wp_nonce_url' )->justReturn( '' );
+
+        $table_actions = new AWPCP_ListTableActionsHandler( array( 'custom-action' => $action_handler ), null );
+        $actions       = $table_actions->row_actions_links( array(), $post );
+
+        $this->assertArrayHasKey( 'custom-action', $actions );
     }
 
     /**
