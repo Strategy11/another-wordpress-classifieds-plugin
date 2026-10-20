@@ -209,14 +209,14 @@ Yes it is. However, you cannot "network-activate" the plugin (as this will share
 
 == Changelog ==
 = 4.4.10 =
+* Enhancement: Latest listings shortcode now supports the sortfeatured parameter.
+* Enhancement: Listings without images now use the custom placeholder setting for og:image instead of the bundled default.
 * Fix: Listing dates now remain preserved when approving edited listings.
 * Fix: Listing columns and row actions now remain after Quick Edit.
 * Fix: Fatal error when loading buy credits transaction no longer occurs after selecting a credit plan.
-* Enhancement: Website URL hosts now allow Unicode characters.
-* Enhancement: Latest listings shortcode now supports the sortfeatured parameter.
-* Enhancement: Canonical tag no longer duplicates when SEOPress is active.
-* Enhancement: Listings without images now use the custom placeholder setting for og:image instead of the bundled default.
-* Enhancement: Already flagged listings can now be flagged again without error, and repeat flags no longer resend the admin notification.
+* Fix: Website URL hosts now allow Unicode characters.
+* Fix: Canonical tag no longer duplicates when SEOPress is active.
+* Fix: Already flagged listings can now be flagged again without error, and repeat flags no longer resend the admin notification.
 
 = 4.4.9 =
 * Enhancement: Category pages now display the category name heading above listings.
