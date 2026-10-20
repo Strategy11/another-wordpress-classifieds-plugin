@@ -232,7 +232,7 @@ class AWPCP_Meta {
      * Get the URL of the image used when a listing has no images,
      * respecting the No Image placeholder settings.
      *
-     * @since x.x
+     * @since 4.4.10
      *
      * @return string
      */
