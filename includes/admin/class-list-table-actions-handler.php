@@ -117,7 +117,7 @@ class AWPCP_ListTableActionsHandler {
      * During AJAX requests, like Quick Edit, the current URL is admin-ajax.php,
      * so the referring listings table URL is used instead.
      *
-     * @since x.x
+     * @since 4.4.10
      *
      * @return string
      */

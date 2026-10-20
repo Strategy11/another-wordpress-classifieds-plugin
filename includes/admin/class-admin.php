@@ -137,7 +137,7 @@ class AWPCP_Admin {
      * Quick Edit saves through the inline-save AJAX action and re-renders the
      * listing row, so the row needs the same columns and actions as the table.
      *
-     * @since x.x
+     * @since 4.4.10
      */
     public function ajax_admin_init() {
         if ( ! $this->is_inline_save_request() ) {
@@ -151,7 +151,7 @@ class AWPCP_Admin {
     /**
      * Registers the filters that build the list of listings table actions.
      *
-     * @since x.x
+     * @since 4.4.10
      */
     private function add_list_table_actions_filters() {
         add_filter( 'awpcp_list_table_actions_listings', array( $this, 'register_listings_table_actions' ) );
@@ -161,7 +161,7 @@ class AWPCP_Admin {
     /**
      * Registers the hooks used to render the rows of the listings table.
      *
-     * @since x.x
+     * @since 4.4.10
      */
     private function add_list_table_rows_hooks() {
         add_filter( "{$this->post_type}_row_actions", [ $this->table_actions, 'row_actions_buttons' ], 10, 2 );
@@ -172,7 +172,7 @@ class AWPCP_Admin {
     /**
      * Whether the current request is a Quick Edit save for this post type.
      *
-     * @since x.x
+     * @since 4.4.10
      *
      * @return bool
      */

@@ -81,7 +81,7 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.10
      */
     public function tearDown(): void {
         unset( $_POST['action'], $_POST['post_type'] );
@@ -166,7 +166,7 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.10
      */
     public function test_ajax_admin_init_configures_row_handlers_for_inline_save() {
         $_POST['action']    = 'inline-save';
@@ -192,7 +192,7 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.10
      */
     public function test_ajax_admin_init_configures_no_handler_for_the_wrong_post_type() {
         $_POST['action']    = 'inline-save';
@@ -213,7 +213,7 @@ class AWPCP_AdminTest extends AWPCP_UnitTestCase {
     }
 
     /**
-     * @since x.x
+     * @since 4.4.10
      */
     public function test_ajax_admin_init_configures_no_handler_for_other_ajax_actions() {
         $_POST['action']    = 'another-action';

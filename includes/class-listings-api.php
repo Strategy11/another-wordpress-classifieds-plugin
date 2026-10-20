@@ -660,7 +660,7 @@ class AWPCP_ListingsAPI {
      * Whether the listing was already published and is only waiting for
      * an administrator to approve the changes made by its owner.
      *
-     * @since x.x
+     * @since 4.4.10
      *
      * @param WP_Post $listing The listing.
      *
