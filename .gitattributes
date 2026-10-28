@@ -27,3 +27,7 @@ tests export-ignore
 Vagrantfile export-ignore
 less export-ignore
 .idea export-ignore
+composer.json export-ignore
+pnpm-lock.yaml export-ignore
+webpack.config.js export-ignore
+*.map export-ignore
