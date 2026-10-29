@@ -54,6 +54,34 @@ class AWPCP_TestPlaceholders extends AWPCP_UnitTestCase {
         $this->assertEquals( $expected_value, awpcp_do_placeholders( $ad, '$renewed_date', 'listings' ) );
     }
 
+    public function test_most_recent_start_date_placeholder() {
+        awpcp()->settings->set_or_update_option( 'date-format', 'F d, Y' );
+
+        $ad = awpcp_tests_create_listing();
+        $ad->post_date = '2013-10-24 12:34:56';
+
+        update_post_meta( $ad->ID, '_awpcp_start_date', '2013-10-24 12:34:56' );
+        update_post_meta( $ad->ID, '_awpcp_most_recent_start_date', '2013-11-05 08:00:00' );
+
+        $this->assertEquals( 'November 05, 2013', awpcp_do_placeholders( $ad, '$most_recent_start_date', 'listings' ) );
+    }
+
+    public function test_most_recent_start_date_placeholder_falls_back_to_start_date_and_posted_date() {
+        awpcp()->settings->set_or_update_option( 'date-format', 'F d, Y' );
+
+        $ad = awpcp_tests_create_listing();
+        $ad->post_date = '2013-10-24 12:34:56';
+
+        delete_post_meta( $ad->ID, '_awpcp_most_recent_start_date' );
+        update_post_meta( $ad->ID, '_awpcp_start_date', '2013-10-25 12:34:56' );
+
+        $this->assertEquals( 'October 25, 2013', awpcp_do_placeholders( $ad, '$most_recent_start_date', 'listings' ) );
+
+        delete_post_meta( $ad->ID, '_awpcp_start_date' );
+
+        $this->assertEquals( 'October 24, 2013', awpcp_do_placeholders( $ad, '$most_recent_start_date', 'listings' ) );
+    }
+
     public function test_price_placeholder() {
         awpcp()->settings->set_or_update_option( 'displaypricefield', true );
         awpcp()->settings->set_or_update_option( 'price-field-is-restricted', false );
