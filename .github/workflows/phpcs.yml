@@ -8,6 +8,11 @@ on:
     types: [ opened, labeled, synchronize ]
 
 name: Inspections
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   runPHPCSInspection:
     if: contains(github.event.pull_request.labels.*.name, 'run analysis')
@@ -16,6 +21,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config --global cache-files-dir)" >> $GITHUB_OUTPUT
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-phpcs-${{ hashFiles('.github/workflows/phpcs.yml') }}
+          restore-keys: ${{ runner.os }}-composer-phpcs-
       - name: Check PHPCS
         run: |
           export PHPCS_DIR=/home/runner/.composer/vendor/bin
