@@ -207,4 +207,94 @@ module.exports = function(grunt) {
 			textDomain: pluginName
 		}
 	} );
+
+	pluginName = 'awpcp-attachments';
+	grunt.wpbdp.registerModule( {
+		name: 'attachments',
+		slug: 'attachments',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-campaign-manager';
+	grunt.wpbdp.registerModule( {
+		name: 'campaign-manager',
+		slug: 'campaign-manager',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-extra-fields';
+	grunt.wpbdp.registerModule( {
+		name: 'extra-fields',
+		slug: 'extra-fields',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-fee-per-category';
+	grunt.wpbdp.registerModule( {
+		name: 'fee-per-category',
+		slug: 'fee-per-category',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-mark-as-sold';
+	grunt.wpbdp.registerModule( {
+		name: 'mark-as-sold',
+		slug: 'mark-as-sold',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-payfast';
+	grunt.wpbdp.registerModule( {
+		name: 'payfast',
+		slug: 'payfast',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-region-control';
+	grunt.wpbdp.registerModule( {
+		name: 'region-control',
+		slug: 'region-control',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-restricted-categories';
+	grunt.wpbdp.registerModule( {
+		name: 'restricted-categories',
+		slug: 'restricted-categories',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
+
+	pluginName = 'awpcp-videos';
+	grunt.wpbdp.registerModule( {
+		name: 'videos',
+		slug: 'videos',
+		folder: '../' + pluginName,
+		i18n: {
+			textDomain: pluginName
+		}
+	} );
 };
