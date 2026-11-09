@@ -1,0 +1,278 @@
+name: Add-on release
+
+# Reusable release workflow for AWPCP add-ons. Add-ons have no build tooling of
+# their own: they are built with this repo's Gruntfile, which expects the add-on
+# to sit next to core (../<add-on-repo>) and to be registered in grunt/grunt.js.
+#
+# Caller (in the add-on repo, .github/workflows/release.yml):
+#
+#   on:
+#     workflow_dispatch:
+#       inputs:
+#         version: { required: true, type: string }
+#         phase: { required: true, type: choice, options: [prepare, publish] }
+#     pull_request:
+#       types: [closed]
+#       branches: [master]
+#   jobs:
+#     release:
+#       uses: Strategy11/another-wordpress-classifieds-plugin/.github/workflows/addon-release.yml@master
+#       with:
+#         module: subscriptions
+#         version: ${{ inputs.version }}
+#         phase: ${{ inputs.phase }}
+#       secrets: inherit
+#
+# prepare: bumps the version, rebuilds assets and translations, opens a release/<version> PR.
+# publish: runs when that PR is merged (or manually); tags v<version>, builds the zip and
+#          attaches it to a GitHub release.
+
+on:
+  workflow_call:
+    inputs:
+      module:
+        description: 'Module name registered in grunt/grunt.js (e.g. subscriptions, authorize-net)'
+        required: true
+        type: string
+      version:
+        description: 'Version (workflow_dispatch only)'
+        required: false
+        type: string
+        default: ''
+      phase:
+        description: 'prepare or publish (workflow_dispatch only)'
+        required: false
+        type: string
+        default: ''
+      core-ref:
+        description: 'Core ref that provides the Gruntfile'
+        required: false
+        type: string
+        default: master
+      base-branch:
+        description: 'Add-on branch releases are cut from'
+        required: false
+        type: string
+        default: master
+    secrets:
+      GH_TOKEN:
+        description: 'Token with contents/pull-requests write on the add-on. Falls back to GITHUB_TOKEN.'
+        required: false
+
+env:
+  ADDON_DIR: ${{ github.event.repository.name }}
+  CORE_DIR: another-wordpress-classifieds-plugin
+
+jobs:
+  prepare:
+    if: github.event_name == 'workflow_dispatch' && inputs.phase == 'prepare'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: addon-release-${{ github.repository }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Validate version
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+            echo "::error::Version must look like 4.0.6, got '${VERSION}'"
+            exit 1
+          fi
+
+      - name: Checkout add-on
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.base-branch }}
+          path: ${{ env.ADDON_DIR }}
+          token: ${{ secrets.GH_TOKEN || github.token }}
+          fetch-depth: 0
+
+      - name: Checkout core
+        uses: actions/checkout@v4
+        with:
+          repository: Strategy11/another-wordpress-classifieds-plugin
+          ref: ${{ inputs.core-ref }}
+          path: ${{ env.CORE_DIR }}
+
+      - name: Check release does not exist
+        working-directory: ${{ env.ADDON_DIR }}
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          if git rev-parse -q --verify "refs/tags/v${VERSION}" >/dev/null; then
+            echo "::error::Tag v${VERSION} already exists"
+            exit 1
+          fi
+          if git ls-remote --exit-code --heads origin "release/${VERSION}" >/dev/null; then
+            echo "::error::Branch release/${VERSION} already exists"
+            exit 1
+          fi
+          git checkout -b "release/${VERSION}"
+
+      - name: Install gettext
+        run: sudo apt-get update && sudo apt-get install -y gettext
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: ${{ env.CORE_DIR }}/pnpm-lock.yaml
+
+      - name: Install core dependencies
+        working-directory: ${{ env.CORE_DIR }}
+        run: pnpm install --frozen-lockfile
+
+      - name: Bump version, build assets and translations
+        working-directory: ${{ env.CORE_DIR }}
+        run: pnpm exec grunt prepare:${{ inputs.module }}:${{ inputs.version }}
+
+      - name: Commit and push
+        working-directory: ${{ env.ADDON_DIR }}
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "::error::Grunt produced no changes; is the module name right?"
+            exit 1
+          fi
+          git commit -m "Release ${VERSION}"
+          git push -u origin "release/${VERSION}"
+
+      - name: Create pull request
+        working-directory: ${{ env.ADDON_DIR }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN || github.token }}
+          VERSION: ${{ inputs.version }}
+          BASE: ${{ inputs.base-branch }}
+        run: |
+          LAST_TAG="$(git describe --tags --abbrev=0 "origin/${BASE}" 2>/dev/null || true)"
+          {
+            echo "## Release ${VERSION}"
+            echo
+            echo "Automated release preparation (\`grunt prepare:${{ inputs.module }}:${VERSION}\`):"
+            echo "- Version bumped in the plugin header, version constants and \`Stable tag\`"
+            echo "- \`@since x.x\` / \`@deprecated x.x\` replaced"
+            echo "- Assets rebuilt (if the module registers concat/less)"
+            echo "- POT regenerated, PO files merged, MO files compiled"
+            echo
+            if [ -n "$LAST_TAG" ]; then
+              echo "### Changes since ${LAST_TAG}"
+              git log --no-merges --pretty=format:'- %s' "${LAST_TAG}..origin/${BASE}"
+              echo
+            fi
+            echo
+            echo "Merging this PR tags \`v${VERSION}\` and attaches the release zip to a GitHub release."
+          } > "$RUNNER_TEMP/pr-body.md"
+          gh pr create \
+            --title "Release ${VERSION}" \
+            --body-file "$RUNNER_TEMP/pr-body.md" \
+            --base "$BASE" \
+            --head "release/${VERSION}"
+
+  publish:
+    if: >-
+      (github.event_name == 'workflow_dispatch' && inputs.phase == 'publish') ||
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'release/'))
+    runs-on: ubuntu-latest
+    concurrency:
+      group: addon-release-${{ github.repository }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+
+    steps:
+      - name: Resolve version
+        id: version
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            VERSION="${HEAD_REF#release/}"
+          else
+            VERSION="$INPUT_VERSION"
+          fi
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+            echo "::error::Invalid version '${VERSION}'"
+            exit 1
+          fi
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout add-on
+        uses: actions/checkout@v4
+        with:
+          # The merge commit for PR merges, the base branch tip for manual runs.
+          ref: ${{ github.event.pull_request.merge_commit_sha || inputs.base-branch }}
+          path: ${{ env.ADDON_DIR }}
+          token: ${{ secrets.GH_TOKEN || github.token }}
+
+      - name: Checkout core
+        uses: actions/checkout@v4
+        with:
+          repository: Strategy11/another-wordpress-classifieds-plugin
+          ref: ${{ inputs.core-ref }}
+          path: ${{ env.CORE_DIR }}
+
+      - name: Check plugin header matches version
+        working-directory: ${{ env.ADDON_DIR }}
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if ! grep -lE "^[[:space:]*]*Version:[[:space:]]*${VERSION//./\\.}[[:space:]]*$" *.php >/dev/null; then
+            echo "::error::No root PHP file has 'Version: ${VERSION}'. Was the release PR merged?"
+            exit 1
+          fi
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+          cache-dependency-path: ${{ env.CORE_DIR }}/pnpm-lock.yaml
+
+      - name: Install core dependencies
+        working-directory: ${{ env.CORE_DIR }}
+        run: pnpm install --frozen-lockfile
+
+      - name: Build zip
+        working-directory: ${{ env.CORE_DIR }}
+        run: pnpm exec grunt package:${{ inputs.module }}:${{ steps.version.outputs.version }}
+
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ADDON_DIR }}-${{ steps.version.outputs.version }}
+          path: ${{ env.ADDON_DIR }}-${{ steps.version.outputs.version }}.zip
+          if-no-files-found: error
+
+      - name: Create tag and release
+        working-directory: ${{ env.ADDON_DIR }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN || github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git tag "v${VERSION}"
+          git push origin "v${VERSION}"
+          gh release create "v${VERSION}" \
+            "${GITHUB_WORKSPACE}/${ADDON_DIR}-${VERSION}.zip" \
+            --title "v${VERSION}" \
+            --generate-notes

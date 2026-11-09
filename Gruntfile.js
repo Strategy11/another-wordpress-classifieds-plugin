@@ -121,7 +121,7 @@ module.exports = function( grunt ) {
 						to: 'define( \'' + config.version + '\', \'<%= compress.version %>\''
 					},
 					{
-						from: /define\( '(AWPCP_VERSION|AWPCP_[A-Z0-9_]+_MODULE_(?:DB_)?VERSION)', '(\d+\.)(\d+\.)?(\*|\d+)?([\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?'/g,
+						from: /define\( '(AWPCP_VERSION|AWPCP_[A-Z0-9_]+_MODULE_(?:DB_)?VERSION|AWP_MODULE_UPDATER_VERSION)', '(\d+\.)(\d+\.)?(\*|\d+)?([\da-z-A-Z-]+(?:\.[\da-z-A-Z-]+)*)?'/g,
 						to: 'define( \'$1\', \'<%= compress.version %>\''
 					}
 				]
@@ -413,6 +413,15 @@ module.exports = function( grunt ) {
 			return;
 		}
 
+		grunt.task.run('prepare:' + t + ':' + v );
+		grunt.task.run('package:' + t + ':' + v );
+	});
+
+	// Everything a release commits: version bump, built assets, translations.
+	// Used by the add-on release workflow; fails instead of skipping unknown modules.
+	grunt.registerTask('prepare', function(t, v) {
+		grunt.wpbdp.requireModule( t, v );
+
 		grunt.config.set('compress.version', v);
 
 		grunt.task.run('setversion:' + t + ':' + v );
@@ -421,7 +430,24 @@ module.exports = function( grunt ) {
 		}
 		grunt.task.run('minify:' + t);
 		grunt.task.run('i18n:' + t);
+	});
+
+	// Builds ../<folder>-<version>.zip from the module's current files.
+	grunt.registerTask('package', function(t, v) {
+		grunt.wpbdp.requireModule( t, v );
+
+		grunt.config.set('compress.version', v);
 		grunt.task.run('compress:' + t );
 	});
+
+	grunt.wpbdp.requireModule = function( t, v ) {
+		if ( ! t || ! v ) {
+			grunt.fail.fatal( 'Usage: <task>:<module>:<version>' );
+		}
+
+		if ( 'undefined' === typeof grunt.config.get( 'compress.' + t ) ) {
+			grunt.fail.fatal( 'Module "' + t + '" is not registered in grunt/grunt.js' );
+		}
+	};
 
 };
