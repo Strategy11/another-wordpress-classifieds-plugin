@@ -791,7 +791,7 @@ function awpcp_do_placeholder_contact_phone( $ad, $placeholder ) {
  * @since 4.0.11
  */
 function awpcp_do_placeholder_contact_email( $ad, $placeholder ) {
-    return esc_html( stripslashes( awpcp_listing_renderer()->get_contact_email( $ad ) ) );
+    return awpcp_neutralize_shortcodes( esc_html( stripslashes( awpcp_listing_renderer()->get_contact_email( $ad ) ) ) );
 }
 
 /**
