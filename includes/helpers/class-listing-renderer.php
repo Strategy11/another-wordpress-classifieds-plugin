@@ -206,7 +206,7 @@ class AWPCP_ListingRenderer {
      * Returns the date used by the date-based listing orders: the renewed
      * date if the listing was renewed after it started, or its start date.
      *
-     * @since x.x
+     * @since 4.4.11
      */
     public function get_most_recent_start_date_formatted( $listing ) {
         $date = $this->wordpress->get_post_meta( $listing->ID, '_awpcp_most_recent_start_date', true );

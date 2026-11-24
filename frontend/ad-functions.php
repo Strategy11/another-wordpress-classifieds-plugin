@@ -200,7 +200,7 @@ function awpcp_ad_posted_user_email( $ad, $transaction = null, $message='' ) {
  * $most_recent_start_date placeholder was added is treated as the default,
  * so listings show the same date the date-based orders use.
  *
- * @since x.x
+ * @since 4.4.11
  *
  * @return string
  */
