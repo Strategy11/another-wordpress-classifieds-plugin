@@ -267,8 +267,6 @@ function awpcp_do_placeholders( $ad, $content, $context ) {
  * @since 3.6.4
  */
 function awpcp_replace_placeholders( $placeholders, $listing, $content, $context ) {
-    $original_content = $content;
-
     // Remove old $quers/ placeholders.
     $content = str_replace( '$quers/', '', $content );
 
@@ -277,11 +275,11 @@ function awpcp_replace_placeholders( $placeholders, $listing, $content, $context
     preg_match_all( "/$pattern/s", $content, $matches );
 
     $available_placeholders = awpcp_content_placeholders();
-    $processed_placeholders = array();
+    $replacements           = array();
     rsort( $matches[0] );
 
     foreach ( $matches[0] as $match ) {
-        if ( isset( $processed_placeholders[ $match ] ) ) {
+        if ( isset( $replacements[ $match ] ) ) {
             continue;
         }
 
@@ -294,12 +292,13 @@ function awpcp_replace_placeholders( $placeholders, $listing, $content, $context
                 $replacement = '';
             }
 
-            $content                          = str_replace( $match, $replacement, $content );
-            $processed_placeholders[ $match ] = true;
+            $replacements[ $match ] = (string) $replacement;
         }
     }
 
-    return $content;
+    // Replace all placeholders in a single pass, so content inserted by one
+    // placeholder (which may include user input) is never parsed for more placeholders.
+    return strtr( $content, $replacements );
 }
 
 /**
@@ -482,7 +481,7 @@ function awpcp_do_placeholder_contact_name( $ad, $placeholder ) {
  * @since 3.0
  */
 function awpcp_do_placeholder_website_url( $ad, $placeholder ) {
-    return awpcp_neutralize_shortcodes( awpcp_listing_renderer()->get_website_url( $ad ) );
+    return awpcp_neutralize_shortcodes( esc_url( awpcp_listing_renderer()->get_website_url( $ad ) ) );
 }
 
 /**
@@ -497,7 +496,7 @@ function awpcp_do_placeholder_website_link( $ad, $placeholder ) {
     if ( ( ! $login_required || is_user_logged_in() ) && ! empty( $website_url ) ) {
         $nofollow      = get_awpcp_option( 'visitwebsitelinknofollow' ) ? 'rel="nofollow"' : '';
         $escaped_label = esc_html( __( 'Visit Website', 'another-wordpress-classifieds-plugin' ) );
-        $escaped_url   = awpcp_neutralize_shortcodes( awpcp_esc_attr( $website_url ) );
+        $escaped_url   = awpcp_neutralize_shortcodes( esc_url( $website_url ) );
 
         $content                           = '<br/><a %s href="%s" target="_blank">%s</a>';
         $content                           = sprintf( $content, $nofollow, $escaped_url, $escaped_label );
@@ -770,6 +769,8 @@ function awpcp_do_placeholder_contact_phone( $ad, $placeholder ) {
             $allowed = intval( strlen( $phone ) * 0.4 );
             $phone   = substr( $phone, 0, $allowed ) . str_repeat( 'X', strlen( $phone ) - $allowed );
         }
+
+        $phone = esc_html( $phone );
 
         $content = sprintf(
             '<br/><label>%s:</label> %s',
