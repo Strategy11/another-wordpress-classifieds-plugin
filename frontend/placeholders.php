@@ -302,6 +302,21 @@ function awpcp_replace_placeholders( $placeholders, $listing, $content, $context
 }
 
 /**
+ * Turns square brackets into HTML entities so user-supplied values printed in a
+ * listing layout can't be parsed as shortcodes when the layout goes through
+ * `do_shortcode()`. Browsers render the entities as brackets.
+ *
+ * @since x.x
+ *
+ * @param string $text Text that has already been escaped for output.
+ *
+ * @return string
+ */
+function awpcp_neutralize_shortcodes( $text ) {
+    return str_replace( array( '[', ']' ), array( '&#91;', '&#93;' ), (string) $text );
+}
+
+/**
  * @since 3.0
  */
 function awpcp_do_placeholder_url( $ad, $placeholder ) {
@@ -319,8 +334,9 @@ function awpcp_do_placeholder_title( $ad, $placeholder ) {
 
     $title_link = sprintf( '<a href="%s">%s</a>', esc_attr( $url ), esc_html( $title ) );
     $title_link = apply_filters( 'awpcp_title_link_placeholder', $title_link, $ad, $title, $url );
+    $title_link = awpcp_neutralize_shortcodes( $title_link );
 
-    $replacements['title']      = esc_html( $title );
+    $replacements['title']      = awpcp_neutralize_shortcodes( esc_html( $title ) );
     $replacements['ad_title']   = $title_link;
     $replacements['title_link'] = $title_link;
 
@@ -458,14 +474,14 @@ function awpcp_do_placeholder_contact_name( $ad, $placeholder ) {
         $contact_name = awpcp_listing_renderer()->get_contact_name( $ad );
     }
 
-    return esc_html( stripslashes( $contact_name ) );
+    return awpcp_neutralize_shortcodes( esc_html( stripslashes( $contact_name ) ) );
 }
 
 /**
  * @since 3.0
  */
 function awpcp_do_placeholder_website_url( $ad, $placeholder ) {
-    return esc_url( awpcp_listing_renderer()->get_website_url( $ad ) );
+    return awpcp_neutralize_shortcodes( esc_url( awpcp_listing_renderer()->get_website_url( $ad ) ) );
 }
 
 /**
@@ -480,7 +496,7 @@ function awpcp_do_placeholder_website_link( $ad, $placeholder ) {
     if ( ( ! $login_required || is_user_logged_in() ) && ! empty( $website_url ) ) {
         $nofollow      = get_awpcp_option( 'visitwebsitelinknofollow' ) ? 'rel="nofollow"' : '';
         $escaped_label = esc_html( __( 'Visit Website', 'another-wordpress-classifieds-plugin' ) );
-        $escaped_url   = esc_url( $website_url );
+        $escaped_url   = awpcp_neutralize_shortcodes( esc_url( $website_url ) );
 
         $content                           = '<br/><a %s href="%s" target="_blank">%s</a>';
         $content                           = sprintf( $content, $nofollow, $escaped_url, $escaped_label );
@@ -687,7 +703,7 @@ function awpcp_do_placeholder_location( $ad, $placeholder ) {
         $replacements['awpcp_country_display'] = '';
     }
 
-    return $replacements[ $placeholder ];
+    return awpcp_neutralize_shortcodes( $replacements[ $placeholder ] );
 }
 
 /**
@@ -769,14 +785,14 @@ function awpcp_do_placeholder_contact_phone( $ad, $placeholder ) {
         $replacements['contact_phone']  = '';
     }
 
-    return $replacements[ $placeholder ];
+    return awpcp_neutralize_shortcodes( $replacements[ $placeholder ] );
 }
 
 /**
  * @since 4.0.11
  */
 function awpcp_do_placeholder_contact_email( $ad, $placeholder ) {
-    return esc_html( stripslashes( awpcp_listing_renderer()->get_contact_email( $ad ) ) );
+    return awpcp_neutralize_shortcodes( esc_html( stripslashes( awpcp_listing_renderer()->get_contact_email( $ad ) ) ) );
 }
 
 /**
