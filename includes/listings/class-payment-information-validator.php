@@ -88,7 +88,7 @@ class AWPCP_PaymentInformationValidator {
      * listings keep working, but non-administrator users must not be able to
      * select it on paid boards. Administrators skip payment steps anyway.
      *
-     * @since x.x
+     * @since 4.4.11
      *
      * @param object $payment_term The selected payment term.
      *
