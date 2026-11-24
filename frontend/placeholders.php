@@ -306,7 +306,7 @@ function awpcp_replace_placeholders( $placeholders, $listing, $content, $context
  * listing layout can't be parsed as shortcodes when the layout goes through
  * `do_shortcode()`. Browsers render the entities as brackets.
  *
- * @since x.x
+ * @since 4.4.11
  *
  * @param string $text Text that has already been escaped for output.
  *
