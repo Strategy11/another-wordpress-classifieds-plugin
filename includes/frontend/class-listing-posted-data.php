@@ -172,7 +172,7 @@ class AWPCP_ListingPostedData {
      */
     private function prepare_title( $title, $characters_allowed ) {
         // Strip shortcodes so they are not executed when the title is rendered in listing layouts.
-        $title = strip_shortcodes( $title );
+        $title = awpcp_strip_shortcodes( $title );
 
         if ( $characters_allowed > 0 && awpcp_utf8_strlen( $title ) > $characters_allowed ) {
             $title = awpcp_utf8_substr( $title, 0, $characters_allowed );
@@ -187,14 +187,15 @@ class AWPCP_ListingPostedData {
     private function prepare_content( $content, $characters_allowed ) {
         $allow_html = (bool) get_awpcp_option( 'allowhtmlinadtext' );
 
-        // Strip shortcodes to prevent execution of [embed] and other shortcodes in user-submitted content (SSRF prevention).
-        $content = strip_shortcodes( $content );
-
         if ( $allow_html ) {
             $content = wp_kses_post( $content );
         } else {
             $content = wp_strip_all_tags( $content );
         }
+
+        // Strip shortcodes after tags are removed so tags can't split them (prevents [embed] SSRF and other shortcodes).
+        // Shortcodes inside HTML attributes are kept here and neutralized when the listing is displayed.
+        $content = awpcp_strip_shortcodes( $content );
 
         if ( $characters_allowed > 0 && awpcp_utf8_strlen( $content ) > $characters_allowed ) {
             $content = awpcp_utf8_substr( $content, 0, $characters_allowed );
