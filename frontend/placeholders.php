@@ -317,6 +317,65 @@ function awpcp_neutralize_shortcodes( $text ) {
 }
 
 /**
+ * Whether shortcodes in user-submitted listing content are allowed to run.
+ *
+ * @since x.x
+ *
+ * @return bool
+ */
+function awpcp_listing_content_shortcodes_enabled() {
+    /**
+     * Allow disabling the stripping of shortcodes in listings content.
+     *
+     * @since 4.4.4
+     *
+     * @param bool $disabled Whether to let shortcodes in listings content run. Default false.
+     */
+    return (bool) apply_filters( 'awpcp_disable_listing_shortcode_stripping', false );
+}
+
+/**
+ * Prepares raw listing content for `the_content` so user-submitted shortcodes
+ * can't run: registered shortcodes are removed, and the ones left over from an
+ * escaped [[tag]] get their brackets turned into HTML entities. Other brackets,
+ * for example in inline scripts, are kept as they are.
+ *
+ * @since x.x
+ *
+ * @param string $content Raw listing content.
+ *
+ * @return string
+ */
+function awpcp_neutralize_listing_content_shortcodes( $content ) {
+    global $shortcode_tags;
+
+    if ( awpcp_listing_content_shortcodes_enabled() ) {
+        return $content;
+    }
+
+    $content = strip_shortcodes( (string) $content );
+
+    if ( empty( $shortcode_tags ) || false === strpos( $content, '[' ) ) {
+        return $content;
+    }
+
+    return preg_replace_callback( '/' . get_shortcode_regex() . '/', 'awpcp_neutralize_shortcode_match', $content );
+}
+
+/**
+ * Callback for preg_replace_callback() that neutralizes one shortcode match.
+ *
+ * @since x.x
+ *
+ * @param array $matches Shortcode regex matches.
+ *
+ * @return string
+ */
+function awpcp_neutralize_shortcode_match( $matches ) {
+    return awpcp_neutralize_shortcodes( $matches[0] );
+}
+
+/**
  * @since 3.0
  */
 function awpcp_do_placeholder_url( $ad, $placeholder ) {

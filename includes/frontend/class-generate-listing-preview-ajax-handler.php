@@ -80,7 +80,7 @@ class AWPCP_GenerateListingPreviewAjaxHandler extends AWPCP_AjaxHandler {
         }
 
         // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WordPress core filter applied so other plugins/themes can format the listing body.
-        $content = apply_filters( 'the_content', $listing->post_content );
+        $content = apply_filters( 'the_content', awpcp_neutralize_listing_content_shortcodes( $listing->post_content ) );
         $preview = $this->listings_content_renderer->render_content_without_notices( $content, $listing );
 
         return $this->success( [ 'preview' => $preview ] );
