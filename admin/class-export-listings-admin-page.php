@@ -99,6 +99,15 @@ class AWPCP_ExportListingsAdminPage {
 
         AWPCP_CSVExporter::delete_export( $export_id );
 
+        $this->end_request();
+    }
+
+    /**
+     * Stops the request once the file has been sent.
+     *
+     * @since x.x
+     */
+    protected function end_request() {
         exit;
     }
 
@@ -107,7 +116,7 @@ class AWPCP_ExportListingsAdminPage {
      *
      * @param string $file_path Path to the file to send.
      */
-    private function send_file( $file_path ) {
+    protected function send_file( $file_path ) {
         while ( ob_get_level() ) {
             ob_end_clean();
         }
