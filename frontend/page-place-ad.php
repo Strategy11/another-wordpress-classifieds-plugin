@@ -1192,7 +1192,7 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
         $$title = $title;
 
         // Strip shortcodes so they are not executed when the title is rendered in listing layouts.
-        $title = strip_shortcodes( $title );
+        $title = awpcp_strip_shortcodes( $title );
 
         if ( $characters > 0 && awpcp_utf8_strlen( $title ) > $characters ) {
             $title = awpcp_utf8_substr( $title, 0, $characters );
@@ -1204,14 +1204,15 @@ class AWPCP_Place_Ad_Page extends AWPCP_Page {
     protected function prepare_ad_details($details, $characters) {
         $allow_html = (bool) get_awpcp_option('allowhtmlinadtext');
 
-        // Strip shortcodes to prevent execution of [embed] and other shortcodes in user-submitted content (SSRF prevention).
-        $details = strip_shortcodes( $details );
-
         if (!$allow_html) {
             $details = wp_strip_all_tags( $details );
         } else {
             $details = wp_kses_post( $details );
         }
+
+        // Strip shortcodes after tags are removed so tags can't split them (prevents [embed] SSRF and other shortcodes).
+        // Shortcodes inside HTML attributes are kept here and neutralized when the listing is displayed.
+        $details = awpcp_strip_shortcodes( $details );
 
         if ( $characters > 0 && awpcp_utf8_strlen( $details ) > $characters ) {
             $details = awpcp_utf8_substr( $details, 0, $characters );

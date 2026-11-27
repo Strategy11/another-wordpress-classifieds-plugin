@@ -20,6 +20,6 @@ endforeach;
 // TODO: ContentRenderer or the rendered content itself should be available as a parameter for this view.
 awpcp()->container['ListingsContentRenderer']->show_content_without_notices(
     // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WordPress core filter applied so other plugins/themes can format the listing body.
-    apply_filters( 'the_content', $ad->post_content ),
+    apply_filters( 'the_content', awpcp_neutralize_listing_content_shortcodes( $ad->post_content ) ),
     $ad
 );

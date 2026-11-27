@@ -36,14 +36,27 @@ class AWPCP_Show_Ad_Page {
     }
 
     /**
-     * Acts on awpcp-ad-details filter to add oEmbed support
+     * Acts on awpcp-ad-details filter to add oEmbed support.
+     *
+     * The [embed] shortcode only runs when shortcodes in listing content are
+     * enabled, since this filter also renders details outside `the_content`.
+     *
+     * @since 3.0
+     *
+     * @param string $content Listing details.
+     *
+     * @return string
      */
     public function oembed( $content ) {
         if ( get_awpcp_option( 'allowhtmlinadtext' ) ) {
             global $wp_embed;
             $usecache           = $wp_embed->usecache;
             $wp_embed->usecache = false;
-            $content            = $wp_embed->run_shortcode( $content );
+
+            if ( awpcp_listing_content_shortcodes_enabled() ) {
+                $content = $wp_embed->run_shortcode( $content );
+            }
+
             $content            = $wp_embed->autoembed( $content );
             $wp_embed->usecache = $usecache;
         }

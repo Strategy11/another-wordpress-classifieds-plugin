@@ -56,7 +56,8 @@ class AWPCP_ListingsContent {
     }
 
     /**
-     * Remove shortcodes from listings content.
+     * Remove shortcodes from listings content and neutralize leftover brackets,
+     * unless shortcodes in listing content are enabled.
      *
      * @since 4.3.6
      *
@@ -71,17 +72,7 @@ class AWPCP_ListingsContent {
             return $content;
         }
 
-        /**
-         * Allow disabling the rendering of shortcodes in listings content.
-         * We run it after the single listing check to avoid unnecessary callbacks.
-         *
-         * @since 4.4.4
-         */
-        if ( apply_filters( 'awpcp_disable_listing_shortcode_stripping', false ) ) {
-            return $content;
-        }
-
-        return strip_shortcodes($content);
+        return awpcp_neutralize_listing_content_shortcodes( $content );
     }
 
     /**

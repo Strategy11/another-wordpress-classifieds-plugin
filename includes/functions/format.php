@@ -76,6 +76,37 @@ function awpcp_string_with_names( $names ) {
     return $string;
 }
 
+/**
+ * Removes registered shortcodes until none are left.
+ *
+ * A single strip_shortcodes() pass turns an escaped shortcode such as
+ * [[tag]] into a live [tag], so extra bracket pairs would survive it.
+ * The number of passes is capped; anything still nested after that is
+ * neutralized instead.
+ *
+ * @since x.x
+ *
+ * @param string $text Text to clean.
+ *
+ * @return string
+ */
+function awpcp_strip_shortcodes( $text ) {
+    $text = (string) $text;
+
+    // Each pass removes one level of [[escaping]]. Cap the passes so deeply nested input can't tie up the worker.
+    for ( $i = 0; $i < 5; $i++ ) {
+        $previous = $text;
+        $text     = strip_shortcodes( $text );
+
+        if ( $text === $previous || false === strpos( $text, '[' ) ) {
+            return $text;
+        }
+    }
+
+    // Still nested after the cap: neutralize what is left in one linear pass so it can't run.
+    return awpcp_neutralize_listing_content_shortcodes( $text );
+}
+
 function awpcp_get_digits_from_string( $string ) {
     if ( ! preg_match_all( '/\d+/', $string, $matches ) ) {
         return '';
@@ -91,7 +122,7 @@ function awpcp_trim_html_content( $content, $word_count ) {
     $allowed_tags = array_keys( wp_kses_allowed_html( 'post' ) );
     $allowed_tags = '<' . implode( '>,<', $allowed_tags ) . '>';
 
-    $content = strip_shortcodes( $content );
+    $content = awpcp_strip_shortcodes( $content );
     $content = strip_tags( $content, $allowed_tags );
 
     $tokens = array();
