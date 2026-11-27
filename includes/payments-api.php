@@ -41,6 +41,7 @@ class AWPCP_PaymentsAPI {
         }
 
         add_action('awpcp-transaction-status-updated', array($this, 'update_account_balance'), 10, 1);
+        add_action( 'awpcp-process-payment-transaction', array( $this, 'maybe_revert_credits_purchase' ) );
     }
 
     public function register_payment_term_types() {
@@ -137,6 +138,33 @@ class AWPCP_PaymentsAPI {
         }
 
         $transaction->set( 'credits-purchase-processed', true );
+    }
+
+    /**
+     * Removes the credits of a credit plan purchase whose payment failed or
+     * was reversed after the credits were added.
+     *
+     * @since x.x
+     *
+     * @param AWPCP_Payment_Transaction $transaction The payment transaction.
+     */
+    public function maybe_revert_credits_purchase( $transaction ) {
+        if ( ! $transaction->payment_is_failed() || ! $transaction->get( 'credits-purchase-processed' ) ) {
+            return;
+        }
+
+        if ( $transaction->get( 'credits-purchase-reverted' ) ) {
+            return;
+        }
+
+        $credit_plan = $this->get_transaction_credit_plan( $transaction );
+
+        if ( ! is_null( $credit_plan ) ) {
+            $balance = $this->get_account_balance( $transaction->user_id );
+            $this->set_account_balance( $transaction->user_id, $balance - $credit_plan->credits );
+        }
+
+        $transaction->set( 'credits-purchase-reverted', true );
     }
 
     private function maybe_decrease_account_balance( $transaction ) {
