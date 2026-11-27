@@ -72,7 +72,7 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
             return $this->render('content', $content );
         }
 
-        if ( ! in_array( $action, array( 'payment-completed', 'finish', true ) ) && ! $this->listing_renderer->is_about_to_expire( $ad ) && ! $this->listing_renderer->has_expired( $ad ) ) {
+        if ( ! $this->is_returning_from_checkout( $ad ) && ! $this->listing_renderer->is_about_to_expire( $ad ) && ! $this->listing_renderer->has_expired( $ad ) ) {
             $message = __( 'That Ad doesn\'t need to be renewed.', 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
         }
@@ -80,6 +80,11 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
         if ( ! $this->verify_renew_ad_hash( $ad ) ) {
             $message = __("There was an error trying to renew your Ad. The URL is not valid. Please contact the Administrator of this site for further assistance.", 'another-wordpress-classifieds-plugin');
             return $this->render('content', awpcp_print_error($message));
+        }
+
+        if ( $this->is_renewal_blocked_by_moderation( $ad ) ) {
+            $message = __( 'This Ad can\'t be renewed because it is disabled or waiting for approval. Please contact the Administrator of this site for further assistance.', 'another-wordpress-classifieds-plugin' );
+            return $this->render( 'content', awpcp_print_error( $message ) );
         }
 
         $transaction = $this->get_transaction();
@@ -139,6 +144,50 @@ class AWPCP_RenewAdPage extends AWPCP_Place_Ad_Page {
             default:
                 return $implementation->order_step();
         }
+    }
+
+    /**
+     * Whether the request carries a paid renew transaction for this listing.
+     * The listing may no longer be about to expire once it has been renewed,
+     * so the eligibility check is skipped. The step is not trusted here: a
+     * paid transaction always continues to the payment completed or finish step.
+     *
+     * @since x.x
+     *
+     * @param object $ad An instance of WP_Post.
+     *
+     * @return bool
+     */
+    private function is_returning_from_checkout( $ad ) {
+        $transaction = $this->get_transaction();
+
+        if ( is_null( $transaction ) || $transaction->get( 'context' ) !== $this->context ) {
+            return false;
+        }
+
+        if ( absint( $transaction->get( 'ad-id' ) ) !== absint( $ad->ID ) ) {
+            return false;
+        }
+
+        return $transaction->is_payment_completed() || $transaction->is_completed();
+    }
+
+    /**
+     * Owners can't renew listings that a moderator disabled or that are
+     * waiting for approval, because renewing would publish them.
+     *
+     * @since x.x
+     *
+     * @param object $ad An instance of WP_Post.
+     *
+     * @return bool
+     */
+    private function is_renewal_blocked_by_moderation( $ad ) {
+        if ( awpcp_current_user_is_moderator() ) {
+            return false;
+        }
+
+        return $this->listing_renderer->is_disabled( $ad ) || $this->listing_renderer->is_pending_approval( $ad );
     }
 
     protected function get_renew_ad_page_implementation($ad) {
