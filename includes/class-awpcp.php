@@ -346,6 +346,8 @@ class AWPCP {
 
         add_filter( 'terms_clauses', [ $term_query_integration, 'terms_clauses' ], 10, 3 );
 
+        add_action( 'awpcp_csv_export_cleanup', [ 'AWPCP_CSVExporter', 'delete_export' ] );
+
         $this->container['DeleteListingEventListener']->register();
         $this->container['RemoveListingRegionsService']->register();
 
@@ -727,6 +729,7 @@ class AWPCP {
 
         $export_csv = $this->container['ExportListingsAdminPage'];
         add_action( 'wp_ajax_awpcp-csv-export', [ $export_csv, 'ajax' ] );
+        add_action( 'wp_ajax_awpcp-csv-export-download', [ $export_csv, 'download' ] );
 
         $handler = $this->container['UpdatePaymentTerm'];
         add_action( 'wp_ajax_awpcp-update-payment-term', array( $handler, 'ajax' ) );

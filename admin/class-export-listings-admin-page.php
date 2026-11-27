@@ -69,9 +69,59 @@ class AWPCP_ExportListingsAdminPage {
         $response['exported'] = $state ? $state['exported'] : 0;
         $response['filesize'] = $state ? size_format( $state['filesize'] ) : 0;
         $response['isDone']   = $state ? $state['done'] : false;
-        $response['fileurl']  = $state ? ( $state['done'] ? $export->get_file_url() : '' ) : '';
-        $response['filename'] = $state ? ( $state['done'] ? basename( $export->get_file_url() ) : '' ) : '';
+        $is_done              = $state && $state['done'];
+        $response['fileurl']  = $is_done ? $export->get_file_url() : '';
+        $response['filename'] = $is_done ? basename( $export->get_file_path() ) : '';
 
         wp_send_json( $response );
+    }
+
+    /**
+     * Streams a finished export to an administrator and removes it from the server.
+     *
+     * @since x.x
+     */
+    public function download() {
+        check_ajax_referer( 'awpcp-csv-export-download' );
+
+        if ( ! awpcp_current_user_is_admin() ) {
+            wp_die( esc_html__( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ), '', array( 'response' => 403 ) );
+        }
+
+        $export_id = awpcp_get_var( array( 'param' => 'export' ) );
+        $file_path = AWPCP_CSVExporter::get_export_file( $export_id );
+
+        if ( ! $file_path ) {
+            wp_die( esc_html__( 'The requested export file does not exist.', 'another-wordpress-classifieds-plugin' ), '', array( 'response' => 404 ) );
+        }
+
+        $this->send_file( $file_path );
+
+        AWPCP_CSVExporter::delete_export( $export_id );
+
+        exit;
+    }
+
+    /**
+     * @since x.x
+     *
+     * @param string $file_path Path to the file to send.
+     */
+    private function send_file( $file_path ) {
+        while ( ob_get_level() ) {
+            ob_end_clean();
+        }
+
+        $filename     = basename( $file_path );
+        $content_type = 'export.zip' === $filename ? 'application/zip' : 'text/csv; charset=' . get_option( 'blog_charset' );
+
+        nocache_headers();
+        header( 'Content-Description: File Transfer' );
+        header( 'Content-Type: ' . $content_type );
+        header( 'Content-Disposition: attachment; filename=' . $filename );
+        header( 'Content-Length: ' . filesize( $file_path ) );
+
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_readfile -- Streams large exports without loading them into memory.
+        readfile( $file_path );
     }
 }

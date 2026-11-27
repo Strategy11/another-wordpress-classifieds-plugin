@@ -398,6 +398,10 @@ class AWPCP_DebugAdminPage {
         $safe_settings['awpcp_db_version']           = get_option( 'awpcp_db_version' );
 
         foreach ( $all_settings as $setting ) {
+            if ( 'password' === $setting['type'] ) {
+                continue;
+            }
+
             $safe_settings[ $setting['id'] ] = $this->sanitize_setting_value( $this->settings->get_option( $setting['id'] ) );
         }
 
@@ -450,6 +454,9 @@ class AWPCP_DebugAdminPage {
             'awpcpadminemail',
             'paypalemail',
             '2checkout',
+            '2checkout_secret_word',
+            'recaptcha-private-key',
+            'facebook-app-secret',
             'smtphost',
             'smtpport',
             'smtpusername',
