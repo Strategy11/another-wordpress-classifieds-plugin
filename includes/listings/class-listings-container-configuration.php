@@ -187,7 +187,9 @@ class AWPCP_ListingsContainerConfiguration implements AWPCP_ContainerConfigurati
                 return new AWPCP_ListingsViewCounter(
                     awpcp_ajax_response(),
                     $container['Request'],
-                    $container['ListingsLogic']
+                    $container['ListingsLogic'],
+                    $container['ListingsCollection'],
+                    $container['ListingRenderer']
                 );
             }
         );

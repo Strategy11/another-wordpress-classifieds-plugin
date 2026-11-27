@@ -7,6 +7,20 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+/**
+ * Whether the current user can see all valid listings of the given user,
+ * including the ones that aren't public. Only the owner and moderators can.
+ *
+ * @since x.x
+ *
+ * @param int $user_id The ID of the listings owner.
+ *
+ * @return bool
+ */
+function awpcp_current_user_can_see_user_listings( $user_id ) {
+    return get_current_user_id() === absint( $user_id ) || awpcp_current_user_is_moderator();
+}
+
 function awpcp_display_listings( $query_vars, $context, $options ) {
     $options = wp_parse_args( $options, array(
         'page'                       => false,
@@ -45,10 +59,10 @@ function awpcp_display_listings( $query_vars, $context, $options ) {
 
     $listings_collection = awpcp_listings_collection();
 
-    if ($context === 'user-listings-shortcode') {
-        $listings = $listings_collection->find_user_listings( $query_vars['author'], $query_vars );
-    }
-    else {
+    if ( $context === 'user-listings-shortcode' ) {
+        $finder   = awpcp_current_user_can_see_user_listings( $query_vars['author'] ) ? 'find_user_listings' : 'find_user_enabled_listings';
+        $listings = $listings_collection->$finder( $query_vars['author'], $query_vars );
+    } else {
         $listings = $listings_collection->find_enabled_listings( $query_vars );
     }
     $query = $listings_collection->get_last_query();

@@ -25,11 +25,16 @@ class AWPCP_Meta {
     private $meta_tags_genertor;
     private $query;
     private $request = null;
+    private $listing_renderer;
 
     private $doing_opengraph          = false;
     public $doin_description_meta_tag = false;
 
-    public function __construct( $listings_collection, $categories_collection, $title_builder, $meta_tags_genertor, $query, $request ) {
+    /**
+     * @since x.x Added the `$listing_renderer` parameter.
+     */
+    public function __construct( $listings_collection, $categories_collection, $title_builder, $meta_tags_genertor, $query, $request, $listing_renderer = null ) {
+        $this->listing_renderer      = $listing_renderer ? $listing_renderer : awpcp_listing_renderer();
         $this->listings_collection   = $listings_collection;
         $this->categories_collection = $categories_collection;
         $this->title_builder         = $title_builder;
@@ -86,7 +91,11 @@ class AWPCP_Meta {
             $this->ad = null;
         }
 
-        $this->properties = awpcp_get_ad_share_info( $this->ad_id );
+        if ( $this->ad && ! $this->listing_renderer->current_user_can_view( $this->ad ) ) {
+            $this->ad = null;
+        }
+
+        $this->properties = $this->ad ? awpcp_get_ad_share_info( $this->ad_id ) : array();
     }
 
     private function find_current_category_id() {
