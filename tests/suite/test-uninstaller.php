@@ -78,6 +78,7 @@ class AWPCP_UninstallerTest extends AWPCP_UnitTestCase {
         Functions\when( 'esc_sql' )->justReturn( '' );
         Functions\when( 'delete_option' )->justReturn( true );
         Functions\when( 'wp_clear_scheduled_hook' )->justReturn( true );
+        Functions\when( 'wp_unschedule_hook' )->justReturn( true );
         Functions\when( 'get_option' )->justReturn( [] );
         Functions\when( 'deactivate_plugins' )->justReturn( null );
 
