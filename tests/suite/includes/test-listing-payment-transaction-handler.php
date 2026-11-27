@@ -3,6 +3,8 @@
  * @package AWPCP\Tests\Payments
  */
 
+use Brain\Monkey\Functions;
+
 /**
  * @group core
  */
@@ -126,14 +128,43 @@ class AWPCP_TestListingPaymentTransactionHandler extends AWPCP_UnitTestCase {
         Phake::when( $this->transaction )->get( 'ad-consolidated-at' )->thenReturn( date( 'Y-m-d H:i:s' ) );
         Phake::when( $this->transaction )->get( 'previous-ad-payment-status' )->thenReturn( AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED );
 
+        Functions\when( 'current_time' )->justReturn( '2026-01-01 00:00:00' );
+
         $subject = $this->get_test_subject();
 
         // Execution.
         $subject->process_payment_transaction( $this->transaction );
 
         // Verification.
-        Phake::verify( $this->listings_logic )->disable_listing( Phake::anyParameters() );
+        Phake::verify( $this->listings_logic )->disable_listing( $this->listing );
         Phake::verify( $this->listings_logic, Phake::times( 0 ) )->consolidate_new_ad( $this->listing, $this->transaction );
+    }
+
+    /**
+     * @since x.x
+     */
+    public function test_listing_is_disabled_once_when_its_payment_fails_later() {
+        Phake::when( $this->transaction )->is_completed()->thenReturn( true );
+        Phake::when( $this->transaction )->was_payment_successful()->thenReturn( false );
+        Phake::when( $this->transaction )->did_payment_failed()->thenReturn( true );
+        Phake::when( $this->transaction )->payment_is_failed()->thenReturn( true );
+        Phake::when( $this->transaction )->get( 'ad-consolidated-at' )->thenReturn( '2026-01-01 00:00:00' );
+        Phake::when( $this->transaction )->get( 'previous-ad-payment-status' )->thenReturn( 'Unpaid' );
+
+        Functions\when( 'current_time' )->justReturn( '2026-01-02 00:00:00' );
+
+        $subject = $this->get_test_subject();
+
+        $subject->process_payment_transaction( $this->transaction );
+
+        Phake::verify( $this->listings_logic )->disable_listing( $this->listing );
+        Phake::verify( $this->transaction )->set( 'ad-disabled-at', '2026-01-02 00:00:00' );
+
+        Phake::when( $this->transaction )->get( 'ad-disabled-at' )->thenReturn( '2026-01-02 00:00:00' );
+
+        $subject->process_payment_transaction( $this->transaction );
+
+        Phake::verify( $this->listings_logic, Phake::times( 1 ) )->disable_listing( $this->listing );
     }
 
     /**

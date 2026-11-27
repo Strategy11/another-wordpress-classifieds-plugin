@@ -108,13 +108,10 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
             return $transaction->get( 'validated', false );
         }
 
-        $mc_gross      = awpcp_get_var( array( 'param' => 'mc_gross', 'sanitize' => 'floatval' ), 'post' );
-        $payment_gross = awpcp_get_var( array( 'param' => 'payment_gross', 'sanitize' => 'floatval' ), 'post' );
-        $tax           = awpcp_get_var( array( 'param' => 'tax', 'sanitize' => 'floatval' ), 'post' );
-        $txn_id        = awpcp_get_var( array( 'param' => 'txn_id' ), 'post' );
-        $txn_type      = awpcp_get_var( array( 'param' => 'txn_type' ), 'post' );
-        $custom        = awpcp_get_var( array( 'param' => 'custom' ), 'post' );
-        $payer_email   = awpcp_get_var( array( 'param' => 'payer_email' ), 'post' );
+        $txn_id      = awpcp_get_var( array( 'param' => 'txn_id' ), 'post' );
+        $txn_type    = awpcp_get_var( array( 'param' => 'txn_type' ), 'post' );
+        $custom      = awpcp_get_var( array( 'param' => 'custom' ), 'post' );
+        $payer_email = awpcp_get_var( array( 'param' => 'payer_email' ), 'post' );
 
         if ( strcasecmp( (string) $custom, (string) $transaction->id ) !== 0 ) {
             $message                           = __( 'The payment transaction could not be verified. Please contact customer service for assistance.', 'another-wordpress-classifieds-plugin' );
@@ -130,7 +127,6 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         $item_number          = awpcp_get_var( array( 'param' => 'item_number' ), 'post' );
         $quantity             = awpcp_get_var( array( 'param' => 'quantity' ), 'post' );
         $mc_fee               = awpcp_get_var( array( 'param' => 'mc_fee' ), 'post' );
-        $payment_currency     = awpcp_get_var( array( 'param' => 'mc_currency' ), 'post' );
         $exchange_rate        = awpcp_get_var( array( 'param' => 'exchange_rate' ), 'post' );
         $payment_status       = awpcp_get_var( array( 'param' => 'payment_status' ), 'post' );
         $payment_type         = awpcp_get_var( array( 'param' => 'payment_type' ), 'post' );
@@ -145,20 +141,17 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         $address_country_code = awpcp_get_var( array( 'param' => 'address_country_code' ), 'post' );
         $residence_country    = awpcp_get_var( array( 'param' => 'residence_country' ), 'post' );
 
+        // Refund and reversal notifications have no txn_type and a negative amount.
+        // They can only mark the payment as failed, so those checks don't apply.
+        $is_failed_payment = $this->is_failed_payment_status( $payment_status );
+
         // TODO: Add support for recurring payments and subscriptions?
-        if ( ! in_array( $txn_type, array( 'web_accept', 'cart' ), true ) ) {
+        if ( ! $is_failed_payment && ! in_array( $txn_type, array( 'web_accept', 'cart' ), true ) ) {
             // we do not support other forms of payment right now.
             return;
         }
 
-        $totals = $transaction->get_totals();
-
-        $amount                  = number_format( $totals['money'], 2 );
-        $amount_before_tax       = number_format( $mc_gross - $tax, 2 );
-        $mc_gross_formatted      = number_format( $mc_gross, 2 );
-        $payment_gross_formatted = number_format( $payment_gross, 2 );
-
-        if ( $amount !== $mc_gross_formatted && $amount !== $payment_gross_formatted && $amount !== $amount_before_tax ) {
+        if ( ! $is_failed_payment && ! $this->payment_matches_transaction_total( $transaction ) ) {
             $message                           = __( 'The amount you have paid does not match the required amount for this transaction. Please contact us to clarify the problem.', 'another-wordpress-classifieds-plugin' );
             $transaction->errors['validation'] = $message;
             $transaction->payment_status       = AWPCP_Payment_Transaction::PAYMENT_STATUS_INVALID;
@@ -189,16 +182,7 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
 
         } elseif ( strcasecmp( $payment_status, 'Pending' ) === 0 ) {
             $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
-        } elseif (
-            strcasecmp( $payment_status, 'Refunded' ) === 0
-            || strcasecmp( $payment_status, 'Reversed' ) === 0
-            || strcasecmp( $payment_status, 'Partially-Refunded' ) === 0
-            || strcasecmp( $payment_status, 'Canceled_Reversal' ) === 0
-            || strcasecmp( $payment_status, 'Denied' ) === 0
-            || strcasecmp( $payment_status, 'Expired' ) === 0
-            || strcasecmp( $payment_status, 'Failed' ) === 0
-            || strcasecmp( $payment_status, 'Voided' ) === 0
-        ) {
+        } elseif ( $is_failed_payment ) {
             $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_FAILED;
 
         } else {
@@ -218,6 +202,60 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
         $transaction->payer_email     = $payer_email;
 
         return true;
+    }
+
+    /**
+     * Whether the PayPal payment status means the payment failed or was taken back.
+     *
+     * @since x.x
+     *
+     * @param string $payment_status The payment_status sent by PayPal.
+     *
+     * @return bool
+     */
+    private function is_failed_payment_status( $payment_status ) {
+        $failed_statuses = array(
+            'refunded',
+            'reversed',
+            'partially-refunded',
+            'canceled_reversal',
+            'denied',
+            'expired',
+            'failed',
+            'voided',
+        );
+
+        return in_array( strtolower( (string) $payment_status ), $failed_statuses, true );
+    }
+
+    /**
+     * Whether the amount and currency PayPal received match the transaction total.
+     *
+     * @since x.x
+     *
+     * @param AWPCP_Payment_Transaction $transaction The payment transaction.
+     *
+     * @return bool
+     */
+    private function payment_matches_transaction_total( $transaction ) {
+        $mc_gross      = awpcp_get_var( array( 'param' => 'mc_gross', 'sanitize' => 'floatval' ), 'post' );
+        $payment_gross = awpcp_get_var( array( 'param' => 'payment_gross', 'sanitize' => 'floatval' ), 'post' );
+        $tax           = awpcp_get_var( array( 'param' => 'tax', 'sanitize' => 'floatval' ), 'post' );
+        $currency      = awpcp_get_var( array( 'param' => 'mc_currency' ), 'post' );
+
+        $totals           = $transaction->get_totals();
+        $amount           = number_format( $totals['money'], 2 );
+        $received_amounts = array(
+            number_format( $mc_gross, 2 ),
+            number_format( $payment_gross, 2 ),
+            number_format( $mc_gross - $tax, 2 ),
+        );
+
+        if ( ! in_array( $amount, $received_amounts, true ) ) {
+            return false;
+        }
+
+        return strcasecmp( (string) $currency, (string) get_awpcp_option( 'paypalcurrencycode' ) ) === 0;
     }
 
     public function funds_were_sent_to_correct_receiver() {
@@ -303,6 +341,11 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
     private function do_process_payment( $transaction, $is_ipn ) {
         if ( $transaction->get( 'verified', false ) ) {
             $transaction->set( 'pending_verification', false );
+
+            if ( $is_ipn && $this->request->post( 'verify_sign' ) ) {
+                $this->process_follow_up_notification( $transaction );
+            }
+
             return;
         }
 
@@ -336,6 +379,104 @@ class AWPCP_PayPalStandardPaymentGateway extends AWPCP_PaymentGateway {
 
             // Keep status as UNKNOWN - user can retry by refreshing.
         }
+    }
+
+    /**
+     * Applies an IPN received for a transaction that was already verified.
+     *
+     * PayPal sends more notifications for the same payment when its status
+     * changes (an eCheck clears or is denied, a payment is reversed). Only
+     * genuine notifications for the original payment are applied, and only
+     * when they move the payment forward: Pending to Completed, or Pending
+     * and Completed to Failed. Refund notifications are not applied, so
+     * refunds keep being handled by the site administrator.
+     *
+     * @since x.x
+     *
+     * @param AWPCP_Payment_Transaction $transaction The payment transaction.
+     */
+    private function process_follow_up_notification( $transaction ) {
+        $original_txn_id  = $transaction->get( 'txn-id' );
+        $previous_status  = $transaction->payment_status;
+        $payment_status   = awpcp_get_var( array( 'param' => 'payment_status' ), 'post' );
+        $applied_statuses = array( 'completed', 'denied', 'expired', 'failed', 'reversed', 'voided' );
+
+        if ( ! in_array( strtolower( (string) $payment_status ), $applied_statuses, true ) ) {
+            return;
+        }
+
+        if ( ! $this->notification_belongs_to_payment( $transaction, $original_txn_id ) ) {
+            return;
+        }
+
+        $previous_errors      = $transaction->errors;
+        $previous_payer_email = $transaction->payer_email;
+
+        $response = $this->verify_transaction( $transaction );
+
+        // Keep the original payment's state; the notification can't change it.
+        $transaction->set( 'verified', true );
+        $transaction->set( 'txn-id', $original_txn_id );
+
+        if ( 'VERIFIED' === $response ) {
+            $this->validate_transaction( $transaction );
+        }
+
+        if ( ! $this->is_allowed_follow_up_status_change( $previous_status, $transaction->payment_status ) ) {
+            $transaction->payment_status = $previous_status;
+            $transaction->payer_email    = $previous_payer_email;
+            $transaction->errors         = $previous_errors;
+        }
+    }
+
+    /**
+     * Whether the posted IPN is about the payment that was already verified for the transaction.
+     *
+     * @since x.x
+     *
+     * @param AWPCP_Payment_Transaction $transaction     The payment transaction.
+     * @param string                    $original_txn_id The PayPal transaction ID of the verified payment.
+     *
+     * @return bool
+     */
+    private function notification_belongs_to_payment( $transaction, $original_txn_id ) {
+        $custom        = awpcp_get_var( array( 'param' => 'custom' ), 'post' );
+        $txn_id        = awpcp_get_var( array( 'param' => 'txn_id' ), 'post' );
+        $parent_txn_id = awpcp_get_var( array( 'param' => 'parent_txn_id' ), 'post' );
+
+        if ( empty( $original_txn_id ) || strcasecmp( (string) $custom, (string) $transaction->id ) !== 0 ) {
+            return false;
+        }
+
+        return in_array( (string) $original_txn_id, array( (string) $txn_id, (string) $parent_txn_id ), true );
+    }
+
+    /**
+     * Whether a follow-up IPN may change the payment status from one value to the other.
+     *
+     * @since x.x
+     *
+     * @param string $previous_status The payment status before the notification.
+     * @param string $new_status      The payment status after the notification.
+     *
+     * @return bool
+     */
+    private function is_allowed_follow_up_status_change( $previous_status, $new_status ) {
+        $allowed_changes = array(
+            AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING   => array(
+                AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED,
+                AWPCP_Payment_Transaction::PAYMENT_STATUS_FAILED,
+            ),
+            AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED => array(
+                AWPCP_Payment_Transaction::PAYMENT_STATUS_FAILED,
+            ),
+        );
+
+        if ( ! isset( $allowed_changes[ $previous_status ] ) ) {
+            return false;
+        }
+
+        return in_array( $new_status, $allowed_changes[ $previous_status ], true );
     }
 
     public function process_payment_canceled( $transaction ) {
