@@ -69,8 +69,9 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
             __( 'Delete', 'another-wordpress-classifieds-plugin' ),
             $this->url(
                 array(
-                    'action' => 'delete',
-                    'id'     => $fee->id,
+                    'action'   => 'delete',
+                    'id'       => $fee->id,
+                    '_wpnonce' => wp_create_nonce( $this->get_delete_nonce_action( $fee->id ) ),
                 )
             ),
         );
@@ -101,7 +102,14 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
     }
 
     public function delete() {
-        $id  = awpcp_get_var( array( 'param' => 'id', 'default' => 0 ) );
+        $id    = awpcp_get_var( array( 'param' => 'id', 'default' => 0 ) );
+        $nonce = awpcp_get_var( array( 'param' => '_wpnonce' ), 'get' );
+
+        if ( ! wp_verify_nonce( $nonce, $this->get_delete_nonce_action( $id ) ) ) {
+            awpcp_flash( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ), 'error' );
+            return $this->index();
+        }
+
         $fee = AWPCP_Fee::find_by_id( $id );
 
         if ( is_null( $fee ) ) {
@@ -144,6 +152,19 @@ class AWPCP_AdminFees extends AWPCP_AdminPageWithTable {
         }
 
         return $this->index();
+    }
+
+    /**
+     * Returns the nonce action used to protect the delete link of a fee.
+     *
+     * @since x.x
+     *
+     * @param int $fee_id The ID of the fee.
+     *
+     * @return string
+     */
+    private function get_delete_nonce_action( $fee_id ) {
+        return 'awpcp-delete-fee-' . absint( $fee_id );
     }
 
     public function index() {
