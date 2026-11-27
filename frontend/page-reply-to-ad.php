@@ -69,6 +69,10 @@ class AWPCP_ReplyToAdPage extends AWPCP_Page {
             } catch ( AWPCP_Exception $e ) {
                 $this->ad = null;
             }
+
+            if ( $this->ad && ! $this->listing_renderer->current_user_can_view( $this->ad ) ) {
+                $this->ad = null;
+            }
         }
 
         return $this->ad;

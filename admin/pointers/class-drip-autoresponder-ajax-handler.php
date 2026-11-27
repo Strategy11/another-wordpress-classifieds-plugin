@@ -24,7 +24,7 @@ class AWPCP_DripAutoresponderAjaxHandler extends AWPCP_AjaxHandler {
     }
 
     public function ajax() {
-        if ( ! wp_verify_nonce( $this->request->post( 'nonce' ), 'drip-autoresponder' ) ) {
+        if ( ! awpcp_current_user_is_admin() || ! wp_verify_nonce( $this->request->post( 'nonce' ), 'drip-autoresponder' ) ) {
             return $this->error_response( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
         }
 

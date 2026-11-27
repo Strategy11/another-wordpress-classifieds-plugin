@@ -33,7 +33,8 @@ class AWPCP_FrontendContainerConfiguration implements AWPCP_ContainerConfigurati
                     $container['TitleBuilder'],
                     awpcp_meta_tags_generator(),
                     awpcp_query(),
-                    $container['Request']
+                    $container['Request'],
+                    $container['ListingRenderer']
                 );
             }
         );

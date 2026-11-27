@@ -56,6 +56,45 @@ class AWPCP_Loop_Integration {
         if ( is_page( $this->get_show_listing_page_id() ) && $this->request->get_current_listing_id() ) {
             add_filter( 'the_title', array( $this, 'maybe_overwrite_page_title' ), 10, 2 );
         }
+
+        if ( is_singular( awpcp()->container['listing_post_type'] ) ) {
+            add_filter( 'the_title', array( $this, 'maybe_hide_listing_title' ), 10, 2 );
+            add_filter( 'single_post_title', array( $this, 'maybe_hide_listing_title' ), 10, 2 );
+        }
+    }
+
+    /**
+     * Replaces the title of a listing shown as a single post with the title
+     * of the Show Listing page when the current user is not allowed to view
+     * the listing.
+     *
+     * @since x.x
+     *
+     * @param string      $title The title of the post.
+     * @param int|WP_Post $post  The post ID or object being processed.
+     *
+     * @return string
+     */
+    public function maybe_hide_listing_title( $title, $post = null ) {
+        $post_id = is_object( $post ) ? $post->ID : (int) $post;
+        $page_id = $this->get_show_listing_page_id();
+
+        // Only the queried listing; also prevents recursion through get_the_title().
+        if ( ! $post_id || get_queried_object_id() !== $post_id || $page_id <= 0 ) {
+            return $title;
+        }
+
+        try {
+            $listing = $this->listings->get( $post_id );
+        } catch ( AWPCP_Exception $e ) {
+            return $title;
+        }
+
+        if ( $this->listing_renderer->current_user_can_view( $listing ) ) {
+            return $title;
+        }
+
+        return get_the_title( $page_id );
     }
 
     /**
@@ -87,6 +126,10 @@ class AWPCP_Loop_Integration {
         try {
             $listing = $this->listings->get( $listing_id );
         } catch ( AWPCP_Exception $e ) {
+            return $title;
+        }
+
+        if ( ! $this->listing_renderer->current_user_can_view( $listing ) ) {
             return $title;
         }
 

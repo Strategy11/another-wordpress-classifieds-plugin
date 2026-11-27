@@ -94,9 +94,15 @@ class AWPCP_ListingPaymentTransactionHandler {
         $listing_had_accepted_payment_status = $this->is_accepted_payment_status( $previous_listing_payment_status );
         $is_transaction_consolidated         = (bool) $transaction->get( 'ad-consolidated-at' );
         $should_trigger_actions              = $is_transaction_consolidated;
+        $was_disabled_after_failed_payment   = (bool) $transaction->get( 'ad-disabled-at' );
 
         if ( $transaction->was_payment_successful() ) {
             if ( ! $listing_had_accepted_payment_status ) {
+                if ( $is_transaction_consolidated ) {
+                    // A follow-up notification (e.g. Pending → Completed) must refresh the status saved on the first pass.
+                    $this->wordpress->update_post_meta( $listing->ID, '_awpcp_payment_status', $transaction->payment_status );
+                }
+
                 $this->listings_logic->update_listing_verified_status( $listing, $transaction );
                 $this->listings_logic->set_new_listing_post_status( $listing, $transaction->payment_status, $should_trigger_actions );
             }
@@ -104,13 +110,34 @@ class AWPCP_ListingPaymentTransactionHandler {
             if ( ! $is_transaction_consolidated ) {
                 $this->listings_logic->consolidate_new_ad( $listing, $transaction );
             }
+        } elseif ( $was_disabled_after_failed_payment ) {
+            return;
         } elseif ( $transaction->did_payment_failed() && $listing_had_accepted_payment_status ) {
             if ( $is_transaction_consolidated ) {
-                $this->listings_logic->disable_listing( $should_trigger_actions );
+                $this->listings_logic->disable_listing( $listing );
             } else {
-                $this->listings_logic->disable_listing_without_triggering_actions( $should_trigger_actions );
+                $this->listings_logic->disable_listing_without_triggering_actions( $listing );
             }
+
+            $transaction->set( 'ad-disabled-at', current_time( 'mysql' ) );
+        } elseif ( $is_transaction_consolidated && $transaction->payment_is_failed() ) {
+            $this->disable_listing_after_failed_payment( $listing, $transaction );
         }
+    }
+
+    /**
+     * Disables a listing that was enabled by a payment that later failed or was reversed.
+     *
+     * @since x.x
+     *
+     * @param WP_Post                   $listing     The listing paid by the transaction.
+     * @param AWPCP_Payment_Transaction $transaction The payment transaction.
+     */
+    private function disable_listing_after_failed_payment( $listing, $transaction ) {
+        $this->wordpress->update_post_meta( $listing->ID, '_awpcp_payment_status', $transaction->payment_status );
+        $this->listings_logic->disable_listing( $listing );
+
+        $transaction->set( 'ad-disabled-at', current_time( 'mysql' ) );
     }
 
     private function is_accepted_payment_status( $payment_status ) {

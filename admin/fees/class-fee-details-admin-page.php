@@ -55,6 +55,11 @@ class AWPCP_Fee_Details_Admin_Page {
     }
 
     private function update_fee( $fee ) {
+        if ( ! $this->is_valid_nonce() ) {
+            awpcp_flash( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ), 'error' );
+            return $this->render_form( $fee );
+        }
+
         $fee->update( $this->get_posted_data() );
 
         $errors = array();
@@ -142,5 +147,18 @@ class AWPCP_Fee_Details_Admin_Page {
      */
     private function is_saving() {
         return awpcp_get_var( array( 'param' => 'save' ), 'post' ) || awpcp_get_var( array( 'param' => 'save_and_continue' ), 'post' );
+    }
+
+    /**
+     * Checks the nonce sent with the fee details form.
+     *
+     * @since x.x
+     *
+     * @return bool
+     */
+    private function is_valid_nonce() {
+        $nonce = awpcp_get_var( array( 'param' => 'awpcp-fee-details-nonce' ), 'post' );
+
+        return (bool) wp_verify_nonce( $nonce, 'awpcp-fee-details' );
     }
 }
