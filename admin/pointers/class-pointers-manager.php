@@ -25,7 +25,7 @@ class AWPCP_PointersManager {
     }
 
     public function register_pointers() {
-        if ( $this->settings->get_option( 'show-drip-autoresponder' ) ) {
+        if ( $this->settings->get_option( 'show-drip-autoresponder' ) && awpcp_current_user_is_admin() ) {
             $drip_autoresponder = awpcp_drip_autoresponder();
             add_filter( 'awpcp-admin-pointers', array( $drip_autoresponder, 'register_pointer' ) );
         }

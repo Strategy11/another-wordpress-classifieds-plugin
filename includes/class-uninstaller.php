@@ -282,6 +282,7 @@ class AWPCP_Uninstaller {
         wp_clear_scheduled_hook( 'doadcleanup_hook' );
         wp_clear_scheduled_hook( 'awpcp_ad_renewal_email_hook' );
         wp_clear_scheduled_hook( 'awpcp-clean-up-payment-transactions' );
+        wp_unschedule_hook( 'awpcp_csv_export_cleanup' );
     }
 
     /**

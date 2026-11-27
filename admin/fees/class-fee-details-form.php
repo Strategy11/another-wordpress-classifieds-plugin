@@ -69,6 +69,14 @@ class AWPCP_Fee_Details_Form implements AWPCP_HTML_Element {
                     ),
                 ),
                 'price-model'          => $this->get_price_fields_definition( $params ),
+                'nonce'                => array(
+                    '#type'       => 'input',
+                    '#attributes' => array(
+                        'type'  => 'hidden',
+                        'name'  => 'awpcp-fee-details-nonce',
+                        'value' => wp_create_nonce( 'awpcp-fee-details' ),
+                    ),
+                ),
                 'submit-buttons'       => array(
                     '#type'       => 'div',
                     '#attributes' => array(
