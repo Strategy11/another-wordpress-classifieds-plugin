@@ -81,6 +81,8 @@ function awpcp_string_with_names( $names ) {
  *
  * A single strip_shortcodes() pass turns an escaped shortcode such as
  * [[tag]] into a live [tag], so extra bracket pairs would survive it.
+ * The number of passes is capped; anything still nested after that is
+ * neutralized instead.
  *
  * @since x.x
  *
@@ -91,12 +93,18 @@ function awpcp_string_with_names( $names ) {
 function awpcp_strip_shortcodes( $text ) {
     $text = (string) $text;
 
-    do {
+    // Each pass removes one level of [[escaping]]. Cap the passes so deeply nested input can't tie up the worker.
+    for ( $i = 0; $i < 5; $i++ ) {
         $previous = $text;
         $text     = strip_shortcodes( $text );
-    } while ( $text !== $previous && false !== strpos( $text, '[' ) );
 
-    return $text;
+        if ( $text === $previous || false === strpos( $text, '[' ) ) {
+            return $text;
+        }
+    }
+
+    // Still nested after the cap: neutralize what is left in one linear pass so it can't run.
+    return awpcp_neutralize_listing_content_shortcodes( $text );
 }
 
 function awpcp_get_digits_from_string( $string ) {

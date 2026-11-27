@@ -48,3 +48,42 @@ function awpcp_tests_create_attachment( $args = array() ) {
 
     return get_post( $attachment_id );
 }
+
+/**
+ * Stubs WordPress' shortcode API with the same regex and stripping rules core
+ * uses, so code that strips or neutralizes shortcodes can be tested without
+ * loading WordPress.
+ *
+ * Call it from a test that extends AWPCP_UnitTestCase (Brain Monkey must be set up).
+ *
+ * @since x.x
+ *
+ * @param string[] $tags Shortcode tags to register.
+ */
+function awpcp_tests_stub_shortcodes( $tags ) {
+    $GLOBALS['shortcode_tags'] = array_fill_keys( $tags, '__return_empty_string' );
+
+    $regex = '\[(\[?)(' . implode( '|', array_map( 'preg_quote', $tags ) ) . ')(?![\w-])([^\]\/]*(?:\/(?!\])[^\]\/]*)*?)(?:(\/)\]|\](?:([^\[]*+(?:\[(?!\/\2\])[^\[]*+)*+)\[\/\2\])?)(\]?)';
+
+    Brain\Monkey\Functions\when( 'get_shortcode_regex' )->justReturn( $regex );
+    Brain\Monkey\Functions\when( 'strip_shortcodes' )->alias(
+        function ( $content ) use ( $regex ) {
+            if ( false === strpos( $content, '[' ) ) {
+                return $content;
+            }
+
+            return preg_replace_callback(
+                "/$regex/",
+                function ( $matches ) {
+                    // An escaped [[tag]] loses one pair of brackets, like core's strip_shortcode_tag().
+                    if ( '[' === $matches[1] && ']' === $matches[6] ) {
+                        return substr( $matches[0], 1, -1 );
+                    }
+
+                    return '';
+                },
+                $content
+            );
+        }
+    );
+}
