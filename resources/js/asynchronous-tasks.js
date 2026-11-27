@@ -49,6 +49,7 @@ function($, ko, moment, AsynchronousTask, AsynchronousTasksGroup) {
                     context: task.context,
                     recordsCount: task.recordsCount,
                     recordsLeft: task.recordsLeft,
+                    nonce: task.nonce,
                     templates: self.templates
                 } ) );
             } );

@@ -9,6 +9,7 @@ function($, ko, moment, settings) {
 
         this.action = params.action;
         this.context = params.context;
+        this.nonce = params.nonce;
 
         this.startTime = ko.observable( null );
         this.lastUpdatedTime = ko.observable( null );
@@ -176,14 +177,20 @@ function($, ko, moment, settings) {
                 task.setInitialPercentageOfCompletion( task.getPercentageOfCompletion() );
             }
 
+            const requestData = {
+                action: task.action,
+                context: task.context
+            };
+
+            if ( task.nonce ) {
+                requestData.nonce = task.nonce;
+            }
+
             $.ajax(
                 settings.get( 'ajaxurl' ),
                 {
                     method: 'POST',
-                    data: {
-                        action: task.action,
-                        context: task.context
-                    },
+                    data: requestData,
                     success: function( data, status, xhr ) {
                         task._onSuccess( data, callback );
                     },
