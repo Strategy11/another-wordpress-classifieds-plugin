@@ -20,7 +20,18 @@ class AWPCP_Upgrade_Task_Ajax_Handler extends AWPCP_AjaxHandler {
         $this->task_controller = $task_controller;
     }
 
+    /**
+     * Runs the requested upgrade task after checking the user's capability
+     * and the request nonce.
+     *
+     * @since 4.0.0
+     * @since x.x Requires the moderator capability and a valid nonce.
+     */
     public function ajax() {
+        if ( ! awpcp_current_user_is_moderator() || ! check_ajax_referer( 'awpcp-upgrade-task', 'nonce', false ) ) {
+            return $this->error_response( __( 'You are not authorized to perform this action.', 'another-wordpress-classifieds-plugin' ) );
+        }
+
         $task_slug = awpcp_get_var( array( 'param' => 'action' ) );
         $context   = awpcp_get_var( array( 'param' => 'context' ) );
 
