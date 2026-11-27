@@ -51,7 +51,8 @@ class AWPCP_PaymentInformationValidator {
         $payment_term_errors = $this->validate_selected_payment_term( $data );
         $user_errors         = $this->validate_selected_user( $data );
 
-        $errors = array_merge( $categories_errors, $payment_term_errors, $user_errors );
+        // The union keeps the categories selection error over the categories limit one.
+        $errors = $categories_errors + array_merge( $payment_term_errors, $user_errors );
         $errors = apply_filters( 'awpcp-validate-post-listing-order', $errors, $data );
 
         return $errors;
@@ -77,9 +78,46 @@ class AWPCP_PaymentInformationValidator {
             $errors['payment-term'] = __( 'You should choose one of the available Payment Terms.', 'another-wordpress-classifieds-plugin' );
         } elseif ( ! $this->roles->current_user_is_administrator() && $payment_term->private ) {
             $errors['payment-term'] = __( 'The Payment Term you selected is not available for non-administrator users.', 'another-wordpress-classifieds-plugin' );
+        } else {
+            $errors = array_merge( $errors, $this->validate_number_of_categories( $data, $payment_term ) );
         }
 
         return $errors;
+    }
+
+    /**
+     * Makes sure the listing doesn't have more categories than the selected
+     * payment term allows. The browser enforces the same limit, but the
+     * request can be modified.
+     *
+     * @since x.x
+     *
+     * @param array  $data         Listing data.
+     * @param object $payment_term The selected payment term.
+     *
+     * @return array
+     */
+    private function validate_number_of_categories( $data, $payment_term ) {
+        $allowed    = absint( apply_filters( 'awpcp-number-of-categories-allowed-in-post-listing-order-step', 1, $payment_term ) );
+        $categories = array_unique( array_filter( array_map( 'absint', $this->get_selected_categories( $data ) ) ) );
+
+        // Zero means the payment term allows an unlimited number of categories.
+        if ( 0 === $allowed || count( $categories ) <= $allowed ) {
+            return [];
+        }
+
+        return [
+            'categories' => sprintf(
+                // translators: %d is the number of categories allowed by the payment term.
+                _n(
+                    'The Payment Term you selected allows %d category only.',
+                    'The Payment Term you selected allows up to %d categories.',
+                    $allowed,
+                    'another-wordpress-classifieds-plugin'
+                ),
+                $allowed
+            ),
+        ];
     }
 
     /**
@@ -121,12 +159,8 @@ class AWPCP_PaymentInformationValidator {
      * @since 4.0.0
      */
     private function validate_selected_categories( $data ) {
-        $categories = [];
+        $categories = $this->get_selected_categories( $data );
         $errors     = [];
-
-        if ( isset( $data['terms'][ $this->listing_category_taxonomy ] ) ) {
-            $categories = $data['terms'][ $this->listing_category_taxonomy ];
-        }
 
         if ( empty( $categories ) ) {
             $errors['categories'] = __( 'Ad Category field is required', 'another-wordpress-classifieds-plugin' );
@@ -147,5 +181,20 @@ class AWPCP_PaymentInformationValidator {
         }
 
         return $errors;
+    }
+
+    /**
+     * @since x.x
+     *
+     * @param array $data Listing data.
+     *
+     * @return array IDs of the selected categories.
+     */
+    private function get_selected_categories( $data ) {
+        if ( isset( $data['terms'][ $this->listing_category_taxonomy ] ) ) {
+            return (array) $data['terms'][ $this->listing_category_taxonomy ];
+        }
+
+        return [];
     }
 }

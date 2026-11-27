@@ -344,6 +344,31 @@ class AWPCP_ListingRenderer {
     }
 
     /**
+     * Whether the current user can view the listing. Public listings that
+     * haven't expired are visible to everyone, other listings only to their
+     * owner and moderators.
+     *
+     * @since x.x
+     *
+     * @param WP_Post $listing An instance of WP_Post.
+     *
+     * @return bool
+     */
+    public function current_user_can_view( $listing ) {
+        if ( $this->is_public( $listing ) && ! $this->has_expired( $listing ) ) {
+            return true;
+        }
+
+        if ( awpcp_current_user_is_moderator() ) {
+            return true;
+        }
+
+        $owner_id = (int) $listing->post_author;
+
+        return $owner_id > 0 && get_current_user_id() === $owner_id;
+    }
+
+    /**
      * Before AWPCP 4.0.0, both disabled listings and listings pending approval
      * had a disabled property set to true. In 4.0.0 and newer versions,
      * disabled listings have post_status = disabled and listings pending

@@ -179,26 +179,30 @@ class AWPCP_ListingAuthorization {
             return true;
         }
 
-        $is_future_date    = strtotime( $start_date ) > current_time( 'timestamp' );
-        $is_create_listing = $this->request->post( 'mode' ) === 'create';
-        $is_edit_listing   = $this->request->post( 'mode' ) === 'edit';
-        if ( ! $is_future_date && $is_create_listing ) {
+        if ( strtotime( $start_date ) > current_time( 'timestamp' ) ) {
             return true;
         }
 
-        if ( ! $is_future_date && $is_edit_listing ) {
+        return $this->is_listing_being_submitted( $listing );
+    }
+
+    /**
+     * Whether the listing is still in the submit flow and hasn't been
+     * published yet. A start date in the past can only be changed then, so
+     * owners can't move the start date of a running listing to extend it.
+     *
+     * @since x.x
+     *
+     * @param object $listing An instance of WP_Post.
+     *
+     * @return bool
+     */
+    private function is_listing_being_submitted( $listing ) {
+        if ( ! isset( $listing->post_status ) ) {
             return false;
         }
 
-        if ( $is_future_date ) {
-            return true;
-        }
-
-        if ( $this->request->post( 'action' ) === 'awpcp_save_listing_information' ) {
-            return true;
-        }
-
-        return false;
+        return in_array( $listing->post_status, array( 'auto-draft', 'draft' ), true );
     }
 
     /**

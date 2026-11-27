@@ -162,6 +162,14 @@ class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
             return false;
         }
 
+        if ( ! $this->claim_order_number( $x_order_number, $transaction ) ) {
+            $msg                               = __( 'It appears this transaction has already been processed. If you do not see your ad in the system please contact the site adminstrator for assistance.', 'another-wordpress-classifieds-plugin' );
+            $transaction->errors['validation'] = $msg;
+            $transaction->payment_status       = AWPCP_Payment_Transaction::PAYMENT_STATUS_INVALID;
+            awpcp_payment_failed_email( $transaction, $msg );
+            return false;
+        }
+
         $transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING;
 
         // at this point the validation was successful, any previously stored
@@ -173,6 +181,54 @@ class AWPCP_2CheckoutPaymentGateway extends AWPCP_PaymentGateway {
         $transaction->payer_email     = $payer_email;
 
         return true;
+    }
+
+    /**
+     * Binds a 2Checkout order to the transaction it paid for.
+     *
+     * The return signature doesn't include the transaction ID, so the same
+     * signed return could otherwise complete any transaction with the same
+     * total. The first transaction that claims an order number keeps it.
+     *
+     * @since x.x
+     *
+     * @param string                    $order_number The 2Checkout order number.
+     * @param AWPCP_Payment_Transaction $transaction  The payment transaction.
+     *
+     * @return bool True if the order belongs to this transaction.
+     */
+    private function claim_order_number( $order_number, $transaction ) {
+        global $wpdb;
+
+        $order_number = (string) $order_number;
+
+        if ( '' === $order_number ) {
+            // Test mode doesn't sign the order number, so there is nothing to bind.
+            return (int) get_awpcp_option( 'paylivetestmode' ) === 1;
+        }
+
+        $option_name = 'awpcp-2checkout-order-' . md5( $order_number );
+
+        // INSERT IGNORE is atomic: only one transaction can claim the order number.
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+        $claimed = $wpdb->query(
+            $wpdb->prepare(
+                'INSERT IGNORE INTO %i ( option_name, option_value, autoload ) VALUES ( %s, %s, %s )',
+                $wpdb->options,
+                $option_name,
+                $transaction->id,
+                'no'
+            )
+        );
+
+        if ( $claimed ) {
+            return true;
+        }
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
+        $owner = $wpdb->get_var( $wpdb->prepare( 'SELECT option_value FROM %i WHERE option_name = %s', $wpdb->options, $option_name ) );
+
+        return $owner === $transaction->id;
     }
 
     public function process_payment_completed($transaction) {

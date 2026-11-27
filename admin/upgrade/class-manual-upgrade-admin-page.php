@@ -101,6 +101,7 @@ class AWPCP_ManualUpgradeAdminPage {
     private function get_tasks_defintions( $pending_upgrade_tasks, $upgrade_session, $context ) {
         $upgrade_tasks      = array();
         $asynchronous_tasks = array();
+        $nonce              = wp_create_nonce( 'awpcp-upgrade-task' );
 
         foreach ( array_keys( $upgrade_session->get_tasks() ) as $task_slug ) {
             $items_count     = $upgrade_session->get_task_metadata( $task_slug, 'items_count', null );
@@ -129,6 +130,7 @@ class AWPCP_ManualUpgradeAdminPage {
                 'context'      => $context,
                 'recordsCount' => $items_count,
                 'recordsLeft'  => is_null( $items_count ) ? null : $items_count - $items_processed,
+                'nonce'        => $nonce,
             );
         }
 
