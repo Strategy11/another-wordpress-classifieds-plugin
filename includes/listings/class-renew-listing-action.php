@@ -13,10 +13,32 @@ if ( ! defined( 'ABSPATH' ) ) {
 class AWPCP_RenewListingAction extends AWPCP_ListingAction {
 
     public function is_enabled_for_listing( $listing ) {
-        if ( awpcp_listing_renderer()->has_expired_or_is_about_to_expire( $listing ) ) {
-            return true;
+        $listing_renderer = awpcp_listing_renderer();
+
+        if ( ! $listing_renderer->has_expired_or_is_about_to_expire( $listing ) ) {
+            return false;
         }
-        return false;
+
+        return ! $this->is_blocked_by_moderation( $listing, $listing_renderer );
+    }
+
+    /**
+     * The renew page refuses owner renewals of listings that a moderator
+     * disabled or that are waiting for approval, so the button is hidden too.
+     *
+     * @since x.x
+     *
+     * @param object                $listing          An instance of WP_Post.
+     * @param AWPCP_ListingRenderer $listing_renderer The listing renderer.
+     *
+     * @return bool
+     */
+    private function is_blocked_by_moderation( $listing, $listing_renderer ) {
+        if ( awpcp_current_user_is_moderator() ) {
+            return false;
+        }
+
+        return $listing_renderer->is_disabled( $listing ) || $listing_renderer->is_pending_approval( $listing );
     }
 
     public function get_name() {
