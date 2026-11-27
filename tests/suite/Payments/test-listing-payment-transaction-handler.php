@@ -168,6 +168,34 @@ class AWPCP_TestListingPaymentTransactionHandler extends AWPCP_UnitTestCase {
     }
 
     /**
+     * @since x.x
+     */
+    public function test_completed_follow_up_updates_payment_status_of_pending_listing() {
+        $this->transaction->payment_status = AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED;
+
+        Phake::when( $this->transaction )->is_completed()->thenReturn( true );
+        Phake::when( $this->transaction )->was_payment_successful()->thenReturn( true );
+        Phake::when( $this->transaction )->get( 'ad-consolidated-at' )->thenReturn( '2026-01-01 00:00:00' );
+        Phake::when( $this->transaction )->get( 'previous-ad-payment-status' )->thenReturn( 'Unpaid' );
+
+        $subject = $this->get_test_subject();
+
+        $subject->process_payment_transaction( $this->transaction );
+
+        Phake::verify( $this->wordpress )->update_post_meta(
+            $this->listing->ID,
+            '_awpcp_payment_status',
+            AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED
+        );
+        Phake::verify( $this->listings_logic )->set_new_listing_post_status(
+            $this->listing,
+            AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED,
+            true
+        );
+        Phake::verify( $this->listings_logic, Phake::never() )->consolidate_new_ad( Phake::anyParameters() );
+    }
+
+    /**
      * @large
      */
     public function test_process_completed_transaction_for_new_listing() {

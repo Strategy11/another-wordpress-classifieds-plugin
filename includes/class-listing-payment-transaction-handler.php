@@ -98,6 +98,11 @@ class AWPCP_ListingPaymentTransactionHandler {
 
         if ( $transaction->was_payment_successful() ) {
             if ( ! $listing_had_accepted_payment_status ) {
+                if ( $is_transaction_consolidated ) {
+                    // A follow-up notification (e.g. Pending → Completed) must refresh the status saved on the first pass.
+                    $this->wordpress->update_post_meta( $listing->ID, '_awpcp_payment_status', $transaction->payment_status );
+                }
+
                 $this->listings_logic->update_listing_verified_status( $listing, $transaction );
                 $this->listings_logic->set_new_listing_post_status( $listing, $transaction->payment_status, $should_trigger_actions );
             }

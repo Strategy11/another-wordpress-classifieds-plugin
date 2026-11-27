@@ -148,6 +148,22 @@ class PayPalStandardTest extends AWPCP_UnitTestCase {
     /**
      * @since x.x
      */
+    public function test_completed_ipn_marks_verified_pending_payment_as_completed() {
+        $_POST = $this->get_ipn_data( array( 'payment_status' => 'Completed' ) );
+
+        $request     = Phake::mock( 'AWPCP_Request' );
+        $transaction = $this->create_verified_transaction( AWPCP_Payment_Transaction::PAYMENT_STATUS_PENDING );
+        $gateway     = $this->create_verified_gateway( $request );
+
+        $gateway->process_payment_notification( $transaction );
+
+        $this->assertSame( AWPCP_Payment_Transaction::PAYMENT_STATUS_COMPLETED, $transaction->payment_status );
+        $this->assertSame( 'PAYMENT-TXN', $transaction->get( 'txn-id' ) );
+    }
+
+    /**
+     * @since x.x
+     */
     public function test_reversal_ipn_marks_verified_completed_payment_as_failed() {
         $_POST = $this->get_ipn_data(
             array(
