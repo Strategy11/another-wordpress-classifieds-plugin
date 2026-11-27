@@ -165,7 +165,7 @@ class AWPCP_CSVExporter {
     public static function get_export_path( $export_id ) {
         $csvexportsdir = self::get_exports_dir();
 
-        if ( ! $csvexportsdir || ! is_string( $export_id ) || ! preg_match( '/^[A-Za-z0-9]{32}$/', $export_id ) ) {
+        if ( ! $csvexportsdir || ! is_string( $export_id ) || ! preg_match( '/^[A-Za-z0-9]{32}$/D', $export_id ) ) {
             return '';
         }
 
@@ -252,8 +252,27 @@ class AWPCP_CSVExporter {
         );
     }
 
+    /**
+     * Restores an export from the state sent back by the browser.
+     *
+     * @since 4.1.0
+     * @since x.x Only accepts working directories inside the exports directory.
+     *
+     * @param array $state Export state.
+     *
+     * @throws AWPCP_Exception If the working directory is not a valid export directory.
+     *
+     * @return AWPCP_CSVExporter
+     */
     public static function &from_state( $state ) {
-        $export           = new self( $state['settings'], awpcp_settings_api(), trailingslashit( $state['workingdir'] ), (array) $state['listings'] );
+        $export_id  = is_string( $state['workingdir'] ) ? basename( $state['workingdir'] ) : '';
+        $workingdir = self::get_export_path( $export_id );
+
+        if ( ! $workingdir ) {
+            throw new AWPCP_Exception( esc_html_x( 'Could not decode export state information.', 'admin csv-export', 'another-wordpress-classifieds-plugin' ) );
+        }
+
+        $export           = new self( $state['settings'], awpcp_settings_api(), $workingdir, (array) $state['listings'] );
         $export->exported = abs( intval( $state['exported'] ) );
 
         return $export;
@@ -272,9 +291,7 @@ class AWPCP_CSVExporter {
     }
 
     public function cleanup() {
-        if ( $this->wp_filesystem->is_dir( $this->workingdir ) ) {
-            $this->wp_filesystem->rmdir( $this->workingdir, true );
-        }
+        self::delete_export( $this->get_export_id() );
     }
 
     public function advance() {
