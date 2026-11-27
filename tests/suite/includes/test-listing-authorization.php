@@ -182,17 +182,44 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
         $this->settings->shouldReceive( 'get_option' )
             ->with( 'allow-start-date-modification' )
             ->andReturn( true );
-        $this->request->shouldReceive( 'post' )->with( 'mode' )->andReturn( 'edit' );
 
         $now        = time();
         $start_date = date( 'Y-m-d H:i:s', $now - 3600 );
+        $listing    = (object) array(
+            'ID'          => 1,
+            'post_status' => 'publish',
+        );
 
         $this->listing_renderer->shouldReceive( 'get_start_date' )
             ->andReturn( $start_date );
 
         Functions\when( 'current_time' )->justReturn( $now );
 
-        $this->assertFalse( $this->get_test_subject()->is_current_user_allowed_to_edit_listing_start_date( null ) );
+        $this->assertFalse( $this->get_test_subject()->is_current_user_allowed_to_edit_listing_start_date( $listing ) );
+    }
+
+    /**
+     * @since x.x
+     */
+    public function test_is_current_user_allowed_to_edit_listing_start_date_in_the_past_while_listing_is_being_submitted() {
+        $this->roles_and_capabilities->shouldReceive( 'current_user_is_moderator' )->andReturn( false );
+
+        $this->settings->shouldReceive( 'get_option' )
+            ->with( 'allow-start-date-modification' )
+            ->andReturn( true );
+
+        $now     = time();
+        $listing = (object) array(
+            'ID'          => 1,
+            'post_status' => 'draft',
+        );
+
+        $this->listing_renderer->shouldReceive( 'get_start_date' )
+            ->andReturn( date( 'Y-m-d H:i:s', $now - 3600 ) );
+
+        Functions\when( 'current_time' )->justReturn( $now );
+
+        $this->assertTrue( $this->get_test_subject()->is_current_user_allowed_to_edit_listing_start_date( $listing ) );
     }
 
     /**
@@ -212,7 +239,6 @@ class AWPCP_TestListingAuthorization extends AWPCP_UnitTestCase {
             ->andReturn( $start_date );
 
         Functions\when( 'current_time' )->justReturn( $now );
-        $this->request->shouldReceive( 'post' )->with( 'mode' )->andReturn( 'edit', 'create' );
 
         $this->assertTrue( $this->get_test_subject()->is_current_user_allowed_to_edit_listing_start_date( null ) );
     }
