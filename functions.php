@@ -94,6 +94,25 @@ function awpcp_query_vars($query_vars) {
 }
 
 /**
+ * Whether the listing exists and the current user can view it.
+ *
+ * @since x.x
+ *
+ * @param int $listing_id The ID of the listing.
+ *
+ * @return bool
+ */
+function awpcp_current_user_can_view_listing_id( $listing_id ) {
+    try {
+        $listing = awpcp_listings_collection()->get( $listing_id );
+    } catch ( AWPCP_Exception $e ) {
+        return false;
+    }
+
+    return awpcp_listing_renderer()->current_user_can_view( $listing );
+}
+
+/**
  * @since 3.2.1
  */
 function awpcp_rel_canonical_url() {
@@ -115,7 +134,7 @@ function awpcp_rel_canonical_url() {
     $ad_id = intval( awpcp_get_var( array( 'param' => 'id' ) ) );
     $ad_id = empty( $ad_id ) ? intval( get_query_var( 'id' ) ) : $ad_id;
 
-    if ( empty( $ad_id ) ) {
+    if ( empty( $ad_id ) || ! awpcp_current_user_can_view_listing_id( $ad_id ) ) {
         $url = get_permalink( $page_id );
     } else {
         $url = url_showad( $ad_id );
