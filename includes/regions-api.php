@@ -116,9 +116,20 @@ class AWPCP_BasicRegionsAPI {
     }
 
     /**
-     * @return object|null
+     * Find the regions associated with a listing.
+     *
+     * Returns an empty array for non-positive IDs, such as the placeholder
+     * listing used before a new listing is created.
+     *
+     * @param int|string $ad_id Listing ID.
+     *
+     * @return array
      */
     public function find_by_ad_id($ad_id) {
+        if ( intval( $ad_id ) < 1 ) {
+            return array();
+        }
+
         $sql  = 'SELECT * FROM ' . AWPCP_TABLE_AD_REGIONS . ' WHERE ad_id = %d ';
         $sql .= 'ORDER BY id ASC';
 
